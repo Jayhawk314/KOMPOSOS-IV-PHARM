@@ -188,6 +188,8 @@ def _provenance_source_type(prov: str) -> str:
     """Derive a short source label from a provenance string."""
     if not prov or prov == "unknown":
         return "uncited"
+    if prov == "PubMed co-mention (unverified)":
+        return "co-mention (unverified)"
     p = prov.upper()
     if "CHEMBL" in p:
         return "ChEMBL"
@@ -346,10 +348,15 @@ def render_detail(entry):
                     prov = edge.get("provenance", "unknown")
                     src_type = _provenance_source_type(prov)
                     color = _confidence_color(conf)
-                    prov_display = prov if prov != "unknown" else "uncited"
-                    if prov_display.startswith("PMID:"):
-                        pmid_id = prov_display.replace("PMID:", "")
+                    if prov == "PubMed co-mention (unverified)":
+                        prov_display = "co-mention (unverified)"
+                    elif prov == "unknown":
+                        prov_display = "uncited"
+                    elif prov.startswith("PMID:"):
+                        pmid_id = prov.split(",")[0].replace("PMID:", "").strip()
                         prov_display = f"[{prov}](https://pubmed.ncbi.nlm.nih.gov/{pmid_id})"
+                    else:
+                        prov_display = prov
                     st.markdown(
                         f"- **{edge['source']}** -{edge['relation']}-> "
                         f"**{edge['target']}** "
