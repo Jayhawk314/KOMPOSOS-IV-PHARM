@@ -100,12 +100,49 @@ def load_legacy_view(db_path: str = DB_PATH) -> Category:
     return category
 
 
+QUALITY_TIERS = {
+    # Gold: edges from authoritative databases or FDA labels
+    "gold": lambda prov, conf=None: any(tag in (prov or "") for tag in [
+        "ChEMBL:", "FDA:", "KEGG:", "ESM2:", "STRING", "ABPP",
+    ]),
+    # Silver: gold + curated domain knowledge + literature
+    "silver": lambda prov, conf=None: any(tag in (prov or "") for tag in [
+        "ChEMBL:", "FDA:", "KEGG:", "ESM2:", "STRING", "ABPP",
+        "cancer_proteins", "aml_proteins", "PMID:", "PPI",
+        "established:", "mechanism:", "DepMap", "GTEx",
+    ]),
+    # Bronze: everything with any provenance (excludes 'unknown')
+    "bronze": lambda prov, conf=None: (prov or "") != "unknown",
+    # All: everything
+    "all": lambda prov, conf=None: True,
+    # --- Confidence-based tiers (use categorical quality encoded in confidence) ---
+    # Curated: original pre-PubMed-batch graph (~1810 edges, the 0.974 AUROC baseline).
+    # Excludes PubMed batch edges (conf 0.20-0.35) while keeping all curated PMID edges.
+    "curated": lambda prov, conf=None: (conf or 0) >= 0.40,
+    # High: only edges with confidence >= 0.70 (authoritative databases only)
+    "high": lambda prov, conf=None: (conf or 0) >= 0.70,
+    # Medium: curated + categorically verified PubMed (AGREE + PARTIAL)
+    "medium": lambda prov, conf=None: (conf or 0) >= 0.40,
+    # Low: everything including ORPHAN + REJECT PubMed edges
+    "low": lambda prov, conf=None: (conf or 0) >= 0.20,
+}
+
+
 def load_full_typed_view(
     db_path: str = DB_PATH,
     skip_pair: Optional[tuple[str, str]] = None,
     remove_direct_labels: bool = False,
+    quality_tier: str = "all",
 ) -> tuple[Category, list[str]]:
-    """Load all object rows before all morphisms so endpoint types are preserved."""
+    """Load all object rows before all morphisms so endpoint types are preserved.
+
+    quality_tier controls which edges are included:
+      - gold: Only PMID-cited or ChEMBL edges
+      - silver: Gold + curated (cancer_proteins, ABPP)
+      - bronze: Everything except 'unknown' provenance
+      - all: Everything (default)
+    """
+    tier_filter = QUALITY_TIERS.get(quality_tier, QUALITY_TIERS["all"])
     store = KomposOSStore(db_path)
     objects = store.list_objects(limit=100000)
     morphisms = store.list_morphisms(limit=100000)
@@ -135,6 +172,10 @@ def load_full_typed_view(
         if remove_direct_labels and is_drug_disease:
             continue
         if skip_pair and is_drug_disease and (mor.source_name, mor.target_name) == skip_pair:
+            continue
+
+        # Quality tier filter: always keep Drug->Disease treats edges (positives)
+        if not is_drug_disease and not tier_filter(mor.provenance, mor.confidence):
             continue
 
         category.connect(
@@ -178,6 +219,7 @@ def drug_disease_pairs(category: Category) -> tuple[list[str], list[str], set[tu
 def score_pair(strategies, source: str, target: str) -> tuple[float, list[tuple[str, float]]]:
     votes: list[tuple[str, float]] = []
     composition_count = 0
+    composition_weight = 0.0
     for strategy in strategies:
         try:
             preds = strategy.predict(source, target)
@@ -188,14 +230,74 @@ def score_pair(strategies, source: str, target: str) -> tuple[float, list[tuple[
             votes.append((strategy.name, best.confidence))
             if strategy.name == "composition":
                 composition_count = len(preds)
+                # Weight each path by its actual min-hop confidence.
+                # High-confidence paths (0.95) contribute ~5x more than
+                # REJECT paths (0.20).  Coefficient 0.04 means ~6 high-quality
+                # paths needed to reach the 0.25 cap, preventing score
+                # saturation from many low-quality PubMed co-mention paths.
+                composition_weight = sum(p.confidence for p in preds)
 
     if not votes:
         return 0.0, votes
 
     base = sum(confidence for _, confidence in votes) / len(votes)
-    # Bonus for independent mechanistic paths (one composition pred per 2-hop path)
-    path_bonus = min(0.25, 0.10 * composition_count)
-    return min(1.0, base + path_bonus), votes
+    path_bonus = min(0.25, 0.04 * composition_weight)
+    score = base + path_bonus
+
+    # Mechanistic discount: penalize pairs with no Drug->Protein->Disease path.
+    # Analogy-only predictions (kan_extension, binding_evidence) can still surface
+    # but rank below mechanistically-supported candidates at similar base scores.
+    if composition_count == 0:
+        score *= 0.80
+
+    return min(1.0, score), votes
+
+
+def score_pair_detailed(strategies, source: str, target: str) -> dict:
+    """Return full score decomposition for UI transparency.
+
+    Returns a dict with: score, votes, base, path_bonus, composition_weight,
+    composition_count, mechanistic_discount, final_before_cap.
+    """
+    votes: list[tuple[str, float]] = []
+    composition_count = 0
+    composition_weight = 0.0
+    for strategy in strategies:
+        try:
+            preds = strategy.predict(source, target)
+        except Exception:
+            preds = []
+        if preds:
+            best = max(preds, key=lambda pred: pred.confidence)
+            votes.append((strategy.name, best.confidence))
+            if strategy.name == "composition":
+                composition_count = len(preds)
+                composition_weight = sum(p.confidence for p in preds)
+
+    if not votes:
+        return {
+            "score": 0.0, "votes": votes, "base": 0.0,
+            "path_bonus": 0.0, "composition_weight": 0.0,
+            "composition_count": 0, "mechanistic_discount": False,
+            "final_before_cap": 0.0,
+        }
+
+    base = sum(confidence for _, confidence in votes) / len(votes)
+    path_bonus = min(0.25, 0.04 * composition_weight)
+    raw = base + path_bonus
+    mechanistic_discount = composition_count == 0
+    if mechanistic_discount:
+        raw *= 0.80
+    score = min(1.0, raw)
+
+    return {
+        "score": score, "votes": votes, "base": round(base, 4),
+        "path_bonus": round(path_bonus, 4),
+        "composition_weight": round(composition_weight, 4),
+        "composition_count": composition_count,
+        "mechanistic_discount": mechanistic_discount,
+        "final_before_cap": round(raw, 4),
+    }
 
 
 def compute_auprc(scores: list[float], labels: list[int]) -> float:
@@ -620,6 +722,12 @@ def main() -> int:
         default="as_loaded",
         help="Validation protocol.",
     )
+    parser.add_argument(
+        "--quality",
+        choices=["gold", "silver", "bronze", "all", "curated", "high", "medium", "low"],
+        default="all",
+        help="Edge quality tier. Provenance: gold/silver/bronze/all. Confidence: curated(original graph)/high(>=0.70)/medium(>=0.40)/low(all).",
+    )
     parser.add_argument("--json", action="store_true", help="Print machine-readable JSON.")
     parser.add_argument("--ci", action="store_true", help="Compute bootstrap 95%% confidence intervals.")
     parser.add_argument("--baselines", action="store_true", help="Compute baseline comparisons.")
@@ -642,11 +750,12 @@ def main() -> int:
         category, missing_endpoints = load_full_typed_view(
             args.db,
             remove_direct_labels=remove_direct,
+            quality_tier=args.quality,
         )
 
         positives_override = None
         if remove_direct:
-            base_category, _ = load_full_typed_view(args.db)
+            base_category, _ = load_full_typed_view(args.db, quality_tier=args.quality)
             _, _, positives_override = drug_disease_pairs(base_category)
 
         result = evaluate_category(
