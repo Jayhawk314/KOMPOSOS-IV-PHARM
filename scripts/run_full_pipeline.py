@@ -54,7 +54,11 @@ def main():
     phases = [
         ("Phase 1: Evidence Tier Classification", "scripts/classify_evidence_tiers.py"),
         ("Phase 2: cBioPortal Genomic Data", "scripts/extract_cbioportal.py"),
+        ("Phase 3: ESM2 Protein Similarity Expansion", "scripts/expand_esm2_protein_similarity.py"),
+        ("Phase 3: STRING PPI Import", "scripts/import_string_ppi.py"),
+        ("Phase 3: OpenTargets Gene-Disease Associations", "scripts/import_opentargets_associations.py"),
         ("Phase 5: NLP PMID Extraction", "scripts/extract_all_pmids.py"),
+        ("Phase 5: Validate and Integrate Extractions", "scripts/validate_and_integrate_extractions.py"),
     ]
 
     results = {}
