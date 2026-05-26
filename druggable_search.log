@@ -1,0 +1,106 @@
+Found 91 druggable proteins
+Found 50 druggable protein->disease edges without PMIDs
+Starting semantic search...
+[1/50] ERBB4 -> NSCLC
+  Found 3 candidates: 24269963, 20641864, 38398101
+[2/50] ERBB4 -> Li_Fraumeni_Syndrome
+  No candidates
+[3/50] ABL1 -> Type2_Diabetes
+  No candidates
+[4/50] HMGCR -> CML
+  Found 1 candidates: 40695668
+[5/50] HMGCR -> Type2_Diabetes
+  No candidates
+[6/50] HMGCR -> Li_Fraumeni_Syndrome
+  No candidates
+[7/50] HRH2 -> RCC
+  No candidates
+[8/50] HRH2 -> AML
+  Found 1 candidates: 39918973
+[9/50] MAP2K2 -> AML
+  Found 3 candidates: 35760010, 39273530, 37845689
+[10/50] MAP2K2 -> Melanoma
+  Found 3 candidates: 22197931, 36614156, 37021821
+[11/50] MAP2K2 -> NSCLC
+  Found 2 candidates: 39355617, 40934540
+[12/50] MAP2K2 -> Type2_Diabetes
+  No candidates
+[13/50] PTGS2 -> RCC
+  Found 1 candidates: 24123044
+[14/50] PTGS2 -> Soft_Tissue_Sarcoma
+  Found 1 candidates: 30879106
+[15/50] PTGS2 -> Type2_Diabetes
+  No candidates
+[16/50] MST1R -> NSCLC
+  Found 3 candidates: 25512530, 26775595, 25039923
+[17/50] MST1R -> RCC
+  No candidates
+[18/50] PDGFRB -> AML
+  Found 3 candidates: 34859285, 37356958, 19860179
+[19/50] PDGFRB -> CLL
+  No candidates
+[20/50] PDGFRB -> Myelofibrosis
+  Found 3 candidates: 17351342, 19141119, 16610578
+[21/50] PDGFRB -> Soft_Tissue_Sarcoma
+  Found 3 candidates: 24908143, 23922791, 33524869
+[22/50] PDGFRB -> RCC
+  Found 1 candidates: 16865223
+[23/50] PDGFRB -> CML
+  Found 3 candidates: 17351342, 37384296, 16341034
+[24/50] PDGFRB -> GIST
+  Found 3 candidates: 28988501, 40558511, 33524869
+[25/50] PDGFRB -> Colorectal_Cancer
+  Found 3 candidates: 35715570, 34781141, 40227607
+[26/50] PDGFRB -> Breast_Cancer
+  Found 3 candidates: 38329441, 39844194, 38315150
+[27/50] PDGFRB -> Multiple_Myeloma
+  Found 2 candidates: 34714908, 28008160
+[28/50] PDGFRB -> Prostate_Cancer
+  Found 3 candidates: 36169805, 41095652, 40171963
+[29/50] PDGFRB -> Pancreatic_Cancer
+  Found 3 candidates: 40752037, 39620946, 37171030
+[30/50] PDGFRB -> Li_Fraumeni_Syndrome
+  No candidates
+[31/50] PDGFRB -> NSCLC
+  Found 3 candidates: 36083003, 38983151, 22392539
+[32/50] PDGFRB -> Ewing_Sarcoma
+  Found 2 candidates: 29776413, 17298867
+[33/50] PDGFRB -> Ovarian_Cancer
+  Found 3 candidates: 33731124, 24725405, 29044863
+[34/50] PDGFRB -> HCC
+  Found 3 candidates: 39718738, 40902811, 31351129
+[35/50] PDGFRB -> Type2_Diabetes
+  No candidates
+[36/50] PDGFRB -> Melanoma
+  Found 3 candidates: 40717170, 42168158, 24670642
+[37/50] PDGFRB -> Glioblastoma
+  Found 3 candidates: 40131028, 37980347, 40472740
+[38/50] ALDH2 -> RCC
+  No candidates
+[39/50] MMP7 -> GIST
+  Found 1 candidates: 23536344
+[40/50] MMP7 -> Soft_Tissue_Sarcoma
+  Found 1 candidates: 15547833
+[41/50] MMP7 -> Type2_Diabetes
+  No candidates
+[42/50] MMP13 -> NSCLC
+  Found 3 candidates: 37489792, 30889876, 25866480
+[43/50] MMP13 -> Type2_Diabetes
+  No candidates
+[44/50] MMP13 -> Li_Fraumeni_Syndrome
+  No candidates
+[45/50] MMP1 -> Myelofibrosis
+  Found 1 candidates: 37640394
+[46/50] MMP1 -> Type2_Diabetes
+  No candidates
+[47/50] MMP1 -> Li_Fraumeni_Syndrome
+  No candidates
+[48/50] FKBP1A -> RCC
+  No candidates
+[49/50] FKBP1A -> Ovarian_Cancer
+  Found 1 candidates: 37715833
+[50/50] DHODH -> NSCLC
+  Found 3 candidates: 36869602, 41646938, 37317885
+
+Done! Found 75 candidate PMIDs for 32 edges
+Saved to druggable_candidates.txt
