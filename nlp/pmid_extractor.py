@@ -16,10 +16,6 @@ import requests
 import time
 from typing import Dict, List, Optional
 from dataclasses import dataclass
-from Bio import Entrez
-
-# Set your email for NCBI API
-Entrez.email = "komposos-pharm@example.com"
 
 
 @dataclass
@@ -63,14 +59,32 @@ class PMIDExtractor:
             return self.cache[pmid]
 
         try:
-            handle = Entrez.efetch(db="pubmed", id=pmid, rettype="abstract", retmode="text")
-            abstract = handle.read()
-            handle.close()
+            # Use NCBI EUtils API with requests library for better compatibility
+            url = f"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
+            params = {
+                'db': 'pubmed',
+                'id': pmid,
+                'rettype': 'abstract',
+                'retmode': 'text',
+                'tool': 'KOMPOSOS-IV-PHARM',
+                'email': 'komposos@example.com'
+            }
 
-            self.cache[pmid] = abstract
-            return abstract
+            headers = {
+                'User-Agent': 'KOMPOSOS-IV-PHARM/1.0 (https://github.com/Jayhawk314/KOMPOSOS-IV-PHARM)'
+            }
 
-        except Exception as e:
+            response = requests.get(url, params=params, headers=headers, timeout=15)
+
+            if response.status_code == 200 and len(response.text) > 50:
+                abstract = response.text
+                self.cache[pmid] = abstract
+                return abstract
+            else:
+                print(f"  [WARN] PMID {pmid}: No abstract or status {response.status_code}")
+                return None
+
+        except requests.exceptions.RequestException as e:
             print(f"  [ERROR] Failed to fetch PMID {pmid}: {e}")
             return None
 
