@@ -245,7 +245,7 @@ def _generate_strategy_explanation(strategy_name: str, drug: str, disease: str,
         # Find similar drugs that treat this disease
         similar_drugs = []
         for obj in category.objects():
-            if obj.type == "Drug" and obj.name != drug:
+            if obj.type_name == "Drug" and obj.name != drug:
                 # Check if this drug treats the disease
                 for mor in category.morphisms():
                     if mor.source == obj.name and mor.target == disease and mor.name == "treats":
