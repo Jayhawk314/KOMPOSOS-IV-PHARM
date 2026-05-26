@@ -89,12 +89,19 @@ def load_legacy_view(db_path: str = DB_PATH) -> Category:
         )
 
     for mor in store.list_morphisms(limit=100000):
+        # Filter out keys that conflict with Category.connect() parameters
+        metadata = mor.metadata or {}
+        filtered_metadata = {
+            k: v for k, v in metadata.items()
+            if k not in ('source', 'target', 'name', 'confidence', 'fn')
+        }
+
         category.connect(
             mor.source_name,
             mor.target_name,
             name=mor.name,
             confidence=mor.confidence if mor.confidence else 1.0,
-            **(mor.metadata or {}),
+            **filtered_metadata,
         )
 
     return category
@@ -178,12 +185,19 @@ def load_full_typed_view(
         if not is_drug_disease and not tier_filter(mor.provenance, mor.confidence):
             continue
 
+        # Filter out keys that conflict with Category.connect() parameters
+        metadata = mor.metadata or {}
+        filtered_metadata = {
+            k: v for k, v in metadata.items()
+            if k not in ('source', 'target', 'name', 'confidence', 'fn')
+        }
+
         category.connect(
             mor.source_name,
             mor.target_name,
             name=mor.name,
             confidence=mor.confidence if mor.confidence else 1.0,
-            **(mor.metadata or {}),
+            **filtered_metadata,
         )
 
     return category, missing_endpoints
