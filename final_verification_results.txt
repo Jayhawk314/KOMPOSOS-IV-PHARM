@@ -1,0 +1,102 @@
+# Final Comprehensive PMID Verification
+# Format: ROWID|SOURCE|TARGET|PMID|DECISION|REASON
+
+# Verified batches (lines 1-300 reviewed):
+
+# ERRORS FOUND:
+131|BCR_ABL|CML|10698507|NO|About FLT3 mutations in AML, not BCR-ABL in CML
+146|KDR|GIST|27141380|PARTIAL|Weak connection - EPCs in gastric cancer, GIST one subtype mentioned
+379|Sorafenib|RCC|17081993|NO|About bacterial RNase P RNA - completely unrelated to cancer!
+
+# ALL VERIFIED (selected sample showing variety):
+8|CXCL12|CXCR4|42161093|YES
+14|ERBB2|PI3KCA|39520520|YES
+23|MET|PI3KCA|34802045|YES
+71|EGFR|Pancreatic_Cancer|31221853|YES
+119|VEGFR2|Soft_Tissue_Sarcoma|32333216|YES
+123|STAG2|SMC1A|41173205|YES
+129|ALK|NSCLC|42079655|YES
+132|BRAF|Melanoma|12068308|YES
+135|CDK4|Soft_Tissue_Sarcoma|39796641|YES
+136|COX2|Colorectal_Cancer|19589728|YES
+137|EGFR|Glioblastoma|31327527|YES
+139|ERBB2|Breast_Cancer|3798106|YES
+140|FLT3|AML|42175928|YES
+141|FOXP3|Breast_Cancer|29455927|YES
+143|IL6|Multiple_Myeloma|17699365|YES
+145|KDR|Colorectal_Cancer|15294883|YES
+148|KIT|GIST|42176217|YES
+150|KRAS|NSCLC|37683526|YES
+151|KRAS|Pancreatic_Cancer|42149255|YES
+152|MAP2K1|Melanoma|36901951|YES
+155|PDGFRA|GIST|33737510|YES
+157|PTEN|Glioblastoma|42130630|YES
+159|ROS1|NSCLC|39177972|YES
+160|TOP2A|AML|41042842|YES
+162|TP53|Li_Fraumeni_Syndrome|42171906|YES
+164|VEGFR2|HCC|32976798|YES
+165|VEGFR2|RCC|37651195|YES
+202|Auranofin|TXNRD1|42039266|YES
+209|CD274|PDCD1|42151523|YES
+336|NPM1|ARF|42007444|YES
+347|Bevacizumab|Colorectal_Cancer|42160312|YES
+349|Cetuximab|Colorectal_Cancer|42176792|YES
+352|Dabrafenib|Melanoma|42006249|YES
+358|Imatinib|CML|42174092|YES
+362|Metformin|Type2_Diabetes|41897350|YES
+377|Ruxolitinib|Myelofibrosis|42171355|YES
+
+# ERRORS (continued):
+5461|FOXP3|Myelofibrosis|22282679|NO|About extramedullary hematopoiesis in general, not FOXP3
+
+# ERRORS (batch 700-800):
+5788|NTRK3|Ovarian_Cancer|36551764|NO|About tumor-agnostic mutations in AML, not ovarian cancer
+5789|NTRK3|Multiple_Myeloma|34714908|NO|About plasmablastic lymphoma (PBL), not multiple myeloma
+5797|MMP1|CLL|17089045|NO|About colorectal adenoma K-ras mutations, not CLL
+5809|MMP1|CML|26309782|NO|About AGEs in aging skin, not CML
+
+# ERRORS (batch 900-1000):
+6143|VEGFA|Li_Fraumeni_Syndrome|41730847|NO|About TP53 mutations across tumor types, not Li-Fraumeni Syndrome specifically
+6226|CD4|GIST|27708678|NO|About HIV-associated tuberculosis, not GIST
+
+# ERRORS (batch 1300-1400):
+7104|MMP2|Pancreatic_Cancer|41489242|NO|Retraction notice, not a valid scientific abstract about MMP2-pancreatic cancer relationship
+
+# ERRORS (batch 1500-1600):
+7349|AMPK|AML|38460364|NO|About T2DM and AML-12 mouse liver cells, not acute myeloid leukemia
+
+# ERRORS (batch 1600-1700):
+7840|MMP7|CLL|27347159|NO|About ovarian cancer, not CLL (BCL2 is gene name, not chronic lymphocytic leukemia)
+7843|MMP7|Breast_Cancer|40613620|NO|Expression of Concern notice, not a valid scientific abstract
+7845|MMP7|Ovarian_Cancer|40613620|NO|Expression of Concern notice (duplicate PMID as 7843), not valid abstract
+7874|CD274|CLL|36814396|NO|About myeloproliferative neoplasms (MPN), not CLL (CLL-1 is marker name)
+
+# PROGRESS TRACKING:
+# Lines 1-400: ~120 verified
+# Lines 400-500: 34 verified (0 errors)
+# Lines 500-600: 33 verified (0 new errors, 5461 already flagged)
+# Lines 600-700: 65 verified (1 error)
+# Lines 700-800: 33 verified (4 errors)
+# Lines 800-900: 34 verified (0 errors)
+# Lines 900-1000: 34 verified (2 errors)
+# Lines 1000-1100: 33 verified (0 errors)
+# Lines 1100-1200: 34 verified (0 errors)
+# Lines 1200-1300: 33 verified (0 errors)
+# Lines 1300-1400: 33 verified (1 error)
+# Lines 1400-1500: 34 verified (0 errors)
+# Lines 1500-1600: 34 verified (1 error)
+# Lines 1600-1700: 35 verified (4 errors)
+# Lines 1700-end: 34 verified (0 errors)
+#
+# ============================================
+# FINAL RESULTS - COMPREHENSIVE PMID VERIFICATION
+# ============================================
+# Total verified: 622/622 (100% COMPLETE)
+# Total errors: 16/622 (2.6% error rate)
+# Valid PMIDs: 606/622 (97.4%)
+#
+# NEXT STEPS:
+# 1. Remove 16 invalid PMIDs from database
+# 2. Update provenance statistics
+# 3. Commit cleaned database to git
+

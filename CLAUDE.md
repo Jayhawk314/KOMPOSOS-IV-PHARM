@@ -33,19 +33,18 @@ Status: working research prototype, not clinical or translational validation.
 Data source: `data/drugs/tier1.db`
 Reproducible build: `data/drugs/build_tier1.py` from `tier1_manifest.json`
 
-Full typed DB facts (2026-05-12, post-provenance completion):
-- 1143 objects, 1260 morphisms
-- 78 drugs, 20 diseases, 366 proteins, 679 ExternalCompound nodes
+Full typed DB facts (2026-05-25, post-PMID verification and cleanup):
+- 464 objects, 4956 morphisms
+- 78 drugs, 20 diseases, 366 proteins
 - 44 Drug->Disease approved indication labels (all FDA-approved, all with PMIDs)
 - All 44 positives have mechanistic paths (Drug->Protein->Disease)
-- Zero missing endpoint rows (679 ChEMBL endpoints now explicit objects)
-- Zero unreferenced objects
-- 1260/1260 morphisms have provenance (100.0%): PMIDs + ChEMBL IDs
-- Zero uncited morphisms remain
-- 16/16 original positive-pair mechanistic chains fully cited
+- 4939/4956 morphisms have provenance (99.7%): PMIDs + ChEMBL IDs
+- 607 unique valid PMIDs (15 invalid PMIDs removed after manual verification)
+- ~3,286 PubMed-derived Protein→Disease edges with categorical verification metadata
+- ~1,670 curated edges from ChEMBL, FDA, KEGG, ESM2, STRING, ABPP
 - ChEMBL drug names normalized (salt forms stripped, matched to base drugs)
 - 17 new Drug->Protein edges added for base drugs via ChEMBL normalization
-- DB SHA256: `0BA4A7E01BBA3E1E52A03CD7765A3E6523618F439AB8A90ED4BD6B4BD95BC8E6`
+- DB SHA256: `85e73373e8dead78c8ba3a408cc0c92b44116cfcc5bad890286cc3cc63575005`
 
 Current canonical harness:
 
@@ -59,13 +58,14 @@ python validation\repurposing_benchmark.py --view full_typed --protocol loocv
 Add `--ci` for bootstrap 95% confidence intervals, `--baselines` for baseline
 comparisons (random, degree, common-neighbor, shortest-path, path-count).
 
-Current metrics (2026-05-13, 8 strategies, drug props PubChem-verified, 44 positives):
-- `legacy/as_loaded`: AUROC 0.931, AUPRC 0.465
-- `full_typed/as_loaded`: AUROC 0.887, AUPRC 0.135
-- `full_typed/remove_direct_labels`: AUROC 0.940, AUPRC 0.431
+Current metrics (2026-05-24, 8 strategies, confidence-weighted paths, 44 positives):
+- `full_typed/remove_direct_labels`: AUROC 0.956, AUPRC 0.537, Hits@5 1.00
 - `full_typed/loocv`: AUROC 0.974, AUPRC 0.530, Hits@5 1.00, Hits@10 1.00, MRR 0.080
+- `full_typed/as_loaded`: AUROC 0.887, AUPRC 0.135
+- `legacy/as_loaded`: AUROC 0.931, AUPRC 0.465
 
-Path bonus tuned via LOOCV grid search: min(0.25, 0.10 * composition_count).
+Path bonus tuned via LOOCV grid search: min(0.25, 0.04 * sum(path_confidence)).
+Confidence-weighted paths (2026-05-24): each path weighted by min-hop confidence.
 Uniform strategy weights confirmed optimal by calibrate_loocv.py.
 
 as_loaded protocols show Hits@K regression (now 0.00) because composition skips
