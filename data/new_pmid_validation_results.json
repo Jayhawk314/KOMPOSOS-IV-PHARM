@@ -1,0 +1,2994 @@
+[
+  {
+    "pmid": "26841094",
+    "type": "hazard_ratio",
+    "value": 0.58,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "33561166",
+    "type": "hazard_ratio",
+    "value": 4.26,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "31959346",
+    "type": "mutation_frequency",
+    "value": 0.05,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "36678593",
+    "type": "ic50",
+    "value": 6.83,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "36678593",
+    "type": "ic50",
+    "value": 3.64,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "36678593",
+    "type": "ic50",
+    "value": 2.14,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "36678593",
+    "type": "ic50",
+    "value": 5.18,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "38911338",
+    "type": "hazard_ratio",
+    "value": 3.05,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "25114896",
+    "type": "mutation_frequency",
+    "value": 0.9,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41251277",
+    "type": "ic50",
+    "value": 22.39,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "35349331",
+    "type": "hazard_ratio",
+    "value": 2.28,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "35349331",
+    "type": "hazard_ratio",
+    "value": 3.03,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "20803052",
+    "type": "mutation_frequency",
+    "value": 0.18,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41962308",
+    "type": "response_rate",
+    "value": 0.375,
+    "valid": false,
+    "message": "Could not fetch abstract",
+    "confidence": 0.9
+  },
+  {
+    "pmid": "41962308",
+    "type": "response_rate",
+    "value": 0.33,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.9
+  },
+  {
+    "pmid": "41962308",
+    "type": "mutation_frequency",
+    "value": 0.59,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41225509",
+    "type": "mutation_frequency",
+    "value": 0.5,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "24523748",
+    "type": "ic50",
+    "value": 9.0,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "24523748",
+    "type": "ic50",
+    "value": 20.0,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41949116",
+    "type": "mutation_frequency",
+    "value": 0.97,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41949116",
+    "type": "mutation_frequency",
+    "value": 0.15,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "34562816",
+    "type": "mutation_frequency",
+    "value": 0.42,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41158152",
+    "type": "ic50",
+    "value": 0.00078,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.5
+  },
+  {
+    "pmid": "41158152",
+    "type": "ic50",
+    "value": 0.0012,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "42170792",
+    "type": "mutation_frequency",
+    "value": 0.7170000000000001,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "29750040",
+    "type": "mutation_frequency",
+    "value": 0.81,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "32988996",
+    "type": "response_rate",
+    "value": 0.1,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.9
+  },
+  {
+    "pmid": "21617858",
+    "type": "ic50",
+    "value": 0.045,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "21617858",
+    "type": "ic50",
+    "value": 0.00433,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "18473962",
+    "type": "mutation_frequency",
+    "value": 0.8,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "19018475",
+    "type": "mutation_frequency",
+    "value": 0.36,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "40973474",
+    "type": "hazard_ratio",
+    "value": 1.22,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40758471",
+    "type": "hazard_ratio",
+    "value": 0.83,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "36331404",
+    "type": "mutation_frequency",
+    "value": 0.045,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "38739112",
+    "type": "ic50",
+    "value": 0.0375,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "38739112",
+    "type": "ic50",
+    "value": 1.77,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "39780756",
+    "type": "hazard_ratio",
+    "value": 3.29,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "39780756",
+    "type": "hazard_ratio",
+    "value": 5.4,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.4
+  },
+  {
+    "pmid": "38333370",
+    "type": "mutation_frequency",
+    "value": 0.456,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41992834",
+    "type": "hazard_ratio",
+    "value": 3.52,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "38814950",
+    "type": "hazard_ratio",
+    "value": 1.67,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "38814950",
+    "type": "hazard_ratio",
+    "value": 1.55,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "38814950",
+    "type": "hazard_ratio",
+    "value": 1.83,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "26822398",
+    "type": "hazard_ratio",
+    "value": 1.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "28979818",
+    "type": "hazard_ratio",
+    "value": 1.15,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "28979818",
+    "type": "hazard_ratio",
+    "value": 0.63,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "23728943",
+    "type": "mutation_frequency",
+    "value": 0.2,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41240398",
+    "type": "ic50",
+    "value": 0.0045899999999999995,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41240398",
+    "type": "ic50",
+    "value": 0.01312,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "39637954",
+    "type": "hazard_ratio",
+    "value": 0.98,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "39637954",
+    "type": "hazard_ratio",
+    "value": 0.89,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "39637954",
+    "type": "hazard_ratio",
+    "value": 0.83,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41405156",
+    "type": "ic50",
+    "value": 2.77,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41405156",
+    "type": "ic50",
+    "value": 47.21,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41405156",
+    "type": "ic50",
+    "value": 0.03489,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "28038328",
+    "type": "ic50",
+    "value": 0.0147,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "28038328",
+    "type": "ic50",
+    "value": 0.0385,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "28038328",
+    "type": "ic50",
+    "value": 0.0053,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "38577077",
+    "type": "hazard_ratio",
+    "value": 0.99,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "34875671",
+    "type": "hazard_ratio",
+    "value": 0.32,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41967859",
+    "type": "hazard_ratio",
+    "value": 0.54,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41967859",
+    "type": "hazard_ratio",
+    "value": 0.59,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "23692263",
+    "type": "mutation_frequency",
+    "value": 0.145,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "23692263",
+    "type": "mutation_frequency",
+    "value": 0.017,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "26264378",
+    "type": "mutation_frequency",
+    "value": 0.25,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41126742",
+    "type": "mutation_frequency",
+    "value": 0.76,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "35213214",
+    "type": "hazard_ratio",
+    "value": 2.74,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41394854",
+    "type": "hazard_ratio",
+    "value": 1.62,
+    "valid": false,
+    "message": "Could not fetch abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "38143440",
+    "type": "mutation_frequency",
+    "value": 0.75,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "33405269",
+    "type": "hazard_ratio",
+    "value": 0.55,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "35290929",
+    "type": "ic50",
+    "value": 2.13,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "35290929",
+    "type": "ic50",
+    "value": 0.075,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "35290929",
+    "type": "ic50",
+    "value": 0.03,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "40250457",
+    "type": "hazard_ratio",
+    "value": 2.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40250457",
+    "type": "hazard_ratio",
+    "value": 3.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40250457",
+    "type": "hazard_ratio",
+    "value": 4.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40957291",
+    "type": "mutation_frequency",
+    "value": 0.28600000000000003,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "33356422",
+    "type": "mutation_frequency",
+    "value": 0.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41977352",
+    "type": "ic50",
+    "value": 6.4,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41977352",
+    "type": "ic50",
+    "value": 4.0,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41977352",
+    "type": "ic50",
+    "value": 27.8,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41439745",
+    "type": "hazard_ratio",
+    "value": 0.66,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41439745",
+    "type": "hazard_ratio",
+    "value": 0.56,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41820245",
+    "type": "mutation_frequency",
+    "value": 0.262,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41826245",
+    "type": "ic50",
+    "value": 0.0316,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "36471691",
+    "type": "hazard_ratio",
+    "value": 0.67,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "36471691",
+    "type": "hazard_ratio",
+    "value": 0.69,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "36471691",
+    "type": "hazard_ratio",
+    "value": 0.48,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "36471691",
+    "type": "hazard_ratio",
+    "value": 0.69,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41749920",
+    "type": "hazard_ratio",
+    "value": 0.52,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40996635",
+    "type": "mutation_frequency",
+    "value": 0.9,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "35884431",
+    "type": "hazard_ratio",
+    "value": 0.17,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "35884431",
+    "type": "hazard_ratio",
+    "value": 0.14,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41275271",
+    "type": "hazard_ratio",
+    "value": 0.51,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41275271",
+    "type": "hazard_ratio",
+    "value": 0.61,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41275271",
+    "type": "mutation_frequency",
+    "value": 0.74,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41080716",
+    "type": "ic50",
+    "value": 17.69,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "35138529",
+    "type": "mutation_frequency",
+    "value": 0.18,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41647991",
+    "type": "hazard_ratio",
+    "value": 0.24,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41647991",
+    "type": "hazard_ratio",
+    "value": 0.59,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41647991",
+    "type": "mutation_frequency",
+    "value": 0.47,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "18467719",
+    "type": "hazard_ratio",
+    "value": 0.88,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "18467719",
+    "type": "hazard_ratio",
+    "value": 0.76,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "18467719",
+    "type": "hazard_ratio",
+    "value": 0.69,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "37899297",
+    "type": "mutation_frequency",
+    "value": 0.1,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "33052759",
+    "type": "mutation_frequency",
+    "value": 0.71,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "30069761",
+    "type": "mutation_frequency",
+    "value": 0.25,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "36790582",
+    "type": "ic50",
+    "value": 2.02,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "34681605",
+    "type": "ic50",
+    "value": 0.06,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41038185",
+    "type": "hazard_ratio",
+    "value": 0.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.4
+  },
+  {
+    "pmid": "41038185",
+    "type": "hazard_ratio",
+    "value": 0.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.4
+  },
+  {
+    "pmid": "41038185",
+    "type": "hazard_ratio",
+    "value": 0.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.4
+  },
+  {
+    "pmid": "41038185",
+    "type": "hazard_ratio",
+    "value": 0.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.4
+  },
+  {
+    "pmid": "41038185",
+    "type": "hazard_ratio",
+    "value": 0.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.4
+  },
+  {
+    "pmid": "40434500",
+    "type": "hazard_ratio",
+    "value": 2.97,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "24189171",
+    "type": "hazard_ratio",
+    "value": 0.92,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "24189171",
+    "type": "hazard_ratio",
+    "value": 0.95,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "30591465",
+    "type": "mutation_frequency",
+    "value": 0.64,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "38845274",
+    "type": "response_rate",
+    "value": 0.632,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.9
+  },
+  {
+    "pmid": "38845274",
+    "type": "hazard_ratio",
+    "value": 0.43,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "26474549",
+    "type": "hazard_ratio",
+    "value": 0.7,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "37741071",
+    "type": "mutation_frequency",
+    "value": 0.15,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "39815637",
+    "type": "mutation_frequency",
+    "value": 0.6940000000000001,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "24102046",
+    "type": "ic50",
+    "value": 0.89,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "35688679",
+    "type": "mutation_frequency",
+    "value": 0.59,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "32329374",
+    "type": "ic50",
+    "value": 4.642,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "32329374",
+    "type": "ic50",
+    "value": 20.88,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "38503144",
+    "type": "hazard_ratio",
+    "value": 1.48,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "38503144",
+    "type": "hazard_ratio",
+    "value": 1.51,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "38503144",
+    "type": "hazard_ratio",
+    "value": 1.34,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "38503144",
+    "type": "hazard_ratio",
+    "value": 1.13,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41362626",
+    "type": "hazard_ratio",
+    "value": 0.53,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "34534755",
+    "type": "ic50",
+    "value": 3.99,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "34534755",
+    "type": "ic50",
+    "value": 0.0281,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "33222197",
+    "type": "hazard_ratio",
+    "value": 1.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "33222197",
+    "type": "hazard_ratio",
+    "value": 3.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "33222197",
+    "type": "hazard_ratio",
+    "value": 3.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "33222197",
+    "type": "hazard_ratio",
+    "value": 2.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "33222197",
+    "type": "hazard_ratio",
+    "value": 2.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "33222197",
+    "type": "hazard_ratio",
+    "value": 3.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "33222197",
+    "type": "hazard_ratio",
+    "value": 3.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "17245623",
+    "type": "mutation_frequency",
+    "value": 0.24,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "39616778",
+    "type": "mutation_frequency",
+    "value": 0.8079999999999999,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "39616778",
+    "type": "mutation_frequency",
+    "value": 0.10300000000000001,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "31801585",
+    "type": "mutation_frequency",
+    "value": 0.46,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "42102697",
+    "type": "ic50",
+    "value": 64.65,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "20564147",
+    "type": "mutation_frequency",
+    "value": 0.1,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41872782",
+    "type": "response_rate",
+    "value": 0.35700000000000004,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.9
+  },
+  {
+    "pmid": "41203542",
+    "type": "mutation_frequency",
+    "value": 0.7,
+    "valid": false,
+    "message": "No match for mutation_frequency",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "22729611",
+    "type": "hazard_ratio",
+    "value": 0.93,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41313568",
+    "type": "hazard_ratio",
+    "value": 0.71,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41036428",
+    "type": "ic50",
+    "value": 0.034,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41036428",
+    "type": "ic50",
+    "value": 0.04,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41927407",
+    "type": "hazard_ratio",
+    "value": 0.77,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41927407",
+    "type": "hazard_ratio",
+    "value": 1.89,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41927407",
+    "type": "hazard_ratio",
+    "value": 2.48,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "35647471",
+    "type": "ic50",
+    "value": 1.47,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "35647471",
+    "type": "ic50",
+    "value": 1.4,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "24390424",
+    "type": "mutation_frequency",
+    "value": 0.76,
+    "valid": false,
+    "message": "No match for mutation_frequency",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "40853557",
+    "type": "mutation_frequency",
+    "value": 0.77,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41110839",
+    "type": "hazard_ratio",
+    "value": 0.91,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41110839",
+    "type": "hazard_ratio",
+    "value": 0.94,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41110839",
+    "type": "hazard_ratio",
+    "value": 1.05,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41110839",
+    "type": "hazard_ratio",
+    "value": 0.922,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41110839",
+    "type": "hazard_ratio",
+    "value": 0.97,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40145314",
+    "type": "mutation_frequency",
+    "value": 0.456,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "26474518",
+    "type": "hazard_ratio",
+    "value": 0.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.4
+  },
+  {
+    "pmid": "26474518",
+    "type": "hazard_ratio",
+    "value": 0.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.4
+  },
+  {
+    "pmid": "26474518",
+    "type": "hazard_ratio",
+    "value": 0.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.4
+  },
+  {
+    "pmid": "26474518",
+    "type": "hazard_ratio",
+    "value": 0.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.4
+  },
+  {
+    "pmid": "26474518",
+    "type": "hazard_ratio",
+    "value": 0.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.4
+  },
+  {
+    "pmid": "33588150",
+    "type": "hazard_ratio",
+    "value": 0.85,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40590181",
+    "type": "ic50",
+    "value": 7.26,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "40590181",
+    "type": "ic50",
+    "value": 0.05332,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "33402115",
+    "type": "hazard_ratio",
+    "value": 0.51,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "38741920",
+    "type": "hazard_ratio",
+    "value": 0.3,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41959926",
+    "type": "hazard_ratio",
+    "value": 1.53,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41959926",
+    "type": "hazard_ratio",
+    "value": 1.4,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41959926",
+    "type": "hazard_ratio",
+    "value": 1.83,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41959926",
+    "type": "hazard_ratio",
+    "value": 1.67,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41959926",
+    "type": "hazard_ratio",
+    "value": 2.09,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41959926",
+    "type": "hazard_ratio",
+    "value": 1.78,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41959926",
+    "type": "hazard_ratio",
+    "value": 0.63,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "42033063",
+    "type": "hazard_ratio",
+    "value": 0.521,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "31494469",
+    "type": "ic50",
+    "value": 2.85,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "31494469",
+    "type": "ic50",
+    "value": 19.82,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "40979666",
+    "type": "hazard_ratio",
+    "value": 2.1,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40979666",
+    "type": "hazard_ratio",
+    "value": 2.2,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40979666",
+    "type": "hazard_ratio",
+    "value": 2.3,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "35717939",
+    "type": "mutation_frequency",
+    "value": 0.5,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "35717939",
+    "type": "mutation_frequency",
+    "value": 0.5,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "36513215",
+    "type": "ic50",
+    "value": 34.16,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "36513215",
+    "type": "ic50",
+    "value": 25.85,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "36513215",
+    "type": "ic50",
+    "value": 20.28,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "40486486",
+    "type": "response_rate",
+    "value": 0.14,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.9
+  },
+  {
+    "pmid": "42180117",
+    "type": "hazard_ratio",
+    "value": 0.79,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "42180117",
+    "type": "hazard_ratio",
+    "value": 0.95,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "36812829",
+    "type": "ic50",
+    "value": 0.123,
+    "valid": false,
+    "message": "Could not fetch abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "36812829",
+    "type": "ic50",
+    "value": 0.116,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "24574334",
+    "type": "hazard_ratio",
+    "value": 0.18,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "24574334",
+    "type": "hazard_ratio",
+    "value": 0.31,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "42028206",
+    "type": "ic50",
+    "value": 3.61,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "42028206",
+    "type": "ic50",
+    "value": 5.37,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "33287892",
+    "type": "hazard_ratio",
+    "value": 0.85,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "33287892",
+    "type": "hazard_ratio",
+    "value": 0.76,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "28369651",
+    "type": "ic50",
+    "value": 0.234,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "28369651",
+    "type": "ic50",
+    "value": 5.7,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "28369651",
+    "type": "ic50",
+    "value": 7.8,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "37265758",
+    "type": "ic50",
+    "value": 5.7,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "37265758",
+    "type": "ic50",
+    "value": 7.21,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "37265758",
+    "type": "ic50",
+    "value": 0.75,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "37265758",
+    "type": "ic50",
+    "value": 1.65,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "37143385",
+    "type": "ic50",
+    "value": 4.03,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "40779213",
+    "type": "response_rate",
+    "value": 0.9329999999999999,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.9
+  },
+  {
+    "pmid": "40779213",
+    "type": "response_rate",
+    "value": 0.72,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.9
+  },
+  {
+    "pmid": "40779213",
+    "type": "response_rate",
+    "value": 0.631,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.9
+  },
+  {
+    "pmid": "41785709",
+    "type": "ic50",
+    "value": 18.3,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41785709",
+    "type": "ic50",
+    "value": 3.11,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41785709",
+    "type": "ic50",
+    "value": 11.9,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41206837",
+    "type": "mutation_frequency",
+    "value": 0.13,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "36770936",
+    "type": "ic50",
+    "value": 0.08,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "37771465",
+    "type": "mutation_frequency",
+    "value": 0.14300000000000002,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "29872725",
+    "type": "hazard_ratio",
+    "value": 0.596,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "29872725",
+    "type": "hazard_ratio",
+    "value": 1.5,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "29872725",
+    "type": "hazard_ratio",
+    "value": 1.7,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "29872725",
+    "type": "hazard_ratio",
+    "value": 1.6,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "35715365",
+    "type": "hazard_ratio",
+    "value": 0.22,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "25089810",
+    "type": "ic50",
+    "value": 0.0004,
+    "valid": false,
+    "message": "Could not fetch abstract",
+    "confidence": 0.5
+  },
+  {
+    "pmid": "41505979",
+    "type": "ic50",
+    "value": 0.098,
+    "valid": false,
+    "message": "Could not fetch abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41505979",
+    "type": "ic50",
+    "value": 0.06,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41505979",
+    "type": "ic50",
+    "value": 8.8,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41505979",
+    "type": "ic50",
+    "value": 7.5,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41505979",
+    "type": "ic50",
+    "value": 23.14,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41505979",
+    "type": "ic50",
+    "value": 2.6,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41102268",
+    "type": "hazard_ratio",
+    "value": 0.41,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41102268",
+    "type": "mutation_frequency",
+    "value": 0.809,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41102268",
+    "type": "mutation_frequency",
+    "value": 0.364,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "21738104",
+    "type": "mutation_frequency",
+    "value": 0.05,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "32683176",
+    "type": "ic50",
+    "value": 0.00017,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.5
+  },
+  {
+    "pmid": "34480522",
+    "type": "hazard_ratio",
+    "value": 0.82,
+    "valid": false,
+    "message": "Could not fetch abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "34480522",
+    "type": "mutation_frequency",
+    "value": 0.49,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "19688297",
+    "type": "hazard_ratio",
+    "value": 0.93,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "39830765",
+    "type": "mutation_frequency",
+    "value": 0.3,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "35653982",
+    "type": "hazard_ratio",
+    "value": 0.55,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "35653982",
+    "type": "hazard_ratio",
+    "value": 0.56,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "15780170",
+    "type": "mutation_frequency",
+    "value": 0.15,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "33422470",
+    "type": "mutation_frequency",
+    "value": 0.6,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "33422470",
+    "type": "mutation_frequency",
+    "value": 0.84,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "39114330",
+    "type": "mutation_frequency",
+    "value": 0.31,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "30610548",
+    "type": "hazard_ratio",
+    "value": 0.78,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "30610548",
+    "type": "hazard_ratio",
+    "value": 0.81,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "20709657",
+    "type": "mutation_frequency",
+    "value": 0.89,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "20709657",
+    "type": "mutation_frequency",
+    "value": 0.59,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "30955995",
+    "type": "ic50",
+    "value": 0.009300000000000001,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "34417144",
+    "type": "mutation_frequency",
+    "value": 0.54,
+    "valid": false,
+    "message": "Could not fetch abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41938081",
+    "type": "mutation_frequency",
+    "value": 0.42,
+    "valid": false,
+    "message": "Could not fetch abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "40496375",
+    "type": "ic50",
+    "value": 0.19,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "40496375",
+    "type": "ic50",
+    "value": 0.1,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "40496375",
+    "type": "ic50",
+    "value": 0.0013,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41175725",
+    "type": "ic50",
+    "value": 4.55,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41175725",
+    "type": "ic50",
+    "value": 7.52,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41175725",
+    "type": "ic50",
+    "value": 0.061,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "34371776",
+    "type": "ic50",
+    "value": 6.0,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "34371776",
+    "type": "ic50",
+    "value": 52.5,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "37704613",
+    "type": "hazard_ratio",
+    "value": 0.33,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "37704613",
+    "type": "hazard_ratio",
+    "value": 0.56,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "39054430",
+    "type": "mutation_frequency",
+    "value": 0.429,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "17876014",
+    "type": "hazard_ratio",
+    "value": 0.86,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "17876014",
+    "type": "mutation_frequency",
+    "value": 0.05,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41627922",
+    "type": "ic50",
+    "value": 0.6,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41459979",
+    "type": "mutation_frequency",
+    "value": 0.049,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41459979",
+    "type": "mutation_frequency",
+    "value": 0.319,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "42163782",
+    "type": "hazard_ratio",
+    "value": 1.04,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "42163782",
+    "type": "hazard_ratio",
+    "value": 1.34,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "20142724",
+    "type": "response_rate",
+    "value": 0.37,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.9
+  },
+  {
+    "pmid": "36316649",
+    "type": "hazard_ratio",
+    "value": 0.14,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "36316649",
+    "type": "hazard_ratio",
+    "value": 0.066,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.4
+  },
+  {
+    "pmid": "31378572",
+    "type": "ic50",
+    "value": 0.0047,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "40813186",
+    "type": "mutation_frequency",
+    "value": 0.61,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "40591514",
+    "type": "hazard_ratio",
+    "value": 0.63,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40591514",
+    "type": "hazard_ratio",
+    "value": 1.07,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "38306827",
+    "type": "ic50",
+    "value": 0.112,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "38306827",
+    "type": "ic50",
+    "value": 0.076,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "38306827",
+    "type": "ic50",
+    "value": 0.506,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "22811876",
+    "type": "mutation_frequency",
+    "value": 0.414,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "22811876",
+    "type": "mutation_frequency",
+    "value": 0.1,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41988621",
+    "type": "mutation_frequency",
+    "value": 0.037000000000000005,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "16361636",
+    "type": "mutation_frequency",
+    "value": 0.27,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "40573320",
+    "type": "ic50",
+    "value": 0.33,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41968548",
+    "type": "ic50",
+    "value": 5.16,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41968548",
+    "type": "ic50",
+    "value": 0.9,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41968548",
+    "type": "ic50",
+    "value": 6.92,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "38492275",
+    "type": "mutation_frequency",
+    "value": 0.226,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "38492275",
+    "type": "mutation_frequency",
+    "value": 0.36,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "31942177",
+    "type": "hazard_ratio",
+    "value": 0.65,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "31942177",
+    "type": "hazard_ratio",
+    "value": 0.78,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "31942177",
+    "type": "hazard_ratio",
+    "value": 0.64,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "31942177",
+    "type": "hazard_ratio",
+    "value": 0.72,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "31942177",
+    "type": "hazard_ratio",
+    "value": 0.39,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "31942177",
+    "type": "hazard_ratio",
+    "value": 1.33,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "31942177",
+    "type": "hazard_ratio",
+    "value": 1.57,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41619052",
+    "type": "hazard_ratio",
+    "value": 0.61,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41619052",
+    "type": "hazard_ratio",
+    "value": 0.33,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41619052",
+    "type": "mutation_frequency",
+    "value": 0.5,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "39761615",
+    "type": "ic50",
+    "value": 0.081,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41692742",
+    "type": "mutation_frequency",
+    "value": 0.946,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "42170268",
+    "type": "hazard_ratio",
+    "value": 2.5204,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "42170268",
+    "type": "mutation_frequency",
+    "value": 0.377,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "42170268",
+    "type": "mutation_frequency",
+    "value": 0.213,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "41209294",
+    "type": "ic50",
+    "value": 0.081,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41418598",
+    "type": "ic50",
+    "value": 0.078,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41418598",
+    "type": "ic50",
+    "value": 12.6,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41418598",
+    "type": "ic50",
+    "value": 0.122,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41418598",
+    "type": "ic50",
+    "value": 16.8,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "16301835",
+    "type": "hazard_ratio",
+    "value": 2.55,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "16301835",
+    "type": "mutation_frequency",
+    "value": 0.19,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "33647741",
+    "type": "ic50",
+    "value": 0.057,
+    "valid": false,
+    "message": "Could not fetch abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "33647741",
+    "type": "ic50",
+    "value": 0.051,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "33647741",
+    "type": "ic50",
+    "value": 1.0,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "33647741",
+    "type": "ic50",
+    "value": 0.073,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "33647741",
+    "type": "ic50",
+    "value": 0.007,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41392951",
+    "type": "hazard_ratio",
+    "value": 0.55,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41147276",
+    "type": "ic50",
+    "value": 6.0,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "40009128",
+    "type": "hazard_ratio",
+    "value": 0.158,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "28161554",
+    "type": "hazard_ratio",
+    "value": 0.62,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "28161554",
+    "type": "hazard_ratio",
+    "value": 0.98,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "32062691",
+    "type": "mutation_frequency",
+    "value": 0.06,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "37641236",
+    "type": "ic50",
+    "value": 0.0023,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "17137406",
+    "type": "mutation_frequency",
+    "value": 0.43,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "17137406",
+    "type": "mutation_frequency",
+    "value": 0.22,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "35091289",
+    "type": "ic50",
+    "value": 0.038759999999999996,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "38794229",
+    "type": "ic50",
+    "value": 2.49,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "40345056",
+    "type": "hazard_ratio",
+    "value": 1.17,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41666774",
+    "type": "ic50",
+    "value": 2.5,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "23788751",
+    "type": "hazard_ratio",
+    "value": 0.898,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "23788751",
+    "type": "hazard_ratio",
+    "value": 1.066,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "30123970",
+    "type": "hazard_ratio",
+    "value": 1.004,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "30123970",
+    "type": "hazard_ratio",
+    "value": 0.767,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "30123970",
+    "type": "hazard_ratio",
+    "value": 0.787,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "24827980",
+    "type": "ic50",
+    "value": 0.15,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "39079394",
+    "type": "ic50",
+    "value": 11.5,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "23075631",
+    "type": "hazard_ratio",
+    "value": 3.5,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "37521468",
+    "type": "hazard_ratio",
+    "value": 0.64,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "39496648",
+    "type": "ic50",
+    "value": 2.3,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "39496648",
+    "type": "ic50",
+    "value": 0.031,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41423267",
+    "type": "hazard_ratio",
+    "value": 0.73,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41423267",
+    "type": "hazard_ratio",
+    "value": 0.76,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41423267",
+    "type": "hazard_ratio",
+    "value": 0.51,
+    "valid": false,
+    "message": "No match for hazard_ratio",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "32924168",
+    "type": "ic50",
+    "value": 3.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "32924168",
+    "type": "ic50",
+    "value": 4.0,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "32924168",
+    "type": "ic50",
+    "value": 7.0,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "32924168",
+    "type": "ic50",
+    "value": 0.24,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "41462168",
+    "type": "hazard_ratio",
+    "value": 0.65,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41462168",
+    "type": "hazard_ratio",
+    "value": 0.73,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41462168",
+    "type": "hazard_ratio",
+    "value": 0.71,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "41462168",
+    "type": "hazard_ratio",
+    "value": 0.97,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40750932",
+    "type": "hazard_ratio",
+    "value": 0.84,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40750932",
+    "type": "hazard_ratio",
+    "value": 0.69,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "18059397",
+    "type": "response_rate",
+    "value": 0.349,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.9
+  },
+  {
+    "pmid": "42001586",
+    "type": "ic50",
+    "value": 0.08,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "42001586",
+    "type": "ic50",
+    "value": 0.012,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "42051972",
+    "type": "ic50",
+    "value": 0.225,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "42051972",
+    "type": "ic50",
+    "value": 0.198,
+    "valid": true,
+    "message": "General mention confirmed",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "17285599",
+    "type": "mutation_frequency",
+    "value": 0.2,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "32615465",
+    "type": "ic50",
+    "value": 7.7,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "40345491",
+    "type": "hazard_ratio",
+    "value": 0.65,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40345491",
+    "type": "hazard_ratio",
+    "value": 0.53,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40345491",
+    "type": "hazard_ratio",
+    "value": 1.02,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40345491",
+    "type": "hazard_ratio",
+    "value": 1.83,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "40345491",
+    "type": "hazard_ratio",
+    "value": 1.4,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.85
+  },
+  {
+    "pmid": "31807186",
+    "type": "mutation_frequency",
+    "value": 0.2,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.7
+  },
+  {
+    "pmid": "39850549",
+    "type": "ic50",
+    "value": 0.104,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "30508379",
+    "type": "ic50",
+    "value": 0.0014,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  },
+  {
+    "pmid": "30508379",
+    "type": "ic50",
+    "value": 0.0021000000000000003,
+    "valid": true,
+    "message": "Value confirmed in abstract",
+    "confidence": 0.8
+  }
+]

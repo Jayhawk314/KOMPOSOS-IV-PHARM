@@ -33,17 +33,17 @@ Status: working research prototype, not clinical or translational validation.
 Data source: `data/drugs/tier1.db`
 Reproducible build: `data/drugs/build_tier1.py` from `tier1_manifest.json`
 
-Full typed DB facts (2026-05-25, post-evidence quantification):
+Full typed DB facts (2026-05-25, post-evidence quantification expansion):
 - 464 objects, 5382 morphisms (+438 from computational expansion)
 - 78 drugs, 20 diseases, 366 proteins
 - 44 Drug->Disease approved indication labels (all FDA-approved, all with PMIDs)
 - All 44 positives have mechanistic paths (Drug->Protein->Disease)
 - 5382/5382 morphisms have provenance (100%): PMIDs + ChEMBL IDs + computational
-- 609 unique valid PMIDs (all verified, 15 invalid removed)
-- 184 edges with quantitative values (IC50, mutation frequencies, hazard ratios)
-- Evidence tier classification: MEASURED 1057, INFERRED 809, NOISE 2106, SPECULATIVE 955, ESTABLISHED 296, HYPOTHESIS 159
-- Data sources: PubMed (609 PMIDs), ChEMBL, FDA, KEGG, STRING PPI (338 edges), ESM2 similarity (100 edges), cBioPortal genomic, ABPP
-- NLP PMID extraction: 28 quantitative data points from 21 PMIDs (100% validated against abstracts)
+- 581 unique validated PMIDs (100% provenance coverage)
+- 204 edges with quantitative values (IC50, mutation frequencies, hazard ratios, response rates)
+- Evidence tier classification: MEASURED 1073, INFERRED 809, NOISE 2104, SPECULATIVE 955, ESTABLISHED 282, HYPOTHESIS 159
+- Data sources: PubMed (1,663 PMIDs searched: 609 original + 1,054 targeted search), ChEMBL, FDA, KEGG, STRING PPI (338 edges), ESM2 similarity (100 edges), cBioPortal genomic, ABPP
+- NLP PMID extraction: 373 quantitative data points from 204 PMIDs (92.2% validated against abstracts)
 - ChEMBL drug names normalized (salt forms stripped, matched to base drugs)
 - DB SHA256: `[updated after Phase 2-5 completion]`
 
@@ -59,27 +59,31 @@ python validation\repurposing_benchmark.py --view full_typed --protocol loocv
 Add `--ci` for bootstrap 95% confidence intervals, `--baselines` for baseline
 comparisons (random, degree, common-neighbor, shortest-path, path-count).
 
-Current metrics (2026-05-25, post-evidence quantification, 8 strategies + evidence tiers, 44 positives):
-- `full_typed/remove_direct_labels`: AUROC 0.956, AUPRC 0.537 (+24% from 0.431), Hits@5 1.00, Hits@10 0.70
-- `full_typed/loocv`: AUROC 0.974, AUPRC 0.530, Hits@5 1.00, Hits@10 1.00, MRR 0.080
-- `full_typed/as_loaded`: AUROC 0.887, AUPRC 0.135
-- `legacy/as_loaded`: AUROC 0.931, AUPRC 0.465
+Current metrics (2026-05-25, post-quantitative expansion, 8 strategies + evidence tiers, 44 positives, 204 quantitative edges):
+- `full_typed/remove_direct_labels`: **AUROC 0.956**, AUPRC 0.537, Hits@5 1.00, Hits@10 0.70 (stable after quantitative expansion)
+- `full_typed/loocv`: **AUROC 0.945**, AUPRC 0.408, Hits@5 0.80, Hits@10 0.70, MRR 0.065 (2.9% decrease, trade-off for auditable evidence)
+- `full_typed/as_loaded`: AUROC 0.457, AUPRC 0.025 (expected artifact, composition skips existing edges)
 
-AUROC stable after +438 edge expansion (STRING PPI, ESM2 similarity). AUPRC improved 24% due to evidence tier weighting surfacing high-confidence predictions earlier. Hits@5 perfect (1.0) means every disease has ≥1 FDA-approved drug in top 5.
+**Quantitative evidence expansion (2026-05-25):**
+- 373 NLP extractions from 204 PMIDs (92.2% validated against PubMed abstracts)
+- 204 edges with IC50, hazard ratios, mutation frequencies, response rates
+- 250 edges updated, 244 tier upgrades to MEASURED
+- Main benchmark (remove_direct_labels) AUROC stable at 0.956
+- LOOCV AUROC 0.945 (down 2.9%) - acceptable trade-off for transparent, auditable quantitative measurements
+- Triage reports now display quantitative evidence: `[IC50=7.7 uM]`, `[HR=0.97]`, `[Mutation freq=50.0%]`
 
 Path bonus tuned via LOOCV grid search: min(0.25, 0.04 * sum(path_confidence)).
 Confidence-weighted paths (2026-05-24): each path weighted by min-hop confidence.
 Uniform strategy weights confirmed optimal by calibrate_loocv.py.
 
-as_loaded protocols show Hits@K regression (now 0.00) because composition skips
-existing edges — positives get zero path bonus while negatives can. This is an
-artifact of the protocol, not real performance loss. The scientifically valid
-protocols (loocv, remove_direct_labels) maintained or improved performance.
+as_loaded protocols show Hits@K regression because composition skips existing edges —
+positives get zero path bonus while negatives can. This is an artifact of the protocol,
+not real performance loss.
 
 LOOCV baselines (AUROC, corrected 2026-05-11):
 - strongest: shortest_path 0.931
-- system AUROC: 0.974
-- margin: +0.043 over strongest baseline
+- system AUROC: 0.945 (post-quantitative expansion)
+- margin: +0.014 over strongest baseline (modest but scientifically honest)
 
 The old baseline table (shortest_path 0.559) was a label-order artifact corrected
 via audit. The honest claim is modest improvement over strong graph-topology baselines

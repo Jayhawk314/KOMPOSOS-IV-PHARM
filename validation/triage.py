@@ -263,7 +263,21 @@ def _detail_block(entry: dict) -> str:
                     prov_display = prov
                 else:
                     prov_display = "uncited"
-                prov_notes.append(f"     {prov_display} ({edge['source']}->{edge['target']})  confidence: {edge['confidence']:.2f}")
+                # Add quantitative data if available
+                quant_info = ""
+                quant_val = edge.get("quantitative_value")
+                quant_unit = edge.get("value_unit")
+                if quant_val is not None and quant_unit:
+                    if quant_unit == "ic50":
+                        quant_info = f"  [IC50={quant_val:.3f} uM]"
+                    elif quant_unit == "hazard_ratio":
+                        quant_info = f"  [HR={quant_val:.2f}]"
+                    elif quant_unit == "mutation_frequency":
+                        quant_info = f"  [Mutation freq={quant_val*100:.1f}%]"
+                    elif quant_unit == "response_rate":
+                        quant_info = f"  [Response rate={quant_val*100:.1f}%]"
+
+                prov_notes.append(f"     {prov_display} ({edge['source']}->{edge['target']}){quant_info}  confidence: {edge['confidence']:.2f}")
             lines[-1] += " -> ".join(
                 [chain["edges"][0]["source"]]
                 + [f"-{e['relation']}-> {e['target']}" for e in chain["edges"]]
@@ -436,7 +450,25 @@ def format_markdown(results: list[dict], query_label: str,
                         if prov_str.startswith("PMID:"):
                             pmid_id = prov_str.replace("PMID:", "")
                             prov_str = f"[{prov}](https://pubmed.ncbi.nlm.nih.gov/{pmid_id})"
-                        lines.append(f"   - {edge['source']}->{edge['target']}: {prov_str} (confidence: {edge['confidence']:.2f})")
+
+                        # Format edge info with quantitative data if available
+                        edge_info = f"   - {edge['source']}->{edge['target']}: {prov_str}"
+
+                        # Add quantitative value if present
+                        quant_val = edge.get("quantitative_value")
+                        quant_unit = edge.get("value_unit")
+                        if quant_val is not None and quant_unit:
+                            if quant_unit == "ic50":
+                                edge_info += f" | IC50={quant_val:.3f} uM"
+                            elif quant_unit == "hazard_ratio":
+                                edge_info += f" | HR={quant_val:.2f}"
+                            elif quant_unit == "mutation_frequency":
+                                edge_info += f" | Mutation freq={quant_val*100:.1f}%"
+                            elif quant_unit == "response_rate":
+                                edge_info += f" | Response rate={quant_val*100:.1f}%"
+
+                        edge_info += f" (confidence: {edge['confidence']:.2f})"
+                        lines.append(edge_info)
                 lines.append("")
             cited = entry["cited_edges"]
             total = entry["total_edges"]

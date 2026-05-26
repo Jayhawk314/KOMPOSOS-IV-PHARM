@@ -37,15 +37,24 @@ PROTEIN_TYPES = {
 
 
 def _build_provenance_index(db_path: str) -> dict[tuple[str, str, str], tuple]:
-    """Build a lookup from (source, target, relation) -> (provenance, evidence_tier) from SQLite."""
+    """Build a lookup from (source, target, relation) -> (provenance, evidence_tier, quant_value, quant_unit) from SQLite."""
     import sqlite3
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
     index = {}
-    cursor.execute("SELECT source_name, target_name, name, provenance, evidence_tier FROM morphisms")
-    for source, target, relation, prov, tier in cursor.fetchall():
-        index[(source, target, relation)] = (prov or "unknown", tier or "HYPOTHESIS")
+    cursor.execute("""
+        SELECT source_name, target_name, name, provenance, evidence_tier,
+               quantitative_value, value_unit
+        FROM morphisms
+    """)
+    for source, target, relation, prov, tier, quant_val, quant_unit in cursor.fetchall():
+        index[(source, target, relation)] = (
+            prov or "unknown",
+            tier or "HYPOTHESIS",
+            quant_val,  # Can be None
+            quant_unit  # Can be None
+        )
 
     conn.close()
     return index
@@ -82,10 +91,14 @@ def trace_pair(category, drug: str, disease: str, strategies=None,
             # Get provenance and evidence_tier from SQLite index (bypasses Category loader gap)
             provenance = "unknown"
             evidence_tier = "HYPOTHESIS"
+            quant_value = None
+            quant_unit = None
             if provenance_index:
-                prov_data = provenance_index.get((src, tgt, relation), ("unknown", "HYPOTHESIS"))
+                prov_data = provenance_index.get((src, tgt, relation), ("unknown", "HYPOTHESIS", None, None))
                 provenance = prov_data[0]
                 evidence_tier = prov_data[1]
+                quant_value = prov_data[2] if len(prov_data) > 2 else None
+                quant_unit = prov_data[3] if len(prov_data) > 3 else None
             tgt_obj = category.get(tgt)
             edges.append({
                 "source": src,
@@ -96,6 +109,8 @@ def trace_pair(category, drug: str, disease: str, strategies=None,
                 "provenance": provenance,
                 "evidence_tier": evidence_tier,
                 "evidence_type": evidence_type,
+                "quantitative_value": quant_value,
+                "value_unit": quant_unit,
             })
 
         chains.append({

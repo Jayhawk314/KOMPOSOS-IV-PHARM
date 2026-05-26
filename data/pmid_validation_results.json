@@ -1,0 +1,198 @@
+[
+  {
+    "pmid": "42025599",
+    "type": "ic50",
+    "value": 0.1,
+    "valid": true,
+    "message": "General mention confirmed (value not exact match)"
+  },
+  {
+    "pmid": "42175928",
+    "type": "ic50",
+    "value": 0.009089999999999999,
+    "valid": true,
+    "message": "General mention confirmed (value not exact match)"
+  },
+  {
+    "pmid": "42175928",
+    "type": "ic50",
+    "value": 0.00464,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "42175928",
+    "type": "ic50",
+    "value": 0.00076,
+    "valid": true,
+    "message": "General mention confirmed (value not exact match)"
+  },
+  {
+    "pmid": "18316791",
+    "type": "mutation_frequency",
+    "value": 0.43,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "37683526",
+    "type": "mutation_frequency",
+    "value": 0.5,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "27979383",
+    "type": "hazard_ratio",
+    "value": 0.0,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "27979383",
+    "type": "hazard_ratio",
+    "value": 0.0,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "27979383",
+    "type": "hazard_ratio",
+    "value": 0.0,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "42160312",
+    "type": "hazard_ratio",
+    "value": 1.51,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "42160312",
+    "type": "mutation_frequency",
+    "value": 0.066,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "29573941",
+    "type": "mutation_frequency",
+    "value": 0.05,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "20525992",
+    "type": "mutation_frequency",
+    "value": 0.15,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "16921034",
+    "type": "mutation_frequency",
+    "value": 0.42,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "42157333",
+    "type": "hazard_ratio",
+    "value": 4.85,
+    "valid": true,
+    "message": "General mention confirmed (value not exact match)"
+  },
+  {
+    "pmid": "25891173",
+    "type": "mutation_frequency",
+    "value": 0.879,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "27718847",
+    "type": "mutation_frequency",
+    "value": 0.9,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "25877855",
+    "type": "hazard_ratio",
+    "value": 0.0,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "25877855",
+    "type": "mutation_frequency",
+    "value": 0.05,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "31015311",
+    "type": "mutation_frequency",
+    "value": 0.5,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "34440447",
+    "type": "hazard_ratio",
+    "value": 2.12,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "39192035",
+    "type": "hazard_ratio",
+    "value": 3.91,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "29437595",
+    "type": "mutation_frequency",
+    "value": 0.8,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "29437595",
+    "type": "mutation_frequency",
+    "value": 0.2,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "29920189",
+    "type": "mutation_frequency",
+    "value": 0.001,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "33684943",
+    "type": "mutation_frequency",
+    "value": 0.6,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "35733068",
+    "type": "mutation_frequency",
+    "value": 0.34,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  },
+  {
+    "pmid": "34509219",
+    "type": "mutation_frequency",
+    "value": 0.5,
+    "valid": true,
+    "message": "Value confirmed in abstract"
+  }
+]

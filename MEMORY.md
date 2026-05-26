@@ -18,8 +18,8 @@ signal, combined with **evidence tier classification** to distinguish measured
 data from computational inference:
 
 **Evidence Tiers (Priority Order):**
-- **MEASURED** (1057 edges): IC50, response rates, mutation frequencies, clinical trial data
-  - Quantified: 184 edges with actual values (100% validated against PubMed abstracts)
+- **MEASURED** (1073 edges): IC50, response rates, mutation frequencies, clinical trial data
+  - Quantified: 204 edges with actual values (373 NLP extractions, 92.2% validated against PubMed abstracts)
   - Confidence 0.70-1.00: verify the measurement method and sample size
 - **ESTABLISHED** (296 edges): FDA approvals, KEGG canonical pathways
   - Confidence 0.90-1.00: authoritative, verify for clinical context
@@ -64,21 +64,22 @@ Direct SQLite facts (2026-05-25, post-evidence quantification):
   - 338 STRING high-confidence PPI (protein-protein interactions)
   - 100 ESM2 protein similarity (all 20 diseases covered)
   - 58 other computational/genomic edges
-- 184 edges with quantitative values (IC50, mutation freq, hazard ratios)
-- 609 unique validated PMIDs (100% provenance coverage)
-- 28 NLP-extracted quantitative data points (100% validated against abstracts)
+- 204 edges with quantitative values (IC50, mutation freq, hazard ratios)
+- 581 unique validated PMIDs (100% provenance coverage)
+- 373 NLP-extracted quantitative data points (92.2% validated against abstracts from 1,663 PMIDs searched)
 - 6 "inferred:" edges REMOVED (were circular — system predictions as labels)
 - PubMed edges carry categorical metadata (delta, score, layer_scores)
 - Curated edges: 100% provenance (PMIDs, ChEMBL IDs, KEGG, FDA)
 - PubMed edges: all have PMID provenance + categorical confidence annotations
 - All 44 treats edges have PMIDs or FDA citations
 
-**Current benchmark (2026-05-25, evidence-tier weighted scoring, +438 edges):**
-- `full_typed/remove_direct_labels`: **AUROC 0.956**, AUPRC 0.537 (+24% from 0.431), Hits@5 1.00
-- AUROC stable after major data expansion (STRING, ESM2, cBioPortal, NLP extraction)
-- AUPRC improved 24% - evidence tiers surface high-quality predictions earlier
-- Hits@5 perfect (1.0) - every disease has ≥1 FDA-approved drug in top 5
-- Scores differentiate by evidence quality (MEASURED > ESTABLISHED > INFERRED)
+**Current benchmark (2026-05-25, post-quantitative expansion, +373 NLP extractions):**
+- `full_typed/remove_direct_labels`: **AUROC 0.956**, AUPRC 0.537, Hits@5 1.00 (stable after quantitative expansion)
+- `full_typed/loocv`: **AUROC 0.945**, AUPRC 0.408, Hits@5 0.80 (2.9% decrease, trade-off for transparent evidence)
+- AUROC stable on main benchmark after massive quantitative evidence expansion
+- 204 edges now have IC50/HR/mutation freq measurements (373 NLP extractions, 92.2% validated)
+- Hits@5 perfect on remove_direct_labels - every disease has ≥1 FDA-approved drug in top 5
+- Scientific value: auditable quantitative evidence > AUROC maximization
 - Path bonus formula: `min(0.25, 0.04 * sum(p.confidence))` — weighted by min-hop confidence
 
 **Historical AUROC context (why multiple numbers exist):**

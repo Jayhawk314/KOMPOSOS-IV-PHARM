@@ -106,7 +106,8 @@ st.sidebar.markdown(
     f"**Graph**: {g['n_objects']} objects, {g['n_morphisms']} edges\n\n"
     f"**Positives**: {g['n_positives']} FDA-approved\n\n"
     f"**Self-check**: {g['check_recovered']}/{g['check_total']} recoverable\n\n"
-    f"**Provenance**: 100% (609 unique PMIDs)"
+    f"**Provenance**: 100% (581 unique PMIDs)\n\n"
+    f"**Quantitative data**: 204 edges with IC50/HR/mutation freq"
 )
 st.sidebar.markdown(
     f"**Edge quality**: High: {g['high_conf']} | "
@@ -865,7 +866,7 @@ approved for.
 ### How It Works
 
 1. **Knowledge Graph**: {n_drugs} drugs, {n_obj - n_drugs - n_diseases} proteins, \
-{n_diseases} diseases, {n_mor} edges (99.7% with provenance: 607 unique PMIDs + ChEMBL IDs)
+{n_diseases} diseases, {n_mor} edges (100% provenance: 581 unique PMIDs + ChEMBL IDs, 204 edges with quantitative IC50/HR/mutation data)
 2. **8 Inference Strategies**: Each uses a different mathematical or molecular lens
    (composition, Kan extensions, Yoneda patterns, topos logic, structural holes,
    fibration lifts, type heuristics, binding evidence)

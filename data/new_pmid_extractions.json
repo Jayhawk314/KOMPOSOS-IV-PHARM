@@ -1,0 +1,3082 @@
+{
+  "26841094": {
+    "hazard_ratio": [
+      {
+        "value": 0.58,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "rd ratio [HR]\u00a0=\u00a00.61, p\u00a0=\u00a00.031, and \u0394MCV +10 fl, HR\u00a0=\u00a00.58, \np\u00a0=\u00a00.016).\nCONCLUSION: In sunitinib-treated pa"
+      }
+    ]
+  },
+  "33561166": {
+    "hazard_ratio": [
+      {
+        "value": 4.26,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "ymous KEAP1 \nmutations compared to those without (hazard ratio 4.26). HCC tumors harboring \ngenomic evidence of HBV a"
+      }
+    ]
+  },
+  "31959346": {
+    "mutation_frequency": [
+      {
+        "value": 0.05,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "laude Bernard Lyon I, Lyon, France.\n\nBACKGROUND: BRAF mutations occurring in 1%-5% of patients with non-small-cell \nlung cancer (NSCLC) are therapeutic targets for these canc"
+      }
+    ]
+  },
+  "36678593": {
+    "ic50": [
+      {
+        "value": 6.83,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " broad antitumor activity pattern \nagainst HepG2 (IC50 6.83 \u00b5M), MCF-7 (IC50 3.64 \u00b5M), MDA-MB-231 (IC50 2.14 \u00b5M)"
+      },
+      {
+        "value": 3.64,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ity pattern \nagainst HepG2 (IC50 6.83 \u00b5M), MCF-7 (IC50 3.64 \u00b5M), MDA-MB-231 (IC50 2.14 \u00b5M), \nand HeLa (IC50 5.18"
+      },
+      {
+        "value": 2.14,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "(IC50 6.83 \u00b5M), MCF-7 (IC50 3.64 \u00b5M), MDA-MB-231 (IC50 2.14 \u00b5M), \nand HeLa (IC50 5.18 \u00b5M). In addition, compound"
+      },
+      {
+        "value": 5.18,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "0 3.64 \u00b5M), MDA-MB-231 (IC50 2.14 \u00b5M), \nand HeLa (IC50 5.18 \u00b5M). In addition, compound 6b showed potent inhibito"
+      }
+    ]
+  },
+  "38911338": {
+    "hazard_ratio": [
+      {
+        "value": 3.05,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "(HR) = \n1.57) and significant predictor (P\u02c20.001, HR = 3.050). Furthermore, the model \nnegatively correlated w"
+      }
+    ]
+  },
+  "25114896": {
+    "mutation_frequency": [
+      {
+        "value": 0.9,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "complex components, and NRF2 target gene expression was positively \nenriched in 90% of samples harboring altered complex components. Disruption \noccurs through a unique DNA-l"
+      }
+    ]
+  },
+  "41251277": {
+    "ic50": [
+      {
+        "value": 22.39,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "d 6 exhibited potent cytotoxicity against HT-29 \n(IC50\u2009=\u200922.39\u2009\u03bcM) and strong VEGFR-2 inhibition (IC50\u2009=\u20090.28\u2009\u00b1\u20090.4"
+      }
+    ]
+  },
+  "35349331": {
+    "hazard_ratio": [
+      {
+        "value": 2.28,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": ", disease-free \nsurvival from complete remission: HR 2.28, 95% CI, 1.08 to 4.82, P = .032, \nrelapse risk fr"
+      },
+      {
+        "value": 3.03,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " P = .032, \nrelapse risk from complete remission: HR 3.03, 95% CI 1.31 to 7.04, P = .010).\nCONCLUSION: Sora"
+      }
+    ]
+  },
+  "20803052": {
+    "mutation_frequency": [
+      {
+        "value": 0.18,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "was 3.2 months (95% CI: 1.6, 3.6). Grade 3/4 toxicities included \nthrombosis in 18% of patients, dehydration or hand-foot syndrome in 12%, and \nhypertension or gastrointestina"
+      }
+    ]
+  },
+  "41962308": {
+    "response_rate": [
+      {
+        "value": 0.375,
+        "unit": "proportion",
+        "confidence": 0.9,
+        "context": "esponses \n[KIT- (n = 3), BRAFV600-mutant (n = 2); ORR 37.5%; disease control rate (DCR) \n56%]. Median duratio"
+      },
+      {
+        "value": 0.33,
+        "unit": "proportion",
+        "confidence": 0.9,
+        "context": " received REGO + BRAF/MEKi at first \nprogression (ORR 33%, DCR 83%, mPFS 20.4 weeks, mOS 62.1 weeks). Grade"
+      }
+    ],
+    "mutation_frequency": [
+      {
+        "value": 0.59,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": " mOS 62.1 weeks). Grade 3 \ntreatment-related adverse events (TRAEs) occurred in 59% of patients on REGO \nmonotherapy and 50% on REGO + BRAF/MEKi. The most common TRAEs were \nh"
+      }
+    ]
+  },
+  "41225509": {
+    "mutation_frequency": [
+      {
+        "value": 0.5,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "rade 3 vaginal \nbleeding. Adverse events (AEs) of grade 3 or higher occurred in 50% of patients. \nGrade 3 AEs were mainly drug-related fever (25.0%), drug-related rash (16.7%)"
+      }
+    ]
+  },
+  "24523748": {
+    "ic50": [
+      {
+        "value": 9.0,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " ring was the most potent one in this series with IC50 = 9 \u03bcM against \nMDA breast cell line in comparison with "
+      },
+      {
+        "value": 20.0,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "MDA breast cell line in comparison with imatinib (IC50 = 20 \u03bcM) as reference \ndrug.\n\nPMCID: PMC3904016\nPMID: 245"
+      }
+    ]
+  },
+  "41949116": {
+    "mutation_frequency": [
+      {
+        "value": 0.97,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "l ORR was 47%. Any-grade treatment-emergent adverse events (TEAEs) \noccurred in 97% of patients; grade\u2009\u22653 occurred in 39%. TEAEs led to dose \ninterruption in 31% and dose redu"
+      },
+      {
+        "value": 0.15,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "3 occurred in 39%. TEAEs led to dose \ninterruption in 31% and dose reduction in 15% of patients; none discontinued due \nto treatment-related adverse events.\nCONCLUSIONS: These"
+      }
+    ]
+  },
+  "34562816": {
+    "mutation_frequency": [
+      {
+        "value": 0.42,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": " acral lentiginous melanoma (95% CI: 14-30%). \nAt least one sAE was reported in 42% of patients (95% CI: 34-50%).\nCONCLUSIONS: c-Kit inhibitors represent a valuable treatment "
+      }
+    ]
+  },
+  "41158152": {
+    "ic50": [
+      {
+        "value": 0.00078,
+        "unit": "\u03bcM",
+        "confidence": 0.5,
+        "context": "y, \ntolerability, and similar IC50 to lorlatinib (IC50 = 0.78nM [gilteritinib]; IC50 \n= 1.2nM [lorlatinib]), gilt"
+      },
+      {
+        "value": 0.0012,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "IC50 to lorlatinib (IC50 = 0.78nM [gilteritinib]; IC50 \n= 1.2nM [lorlatinib]), gilteritinib should be investigate"
+      }
+    ]
+  },
+  "42170792": {
+    "mutation_frequency": [
+      {
+        "value": 0.7170000000000001,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "32.9 to NR) in the cohort with \nEGFR-only mutations. Adverse events occurred in 71.7% of patients, and grade \u22653 \nevents occurred in 11.4%. The safety profiles were similar betwe"
+      }
+    ]
+  },
+  "29750040": {
+    "mutation_frequency": [
+      {
+        "value": 0.81,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "iscontinuations \nwere mainly due to radiologic or clinical disease progression (81.0% of \npatients). Median treatment durations were 55.5 days (cohort A0) and 150.5 days \n(pooled"
+      }
+    ]
+  },
+  "32988996": {
+    "response_rate": [
+      {
+        "value": 0.1,
+        "unit": "proportion",
+        "confidence": 0.9,
+        "context": "ee survival (PFS). With a Fleming/Hern design (H0=ORR 10%; \n\u03b1=0.05; power=0.85), 7/30 responses were requir"
+      }
+    ]
+  },
+  "21617858": {
+    "ic50": [
+      {
+        "value": 0.045,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "e most sensitive to treatment with both afatinib (IC50=45 nM) and ICR62 \n(IC50=4.33 nM). Afatinib also inhibit"
+      },
+      {
+        "value": 0.00433,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "tment with both afatinib (IC50=45 nM) and ICR62 \n(IC50=4.33 nM). Afatinib also inhibited the growth of other tum"
+      }
+    ]
+  },
+  "18473962": {
+    "mutation_frequency": [
+      {
+        "value": 0.8,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "responses in first-line therapy up to 40%, but prognosis is still poor. Almost \n80% of patients will progress during the first year of treatment and usually \nbecome refractory"
+      }
+    ]
+  },
+  "19018475": {
+    "mutation_frequency": [
+      {
+        "value": 0.36,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "n-free survival and \ncorrelation of molecular profiles with treatment response. 36% of patients had \nstable disease and 14% a partial response; however, responses were not dur"
+      }
+    ]
+  },
+  "40973474": {
+    "hazard_ratio": [
+      {
+        "value": 1.22,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": ") for \nthe trifluridine/tipiracil group (P\u2009=\u2009.78, HR 1.22; 95% CI 0.73-2.04). The trial \nwas halted prematu"
+      }
+    ]
+  },
+  "40758471": {
+    "hazard_ratio": [
+      {
+        "value": 0.83,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "difference was observed in overall survival (OS) (HR 0.83, 95% CI, 0.60-1.15, \nP\u2009=\u2009.27; I\u20092 = 0%). Subgroup"
+      }
+    ]
+  },
+  "36331404": {
+    "mutation_frequency": [
+      {
+        "value": 0.045,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "ologique, Villejuif, France.\n\nActivating BRAF mutations are detected in 1.5% to 4.5% of patients with \nnon-small cell lung cancer (NSCLC). These mutations involve the \nmitogen-"
+      }
+    ]
+  },
+  "38739112": {
+    "ic50": [
+      {
+        "value": 0.0375,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ed the highest \ninhibitory activity against EGFR (IC50 = 37.5 nM) and PD-1/PD-L1 interaction \n(IC50 = 1.77 \u03bcM). In"
+      },
+      {
+        "value": 1.77,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "GFR (IC50 = 37.5 nM) and PD-1/PD-L1 interaction \n(IC50 = 1.77 \u03bcM). In addition, EP26 displayed superior in vitro \n"
+      }
+    ]
+  },
+  "39780756": {
+    "hazard_ratio": [
+      {
+        "value": 3.29,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "nce \ninterval (CI) 1.11, 8.47 P\u00a0=\u00a00.03] and high (HR 3.29; CI 1.17, 9.26 P\u00a0=\u00a00.02) \nHFA-ICOS scores were as"
+      },
+      {
+        "value": 5.4,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "abetes was women's strongest predictor of events (HR 5.40; CI 1.37, \n21.3 P\u00a0=\u00a00.01).\nCONCLUSIONS: Our study"
+      }
+    ]
+  },
+  "38333370": {
+    "mutation_frequency": [
+      {
+        "value": 0.456,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "f 4.5 months. Adverse events (AEs) were consistent with previous \nreports, with 45.6% of patients experiencing grade \u22653 AEs.\nINTERPRETATION: This study reported promising effica"
+      }
+    ]
+  },
+  "41992834": {
+    "hazard_ratio": [
+      {
+        "value": 3.52,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "vs 18%, \nand median OS: 2.8\u2009months vs 7.8\u2009months (hazard ratio: 3.52; P-value < .0001).\nCONCLUSION: Our predictive mod"
+      }
+    ]
+  },
+  "38814950": {
+    "hazard_ratio": [
+      {
+        "value": 1.67,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " associated with a poorer overall survival (OS) \n(HR: 1.67; 95% CI: 1.18-2.38; p = 0.004), progression-free "
+      },
+      {
+        "value": 1.55,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": ".38; p = 0.004), progression-free survival (PFS) (HR: \n1.55; 95% CI: 1.14-2.11; p = 0.005) and disease-specif"
+      },
+      {
+        "value": 1.83,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "; p = 0.005) and disease-specific survival (DSS) (HR: \n1.83; 95% CI: 1.16-2.89; p = 0.010). The expression of"
+      }
+    ]
+  },
+  "26822398": {
+    "hazard_ratio": [
+      {
+        "value": 1.0,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "nd 5\u00b76 months (5\u00b73-7\u00b73) in the trastuzumab group (hazard ratio 1\u00b710 95% CI \n0\u00b786-1\u00b741; p=0\u00b743). The most common dr"
+      }
+    ]
+  },
+  "28979818": {
+    "hazard_ratio": [
+      {
+        "value": 1.15,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "than 6.9 months of BV + FOLFOX4 group (P = 0.021, HR = \n1.15, 95% CI = 0.88-1.39). Medium OS for ER + BV + FOL"
+      },
+      {
+        "value": 0.63,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " 12.1 months for BV + FOLFOX4 group (P = \n00.146, HR = 0.63, 95% CI = 0.34-1.02). Combined partial response a"
+      }
+    ]
+  },
+  "23728943": {
+    "mutation_frequency": [
+      {
+        "value": 0.2,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": ", the MLL family of methyltransferases for \nhistone H3 lysine 4 were mutated in 20% of tumors.\nCONCLUSION: The NFE2L2-KEAP1 and MLL pathways are recurrently mutated in \nmult"
+      }
+    ]
+  },
+  "41240398": {
+    "ic50": [
+      {
+        "value": 0.0045899999999999995,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "revealed \nenhanced inhibition of PI3K\u03b1 by BIQO-9 (IC50\u00a0=\u00a04.59\u00a0nM) compared to compound 9a \n(IC50\u00a0=\u00a013.12\u00a0nM). Addi"
+      },
+      {
+        "value": 0.01312,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "BIQO-9 (IC50\u00a0=\u00a04.59\u00a0nM) compared to compound 9a \n(IC50\u00a0=\u00a013.12\u00a0nM). Additionally, Kinase profiling, biotin pull-dow"
+      }
+    ]
+  },
+  "39637954": {
+    "hazard_ratio": [
+      {
+        "value": 0.98,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "onths, 95\u202f% \nCI, -0.9-1.58, p\u202f=\u202f0.60) and pooled (HR\u00a0=\u00a00.98, 95\u202f% CI, 0.76-1.27, p\u202f=\u202f0.89) \nPFS, when compari"
+      },
+      {
+        "value": 0.89,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "results were observed in the pooled analyses (OS: HR\u00a0=\u00a00.89, \n95\u202f% CI, 0.59-1.32, p\u202f=\u202f0.55; PFS: HR\u00a0=\u00a00.83, 9"
+      },
+      {
+        "value": 0.83,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "S: HR\u00a0=\u00a00.89, \n95\u202f% CI, 0.59-1.32, p\u202f=\u202f0.55; PFS: HR\u00a0=\u00a00.83, 95\u202f% CI, 0.63-1.11, p\u202f=\u202f0.21). \nDespite these ov"
+      }
+    ]
+  },
+  "41405156": {
+    "ic50": [
+      {
+        "value": 2.77,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "15-4.93\u2009\u00b5M, which \nare comparable to doxorubicin (IC50\u2009=\u20092.77\u2009\u00b5M). Mechanistic studies revealed \nthat lead compoun"
+      },
+      {
+        "value": 47.21,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "totoxicity toward normal lung fibroblasts (WI-38, IC50\u2009=\u200947.21\u2009\u00b5M). Enzyme \ninhibition assays demonstrated potent E"
+      },
+      {
+        "value": 0.03489,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "5.87\u2009nM, respectively), comparable to erlotinib \n(IC50\u2009=\u200934.89\u2009nM). Moreover, in silico ADMET profiling predicted f"
+      }
+    ]
+  },
+  "28038328": {
+    "ic50": [
+      {
+        "value": 0.0147,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "nd 10a and 10d exhibited better efficacy (MV4-11, IC50: \n14.7\u00a0nM for 10a and 24.8\u00a0nM for 10d) than positive contro"
+      },
+      {
+        "value": 0.0385,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "or 10d) than positive control sunitinib (MV4-11, \nIC50: 38.5\u00a0nM). The kinase and cellular inhibition assay exhibi"
+      },
+      {
+        "value": 0.0053,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "lular inhibition assay exhibited that 10d \n(FLT3, IC50: 5.3\u00a0nM) was a potent and selective FLT3 inhibitor. Furth"
+      }
+    ]
+  },
+  "38577077": {
+    "hazard_ratio": [
+      {
+        "value": 0.99,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "92, P = \n0.003]. Meanwhile, the overall survival (HR= 0.99, 95%CI: 0.72-1.37, and P = \n0.95) and disease con"
+      }
+    ]
+  },
+  "34875671": {
+    "hazard_ratio": [
+      {
+        "value": 0.32,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "ourable prognosis (median OS: 17 \nvs. 9.2 months; HR 0.32 [0.14-0.70], p < 0.001) than patients who were no"
+      }
+    ]
+  },
+  "41967859": {
+    "hazard_ratio": [
+      {
+        "value": 0.54,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "eveloped VEGFR-TKI-induced HFSR showed better OS (HR 0.54, 95% CI \n0.49-0.60) and PFS (HR 0.59, 95% CI 0.53"
+      },
+      {
+        "value": 0.59,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "d better OS (HR 0.54, 95% CI \n0.49-0.60) and PFS (HR 0.59, 95% CI 0.53-0.65) compared with those who did no"
+      }
+    ]
+  },
+  "23692263": {
+    "mutation_frequency": [
+      {
+        "value": 0.145,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "inib. In phase I-III trials of pertuzumab, \ncardiac dysfunction was seen in 4.5-14.5% of patients with pertuzumab treatment \nand cardiac dysfunction was usually grade I and II. "
+      },
+      {
+        "value": 0.017,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "erved with T-DM1 in heavily pre-treated patients. In the \nEMILIA study, only in 1.7% of patients in the T-DM1 group experienced reduction \nof left ventricular ejection fraction"
+      }
+    ]
+  },
+  "26264378": {
+    "mutation_frequency": [
+      {
+        "value": 0.25,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "here was no \nsignificant difference in response or overall survival between the 25% of \npatients with a KIT mutation and those without one (response rate, 7.7% vs 9.7%; \noveral"
+      }
+    ]
+  },
+  "41126742": {
+    "mutation_frequency": [
+      {
+        "value": 0.76,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "ved in 16.5% and 20% of the patients, \nrespectively. The spleen was palpable in 76% of patients with a median of 9 cm \n(range, 1-32) below the costal margin. The median leukoc"
+      }
+    ]
+  },
+  "35213214": {
+    "hazard_ratio": [
+      {
+        "value": 2.74,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "iate-risk and \nhigh-risk SORCE cohorts was shown; hazard ratio 2.74 (95% CI, 2.29 to 3.28), \nc-index 0.63 (95% CI, 0."
+      }
+    ]
+  },
+  "41394854": {
+    "hazard_ratio": [
+      {
+        "value": 1.62,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " (P<0.05), \npoor progression-free survival (PFS) (HR\u00a0=\u00a01.62, P<0.001), and an \nimmunosuppressive microenviron"
+      }
+    ]
+  },
+  "38143440": {
+    "mutation_frequency": [
+      {
+        "value": 0.75,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "y or in \ncombination with dabrafenib conferred radiographic partial response in 75% of \npatients harboring BRAF or NF1 actionable mutations. Cabozantinib conferred \nradiographi"
+      }
+    ]
+  },
+  "33405269": {
+    "hazard_ratio": [
+      {
+        "value": 0.55,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "oxicities vs patients \nwith grade 0-1 toxicities (HR = 0.55, 95%CI: 0.33-0.92, P = .020). Expression of \nEGFR"
+      }
+    ]
+  },
+  "35290929": {
+    "ic50": [
+      {
+        "value": 2.13,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "f 3.06, 1.18, and 3.02\u00a0\u03bcM compared to Sorafenib \n(IC50\u00a0=\u00a02.13\u00a0\u03bcM). Interestingly, among the identified lead molecu"
+      },
+      {
+        "value": 0.075,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ith IC50 value of 19.8\u00a0nM \ncompared to Sunitinib (IC50\u00a0=\u00a075\u00a0nM) and Sorafenib (IC50\u00a0=\u00a030\u00a0nM). Moreover, it \nis s"
+      },
+      {
+        "value": 0.03,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "mpared to Sunitinib (IC50\u00a0=\u00a075\u00a0nM) and Sorafenib (IC50\u00a0=\u00a030\u00a0nM). Moreover, it \nis significantly stimulated apopt"
+      }
+    ]
+  },
+  "40250457": {
+    "hazard_ratio": [
+      {
+        "value": 2.0,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "2\u00b702-26\u00b780] \nvs 68\u00b711 months [50\u00b736-not reached]; HR 2\u00b798 [1\u00b795-4\u00b754], p<0\u00b70001) and overall \nsurvival ("
+      },
+      {
+        "value": 3.0,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "33\u00b790 months [13\u00b796-not reached] vs not reached; \nHR 3\u00b735 [2\u00b701-5\u00b755], p<0\u00b70001); combination therapy gr"
+      },
+      {
+        "value": 4.0,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "40\u00b731 months \n[24\u00b790-not reached] vs not reached; HR 4\u00b727 [2\u00b750-7\u00b727], p<0\u00b70001) in the \nplacebo group a"
+      }
+    ]
+  },
+  "40957291": {
+    "mutation_frequency": [
+      {
+        "value": 0.28600000000000003,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "e predefined threshold of 35\u202f%, thereby meeting its \nprimary endpoint. Notably, 28.6\u202f% of patients achieved a long-term PFS of 1 year \nor longer. The objective response rate (ORR"
+      }
+    ]
+  },
+  "33356422": {
+    "mutation_frequency": [
+      {
+        "value": 0.0,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "irculating tumor DNA BRAFV600E variant allele frequency was \nseen in 87% versus 0% of patients (P < .001), with a low incidence of acquired \nRAS alterations at the time of pr"
+      }
+    ]
+  },
+  "41977352": {
+    "ic50": [
+      {
+        "value": 6.4,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "llectively, 1 was the better performing compound (IC50 = 6.4 \n\u00b5M, 48 h). Viability of HTLA ER cells was decreased "
+      },
+      {
+        "value": 4.0,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " 4, 72 h). The \nbest-performing compounds were 1 (IC50 = 4.0 \u00b5M, HTLA 230) and 3 (IC50 = 27.8 \n\u00b5M, HTLA ER) at 72"
+      },
+      {
+        "value": 27.8,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "compounds were 1 (IC50 = 4.0 \u00b5M, HTLA 230) and 3 (IC50 = 27.8 \n\u00b5M, HTLA ER) at 72 h exposure. The cytotoxic effects"
+      }
+    ]
+  },
+  "41439745": {
+    "hazard_ratio": [
+      {
+        "value": 0.66,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "-based regimens significantly improved OS (pooled HR = 0.66, 95% CI \n0.53-0.83) and progression-free survival"
+      },
+      {
+        "value": 0.56,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "\n0.53-0.83) and progression-free survival (pooled HR = 0.56, 95% CI 0.47-0.67) \ncompared with sunitinib, with"
+      }
+    ]
+  },
+  "41820245": {
+    "mutation_frequency": [
+      {
+        "value": 0.262,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": " probability of deep molecular response (DMR). Dose reductions were \napplied in 26.2% of patients, mainly older individuals with higher Charlson \ncomorbidity index (CCI), withou"
+      }
+    ]
+  },
+  "41826245": {
+    "ic50": [
+      {
+        "value": 0.0316,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "inity for BRAFV600E-positive A375 melanoma cells (IC50 = \n31.6 nM) and demonstrated selective uptake in tumor model"
+      }
+    ]
+  },
+  "36471691": {
+    "hazard_ratio": [
+      {
+        "value": 0.67,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "ical significance (median: 15.1 \nvs. 12.4 months, HR 0.67 [95%CI 0.43-1.04]; p\u00a0=\u00a00.071). For BED10 of 60-65"
+      },
+      {
+        "value": 0.69,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "d SBRT\u00a0+\u00a0G groups (median, \n13.6 vs. 12.4 months; HR 0.69 [95% CI 0.41-1.16]; p\u00a0=\u00a00.16). For BED10 of \u226565Gy"
+      },
+      {
+        "value": 0.48,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "+\u00a0M versus SBRT\u00a0+\u00a0G (median: 8.6 vs. 5.0 months, \nHR 0.48 [95% CI 0.31-0.77]; p\u00a0=\u00a00.0021). For BED10 of 60-"
+      },
+      {
+        "value": 0.69,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "the two groups (PFS: median, 7.9 vs. 4.3 \nmonths; HR 0.69 [95% CI 0.42-1.15]; p\u00a0=\u00a00.16). In BED10 of 60-65G"
+      }
+    ]
+  },
+  "41749920": {
+    "hazard_ratio": [
+      {
+        "value": 0.52,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "rovement was significant with pyrexia management (HR: 0.52; 95% CI: 0.29, \n0.93). Seventy-nine (35%) and 33 "
+      }
+    ]
+  },
+  "40996635": {
+    "mutation_frequency": [
+      {
+        "value": 0.9,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "hemoimmunotherapy. Complete \nresection (R0) rates were excellent (approximately 90% in patients undergoing \nresection), and neoadjuvant TKIs enabled surgical downstaging in\u2009~\u2009"
+      }
+    ]
+  },
+  "35884431": {
+    "hazard_ratio": [
+      {
+        "value": 0.17,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "n \nT-DXd and the physician's choice of treatment (HR 0.17; 95% CrI 0.03-0.82) or \nafatinib (HR 0.14; 95% Cr"
+      },
+      {
+        "value": 0.14,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "atment (HR 0.17; 95% CrI 0.03-0.82) or \nafatinib (HR 0.14; 95% CrI 0.02-1.00). T-DXd and T-DM1 ranked first"
+      }
+    ]
+  },
+  "41275271": {
+    "hazard_ratio": [
+      {
+        "value": 0.51,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "gnificant as a predictive factor of improved PFS (HR\u2009=\u20090.51, \nCI95% 0.30-0.91, p\u2009=\u20090.02) whereas it was not s"
+      },
+      {
+        "value": 0.61,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " was not statistically significant \nregarding OS (HR\u2009=\u20090.61, CI95% 0.34-1.11, p\u2009=\u20090.10). In multivariable ana"
+      }
+    ],
+    "mutation_frequency": [
+      {
+        "value": 0.74,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "hort were: median age of 67.0 years \n[range, 48.0-84.0], sex ratio M/F\u2009=\u200960/17, 74.0% of patients with a \nhistopathology of adenocarcinoma and 85.0% with a stage IV disease. The"
+      }
+    ]
+  },
+  "41080716": {
+    "ic50": [
+      {
+        "value": 17.69,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ve \nK-562S cells were subjected to CBD treatment (IC50: 17.69\u202f\u03bcM) for 4 and 12\u202fh, \nfollowed by RNA sequencing to i"
+      }
+    ]
+  },
+  "35138529": {
+    "mutation_frequency": [
+      {
+        "value": 0.18,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "n with vinorelbine or \npaclitaxel, was associated with objective responses in\u2009\u2265\u200918% of patients with \nmetastatic breast cancer for whom prior HER2-targeted therapy has failed."
+      }
+    ]
+  },
+  "41647991": {
+    "hazard_ratio": [
+      {
+        "value": 0.24,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "0.91] and a median PFS of 3.7 \nversus 1.8 months (HR 0.24, 95% CI 0.17-0.36). Grade \u22653 treatment-emergent \n"
+      },
+      {
+        "value": 0.59,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " two or more or death was 5.1 \nversus 2.9 months (HR 0.59, 95% CI 0.42-0.84) with fruquintinib versus place"
+      }
+    ],
+    "mutation_frequency": [
+      {
+        "value": 0.47,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "-0.36). Grade \u22653 treatment-emergent \nadverse events were reported in 60% versus 47% of patients treated with \nfruquintinib versus placebo. Median time to deterioration to an E"
+      }
+    ]
+  },
+  "18467719": {
+    "hazard_ratio": [
+      {
+        "value": 0.88,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": ".9 weeks for lapatinib versus 43.1 weeks for HT \n(HR = 0.88; P = .29). In a biomarker analysis of patients wi"
+      },
+      {
+        "value": 0.76,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "5.1 weeks for lapatinib versus 10.9 weeks for HT (HR = 0.76; P = .06), and \nmedian OS was 46.0 weeks for lapa"
+      },
+      {
+        "value": 0.69,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "6.0 weeks for lapatinib versus 37.9 weeks for HT (HR = 0.69; P = \n.02). These results were confirmed by Cox r"
+      }
+    ]
+  },
+  "37899297": {
+    "mutation_frequency": [
+      {
+        "value": 0.1,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "al was 11.4 months (95% CI, 5.6-NR). Grade 3 or 4 \nadverse events occurring in \u226510% of patients included neutropenia in 47 (92.2%), \nthrombocytopenia in 41 (80.4%), anemia in "
+      }
+    ]
+  },
+  "33052759": {
+    "mutation_frequency": [
+      {
+        "value": 0.71,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": " 639 participants in arms A, B, and C, respectively). \nMedian age was 58 years, 71% of patients were men, 84% had clear cell histology, \n53% were at intermediate risk of recur"
+      }
+    ]
+  },
+  "30069761": {
+    "mutation_frequency": [
+      {
+        "value": 0.25,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "nce mechanisms have already been \ndescribed. Under vemurafenib treatment, about 25% of patients developed \ncutaneous squamous cell carcinomas of the keratoacanthoma type with "
+      }
+    ]
+  },
+  "36790582": {
+    "ic50": [
+      {
+        "value": 2.02,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ue \nof 14.77\u00a0\u00b5M compared to 5-fluorouracil (5FU) (IC50\u2009=\u20092.02\u00a0\u00b5M). Notably, compound \n6f hampered receptor tyrosin"
+      }
+    ]
+  },
+  "34681605": {
+    "ic50": [
+      {
+        "value": 0.06,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " \nan IC50 value of 9.43 \u00b5M compared to erlotinib (IC50 = 0.06 \u00b5M). Based on in \nvitro and in silico data, compound"
+      }
+    ]
+  },
+  "41038185": {
+    "hazard_ratio": [
+      {
+        "value": 0.0,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "rvival in participants with a history of smoking (HR 0\u00b760 \n[0\u00b740-0\u00b790], p=0\u00b7013), with a PD-L1 tumour pr"
+      },
+      {
+        "value": 0.0,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "a PD-L1 tumour proportion score of \u22651% or higher (HR \n0\u00b766 [0\u00b745-0\u00b798], p=0\u00b7039), aged 70 years or older "
+      },
+      {
+        "value": 0.0,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "66 [0\u00b745-0\u00b798], p=0\u00b7039), aged 70 years or older (HR 0\u00b754 [0\u00b731-0\u00b794], \np=0\u00b7029), with TP53 co-mutations"
+      },
+      {
+        "value": 0.0,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "4 [0\u00b731-0\u00b794], \np=0\u00b7029), with TP53 co-mutations (HR 0\u00b746 [0\u00b727-0\u00b779], p=0\u00b70048), and without \nbrain met"
+      },
+      {
+        "value": 0.0,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "-0\u00b779], p=0\u00b70048), and without \nbrain metastases (HR 0\u00b766 [0\u00b745-0\u00b799], p=0\u00b7045). With BRAF and MEK inhib"
+      }
+    ]
+  },
+  "40434500": {
+    "hazard_ratio": [
+      {
+        "value": 2.97,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "sting for LDH, ECOG status, and metastatic sites (HR\u2009=\u20092.97, 95% CI \n1.17-7.52, P\u2009=\u20090.022). At week-2, \u2206SUVpe"
+      }
+    ]
+  },
+  "24189171": {
+    "hazard_ratio": [
+      {
+        "value": 0.92,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " and 4.5 months (95% CI: 2.5-5.2), \nrespectively (HR=0.92; 95% CI: 0.62-1.35). Median overall survival was "
+      },
+      {
+        "value": 0.95,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": ") and 8.3 months (95% CI: 6.2-8.7), respectively (HR=0.95; 95% CI: \n0.62-1.48). Response rates were 3.4% in"
+      }
+    ]
+  },
+  "30591465": {
+    "mutation_frequency": [
+      {
+        "value": 0.64,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "dose reductions and treatment delays. Grade 3 or 4 neutropenia was \nobserved in 64% of patients. The response rate was 18%.\nCONCLUSION: In second-line treatment for metastatic"
+      }
+    ]
+  },
+  "38845274": {
+    "response_rate": [
+      {
+        "value": 0.632,
+        "unit": "proportion",
+        "confidence": 0.9,
+        "context": "tly higher than in the bevacizumab-therapy group (ORR: 63.2% vs. \n37.5%, P = .025; DCR: 94.7% vs. 75.0%, P = ."
+      }
+    ],
+    "hazard_ratio": [
+      {
+        "value": 0.43,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "30-0.87; P = .010) and OS (25.3 vs. 14.6 \nmonths; HR = 0.43, 95% CI, 0.22-0.82; P = .011). In the VIC group, "
+      }
+    ]
+  },
+  "26474549": {
+    "hazard_ratio": [
+      {
+        "value": 0.7,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "univariate (p\u2009=\u20090.064) and multivariate analysis (HR: 0.70, \n95 % CI: 0.43-1.15, p\u2009=\u20090.156).\nCONCLUSION: Our"
+      }
+    ]
+  },
+  "37741071": {
+    "mutation_frequency": [
+      {
+        "value": 0.15,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "dress: \nssj338@yuhs.ac.\n\nBACKGROUND: c-KIT mutations are found in approximately 15% of patients with \nmalignant melanoma in the Asian population. Regorafenib, an oral multikin"
+      }
+    ]
+  },
+  "39815637": {
+    "mutation_frequency": [
+      {
+        "value": 0.6940000000000001,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "reat \npopulation. Grade\u00a0\u22653 treatment-related adverse events (TRAEs) occurred in 69.4% \nof patients on pembrolizumab-axitinib and 74.6% on sunitinib; 16 (25.8%) \npatients on pembr"
+      }
+    ]
+  },
+  "24102046": {
+    "ic50": [
+      {
+        "value": 0.89,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "alkori\u00ae, Pfizer Inc), \ninduced both cytotoxicity (IC50\u2009=\u20090.89\u00a0\u03bcM) and apoptosis, with abrogation of \npALK signalin"
+      }
+    ]
+  },
+  "35688679": {
+    "mutation_frequency": [
+      {
+        "value": 0.59,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "ths (95% CI: \n16.1-34.0). The objective response rate was 22% and an additional 59% of \npatients had stable disease for at least 6 weeks. The\u00a0most common adverse events \nfor al"
+      }
+    ]
+  },
+  "32329374": {
+    "ic50": [
+      {
+        "value": 4.642,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " increase in cytotoxicity for \noptimized NANOGEF (IC50 = 4.642\u2009\u00b5M) when compared with Gefitinib alone (IC50 = \n20.8"
+      },
+      {
+        "value": 20.88,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "0 = 4.642\u2009\u00b5M) when compared with Gefitinib alone (IC50 = \n20.88\u2009\u00b5M in HCT-116 cells). Thus NANOGEF may be considered"
+      }
+    ]
+  },
+  "38503144": {
+    "hazard_ratio": [
+      {
+        "value": 1.48,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "n \nCooperative Oncology Group performance status (HR 1.48; P < 0.001), use of \nsecond-line treatment (HR 1."
+      },
+      {
+        "value": 1.51,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " 1.48; P < 0.001), use of \nsecond-line treatment (HR 1.51; P < 0.001), and Union for International Cancer \n"
+      },
+      {
+        "value": 1.34,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "nal Cancer \nControl (UICC) stage (III versus IV) (HR 1.34, P\u00a0= 0.002) had a significant \nimpact on OS. By c"
+      },
+      {
+        "value": 1.13,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "red with \nthose >50 years (7.1 versus 7.0 months; HR 1.13; P\u00a0= 0.273). The use of a \nplatinum-containing re"
+      }
+    ]
+  },
+  "41362626": {
+    "hazard_ratio": [
+      {
+        "value": 0.53,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "b group compared to \nplacebo (5.5 vs. 1.9 months, HR = 0.53, p = 0.0083). First-line treatment with \nsorafeni"
+      }
+    ]
+  },
+  "34534755": {
+    "ic50": [
+      {
+        "value": 3.99,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "tter than \nthat of the reference drug, Sorafenib (IC50\u00a0=\u00a03.99\u00a0\u00b5M). Moreover, these \ncompounds displayed high selec"
+      },
+      {
+        "value": 0.0281,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "C50\u00a0=\u00a025.7 and 28.2\u00a0nM, \nrespectively, (Sorafenib IC50\u00a0=\u00a028.1\u00a0nM). Molecular docking of the synthesized \nderivativ"
+      }
+    ]
+  },
+  "33222197": {
+    "hazard_ratio": [
+      {
+        "value": 1.0,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "] and thrombocytosis>\u00a0400\u00a0\u00d7\u00a0109 /l at RUX start \n(HR:1\u00b798, 95%CI: 1\u00b710-4\u00b760, P\u00a0=\u00a00\u00b702) were associated w"
+      },
+      {
+        "value": 3.0,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "\nSPMs. Risk factors for NMSC alone were male sex (HR: 3\u00b714, 95%CI: 1\u00b724-7\u00b792, \nP\u00a0=\u00a00\u00b702) and duration of "
+      },
+      {
+        "value": 3.0,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "on of hydroxycarbamide and RUX therapy\u00a0>\u00a05\u00a0years (HR: 3\u00b720, \n95%CI: 1\u00b717-8\u00b775, P\u00a0=\u00a00\u00b702 and HR: 2\u00b793, 95%"
+      },
+      {
+        "value": 2.0,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "\u00a0years (HR: 3\u00b720, \n95%CI: 1\u00b717-8\u00b775, P\u00a0=\u00a00\u00b702 and HR: 2\u00b793, 95%CI: 1\u00b739-6\u00b717, P\u00a0=\u00a00\u00b7005 \nrespectively). I"
+      },
+      {
+        "value": 2.0,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "respectively). In SPMs excluding NMSCs, male sex (HR: 2\u00b741, 95%CI: 1\u00b711-5\u00b725, \nP\u00a0=\u00a00\u00b703), platelet\u00a0>\u00a0400\u00a0"
+      },
+      {
+        "value": 3.0,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": ": 1\u00b711-5\u00b725, \nP\u00a0=\u00a00\u00b703), platelet\u00a0>\u00a0400\u00a0\u00d7\u00a0109 /l (HR: 3\u00b730, 95%CI: 1\u00b767-6\u00b750, P\u00a0=\u00a00\u00b7001) and \nprevious ar"
+      },
+      {
+        "value": 3.0,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "50, P\u00a0=\u00a00\u00b7001) and \nprevious arterial thromboses (HR: 3\u00b747, 95%CI: 1\u00b748-8\u00b714, P\u00a0=\u00a00\u00b7004) were shown \nto b"
+      }
+    ]
+  },
+  "17245623": {
+    "mutation_frequency": [
+      {
+        "value": 0.24,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": " treatment regimens was 3 (range, 1-8). With a median \nfollow-up of 82.9 weeks, 24% of patients were progression-free at 6 months. The \nradiographic response rate was 10%, whi"
+      }
+    ]
+  },
+  "39616778": {
+    "mutation_frequency": [
+      {
+        "value": 0.8079999999999999,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "and 78.2\u00a0% had a PDL1\u00a0\u2265\u00a01\u00a0%. The \nmedian age was 68.3\u00a0years. At D-T initiation, 80.8\u00a0% of patients had a PS of \n0/1, 78.6\u00a0% had stage IV disease, and 20.9\u00a0% had brain metastasis."
+      },
+      {
+        "value": 0.10300000000000001,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "\nwith an mPFS of 18.2\u00a0months. D-T discontinuation for toxicity was reported in \n10.3\u00a0% of patients.\nCONCLUSIONS: To our knowledge, this is the largest retrospective cohort of \nBR"
+      }
+    ]
+  },
+  "31801585": {
+    "mutation_frequency": [
+      {
+        "value": 0.46,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "vival were assessed.\nRESULTS: The most common genes altered in ctDNA were TP53 (46% of patients, N = \n51) and KRAS (44%, N = 49). Median number of characterized ctDNA alterati"
+      }
+    ]
+  },
+  "42102697": {
+    "ic50": [
+      {
+        "value": 64.65,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "d \n22.50\u00a0\u03bcM, respectively, compared to erlotinib (IC50\u00a0=\u00a064.65\u00a0\u03bcM). The selectivity \nindices (SIs) of compounds 2a,"
+      }
+    ]
+  },
+  "20564147": {
+    "mutation_frequency": [
+      {
+        "value": 0.1,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "Cancer Institute Common Toxicity Criteria \n[version 3.0]) reported to occur in >10% of patients.\nCONCLUSIONS: The addition of sorafenib did not appear to improve the efficacy "
+      }
+    ]
+  },
+  "41872782": {
+    "response_rate": [
+      {
+        "value": 0.35700000000000004,
+        "unit": "proportion",
+        "confidence": 0.9,
+        "context": "ation EGFR-TKIs (1st vs. 2nd vs. 3rd generations, ORR: 35.7% vs. \n76.8% vs. 61.5%, P\u2009=\u20090.01; mPFS: 17.2 vs. 23"
+      }
+    ]
+  },
+  "41203542": {
+    "mutation_frequency": [
+      {
+        "value": 0.7,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "free \nsurvival was 24.4 months (95\u00a0% confidence interval: 3.8-not reached), and 70\u00a0% \nof patients remained progression-free at both 12 and 18 months.\nCONCLUSION: This real-world"
+      }
+    ]
+  },
+  "22729611": {
+    "hazard_ratio": [
+      {
+        "value": 0.93,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "atio (HR) \u20090.83, 95 % CI\u20090.76-0.90], but not \nOS (HR 0.93, 95 % CI\u20090.83-1.03). Patients who received chemot"
+      }
+    ]
+  },
+  "41313568": {
+    "hazard_ratio": [
+      {
+        "value": 0.71,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "m score of EORTC QLQ-C30 compared to \ncrizotinib (HR: 0.71; 95% CI: 0.54 to 0.92). Regarding between-arm com"
+      }
+    ]
+  },
+  "41036428": {
+    "ic50": [
+      {
+        "value": 0.034,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": ", particularly against MCF-7 breast cancer cells (IC50 = 34\u202fnM), \noutperforming erlotinib (IC50 = 40\u202fnM). Kinase"
+      },
+      {
+        "value": 0.04,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "r cells (IC50 = 34\u202fnM), \noutperforming erlotinib (IC50 = 40\u202fnM). Kinase inhibition assays further \nconfirmed dua"
+      }
+    ]
+  },
+  "41927407": {
+    "hazard_ratio": [
+      {
+        "value": 0.77,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "ion was independently associated with longer TTF (HR 0.77, \n95% CI 0.59-1.00; P = .049), whereas KRAS, KEAP"
+      },
+      {
+        "value": 1.89,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "EAP1 interaction was associated with shorter TTF (HR 1.89, 95% \nCI 1.06-3.36; P = .032). In a 4-level compa"
+      },
+      {
+        "value": 2.48,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "tion was associated \nwith higher risk of failure (HR 2.48, 95% CI 1.50-4.10; P < .001). Results were \nconsi"
+      }
+    ]
+  },
+  "35647471": {
+    "ic50": [
+      {
+        "value": 1.47,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " study. Compound IVc showed a potent \nactivity of IC50 = 1.47 \u03bcM against a panel of breast cancer cell lines, wher"
+      },
+      {
+        "value": 1.4,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "bition for a panel of colon cancer cell \nlines at IC50 = 1.40 \u03bcM. In silico ADME property descriptors of all the t"
+      }
+    ]
+  },
+  "24390424": {
+    "mutation_frequency": [
+      {
+        "value": 0.76,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "east cancer, melanoma and \nadenoid cystic carcinoma) were on study for >1 year; 76 % of patients had SD or \nbetter for 4 months.\nCONCLUSIONS: R1507 added to six standard oncolo"
+      }
+    ]
+  },
+  "40853557": {
+    "mutation_frequency": [
+      {
+        "value": 0.77,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "ve clothing). Based on \nUnited States Cancer Statistics data from 1999 to 2021, 77% of patients with \ncutaneous melanoma had localized disease (involving only the primary site"
+      }
+    ]
+  },
+  "41110839": {
+    "hazard_ratio": [
+      {
+        "value": 0.91,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": ", overall survival (median = 15.5 vs 15.4\u2009months; HR = 0.91, P \n=\u2009.30), or melanoma-specific survival (median"
+      },
+      {
+        "value": 0.94,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "-specific survival (median = 16.2 vs 15.7\u2009months; HR = 0.94, \nP\u2009=\u2009.50). Propensity score-matched analyses con"
+      },
+      {
+        "value": 1.05,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "e-matched analyses confirmed these findings (PFS: HR = \n1.05, P\u2009=\u2009.60; overall survival: HR = 0.922, P\u2009=\u2009.41; "
+      },
+      {
+        "value": 0.922,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "ings (PFS: HR = \n1.05, P\u2009=\u2009.60; overall survival: HR = 0.922, P\u2009=\u2009.41; melanoma-specific \nsurvival: HR = 0.97,"
+      },
+      {
+        "value": 0.97,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "HR = 0.922, P\u2009=\u2009.41; melanoma-specific \nsurvival: HR = 0.97, P =\u2009.74). Post hoc power analysis for detecting "
+      }
+    ]
+  },
+  "40145314": {
+    "mutation_frequency": [
+      {
+        "value": 0.456,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "le mutation groups. Notably, \ndivergent actionable mutations were identified in 45.6% of patients, which may \nbe beneficial for changing potential therapies for individual tumor"
+      }
+    ]
+  },
+  "26474518": {
+    "hazard_ratio": [
+      {
+        "value": 0.0,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "R] 0\u00b779 [95% CI \n0\u00b760-1\u00b706]; p=0\u00b711; unstratified HR 0\u00b776 [0\u00b759-0\u00b799]; p=0\u00b7043). In the final \nanalysis,"
+      },
+      {
+        "value": 0.0,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "hs (4\u00b71-5\u00b77) in the bevacizumab group (stratified HR 0\u00b781 [95% CI \n0\u00b766-1\u00b701], p=0\u00b7059; unstratified HR "
+      },
+      {
+        "value": 0.0,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "R 0\u00b781 [95% CI \n0\u00b766-1\u00b701], p=0\u00b7059; unstratified HR 0\u00b778 [0\u00b768-0\u00b796], p=0\u00b7019). At the final \nanalysis,"
+      },
+      {
+        "value": 0.0,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "(19\u00b76-26\u00b77) \nin the bevacizumab group (stratified HR 0\u00b779 [95% CI 0\u00b763-0\u00b799], p=0\u00b7036; \nunstratified HR "
+      },
+      {
+        "value": 0.0,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "R 0\u00b779 [95% CI 0\u00b763-0\u00b799], p=0\u00b7036; \nunstratified HR 0\u00b779 [0\u00b764-0\u00b798], p=0\u00b7035). The most frequent grade"
+      }
+    ]
+  },
+  "33588150": {
+    "hazard_ratio": [
+      {
+        "value": 0.85,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "ical in both arms \n(3.9 months versus 3.9 months, HR: 0.85, p\u00a0=\u00a00.43). Adverse events were more \nfrequent in"
+      }
+    ]
+  },
+  "40590181": {
+    "ic50": [
+      {
+        "value": 7.26,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "surpassing that of the reference \ndrug sorafenib (IC50: 7.26\u2009\u00b5M). Compound 7b also exhibited potent VEGFR-2 \ninhi"
+      },
+      {
+        "value": 0.05332,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ith an IC50 of 40.65\u2009nM, outperforming sorafenib (IC50: 53.32\u2009nM). \nFurther investigation into the mechanism of ac"
+      }
+    ]
+  },
+  "33402115": {
+    "hazard_ratio": [
+      {
+        "value": 0.51,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " age\u2009>\u200965\u2009years was associated with a longer PFS (HR \n0.51; 95% CI: 0.31-0.86; p\u2009=\u20090.018). The median PFS in"
+      }
+    ]
+  },
+  "38741920": {
+    "hazard_ratio": [
+      {
+        "value": 0.3,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "FS) (median PFS 9.0 versus 18.0 months, P=0.008, \nhazard ratio=0.30 in high versus low HMGB1). After TNF-\u03b1 stimulatio"
+      }
+    ]
+  },
+  "41959926": {
+    "hazard_ratio": [
+      {
+        "value": 1.53,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "l (PFS) in \npatients receiving ALK TKI treatment (HR = 1.53, 95%CI:1.17-1.99, p=0.002). \nSubgroup analysis sh"
+      },
+      {
+        "value": 1.4,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " pronounced in \npatients treated with crizotinib (HR = 1.40, 95%CI: 1.00-1.96, p=0.049), in the \nfirst line t"
+      },
+      {
+        "value": 1.83,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": ", p=0.049), in the \nfirst line treatment setting (HR = 1.83, 95%CI: 1.34-2.50, p<0.001), and in \nthose assess"
+      },
+      {
+        "value": 1.67,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "34-2.50, p<0.001), and in \nthose assessed by NGS (HR = 1.67, 95%CI: 1.34-2.08, p<0.001). A significant \nassoc"
+      },
+      {
+        "value": 2.09,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "so observed in the brigatinib-treated population (HR = 2.09, \n95%CI: 1.33-3.28, p=0.001), although this findi"
+      },
+      {
+        "value": 1.78,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " V3 was associated with significantly \nworse PFS (HR = 1.78, 95%CI:1.38-2.30, p<0.001). When comparing V1 wit"
+      },
+      {
+        "value": 0.63,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " V1 was associated with significantly better PFS (HR = 0.63, \n95%CI:0.44-0.89, p=0.01); however, after exclud"
+      }
+    ]
+  },
+  "42033063": {
+    "hazard_ratio": [
+      {
+        "value": 0.521,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "edian: 39.2\u2009months and 28.5\u2009months, respectively; HR: \n0.521, 95% CI: 0.293-0.927, p\u2009=\u20090.024). In the multivar"
+      }
+    ]
+  },
+  "31494469": {
+    "ic50": [
+      {
+        "value": 2.85,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "f the parent compounds dihydroartemisinin (DHA) \n(IC50\u202f=\u202f2.85\u202f\u03bcM) and Gefitinib (IC50\u202f=\u202f19.82\u202f\u03bcM). In\u00a0vivo HCT116 "
+      },
+      {
+        "value": 19.82,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "rtemisinin (DHA) \n(IC50\u202f=\u202f2.85\u202f\u03bcM) and Gefitinib (IC50\u202f=\u202f19.82\u202f\u03bcM). In\u00a0vivo HCT116 xenografts \nassay showed that co"
+      }
+    ]
+  },
+  "40979666": {
+    "hazard_ratio": [
+      {
+        "value": 2.1,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "ngly \npredicted adverse survival and relapse [OS: HR: 2.1, 95% CI: 1.0-4.3, P=0.045; \nrelapse-free survival"
+      },
+      {
+        "value": 2.2,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": ": 1.0-4.3, P=0.045; \nrelapse-free survival (RFS): HR: 2.2, 95% CI: 1.1-4.1, P=0.017; cumulative \nincidence "
+      },
+      {
+        "value": 2.3,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " P=0.017; cumulative \nincidence of relapse (CIR): HR: 2.3, 95% CI: 1.1-4.8, P=0.030]. Compared to \npatients"
+      }
+    ]
+  },
+  "35717939": {
+    "mutation_frequency": [
+      {
+        "value": 0.5,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "\nand the 6-month OS rate was 31%. Related grade 3-4 adverse events occurred in \n50% of patients, and 50% of patients required a dose adjustment of trametinib.\nCONCLUSIONS: The"
+      },
+      {
+        "value": 0.5,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "ate was 31%. Related grade 3-4 adverse events occurred in \n50% of patients, and 50% of patients required a dose adjustment of trametinib.\nCONCLUSIONS: The combination of azaci"
+      }
+    ]
+  },
+  "36513215": {
+    "ic50": [
+      {
+        "value": 34.16,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "arison to the \npositive reference drug erlotinib (IC50\u00a0=\u00a034.16\u00a0\u00b5M in A549 and IC50\u00a0=\u00a025.85\u00a0\u00b5M \nin A375), four compo"
+      },
+      {
+        "value": 25.85,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "rence drug erlotinib (IC50\u00a0=\u00a034.16\u00a0\u00b5M in A549 and IC50\u00a0=\u00a025.85\u00a0\u00b5M \nin A375), four compounds (7e, 7h, 7j, and 7k) we"
+      },
+      {
+        "value": 20.28,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "inst both cell lines (especially compound 7k with IC50\u00a0=\u00a020.28\u00a0\u00b5M in A549 and \n16.08\u00a0\u00b5M in A375). Additionally, the"
+      }
+    ]
+  },
+  "40486486": {
+    "response_rate": [
+      {
+        "value": 0.14,
+        "unit": "proportion",
+        "confidence": 0.9,
+        "context": "ophagitis). Two \npatients had a partial response (ORR = 14%). Trametinib lead-in was associated \nwith decreas"
+      }
+    ]
+  },
+  "42180117": {
+    "hazard_ratio": [
+      {
+        "value": 0.79,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "howed no statistical \ndifference in terms of PFS (HR 0.79, 95% CI 0.61-1.04), with PFS-RMST estimates \nat 3"
+      },
+      {
+        "value": 0.95,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "differences in OS were observed between regimens (HR \n0.95, 95% CI 0.73-1.22). Subgroup PFS analyses accordi"
+      }
+    ]
+  },
+  "36812829": {
+    "ic50": [
+      {
+        "value": 0.123,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "n that derivative 16 showed the potent activity \n(IC50\u00a0=\u00a00.123\u00a0\u00b5M) in comparison with sorafenib (IC50\u00a0=\u00a00.116\u00a0\u00b5M). "
+      },
+      {
+        "value": 0.116,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " \n(IC50\u00a0=\u00a00.123\u00a0\u00b5M) in comparison with sorafenib (IC50\u00a0=\u00a00.116\u00a0\u00b5M). Compound 16 \ncaused an interference with the ce"
+      }
+    ]
+  },
+  "24574334": {
+    "hazard_ratio": [
+      {
+        "value": 0.18,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " and VeriStrat \"Good\" patients had superior \nPFS (HR = 0.18, 95% CI: 0.06-0.57; P = 0.001) and OS (HR = 0.31 "
+      },
+      {
+        "value": 0.31,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "(HR = 0.18, 95% CI: 0.06-0.57; P = 0.001) and OS (HR = 0.31 95% CI: \n0.13-0.77, P = 0.008) compared to VeriSt"
+      }
+    ]
+  },
+  "42028206": {
+    "ic50": [
+      {
+        "value": 3.61,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "playing strong cytotoxicity against breast MCF-7 (IC50 = \n3.61 \u00b5M) and MDA-MB-231 (IC50 = 5.37 \u00b5M) cells, comparabl"
+      },
+      {
+        "value": 5.37,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "st breast MCF-7 (IC50 = \n3.61 \u00b5M) and MDA-MB-231 (IC50 = 5.37 \u00b5M) cells, comparable to Doxorubicin and \nsuperior t"
+      }
+    ]
+  },
+  "33287892": {
+    "hazard_ratio": [
+      {
+        "value": 0.85,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "I] 0.75 to 0.92, p = 0.0005), event-free survival HR = 0.85 (95% CI \n0.77 to 0.94, p = 0.002), relapse-free s"
+      },
+      {
+        "value": 0.76,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " \n0.77 to 0.94, p = 0.002), relapse-free survival HR = 0.76 (95% CI 0.64 to 0.90, \np = 0.001), complete remis"
+      }
+    ]
+  },
+  "28369651": {
+    "ic50": [
+      {
+        "value": 0.234,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "rmore, \ncrizotinib inhibited BeWo cell viability (IC50: 234\u2009nM, 95% CI: 167-328\u2009nM) 10 \ntimes more potently than"
+      },
+      {
+        "value": 5.7,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "nt inhibitor of the transport activities of BCRP (IC50: \n5.7 \u00b5M, 95% CI: 2.7-11.8 \u00b5M) and P-gp (IC50: 7.8 \u00b5M, 95%"
+      },
+      {
+        "value": 7.8,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "RP (IC50: \n5.7 \u00b5M, 95% CI: 2.7-11.8 \u00b5M) and P-gp (IC50: 7.8 \u00b5M, 95% CI: 3.4-18.0 \u00b5M). In \nconclusion, crizotinib"
+      }
+    ]
+  },
+  "37265758": {
+    "ic50": [
+      {
+        "value": 5.7,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ted proliferation \nof human hepatoma cells HepG2 (IC50\u00a0=\u00a05.7\u00a0\u03bcmol/L), human breast cancer cells \nMCF7 (IC50\u00a0=\u00a07.2"
+      },
+      {
+        "value": 7.21,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "0\u00a0=\u00a05.7\u00a0\u03bcmol/L), human breast cancer cells \nMCF7 (IC50\u00a0=\u00a07.21\u00a0\u03bcmol/L) and human lung cancer cells HCC827 \n(IC50\u00a0=\u00a0"
+      },
+      {
+        "value": 0.75,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "7.21\u00a0\u03bcmol/L) and human lung cancer cells HCC827 \n(IC50\u00a0=\u00a00.75\u00a0\u03bcmol/L), respectively. In particular, its inhibitory"
+      },
+      {
+        "value": 1.65,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "27 was stronger than the positive drug gefitinib (IC50\u00a0=\u00a01.65\u00a0\u03bcmol/L).\nCONCLUSION: A comprehensive strategy of dir"
+      }
+    ]
+  },
+  "37143385": {
+    "ic50": [
+      {
+        "value": 4.03,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "g inhibitor of erlotinib metabolism in vitro with IC50 \u2009=\u20094.03\u2009\u03bcM. \nResveratrol, however, had no effect on erlotini"
+      }
+    ]
+  },
+  "40779213": {
+    "response_rate": [
+      {
+        "value": 0.9329999999999999,
+        "unit": "proportion",
+        "confidence": 0.9,
+        "context": "e (ORR): 100%), \nlenvatinib/tislelizumab (N\u2009=\u200914, ORR: 93.3%), bevacizumab/erlotinib (N\u2009=\u200943, \nORR: 72%), and "
+      },
+      {
+        "value": 0.72,
+        "unit": "proportion",
+        "confidence": 0.9,
+        "context": "\u200914, ORR: 93.3%), bevacizumab/erlotinib (N\u2009=\u200943, \nORR: 72%), and sintilimab/axitinib (N\u2009=\u200919, ORR: 63.1%). I"
+      },
+      {
+        "value": 0.631,
+        "unit": "proportion",
+        "confidence": 0.9,
+        "context": "\u200943, \nORR: 72%), and sintilimab/axitinib (N\u2009=\u200919, ORR: 63.1%). In this review, we will \nprovide a detailed ove"
+      }
+    ]
+  },
+  "41785709": {
+    "ic50": [
+      {
+        "value": 18.3,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ompared to the benchmark drug imatinib mesylate \n(IC50\u00a0=\u00a018.3\u00a0\u03bcM; SI\u00a0=\u00a01.36). Based on docking score and experimen"
+      },
+      {
+        "value": 3.11,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " \ncell viability assays, two lead compounds DS37 (IC50\u00a0=\u00a03.11\u00a0\u03bcM; SI\u00a0>\u00a016) and \nDS42 (IC50\u00a0=\u00a011.9\u00a0\u03bcM; SI\u00a0>\u00a016.8) w"
+      },
+      {
+        "value": 11.9,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "mpounds DS37 (IC50\u00a0=\u00a03.11\u00a0\u03bcM; SI\u00a0>\u00a016) and \nDS42 (IC50\u00a0=\u00a011.9\u00a0\u03bcM; SI\u00a0>\u00a016.8) were selected for further validation "
+      }
+    ]
+  },
+  "41206837": {
+    "mutation_frequency": [
+      {
+        "value": 0.13,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "oup A, and 6.6 (4.9-24.8) and 20.0\u00a0months (9.2-32.9) in group B. \nAt follow-up, 13% of patients (n\u2009=\u20097) remained on first-line osimertinib (group \nA, 30%; group B, 3%), 54% (n"
+      }
+    ]
+  },
+  "36770936": {
+    "ic50": [
+      {
+        "value": 0.08,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "M, which was 1.2-fold more potent than erlotinib (IC50 = 80 nM). \nInterestingly, all the tested compounds 3a-e h"
+      }
+    ]
+  },
+  "37771465": {
+    "mutation_frequency": [
+      {
+        "value": 0.14300000000000002,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "d in \n22.9%, grade \u22653 neutropenia in 20%, and grade \u22653 thromboembolic events in 14.3% \nof patients. There were no grade 5 events.\nCONCLUSION: Our findings suggest a potential ben"
+      }
+    ]
+  },
+  "29872725": {
+    "hazard_ratio": [
+      {
+        "value": 0.596,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "with the sensitivity of melanomas to vemurafenib (HR: 0.596) \nand negatively prognostic of overall or progres"
+      },
+      {
+        "value": 1.5,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "ee survival in both \nadjuvant and metastatic CRC (HR: 1.5 and 1.4), adrenal cancer (HR: 1.7), and \nHER2+ br"
+      },
+      {
+        "value": 1.7,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "metastatic CRC (HR: 1.5 and 1.4), adrenal cancer (HR: 1.7), and \nHER2+ breast cancer (HR: 1.6). MPAS thus d"
+      },
+      {
+        "value": 1.6,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "renal cancer (HR: 1.7), and \nHER2+ breast cancer (HR: 1.6). MPAS thus demonstrates potential clinical utili"
+      }
+    ]
+  },
+  "35715365": {
+    "hazard_ratio": [
+      {
+        "value": 0.22,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "progression-free \nsurvival on first-line therapy (HR 0.22, 95% CI 0.07-0.71) compared to Bev/Erlo \ncombinat"
+      }
+    ]
+  },
+  "25089810": {
+    "ic50": [
+      {
+        "value": 0.0004,
+        "unit": "\u03bcM",
+        "confidence": 0.5,
+        "context": "was identified as a dual Aurora B/FLT3 inhibitor (IC50\u00a0=\u00a00.4\u00a0nM and 0.5\u00a0nM, \nrespectively). Compound 54 also exhi"
+      }
+    ]
+  },
+  "41505979": {
+    "ic50": [
+      {
+        "value": 0.098,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "a showed potent inhibitory activity against EGFR (IC50\u00a0=\u00a00.098\u00a0\u03bcM), \napproaching that of Erlotinib (IC50\u00a0=\u00a00.06\u00a0\u03bcM)"
+      },
+      {
+        "value": 0.06,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "IC50\u00a0=\u00a00.098\u00a0\u03bcM), \napproaching that of Erlotinib (IC50\u00a0=\u00a00.06\u00a0\u03bcM). In glioblastoma cytotoxicity \nassays, compound "
+      },
+      {
+        "value": 8.8,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ed significant cytotoxicity against U-251 cells \n(IC50\u00a0=\u00a08.8\u00a0\u03bcM), comparable to Staurosporine (IC50\u00a0=\u00a07.5\u00a0\u03bcM) and"
+      },
+      {
+        "value": 7.5,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ls \n(IC50\u00a0=\u00a08.8\u00a0\u03bcM), comparable to Staurosporine (IC50\u00a0=\u00a07.5\u00a0\u03bcM) and exceeding \nNS-398 (IC50\u00a0=\u00a023.14\u00a0\u03bcM), as well"
+      },
+      {
+        "value": 23.14,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "urosporine (IC50\u00a0=\u00a07.5\u00a0\u03bcM) and exceeding \nNS-398 (IC50\u00a0=\u00a023.14\u00a0\u03bcM), as well as marked superior potency against SNB-"
+      },
+      {
+        "value": 2.6,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "as marked superior potency against SNB-75 \ncells (IC50\u00a0=\u00a02.6\u00a0\u03bcM), exceeding both Staurosporine and NS-398 (IC50\u00a0="
+      }
+    ]
+  },
+  "41102268": {
+    "hazard_ratio": [
+      {
+        "value": 0.41,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "nd was associated with significantly improved OS (HR: 0.41; p\u2009=\u20090.005). \nRegorafenib demonstrated a manageab"
+      }
+    ],
+    "mutation_frequency": [
+      {
+        "value": 0.809,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "rate was 13%, and the disease control rate was 48%. Adverse events occurred in \n80.9% of patients, most commonly fatigue, anemia, and elevated transaminases. \nHand-foot skin rea"
+      },
+      {
+        "value": 0.364,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "ted transaminases. \nHand-foot skin reaction (HFSR) of any grade was observed in 36.4% of patients \nand was associated with significantly improved OS (HR: 0.41; p\u2009=\u20090.005). \nRego"
+      }
+    ]
+  },
+  "21738104": {
+    "mutation_frequency": [
+      {
+        "value": 0.05,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "nts, and fatigue was the only grade 3 adverse event that \noccurred in more than 5% of patients. Two patients (4%) had partial responses \nand 13 patients (27%) had disease sta"
+      }
+    ]
+  },
+  "32683176": {
+    "ic50": [
+      {
+        "value": 0.00017,
+        "unit": "\u03bcM",
+        "confidence": 0.5,
+        "context": "EGFR-2, respectively, in comparison to sorafenib (IC50\u00a0=\u00a00.17\u00a0nM). The \nresults of the docking study showed a good"
+      }
+    ]
+  },
+  "34480522": {
+    "hazard_ratio": [
+      {
+        "value": 0.82,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "val [CI] \n0.45-1.20 for sunitinib vs placebo, and HR 0.82, 95% CI 0.53-1.28 for sorafenib \nvs placebo).\nCON"
+      }
+    ],
+    "mutation_frequency": [
+      {
+        "value": 0.49,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "ifornia Los Angeles (UCLA) Integrated \nStaging System (UISS) very-high risk. In 49% of patients with subsequent \ndevelopment of metastatic disease, recurrence occurred in the "
+      }
+    ]
+  },
+  "19688297": {
+    "hazard_ratio": [
+      {
+        "value": 0.93,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "usted \nP = 0.56). The hazard ratio (HR) (adjusted HR = 0.93) was not clinically \nrelevant. The median PFS for"
+      }
+    ]
+  },
+  "39830765": {
+    "mutation_frequency": [
+      {
+        "value": 0.3,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": " date. The most \ncommon treatment-related adverse events (AEs) (all grades, in \u226530% of patients) \nwere pyrexia, increased aspartate aminotransferase (AST), decreased neutrophi"
+      }
+    ]
+  },
+  "35653982": {
+    "hazard_ratio": [
+      {
+        "value": 0.55,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "nterval (CI) 0.41-1.12; P\u00a0= 0.13] and without BM (HR 0.55, 95% CI 0.24-1.26; \nP\u00a0= 0.16). Sensitivity analys"
+      },
+      {
+        "value": 0.56,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "fter the exclusion of afatinib from the analysis (HR 0.56, 95% CI 0.35-0.90; \nP\u00a0= 0.016). No statistically "
+      }
+    ]
+  },
+  "15780170": {
+    "mutation_frequency": [
+      {
+        "value": 0.15,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "eukin 2 (IL-2). \nInternational studies have shown objective response rates of < 15% in patients \nwith advanced and metastatic disease, with 5-year disease-specific survival \nr"
+      }
+    ]
+  },
+  "33422470": {
+    "mutation_frequency": [
+      {
+        "value": 0.6,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "remission; however, more than 50% relapse. C-kit is expressed in approximately \n60% of patients with de novo AML and represents a potential therapeutic target.\nMATERIALS AND M"
+      },
+      {
+        "value": 0.84,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "l control, 8 months). The median level of AF1q \nexpression was high (9.59), and 84% of patients had moderate or high levels of \ndrug-resistance factors.\nCONCLUSIONS: Imatinib "
+      }
+    ]
+  },
+  "39114330": {
+    "mutation_frequency": [
+      {
+        "value": 0.31,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": " lomustine (P = 0.70). Adverse events (\u2265grade 3) were observed in 25%, 21% \nand 31% of patients treated with sunitinib 300 mg Q1W, sunitinib 700 mg Q2W and \nlomustine, respect"
+      }
+    ]
+  },
+  "30610548": {
+    "hazard_ratio": [
+      {
+        "value": 0.78,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "ll survival compared to using bevacizumab alone \n[HR\u2009=\u20090.78, 95% CI 0.66-0.93]. This combination, effectively"
+      },
+      {
+        "value": 0.81,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "effectively increased \nprogression-free survival [HR\u2009=\u20090.81, 95% CI 0.7-0.93] too. The side effects of \ndiarr"
+      }
+    ]
+  },
+  "20709657": {
+    "mutation_frequency": [
+      {
+        "value": 0.89,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "up in first-line treatment and 80% in second-line \ntreatment were men. Overall, 89% of patients had favourable risk, and 11% had \nintermediate risk. All patients were consider"
+      },
+      {
+        "value": 0.59,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "st- and second-line \ntreatments. Disease stabilisation with CKs was recorded at 59% of patients and \nwith TKIs 25% and 50% in first- and second-line treatment groups, respecti"
+      }
+    ]
+  },
+  "30955995": {
+    "ic50": [
+      {
+        "value": 0.009300000000000001,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "d a potential inhibitory effect againstV600EBRAF (IC50\u202f=\u202f9.3\u202fnM).\n\nCopyright \u00a9 2019 Elsevier Ltd. All rights rese"
+      }
+    ]
+  },
+  "34417144": {
+    "mutation_frequency": [
+      {
+        "value": 0.54,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "difications and \ninterruptions of trametinib occurred in 69% and panitumumab in 54% of patients. \nThe trial did not progress to stage II accrual due to tolerability and short "
+      }
+    ]
+  },
+  "41938081": {
+    "mutation_frequency": [
+      {
+        "value": 0.42,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": ", and \ndiarrhea (39%). Grade more than or equal to 3 adverse events occurred in 42% of \npatients.\nCONCLUSIONS: In real-world settings, RAM plus ERL demonstrated favorable \neffi"
+      }
+    ]
+  },
+  "40496375": {
+    "ic50": [
+      {
+        "value": 0.19,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "dduct 5 showed excellent \nsub-micromolar potency (IC50 = 0.19 \u03bcM) against human mutant \nEGFRT790M/C797S/L858R enzy"
+      },
+      {
+        "value": 0.1,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "L858R enzyme equipotent with that of osimertinib (IC50 = 0.1 \n\u03bcM). It exhibited a promising IC50 value of 2.1 nM a"
+      },
+      {
+        "value": 0.0013,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "inst the EGFRWT enzyme, \ncomparable to erlotinib (IC50 = 1.3 nM). In comparison to the untreated control, \nthe Ug"
+      }
+    ]
+  },
+  "41175725": {
+    "ic50": [
+      {
+        "value": 4.55,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "d 6 \nrevealed the most potent cytotoxic activity (IC50\u00a0=\u00a04.55\u00a0\u03bcM) compared to \ndoxorubicin (IC50\u00a0=\u00a07.52\u00a0\u03bcM) on A-5"
+      },
+      {
+        "value": 7.52,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "tivity (IC50\u00a0=\u00a04.55\u00a0\u03bcM) compared to \ndoxorubicin (IC50\u00a0=\u00a07.52\u00a0\u03bcM) on A-549 cell line. Similarly, compound 6 exhibi"
+      },
+      {
+        "value": 0.061,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "he lowest IC50 (0.065\u00a0\u03bcM) compared to \nerlotinib (IC50 0.061\u00a0\u03bcM). Compound 6 was selected to evaluate its apoptot"
+      }
+    ]
+  },
+  "34371776": {
+    "ic50": [
+      {
+        "value": 6.0,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "crease in cytotoxicity for the optimized NANIMAs (IC50 \n= 6 \u00b5M) when compared to IMA alone (IC50 = 52.5 \u00b5M) on M"
+      },
+      {
+        "value": 52.5,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ANIMAs (IC50 \n= 6 \u00b5M) when compared to IMA alone (IC50 = 52.5 \u00b5M) on MCF-7 breast cancer \ncells. In the future, NL"
+      }
+    ]
+  },
+  "37704613": {
+    "hazard_ratio": [
+      {
+        "value": 0.33,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "st-transplantation improved OS in the favorable \n(HR 0.33, 95% CI 0.14-0.77; P\u2009=\u20090.011) and adverse (HR 0.5"
+      },
+      {
+        "value": 0.56,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "R 0.33, 95% CI 0.14-0.77; P\u2009=\u20090.011) and adverse (HR 0.56, 95% CI 0.33-0.93; \nP\u2009=\u20090.026) ELN 2017 risk subg"
+      }
+    ]
+  },
+  "39054430": {
+    "mutation_frequency": [
+      {
+        "value": 0.429,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "[18.6-41.8]). Grade 3-5 treatment-related adverse \nevents occurred in 34.4% and 42.9% of patients in the pembrolizumab plus \nepacadostat and sunitinib/pazopanib arms, respective"
+      }
+    ]
+  },
+  "17876014": {
+    "hazard_ratio": [
+      {
+        "value": 0.86,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "months (Bev + Erl [B+E]) versus 8.5 months (Bev; \nhazard ratio = 0.86; 95% CI, 0.5 to 1.49; P = .58). ORR (complete plu"
+      }
+    ],
+    "mutation_frequency": [
+      {
+        "value": 0.05,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "s for B+E but not reached for Bev. The most common \ngrade 3/4 adverse events (> 5% of patients) were hypertension, rash, \nproteinuria, diarrhea, and hemorrhage. One treatment"
+      }
+    ]
+  },
+  "41627922": {
+    "ic50": [
+      {
+        "value": 0.6,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "C7 demonstrated remarkable \nantioxidant activity (IC50\u2009=\u20090.6\u2009\u03bcM), exceeding both chrysin and ascorbic acid. \nIn a"
+      }
+    ]
+  },
+  "41459979": {
+    "mutation_frequency": [
+      {
+        "value": 0.049,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "h anti-HER2 combined \nwith anti-VEGF was 31.9% (95% CI: 21.6%-44.2%). Moreover, 4.9% of patients \ntreated with anti-HER2 combined with anti-VEGF achieved CR, and 32.6% achieved"
+      },
+      {
+        "value": 0.319,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "SIONS: Dual inhibition of HER2 and VEGF demonstrated promising responses, \nwith 31.9% of patients achieving ORR. Furthermore, the combined targeting of \nHER2 and VEGF, with lapa"
+      }
+    ]
+  },
+  "42163782": {
+    "hazard_ratio": [
+      {
+        "value": 1.04,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "nt difference was found in overall survival (OS) (HR \n=1.04, 95% CI: 0.86-1.25, I2=72%) or progression-free s"
+      },
+      {
+        "value": 1.34,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "1.25, I2=72%) or progression-free survival (PFS) (HR =1.34, \n95% CI: 0.77-2.34, I2=92%) between the TR and R"
+      }
+    ]
+  },
+  "20142724": {
+    "response_rate": [
+      {
+        "value": 0.37,
+        "unit": "proportion",
+        "confidence": 0.9,
+        "context": "t the MTD achieved a partial \nresponse (objective response rate: 37%; 95% confidence interval, 22-55) and 12 \n(34%) ha"
+      }
+    ]
+  },
+  "36316649": {
+    "hazard_ratio": [
+      {
+        "value": 0.14,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "edicted \nprogression-free survival in univariate (Hazard ratio 0.14) and multivariate \n(Hazard ratio 0.066) analyses."
+      },
+      {
+        "value": 0.066,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "univariate (Hazard ratio 0.14) and multivariate \n(Hazard ratio 0.066) analyses. Difference in AUC scores evidences imp"
+      }
+    ]
+  },
+  "31378572": {
+    "ic50": [
+      {
+        "value": 0.0047,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "tivity of 1 with \nsingle digit nanomolar potency (IC50: 4.7\u202fnM). Furthermore, the cytotoxic \neffects conveyed a "
+      }
+    ]
+  },
+  "40813186": {
+    "mutation_frequency": [
+      {
+        "value": 0.61,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "with D + T was 10.6 months, with treatment-related \nadverse events occurring in 61% of patients, most commonly fatigue and pyrexia.\nCONCLUSIONS: In this real-world cohort, dab"
+      }
+    ]
+  },
+  "40591514": {
+    "hazard_ratio": [
+      {
+        "value": 0.63,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "s 3.6 months in arm A versus 6.1 months in arm B (HR 0.63; P\u2005=\u2005.08). \nMedian OS was 29.9 versus 31.1 months"
+      },
+      {
+        "value": 1.07,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "P\u2005=\u2005.08). \nMedian OS was 29.9 versus 31.1 months (HR 1.07; P\u2005=\u2005.82). Adverse events \noccurred in 86.2% (arm"
+      }
+    ]
+  },
+  "38306827": {
+    "ic50": [
+      {
+        "value": 0.112,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "e s-triazinedione-based inhibitors of MMP-9 (6b; \nIC50\u00a0=\u00a00.112\u00a0\u03bcM), and MMP-10 (6e; IC50\u00a0=\u00a00.076\u00a0\u03bcM) surpassing the"
+      },
+      {
+        "value": 0.076,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " of MMP-9 (6b; \nIC50\u00a0=\u00a00.112\u00a0\u03bcM), and MMP-10 (6e; IC50\u00a0=\u00a00.076\u00a0\u03bcM) surpassing the hydroxamate \ninhibitor NNGH for c"
+      },
+      {
+        "value": 0.506,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " safe (SI up to 6.77) and \nsuperior to sorafenib (IC50\u00a0=\u00a00.506\u00a0\u00b5M, SI\u00a0=\u00a06.27) against A549 cells. When \ncombined wi"
+      }
+    ]
+  },
+  "22811876": {
+    "mutation_frequency": [
+      {
+        "value": 0.414,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "3 F) were enrolled in this study. There \nwere no complete or partial responses. 41.4% of patients achieved stable disease \nas a best response. Median overall survival was 6.8 mo"
+      },
+      {
+        "value": 0.1,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "w grade 3 and no grade 4 toxicities. No grade 3 toxicity \noccurred in more than 10% of patients.\nCONCLUSIONS: Although capecitabine and lapatinib is well tolerated, it is not "
+      }
+    ]
+  },
+  "41988621": {
+    "mutation_frequency": [
+      {
+        "value": 0.037000000000000005,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "and osimertinib (22.6%) were most frequently used. TKI-induced ILD \noccurred in 3.7% of patients, while all-cause ILD occurred in 16.0%. \nRadiologically, 95.3% of the study gro"
+      }
+    ]
+  },
+  "16361636": {
+    "mutation_frequency": [
+      {
+        "value": 0.27,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "at least temozolomide-based chemotherapy. With a median \nfollow-up of 58 weeks, 27% of patients were progression-free at 6 months, and \nthe median PFS was 14.4 weeks. Three pa"
+      }
+    ]
+  },
+  "40573320": {
+    "ic50": [
+      {
+        "value": 0.33,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "nd 0.19 \u03bcM), surpassing the potency \nof imatinib (IC50 = 0.33 \u03bcM). 7c exhibited the highest potency, with GI50 = 0"
+      }
+    ]
+  },
+  "41968548": {
+    "ic50": [
+      {
+        "value": 5.16,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ly, comparable to \nreference compounds cisplatin (IC50 = 5.16 \u03bcM) and dasatinib (IC50 = 0.9 \u03bcM). \nNotably, compoun"
+      },
+      {
+        "value": 0.9,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "mpounds cisplatin (IC50 = 5.16 \u03bcM) and dasatinib (IC50 = 0.9 \u03bcM). \nNotably, compound 20 was active against both E"
+      },
+      {
+        "value": 6.92,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ongest cytotoxic effect on prostate cancer cells (IC50 = 6.92 \u03bcM). Further \nanalyses indicated that compound 20 in"
+      }
+    ]
+  },
+  "38492275": {
+    "mutation_frequency": [
+      {
+        "value": 0.226,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "nt was 3 (IQR 2.0-4.0). Grade 3-4 drug-related \nadverse events were reported in 22.6% of patients. A dose reduction due to AEs \nwas required in 36% of patients. No deaths were c"
+      },
+      {
+        "value": 0.36,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "ere reported in 22.6% of patients. A dose reduction due to AEs \nwas required in 36% of patients. No deaths were considered as treatment-related \nAEs.\nCONCLUSIONS: This large, "
+      }
+    ]
+  },
+  "31942177": {
+    "hazard_ratio": [
+      {
+        "value": 0.65,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": ": 0.59 [0.47, \n0.73]; p=1.5e-06), gastric cancer (HR: 0.65 [0.54, 0.77]; p=8e-07) and \nnon-small-cell lung c"
+      },
+      {
+        "value": 0.78,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "p=8e-07) and \nnon-small-cell lung cancer (NSCLC) (HR: 0.78 [0.69, 0.89]; p=0.00016), \nespecially in lung ade"
+      },
+      {
+        "value": 0.64,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "; p=0.00016), \nespecially in lung adenocarcinoma (HR: 0.64 [0.51, 0.81], p=1.7e-04), female \nlung cancer (HR"
+      },
+      {
+        "value": 0.72,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "64 [0.51, 0.81], p=1.7e-04), female \nlung cancer (HR:0.72 [0.57, 0.9], p=0.0049) and patients who have neve"
+      },
+      {
+        "value": 0.39,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "], p=0.0049) and patients who have never smoked \n(HR: 0.39 [0.21, 0.7], p=0.0012). However, a high level of "
+      },
+      {
+        "value": 1.33,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "ession \nindicated poorer OS in pancreatic cancer (HR: 1.33 [1.06, 1.66]; p=0.01) and \nacute myeloid leukemia"
+      },
+      {
+        "value": 1.57,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "1.66]; p=0.01) and \nacute myeloid leukemia (AML) (HR: 1.57 [1.02, 2.41], p=0.04). Additionally, FAS \nshowed "
+      }
+    ]
+  },
+  "41619052": {
+    "hazard_ratio": [
+      {
+        "value": 0.61,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "ession-free survival (PFS) over \npyrotinib alone (HR\u2009=\u20090.61, 95% CI\u2009=\u20090.38-0.99) and RT alone (HR\u2009=\u20090.33, 95%"
+      },
+      {
+        "value": 0.33,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "one (HR\u2009=\u20090.61, 95% CI\u2009=\u20090.38-0.99) and RT alone (HR\u2009=\u20090.33, 95% \nCI\u2009=\u20090.12-0.89). Lapatinib\u2009+\u2009RT was associa"
+      }
+    ],
+    "mutation_frequency": [
+      {
+        "value": 0.5,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "ine, Stanford, \nCA, USA. sdchang@stanford.edu.\n\nBrain metastases occur in up to 50% of patients with HER2-positive breast \ncancer, posing significant therapeutic challenges du"
+      }
+    ]
+  },
+  "39761615": {
+    "ic50": [
+      {
+        "value": 0.081,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": ", respectively utilizing \nGefitinib as reference (IC50\u00a0=\u00a00.081\u00a0\u00b5M). Further mechanistic studies for hybrid \n5f in M"
+      }
+    ]
+  },
+  "41692742": {
+    "mutation_frequency": [
+      {
+        "value": 0.946,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "e outcomes between prognostic \nsubgroups.\nRESULTS: Median age was 63 years, and 94.6% of patients had ECOG performance \nstatus 0\u20131. Median OS and PFS were 6.7 and 2.9 months, re"
+      }
+    ]
+  },
+  "42170268": {
+    "hazard_ratio": [
+      {
+        "value": 2.5204,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "e ALK fusion gene-median OS was 31 vs. 58 months; HR =2.5204; 95% CI: \n1.0234-6.2071; P=0.044.\nCONCLUSIONS: Ou"
+      }
+    ],
+    "mutation_frequency": [
+      {
+        "value": 0.377,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": " On the 61 tumours analyzed, variant 1 was the most common in the study \ngroup (37.7% of patients), followed by variants 2 and 3, found with similar \nfrequency in the study popu"
+      },
+      {
+        "value": 0.213,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "ts 2 and 3, found with similar \nfrequency in the study population (in 27.9% and 21.3% of patients, \nrespectively). Disease stabilization occurred slightly more often in patients"
+      }
+    ]
+  },
+  "41209294": {
+    "ic50": [
+      {
+        "value": 0.081,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "d 0.072 \u03bcM, respectively) compared to \nsorafenib (IC50 = 0.081 \u03bcM). Moreover, 4c inhibited BRAFWT and BRAFV600E kin"
+      }
+    ]
+  },
+  "41418598": {
+    "ic50": [
+      {
+        "value": 0.078,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ed strong inhibitory activity against EGFR-TKWT \n(IC50\u00a0=\u00a00.078\u00a0\u03bcM) that closely approximates the reference drug erl"
+      },
+      {
+        "value": 12.6,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ng inhibitory activity against topoisomerase II\u03b1 (IC50\u00a0=\u00a012.6\u00a0\u03bcM) \nsurpassing that of etoposide. Compound 6a dual "
+      },
+      {
+        "value": 0.122,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ated good \ninhibitory activity against EGFR-TKWT (IC50\u00a0=\u00a00.122\u00a0\u03bcM) compared to erlotinib \nand superior inhibitory a"
+      },
+      {
+        "value": 16.8,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "or inhibitory activity against topoisomerase II\u03b1 (IC50\u00a0=\u00a016.8\u00a0\u03bcM) \ncompared to etoposide. Additionally, compound 6"
+      }
+    ]
+  },
+  "16301835": {
+    "hazard_ratio": [
+      {
+        "value": 2.55,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " every 2 weeks) than those treated with placebo \n(hazard ratio=2.55, p<0.001). In addition, combining bevacizumab wit"
+      }
+    ],
+    "mutation_frequency": [
+      {
+        "value": 0.19,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "eatic cancer has also shown promising efficacy. Partial responses were seen \nin 19% of patients, with a further 48% having stable disease. Several ongoing \nclinical trials are"
+      }
+    ]
+  },
+  "33647741": {
+    "ic50": [
+      {
+        "value": 0.057,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " most potent, which selectively inhibited B-Raf \n(IC50: 57\u00a0nM) and B-RafV600E (IC50: 51\u00a0nM) over C-Raf (IC50: 1"
+      },
+      {
+        "value": 0.051,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ly inhibited B-Raf \n(IC50: 57\u00a0nM) and B-RafV600E (IC50: 51\u00a0nM) over C-Raf (IC50: 1.0\u00a0\u03bcM). Compound \n9m also act"
+      },
+      {
+        "value": 1.0,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": ": 57\u00a0nM) and B-RafV600E (IC50: 51\u00a0nM) over C-Raf (IC50: 1.0\u00a0\u03bcM). Compound \n9m also actively inhibited EGFR (IC50"
+      },
+      {
+        "value": 0.073,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "0\u00a0\u03bcM). Compound \n9m also actively inhibited EGFR (IC50: 73\u00a0nM) and VEGFR2 (IC50: 7.0\u00a0nM) but not \nEGFRT790M and"
+      },
+      {
+        "value": 0.007,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "actively inhibited EGFR (IC50: 73\u00a0nM) and VEGFR2 (IC50: 7.0\u00a0nM) but not \nEGFRT790M and PDGFR-\u03b2 (IC50: >10\u00a0\u03bcM). D"
+      }
+    ]
+  },
+  "41392951": {
+    "hazard_ratio": [
+      {
+        "value": 0.55,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "reducing the risk of progression or death by 45% (HR: 0.55, 95% CI: \n0.34, 0.88). Lorlatinib extended restri"
+      }
+    ]
+  },
+  "41147276": {
+    "ic50": [
+      {
+        "value": 6.0,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " a \nsynergistic effect. In K562-r cells (imatinib IC50 = 6 \u03bcM), the combination \nreduced the IC50 by 6.2-fold. "
+      }
+    ]
+  },
+  "40009128": {
+    "hazard_ratio": [
+      {
+        "value": 0.158,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "inib \nmonotherapy in the low RF risk score group (HR\u2009=\u20090.158, P\u2009<\u20090.001), but was \ninferior to sunitinib in th"
+      }
+    ]
+  },
+  "28161554": {
+    "hazard_ratio": [
+      {
+        "value": 0.62,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "months for \nsunitinib\u00a0and 2.6 months for placebo (hazard ratio\u00a0= 0.62, 95% confidence \ninterval: 0.47-0.82, p\u00a0= 0.0006)"
+      },
+      {
+        "value": 0.98,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "hs for \nsunitinib versus 12.1 months for placebo (hazard ratio\u00a0= 0.98, 95% confidence \ninterval: 0.73-1.31, p\u00a0= 0.89).\n"
+      }
+    ]
+  },
+  "32062691": {
+    "mutation_frequency": [
+      {
+        "value": 0.06,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "y; diarrhea and rash were particularly \ndifficult to tolerate. Overall, 59% and 6% of patients reported AEs with a \nmaximum severity of grade 3 and 4, respectively. Poor tole"
+      }
+    ]
+  },
+  "37641236": {
+    "ic50": [
+      {
+        "value": 0.0023,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ibitor, even superior to the \nstandard erlotinib (IC50 2.3\u2009nM). Among them, the three most potent compounds \n(4"
+      }
+    ]
+  },
+  "17137406": {
+    "mutation_frequency": [
+      {
+        "value": 0.43,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "cytokine-refractory metastatic RCC, partial responses were \nreported in 40% and 43% of patients receiving sunitinib 50 mg/day for 4 weeks \nfollowed by 2 weeks without treatmen"
+      },
+      {
+        "value": 0.22,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "ay for 4 weeks \nfollowed by 2 weeks without treatment in 6-week cycles; 27% and 22% of patients \nachieved stable disease for > or =3 months. Sunitinib was more effective than "
+      }
+    ]
+  },
+  "35091289": {
+    "ic50": [
+      {
+        "value": 0.038759999999999996,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "orine. Compound 7z was the most potent agent with IC50 \n38.76\u00a0nM. Moreover, 7z showed VEGFR-2 inhibitory activity "
+      }
+    ]
+  },
+  "38794229": {
+    "ic50": [
+      {
+        "value": 2.49,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "based hit has a \nparticular affinity toward FLT3 (IC50 = 2.49 \u03bcM) and has demonstrated \nselectivity towards FLT3 I"
+      }
+    ]
+  },
+  "40345056": {
+    "hazard_ratio": [
+      {
+        "value": 1.17,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "d 45% (95% CI 31% to 58%) \nfor arm B; descriptive HR 1.17, 95% CI 0.71-1.91]. Absolute BORRs were 81% and \n"
+      }
+    ]
+  },
+  "41666774": {
+    "ic50": [
+      {
+        "value": 2.5,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " the \nstability of the DSF-target complexes. DSF (IC50\u00a0=\u00a02.5\u00a0\u03bcM) experimentally caused \na significant decrease in"
+      }
+    ]
+  },
+  "23788751": {
+    "hazard_ratio": [
+      {
+        "value": 0.898,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "onths for the combination versus erlotinib alone (HR 0.898, P = 0.321). The \nmedian overall survival (OS) wa"
+      },
+      {
+        "value": 1.066,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " overall survival (OS) was 8.2 versus 7.6 months (HR 1.066, P = 0.617). \nObjective response rates (ORRs) wer"
+      }
+    ]
+  },
+  "30123970": {
+    "hazard_ratio": [
+      {
+        "value": 1.004,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "040 \n[95% confidence interval: 0.725-1.492]; PFS: HR\u00a0=\u00a01.004 [0.724-1.391]) and \nsubstudy 2 (OS: HR\u00a0=\u00a00.767 [0"
+      },
+      {
+        "value": 0.767,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "S: HR\u00a0=\u00a01.004 [0.724-1.391]) and \nsubstudy 2 (OS: HR\u00a0=\u00a00.767 [0.478-1.231]; PFS: HR\u00a0=\u00a00.787 [0.576-1.074]). Th"
+      },
+      {
+        "value": 0.787,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "d \nsubstudy 2 (OS: HR\u00a0=\u00a00.767 [0.478-1.231]; PFS: HR\u00a0=\u00a00.787 [0.576-1.074]). The \nmost common hematologic adve"
+      }
+    ]
+  },
+  "24827980": {
+    "ic50": [
+      {
+        "value": 0.15,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "st potent biological activity against B-RafV600E (IC50 = 0.15 \n\u00b5M) and WM266.4 human melanoma cell line (GI50 = 1.7"
+      }
+    ]
+  },
+  "39079394": {
+    "ic50": [
+      {
+        "value": 11.5,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ively) compared to the reference \ndrug cisplatin (IC50\u00a0=\u00a011.50\u00a0\u00b5M) against MDA-MB-231 cells. Based on their \nconsis"
+      }
+    ]
+  },
+  "23075631": {
+    "hazard_ratio": [
+      {
+        "value": 3.5,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " administration: 9.8 versus \n4.8 months (P=0.001; hazard ratio=3.5, 95% CI 1.6-7.6). Our data indicate that \nHTN may"
+      }
+    ]
+  },
+  "37521468": {
+    "hazard_ratio": [
+      {
+        "value": 0.64,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "all survival compared to carboplatin/paclitaxel \n(HR = 0.64, 95% CI, 0.49-0.85, p < 0.01). Fatigue, nausea, l"
+      }
+    ]
+  },
+  "39496648": {
+    "ic50": [
+      {
+        "value": 2.3,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "otoxic activities, especially on A549 \ncells with IC50\u2009=\u20092.3 \u00b5M and 1.15 \u00b5M, respectively. Meanwhile, they record"
+      },
+      {
+        "value": 0.031,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " most potent EGFR inhibitors were 3e and 3f with \nIC50\u2009=\u20090.031 \u00b5M and 0.023 \u00b5M, respectively. The selectivity index"
+      }
+    ]
+  },
+  "41423267": {
+    "hazard_ratio": [
+      {
+        "value": 0.73,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "ffect \ninitial response but patients with active (HR=0.73, 95% CI 0.57 to 0.94, p=0.01) \nand heavy tobacco "
+      },
+      {
+        "value": 0.76,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " CI 0.57 to 0.94, p=0.01) \nand heavy tobacco use (HR=0.76, 95% CI 0.62 to 0.93, p=0.001) showed improved \np"
+      },
+      {
+        "value": 0.51,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "01), prolonged PFS (median PFS 9.5 vs 3.7\u2009months, HR=0.51, 95% CI 0.27 to \n0.95, p=0.04), and a trend towar"
+      }
+    ]
+  },
+  "32924168": {
+    "ic50": [
+      {
+        "value": 3.0,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "MCF-7 cell line. \nAmong all target compounds, 8b (IC50 3.0\u2009\u00b5M) and 8f (IC50 4.0\u2009\u00b5M) displayed \nhigher cytotoxic"
+      },
+      {
+        "value": 4.0,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ng all target compounds, 8b (IC50 3.0\u2009\u00b5M) and 8f (IC50 4.0\u2009\u00b5M) displayed \nhigher cytotoxicity as compared with "
+      },
+      {
+        "value": 7.0,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "as compared with the reference standard imatinib (IC50 \n7.0\u2009\u00b5M). Further studies to explore the mechanism of act"
+      },
+      {
+        "value": 0.24,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "t \ndemonstrated good inhibitory effects for CDK2 (IC50 0.24\u2009\u00b5M) with 62.5% \ninhibition, compared with imatinib. "
+      }
+    ]
+  },
+  "41462168": {
+    "hazard_ratio": [
+      {
+        "value": 0.65,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "New-generation TKIs did \nachieved benefit in PFS (HR 0.65, 95% CI 0.50-0.83, P\u2009<\u20090.0001) and ORR (RR \n1.14,"
+      },
+      {
+        "value": 0.73,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "generation TKI \ntreatment was extended (afatinib, HR 0.73, 95% CI 0.58-0.92, P\u2009=\u20090.008 and \nosimertinib, HR"
+      },
+      {
+        "value": 0.71,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "73, 95% CI 0.58-0.92, P\u2009=\u20090.008 and \nosimertinib, HR 0.71, 95% CI 0.53-0.95, P\u2009=\u20090.02), except dacomitinib "
+      },
+      {
+        "value": 0.97,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " 95% CI 0.53-0.95, P\u2009=\u20090.02), except dacomitinib (HR 0.97, \n95% CI 0.72-1.29, P\u2009=\u20090.81).\nCONCLUSIONS: New-g"
+      }
+    ]
+  },
+  "40750932": {
+    "hazard_ratio": [
+      {
+        "value": 0.84,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "b plus axitinib showed sustained benefits in \nOS (hazard ratio: 0.84; 95% confidence interval: 0.71-0.99), PFS (hazard"
+      },
+      {
+        "value": 0.69,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": ": 0.84; 95% confidence interval: 0.71-0.99), PFS (hazard ratio: \n0.69; 95% confidence interval: 0.59-0.81) and ORR (60."
+      }
+    ]
+  },
+  "18059397": {
+    "response_rate": [
+      {
+        "value": 0.349,
+        "unit": "proportion",
+        "confidence": 0.9,
+        "context": "udy; 15 patients experienced a \npartial response (response rate=34.9%), whereas other 12 (27.9%) had a stable \ndisease."
+      }
+    ]
+  },
+  "42001586": {
+    "ic50": [
+      {
+        "value": 0.08,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " and 78\u00a0nM, \nrespectively, compared to Erlotinib (IC50\u00a0=\u00a080\u00a0nM); they exhibited IC50 values \nof 76, 12, and 28\u00a0n"
+      },
+      {
+        "value": 0.012,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "2, and 28\u00a0nM, respectively, compared to Olaparib (IC50\u00a0=\u00a012\u00a0nM). They \nshowed potent cytotoxicity against MDA-MB"
+      }
+    ]
+  },
+  "42051972": {
+    "ic50": [
+      {
+        "value": 0.225,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "s confirmed its potent EGFR inhibitory \nactivity (IC50 = 0.225 \u03bcM), comparable to the reference inhibitor erlotinib"
+      },
+      {
+        "value": 0.198,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "comparable to the reference inhibitor erlotinib \n(IC50 = 0.198 \u03bcM). Flow cytometry analysis of human breast cancer "
+      }
+    ]
+  },
+  "17285599": {
+    "mutation_frequency": [
+      {
+        "value": 0.2,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "nse \n(PR) or complete response (CR). Median overall survival was 138 days, with 20% \nof patients alive after an observation period of 600 days. Study medication was \napplied in"
+      }
+    ]
+  },
+  "32615465": {
+    "ic50": [
+      {
+        "value": 7.7,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "ed with doxorubicin (IC50, 8.87\u00a0\u00b5M) and afatinib (IC50 7.7\u00a0\u03bcM). Compounds \n17 and 32 were the strongest PCAF in"
+      }
+    ]
+  },
+  "40345491": {
+    "hazard_ratio": [
+      {
+        "value": 0.65,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": " 1.1, p = 0.68). Female patients had superior OS (HR 0.65, p = \n0.049, confirmed in multivariate model), wh"
+      },
+      {
+        "value": 0.53,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "of male patients receiving first-line DAB/TRM (OS HR 0.53, p = \n0.015). There was no sex difference in surv"
+      },
+      {
+        "value": 1.02,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "ents receiving IO-based \nfirst-line treatment (OS HR 1.02). Surprisingly, high PD-L1 status (tumor \nproport"
+      },
+      {
+        "value": 1.83,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "me-to-treatment failure \nin first-line treatment (HR 1.83, p = 0.002, confirmed in multivariate models \nadj"
+      },
+      {
+        "value": 1.4,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "\nadjusting for sex; OS with nonsignificant trend, HR 1.4), regardless of whether \nthe first-line regimen w"
+      }
+    ]
+  },
+  "31807186": {
+    "mutation_frequency": [
+      {
+        "value": 0.2,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "e kinase 3-internal tandem duplication (FLT3-ITD) gene \nmutation is present in ~20% of patients with de novo acute myeloid leukemia \n(AML). Patients with an FLT3-ITD mutation "
+      }
+    ]
+  },
+  "39850549": {
+    "ic50": [
+      {
+        "value": 0.104,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "nd 10c exhibited \noutstanding VEGFR-2 inhibition (IC50 = 0.104 \u03bcM) compared to sunitinib. Compound \n10c paused the "
+      }
+    ]
+  },
+  "30508379": {
+    "ic50": [
+      {
+        "value": 0.0014,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "xcellent dual inhibition activity toward EGFRWT \n(IC50 = 1.4 nM) and HER2 (IC50 = 2.1 nM). In vivo pharmacology e"
+      },
+      {
+        "value": 0.0021000000000000003,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "activity toward EGFRWT \n(IC50 = 1.4 nM) and HER2 (IC50 = 2.1 nM). In vivo pharmacology evaluation of 1f \nshowed s"
+      }
+    ]
+  }
+}
