@@ -368,9 +368,57 @@ def render_detail(entry):
     else:
         st.metric("Score", f"{entry['score']:.3f}")
 
+    # ── Evidence Tier Breakdown ──────────────────────────────────────
+    st.markdown("### Evidence Quality Tiers")
+    st.caption("Evidence types from highest to lowest quality:")
+
+    # Count tiers from chains
+    tier_counts = {"MEASURED": 0, "ESTABLISHED": 0, "INFERRED": 0, "HYPOTHESIS": 0, "SPECULATIVE": 0, "NOISE": 0}
+    total_edges = 0
+
+    for chain in entry.get("chains", []):
+        for edge in chain["edges"]:
+            tier = edge.get("evidence_tier", "HYPOTHESIS")
+            tier_counts[tier] = tier_counts.get(tier, 0) + 1
+            total_edges += 1
+
+    if total_edges > 0:
+        cols = st.columns(6)
+        cols[0].metric("🔬 Measured", tier_counts.get("MEASURED", 0),
+                       help="IC50 data, clinical outcomes, mutation frequencies")
+        cols[1].metric("✅ Established", tier_counts.get("ESTABLISHED", 0),
+                       help="FDA approved, KEGG canonical pathways")
+        cols[2].metric("💡 Inferred", tier_counts.get("INFERRED", 0),
+                       help="ESM2 similarity, STRING PPI (computed)")
+        cols[3].metric("❓ Hypothesis", tier_counts.get("HYPOTHESIS", 0),
+                       help="PubMed citations, not quantified")
+        cols[4].metric("🔸 Speculative", tier_counts.get("SPECULATIVE", 0),
+                       help="PubMed ORPHAN (isolated)")
+        cols[5].metric("❌ Noise", tier_counts.get("NOISE", 0),
+                       help="PubMed REJECT (contradictory)")
+
+        # Show highest-tier evidence
+        best_tier = None
+        for tier in ["MEASURED", "ESTABLISHED", "INFERRED", "HYPOTHESIS", "SPECULATIVE"]:
+            if tier_counts.get(tier, 0) > 0:
+                best_tier = tier
+                break
+
+        if best_tier:
+            tier_descriptions = {
+                "MEASURED": "Experimental IC50/clinical data - highest quality evidence",
+                "ESTABLISHED": "FDA/KEGG approved - regulatory authority",
+                "INFERRED": "Computational similarity - requires validation",
+                "HYPOTHESIS": "Literature citations - graph coherence only, not quantified",
+                "SPECULATIVE": "Weak literature support - isolated edges",
+            }
+            st.info(f"**Highest evidence tier:** {best_tier} - {tier_descriptions.get(best_tier, '')}")
+    else:
+        st.warning("No mechanistic paths found - prediction based on strategy voting only")
+
     # ── Strategy votes ───────────────────────────────────────────────
     if entry["votes"]:
-        st.markdown("**Scoring Evidence**")
+        st.markdown("**Strategy Votes**")
         for name, conf in entry["votes"]:
             label = _strategy_label(name)
             hint = _strategy_hint(name)

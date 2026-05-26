@@ -36,13 +36,18 @@ PROTEIN_TYPES = {
 }
 
 
-def _build_provenance_index(db_path: str) -> dict[tuple[str, str, str], str]:
-    """Build a lookup from (source, target, relation) -> provenance from SQLite."""
-    store = KomposOSStore(db_path)
+def _build_provenance_index(db_path: str) -> dict[tuple[str, str, str], tuple]:
+    """Build a lookup from (source, target, relation) -> (provenance, evidence_tier) from SQLite."""
+    import sqlite3
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
     index = {}
-    for mor in store.list_morphisms(limit=100000):
-        prov = getattr(mor, "provenance", "unknown")
-        index[(mor.source_name, mor.target_name, mor.name)] = prov
+    cursor.execute("SELECT source_name, target_name, name, provenance, evidence_tier FROM morphisms")
+    for source, target, relation, prov, tier in cursor.fetchall():
+        index[(source, target, relation)] = (prov or "unknown", tier or "HYPOTHESIS")
+
+    conn.close()
     return index
 
 
@@ -74,10 +79,13 @@ def trace_pair(category, drug: str, disease: str, strategies=None,
                     meta = mor.metadata if hasattr(mor, "metadata") else {}
                     evidence_type = meta.get("evidence_type", "uncurated")
                     break
-            # Get provenance from SQLite index (bypasses Category loader gap)
+            # Get provenance and evidence_tier from SQLite index (bypasses Category loader gap)
             provenance = "unknown"
+            evidence_tier = "HYPOTHESIS"
             if provenance_index:
-                provenance = provenance_index.get((src, tgt, relation), "unknown")
+                prov_data = provenance_index.get((src, tgt, relation), ("unknown", "HYPOTHESIS"))
+                provenance = prov_data[0]
+                evidence_tier = prov_data[1]
             tgt_obj = category.get(tgt)
             edges.append({
                 "source": src,
@@ -86,6 +94,7 @@ def trace_pair(category, drug: str, disease: str, strategies=None,
                 "target_type": tgt_obj.type_name if tgt_obj else "?",
                 "confidence": confidence,
                 "provenance": provenance,
+                "evidence_tier": evidence_tier,
                 "evidence_type": evidence_type,
             })
 
