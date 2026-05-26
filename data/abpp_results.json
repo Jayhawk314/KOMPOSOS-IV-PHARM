@@ -30,7 +30,7 @@
     "test_concentration_um": 1.0,
     "cell_line": "H1975",
     "validated": true,
-    "publication": "PMID:22452895"
+    "publication": "PMID:18408761"
   },
   {
     "drug": "Osimertinib",
@@ -421,7 +421,7 @@
     "drug": "Sunitinib",
     "target": "VEGFR2",
     "probe": "kinase-ABPP",
-    "ic50_um": 0.009,
+    "ic50_um": 0.08,
     "percent_inhibition": 97.0,
     "test_concentration_um": 1.0,
     "cell_line": "HUVEC",
@@ -569,7 +569,7 @@
     "test_concentration_um": 1.0,
     "cell_line": "UWB1",
     "validated": true,
-    "publication": "PMID:20670955"
+    "publication": "PMID:18800822"
   },
   {
     "drug": "Sotorasib",
@@ -619,7 +619,7 @@
     "drug": "Venetoclax",
     "target": "BCL2",
     "probe": "protein-ABPP",
-    "ic50_um": 0.001,
+    "ic50_um": 1e-05,
     "percent_inhibition": 99.0,
     "test_concentration_um": 1.0,
     "cell_line": "RS4",

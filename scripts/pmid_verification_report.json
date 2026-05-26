@@ -1,0 +1,199 @@
+{
+  "total_checked": 385,
+  "verified": 119,
+  "suspicious": 24,
+  "suspicious_edges": [
+    {
+      "rowid": 1,
+      "src": "BRCA1",
+      "tgt": "ATM",
+      "rel": "activated_by",
+      "pmid": "42177353",
+      "title": "semantic embedding of variant effect annotations enables rapid and accurate path"
+    },
+    {
+      "rowid": 5,
+      "src": "BAX",
+      "tgt": "CASP9",
+      "rel": "activates",
+      "pmid": "42171887",
+      "title": "integrated molecular and metabolomic assessment of copper hydroxide nanopesticid"
+    },
+    {
+      "rowid": 6,
+      "src": "CASP9",
+      "tgt": "CASP3",
+      "rel": "activates",
+      "pmid": "42171887",
+      "title": "integrated molecular and metabolomic assessment of copper hydroxide nanopesticid"
+    },
+    {
+      "rowid": 16,
+      "src": "ERK2",
+      "tgt": "MYC",
+      "rel": "activates",
+      "pmid": "41040296",
+      "title": "lysosome-dependent nutrient scavenging underlies stress adaptation during epithe"
+    },
+    {
+      "rowid": 18,
+      "src": "FLT3",
+      "tgt": "NRAS",
+      "rel": "activates",
+      "pmid": "42173285",
+      "title": "genetic profile, treatment response, and outcomes of bcr::abl1-positive mixed-ph"
+    },
+    {
+      "rowid": 27,
+      "src": "NRAS",
+      "tgt": "PI3KCA",
+      "rel": "activates",
+      "pmid": "40348888",
+      "title": "a molecular network analysis and in silico docking of beta-eudesmol, atractylodi"
+    },
+    {
+      "rowid": 29,
+      "src": "PIK3CA",
+      "tgt": "AKT1",
+      "rel": "activates",
+      "pmid": "42157625",
+      "title": "combined effects and potential mechanisms of volatile organic compounds on child"
+    },
+    {
+      "rowid": 36,
+      "src": "STAT5B",
+      "tgt": "MYC",
+      "rel": "activates",
+      "pmid": "42039699",
+      "title": "unraveling quantitative trait loci (qtl) overlapping epigenomic regulatory regio"
+    },
+    {
+      "rowid": 39,
+      "src": "VEGFA",
+      "tgt": "KDR",
+      "rel": "activates",
+      "pmid": "42157436",
+      "title": "epas1 is associated with human muscle fiber composition and endurance phenotypes"
+    },
+    {
+      "rowid": 60,
+      "src": "CD163",
+      "tgt": "Ovarian_Cancer",
+      "rel": "associated_with",
+      "pmid": "27072205",
+      "title": "radio protective effects of the ayurvedic medicinal plant ocimum sanctum linn. ("
+    },
+    {
+      "rowid": 61,
+      "src": "CD274",
+      "tgt": "NSCLC",
+      "rel": "associated_with",
+      "pmid": "25891304",
+      "title": "nivolumab and ipilimumab versus ipilimumab in untreated melanoma."
+    },
+    {
+      "rowid": 63,
+      "src": "CD68",
+      "tgt": "Colorectal_Cancer",
+      "rel": "associated_with",
+      "pmid": "22009246",
+      "title": "risk factors: race, renal disease and albuminuria."
+    },
+    {
+      "rowid": 64,
+      "src": "CD68",
+      "tgt": "Pancreatic_Cancer",
+      "rel": "associated_with",
+      "pmid": "26823395",
+      "title": "the ophthalmic presentation of hermansky-pudlak syndrome 6."
+    },
+    {
+      "rowid": 65,
+      "src": "CDK4",
+      "tgt": "Breast_Cancer",
+      "rel": "associated_with",
+      "pmid": "19461509",
+      "title": "thymic basaloid carcinoma: a clinicopathologic study of 12 cases, with a general"
+    },
+    {
+      "rowid": 66,
+      "src": "CDK6",
+      "tgt": "Breast_Cancer",
+      "rel": "associated_with",
+      "pmid": "19461509",
+      "title": "thymic basaloid carcinoma: a clinicopathologic study of 12 cases, with a general"
+    },
+    {
+      "rowid": 74,
+      "src": "Fluorouracil",
+      "tgt": "TOP2A",
+      "rel": "associated_with",
+      "pmid": "18698266",
+      "title": "attention bias toward threat in pediatric anxiety disorders."
+    },
+    {
+      "rowid": 101,
+      "src": "PDCD1",
+      "tgt": "NSCLC",
+      "rel": "associated_with",
+      "pmid": "25891304",
+      "title": "nivolumab and ipilimumab versus ipilimumab in untreated melanoma."
+    },
+    {
+      "rowid": 118,
+      "src": "VEGFR2",
+      "tgt": "Colorectal_Cancer",
+      "rel": "associated_with",
+      "pmid": "15205295",
+      "title": "grading quality of evidence and strength of recommendations."
+    },
+    {
+      "rowid": 271,
+      "src": "Palbociclib",
+      "tgt": "CDK4",
+      "rel": "inhibits",
+      "pmid": "19461509",
+      "title": "thymic basaloid carcinoma: a clinicopathologic study of 12 cases, with a general"
+    },
+    {
+      "rowid": 272,
+      "src": "Palbociclib",
+      "tgt": "CDK6",
+      "rel": "inhibits",
+      "pmid": "19461509",
+      "title": "thymic basaloid carcinoma: a clinicopathologic study of 12 cases, with a general"
+    },
+    {
+      "rowid": 312,
+      "src": "BRCA1",
+      "tgt": "BRCA2",
+      "rel": "interacts",
+      "pmid": "42177353",
+      "title": "semantic embedding of variant effect annotations enables rapid and accurate path"
+    },
+    {
+      "rowid": 315,
+      "src": "KRAS",
+      "tgt": "TP53",
+      "rel": "pathway_crosstalk",
+      "pmid": "42173285",
+      "title": "genetic profile, treatment response, and outcomes of bcr::abl1-positive mixed-ph"
+    },
+    {
+      "rowid": 322,
+      "src": "CDK4",
+      "tgt": "RB1",
+      "rel": "phosphorylates",
+      "pmid": "42152226",
+      "title": "cimpact-now update 12: refining pathology-based risk stratification and grading "
+    },
+    {
+      "rowid": 323,
+      "src": "CDK6",
+      "tgt": "RB1",
+      "rel": "phosphorylates",
+      "pmid": "42152226",
+      "title": "cimpact-now update 12: refining pathology-based risk stratification and grading "
+    }
+  ]
+}

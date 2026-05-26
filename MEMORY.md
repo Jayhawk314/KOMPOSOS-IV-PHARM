@@ -3,6 +3,32 @@
 Read this first when entering this repo. Code and live data are the source of
 truth; many older docs are aspirational or stale.
 
+## Mission: What This Tool Is For
+
+This tool helps cancer researchers find drug repurposing candidates with fully
+traceable, citable evidence chains. A researcher runs the triage CLI, gets
+ranked candidates, follows Drug -> Protein -> Disease paths where every hop
+has a citation (PMID, FDA NDA, ChEMBL assay, KEGG pathway), verifies each
+claim independently, and decides whether to pursue a clinical trial. That
+audit trail — from tool output through verified citations to clinical
+decision — is the product. That is what saves lives.
+
+The confidence score on every edge (0.20 to 1.00) is the researcher's quality
+signal. It tells them how much to trust each hop and where it came from:
+- 0.90-1.00: ChEMBL/FDA/KEGG — authoritative databases, verify for context
+- 0.70-0.89: Curated literature/ABPP — published data, read the paper
+- 0.50-0.69: ESM2/computational — check the basis
+- 0.35-0.54: PubMed co-mentions — hypothesis only, verify independently
+- 0.20: PubMed REJECT — failed categorical verification, treat as noise
+
+These confidences flow into the scoring: high-confidence paths contribute more
+to rankings than low-confidence paths. The researcher's ranked list reflects
+evidence quality, not just path count.
+
+**Do NOT optimize for AUROC. Do NOT rewrite the RESEARCHER_GUIDE.** The guide
+is written for researchers. Make targeted number updates only. If it gets
+corrupted, Copy (14) is the reference version.
+
 ## What This Repo Is
 
 KOMPOSOS-IV-PHARM is a categorical runtime applied to pharmaceutical discovery.
@@ -13,25 +39,73 @@ ADMET, efficacy, and patient context.
 Current working capability: drug repurposing over a curated
 drug-target-disease knowledge graph.
 
-The immediate goal is not "maximize AUROC at any cost." The goal is to build the
-best defensible drug-repurposing tool we can: mechanistic, reproducible,
-auditable, leakage-aware, and useful for candidate triage.
-
 ## Current Track A Reality
 
-Source DB: `data/drugs/tier1.db` (audit-corrected 2026-05-11)
+Source DB: `data/drugs/tier1.db` (PubMed-expanded + categorically annotated 2026-05-24)
 Reproducible build: `data/drugs/build_tier1.py` from `tier1_manifest.json`
 
-Direct SQLite facts (2026-05-12, post-provenance completion):
-- 1143 objects total: 78 drugs, 20 diseases, 366 proteins, 679 ExternalCompound nodes
-- 44 Drug->Disease approved indication labels
-- 1260 morphisms total
-- Zero orphans, zero missing endpoints (679 ChEMBL endpoints now explicit objects)
-- 1260/1260 morphisms have provenance (100.0%): PMIDs + ChEMBL IDs
-- All 44 treats edges have PMIDs
-- All 44 positives have mechanistic Drug->Protein->Disease paths
-- 16/16 original positive-pair chains fully cited
-- 17 new Drug->Protein edges added for base drugs via ChEMBL drug name normalization
+Direct SQLite facts (2026-05-24, post-PubMed import + cleanup):
+- 464 objects total: 78 drugs, 20 diseases, 366 proteins + other types
+- 44 Drug->Disease labels (FDA-approved oncology indications)
+- 4,886 morphisms total (~1,600 curated + ~3,286 PubMed Protein→Disease)
+- 6 "inferred:" edges REMOVED (were circular — system predictions as labels)
+- PubMed edges carry categorical metadata (delta, score, layer_scores)
+- Curated edges: 100% provenance (PMIDs, ChEMBL IDs, KEGG, FDA)
+- PubMed edges: all have PMID provenance + categorical confidence annotations
+- All 44 treats edges have PMIDs or FDA citations
+
+**Current benchmark (2026-05-24, confidence-weighted path scoring):**
+- `full_typed/remove_direct_labels`: **AUROC 0.956**, AUPRC 0.537, Hits@5 1.00
+- Scores now differentiate (e.g. Sunitinib 0.972, Imatinib 0.930, Osimertinib 0.871)
+- Path bonus formula: `min(0.25, 0.04 * sum(p.confidence))` — each path weighted
+  by its actual min-hop confidence, not just counted
+
+**Historical AUROC context (why multiple numbers exist):**
+- 0.971 = original curated graph (1,260 edges), pre-PubMed, pre-cleanup. Historical reference.
+- 0.830/0.698 = post-PubMed, OLD scoring that counted paths equally regardless of
+  confidence. Stale — replaced by confidence-weighted scoring.
+- **0.956 = current live number** with confidence-weighted path bonus (2026-05-24).
+- The 373 overly-broad edges (proteins linked to all 20 diseases) were removed during
+  provenance audit. This partially deflated the old 0.971 number.
+
+**1,920 unique 2-hop Drug->Protein->Disease paths:**
+- 195 high-quality (both hops >= 0.70) — trustworthy for prioritization
+- 927 medium-quality (min hop 0.40-0.69) — worth scanning
+- 798 low-quality (min hop < 0.40) — hypothesis generation only
+
+### Provenance Sources (1817 edges):
+| Source | Count | What it is |
+|--------|-------|------------|
+| ChEMBL | 881 (48.5%) | Drug-target binding assays (IC50/Ki/Kd) |
+| ESM-2 | 422 (23.2%) | Protein similarity embeddings |
+| PMID | 213 (11.7%) | PubMed literature (repurposing hypotheses) |
+| FDA | 79 (4.3%) | FDA-approved drug mechanisms (NDA/BLA numbers) |
+| KEGG | 72 (4.0%) | Canonical pathway database |
+| cancer_proteins.py | 30 (1.7%) | Curated from STRING/KEGG/Reactome |
+| PPI STRING | 22 (1.2%) | STRING protein-protein interactions |
+| ABPP | 17 (0.9%) | Activity-based protein profiling with PMIDs |
+| aml_proteins.py | 16 (0.9%) | Curated AML protein data |
+| Other (GTEx/DepMap/pathway/review) | 65 (3.6%) | Various experimental/computational |
+
+### Quality Tiers (benchmark `--quality` flag):
+- **Gold** (82%): ChEMBL, ESM-2, FDA, KEGG, STRING, ABPP — authoritative databases
+- **Silver** (98%): Gold + curated + PubMed literature + GTEx/DepMap
+- **Bronze** (100%): Everything with any provenance
+
+### IMPORTANT: PMID provenance caveats
+- The 213 PMID-cited edges were found via automated PubMed search
+- Some PMIDs may be tangentially relevant (paper mentions both terms but
+  doesn't establish the specific relationship)
+- Spot-check found ~15% of PMIDs had irrelevant titles
+- These are mostly repurposing HYPOTHESES (Artesunate, Metformin, etc.)
+- Full documentation: `docs/PROVENANCE_ARCHITECTURE.md`
+
+### What NOT to repeat (common mistakes from previous sessions):
+1. Do NOT claim "100% PMID provenance" — many edges are from databases (ChEMBL, KEGG), not PMIDs
+2. Do NOT use automated PubMed search to "find PMIDs" for edges that come from pathway databases — just cite the database
+3. Do NOT link proteins to ALL 20 diseases via "multiple" cancer annotation — this was removed (373 edges deleted)
+4. Do NOT trust PubMed esearch results without title verification — it returns recent papers matching terms, not papers establishing the relationship
+5. The tier filter ALWAYS keeps Drug->Disease "treats" edges regardless of quality tier
 
 ## Named Benchmark Views
 
@@ -45,13 +119,24 @@ python validation\repurposing_benchmark.py --view full_typed --protocol remove_d
 python validation\repurposing_benchmark.py --view full_typed --protocol loocv
 ```
 
-Current measured values (2026-05-13, 8 strategies, drug props PubChem-verified):
+Pre-PubMed baseline (2026-05-13, 1817 edges, 8 strategies, drug props PubChem-verified):
 - `legacy/as_loaded`: AUROC 0.931, AUPRC 0.465
 - `full_typed/as_loaded`: AUROC 0.887, AUPRC 0.135 over 78 drugs x 20 diseases, 44 positives
 - `full_typed/remove_direct_labels`: AUROC 0.940, AUPRC 0.431
 - `full_typed/loocv`: AUROC 0.974, AUPRC 0.530, Hits@5 1.00, Hits@10 1.00, MRR 0.080
 
-Path bonus tuned via LOOCV grid search: `min(0.25, 0.10 * composition_count)`.
+Post-PubMed import, OLD scoring (2026-05-24, before path fix):
+- `full_typed/remove_direct_labels`: AUROC 0.670
+- `full_typed/loocv`: AUROC 0.797, Hits@5 1.00
+- These numbers are STALE — replaced by confidence-weighted scoring below.
+
+Post-PubMed import, confidence-weighted scoring (2026-05-24, CURRENT):
+- `full_typed/remove_direct_labels`: **AUROC 0.956**, AUPRC 0.537, Hits@5 1.00
+
+Path bonus: `min(0.25, 0.04 * sum(p.confidence))`. Each path contributes its
+actual min-hop confidence as weight. High-confidence paths (0.95) contribute
+~5x more than REJECT paths (0.20). This fixed score saturation where all top
+candidates scored 1.000.
 Uniform strategy weights confirmed optimal by `calibrate_loocv.py`.
 
 as_loaded protocols show Hits@K = 0.00 (artifact: composition skips existing edges).
@@ -123,7 +208,131 @@ protocol removes or holds them out.
 10. ~~Ablation studies.~~ DONE (composition is dominant strategy, path bonus +0.017 AUROC).
 11. ~~ClinicalTrials.gov cross-check.~~ DONE (63% IN_TRIALS, 30% PRECLINICAL, 7% NOVEL).
 
-## Latest Session (2026-05-13): Binding Evidence Strategy Integration
+## Latest Session (2026-05-24, Part 3): Confidence-Weighted Scoring & Triage Fixes
+
+**Problem:** After PubMed expansion, all top candidates scored exactly 1.000.
+Path bonus counted paths equally regardless of edge confidence. A REJECT edge
+at 0.20 contributed the same bonus as an FDA edge at 0.97. Scores saturated and
+researchers couldn't differentiate candidates.
+
+**Fixes applied:**
+
+1. **Confidence-weighted path bonus** (`repurposing_benchmark.py:score_pair`):
+   Changed from `min(0.25, 0.10 * normalized_weight)` to
+   `min(0.25, 0.04 * sum(p.confidence))`. Each path contributes its actual
+   min-hop confidence. Result: scores differentiate (Sunitinib 0.972,
+   Imatinib 0.930, Osimertinib 0.871). AUROC: 0.670 → 0.956.
+
+2. **Binding evidence deduplication** (`triage.py`): Same IC50 line was shown
+   7-9 times per candidate (once per chain that passed through the target).
+   Now deduplicated — each drug-protein pair shows once.
+
+3. **ESM2 provenance readability** (`triage.py`): ESM2 edges dumped 30+ raw
+   similarity scores inline. Now summarized as "ESM2 protein similarity
+   (30 proteins, avg 0.93)".
+
+4. **Path quality breakdown** (`triage.py`): Evidence chains now show quality
+   classification: "22 total (19 high-confidence, 3 medium)". High = all hops
+   >= 0.70, medium = min hop 0.40-0.69, speculative = any hop < 0.40.
+
+5. **RESEARCHER_GUIDE restored** from Copy (14) with benchmark numbers updated
+   to current (AUROC 0.956). The guide is written for researchers — do not
+   rewrite it. Make targeted edits only.
+
+**Key lesson:** The system's value is the audit trail, not the AUROC. A
+researcher runs triage, gets ranked candidates with cited evidence chains,
+follows the citations, and decides whether to pursue a clinical trial. The
+confidence scores tell them how much to trust each hop. Everything else
+serves that workflow.
+
+## Previous Session (2026-05-24, Part 2): PubMed Import & Categorical Edge Filter
+
+**Context:** 3,145 PubMed Protein→Disease edges were imported from the bulk query
+(scripts/query_opentargets_pubmed.py). AUROC dropped from 0.940 to 0.837 because
+many edges are noisy (PubMed co-mention ≠ mechanistic relationship).
+
+**Built 5-layer categorical filter** (`scripts/filter_pubmed_edges.py`):
+1. HoTT Drug Path Witness — does a drug reach this protein via known mechanism?
+2. Left Kan Extension Agreement — does the colimit of known drug-target functor agree?
+3. Mechanistic Reachability (COG Tier 1) — BFS through protein interaction network
+4. Protein Specificity (COG Energy) — novelty/path resistance from cog/energy.py
+5. Gray Interchange Coherence — 2-cell interchange cost from gray_category.py
+
+Each PubMed edge gets a combined score → Delta classification:
+- AGREE (≥0.6): 1 edge, confidence set to 0.75
+- PARTIAL (≥0.3 with mech support): 64 edges, confidence 0.45-0.54
+- HOLLOW (≥0.3 no mech support): 0 edges
+- ORPHAN (≥0.1): 960 edges, confidence 0.35
+- REJECT (<0.1): 2,122 edges, confidence 0.20
+
+**Critical lesson learned:** AUROC tunnel vision is destructive.
+- First attempt: deleted 2,684 edges → AUROC 0.876 (fake improvement via data deletion)
+- Second attempt: deleted 3,084 edges → AUROC 0.672 (worse)
+- User corrected course: "a high auroc is not our goal, we want true auditable trails"
+- **Final approach:** Keep ALL edges, annotate with categorical confidence, let triage
+  system present audit trails with confidence levels. No deletions.
+
+**Current DB state:** 4,892 morphisms, 464 objects (was 1,817 pre-PubMed import).
+All 3,145 PubMed edges carry metadata: `categorical_delta`, `categorical_score`,
+`layer_scores` (per-layer breakdown).
+
+**Current benchmarks (annotated graph):**
+- `full_typed/remove_direct_labels`: AUROC 0.670
+- `full_typed/loocv` (pre-filter, 4962 edges): AUROC 0.797
+- Pre-PubMed baseline: AUROC 0.940 (remove_direct_labels), 0.974 (loocv)
+
+**Key bug found and fixed:** Object type mismatch. Filter checked for type=='Protein'
+but drug targets have types like 'Oncogene', 'Receptor', 'Signaling'. Fixed with
+`NON_PROTEIN_TYPES = {'Drug', 'Disease', 'ExternalCompound'}` — everything else is
+protein-like. Coverage jumped from 12 to 77 drugs.
+
+**Why AUROC dropped and what to do about it:**
+Path composition in `repurposing_benchmark.py` doesn't weight by edge confidence.
+A conf=0.20 REJECT edge contributes the same path bonus as a conf=0.95 edge.
+Priority fix: multiply path bonus by min (or product) of edge confidences along path.
+
+**Triage output works:** AML triage produces 14 auditable evidence chains per drug
+with PMIDs, IC50 data, KEGG pathways at every step. This is the real value —
+researchers get paths they can follow, verify, and decide whether to pursue.
+
+**Scripts created/modified:**
+- `scripts/filter_pubmed_edges.py`: 5-layer categorical scorer (HoTT, Kan, BFS, Energy, Gray)
+- `scripts/apply_pubmed_filter.py`: apply/preview/revert categorical annotations
+- `scripts/pubmed_edge_scores.json`: all 3,149 edges scored with layer breakdown
+
+**Next priorities (ordered):**
+1. ~~Wire confidence into path composition.~~ DONE (2026-05-24, `0.04 * sum(p.confidence)`)
+2. Import ChEMBL 36 IC50/Ki data from local SQLite (already downloaded)
+3. Triage quality validation — verify evidence trails for known repurposing successes
+4. PubMed false positive identification — spot-check REJECT edges via abstract review
+5. Integrate COG MCP tools for live verification during triage
+6. Update CURRENT_STATE.md to reflect post-PubMed reality
+
+## Previous Session (2026-05-24, Part 1): Provenance Audit & Honest Attribution
+
+**Problem found:** Previous sessions claimed "100% PMID provenance" but actually:
+- 302 edges had provenance="unknown" (fixed by automated PubMed search — dubious quality)
+- 373 edges linked proteins to ALL 20 diseases via "multiple" cancer annotation (noise)
+- 92% of intermediate PMIDs pointed to wrong/irrelevant papers (triage audit finding)
+
+**What was done:**
+1. Removed 373 overly-broad curated edges (proteins linked to 15+ diseases each)
+2. Fixed 82/94 remaining "unknown" edges with targeted PubMed queries
+3. Marked last 3 unknowns with honest "review:" provenance
+4. Replaced fake PMIDs on protein-protein edges with KEGG pathway IDs (72 edges)
+5. Replaced fake PMIDs on FDA drug-target edges with FDA NDA/BLA numbers (94 edges)
+6. Updated quality tier definitions to recognize all real data sources
+7. Created `docs/PROVENANCE_ARCHITECTURE.md` documenting the full provenance system
+
+**LOOCV (post-cleanup, pre-PubMed import):** AUROC 0.866, Hits@5 1.00
+
+**Scripts created:**
+- `scripts/fix_provenance_honest.py`: FDA/mechanism provenance assignment
+- `scripts/fix_unknown_provenance.py`: PubMed query for unknown edges
+- `scripts/comprehensive_edge_expansion.py`: Protein->Disease edge builder
+- `scripts/query_opentargets_pubmed.py`: Bulk PubMed Protein->Disease query
+
+## Previous Session (2026-05-13): Binding Evidence Strategy Integration
 
 Wired molecular/chemistry bridges into the drug repurposing scoring pipeline
 as the 8th oracle strategy (`BindingEvidenceStrategy`).
@@ -200,6 +409,15 @@ CID confirmed by MW match. Performance maintained post-correction.
 2. Always name the graph view and validation protocol with any AUROC.
 3. Do not claim clinical readiness.
 4. Do not call the full DB a benchmark unless it has a frozen manifest and label policy.
-5. Preserve the legacy AUROC hurdle, but optimize for scientific usefulness.
+5. The audit trail is the product, not the AUROC. Optimize for researcher usability.
 6. Do not hide fallback/mock scientific modules behind production language.
 7. Do not mix Track A repurposing validation with Track B drug-design claims.
+8. Do NOT rewrite the RESEARCHER_GUIDE. Make targeted edits only. Copy (14) is
+   the reference if it gets corrupted.
+9. The confidence scores are what researchers use to make clinical decisions.
+   They must be meaningful, traceable, and honest. Do not change confidence
+   assignments without understanding what they mean to a researcher reading
+   the triage output.
+10. Do not chase AUROC. The researcher needs: ranked candidates, cited evidence
+    chains, confidence scores they understand, and a clear path from tool
+    output to clinical trial proposal.

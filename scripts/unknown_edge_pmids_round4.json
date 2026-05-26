@@ -1,0 +1,86 @@
+[
+  {
+    "rowid": 82,
+    "src": "IL6",
+    "tgt": "Ovarian_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:41897313, PMID:41801209"
+  },
+  {
+    "rowid": 91,
+    "src": "MMP2",
+    "tgt": "Melanoma",
+    "rel": "associated_with",
+    "provenance": "PMID:41759845, PMID:41739603"
+  },
+  {
+    "rowid": 115,
+    "src": "TP53",
+    "tgt": "Ovarian_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42169062, PMID:42156371"
+  },
+  {
+    "rowid": 135,
+    "src": "CDK4",
+    "tgt": "Soft_Tissue_Sarcoma",
+    "rel": "driver_of",
+    "provenance": "PMID:42099000, PMID:42082272"
+  },
+  {
+    "rowid": 142,
+    "src": "HIF1A",
+    "tgt": "RCC",
+    "rel": "driver_of",
+    "provenance": "PMID:42074150, PMID:42028950"
+  },
+  {
+    "rowid": 167,
+    "src": "Pembrolizumab",
+    "tgt": "CD8A",
+    "rel": "enhances",
+    "provenance": "PMID:42173654, PMID:42158424"
+  },
+  {
+    "rowid": 168,
+    "src": "Artesunate",
+    "tgt": "VEGFR2",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:39881675, PMID:33663548"
+  },
+  {
+    "rowid": 171,
+    "src": "Atorvastatin",
+    "tgt": "NRAS",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:31253872, PMID:28550040"
+  },
+  {
+    "rowid": 213,
+    "src": "Cimetidine",
+    "tgt": "NFKB1",
+    "rel": "inhibits",
+    "provenance": "PMID:41628910, PMID:39309438"
+  },
+  {
+    "rowid": 277,
+    "src": "Propranolol",
+    "tgt": "NFKB1",
+    "rel": "inhibits",
+    "provenance": "PMID:42011623, PMID:40269356"
+  },
+  {
+    "rowid": 317,
+    "src": "ATM",
+    "tgt": "CHEK2",
+    "rel": "phosphorylates",
+    "provenance": "PMID:42130116, PMID:42107399"
+  },
+  {
+    "rowid": 339,
+    "src": "Olaparib",
+    "tgt": "Bevacizumab",
+    "rel": "synergizes_with",
+    "provenance": "PMID:42148103, PMID:42122129"
+  }
+]

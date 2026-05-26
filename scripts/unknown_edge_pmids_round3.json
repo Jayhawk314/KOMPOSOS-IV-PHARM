@@ -1,0 +1,135 @@
+[
+  {
+    "rowid": 4,
+    "src": "AKT1",
+    "tgt": "MTOR",
+    "rel": "activates",
+    "provenance": "PMID:42175962, PMID:42172807"
+  },
+  {
+    "rowid": 29,
+    "src": "PIK3CA",
+    "tgt": "AKT1",
+    "rel": "activates",
+    "provenance": "PMID:42157625, PMID:42154572"
+  },
+  {
+    "rowid": 50,
+    "src": "AMPK",
+    "tgt": "Pancreatic_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42169006, PMID:42098751"
+  },
+  {
+    "rowid": 76,
+    "src": "HDAC1",
+    "tgt": "Breast_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42152279, PMID:41774942"
+  },
+  {
+    "rowid": 89,
+    "src": "MET",
+    "tgt": "NSCLC",
+    "rel": "associated_with",
+    "provenance": "PMID:42174600, PMID:42173326"
+  },
+  {
+    "rowid": 97,
+    "src": "NFKB1",
+    "tgt": "Colorectal_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:41929230, PMID:41814225"
+  },
+  {
+    "rowid": 117,
+    "src": "TXNRD1",
+    "tgt": "Ovarian_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:39091436, PMID:33981979"
+  },
+  {
+    "rowid": 155,
+    "src": "PDGFRA",
+    "tgt": "GIST",
+    "rel": "driver_of",
+    "provenance": "PMID:42176217, PMID:42168269"
+  },
+  {
+    "rowid": 159,
+    "src": "ROS1",
+    "tgt": "NSCLC",
+    "rel": "driver_of",
+    "provenance": "PMID:42170281, PMID:42170258"
+  },
+  {
+    "rowid": 194,
+    "src": "Alectinib",
+    "tgt": "ALK",
+    "rel": "inhibits",
+    "provenance": "PMID:42170268, PMID:42163606"
+  },
+  {
+    "rowid": 196,
+    "src": "Artesunate",
+    "tgt": "NFKB1",
+    "rel": "inhibits",
+    "provenance": "PMID:37041228"
+  },
+  {
+    "rowid": 208,
+    "src": "Brigatinib",
+    "tgt": "EGFR",
+    "rel": "inhibits",
+    "provenance": "PMID:42085935, PMID:41930161"
+  },
+  {
+    "rowid": 236,
+    "src": "IDH1",
+    "tgt": "TET2",
+    "rel": "inhibits",
+    "provenance": "PMID:42052610, PMID:41964082"
+  },
+  {
+    "rowid": 247,
+    "src": "Itraconazole",
+    "tgt": "VEGFR2",
+    "rel": "inhibits",
+    "provenance": "PMID:41590341, PMID:41372291"
+  },
+  {
+    "rowid": 256,
+    "src": "Lorlatinib",
+    "tgt": "ROS1",
+    "rel": "inhibits",
+    "provenance": "PMID:42170281, PMID:41974115"
+  },
+  {
+    "rowid": 279,
+    "src": "Ramucirumab",
+    "tgt": "KDR",
+    "rel": "inhibits",
+    "provenance": "PMID:41227318, PMID:41145921"
+  },
+  {
+    "rowid": 308,
+    "src": "Valproic_Acid",
+    "tgt": "HDAC2",
+    "rel": "inhibits",
+    "provenance": "PMID:41955765, PMID:40494210"
+  },
+  {
+    "rowid": 381,
+    "src": "Sunitinib",
+    "tgt": "RCC",
+    "rel": "treats",
+    "provenance": "PMID:42164368, PMID:42158880"
+  },
+  {
+    "rowid": 384,
+    "src": "Trametinib",
+    "tgt": "Melanoma",
+    "rel": "treats",
+    "provenance": "PMID:42108204, PMID:42006249"
+  }
+]

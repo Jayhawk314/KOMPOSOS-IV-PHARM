@@ -1,0 +1,1458 @@
+[
+  {
+    "rowid": 1,
+    "src": "BRCA1",
+    "tgt": "ATM",
+    "rel": "activated_by",
+    "provenance": "PMID:42177353, PMID:42157333"
+  },
+  {
+    "rowid": 2,
+    "src": "AKT1",
+    "tgt": "BCL2",
+    "rel": "activates",
+    "provenance": "PMID:42164935, PMID:42161211"
+  },
+  {
+    "rowid": 5,
+    "src": "BAX",
+    "tgt": "CASP9",
+    "rel": "activates",
+    "provenance": "PMID:42171887, PMID:42171850"
+  },
+  {
+    "rowid": 6,
+    "src": "CASP9",
+    "tgt": "CASP3",
+    "rel": "activates",
+    "provenance": "PMID:42171887, PMID:42171850"
+  },
+  {
+    "rowid": 7,
+    "src": "CD8A",
+    "tgt": "IFNG",
+    "rel": "activates",
+    "provenance": "PMID:42174277, PMID:41284316"
+  },
+  {
+    "rowid": 8,
+    "src": "CXCL12",
+    "tgt": "CXCR4",
+    "rel": "activates",
+    "provenance": "PMID:42164570, PMID:42161093"
+  },
+  {
+    "rowid": 10,
+    "src": "EGFR",
+    "tgt": "KRAS",
+    "rel": "activates",
+    "provenance": "PMID:42176127, PMID:42172311"
+  },
+  {
+    "rowid": 11,
+    "src": "EGFR",
+    "tgt": "PI3KCA",
+    "rel": "activates",
+    "provenance": "PMID:41887129, PMID:40774039"
+  },
+  {
+    "rowid": 12,
+    "src": "EGFR",
+    "tgt": "STAT3",
+    "rel": "activates",
+    "provenance": "PMID:42177207, PMID:42171934"
+  },
+  {
+    "rowid": 13,
+    "src": "ERBB2",
+    "tgt": "KRAS",
+    "rel": "activates",
+    "provenance": "PMID:42158415, PMID:42122248"
+  },
+  {
+    "rowid": 14,
+    "src": "ERBB2",
+    "tgt": "PI3KCA",
+    "rel": "activates",
+    "provenance": "PMID:40386732, PMID:39520520"
+  },
+  {
+    "rowid": 16,
+    "src": "ERK2",
+    "tgt": "MYC",
+    "rel": "activates",
+    "provenance": "PMID:41040296, PMID:40067243"
+  },
+  {
+    "rowid": 18,
+    "src": "FLT3",
+    "tgt": "NRAS",
+    "rel": "activates",
+    "provenance": "PMID:42173285, PMID:42145737"
+  },
+  {
+    "rowid": 19,
+    "src": "FLT3",
+    "tgt": "PIK3CA",
+    "rel": "activates",
+    "provenance": "PMID:41182553, PMID:41152656"
+  },
+  {
+    "rowid": 20,
+    "src": "KRAS",
+    "tgt": "BRAF",
+    "rel": "activates",
+    "provenance": "PMID:42170254, PMID:42169929"
+  },
+  {
+    "rowid": 22,
+    "src": "MET",
+    "tgt": "KRAS",
+    "rel": "activates",
+    "provenance": "PMID:42170254, PMID:42158415"
+  },
+  {
+    "rowid": 24,
+    "src": "MTOR",
+    "tgt": "MCL1",
+    "rel": "activates",
+    "provenance": "PMID:42144082, PMID:42062032"
+  },
+  {
+    "rowid": 26,
+    "src": "NRAS",
+    "tgt": "BRAF",
+    "rel": "activates",
+    "provenance": "PMID:42177185, PMID:42171647"
+  },
+  {
+    "rowid": 27,
+    "src": "NRAS",
+    "tgt": "PI3KCA",
+    "rel": "activates",
+    "provenance": "PMID:40348888, PMID:40302146"
+  },
+  {
+    "rowid": 28,
+    "src": "NRAS",
+    "tgt": "RAF1",
+    "rel": "activates",
+    "provenance": "PMID:42142681, PMID:42048443"
+  },
+  {
+    "rowid": 31,
+    "src": "STAT3",
+    "tgt": "BCL2",
+    "rel": "activates",
+    "provenance": "PMID:42164122, PMID:42146949"
+  },
+  {
+    "rowid": 33,
+    "src": "STAT5A",
+    "tgt": "BCL2",
+    "rel": "activates",
+    "provenance": "PMID:40833602, PMID:40341414"
+  },
+  {
+    "rowid": 36,
+    "src": "STAT5B",
+    "tgt": "MYC",
+    "rel": "activates",
+    "provenance": "PMID:42039699, PMID:40260408"
+  },
+  {
+    "rowid": 37,
+    "src": "TP53",
+    "tgt": "BAX",
+    "rel": "activates",
+    "provenance": "PMID:42168203, PMID:42157167"
+  },
+  {
+    "rowid": 39,
+    "src": "VEGFA",
+    "tgt": "KDR",
+    "rel": "activates",
+    "provenance": "PMID:42157436, PMID:42146949"
+  },
+  {
+    "rowid": 40,
+    "src": "Carboplatin",
+    "tgt": "TP53",
+    "rel": "activator",
+    "provenance": "PMID:42070145, PMID:42004046"
+  },
+  {
+    "rowid": 41,
+    "src": "Chloroquine",
+    "tgt": "TP53",
+    "rel": "activator",
+    "provenance": "PMID:41933384, PMID:40360710"
+  },
+  {
+    "rowid": 43,
+    "src": "Disulfiram",
+    "tgt": "TP53",
+    "rel": "activator",
+    "provenance": "PMID:39111630, PMID:36033553"
+  },
+  {
+    "rowid": 45,
+    "src": "Oxaliplatin",
+    "tgt": "TP53",
+    "rel": "activator",
+    "provenance": "PMID:41977417, PMID:41963291"
+  },
+  {
+    "rowid": 47,
+    "src": "ABCB1",
+    "tgt": "Breast_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42173696, PMID:42169568"
+  },
+  {
+    "rowid": 49,
+    "src": "AMPK",
+    "tgt": "Colorectal_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42066831, PMID:42029178"
+  },
+  {
+    "rowid": 52,
+    "src": "BCL2",
+    "tgt": "AML",
+    "rel": "associated_with",
+    "provenance": "PMID:42166356, PMID:42139346"
+  },
+  {
+    "rowid": 54,
+    "src": "BRAF",
+    "tgt": "HCC",
+    "rel": "associated_with",
+    "provenance": "PMID:41997132, PMID:41808116"
+  },
+  {
+    "rowid": 59,
+    "src": "BRCA2",
+    "tgt": "Pancreatic_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42149327, PMID:42118569"
+  },
+  {
+    "rowid": 67,
+    "src": "CHEK2",
+    "tgt": "Li_Fraumeni_Syndrome",
+    "rel": "associated_with",
+    "provenance": "PMID:41528496, PMID:41331641"
+  },
+  {
+    "rowid": 71,
+    "src": "EGFR",
+    "tgt": "Pancreatic_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42177207, PMID:42131993"
+  },
+  {
+    "rowid": 72,
+    "src": "ERBB2",
+    "tgt": "Colorectal_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42176792, PMID:42133901"
+  },
+  {
+    "rowid": 77,
+    "src": "HDAC2",
+    "tgt": "AML",
+    "rel": "associated_with",
+    "provenance": "PMID:39479811, PMID:39423771"
+  },
+  {
+    "rowid": 78,
+    "src": "HDAC2",
+    "tgt": "Colorectal_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42122263, PMID:41966374"
+  },
+  {
+    "rowid": 79,
+    "src": "HIF1A",
+    "tgt": "Glioblastoma",
+    "rel": "associated_with",
+    "provenance": "PMID:42170360, PMID:42148077"
+  },
+  {
+    "rowid": 80,
+    "src": "HIF1A",
+    "tgt": "Pancreatic_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42152003, PMID:42148077"
+  },
+  {
+    "rowid": 81,
+    "src": "IL6",
+    "tgt": "AML",
+    "rel": "associated_with",
+    "provenance": "PMID:42176883, PMID:42149053"
+  },
+  {
+    "rowid": 83,
+    "src": "JAK2",
+    "tgt": "AML",
+    "rel": "associated_with",
+    "provenance": "PMID:42175603, PMID:42146026"
+  },
+  {
+    "rowid": 84,
+    "src": "KIT",
+    "tgt": "AML",
+    "rel": "associated_with",
+    "provenance": "PMID:42161658, PMID:42148074"
+  },
+  {
+    "rowid": 85,
+    "src": "KIT",
+    "tgt": "Soft_Tissue_Sarcoma",
+    "rel": "associated_with",
+    "provenance": "PMID:41812090, PMID:41768227"
+  },
+  {
+    "rowid": 86,
+    "src": "MDM2",
+    "tgt": "Glioblastoma",
+    "rel": "associated_with",
+    "provenance": "PMID:42145873, PMID:41934566"
+  },
+  {
+    "rowid": 87,
+    "src": "MDM2",
+    "tgt": "Li_Fraumeni_Syndrome",
+    "rel": "associated_with",
+    "provenance": "PMID:41484250, PMID:41482346"
+  },
+  {
+    "rowid": 88,
+    "src": "MET",
+    "tgt": "HCC",
+    "rel": "associated_with",
+    "provenance": "PMID:42176867, PMID:42175630"
+  },
+  {
+    "rowid": 90,
+    "src": "MMP2",
+    "tgt": "Breast_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42169138, PMID:42159846"
+  },
+  {
+    "rowid": 92,
+    "src": "MMP9",
+    "tgt": "Breast_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42163900, PMID:42153635"
+  },
+  {
+    "rowid": 94,
+    "src": "MTOR",
+    "tgt": "Breast_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42154876, PMID:42151763"
+  },
+  {
+    "rowid": 96,
+    "src": "NFKB1",
+    "tgt": "AML",
+    "rel": "associated_with",
+    "provenance": "PMID:42039464, PMID:41487244"
+  },
+  {
+    "rowid": 103,
+    "src": "PDGFRA",
+    "tgt": "Glioblastoma",
+    "rel": "associated_with",
+    "provenance": "PMID:42152226, PMID:42105355"
+  },
+  {
+    "rowid": 105,
+    "src": "RAF1",
+    "tgt": "RCC",
+    "rel": "associated_with",
+    "provenance": "PMID:40557814, PMID:37941648"
+  },
+  {
+    "rowid": 106,
+    "src": "RB1",
+    "tgt": "Breast_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42120393, PMID:42115772"
+  },
+  {
+    "rowid": 108,
+    "src": "STAT3",
+    "tgt": "AML",
+    "rel": "associated_with",
+    "provenance": "PMID:42176883, PMID:42175603"
+  },
+  {
+    "rowid": 109,
+    "src": "TGFB1",
+    "tgt": "Colorectal_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:41868708, PMID:41437372"
+  },
+  {
+    "rowid": 111,
+    "src": "TP53",
+    "tgt": "Breast_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42177192, PMID:42174712"
+  },
+  {
+    "rowid": 113,
+    "src": "TP53",
+    "tgt": "Ewing_Sarcoma",
+    "rel": "associated_with",
+    "provenance": "PMID:42024840, PMID:41970231"
+  },
+  {
+    "rowid": 114,
+    "src": "TP53",
+    "tgt": "NSCLC",
+    "rel": "associated_with",
+    "provenance": "PMID:42176070, PMID:42174600"
+  },
+  {
+    "rowid": 116,
+    "src": "TXNRD1",
+    "tgt": "AML",
+    "rel": "associated_with",
+    "provenance": "PMID:42039266, PMID:41917989"
+  },
+  {
+    "rowid": 119,
+    "src": "VEGFR2",
+    "tgt": "Soft_Tissue_Sarcoma",
+    "rel": "associated_with",
+    "provenance": "PMID:39534097, PMID:39113850"
+  },
+  {
+    "rowid": 120,
+    "src": "CCND1",
+    "tgt": "CDK4",
+    "rel": "binds",
+    "provenance": "PMID:42162670, PMID:42133178"
+  },
+  {
+    "rowid": 121,
+    "src": "CCND1",
+    "tgt": "CDK6",
+    "rel": "binds",
+    "provenance": "PMID:41946708, PMID:41844162"
+  },
+  {
+    "rowid": 122,
+    "src": "MYC",
+    "tgt": "MAX",
+    "rel": "binds",
+    "provenance": "PMID:42123761, PMID:42079717"
+  },
+  {
+    "rowid": 123,
+    "src": "STAG2",
+    "tgt": "SMC1A",
+    "rel": "binds",
+    "provenance": "PMID:41173205, PMID:40219906"
+  },
+  {
+    "rowid": 126,
+    "src": "RUNX1",
+    "tgt": "CEBPA",
+    "rel": "cooperates",
+    "provenance": "PMID:42087923, PMID:42052610"
+  },
+  {
+    "rowid": 128,
+    "src": "SRSF2",
+    "tgt": "U2AF1",
+    "rel": "cooperates",
+    "provenance": "PMID:42101375, PMID:42092046"
+  },
+  {
+    "rowid": 133,
+    "src": "CCND1",
+    "tgt": "Breast_Cancer",
+    "rel": "driver_of",
+    "provenance": "PMID:42168250, PMID:42162670"
+  },
+  {
+    "rowid": 136,
+    "src": "COX2",
+    "tgt": "Colorectal_Cancer",
+    "rel": "driver_of",
+    "provenance": "PMID:42171839, PMID:42163566"
+  },
+  {
+    "rowid": 137,
+    "src": "EGFR",
+    "tgt": "Glioblastoma",
+    "rel": "driver_of",
+    "provenance": "PMID:42177594, PMID:42177207"
+  },
+  {
+    "rowid": 140,
+    "src": "FLT3",
+    "tgt": "AML",
+    "rel": "driver_of",
+    "provenance": "PMID:42175928, PMID:42173694"
+  },
+  {
+    "rowid": 143,
+    "src": "IL6",
+    "tgt": "Multiple_Myeloma",
+    "rel": "driver_of",
+    "provenance": "PMID:42098965, PMID:42096031"
+  },
+  {
+    "rowid": 148,
+    "src": "KIT",
+    "tgt": "GIST",
+    "rel": "driver_of",
+    "provenance": "PMID:42176217, PMID:42169940"
+  },
+  {
+    "rowid": 150,
+    "src": "KRAS",
+    "tgt": "NSCLC",
+    "rel": "driver_of",
+    "provenance": "PMID:42176127, PMID:42170277"
+  },
+  {
+    "rowid": 153,
+    "src": "MDM2",
+    "tgt": "Soft_Tissue_Sarcoma",
+    "rel": "driver_of",
+    "provenance": "PMID:42151908, PMID:41541131"
+  },
+  {
+    "rowid": 156,
+    "src": "PIK3CA",
+    "tgt": "Breast_Cancer",
+    "rel": "driver_of",
+    "provenance": "PMID:42167845, PMID:42162670"
+  },
+  {
+    "rowid": 157,
+    "src": "PTEN",
+    "tgt": "Glioblastoma",
+    "rel": "driver_of",
+    "provenance": "PMID:42130630, PMID:42104587"
+  },
+  {
+    "rowid": 158,
+    "src": "PTEN",
+    "tgt": "Prostate_Cancer",
+    "rel": "driver_of",
+    "provenance": "PMID:42153555, PMID:42152582"
+  },
+  {
+    "rowid": 162,
+    "src": "TP53",
+    "tgt": "Li_Fraumeni_Syndrome",
+    "rel": "driver_of",
+    "provenance": "PMID:42171906, PMID:42168203"
+  },
+  {
+    "rowid": 164,
+    "src": "VEGFR2",
+    "tgt": "HCC",
+    "rel": "driver_of",
+    "provenance": "PMID:42100655, PMID:42065051"
+  },
+  {
+    "rowid": 166,
+    "src": "Nivolumab",
+    "tgt": "CD8A",
+    "rel": "enhances",
+    "provenance": "PMID:40489082, PMID:39853272"
+  },
+  {
+    "rowid": 170,
+    "src": "Atorvastatin",
+    "tgt": "MTOR",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:41922823, PMID:41888416"
+  },
+  {
+    "rowid": 172,
+    "src": "Bazedoxifene",
+    "tgt": "STAT3",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:41844825, PMID:41148817"
+  },
+  {
+    "rowid": 174,
+    "src": "Celecoxib",
+    "tgt": "AKT1",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:31859282, PMID:31568401"
+  },
+  {
+    "rowid": 175,
+    "src": "Chloroquine",
+    "tgt": "MTOR",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:42163711, PMID:42157427"
+  },
+  {
+    "rowid": 177,
+    "src": "Clarithromycin",
+    "tgt": "MTOR",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:42047332, PMID:38919203"
+  },
+  {
+    "rowid": 178,
+    "src": "Diclofenac",
+    "tgt": "MYC",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:38229111, PMID:33850556"
+  },
+  {
+    "rowid": 179,
+    "src": "Imatinib",
+    "tgt": "AKT1",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:41939401, PMID:35710779"
+  },
+  {
+    "rowid": 181,
+    "src": "Ivermectin",
+    "tgt": "MTOR",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:42138203, PMID:42087762"
+  },
+  {
+    "rowid": 182,
+    "src": "Leflunomide",
+    "tgt": "STAT3",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:41037123, PMID:33556668"
+  },
+  {
+    "rowid": 184,
+    "src": "Nelfinavir",
+    "tgt": "MTOR",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:37800623, PMID:33419802"
+  },
+  {
+    "rowid": 185,
+    "src": "Osimertinib",
+    "tgt": "MAPK1",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:38921583, PMID:35812182"
+  },
+  {
+    "rowid": 186,
+    "src": "Propranolol",
+    "tgt": "VEGFR2",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:39342317, PMID:37957872"
+  },
+  {
+    "rowid": 187,
+    "src": "Sotorasib",
+    "tgt": "MAP2K1",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:38849010, PMID:34161704"
+  },
+  {
+    "rowid": 188,
+    "src": "Thalidomide",
+    "tgt": "VEGFR2",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:39540225, PMID:37956709"
+  },
+  {
+    "rowid": 190,
+    "src": "ARF",
+    "tgt": "MDM2",
+    "rel": "inhibits",
+    "provenance": "PMID:41729969, PMID:41497854"
+  },
+  {
+    "rowid": 191,
+    "src": "Adagrasib",
+    "tgt": "KRAS",
+    "rel": "inhibits",
+    "provenance": "PMID:42170277, PMID:42122163"
+  },
+  {
+    "rowid": 193,
+    "src": "Afatinib",
+    "tgt": "ERBB2",
+    "rel": "inhibits",
+    "provenance": "PMID:41875675, PMID:41827693"
+  },
+  {
+    "rowid": 195,
+    "src": "Alectinib",
+    "tgt": "RET",
+    "rel": "inhibits",
+    "provenance": "PMID:41907614, PMID:41833902"
+  },
+  {
+    "rowid": 197,
+    "src": "Aspirin",
+    "tgt": "COX2",
+    "rel": "inhibits",
+    "provenance": "PMID:42147329, PMID:42143000"
+  },
+  {
+    "rowid": 198,
+    "src": "Aspirin",
+    "tgt": "NFKB1",
+    "rel": "inhibits",
+    "provenance": "PMID:39432502, PMID:37564983"
+  },
+  {
+    "rowid": 199,
+    "src": "Aspirin",
+    "tgt": "STAT3",
+    "rel": "inhibits",
+    "provenance": "PMID:42020321, PMID:41425852"
+  },
+  {
+    "rowid": 202,
+    "src": "Auranofin",
+    "tgt": "TXNRD1",
+    "rel": "inhibits",
+    "provenance": "PMID:42039266, PMID:41654145"
+  },
+  {
+    "rowid": 204,
+    "src": "BCL2",
+    "tgt": "BAX",
+    "rel": "inhibits",
+    "provenance": "PMID:42177593, PMID:42176292"
+  },
+  {
+    "rowid": 205,
+    "src": "Bazedoxifene",
+    "tgt": "IL6",
+    "rel": "inhibits",
+    "provenance": "PMID:41844825, PMID:41503636"
+  },
+  {
+    "rowid": 206,
+    "src": "Binimetinib",
+    "tgt": "MAP2K1",
+    "rel": "inhibits",
+    "provenance": "PMID:41484121, PMID:40211189"
+  },
+  {
+    "rowid": 207,
+    "src": "Brigatinib",
+    "tgt": "ALK",
+    "rel": "inhibits",
+    "provenance": "PMID:42170268, PMID:42136297"
+  },
+  {
+    "rowid": 209,
+    "src": "CD274",
+    "tgt": "PDCD1",
+    "rel": "inhibits",
+    "provenance": "PMID:42173765, PMID:42151523"
+  },
+  {
+    "rowid": 210,
+    "src": "Capmatinib",
+    "tgt": "MET",
+    "rel": "inhibits",
+    "provenance": "PMID:42130628, PMID:42008741"
+  },
+  {
+    "rowid": 211,
+    "src": "Celecoxib",
+    "tgt": "COX2",
+    "rel": "inhibits",
+    "provenance": "PMID:42163885, PMID:42160831"
+  },
+  {
+    "rowid": 215,
+    "src": "Clarithromycin",
+    "tgt": "IL6",
+    "rel": "inhibits",
+    "provenance": "PMID:42033901, PMID:41090136"
+  },
+  {
+    "rowid": 216,
+    "src": "Cobimetinib",
+    "tgt": "MAP2K1",
+    "rel": "inhibits",
+    "provenance": "PMID:41135521, PMID:40131415"
+  },
+  {
+    "rowid": 217,
+    "src": "Crizotinib",
+    "tgt": "ALK",
+    "rel": "inhibits",
+    "provenance": "PMID:42174600, PMID:42170281"
+  },
+  {
+    "rowid": 218,
+    "src": "Crizotinib",
+    "tgt": "MET",
+    "rel": "inhibits",
+    "provenance": "PMID:42174600, PMID:42170281"
+  },
+  {
+    "rowid": 219,
+    "src": "Crizotinib",
+    "tgt": "ROS1",
+    "rel": "inhibits",
+    "provenance": "PMID:42170281, PMID:42051253"
+  },
+  {
+    "rowid": 221,
+    "src": "Diclofenac",
+    "tgt": "COX2",
+    "rel": "inhibits",
+    "provenance": "PMID:42145149, PMID:42051012"
+  },
+  {
+    "rowid": 222,
+    "src": "Disulfiram",
+    "tgt": "NPL4",
+    "rel": "inhibits",
+    "provenance": "PMID:41387670, PMID:39927715"
+  },
+  {
+    "rowid": 223,
+    "src": "Doxycycline",
+    "tgt": "MMP2",
+    "rel": "inhibits",
+    "provenance": "PMID:41936277, PMID:41830580"
+  },
+  {
+    "rowid": 224,
+    "src": "Doxycycline",
+    "tgt": "MMP9",
+    "rel": "inhibits",
+    "provenance": "PMID:41943322, PMID:41803116"
+  },
+  {
+    "rowid": 225,
+    "src": "Durvalumab",
+    "tgt": "CD274",
+    "rel": "inhibits",
+    "provenance": "PMID:42148114, PMID:42135293"
+  },
+  {
+    "rowid": 226,
+    "src": "Encorafenib",
+    "tgt": "BRAF",
+    "rel": "inhibits",
+    "provenance": "PMID:42156103, PMID:42093086"
+  },
+  {
+    "rowid": 228,
+    "src": "Entrectinib",
+    "tgt": "NTRK1",
+    "rel": "inhibits",
+    "provenance": "PMID:42059003, PMID:41914173"
+  },
+  {
+    "rowid": 230,
+    "src": "Entrectinib",
+    "tgt": "NTRK3",
+    "rel": "inhibits",
+    "provenance": "PMID:42147998, PMID:42086841"
+  },
+  {
+    "rowid": 231,
+    "src": "Entrectinib",
+    "tgt": "ROS1",
+    "rel": "inhibits",
+    "provenance": "PMID:42170258, PMID:42015242"
+  },
+  {
+    "rowid": 234,
+    "src": "Fluorouracil",
+    "tgt": "TYMS",
+    "rel": "inhibits",
+    "provenance": "PMID:42108395, PMID:28520376"
+  },
+  {
+    "rowid": 237,
+    "src": "IDH2",
+    "tgt": "TET2",
+    "rel": "inhibits",
+    "provenance": "PMID:42161659, PMID:42154859"
+  },
+  {
+    "rowid": 239,
+    "src": "Imatinib",
+    "tgt": "KIT",
+    "rel": "inhibits",
+    "provenance": "PMID:42169940, PMID:42153279"
+  },
+  {
+    "rowid": 240,
+    "src": "Imatinib",
+    "tgt": "PDGFRA",
+    "rel": "inhibits",
+    "provenance": "PMID:42135668, PMID:42130655"
+  },
+  {
+    "rowid": 241,
+    "src": "Indomethacin",
+    "tgt": "COX2",
+    "rel": "inhibits",
+    "provenance": "PMID:42173861, PMID:42142688"
+  },
+  {
+    "rowid": 242,
+    "src": "Indomethacin",
+    "tgt": "NFKB1",
+    "rel": "inhibits",
+    "provenance": "PMID:36915642, PMID:31166414"
+  },
+  {
+    "rowid": 246,
+    "src": "Itraconazole",
+    "tgt": "MTOR",
+    "rel": "inhibits",
+    "provenance": "PMID:42104677, PMID:41314647"
+  },
+  {
+    "rowid": 248,
+    "src": "Ivermectin",
+    "tgt": "STAT3",
+    "rel": "inhibits",
+    "provenance": "PMID:41155573, PMID:39477578"
+  },
+  {
+    "rowid": 249,
+    "src": "Lapatinib",
+    "tgt": "EGFR",
+    "rel": "inhibits",
+    "provenance": "PMID:42142209, PMID:42102692"
+  },
+  {
+    "rowid": 250,
+    "src": "Lapatinib",
+    "tgt": "ERBB2",
+    "rel": "inhibits",
+    "provenance": "PMID:42089475, PMID:42009845"
+  },
+  {
+    "rowid": 252,
+    "src": "Larotrectinib",
+    "tgt": "NTRK2",
+    "rel": "inhibits",
+    "provenance": "PMID:42059003, PMID:41914173"
+  },
+  {
+    "rowid": 253,
+    "src": "Larotrectinib",
+    "tgt": "NTRK3",
+    "rel": "inhibits",
+    "provenance": "PMID:42147998, PMID:42090631"
+  },
+  {
+    "rowid": 255,
+    "src": "Lorlatinib",
+    "tgt": "ALK",
+    "rel": "inhibits",
+    "provenance": "PMID:42170281, PMID:42157376"
+  },
+  {
+    "rowid": 257,
+    "src": "MCL1",
+    "tgt": "BAK",
+    "rel": "inhibits",
+    "provenance": "PMID:42176292, PMID:42120360"
+  },
+  {
+    "rowid": 258,
+    "src": "MCL1",
+    "tgt": "BAX",
+    "rel": "inhibits",
+    "provenance": "PMID:42176292, PMID:42161211"
+  },
+  {
+    "rowid": 259,
+    "src": "Mebendazole",
+    "tgt": "BRAF",
+    "rel": "inhibits",
+    "provenance": "PMID:36143915, PMID:28157711"
+  },
+  {
+    "rowid": 260,
+    "src": "Mebendazole",
+    "tgt": "VEGFR2",
+    "rel": "inhibits",
+    "provenance": "PMID:38480495, PMID:36143915"
+  },
+  {
+    "rowid": 261,
+    "src": "Metformin",
+    "tgt": "MTOR",
+    "rel": "inhibits",
+    "provenance": "PMID:42166641, PMID:42163729"
+  },
+  {
+    "rowid": 263,
+    "src": "Niclosamide",
+    "tgt": "MTOR",
+    "rel": "inhibits",
+    "provenance": "PMID:42039428, PMID:41871709"
+  },
+  {
+    "rowid": 265,
+    "src": "Niclosamide",
+    "tgt": "STAT3",
+    "rel": "inhibits",
+    "provenance": "PMID:42039428, PMID:41918749"
+  },
+  {
+    "rowid": 266,
+    "src": "Nitroglycerin",
+    "tgt": "HIF1A",
+    "rel": "inhibits",
+    "provenance": "PMID:31912870, PMID:28423052"
+  },
+  {
+    "rowid": 267,
+    "src": "Nivolumab",
+    "tgt": "PDCD1",
+    "rel": "inhibits",
+    "provenance": "PMID:41925220, PMID:41871875"
+  },
+  {
+    "rowid": 269,
+    "src": "PTEN",
+    "tgt": "AKT1",
+    "rel": "inhibits",
+    "provenance": "PMID:42163618, PMID:42154572"
+  },
+  {
+    "rowid": 270,
+    "src": "PTEN",
+    "tgt": "PIK3CA",
+    "rel": "inhibits",
+    "provenance": "PMID:42155824, PMID:42155131"
+  },
+  {
+    "rowid": 273,
+    "src": "Pembrolizumab",
+    "tgt": "PDCD1",
+    "rel": "inhibits",
+    "provenance": "PMID:41980913, PMID:41965156"
+  },
+  {
+    "rowid": 275,
+    "src": "Pirfenidone",
+    "tgt": "TGFB1",
+    "rel": "inhibits",
+    "provenance": "PMID:42159303, PMID:41512274"
+  },
+  {
+    "rowid": 276,
+    "src": "Pralsetinib",
+    "tgt": "RET",
+    "rel": "inhibits",
+    "provenance": "PMID:42162219, PMID:42161875"
+  },
+  {
+    "rowid": 278,
+    "src": "RB1",
+    "tgt": "E2F1",
+    "rel": "inhibits",
+    "provenance": "PMID:42123456, PMID:42069574"
+  },
+  {
+    "rowid": 280,
+    "src": "Regorafenib",
+    "tgt": "KDR",
+    "rel": "inhibits",
+    "provenance": "PMID:39858437, PMID:38359495"
+  },
+  {
+    "rowid": 282,
+    "src": "Ribociclib",
+    "tgt": "CDK4",
+    "rel": "inhibits",
+    "provenance": "PMID:42169884, PMID:42159622"
+  },
+  {
+    "rowid": 283,
+    "src": "Ribociclib",
+    "tgt": "CDK6",
+    "rel": "inhibits",
+    "provenance": "PMID:42152200, PMID:42139194"
+  },
+  {
+    "rowid": 284,
+    "src": "Ritonavir",
+    "tgt": "AKT1",
+    "rel": "inhibits",
+    "provenance": "PMID:41432067, PMID:40661465"
+  },
+  {
+    "rowid": 285,
+    "src": "Ritonavir",
+    "tgt": "NFKB1",
+    "rel": "inhibits",
+    "provenance": "PMID:32698440"
+  },
+  {
+    "rowid": 288,
+    "src": "Sorafenib",
+    "tgt": "BRAF",
+    "rel": "inhibits",
+    "provenance": "PMID:41905086, PMID:41858341"
+  },
+  {
+    "rowid": 289,
+    "src": "Sorafenib",
+    "tgt": "RAF1",
+    "rel": "inhibits",
+    "provenance": "PMID:41347828, PMID:41338474"
+  },
+  {
+    "rowid": 290,
+    "src": "Sorafenib",
+    "tgt": "VEGFR2",
+    "rel": "inhibits",
+    "provenance": "PMID:42172794, PMID:42169596"
+  },
+  {
+    "rowid": 291,
+    "src": "Sotorasib",
+    "tgt": "KRAS",
+    "rel": "inhibits",
+    "provenance": "PMID:42173791, PMID:42170277"
+  },
+  {
+    "rowid": 292,
+    "src": "Sunitinib",
+    "tgt": "FLT3",
+    "rel": "inhibits",
+    "provenance": "PMID:42158360, PMID:41757266"
+  },
+  {
+    "rowid": 294,
+    "src": "Sunitinib",
+    "tgt": "PDGFRA",
+    "rel": "inhibits",
+    "provenance": "PMID:41664736, PMID:41589230"
+  },
+  {
+    "rowid": 297,
+    "src": "Suramin",
+    "tgt": "VEGFR2",
+    "rel": "inhibits",
+    "provenance": "PMID:36986570, PMID:32459810"
+  },
+  {
+    "rowid": 298,
+    "src": "TP53",
+    "tgt": "CCND1",
+    "rel": "inhibits",
+    "provenance": "PMID:42169580, PMID:42162670"
+  },
+  {
+    "rowid": 299,
+    "src": "TP53",
+    "tgt": "CDK4",
+    "rel": "inhibits",
+    "provenance": "PMID:42174712, PMID:42174600"
+  },
+  {
+    "rowid": 301,
+    "src": "Temsirolimus",
+    "tgt": "MTOR",
+    "rel": "inhibits",
+    "provenance": "PMID:42152262, PMID:42092963"
+  },
+  {
+    "rowid": 302,
+    "src": "Tepotinib",
+    "tgt": "MET",
+    "rel": "inhibits",
+    "provenance": "PMID:42134160, PMID:42111027"
+  },
+  {
+    "rowid": 305,
+    "src": "Trastuzumab_deruxtecan",
+    "tgt": "ERBB2",
+    "rel": "inhibits",
+    "provenance": "PMID:42176792, PMID:42155073"
+  },
+  {
+    "rowid": 306,
+    "src": "Trastuzumab_deruxtecan",
+    "tgt": "TOP1",
+    "rel": "inhibits",
+    "provenance": "PMID:40672227, PMID:37913680"
+  },
+  {
+    "rowid": 311,
+    "src": "Verapamil",
+    "tgt": "ABCB1",
+    "rel": "inhibits",
+    "provenance": "PMID:41959218, PMID:41789585"
+  },
+  {
+    "rowid": 312,
+    "src": "BRCA1",
+    "tgt": "BRCA2",
+    "rel": "interacts",
+    "provenance": "PMID:42177353, PMID:42174130"
+  },
+  {
+    "rowid": 313,
+    "src": "BRCA2",
+    "tgt": "RAD51",
+    "rel": "interacts",
+    "provenance": "PMID:42161950, PMID:42133574"
+  },
+  {
+    "rowid": 314,
+    "src": "DNMT3A",
+    "tgt": "TET2",
+    "rel": "pathway_crosstalk",
+    "provenance": "PMID:42173694, PMID:42173285"
+  },
+  {
+    "rowid": 315,
+    "src": "KRAS",
+    "tgt": "TP53",
+    "rel": "pathway_crosstalk",
+    "provenance": "PMID:42173285, PMID:42172562"
+  },
+  {
+    "rowid": 316,
+    "src": "Imatinib",
+    "tgt": "KRAS",
+    "rel": "pathway_modulator",
+    "provenance": "PMID:41664736, PMID:41278291"
+  },
+  {
+    "rowid": 318,
+    "src": "ATM",
+    "tgt": "TP53",
+    "rel": "phosphorylates",
+    "provenance": "PMID:42172562, PMID:42146343"
+  },
+  {
+    "rowid": 319,
+    "src": "ATR",
+    "tgt": "CHEK2",
+    "rel": "phosphorylates",
+    "provenance": "PMID:41683580, PMID:41018918"
+  },
+  {
+    "rowid": 320,
+    "src": "ATR",
+    "tgt": "TP53",
+    "rel": "phosphorylates",
+    "provenance": "PMID:42146343, PMID:42086507"
+  },
+  {
+    "rowid": 321,
+    "src": "BRAF",
+    "tgt": "MEK1",
+    "rel": "phosphorylates",
+    "provenance": "PMID:42171647, PMID:42098597"
+  },
+  {
+    "rowid": 322,
+    "src": "CDK4",
+    "tgt": "RB1",
+    "rel": "phosphorylates",
+    "provenance": "PMID:42152226, PMID:42115772"
+  },
+  {
+    "rowid": 323,
+    "src": "CDK6",
+    "tgt": "RB1",
+    "rel": "phosphorylates",
+    "provenance": "PMID:42152226, PMID:41946996"
+  },
+  {
+    "rowid": 324,
+    "src": "CHEK2",
+    "tgt": "TP53",
+    "rel": "phosphorylates",
+    "provenance": "PMID:42147998, PMID:42139642"
+  },
+  {
+    "rowid": 326,
+    "src": "FLT3",
+    "tgt": "STAT5A",
+    "rel": "phosphorylates",
+    "provenance": "PMID:41256517, PMID:40841767"
+  },
+  {
+    "rowid": 327,
+    "src": "FLT3",
+    "tgt": "STAT5B",
+    "rel": "phosphorylates",
+    "provenance": "PMID:39329074, PMID:36989489"
+  },
+  {
+    "rowid": 328,
+    "src": "JAK2",
+    "tgt": "STAT3",
+    "rel": "phosphorylates",
+    "provenance": "PMID:42176032, PMID:42175603"
+  },
+  {
+    "rowid": 330,
+    "src": "MEK1",
+    "tgt": "ERK1",
+    "rel": "phosphorylates",
+    "provenance": "PMID:42121888, PMID:42082145"
+  },
+  {
+    "rowid": 332,
+    "src": "RAF1",
+    "tgt": "MEK1",
+    "rel": "phosphorylates",
+    "provenance": "PMID:41830142, PMID:41603252"
+  },
+  {
+    "rowid": 333,
+    "src": "MYC",
+    "tgt": "TP53",
+    "rel": "regulated_by",
+    "provenance": "PMID:42172562, PMID:42169930"
+  },
+  {
+    "rowid": 334,
+    "src": "TP53",
+    "tgt": "MDM2",
+    "rel": "regulated_by",
+    "provenance": "PMID:42177192, PMID:42159875"
+  },
+  {
+    "rowid": 335,
+    "src": "MTOR",
+    "tgt": "TP53",
+    "rel": "regulates",
+    "provenance": "PMID:42174600, PMID:42161669"
+  },
+  {
+    "rowid": 336,
+    "src": "NPM1",
+    "tgt": "ARF",
+    "rel": "sequesters",
+    "provenance": "PMID:42007444, PMID:40858804"
+  },
+  {
+    "rowid": 337,
+    "src": "Dabrafenib",
+    "tgt": "Trametinib",
+    "rel": "synergizes_with",
+    "provenance": "PMID:42169194, PMID:42159588"
+  },
+  {
+    "rowid": 338,
+    "src": "Everolimus",
+    "tgt": "Erlotinib",
+    "rel": "synergizes_with",
+    "provenance": "PMID:42142209, PMID:42032072"
+  },
+  {
+    "rowid": 341,
+    "src": "Venetoclax",
+    "tgt": "Ruxolitinib",
+    "rel": "synergizes_with",
+    "provenance": "PMID:42070782, PMID:42007254"
+  },
+  {
+    "rowid": 349,
+    "src": "Cetuximab",
+    "tgt": "Colorectal_Cancer",
+    "rel": "treats",
+    "provenance": "PMID:42176792, PMID:42169194"
+  },
+  {
+    "rowid": 352,
+    "src": "Dabrafenib",
+    "tgt": "Melanoma",
+    "rel": "treats",
+    "provenance": "PMID:42006249, PMID:41995376"
+  },
+  {
+    "rowid": 354,
+    "src": "Erlotinib",
+    "tgt": "NSCLC",
+    "rel": "treats",
+    "provenance": "PMID:42170287, PMID:42125848"
+  },
+  {
+    "rowid": 356,
+    "src": "Everolimus",
+    "tgt": "RCC",
+    "rel": "treats",
+    "provenance": "PMID:42121276, PMID:41976289"
+  },
+  {
+    "rowid": 358,
+    "src": "Imatinib",
+    "tgt": "CML",
+    "rel": "treats",
+    "provenance": "PMID:42174092, PMID:42161431"
+  },
+  {
+    "rowid": 362,
+    "src": "Metformin",
+    "tgt": "Type2_Diabetes",
+    "rel": "treats",
+    "provenance": "PMID:41897350, PMID:41639142"
+  },
+  {
+    "rowid": 367,
+    "src": "Olaparib",
+    "tgt": "Ovarian_Cancer",
+    "rel": "treats",
+    "provenance": "PMID:42176176, PMID:42157333"
+  },
+  {
+    "rowid": 377,
+    "src": "Ruxolitinib",
+    "tgt": "Myelofibrosis",
+    "rel": "treats",
+    "provenance": "PMID:42171355, PMID:42133107"
+  },
+  {
+    "rowid": 383,
+    "src": "Thalidomide",
+    "tgt": "Multiple_Myeloma",
+    "rel": "treats",
+    "provenance": "PMID:42023513, PMID:42009417"
+  },
+  {
+    "rowid": 385,
+    "src": "Trastuzumab",
+    "tgt": "Breast_Cancer",
+    "rel": "treats",
+    "provenance": "PMID:42170835, PMID:42170576"
+  },
+  {
+    "rowid": 387,
+    "src": "Venetoclax",
+    "tgt": "CLL",
+    "rel": "treats",
+    "provenance": "PMID:42164027, PMID:42156574"
+  },
+  {
+    "rowid": 388,
+    "src": "MDM2",
+    "tgt": "TP53",
+    "rel": "ubiquitinates",
+    "provenance": "PMID:42177192, PMID:42159875"
+  }
+]

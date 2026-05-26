@@ -30,7 +30,9 @@
       "Bash(sqlite3:*)",
       "Bash(pip install:*)",
       "WebFetch(domain:chembl.gitbook.io)",
-      "Bash(git remote set-url:*)"
+      "Bash(git remote set-url:*)",
+      "Bash(xargs:*)",
+      "Bash(tee:*)"
     ]
   }
 }

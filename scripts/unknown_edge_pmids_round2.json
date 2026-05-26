@@ -1,0 +1,296 @@
+[
+  {
+    "rowid": 3,
+    "src": "AKT1",
+    "tgt": "MDM2",
+    "rel": "activates",
+    "provenance": "PMID:41935502, PMID:41930148"
+  },
+  {
+    "rowid": 15,
+    "src": "ERK1",
+    "tgt": "MYC",
+    "rel": "activates",
+    "provenance": "PMID:41944873, PMID:41799498"
+  },
+  {
+    "rowid": 17,
+    "src": "FLT3",
+    "tgt": "AKT1",
+    "rel": "activates",
+    "provenance": "PMID:39273530, PMID:35895896"
+  },
+  {
+    "rowid": 21,
+    "src": "KRAS",
+    "tgt": "RAF1",
+    "rel": "activates",
+    "provenance": "PMID:42150281, PMID:42017331"
+  },
+  {
+    "rowid": 23,
+    "src": "MET",
+    "tgt": "PI3KCA",
+    "rel": "activates",
+    "provenance": "PMID:34802045, PMID:34079834"
+  },
+  {
+    "rowid": 34,
+    "src": "STAT5A",
+    "tgt": "MCL1",
+    "rel": "activates",
+    "provenance": "PMID:34360855, PMID:30154155"
+  },
+  {
+    "rowid": 35,
+    "src": "STAT5A",
+    "tgt": "MYC",
+    "rel": "activates",
+    "provenance": "PMID:41185027, PMID:39191751"
+  },
+  {
+    "rowid": 38,
+    "src": "TP53",
+    "tgt": "CASP9",
+    "rel": "activates",
+    "provenance": "PMID:42079302, PMID:42013722"
+  },
+  {
+    "rowid": 42,
+    "src": "Cisplatin",
+    "tgt": "TP53",
+    "rel": "activator",
+    "provenance": "PMID:42159875, PMID:42095034"
+  },
+  {
+    "rowid": 44,
+    "src": "Mebendazole",
+    "tgt": "TP53",
+    "rel": "activator",
+    "provenance": "PMID:34262644, PMID:33131904"
+  },
+  {
+    "rowid": 46,
+    "src": "ABCB1",
+    "tgt": "AML",
+    "rel": "associated_with",
+    "provenance": "PMID:41520507, PMID:41301675"
+  },
+  {
+    "rowid": 48,
+    "src": "AMPK",
+    "tgt": "Breast_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42142783, PMID:42083571"
+  },
+  {
+    "rowid": 53,
+    "src": "BRAF",
+    "tgt": "Colorectal_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42169929, PMID:42162231"
+  },
+  {
+    "rowid": 55,
+    "src": "BRCA1",
+    "tgt": "Breast_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42177192, PMID:42174130"
+  },
+  {
+    "rowid": 57,
+    "src": "BRCA2",
+    "tgt": "Breast_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42174130, PMID:42149908"
+  },
+  {
+    "rowid": 93,
+    "src": "MMP9",
+    "tgt": "Colorectal_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:41999432, PMID:41931738"
+  },
+  {
+    "rowid": 104,
+    "src": "PDGFRA",
+    "tgt": "Soft_Tissue_Sarcoma",
+    "rel": "associated_with",
+    "provenance": "PMID:35804982, PMID:33524869"
+  },
+  {
+    "rowid": 107,
+    "src": "RB1",
+    "tgt": "Soft_Tissue_Sarcoma",
+    "rel": "associated_with",
+    "provenance": "PMID:41228336, PMID:40743869"
+  },
+  {
+    "rowid": 110,
+    "src": "TGFB1",
+    "tgt": "Pancreatic_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42147260, PMID:41674826"
+  },
+  {
+    "rowid": 112,
+    "src": "TP53",
+    "tgt": "Colorectal_Cancer",
+    "rel": "associated_with",
+    "provenance": "PMID:42169872, PMID:42163467"
+  },
+  {
+    "rowid": 125,
+    "src": "RB1",
+    "tgt": "TP53",
+    "rel": "cooperates",
+    "provenance": "PMID:42132987, PMID:42079136"
+  },
+  {
+    "rowid": 129,
+    "src": "ALK",
+    "tgt": "NSCLC",
+    "rel": "driver_of",
+    "provenance": "PMID:42079655, PMID:42025599"
+  },
+  {
+    "rowid": 169,
+    "src": "Atorvastatin",
+    "tgt": "KRAS",
+    "rel": "indirect_inhibitor",
+    "provenance": "PMID:37897621, PMID:31397499"
+  },
+  {
+    "rowid": 192,
+    "src": "Afatinib",
+    "tgt": "EGFR",
+    "rel": "inhibits",
+    "provenance": "PMID:42151084, PMID:42102692"
+  },
+  {
+    "rowid": 200,
+    "src": "Atezolizumab",
+    "tgt": "CD274",
+    "rel": "inhibits",
+    "provenance": "PMID:42148114, PMID:41951084"
+  },
+  {
+    "rowid": 203,
+    "src": "BCL2",
+    "tgt": "BAK",
+    "rel": "inhibits",
+    "provenance": "PMID:42176292, PMID:42124878"
+  },
+  {
+    "rowid": 227,
+    "src": "Entrectinib",
+    "tgt": "ALK",
+    "rel": "inhibits",
+    "provenance": "PMID:41837926, PMID:40907439"
+  },
+  {
+    "rowid": 229,
+    "src": "Entrectinib",
+    "tgt": "NTRK2",
+    "rel": "inhibits",
+    "provenance": "PMID:38613194, PMID:34389458"
+  },
+  {
+    "rowid": 235,
+    "src": "Gefitinib",
+    "tgt": "EGFR",
+    "rel": "inhibits",
+    "provenance": "PMID:42155202, PMID:42102692"
+  },
+  {
+    "rowid": 245,
+    "src": "Irinotecan",
+    "tgt": "TOP1",
+    "rel": "inhibits",
+    "provenance": "PMID:41812411, PMID:41580174"
+  },
+  {
+    "rowid": 251,
+    "src": "Larotrectinib",
+    "tgt": "NTRK1",
+    "rel": "inhibits",
+    "provenance": "PMID:41553644, PMID:41293387"
+  },
+  {
+    "rowid": 262,
+    "src": "Nelfinavir",
+    "tgt": "AKT1",
+    "rel": "inhibits",
+    "provenance": "PMID:34136086, PMID:17133272"
+  },
+  {
+    "rowid": 268,
+    "src": "Osimertinib",
+    "tgt": "EGFR",
+    "rel": "inhibits",
+    "provenance": "PMID:42155306, PMID:42152723"
+  },
+  {
+    "rowid": 274,
+    "src": "Pemetrexed",
+    "tgt": "TYMS",
+    "rel": "inhibits",
+    "provenance": "PMID:37278440, PMID:34646134"
+  },
+  {
+    "rowid": 287,
+    "src": "Selpercatinib",
+    "tgt": "RET",
+    "rel": "inhibits",
+    "provenance": "PMID:42161102, PMID:41997282"
+  },
+  {
+    "rowid": 293,
+    "src": "Sunitinib",
+    "tgt": "KIT",
+    "rel": "inhibits",
+    "provenance": "PMID:41570585, PMID:41553644"
+  },
+  {
+    "rowid": 307,
+    "src": "Valproic_Acid",
+    "tgt": "HDAC1",
+    "rel": "inhibits",
+    "provenance": "PMID:41955765, PMID:41444682"
+  },
+  {
+    "rowid": 325,
+    "src": "FLT3",
+    "tgt": "RUNX1",
+    "rel": "phosphorylates",
+    "provenance": "PMID:41345260, PMID:41131586"
+  },
+  {
+    "rowid": 331,
+    "src": "MEK1",
+    "tgt": "ERK2",
+    "rel": "phosphorylates",
+    "provenance": "PMID:41988986, PMID:41870738"
+  },
+  {
+    "rowid": 340,
+    "src": "Palbociclib",
+    "tgt": "Trastuzumab",
+    "rel": "synergizes_with",
+    "provenance": "PMID:41109527, PMID:40932868"
+  },
+  {
+    "rowid": 347,
+    "src": "Bevacizumab",
+    "tgt": "Colorectal_Cancer",
+    "rel": "treats",
+    "provenance": "PMID:42160312, PMID:42129304"
+  },
+  {
+    "rowid": 369,
+    "src": "Palbociclib",
+    "tgt": "Breast_Cancer",
+    "rel": "treats",
+    "provenance": "PMID:42174712, PMID:42051387"
+  }
+]

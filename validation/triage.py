@@ -200,12 +200,16 @@ def _detail_block(entry: dict) -> str:
             from abpp_bridge import ABPPBridge
             abpp = ABPPBridge()
             from data.drugs.drug_properties import get_drug_likeness, is_antibody
-            # Find proteins this drug targets
+            # Collect unique drug-protein binding entries (deduplicated)
+            seen_pairs = set()
             for chain in entry.get("chains", []):
                 for edge in chain.get("edges", []):
                     protein = edge.get("target", "")
+                    if (drug, protein) in seen_pairs:
+                        continue
                     result = abpp.check_abpp(drug, protein)
                     if result and result.validated and result.ic50_um is not None:
+                        seen_pairs.add((drug, protein))
                         lines.append(
                             f"  {drug}->{protein}: IC50={result.ic50_um:.3f} uM"
                             f"  ({result.percent_inhibition:.0f}% inh.)"
@@ -220,21 +224,46 @@ def _detail_block(entry: dict) -> str:
             pass  # Binding display is best-effort
 
     if entry["chains"]:
+        # Classify chains by quality
+        high_chains = []  # all hops >= 0.70
+        mid_chains = []   # min hop 0.40-0.69
+        low_chains = []   # any hop < 0.40
+        for chain in entry["chains"]:
+            min_conf = min(e["confidence"] for e in chain["edges"])
+            if min_conf >= 0.70:
+                high_chains.append(chain)
+            elif min_conf >= 0.40:
+                mid_chains.append(chain)
+            else:
+                low_chains.append(chain)
+
         lines.append("")
-        lines.append("Evidence chains:")
+        summary_parts = []
+        if high_chains:
+            summary_parts.append(f"{len(high_chains)} high-confidence")
+        if mid_chains:
+            summary_parts.append(f"{len(mid_chains)} medium")
+        if low_chains:
+            summary_parts.append(f"{len(low_chains)} speculative")
+        lines.append(f"Evidence chains: {len(entry['chains'])} total ({', '.join(summary_parts)})")
+
         for i, chain in enumerate(entry["chains"], 1):
             lines.append(f"  {i}. ", )
-            edge_strs = []
             prov_notes = []
             for edge in chain["edges"]:
-                edge_strs.append(
-                    f"{edge['source']} -{edge['relation']}-> {edge['target']}"
-                )
                 prov = edge.get("provenance", "unknown")
-                if prov and prov != "unknown":
-                    prov_notes.append(f"     {prov} ({edge['source']}->{edge['target']})  confidence: {edge['confidence']:.2f}")
+                # Summarize ESM2 provenance instead of dumping 30+ similarity scores
+                if prov and prov.startswith("ESM2:"):
+                    esm_scores = [float(s.split("(")[1].rstrip(")"))
+                                  for s in prov.split("; ") if "(" in s]
+                    n = len(esm_scores)
+                    avg = sum(esm_scores) / n if n else 0
+                    prov_display = f"ESM2 protein similarity ({n} proteins, avg {avg:.2f})"
+                elif prov and prov != "unknown":
+                    prov_display = prov
                 else:
-                    prov_notes.append(f"     uncited ({edge['source']}->{edge['target']})  confidence: {edge['confidence']:.2f}")
+                    prov_display = "uncited"
+                prov_notes.append(f"     {prov_display} ({edge['source']}->{edge['target']})  confidence: {edge['confidence']:.2f}")
             lines[-1] += " -> ".join(
                 [chain["edges"][0]["source"]]
                 + [f"-{e['relation']}-> {e['target']}" for e in chain["edges"]]
@@ -269,22 +298,23 @@ def format_terminal(results: list[dict], query_label: str,
     lines.append("")
 
     # Table header
-    hdr = f"{'Rank':>4}  {'Drug' if results and 'disease' != query_label else 'Target':<20s}  {'Score':>5}  {'Label':<10s}  {'Chains':>6}  Top Evidence Path"
+    hdr = f"{'Rank':>4}  {'Drug' if results and 'disease' != query_label else 'Target':<20s}  {'Score':>5}  {'Label':<10s}  {'Evidence':<10s}  {'Chains':>6}  Top Evidence Path"
     # Detect if this is drug-first (results have varying diseases) or disease-first
     is_drug_first = len(set(r["disease"] for r in results)) > 1
     if is_drug_first:
-        hdr = f"{'Rank':>4}  {'Disease':<20s}  {'Score':>5}  {'Label':<10s}  {'Chains':>6}  Top Evidence Path"
+        hdr = f"{'Rank':>4}  {'Disease':<20s}  {'Score':>5}  {'Label':<10s}  {'Evidence':<10s}  {'Chains':>6}  Top Evidence Path"
     else:
-        hdr = f"{'Rank':>4}  {'Drug':<20s}  {'Score':>5}  {'Label':<10s}  {'Chains':>6}  Top Evidence Path"
+        hdr = f"{'Rank':>4}  {'Drug':<20s}  {'Score':>5}  {'Label':<10s}  {'Evidence':<10s}  {'Chains':>6}  Top Evidence Path"
     lines.append(hdr)
-    lines.append(f"{'----':>4}  {'----':<20s}  {'-----':>5}  {'-----':<10s}  {'------':>6}  ----------------")
+    lines.append(f"{'----':>4}  {'----':<20s}  {'-----':>5}  {'-----':<10s}  {'--------':<10s}  {'------':>6}  ----------------")
 
     detail_entries = []
     for entry in results:
         entity = entry["disease"] if is_drug_first else entry["drug"]
         top_path = _top_evidence_path(entry["chains"])
+        evidence_type = "Mechanistic" if entry["n_chains"] > 0 else "Analogy"
         lines.append(
-            f"{entry['rank']:>4}  {entity:<20s}  {entry['score']:.3f}  {entry['label']:<10s}  {entry['n_chains']:>6}  {top_path}"
+            f"{entry['rank']:>4}  {entity:<20s}  {entry['score']:.3f}  {entry['label']:<10s}  {evidence_type:<10s}  {entry['n_chains']:>6}  {top_path}"
         )
         if detail_all:
             detail_entries.append(entry)
@@ -326,6 +356,7 @@ def format_json(results: list[dict], query_label: str,
             "disease": entry["disease"],
             "score": round(entry["score"], 4),
             "label": entry["label"],
+            "evidence": "Mechanistic" if entry["n_chains"] > 0 else "Analogy",
             "strategy_votes": {name: round(conf, 4) for name, conf in entry["votes"]},
             "n_chains": entry["n_chains"],
             "provenance": {
