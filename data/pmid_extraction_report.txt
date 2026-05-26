@@ -1,0 +1,18 @@
+PMID EXTRACTION VALIDATION REPORT
+======================================================================
+
+Total PMIDs processed: 609
+PMIDs with quantitative data: 21
+Extraction success rate: 3.4%
+
+EXTRACTIONS BY TYPE:
+----------------------------------------------------------------------
+  hazard_ratio        :    8
+  ic50                :    4
+  mutation_frequency  :   16
+
+======================================================================
+SAMPLE EXTRACTIONS (first 10 PMIDs with data):
+======================================================================
+
+PMID 42025599:

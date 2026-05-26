@@ -185,7 +185,7 @@ def main():
     # Generate validation report
     print("\nGenerating validation report...")
 
-    with open("data/pmid_extraction_report.txt", "w") as f:
+    with open("data/pmid_extraction_report.txt", "w", encoding='utf-8') as f:
         f.write("PMID EXTRACTION VALIDATION REPORT\n")
         f.write("="*70 + "\n\n")
 

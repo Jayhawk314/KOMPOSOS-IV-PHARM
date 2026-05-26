@@ -1,0 +1,258 @@
+{
+  "42025599": {
+    "ic50": [
+      {
+        "value": 0.1,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " against the ALK-overexpressing cell line \nH2228 (IC50\u00a0=\u00a00.10\u00a0\u03bcM), as well as promising ALK inhibition (9.58\u00a0nM). "
+      }
+    ]
+  },
+  "42175928": {
+    "ic50": [
+      {
+        "value": 0.009089999999999999,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": " nanomolar potency against \nBa/F3-FLT3-ITD-F691L (IC50 = 9.09 nM) and subnanomolar activity against \nBa/F3-FLT3-IT"
+      },
+      {
+        "value": 0.00464,
+        "unit": "\u03bcM",
+        "confidence": 0.8,
+        "context": "nanomolar activity against \nBa/F3-FLT3-ITD-D835Y (IC50 = 4.64 nM) and Ba/F3-FLT3-ITD-D835V (IC50 = 0.76 nM). \nIn v"
+      },
+      {
+        "value": 0.00076,
+        "unit": "\u03bcM",
+        "confidence": 0.5,
+        "context": "-D835Y (IC50 = 4.64 nM) and Ba/F3-FLT3-ITD-D835V (IC50 = 0.76 nM). \nIn vivo, FYJ-195 induced profound tumor regres"
+      }
+    ]
+  },
+  "18316791": {
+    "mutation_frequency": [
+      {
+        "value": 0.43,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "(92%) of 463 patients (208 \npanitumumab, 219 BSC). KRAS mutations were found in 43% of patients. The \ntreatment effect on PFS in the wild-type (WT) KRAS group (hazard ratio [H"
+      }
+    ]
+  },
+  "37683526": {
+    "mutation_frequency": [
+      {
+        "value": 0.5,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "ed with STK11, KEAP1, and TP53 co-mutations in 10.3-28.0%, 6.3-23.0%, \nand 17.8-50.0% of patients, respectively. Whilst sotorasib and adagrasib are \ncurrently approved for use i"
+      }
+    ]
+  },
+  "27979383": {
+    "hazard_ratio": [
+      {
+        "value": 0.0,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "lizumab vs 10\u00b73 months [8\u00b78-12\u00b70] with docetaxel; HR 0\u00b774 [95% CI \n0\u00b758-0\u00b793]; p=0\u00b70102). Patients in th"
+      },
+      {
+        "value": 0.0,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "dian overall survival \n12\u00b76 months vs 8\u00b79 months; HR 0\u00b775 [95% CI 0\u00b759-0\u00b796]). Overall survival \nimprove"
+      },
+      {
+        "value": 0.0,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "mprovement was similar in patients with squamous (HR 0\u00b773 [95% CI 0\u00b754-0\u00b798]; \nn=112 in the atezolizumab"
+      }
+    ]
+  },
+  "42160312": {
+    "hazard_ratio": [
+      {
+        "value": 1.51,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "cantly associated with a \nhigher risk of CR-RIVS (hazard ratio\u2009=\u20091.51, 95% confidence interval: 1.25-1.82, \nP\u2009<\u20090.001),"
+      }
+    ],
+    "mutation_frequency": [
+      {
+        "value": 0.066,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "alliative setting subgroup analysis. In summary, \nthe prevalence of CR-RIVS was 6.6% in patients with colorectal cancer. \nBevacizumab use showed the strongest association with "
+      }
+    ]
+  },
+  "29573941": {
+    "mutation_frequency": [
+      {
+        "value": 0.05,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "wo-sided p<0\u00b70001). The most common grade 3-4 adverse events \nseen in more than 5% of patients in the encorafenib plus binimetinib group were \nincreased \u03b3-glutamyltransferase"
+      }
+    ]
+  },
+  "20525992": {
+    "mutation_frequency": [
+      {
+        "value": 0.15,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "0, 1.04; \nP=0.76). Grade 3 or 4 immune-related adverse events occurred in 10 to 15% of \npatients treated with ipilimumab and in 3% treated with gp100 alone. There were \n14 deat"
+      }
+    ]
+  },
+  "16921034": {
+    "mutation_frequency": [
+      {
+        "value": 0.42,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": ".9 months for pain [P = \n.03]). QOL response analyses showed that 44%, 34%, and 42% of patients receiving \nerlotinib had improvement in these three symptoms, respectively. Thi"
+      }
+    ]
+  },
+  "42157333": {
+    "hazard_ratio": [
+      {
+        "value": 4.85,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "s the only independent prognostic factor for PFS (HR \n4.85, 95% CI 2.31-10.20, P\u2009<\u20090.001).\nCONCLUSION: HRR g"
+      }
+    ]
+  },
+  "25891173": {
+    "mutation_frequency": [
+      {
+        "value": 0.879,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "%) (P<0.001 for both \ncomparisons). Responses were ongoing in 89.4%, 96.7%, and 87.9% of patients, \nrespectively, after a median follow-up of 7.9 months. Efficacy was similar in"
+      }
+    ]
+  },
+  "27718847": {
+    "mutation_frequency": [
+      {
+        "value": 0.9,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "related adverse events of any grade were less frequent \n(occurring in 73.4% vs. 90.0% of patients), as were grade 3, 4, or 5 \ntreatment-related adverse events (26.6% vs. 53.3%)."
+      }
+    ]
+  },
+  "25877855": {
+    "hazard_ratio": [
+      {
+        "value": 0.0,
+        "unit": "HR",
+        "confidence": 0.4,
+        "context": "s \n11\u00b77 months (10\u00b78-12\u00b77) for the placebo group (hazard ratio 0\u00b7844 95% CI \n0\u00b7730-0\u00b7976; log-rank p=0\u00b70219). Surv"
+      }
+    ],
+    "mutation_frequency": [
+      {
+        "value": 0.05,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "ed ramucirumab plus FOLFIRI. Grade 3 or worse \nadverse events seen in more than 5% of patients were neutropenia (203 [38%] of \n529 patients in the ramucirumab group vs 123 [2"
+      }
+    ]
+  },
+  "31015311": {
+    "mutation_frequency": [
+      {
+        "value": 0.5,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "qually\n\nThe BRAF V600E mutation and BRAF inhibitor responsiveness characterize \u223c50% of \npatients with the non-Langerhans cell histiocytosis (non-LCH) Erdheim-Chester \ndisease ("
+      }
+    ]
+  },
+  "34440447": {
+    "hazard_ratio": [
+      {
+        "value": 2.12,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "gher compared with subjects with CC/CT genotypes (HR = 2.12 [1.03, 4.35], p = \n0.041). Finally, the TT genoty"
+      }
+    ]
+  },
+  "39192035": {
+    "hazard_ratio": [
+      {
+        "value": 3.91,
+        "unit": "HR",
+        "confidence": 0.85,
+        "context": "s did 5-year event-free \nsurvival [0.45 vs. 0.74; HR\u2009=\u20093.91 (1.52-10.08); p\u2009=\u20090.012]. Chromothripsis is \nan i"
+      }
+    ]
+  },
+  "29437595": {
+    "mutation_frequency": [
+      {
+        "value": 0.8,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "od, is characterized by excessive myelomonocytic cell \nproliferation. More than 80% of patients harbor germ line and somatic mutations \nin RAS pathway genes (eg, PTPN11, NF1, "
+      },
+      {
+        "value": 0.2,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": " associated with poor prognosis. \nHowever, the molecular pathogenesis of 10% to 20% of patients and the \nrelationships among these biomarkers have not been well defined. To ad"
+      }
+    ]
+  },
+  "29920189": {
+    "mutation_frequency": [
+      {
+        "value": 0.001,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "e myeloma, \nand dendritic cell neoplasms. Although TRK fusions occurred in only 0.1% of \npatients (8 of 7,311 patients), they conferred responsiveness to TRK inhibition \nin vitr"
+      }
+    ]
+  },
+  "33684943": {
+    "mutation_frequency": [
+      {
+        "value": 0.6,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "racterized by baseline activating mutations in \nMAP2K1, BRAF, and KRAS genes in 60% of patients. PI3K\u03b4 inhibition failed to \ninhibit ERK phosphorylation (pERK) in nonresponder"
+      }
+    ]
+  },
+  "35733068": {
+    "mutation_frequency": [
+      {
+        "value": 0.34,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "y Methylation-Sensitive High-Resolution Melting Curve Analysis (MS-HRM). While \n34% of patients were female, the mean age of the patients was 43.41\u2009\u00b1\u200917.60 \nyears suffering mo"
+      }
+    ]
+  },
+  "34509219": {
+    "mutation_frequency": [
+      {
+        "value": 0.5,
+        "unit": "proportion",
+        "confidence": 0.7,
+        "context": "h tumour \nregression and long-term durable cancer control is possible in nearly 50% of \npatients, compared with less than 10% historically. Despite the absence of \nadequately p"
+      }
+    ]
+  }
+}
