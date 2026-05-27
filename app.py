@@ -183,6 +183,10 @@ STRATEGY_DISPLAY = {
         "label": "Binding Evidence",
         "hint": "Experimental IC50 and molecular compatibility data",
     },
+    "yoneda_distance": {
+        "label": "Structural Similarity",
+        "hint": "Drug has similar target profile to known treatments on clean evidence subgraph (Yoneda presheaf distance)",
+    },
 }
 
 
@@ -351,14 +355,15 @@ def render_detail(entry):
     # ── Score breakdown ──────────────────────────────────────────────
     breakdown = entry.get("breakdown")
     if breakdown:
-        c1, c2, c3, c4 = st.columns(4)
+        c1, c2, c3, c4, c5 = st.columns(5)
         c1.metric("Final Score", f"{entry['score']:.3f}")
-        c2.metric("Base (mean votes)", f"{breakdown['base']:.3f}")
+        c2.metric("Base (mean 8 votes)", f"{breakdown['base']:.3f}")
         c3.metric("Path Bonus", f"{breakdown['path_bonus']:.3f}")
+        c4.metric("Yoneda Bonus", f"{breakdown.get('yoneda_bonus', 0.0):.3f}")
         if breakdown["mechanistic_discount"]:
-            c4.metric("Mech. Discount", "0.80x applied")
+            c5.metric("Mech. Discount", "0.80x applied")
         else:
-            c4.metric("Mech. Discount", "none")
+            c5.metric("Mech. Discount", "none")
         if breakdown["composition_count"] > 0:
             st.caption(
                 f"Composition paths: {breakdown['composition_count']} | "
@@ -706,10 +711,12 @@ graph.
         st.markdown("""
 When you run a triage query, each drug-disease pair is scored in 3 steps:
 
-**Step 1: Base score** = mean of all strategy votes
+**Step 1: Base score** = mean of 8 strategy votes (excluding Yoneda distance)
 
-Each of the 8 strategies independently scores the pair. The base score is
-their simple average.
+Each of the 9 strategies independently scores the pair. The base score is
+the mean of the first 8 strategy votes. Yoneda distance is excluded from the
+average because its score range (median ~0.50) is much lower than other
+strategies (~0.85) -- averaging it in would drag scores down.
 
 **Step 2: Path bonus** from compositional (mechanistic) paths
 
@@ -731,7 +738,21 @@ from many weak co-mention paths.
 The **cap at 0.25** prevents score saturation: even with many paths, the bonus
 cannot dominate the base score.
 
-**Step 3: Mechanistic discount**
+**Step 3: Yoneda distance bonus** from structural similarity
+""")
+        st.code(
+            "yoneda_bonus = min(0.10, 0.06 * yoneda_similarity)",
+            language="python",
+        )
+        st.markdown("""
+The Yoneda distance strategy compares the drug's target profile to known
+treatments on the **clean evidence subgraph** (MEASURED + ESTABLISHED edges
+only, 1,355 edges). If the drug looks structurally similar to an approved
+treatment for this disease, it gets a small additive bonus (capped at 0.10).
+
+This can only help, never hurt -- even zero similarity adds nothing.
+
+**Step 4: Mechanistic discount**
 
 If the pair has **zero** composition paths (no Drug -> Protein -> Disease chain),
 the score is penalized:
@@ -748,7 +769,7 @@ rank below mechanistically-supported candidates at similar base scores.
 **Final:**
 """)
         st.code(
-            "final = min(1.0, (base + path_bonus) * discount)",
+            "final = min(1.0, (base + path_bonus + yoneda_bonus) * discount)",
             language="python",
         )
 
@@ -867,12 +888,14 @@ approved for.
 
 1. **Knowledge Graph**: {n_drugs} drugs, {n_obj - n_drugs - n_diseases} proteins, \
 {n_diseases} diseases, {n_mor} edges (100% provenance: 581 unique PMIDs + ChEMBL IDs, 204 edges with quantitative IC50/HR/mutation data)
-2. **8 Inference Strategies**: Each uses a different mathematical or molecular lens
+2. **9 Inference Strategies**: Each uses a different mathematical or molecular lens
    (composition, Kan extensions, Yoneda patterns, topos logic, structural holes,
-   fibration lifts, type heuristics, binding evidence)
+   fibration lifts, type heuristics, binding evidence, Yoneda distance)
 3. **Binding Evidence**: IC50/engagement data from ABPP experiments, Boltz2
    heuristic binding, drug-likeness (Lipinski), drug-target molecular compatibility
-4. **Scoring**: Average strategy confidences + path bonus for mechanistic
+4. **Yoneda Distance**: Structural similarity via presheaf fingerprints on clean
+   evidence subgraph (MEASURED + ESTABLISHED edges only)
+5. **Scoring**: Average of 8 strategy confidences + path bonus + Yoneda bonus for
    Drug->Protein->Disease chains (see "How Scoring Works" page for the full formula)
 5. **Evidence**: Every prediction comes with traceable mechanistic paths,
    literature citations, and IC50 data where available
@@ -897,20 +920,21 @@ approved for.
 
 | Metric | Value |
 |--------|-------|
-| AUROC | 0.956 |
-| AUPRC | 0.537 |
+| AUROC | 0.965 [95% CI: 0.945-0.985] |
+| AUPRC | 0.634 |
 | Positives | 44 FDA-approved oncology indications |
-| Strategies | 8 (incl. binding evidence with IC50 data) |
+| Strategies | 9 (incl. binding evidence + Yoneda distance) |
 | Strongest baseline (shortest-path) | AUROC 0.931 |
-| Margin over baseline | +0.025 |
+| Margin over baseline | +0.034 |
 | ClinicalTrials.gov cross-check | 63% IN_TRIALS, 30% PRECLINICAL, 7% NOVEL |
-| Unique valid PMIDs | 607 (after manual verification) |
+| Unique valid PMIDs | 581 |
 
 *The `remove_direct_labels` protocol removes Drug->Disease edges before scoring,
 so the system must predict via mechanistic paths only. This is the scientifically
-honest protocol for claiming repurposing capability. LOOCV AUROC (0.974) is higher
-but leaves other positives' direct edges in the graph. Path scoring is confidence-
-weighted: high-quality paths contribute more than weak co-mention paths.*
+honest protocol for claiming repurposing capability. LOOCV AUROC (0.945) is slightly
+lower. Path scoring is confidence-weighted: high-quality paths contribute more than
+weak co-mention paths. Yoneda distance bonus adds structural similarity scoring on
+the clean evidence subgraph (MEASURED + ESTABLISHED edges only).*
 
 ### Limitations
 

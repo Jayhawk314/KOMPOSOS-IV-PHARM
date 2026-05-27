@@ -291,12 +291,16 @@ def score_pair(strategies, source: str, target: str) -> tuple[float, list[tuple[
 def score_pair_detailed(strategies, source: str, target: str) -> dict:
     """Return full score decomposition for UI transparency.
 
-    Returns a dict with: score, votes, base, path_bonus, composition_weight,
-    composition_count, mechanistic_discount, final_before_cap.
+    Returns a dict with: score, votes, base, path_bonus, yoneda_bonus,
+    composition_weight, composition_count, mechanistic_discount, final_before_cap.
+
+    Must match score_pair() logic exactly (base excludes yoneda_distance,
+    yoneda contributes as additive bonus).
     """
     votes: list[tuple[str, float]] = []
     composition_count = 0
     composition_weight = 0.0
+    yoneda_similarity = 0.0
     for strategy in strategies:
         try:
             preds = strategy.predict(source, target)
@@ -305,6 +309,8 @@ def score_pair_detailed(strategies, source: str, target: str) -> dict:
         if preds:
             best = max(preds, key=lambda pred: pred.confidence)
             votes.append((strategy.name, best.confidence))
+            if strategy.name == "yoneda_distance":
+                yoneda_similarity = best.confidence
             if strategy.name == "composition":
                 composition_count = len(preds)
                 composition_weight = sum(p.confidence for p in preds)
@@ -312,14 +318,21 @@ def score_pair_detailed(strategies, source: str, target: str) -> dict:
     if not votes:
         return {
             "score": 0.0, "votes": votes, "base": 0.0,
-            "path_bonus": 0.0, "composition_weight": 0.0,
+            "path_bonus": 0.0, "yoneda_bonus": 0.0,
+            "composition_weight": 0.0,
             "composition_count": 0, "mechanistic_discount": False,
             "final_before_cap": 0.0,
         }
 
-    base = sum(confidence for _, confidence in votes) / len(votes)
+    # Base average excludes yoneda_distance -- it contributes via bonus only.
+    base_votes = [(n, c) for n, c in votes if n != "yoneda_distance"]
+    if base_votes:
+        base = sum(c for _, c in base_votes) / len(base_votes)
+    else:
+        base = 0.0
     path_bonus = min(0.25, 0.04 * composition_weight)
-    raw = base + path_bonus
+    yoneda_bonus = min(0.10, 0.06 * yoneda_similarity) if yoneda_similarity > 0 else 0.0
+    raw = base + path_bonus + yoneda_bonus
     mechanistic_discount = composition_count == 0
     if mechanistic_discount:
         raw *= 0.80
@@ -328,6 +341,7 @@ def score_pair_detailed(strategies, source: str, target: str) -> dict:
     return {
         "score": score, "votes": votes, "base": round(base, 4),
         "path_bonus": round(path_bonus, 4),
+        "yoneda_bonus": round(yoneda_bonus, 4),
         "composition_weight": round(composition_weight, 4),
         "composition_count": composition_count,
         "mechanistic_discount": mechanistic_discount,
