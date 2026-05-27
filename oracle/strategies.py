@@ -118,9 +118,10 @@ class KanExtensionStrategy(InferenceStrategy):
         source_out_types = set(m.name for m in outgoing.get(source, []))
 
         # Find objects similar to source that DO have morphism to target
+        # Only consider Drug objects as analogs (not proteins, etc.)
         similar_with_connection = []
         for obj in self._get_objects():
-            if obj.name == source:
+            if obj.name == source or obj.type_name != "Drug":
                 continue
 
             obj_out = set(m.target for m in outgoing.get(obj.name, []))
