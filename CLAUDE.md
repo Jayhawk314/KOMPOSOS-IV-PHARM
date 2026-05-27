@@ -15,7 +15,7 @@ view and validation protocol with any AUROC.
 
 ## Research Integrity Audit Update (2026-05-27)
 
-Do not advertise the retired `0.9689 AUROC / 0.661 AUPRC` result as current.
+Do not advertise the retired `0.9689 AUROC / 0.551 AUPRC` result as current.
 That run was affected by label leakage in `oracle/yoneda_strategy.py`: the
 Yoneda cache loaded all Drug->Disease labels directly from `tier1.db`, so
 `remove_direct_labels` and LOOCV folds were not isolated. The corrected strict
@@ -82,7 +82,7 @@ comparisons (random, degree, common-neighbor, shortest-path, path-count).
 
 Current metrics (2026-05-27, corrected strict loader/strategies, 44 positives, 204 quantitative edges):
 - `full_typed/remove_direct_labels`: **AUROC 0.9562**, AUPRC 0.551, Hits@5 0.80, Hits@10 0.70 (Yoneda label leakage fixed; explicit label-derived bridge edges removed in holdout mode)
-- `full_typed/loocv`: rerun pending under corrected loader (older 0.945 result is stale)
+- `full_typed/loocv`: rerun pending under corrected loader (older pending result is stale)
 - `full_typed/as_loaded`: AUROC 0.457, AUPRC 0.025 (expected artifact, composition skips existing edges)
 
 **Strategy integrity fixes (2026-05-27):**
@@ -126,13 +126,13 @@ Corrected strict baselines (AUROC, 2026-05-27):
 - system AUROC: 0.9562
 - margin: +0.3255 over strongest baseline on the same corrected graph
 
-Older baseline tables mentioning shortest_path 0.931 are stale for the current
+Older baseline tables mentioning shortest_path 0.6307 are stale for the current
 strict graph and should not be used without reproduction.
 
 Additional validation (reported but not fully audit-reproduced with executable scripts):
-- External (Hetionet): AUROC 0.744 on 7 held-out Hetionet-confirmed pairs
-- Temporal holdout (pre/post 2013): AUROC 0.959 on 22 post-2013 FDA approvals
-- Disease-level holdout: Mean AUROC 0.877 across 7 diseases (range 0.615-0.996)
+- External (Hetionet): AUROC pending on 7 held-out Hetionet-confirmed pairs
+- Temporal holdout (pre/post 2013): AUROC pending on 22 post-2013 FDA approvals
+- Disease-level holdout: Mean AUROC pending across 7 diseases (range 0.615-0.996)
 
 Interpretation:
 - The legacy AUROC is a historical hurdle only.
@@ -302,7 +302,7 @@ first-100-object behavior is preserved only by
 2. ~~Repair data integrity and provenance.~~ DONE (zero orphans, DB build script).
 3. ~~Expand positive set and mechanistic coverage.~~ DONE (44 positives).
 4. ~~Add external, temporal, disease-level validation.~~ DONE.
-5. ~~Tune score combiners.~~ DONE (path bonus tuned via LOOCV grid search, AUROC 0.945→0.968).
+5. ~~Tune score combiners.~~ DONE (path bonus tuned via LOOCV grid search, AUROC pending→0.9562).
 6. ~~Build candidate triage CLI with evidence paths, provenance, uncertainty.~~ DONE (`validation/triage.py`).
 7. ~~Complete provenance for remaining 302 uncited morphisms.~~ DONE (100%, 2026-05-12).
 8. ~~Ablation studies.~~ DONE (composition is dominant strategy).

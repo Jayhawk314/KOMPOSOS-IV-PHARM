@@ -469,12 +469,12 @@ def score_pair(cat: Category, drug: str, disease: str) -> float:
 Tuned via LOOCV grid search:
 - Grid: [0.0, 0.01, 0.02, ..., 0.20]
 - Metric: LOOCV AUROC
-- Result: 0.04 is optimal (0.945 AUROC)
+- Result: 0.04 is optimal (pending AUROC)
 
 ### Strategy Weights
 
 Tested uniform vs. composition-dominant weights:
-- Uniform: AUROC 0.945
+- Uniform: AUROC pending
 - Composition-heavy: AUROC 0.943 (slightly worse)
 - Result: Uniform weights are optimal
 

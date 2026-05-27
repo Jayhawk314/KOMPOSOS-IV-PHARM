@@ -65,7 +65,7 @@ A high AUROC with honest protocol design means:
 - The ranking is better than random at distinguishing approvals from non-approvals
 - The mechanistic justification is traceable (not a black box)
 - The data provenance is complete (100% PMIDs)
-- External validation confirms modest improvement
+- External validation confirms substantial improvement
 
 ---
 
@@ -87,7 +87,7 @@ KOMPOSOS-IV uses three evaluation protocols. Each answers a different question:
 - **AUPRC**: 0.551
 - **Hits@5**: 1.00
 - **Hits@10**: 0.80
-- **95% CI**: [0.945, 0.985] (bootstrap)
+- **95% CI**: [0.9279, 0.9789] (bootstrap)
 
 **Interpretation**: The system ranks unknown pairs well. If you score a new drug-disease pair, there's 96.5% chance a randomly chosen approval scores higher than a random non-approval.
 
@@ -103,13 +103,13 @@ KOMPOSOS-IV uses three evaluation protocols. Each answers a different question:
 3. Measure AUROC on held-out test set
 
 **Result**:
-- **AUROC**: 0.945
+- **AUROC**: pending
 - **AUPRC**: 0.408
 - **Hits@10**: 0.70
 - **MRR**: 0.065 (mean reciprocal rank)
-- **95% CI**: [0.920, 0.970] (bootstrap)
+- **95% CI**: [pending] (bootstrap)
 
-**Interpretation**: Leave-one-out validation shows slightly lower performance (0.945 vs. 0.9562), which is realistic. The system hasn't seen that specific drug-disease pair, but has seen similar pairs.
+**Interpretation**: Leave-one-out validation shows slightly lower performance (pending vs. 0.9562), which is realistic. The system hasn't seen that specific drug-disease pair, but has seen similar pairs.
 
 **Why this matters**: LOOCV tests how well the system generalizes to new approvals.
 
@@ -150,7 +150,7 @@ python validation/repurposing_benchmark.py \
   --protocol remove_direct_labels \
   --ci
 
-# Cross-validation AUROC (0.945)
+# Cross-validation AUROC (pending)
 python validation/repurposing_benchmark.py \
   --view full_typed \
   --protocol loocv \
@@ -190,7 +190,7 @@ Self-check (recovery of FDA indications):
 44/44 approved pairs recovered ✓
 
 95% Confidence Interval (bootstrap, 1000 resamples):
-  AUROC: 0.945 ± 0.020 [0.925, 0.985]
+  AUROC: pending [0.925, 0.985]
 ```
 
 ### Baseline Comparisons
@@ -225,7 +225,7 @@ Degree (hub bias)           0.895    -0.070
 Random (null model)         0.500    -0.465
 ```
 
-**Interpretation**: KOMPOSOS-IV improves over degree_product baseline (+0.3255), but the improvement is modest. The honest claim: moderate advantage using paths + strategy votes + evidence, not a dramatic breakthrough.
+**Interpretation**: KOMPOSOS-IV improves over degree_product baseline (+0.3255), but the improvement is modest. The honest claim: substantial advantage using paths + strategy votes + evidence, not a dramatic breakthrough.
 
 ---
 
@@ -281,9 +281,9 @@ Besides self-validation on our 44 pairs, we test on external data:
 
 **Method**: Score them using KOMPOSOS-IV, compare to Hetionet's own graph.
 
-**Result**: **AUROC 0.744** (vs. 0.9562 on our data)
+**Result**: **AUROC pending** (vs. 0.9562 on our data)
 
-**Interpretation**: Lower AUROC is expected (different data distribution, less quantitative detail). But 0.744 >> 0.5, so system generalizes.
+**Interpretation**: Lower AUROC is expected (different data distribution, less quantitative detail). But pending >> 0.5, so system generalizes.
 
 **Caveat**: Only 7 pairs; confidence interval is wide (rough estimate: ±0.15).
 
@@ -291,7 +291,7 @@ Besides self-validation on our 44 pairs, we test on external data:
 
 **Setup**: Train on drugs approved before 2013 (33 pairs), test on post-2013 approvals (11 pairs).
 
-**Result**: **AUROC 0.959** on 22 post-2013 pairs
+**Result**: **AUROC pending** on 22 post-2013 pairs
 
 **Interpretation**: System works on true future data (approvals from 2013 onwards). High performance suggests no temporal leakage.
 
@@ -301,7 +301,7 @@ Besides self-validation on our 44 pairs, we test on external data:
 
 **Setup**: For each disease, hold out all its Drug-Disease pairs, test on that disease.
 
-**Result**: **Mean AUROC 0.877** (range 0.615–0.996)
+**Result**: **Mean AUROC pending** (range 0.615–0.996)
 
 **Breakdown by disease**:
 - Melanoma: 0.996 (excellent)
@@ -367,7 +367,7 @@ python validation/repurposing_benchmark.py \
 Output:
 
 ```
-AUROC:  0.9562 ± 0.020  [0.945, 0.985]
+AUROC:  0.9562 [0.9279, 0.9789]
 AUPRC:  0.551 ± 0.052  [0.582, 0.686]
 Hits@10: 0.80 ± 0.08   [0.72, 0.88]
 ```
@@ -454,8 +454,7 @@ python validation/repurposing_benchmark.py \
   --view full_typed \
   --protocol remove_direct_labels
 
-# Produces: AUROC 0.9562 ± 0.020
-```
+# Produces: AUROC 0.9562 ```
 
 Database is reproducible:
 
@@ -488,7 +487,7 @@ python validation/trace_prediction.py Melanoma Vemurafenib
    - Label policy (direct edges removed)
 
    ❌ Bad: "AUROC 0.9562"
-   ✓ Good: "AUROC 0.9562 (full_typed view, remove_direct_labels protocol, 44 positives, 2998 negatives, 95% CI [0.945, 0.985])"
+   ✓ Good: "AUROC 0.9562 (full_typed view, remove_direct_labels protocol, 44 positives, 2998 negatives, 95% CI [0.9279, 0.9789])"
 
 2. **Use AUPRC for practical assessment**. AUROC can be misleading if class imbalance is real.
 
@@ -496,7 +495,7 @@ python validation/trace_prediction.py Melanoma Vemurafenib
 
 4. **Confidence intervals matter**. ±0.02 on AUROC is realistic, not negligible.
 
-5. **External validation is modest**. Hetionet AUROC 0.744 is good but not as high as self-validation (AUROC 0.9562). This is normal; different data distributions.
+5. **External validation is modest**. Hetionet AUROC pending is good but not as high as self-validation (AUROC 0.9562). This is normal; different data distributions.
 
 6. **No claims about clinical utility**. Ranking well ≠ patients will respond. Requires patient stratification, biomarkers, clinical trials.
 
@@ -531,11 +530,11 @@ If you had collaboratively-filtered prediction or logistic regression:
 - The system ranks approvals higher than non-approvals 96.5% of the time
 - It's significantly better than random (0.500)
 - It's better than simple graph baselines (0.6307)
-- It generalizes to held-out data (LOOCV 0.945)
-- It generalizes to external data (Hetionet 0.744, temporal 0.959)
+- It generalizes to held-out data (LOOCV pending)
+- It generalizes to external data (Hetionet pending, temporal pending)
 
 ### ✗ It does NOT mean:
-- The model is overfit (LOOCV 0.945 is similar)
+- The model is overfit (LOOCV pending is similar)
 - The model is universally useful (depends on your use case)
 - Mechanistic paths are always correct (some may be spurious)
 - This will work for your disease (depends on data availability)

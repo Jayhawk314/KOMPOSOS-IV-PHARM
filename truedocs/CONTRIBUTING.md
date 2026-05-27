@@ -269,7 +269,7 @@ AUROC: 0.9562
   Protocol: remove_direct_labels
   Positives: 44
   Negatives: 2998
-  95% CI: [0.945, 0.985]
+  95% CI: [0.9279, 0.9789]
   Label policy: Direct Drug→Disease edges removed during scoring
 ```
 
@@ -374,7 +374,7 @@ We value accuracy over optimism. Example:
 
 ✓ Good: "AUROC 0.9562 (full_typed view, remove_direct_labels
    protocol, 44 FDA pairs, 2998 balanced negatives, 95% CI
-   [0.945, 0.985]). Composed strategy averaging 9 component scores."
+   [0.9279, 0.9789]). Composed strategy averaging 9 component scores."
 ```
 
 ### Limitations

@@ -465,7 +465,7 @@ Given a random approved Drug-Disease pair and a random non-approved pair:
 
 ```
 remove_direct_labels: AUROC 0.9562 (fair -- Drug→Disease edges removed)
-loocv:               AUROC 0.945 (stricter -- leave-one-out cross-validation)
+loocv:               AUROC pending (stricter -- leave-one-out cross-validation)
 as_loaded:           AUROC 0.457 (artifact -- composition skips direct edges)
 
 Always report: AUROC {value} ({view}/{protocol}, {positive_count} positives)

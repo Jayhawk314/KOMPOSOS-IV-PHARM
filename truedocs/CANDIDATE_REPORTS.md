@@ -17,7 +17,7 @@ This report identifies cheap, FDA-approved generic drugs with mechanistic pathwa
 - **70 drug-disease entries** with mechanistic pathway support
 - Rankings based on 9 categorical inference strategies (composition, binding evidence, Yoneda distance, path bonus, coherence, conjecture, natural transform, game theory, bayesian)
 - Every prediction backed by cited evidence chains (PMIDs, ChEMBL IDs)
-- System validation: AUROC 0.9562 [95% CI: 0.945-0.985] (remove_direct_labels, 44 FDA positives)
+- System validation: AUROC 0.9562 [95% CI: 0.9279-0.9789] (remove_direct_labels, 44 FDA positives)
 - ClinicalTrials.gov cross-check: 63% of top predictions already in human trials
 
 **Important**: NOT_APPROVED means the drug-disease pair is not in our 44 FDA-approved oncology indications. It does **not** mean the combination is unstudied. Many candidates are already in clinical trials or published literature.
@@ -161,7 +161,7 @@ TNF-alpha and angiogenesis inhibition. Already FDA-approved for multiple myeloma
 | RCC | 19 | 0.784 | 1 | VEGFR2 |
 | HCC | 19 | 0.779 | 1 | VEGFR2 |
 | Colorectal Cancer | 33 | 0.759 | 1 | VEGFR2 |
-| Soft Tissue Sarcoma | 32 | 0.744 | 1 | VEGFR2 |
+| Soft Tissue Sarcoma | 32 | pending | 1 | VEGFR2 |
 | Glioblastoma | 36 | 0.702 | 1 | VEGFR2 |
 
 ### Atorvastatin (6 cancer types)
@@ -390,8 +390,8 @@ score = min(1.0, base + path_bonus + yoneda_bonus)
 
 | Protocol | AUROC | 95% CI | AUPRC |
 |----------|------:|--------|------:|
-| remove_direct_labels | 0.9562 | [0.945, 0.985] | 0.551 |
-| loocv | 0.945 | [0.920, 0.970] | 0.408 |
+| remove_direct_labels | 0.9562 | [0.9279, 0.9789] | 0.551 |
+| loocv | pending | [pending] | 0.408 |
 
 Strongest baseline: degree_product AUROC 0.6307 (margin: +0.3255).
 

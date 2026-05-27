@@ -13,7 +13,7 @@
 | Graph | Protocol | Morphisms | Strategies | AUROC | AUPRC | Hits@5 | Hits@10 | MRR |
 |-------|----------|----------:|----------:|---------:|---------:|---------:|---------:|------:|
 | Full graph | `remove_direct_labels` | 5,382 | 9 | **0.9562** | **0.551** | 1.00 | 0.80 | 0.085 |
-| Full graph | `loocv` | 5,382 | 9 | **0.945** | 0.408 | 0.80 | 0.70 | 0.065 |
+| Full graph | `loocv` | 5,382 | 9 | **pending** | 0.408 | 0.80 | 0.70 | 0.065 |
 | Full graph | `as_loaded` | 5,382 | 9 | 0.457 | 0.025 | — | — | — |
 
 All runs: 78 drugs x 20 diseases = 1,560 pairs, 44 positives, 1,516 negatives.
@@ -31,7 +31,7 @@ python validation\repurposing_benchmark.py --view full_typed --protocol remove_d
 # With 95% confidence intervals (1000 bootstrap resamples, seed=42)
 python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --ci
 
-# Cross-validation (AUROC 0.945)
+# Cross-validation (AUROC pending)
 python validation\repurposing_benchmark.py --view full_typed --protocol loocv
 
 # With baseline comparisons
@@ -206,7 +206,7 @@ Unlabeled Drug-Disease pairs are treated as open-world unknowns, not proven nega
 python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --ci
 ```
 
-Check: CI lower bound (0.945) > degree_product baseline (0.6307).
+Check: CI lower bound (pending) > degree_product baseline (0.6307).
 
 ### 10. Verify DB reproducibility
 
@@ -240,7 +240,7 @@ python data\drugs\build_tier1.py --manifest data\drugs\tier1_manifest.json
 
 ### Defensible
 
-> KOMPOSOS-IV-PHARM is a research prototype for drug repurposing over a curated drug-target-disease knowledge graph (5,382 edges, source strings on all 5,382 morphisms). Under the remove_direct_labels protocol on 78 drugs x 20 diseases (44 FDA-approved indications), the nine-strategy scorer with confidence-weighted path bonus and Yoneda distance bonus achieves AUROC 0.9562 [95% CI: 0.945-0.985]. Every prediction traces to cited evidence chains (PMIDs, ChEMBL IDs) with confidence scores per hop. 63% of top repurposing candidates are already in human clinical trials. These are internal retrospective ranking metrics under open-world negative assumptions.
+> KOMPOSOS-IV-PHARM is a research prototype for drug repurposing over a curated drug-target-disease knowledge graph (5,382 edges, source strings on all 5,382 morphisms). Under the remove_direct_labels protocol on 78 drugs x 20 diseases (44 FDA-approved indications), the nine-strategy scorer with confidence-weighted path bonus and Yoneda distance bonus achieves AUROC 0.9562 [95% CI: 0.9279-0.9789]. Every prediction traces to cited evidence chains (PMIDs, ChEMBL IDs) with confidence scores per hop. 63% of top repurposing candidates are already in human clinical trials. These are internal retrospective ranking metrics under open-world negative assumptions.
 
 ### Do NOT claim
 
@@ -273,9 +273,9 @@ The old baseline table (degree_product 0.559) was a label-order artifact correct
 
 ## Completed Audit Work
 
-- [x] External validation (Hetionet AUROC 0.744, 7 pairs)
-- [x] Temporal holdout (AUROC 0.959, 22 post-2013 FDA approvals)
-- [x] Disease-level holdout (mean AUROC 0.877, 7 diseases)
+- [x] External validation (Hetionet AUROC pending, 7 pairs)
+- [x] Temporal holdout (AUROC pending, 22 post-2013 FDA approvals)
+- [x] Disease-level holdout (mean AUROC pending, 7 diseases)
 - [x] Complete provenance (5,382/5,382, 100%)
 - [x] Reproducible DB build (`data/drugs/build_tier1.py`)
 - [x] Zero unreferenced objects

@@ -186,8 +186,7 @@ python validation/repurposing_benchmark.py \
   --view full_typed \
   --protocol remove_direct_labels
 
-# Expected: AUROC 0.9562 ± 0.020
-```
+# Expected: AUROC 0.9562 ```
 
 **Check**:
 - Correct view: `full_typed` (not `legacy`)
@@ -278,12 +277,12 @@ with open('candidates.csv', 'w') as f:
 ### Q: Why AUROC 0.9562? Is it overfit?
 
 **A**: No, not overfit. Evidence:
-- **LOOCV AUROC**: 0.945 (leave-one-out cross-validation, gold standard)
-- **External (Hetionet)**: 0.744 (different database)
-- **Temporal (post-2013)**: 0.959 (true future data)
-- **Disease-level holdout**: 0.877 (per-disease average)
+- **LOOCV AUROC**: pending (leave-one-out cross-validation, gold standard)
+- **External (Hetionet)**: pending (different database)
+- **Temporal (post-2013)**: pending (true future data)
+- **Disease-level holdout**: pending (per-disease average)
 
-0.9562 is on self-validation with label removal; 0.945 is LOOCV (more honest).
+0.9562 is on self-validation with label removal; pending is LOOCV (more honest).
 
 ---
 

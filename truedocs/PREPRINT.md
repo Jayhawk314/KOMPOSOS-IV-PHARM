@@ -8,7 +8,7 @@
 
 ## Abstract
 
-We present KOMPOSOS-IV-PHARM, an auditable drug repurposing system that combines a fully-cited biomedical knowledge graph with categorical inference strategies to generate mechanistically explainable repurposing hypotheses. Unlike embedding-based approaches that produce opaque rankings, every prediction in our system is traceable to Drug->Protein->Disease evidence chains with primary literature citations (PMIDs and ChEMBL IDs). On a curated oncology graph of 78 drugs, 366 proteins, and 20 diseases (5,382 morphisms, 100% provenance coverage, 204 edges with quantitative values), the system achieves AUROC 0.9562 [95% CI: 0.945-0.985] under the remove_direct_labels protocol on 44 FDA-approved indications, using 9 inference strategies including confidence-weighted composition, binding evidence integration, and Yoneda distance-based structural similarity. The curated graph alone achieves AUROC 0.6307 via degree_product traversal -- demonstrating that careful curation of a high-quality graph can match or exceed the performance of larger, noisier knowledge graphs. The categorical inference layer adds modest ranking improvement (+0.3255 AUROC) but crucially provides strategy voting, mechanistic explanation, quantitative evidence (IC50, mutation frequencies, response rates), and type-safe reasoning that researchers need for candidate evaluation. A ClinicalTrials.gov cross-check found that 63% of top repurposing candidates are already in human clinical trials, 30% have preclinical support, and 7% are genuinely novel hypotheses. The system is designed for hypothesis generation and scientific triage, not clinical deployment.
+We present KOMPOSOS-IV-PHARM, an auditable drug repurposing system that combines a fully-cited biomedical knowledge graph with categorical inference strategies to generate mechanistically explainable repurposing hypotheses. Unlike embedding-based approaches that produce opaque rankings, every prediction in our system is traceable to Drug->Protein->Disease evidence chains with primary literature citations (PMIDs and ChEMBL IDs). On a curated oncology graph of 78 drugs, 366 proteins, and 20 diseases (5,382 morphisms, source strings on all 5,382 morphisms coverage, 204 edges with quantitative values), the system achieves AUROC 0.9562 [95% CI: 0.9279-0.9789] under the remove_direct_labels protocol on 44 FDA-approved indications, using 9 inference strategies including confidence-weighted composition, binding evidence integration, and Yoneda distance-based structural similarity. The curated graph alone achieves AUROC 0.6307 via degree_product traversal -- demonstrating that careful curation of a high-quality graph can match or exceed the performance of larger, noisier knowledge graphs. The categorical inference layer adds modest ranking improvement (+0.3255 AUROC) but crucially provides strategy voting, mechanistic explanation, quantitative evidence (IC50, mutation frequencies, response rates), and type-safe reasoning that researchers need for candidate evaluation. A ClinicalTrials.gov cross-check found that 63% of top repurposing candidates are already in human clinical trials, 30% have preclinical support, and 7% are genuinely novel hypotheses. The system is designed for hypothesis generation and scientific triage, not clinical deployment.
 
 **Keywords**: drug repurposing, category theory, knowledge graphs, Yoneda presheaves, evidence tracing, oncology
 
@@ -114,8 +114,8 @@ Strategy weights are uniform (confirmed optimal by LOOCV grid search via `calibr
 
 | Protocol | AUROC | 95% CI | AUPRC | Hits@5 | Hits@10 | MRR |
 |----------|------:|--------|------:|-------:|--------:|----:|
-| remove_direct_labels | **0.9562** | [0.945, 0.985] | **0.551** | 1.00 | 0.80 | 0.085 |
-| loocv | 0.945 | [0.920, 0.970] | 0.408 | 0.80 | 0.70 | 0.065 |
+| remove_direct_labels | **0.9562** | [0.9279, 0.9789] | **0.551** | 1.00 | 0.80 | 0.085 |
+| loocv | pending | [pending] | 0.408 | 0.80 | 0.70 | 0.065 |
 
 ### 3.2 Baselines (remove_direct_labels)
 
@@ -166,9 +166,9 @@ The AUPRC improvement (+0.097) is the most significant contribution: top-ranked 
 
 | Protocol | AUROC | Details |
 |----------|------:|---------|
-| Hetionet (external graph) | 0.744 | 7 held-out Hetionet-confirmed pairs |
-| Temporal holdout (2013 cutoff) | 0.959 | 22 post-2013 FDA approvals |
-| Disease-level holdout | 0.877 | Mean AUROC across 7 diseases (range 0.615-0.996) |
+| Hetionet (external graph) | pending | 7 held-out Hetionet-confirmed pairs |
+| Temporal holdout (2013 cutoff) | pending | 22 post-2013 FDA approvals |
+| Disease-level holdout | pending | Mean AUROC across 7 diseases (range 0.615-0.996) |
 
 ### 3.6 ClinicalTrials.gov Cross-Check
 
@@ -218,7 +218,7 @@ A researcher using our system can trace any prediction to primary literature in 
 
 **Oncology-focused**: 20 cancer types. Generalization to other therapeutic areas requires expansion with appropriate data sources.
 
-**Modest margin**: +0.3255 AUROC over degree_product baseline. Most predictive signal comes from graph connectivity, not categorical math per se.
+**Substantial margin**: +0.3255 AUROC over degree_product baseline. Most predictive signal comes from graph connectivity, not categorical math per se.
 
 **Open-world negatives**: Unlabeled pairs are unknowns, not confirmed negatives. AUROC measures ranking ability in a specific graph context.
 

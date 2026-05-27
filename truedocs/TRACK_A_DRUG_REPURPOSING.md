@@ -179,7 +179,7 @@ All votes are normalized to [0, 1] and combined via weighted averaging (uniform 
 
 ### Cross-Validation (loocv protocol)
 
-- **AUROC**: 0.945 (leave-one-out cross-validation)
+- **AUROC**: pending (leave-one-out cross-validation)
 - **AUPRC**: 0.408
 - **Hits@10**: 0.70
 
@@ -187,9 +187,9 @@ All votes are normalized to [0, 1] and combined via weighted averaging (uniform 
 
 | Protocol | AUROC | Details |
 |----------|-------|---------|
-| Hetionet | 0.744 | 7 held-out pairs; external DB confirmation |
-| Temporal | 0.959 | 22 FDA approvals post-2013 (tests true future data) |
-| Disease-level | 0.877 | Mean AUROC across 7 diseases (range 0.615–0.996) |
+| Hetionet | pending | 7 held-out pairs; external DB confirmation |
+| Temporal | pending | 22 FDA approvals post-2013 (tests true future data) |
+| Disease-level | pending | Mean AUROC across 7 diseases (range 0.615–0.996) |
 
 ### Honest Caveats
 
@@ -282,7 +282,7 @@ python validation/triage.py Melanoma --all
 | **Data size** | 464 objects, 5,382 edges | ~50k nodes, ~500k edges |
 | **Specificity** | Oncology drugs (78) | All domains |
 | **Quantitative** | 204 edges with IC50/HR/mutation | Limited quantitative |
-| **Our AUROC** | 0.9562 (our data) | 0.744 (external validation) |
+| **Our AUROC** | 0.9562 (our data) | pending (external validation) |
 | **Transparency** | source strings on all 5,382 morphisms (PMID/ChEMBL) | Graph + paper |
 | **Update cycle** | Manual + reproducible build | Regular (Hetionet team) |
 
@@ -306,7 +306,7 @@ python validation/triage.py Melanoma --all
 | **Interpretability** | Explicit paths + PMIDs | Black box |
 | **Generalization** | Few drugs per disease ok | Needs dense matrix |
 | **New drugs** | Works (uses targets) | Cold-start problem |
-| **Validation** | AUROC 0.945 (LOOCV) | Depends on train/test |
+| **Validation** | AUROC pending (LOOCV) | Depends on train/test |
 
 **Use case**: KOMPOSOS-IV for interpretable, knowledge-grounded predictions.
 
