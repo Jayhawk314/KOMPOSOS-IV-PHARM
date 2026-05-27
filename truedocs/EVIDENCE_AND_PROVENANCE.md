@@ -1,6 +1,6 @@
 # Evidence and Provenance
 
-**Purpose**: Document data sources, evidence tracing, and why 100% provenance matters.
+**Purpose**: Document data sources, evidence tracing, and why source strings on all 5,382 morphisms matters.
 
 **Audience**: Researchers (validating claims), scientists (understanding evidence), practitioners (checking candidate justification)
 
@@ -361,7 +361,7 @@ Total: 9 papers to review
 
 ## Database Integrity Checks
 
-Verify that 100% provenance claim is real:
+Verify that source strings on all 5,382 morphisms claim is real:
 
 ```bash
 python validation/audit_provenance.py
@@ -462,7 +462,7 @@ See [DATA_AND_DATABASE.md](DATA_AND_DATABASE.md) for details on data schema and 
 
 ## Handling Updates
 
-Current database is static (2026-05-26 snapshot, 581 PMIDs).
+Current database is static (2026-05-26 snapshot, 609 PMIDs).
 
 **To update**:
 1. Modify manifest (add/remove drugs, diseases, edges)
@@ -509,7 +509,7 @@ If you use KOMPOSOS-IV data in a publication:
   author = {Hawkins, James Ray},
   year = {2026},
   url = {https://github.com/your-repo/KOMPOSOS-IV-PHARM},
-  note = {464 objects, 5382 morphisms, 581 unique PMIDs, 100\% provenance}
+  note = {464 objects, 5382 morphisms, 609 PMID identifiers, 100\% provenance}
 }
 ```
 

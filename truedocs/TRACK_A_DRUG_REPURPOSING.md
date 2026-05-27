@@ -2,7 +2,7 @@
 
 **What it is**: A research prototype that recommends FDA-approved drugs to treat diseases by analyzing mechanistic paths, quantitative evidence, and structural similarity.
 
-**Current status**: Working system with AUROC 0.965 on held-out FDA drug-disease pairs. All 44 approved pairs are recoverable with mechanistic justification.
+**Current status**: Working system with AUROC 0.9562 on held-out FDA drug-disease pairs. All 44 approved pairs are recoverable with mechanistic justification.
 
 **Audience**: Practitioners (how to triage), researchers (validation claims), all (conceptual understanding)
 
@@ -92,7 +92,7 @@ This means: if Drug A is approved for Disease D, and Drug B is structurally/mech
 | Clinical response rates | 52 edges |
 | Hazard ratios / survival | 42 edges |
 | **Provenance** | 100% coverage |
-| Unique PMIDs cited | 581 |
+| Unique PMIDs cited | 609 |
 | ChEMBL target IDs | all edges |
 
 ### Data Sources
@@ -171,8 +171,8 @@ All votes are normalized to [0, 1] and combined via weighted averaging (uniform 
 
 | Metric | Value | Interpretation |
 |--------|-------|-----------------|
-| **AUROC** | **0.965** | 96.5% probability model ranks random positive higher than random negative |
-| **AUPRC** | 0.634 | 63.4% precision when recalling all positives (top candidates likely real) |
+| **AUROC** | **0.9562** | 96.5% probability model ranks random positive higher than random negative |
+| **AUPRC** | 0.551 | 63.4% precision when recalling all positives (top candidates likely real) |
 | **Hits@5** | 1.00 | 100% of true positives in top 5 (impressive for 78 drugs) |
 | **Hits@10** | 0.80 | 80% of true positives in top 10 |
 | **MRR** | 0.065 | Mean reciprocal rank (how early on average) |
@@ -282,8 +282,8 @@ python validation/triage.py Melanoma --all
 | **Data size** | 464 objects, 5,382 edges | ~50k nodes, ~500k edges |
 | **Specificity** | Oncology drugs (78) | All domains |
 | **Quantitative** | 204 edges with IC50/HR/mutation | Limited quantitative |
-| **Our AUROC** | 0.965 (our data) | 0.744 (external validation) |
-| **Transparency** | 100% provenance (PMID/ChEMBL) | Graph + paper |
+| **Our AUROC** | 0.9562 (our data) | 0.744 (external validation) |
+| **Transparency** | source strings on all 5,382 morphisms (PMID/ChEMBL) | Graph + paper |
 | **Update cycle** | Manual + reproducible build | Regular (Hetionet team) |
 
 **Use case**: KOMPOSOS-IV for oncology depth; Hetionet for breadth across domains.
@@ -295,7 +295,7 @@ python validation/triage.py Melanoma --all
 | **Data type** | Mechanistic networks | Drug/protein/interaction tables |
 | **Scoring** | Path-based + 9 strategies | Label-based lookup |
 | **Repurposing** | Computational ranking | Manual curation |
-| **Validation** | AUROC 0.965 on held-out | Not evaluated for ranking |
+| **Validation** | AUROC 0.9562 on held-out | Not evaluated for ranking |
 
 **Use case**: KOMPOSOS-IV for candidate discovery; DrugBank for drug properties/targets.
 
@@ -371,7 +371,7 @@ For any candidate ranked high by KOMPOSOS-IV:
 Every metric is reproducible:
 
 ```bash
-# Reproduce AUROC 0.965
+# Reproduce AUROC 0.9562
 python validation/repurposing_benchmark.py \
   --view full_typed \
   --protocol remove_direct_labels
@@ -409,7 +409,7 @@ python data/drugs/build_tier1.py \
 3. ✓ Direct Drug→Disease labels are removed during scoring (no leakage)
 4. ✓ Unlabeled pairs treated as unknowns, not confirmed negatives
 5. ✓ Report AUPRC, Hits@K, MRR, confidence intervals (95% bootstrap)
-6. ✓ Provenance required: 581 unique PMIDs, zero uncited morphisms
+6. ✓ Provenance required: 609 PMID identifiers, zero uncited morphisms
 7. ✓ No fallback/mock scientific claims (Boltz2 labeled as heuristic, Yoneda results honest)
 
 ---

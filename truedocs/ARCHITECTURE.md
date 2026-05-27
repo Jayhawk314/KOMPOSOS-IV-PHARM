@@ -523,7 +523,7 @@ Before merging to main:
 - [ ] 44/44 self-check passes
 - [ ] AUROC ≥ 0.96 (remove_direct_labels protocol)
 - [ ] Zero new orphaned morphisms (audit_provenance.py)
-- [ ] 100% provenance on new edges (all have PMID/ChEMBL)
+- [ ] source strings on all 5,382 morphisms on new edges (all have PMID/ChEMBL)
 - [ ] Benchmark metrics reported with full protocol spec
 - [ ] Code reviewed by 1+ other developer
 

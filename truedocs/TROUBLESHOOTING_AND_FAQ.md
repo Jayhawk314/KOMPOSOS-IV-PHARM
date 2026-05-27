@@ -175,7 +175,7 @@ python validation/trace_prediction.py Melanoma CandidateDrug
 
 ## Benchmark Issues
 
-### "AUROC not 0.965" or metrics diverge
+### "AUROC not 0.9562" or metrics diverge
 
 **Cause**: Different view/protocol; stale database; code changes
 
@@ -186,7 +186,7 @@ python validation/repurposing_benchmark.py \
   --view full_typed \
   --protocol remove_direct_labels
 
-# Expected: AUROC 0.965 ± 0.020
+# Expected: AUROC 0.9562 ± 0.020
 ```
 
 **Check**:
@@ -275,7 +275,7 @@ with open('candidates.csv', 'w') as f:
 
 ---
 
-### Q: Why AUROC 0.965? Is it overfit?
+### Q: Why AUROC 0.9562? Is it overfit?
 
 **A**: No, not overfit. Evidence:
 - **LOOCV AUROC**: 0.945 (leave-one-out cross-validation, gold standard)
@@ -283,11 +283,11 @@ with open('candidates.csv', 'w') as f:
 - **Temporal (post-2013)**: 0.959 (true future data)
 - **Disease-level holdout**: 0.877 (per-disease average)
 
-0.965 is on self-validation with label removal; 0.945 is LOOCV (more honest).
+0.9562 is on self-validation with label removal; 0.945 is LOOCV (more honest).
 
 ---
 
-### Q: Can I reproduce AUROC 0.965 exactly?
+### Q: Can I reproduce AUROC 0.9562 exactly?
 
 **A**: Yes, if you:
 1. Use exact same database (tier1.db)

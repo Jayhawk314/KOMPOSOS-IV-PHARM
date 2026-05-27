@@ -17,7 +17,7 @@ This report identifies cheap, FDA-approved generic drugs with mechanistic pathwa
 - **70 drug-disease entries** with mechanistic pathway support
 - Rankings based on 9 categorical inference strategies (composition, binding evidence, Yoneda distance, path bonus, coherence, conjecture, natural transform, game theory, bayesian)
 - Every prediction backed by cited evidence chains (PMIDs, ChEMBL IDs)
-- System validation: AUROC 0.965 [95% CI: 0.945-0.985] (remove_direct_labels, 44 FDA positives)
+- System validation: AUROC 0.9562 [95% CI: 0.945-0.985] (remove_direct_labels, 44 FDA positives)
 - ClinicalTrials.gov cross-check: 63% of top predictions already in human trials
 
 **Important**: NOT_APPROVED means the drug-disease pair is not in our 44 FDA-approved oncology indications. It does **not** mean the combination is unstudied. Many candidates are already in clinical trials or published literature.
@@ -390,10 +390,10 @@ score = min(1.0, base + path_bonus + yoneda_bonus)
 
 | Protocol | AUROC | 95% CI | AUPRC |
 |----------|------:|--------|------:|
-| remove_direct_labels | 0.965 | [0.945, 0.985] | 0.634 |
+| remove_direct_labels | 0.9562 | [0.945, 0.985] | 0.551 |
 | loocv | 0.945 | [0.920, 0.970] | 0.408 |
 
-Strongest baseline: shortest_path AUROC 0.931 (margin: +0.034).
+Strongest baseline: degree_product AUROC 0.6307 (margin: +0.3255).
 
 ### Status Labels
 

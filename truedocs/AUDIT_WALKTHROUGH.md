@@ -377,7 +377,7 @@ When auditing any prediction, check these flags:
 ### Green Flags (High Quality)
 
 - ✓ Multiple mechanistic paths (composition > 0.70)
-- ✓ All edges have PMIDs (100% provenance)
+- ✓ All edges have PMIDs (source strings on all 5,382 morphisms)
 - ✓ Experimental evidence (ABPP IC50, ChEMBL binding data)
 - ✓ Multiple data sources agree
 - ✓ Quantitative values (IC50, mutation freq)
@@ -445,26 +445,26 @@ After NLP extraction: BRAF → Melanoma, confidence 0.85, tier MEASURED
 
 ## Interpreting AUROC
 
-### What AUROC 0.965 Means
+### What AUROC 0.9562 Means
 
 ```
 Given a random approved Drug-Disease pair and a random non-approved pair:
   There is a 96.5% probability the system ranks the approved pair higher.
 ```
 
-### What AUROC 0.965 Does NOT Mean
+### What AUROC 0.9562 Does NOT Mean
 
 ```
 ✗ "96.5% of predictions are correct" (AUROC ≠ accuracy)
 ✗ "The model is clinically validated" (retrospective ranking ≠ clinical trial)
-✗ "All candidates will work" (AUPRC 0.634 means ~37% false positives in top ranks)
+✗ "All candidates will work" (AUPRC 0.551 means ~37% false positives in top ranks)
 ✗ "The model can't be fooled" (label leakage is possible without proper protocol)
 ```
 
 ### Protocol Matters
 
 ```
-remove_direct_labels: AUROC 0.965 (fair -- Drug→Disease edges removed)
+remove_direct_labels: AUROC 0.9562 (fair -- Drug→Disease edges removed)
 loocv:               AUROC 0.945 (stricter -- leave-one-out cross-validation)
 as_loaded:           AUROC 0.457 (artifact -- composition skips direct edges)
 

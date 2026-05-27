@@ -107,8 +107,8 @@ These equivalence classes are discovered purely from morphism structure -- no dr
 
 | Metric | Before Yoneda | After Yoneda | Delta |
 |--------|-------------:|-------------:|------:|
-| AUROC | 0.956 | 0.965 | +0.009 |
-| AUPRC | 0.537 | 0.634 | +0.097 |
+| AUROC | 0.956 | 0.9562 | +0.009 |
+| AUPRC | 0.537 | 0.551 | +0.097 |
 | Hits@10 | 0.70 | 0.80 | +0.10 |
 
 The AUPRC improvement (+0.097) is the most significant: top-ranked candidates are substantially more likely to be real approvals.
@@ -432,7 +432,7 @@ In drug repurposing:
 
 ### Production Pipeline (9 Strategies)
 
-The 9 oracle strategies that produce the AUROC 0.965 result use these mathematical frameworks:
+The 9 oracle strategies that produce the AUROC 0.9562 result use these mathematical frameworks:
 
 | Strategy | Math Framework | AUROC Impact (ablation) |
 |----------|---------------|------------------------:|
@@ -482,7 +482,7 @@ score = min(1.0, base + path_bonus + yoneda_bonus)
 
 ### What the math does NOT do
 
-- The categorical framework does not outperform graph baselines by a large margin (+0.034 AUROC over shortest path). Most predictive signal comes from graph connectivity and curation quality.
+- The categorical framework does not outperform graph baselines by a large margin (+0.3255 AUROC over degree_product). Most predictive signal comes from graph connectivity and curation quality.
 
 - The more sophisticated structures (Gray coherence, ZFC dual engine, OPTIMUS) are implemented but not yet proven to improve drug repurposing metrics. They represent architectural investments for future capability.
 

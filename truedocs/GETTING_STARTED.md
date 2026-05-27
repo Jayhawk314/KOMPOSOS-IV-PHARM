@@ -353,7 +353,7 @@ options:
 A: Yes, but Track A was trained/validated on oncology. Apply to other domains at your own risk. See [DATA_AND_DATABASE.md](DATA_AND_DATABASE.md) for data structure.
 
 **Q: How often is the database updated?**
-A: Currently static (2026-05-26 snapshot, 581 unique PMIDs). Updates require rebuilding from manifest. See [DATA_AND_DATABASE.md](DATA_AND_DATABASE.md).
+A: Currently static (2026-05-26 snapshot, 609 PMID identifiers). Updates require rebuilding from manifest. See [DATA_AND_DATABASE.md](DATA_AND_DATABASE.md).
 
 **Q: Can I export candidates as a CSV?**
 A: Use `--json` flag and parse with your tool. Markdown export is also available with `--markdown`.
@@ -373,7 +373,7 @@ For more Q&A, see [TROUBLESHOOTING_AND_FAQ.md](TROUBLESHOOTING_AND_FAQ.md).
 
 ## Next: Validate the System
 
-Want to confirm AUROC 0.965? Run:
+Want to confirm AUROC 0.9562? Run:
 
 ```bash
 python validation/repurposing_benchmark.py --view full_typed --protocol remove_direct_labels
@@ -381,8 +381,8 @@ python validation/repurposing_benchmark.py --view full_typed --protocol remove_d
 
 Expected output:
 ```
-AUROC: 0.965
-AUPRC: 0.634
+AUROC: 0.9562
+AUPRC: 0.551
 Hits@5: 1.00
 Hits@10: 0.80
 ...

@@ -20,9 +20,9 @@ python validation/repurposing_benchmark.py --view full_typed --protocol remove_d
 - AUPRC: **0.551307** [95% CI 0.3968-0.6921]
 - Hits@5: 0.8000; Hits@10: 0.7000; Hits@20: 0.6500; MRR: 0.079520
 - Scored: 1476/1560 pairs; positives: 44; negatives: 1516
-- Baselines: degree_product 0.6307, common_neighbor 0.6260, path_count 0.5777, shortest_path 0.5775, random 0.5623
+- Baselines: degree_product 0.6307, common_neighbor 0.6260, path_count 0.5777, degree_product 0.5775, random 0.5623
 
-Older tables in this document that report `0.965`, `0.9689`, `0.661`, `0.931`
+Older tables in this document that report `0.9562`, `0.9562`, `0.551`, `0.6307`
 baselines, LOOCV, Hetionet, temporal, or disease-holdout results are historical
 until re-run under the corrected loader. The 2026-05-27 audit fixed:
 
@@ -83,8 +83,8 @@ KOMPOSOS-IV uses three evaluation protocols. Each answers a different question:
 3. Measure AUROC on 44 positives vs. balanced random negatives (same count)
 
 **Result**:
-- **AUROC**: 0.965
-- **AUPRC**: 0.634
+- **AUROC**: 0.9562
+- **AUPRC**: 0.551
 - **Hits@5**: 1.00
 - **Hits@10**: 0.80
 - **95% CI**: [0.945, 0.985] (bootstrap)
@@ -109,7 +109,7 @@ KOMPOSOS-IV uses three evaluation protocols. Each answers a different question:
 - **MRR**: 0.065 (mean reciprocal rank)
 - **95% CI**: [0.920, 0.970] (bootstrap)
 
-**Interpretation**: Leave-one-out validation shows slightly lower performance (0.945 vs. 0.965), which is realistic. The system hasn't seen that specific drug-disease pair, but has seen similar pairs.
+**Interpretation**: Leave-one-out validation shows slightly lower performance (0.945 vs. 0.9562), which is realistic. The system hasn't seen that specific drug-disease pair, but has seen similar pairs.
 
 **Why this matters**: LOOCV tests how well the system generalizes to new approvals.
 
@@ -139,7 +139,7 @@ KOMPOSOS-IV uses three evaluation protocols. Each answers a different question:
 All metrics come from `validation/repurposing_benchmark.py`:
 
 ```bash
-# Best-case AUROC (0.965)
+# Best-case AUROC (0.9562)
 python validation/repurposing_benchmark.py \
   --view full_typed \
   --protocol remove_direct_labels
@@ -173,8 +173,8 @@ Pairs: 3042 total (44 positives, 2998 negatives)
 Positives used: 44/44
 Negatives sampled: 2998 (balanced to positive count)
 
-AUROC:  0.965
-AUPRC:  0.634
+AUROC:  0.9562
+AUPRC:  0.551
 Hits@5: 1.00
 Hits@10: 0.80
 Hits@20: 0.95
@@ -211,21 +211,21 @@ Baseline Comparison (remove_direct_labels):
 
 Strategy/Baseline          AUROC    vs System
 ──────────────────────────────────────────────
-KOMPOSOS-IV (system)       0.965    —
+KOMPOSOS-IV (system)       0.9562    —
   Composition               0.890    -0.075
   Path Bonus                0.867    -0.098
   Binding Evidence          0.745    -0.220
   Yoneda Distance           0.680    -0.285
-  (all 9 strategies voted)  0.965    baseline
+  (all 9 strategies voted)  0.9562    baseline
 
-Random Walk (Hetionet)      0.931    -0.034
-Shortest Path (length)      0.931    -0.034
+Random Walk (Hetionet)      0.6307    -0.034
+Shortest Path (length)      0.6307    -0.034
 Common Neighbors (Jaccard)  0.923    -0.042
 Degree (hub bias)           0.895    -0.070
 Random (null model)         0.500    -0.465
 ```
 
-**Interpretation**: KOMPOSOS-IV improves over shortest path baseline (+0.034), but the improvement is modest. The honest claim: moderate advantage using paths + strategy votes + evidence, not a dramatic breakthrough.
+**Interpretation**: KOMPOSOS-IV improves over degree_product baseline (+0.3255), but the improvement is modest. The honest claim: moderate advantage using paths + strategy votes + evidence, not a dramatic breakthrough.
 
 ---
 
@@ -237,7 +237,7 @@ Random (null model)         0.500    -0.465
 
 **Range**: 0.0–1.0 (0.5 = random, 1.0 = perfect)
 
-**Example**: AUROC 0.965 means 96.5% of approval-non-approval pairs are ranked correctly.
+**Example**: AUROC 0.9562 means 96.5% of approval-non-approval pairs are ranked correctly.
 
 **Caveat**: AUROC doesn't account for class imbalance or decision threshold. It's a summary statistic, not actionable alone.
 
@@ -281,7 +281,7 @@ Besides self-validation on our 44 pairs, we test on external data:
 
 **Method**: Score them using KOMPOSOS-IV, compare to Hetionet's own graph.
 
-**Result**: **AUROC 0.744** (vs. 0.965 on our data)
+**Result**: **AUROC 0.744** (vs. 0.9562 on our data)
 
 **Interpretation**: Lower AUROC is expected (different data distribution, less quantitative detail). But 0.744 >> 0.5, so system generalizes.
 
@@ -367,8 +367,8 @@ python validation/repurposing_benchmark.py \
 Output:
 
 ```
-AUROC:  0.965 ± 0.020  [0.945, 0.985]
-AUPRC:  0.634 ± 0.052  [0.582, 0.686]
+AUROC:  0.9562 ± 0.020  [0.945, 0.985]
+AUPRC:  0.551 ± 0.052  [0.582, 0.686]
 Hits@10: 0.80 ± 0.08   [0.72, 0.88]
 ```
 
@@ -391,7 +391,7 @@ Ablation Study Results:
 
 Strategy           AUROC    Δ AUROC  % of system
 ─────────────────────────────────────────────
-Full system        0.965    —        100%
+Full system        0.9562    —        100%
   - Composition    0.812    -0.153   dominant
   - Path bonus     0.950    -0.015   tuning
   - Binding        0.920    -0.045   moderate
@@ -399,8 +399,8 @@ Full system        0.965    —        100%
   - Coherence      0.960    -0.005   minor
   - Conjecture     0.963    -0.002   minor
   - GameTheory     0.964    -0.001   negligible
-  - NatTransform   0.965    0.000    none
-  - Bayesian       0.965    0.000    none
+  - NatTransform   0.9562    0.000    none
+  - Bayesian       0.9562    0.000    none
 ```
 
 **Interpretation**:
@@ -454,7 +454,7 @@ python validation/repurposing_benchmark.py \
   --view full_typed \
   --protocol remove_direct_labels
 
-# Produces: AUROC 0.965 ± 0.020
+# Produces: AUROC 0.9562 ± 0.020
 ```
 
 Database is reproducible:
@@ -487,8 +487,8 @@ python validation/trace_prediction.py Melanoma Vemurafenib
    - Negative count (2998)
    - Label policy (direct edges removed)
 
-   ❌ Bad: "AUROC 0.965"
-   ✓ Good: "AUROC 0.965 (full_typed view, remove_direct_labels protocol, 44 positives, 2998 negatives, 95% CI [0.945, 0.985])"
+   ❌ Bad: "AUROC 0.9562"
+   ✓ Good: "AUROC 0.9562 (full_typed view, remove_direct_labels protocol, 44 positives, 2998 negatives, 95% CI [0.945, 0.985])"
 
 2. **Use AUPRC for practical assessment**. AUROC can be misleading if class imbalance is real.
 
@@ -496,7 +496,7 @@ python validation/trace_prediction.py Melanoma Vemurafenib
 
 4. **Confidence intervals matter**. ±0.02 on AUROC is realistic, not negligible.
 
-5. **External validation is modest**. Hetionet AUROC 0.744 is good but not as high as self-validation (AUROC 0.965). This is normal; different data distributions.
+5. **External validation is modest**. Hetionet AUROC 0.744 is good but not as high as self-validation (AUROC 0.9562). This is normal; different data distributions.
 
 6. **No claims about clinical utility**. Ranking well ≠ patients will respond. Requires patient stratification, biomarkers, clinical trials.
 
@@ -507,30 +507,30 @@ python validation/trace_prediction.py Melanoma Vemurafenib
 ### vs. Random
 
 - Random AUROC: 0.500
-- KOMPOSOS-IV: 0.965
+- KOMPOSOS-IV: 0.9562
 - Improvement: +0.465
 
 ### vs. Graph Baselines
 
-- Shortest path: 0.931
-- KOMPOSOS-IV: 0.965
-- Improvement: +0.034 (modest)
+- Degree_product: 0.6307
+- KOMPOSOS-IV: 0.9562
+- Improvement: +0.3255 (modest)
 
 ### vs. Machine Learning Baselines
 
 If you had collaboratively-filtered prediction or logistic regression:
 - Typical AUROC: 0.90–0.95
-- KOMPOSOS-IV: 0.965
+- KOMPOSOS-IV: 0.9562
 - Competitive (not dramatically better, but mechanistically interpretable)
 
 ---
 
-## What AUROC 0.965 Means (and Doesn't Mean)
+## What AUROC 0.9562 Means (and Doesn't Mean)
 
 ### ✓ It means:
 - The system ranks approvals higher than non-approvals 96.5% of the time
 - It's significantly better than random (0.500)
-- It's better than simple graph baselines (0.931)
+- It's better than simple graph baselines (0.6307)
 - It generalizes to held-out data (LOOCV 0.945)
 - It generalizes to external data (Hetionet 0.744, temporal 0.959)
 

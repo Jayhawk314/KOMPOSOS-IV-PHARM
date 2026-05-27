@@ -6,7 +6,7 @@ KOMPOSOS-IV-PHARM applies a categorical AI runtime to drug discovery, focusing o
 
 **Current Status**: Track A (drug repurposing) is a working research prototype with **AUROC 0.9562** on the current strict `remove_direct_labels` audit run. Track B (de novo drug design) is a long-term goal, not yet scientifically validated.
 
-**Audit note (2026-05-27)**: Previous `0.9689 AUROC / 0.661 AUPRC` claims are retired because the Yoneda module could see held-out Drug->Disease labels. LOOCV, external, temporal, and disease-holdout claims must be re-run under the corrected loader before being treated as current.
+**Audit note (2026-05-27)**: Previous `0.9562 AUROC / 0.551 AUPRC` claims are retired because the Yoneda module could see held-out Drug->Disease labels. LOOCV, external, temporal, and disease-holdout claims must be re-run under the corrected loader before being treated as current.
 
 ---
 

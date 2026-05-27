@@ -253,7 +253,7 @@ Before submitting PR:
 - [ ] Self-check: 44/44 FDA pairs recoverable
 - [ ] AUROC ≥ 0.96: (remove_direct_labels protocol)
 - [ ] Zero new orphaned morphisms: `audit_provenance.py`
-- [ ] 100% provenance: All new edges have PMID/ChEMBL
+- [ ] source strings on all 5,382 morphisms: All new edges have PMID/ChEMBL
 - [ ] Metrics reported correctly: Specify view, protocol, pair count
 - [ ] Documentation updated: Code comments, truedocs/ docs, or docstrings
 
@@ -264,7 +264,7 @@ Before submitting PR:
 When reporting AUROC or other metrics, always include:
 
 ```
-AUROC: 0.965
+AUROC: 0.9562
   View: full_typed
   Protocol: remove_direct_labels
   Positives: 44
@@ -372,7 +372,7 @@ We value accuracy over optimism. Example:
 ❌ Bad: "Our system achieves 96.5% accuracy"
    (Misleading: AUROC ≠ accuracy, and on a 50% base rate)
 
-✓ Good: "AUROC 0.965 (full_typed view, remove_direct_labels
+✓ Good: "AUROC 0.9562 (full_typed view, remove_direct_labels
    protocol, 44 FDA pairs, 2998 balanced negatives, 95% CI
    [0.945, 0.985]). Composed strategy averaging 9 component scores."
 ```

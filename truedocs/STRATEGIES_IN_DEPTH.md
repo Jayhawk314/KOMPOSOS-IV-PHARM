@@ -22,7 +22,7 @@ All strategies produce a score [0, 1] for a Drug-Disease pair. Scores are normal
 | **Game Theory** | Negligible | Equilibrium analysis |
 | **Bayesian** | Negligible | Probabilistic |
 
-**Ablation result**: Composition alone scores 0.890 AUROC; all 9 together score 0.965.
+**Ablation result**: Composition alone scores 0.890 AUROC; all 9 together score 0.9562.
 
 ---
 
@@ -496,7 +496,7 @@ Game Theory:         -0.000 (none)
 Bayesian:            -0.000 (none)
 ```
 
-Sum of contributions: ~0.23 (less than full system 0.965, due to non-additivity and baseline ~0.75 from random).
+Sum of contributions: ~0.23 (less than full system 0.9562, due to non-additivity and baseline ~0.75 from random).
 
 ---
 

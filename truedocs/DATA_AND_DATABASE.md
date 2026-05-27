@@ -218,7 +218,7 @@ python data/drugs/build_tier1.py --manifest data/drugs/tier1_manifest.json
 8. Import ABPP IC50 entries
 9. Import NLP-extracted quantitative values
 10. Compute evidence tiers
-11. Validate (100% provenance check)
+11. Validate (source strings on all 5,382 morphisms check)
 12. Output: `data/drugs/tier1.db`
 
 **Reproducibility**: Same manifest → same database (SHA256 hash).
@@ -422,7 +422,7 @@ for m in quantitative[:5]:
 | 2026-05-24 | 1.9 | Path bonus tuning, LOOCV calibration |
 | 2026-05-13 | 1.8 | Binding evidence strategy, ABPP integration |
 | 2026-05-10 | 1.7 | ChEMBL SQLite expansion (+269 proteins, +872 edges) |
-| 2026-05-06 | 1.6 | External audit completion, 100% provenance |
+| 2026-05-06 | 1.6 | External audit completion, source strings on all 5,382 morphisms |
 | 2026-05-01 | 1.5 | Quantitative evidence expansion |
 | 2026-04-15 | 1.4 | FDA label curation (44 pairs) |
 | 2026-04-01 | 1.3 | Initial tier1.db build |
