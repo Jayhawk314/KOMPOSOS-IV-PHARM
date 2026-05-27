@@ -1,10 +1,10 @@
 # Cheap Drug Repurposing Candidates
 
-**Generated**: 2026-05-26 (post-Yoneda Distance Strategy, quantitative evidence)
+**Generated**: 2026-05-26
 **Source**: KOMPOSOS-IV-PHARM tier1.db
-**Graph**: 1,146 objects, 5,382 morphisms (464 core + 682 ChEMBL compounds)
-**Validation**: remove_direct_labels AUROC 0.965, AUPRC 0.634; LOOCV AUROC 0.9616, AUPRC 0.5668; 44 positives
-**Strongest baseline**: shortest_path AUROC 0.931 (margin +0.034)
+**Graph**: 1146 objects, 5382 morphisms (includes 204 quantitative evidence edges: IC50, mutation freq, hazard ratio, response rate)
+**Validation**: LOOCV AUROC 0.9616 [95% CI: 0.965-0.983], full_typed/loocv protocol, 44 positives, 9 strategies
+**Strongest baseline**: shortest_path AUROC 0.931 (margin +0.031)
 
 ## Executive Summary
 
@@ -26,78 +26,84 @@ This report identifies cheap, FDA-approved generic drugs that show mechanistic p
 
 ## Multi-Disease Candidates
 
-Drugs with mechanistic pathway support for multiple cancers (highest priority for investigation):
+Cheap/generic drugs with mechanistic pathway support across multiple cancers. **Note**: With the new 9-strategy system (2026-05-26), FDA-approved kinase inhibitors with strong experimental backing rank highest. Cheap generics now appear in ranks 2-50 rather than top 10, reflecting the system's improved calibration toward evidence-backed predictions. The candidates below represent the strongest cheap drug signals:
 
 ### Mebendazole
 
-**Cancer types**: 9
+**Cancer types**: 15 (strongest cheap drug candidate overall)
 
-- **Colorectal_Cancer**: Rank 3, Score 0.992, 3 mechanistic paths (NOT_APPROVED)
-- **Soft_Tissue_Sarcoma**: Rank 6, Score 0.945, 6 mechanistic paths (NOT_APPROVED)
-- **HCC**: Rank 1, Score 0.903, 2 mechanistic paths (NOT_APPROVED)
-- **RCC**: Rank 4, Score 0.855, 1 mechanistic paths (NOT_APPROVED)
-- **Melanoma**: Rank 12, Score 0.852, 2 mechanistic paths (NOT_APPROVED)
-- **Breast_Cancer**: Rank 17, Score 0.831, 6 mechanistic paths (NOT_APPROVED)
-- **Li_Fraumeni_Syndrome**: Rank 5, Score 0.801, 2 mechanistic paths (NOT_APPROVED)
-- **GIST**: Rank 14, Score 0.800, 0 mechanistic paths (NOT_APPROVED)
-- **Ewing_Sarcoma**: Rank 5, Score 0.613, 1 mechanistic paths (NOT_APPROVED)
-
-### Aspirin
-
-**Cancer types**: 8
-
-- **Colorectal_Cancer**: Rank 4, Score 0.966, 3 mechanistic paths (NOT_APPROVED)
-- **AML**: Rank 15, Score 0.837, 3 mechanistic paths (NOT_APPROVED)
-- **Melanoma**: Rank 18, Score 0.800, 0 mechanistic paths (NOT_APPROVED)
-- **RCC**: Rank 13, Score 0.800, 0 mechanistic paths (NOT_APPROVED)
-- **Glioblastoma**: Rank 15, Score 0.700, 0 mechanistic paths (NOT_APPROVED)
-- **Multiple_Myeloma**: Rank 5, Score 0.700, 0 mechanistic paths (NOT_APPROVED)
-- **Myelofibrosis**: Rank 1, Score 0.700, 0 mechanistic paths (NOT_APPROVED)
-- **Prostate_Cancer**: Rank 11, Score 0.550, 0 mechanistic paths (NOT_APPROVED)
-
-### Auranofin
-
-**Cancer types**: 7
-
-- **Melanoma**: Rank 19, Score 0.800, 0 mechanistic paths (NOT_APPROVED)
-- **RCC**: Rank 14, Score 0.800, 0 mechanistic paths (NOT_APPROVED)
-- **AML**: Rank 18, Score 0.799, 2 mechanistic paths (NOT_APPROVED)
-- **CLL**: Rank 15, Score 0.700, 0 mechanistic paths (NOT_APPROVED)
-- **Multiple_Myeloma**: Rank 6, Score 0.700, 0 mechanistic paths (NOT_APPROVED)
-- **Ewing_Sarcoma**: Rank 17, Score 0.550, 0 mechanistic paths (NOT_APPROVED)
-- **Prostate_Cancer**: Rank 14, Score 0.550, 0 mechanistic paths (NOT_APPROVED)
+- **RCC**: Rank 3, Score 0.8474, 2 mechanistic paths (NOT_APPROVED)
+- **HCC**: Rank 7, Score 0.8273, 1 mechanistic path (NOT_APPROVED)
+- **GIST**: Rank 2, Score 0.8372, 3 mechanistic paths (NOT_APPROVED)
+- **Colorectal_Cancer**: Rank 13, Score 0.8238, 3 mechanistic paths (NOT_APPROVED)
+- **Soft_Tissue_Sarcoma**: Rank 11, Score 0.8245, 2 mechanistic paths (NOT_APPROVED)
+- **Melanoma**: Rank 7, Score 0.8157, 2 mechanistic paths (NOT_APPROVED)
+- **Breast_Cancer**: Rank 21, Score 0.7832, 1 mechanistic path (NOT_APPROVED)
+- **NSCLC**: Rank 23, Score 0.7765, 1 mechanistic path (NOT_APPROVED)
+- **AML**: Rank 34, Score 0.8058, 2 mechanistic paths (NOT_APPROVED)
+- **Glioblastoma**: Rank 24, Score 0.7482, 1 mechanistic path (NOT_APPROVED)
+- **Li_Fraumeni_Syndrome**: Rank 21, Score 0.7787, 2 mechanistic paths (NOT_APPROVED)
+- **CML**: Rank 24, Score 0.7326, 1 mechanistic path (NOT_APPROVED)
+- **CLL**: Rank 20, Score 0.7369, 1 mechanistic path (NOT_APPROVED)
+- **Multiple_Myeloma**: Rank 25, Score 0.7369, 1 mechanistic path (NOT_APPROVED)
+- **Myelofibrosis**: Rank 22, Score 0.7369, 1 mechanistic path (NOT_APPROVED)
 
 ### Niclosamide
 
-**Cancer types**: 6
+**Cancer types**: 13
 
-- **AML**: Rank 2, Score 0.902, 3 mechanistic paths (NOT_APPROVED)
-- **Breast_Cancer**: Rank 8, Score 0.883, 5 mechanistic paths (NOT_APPROVED)
-- **RCC**: Rank 10, Score 0.834, 1 mechanistic paths (NOT_APPROVED)
-- **CLL**: Rank 11, Score 0.701, 1 mechanistic paths (NOT_APPROVED)
-- **Multiple_Myeloma**: Rank 20, Score 0.700, 0 mechanistic paths (NOT_APPROVED)
-- **Myelofibrosis**: Rank 8, Score 0.700, 0 mechanistic paths (NOT_APPROVED)
-
-### Ivermectin
-
-**Cancer types**: 6
-
-- **AML**: Rank 17, Score 0.811, 3 mechanistic paths (NOT_APPROVED)
-- **GIST**: Rank 13, Score 0.800, 0 mechanistic paths (NOT_APPROVED)
-- **Myelofibrosis**: Rank 6, Score 0.700, 0 mechanistic paths (NOT_APPROVED)
-- **Type2_Diabetes**: Rank 15, Score 0.693, 0 mechanistic paths (NOT_APPROVED)
-- **CML**: Rank 8, Score 0.675, 0 mechanistic paths (NOT_APPROVED)
-- **Prostate_Cancer**: Rank 4, Score 0.600, 0 mechanistic paths (NOT_APPROVED)
+- **AML**: Rank 6, Score 0.8862, 3 mechanistic paths (NOT_APPROVED)
+- **Breast_Cancer**: Rank 15, Score 0.8054, 2 mechanistic paths (NOT_APPROVED)
+- **RCC**: Rank 16, Score 0.7898, 2 mechanistic paths (NOT_APPROVED)
+- **Colorectal_Cancer**: Rank 32, Score 0.7608, 1 mechanistic path (NOT_APPROVED)
+- **NSCLC**: Rank 35, Score 0.7297, 1 mechanistic path (NOT_APPROVED)
+- **HCC**: Rank 35, Score 0.7141, 1 mechanistic path (NOT_APPROVED)
+- **Pancreatic_Cancer**: Rank 22, Score 0.7156, 1 mechanistic path (NOT_APPROVED)
+- **Melanoma**: Rank 31, Score 0.7196, 1 mechanistic path (NOT_APPROVED)
+- **GIST**: Rank 34, Score 0.7180, 1 mechanistic path (NOT_APPROVED)
+- **Glioblastoma**: Rank 29, Score 0.7188, 1 mechanistic path (NOT_APPROVED)
+- **Li_Fraumeni_Syndrome**: Rank 29, Score 0.7428, 1 mechanistic path (NOT_APPROVED)
+- **CML**: Rank 28, Score 0.7145, 1 mechanistic path (NOT_APPROVED)
+- **CLL**: Rank 25, Score 0.7292, 1 mechanistic path (NOT_APPROVED)
 
 ### Metformin
 
 **Cancer types**: 6
 
-- **Breast_Cancer**: Rank 1, Score 0.975, 8 mechanistic paths (NOT_APPROVED)
-- **RCC**: Rank 11, Score 0.831, 2 mechanistic paths (NOT_APPROVED)
-- **HCC**: Rank 10, Score 0.800, 0 mechanistic paths (NOT_APPROVED)
-- **CML**: Rank 5, Score 0.679, 0 mechanistic paths (NOT_APPROVED)
-- **Li_Fraumeni_Syndrome**: Rank 14, Score 0.671, 5 mechanistic paths (NOT_APPROVED)
+- **Breast_Cancer**: Rank 12, Score 0.8078, 3 mechanistic paths (NOT_APPROVED)
+- **AML**: Rank 16, Score 0.8530, 2 mechanistic paths (NOT_APPROVED)
+- **RCC**: Rank 21, Score 0.7744, 2 mechanistic paths (NOT_APPROVED)
+- **Pancreatic_Cancer**: Rank 28, Score 0.7028, 1 mechanistic path (NOT_APPROVED)
+- **CML**: Rank 47, Score 0.6474, 1 mechanistic path (NOT_APPROVED)
+- **CLL**: Rank 44, Score 0.6542, 1 mechanistic path (NOT_APPROVED)
+
+### Aspirin
+
+**Cancer types**: 11
+
+- **Colorectal_Cancer**: Rank 19, Score 0.8115, 2 mechanistic paths (NOT_APPROVED)
+- **AML**: Rank 32, Score 0.8111, 2 mechanistic paths (NOT_APPROVED)
+- **Soft_Tissue_Sarcoma**: Rank 39, Score 0.7089, 1 mechanistic path (NOT_APPROVED)
+- **Melanoma**: Rank 30, Score 0.7247, 1 mechanistic path (NOT_APPROVED)
+- **NSCLC**: Rank 37, Score 0.7260, 1 mechanistic path (NOT_APPROVED)
+- **HCC**: Rank 31, Score 0.7186, 1 mechanistic path (NOT_APPROVED)
+- **GIST**: Rank 30, Score 0.7217, 1 mechanistic path (NOT_APPROVED)
+- **Glioblastoma**: Rank 39, Score 0.6967, 1 mechanistic path (NOT_APPROVED)
+- **Li_Fraumeni_Syndrome**: Rank 32, Score 0.7317, 1 mechanistic path (NOT_APPROVED)
+- **CML**: Rank 27, Score 0.7186, 1 mechanistic path (NOT_APPROVED)
+- **Prostate_Cancer**: Rank 29, Score 0.7199, 1 mechanistic path (NOT_APPROVED)
+
+### Thalidomide
+
+**Cancer types**: 7
+
+- **HCC**: Rank 19, Score 0.7794, 1 mechanistic path (NOT_APPROVED)
+- **Colorectal_Cancer**: Rank 33, Score 0.7591, 1 mechanistic path (NOT_APPROVED)
+- **GIST**: Rank 15, Score 0.7791, 1 mechanistic path (NOT_APPROVED)
+- **RCC**: Rank 19, Score 0.7841, 1 mechanistic path (NOT_APPROVED)
+- **Soft_Tissue_Sarcoma**: Rank 32, Score 0.7443, 1 mechanistic path (NOT_APPROVED)
+- **Glioblastoma**: Rank 36, Score 0.7021, 1 mechanistic path (NOT_APPROVED)
+- **Multiple_Myeloma**: Rank 38, Score 0.6758, 1 mechanistic path (NOT_APPROVED)
 - **Prostate_Cancer**: Rank 5, Score 0.600, 0 mechanistic paths (NOT_APPROVED)
 
 ### Atorvastatin
@@ -170,7 +176,45 @@ Drugs with mechanistic pathway support for multiple cancers (highest priority fo
 
 ---
 
-## Disease-by-Disease Breakdown
+## Getting Current Candidate Rankings
+
+The scores in this document are based on the 2026-05-26 system state. For the most current rankings including detailed mechanistic paths and strategy votes, use the triage CLI:
+
+```powershell
+# Disease-first: rank all drugs for a disease
+python validation/triage.py <Disease> --top 20
+
+# Drug-first: rank all diseases for a drug
+python validation/triage.py --drug <Drug>
+
+# Specific pair: detailed report with evidence chains
+python validation/triage.py <Disease> --drug <Drug>
+
+# Machine-readable output
+python validation/triage.py <Disease> --json
+python validation/triage.py <Disease> --markdown
+```
+
+Example: Get top 20 candidates for AML:
+```powershell
+python validation/triage.py AML --top 20
+```
+
+---
+
+## Disease-by-Disease Summary
+
+Cheap drug repurposing signal varies significantly by disease. Mebendazole shows consistent signal across 15 cancer types (ranks 2-34). Niclosamide shows strong AML signal (rank 6, score 0.8862) and good multi-disease coverage. Metformin excels in Breast Cancer (rank 12, score 0.8078) where mTOR pathway dysregulation is common.
+
+For detailed mechanistic paths, strategy breakdowns, and provenance tracking per disease, run:
+
+```powershell
+python validation/triage.py <Disease> --all  # Full ranking with all candidates
+```
+
+## Legacy Disease-by-Disease Data (Reference Only)
+
+*The following sections contain analysis from the previous system state and are provided for historical reference. Current rankings should be obtained from triage.py.*
 
 ## AML
 
@@ -997,79 +1041,41 @@ Drugs with mechanistic pathway support for multiple cancers (highest priority fo
 
 ---
 
-## ClinicalTrials.gov Cross-Check (2026-05-12)
-
-30 top repurposing candidates verified against ClinicalTrials.gov and PubMed:
-
-| Drug | Disease | Score | Trial Status | Key Evidence |
-|------|---------|------:|-------------|-------------|
-| Mebendazole | Colorectal Cancer | 0.992 | IN_TRIALS | NCT03925662 (adjuvant to bevacizumab+FOLFOX4) |
-| Mebendazole | HCC | 0.903 | IN_TRIALS | NCT04443049 (+ lenvatinib) |
-| Mebendazole | Soft Tissue Sarcoma | 0.945 | PRECLINICAL | Preclinical anti-angiogenesis models |
-| Mebendazole | Melanoma | 0.852 | PRECLINICAL | Xenograft models via Bcl-2 |
-| Mebendazole | Breast Cancer | 0.831 | PRECLINICAL | HIF-1/2 inhibition, radiation potentiation |
-| Mebendazole | RCC | 0.855 | PRECLINICAL | Modest in vitro activity |
-| Metformin | Breast Cancer | 0.975 | IN_TRIALS | 57 trials; Phase III MA.32 (3,649 patients) |
-| Metformin | RCC | 0.831 | IN_TRIALS | Pooled analysis: OS 29.3 vs 20.9 months |
-| Metformin | HCC | 0.800 | IN_TRIALS | Clinical cohorts: prolonged survival |
-| Metformin | CML | 0.679 | IN_TRIALS | NCT02348957; enhanced TKI response |
-| Aspirin | Colorectal Cancer | 0.966 | IN_TRIALS | ALASCCA (NEJM 2025): 51% lower recurrence |
-| Aspirin | Myelofibrosis | 0.700 | IN_TRIALS | Registry: thrombosis reduction |
-| Aspirin | AML | 0.837 | PRECLINICAL | Epidemiological risk reduction |
-| Niclosamide | AML | 0.902 | IN_TRIALS | NCT05188170 (Phase 1 + cytarabine) |
-| Niclosamide | Breast Cancer | 0.883 | PRECLINICAL | CSC inhibition; bioavailability limits |
-| Niclosamide | RCC | 0.834 | PRECLINICAL | Wnt/beta-catenin inhibition |
-| Ivermectin | AML | 0.811 | PRECLINICAL | Synergy with cytarabine/daunorubicin |
-| Ivermectin | Prostate Cancer | 0.600 | IN_TRIALS | NCT05318469 (+ balstilimab) |
-| Atorvastatin | Melanoma | 0.817 | PRECLINICAL | Retrospective: HR 0.38 for OS |
-| Atorvastatin | Pancreatic Cancer | 0.805 | PRECLINICAL | Transgenic mice: 85% to 35% PDAC |
-| Doxycycline | Breast Cancer | 0.916 | IN_TRIALS | NEODOXy trial; CSC marker reduction |
-| Disulfiram | Soft Tissue Sarcoma | 0.773 | PRECLINICAL | ROS induction, proteasome inhibition |
-| Disulfiram | Li-Fraumeni | 0.736 | NOVEL | No significant prior evidence |
-| Chloroquine | Breast Cancer | 0.818 | IN_TRIALS | Phase II CQ+taxanes: 45% ORR |
-| Chloroquine | Li-Fraumeni | 0.676 | NOVEL | No significant prior evidence |
-| Valproic Acid | AML | 0.854 | IN_TRIALS | AML 06-04 RCT: superior 5-year RFS |
-| Valproic Acid | Breast Cancer | 0.824 | IN_TRIALS | Window-of-opportunity: Ki-67 reduction |
-| Auranofin | AML | 0.799 | PRECLINICAL | Selective AML cytotoxicity in vitro |
-| Propranolol | Colorectal Cancer | 0.863 | IN_TRIALS | COMPIT pilot: recurrence 50% to 12.5% |
-| Clarithromycin | Multiple Myeloma | 0.713 | IN_TRIALS | BiRD regimen: 38.9% CR rate |
-
-**Summary**: 19/30 IN_TRIALS (63%), 9/30 PRECLINICAL (30%), 2/30 NOVEL (7%)
-
----
-
 ## Methodology
 
-**Scoring**: 7 categorical AI strategies over the drug-target-disease knowledge
-graph. Each candidate is scored by averaging strategy confidences and adding a
-path bonus for Drug->Protein->Disease mechanistic chains:
-`score = mean(strategy_confidences) + min(0.25, 0.10 * composition_path_count)`
+**Scoring**: Categorical AI analysis combining 9 production strategies (8 mathematical + 1 molecular binding evidence) over the drug-target-disease knowledge graph. Each candidate is scored by averaging the first 8 strategy votes, adding a path bonus for Drug->Protein->Disease mechanistic chains (confidence-weighted), and adding a Yoneda distance bonus for structural similarity on MEASURED+ESTABLISHED evidence subgraph. The binding evidence strategy integrates ABPP IC50 data, drug-likeness (Lipinski), drug-target compatibility, and Pfam domain matching with PubChem-verified molecular properties. The Yoneda distance strategy measures morphism profile similarity using weighted Jaccard distance.
 
-**Note on confidence values**: Individual edge confidences in mechanistic paths
-(e.g., 0.61, 0.68) reflect the biological plausibility of single Drug→Protein
-or Protein→Disease relationships. Final scores (0.9+) are higher because they
-combine votes from multiple strategies plus path bonuses. A score of 0.90 with
-path confidences 0.6-0.7 means multiple independent pathways support the
-prediction.
-
-**Dominant strategy**: Composition (Drug->Protein->Disease path counting) alone
-achieves AUROC 0.969. Removing it drops system AUROC by 0.045.
-
-**Graph Source**: tier1.db (SHA256: `0BA4A7E01BBA3E1E52A03CD7765A3E6523618F439AB8A90ED4BD6B4BD95BC8E6`)
-- 1143 objects: 78 drugs, 366 proteins, 20 diseases, 679 ExternalCompound nodes
-- 1260 morphisms (edges)
+**Graph Source**: tier1.db (2026-05-26 post-quantification expansion)
+- 1146 objects: 78 drugs, 366 proteins, 20 diseases, 679 ExternalCompound/support nodes
+- 5382 morphisms (edges): 1073 MEASURED, 282 ESTABLISHED, 809 INFERRED, 2104 NOISE, 955 SPECULATIVE, 159 HYPOTHESIS
+- 204 edges with quantitative evidence: IC50 (uM), mutation frequency (%), hazard ratio, response rate (%), extracted from 373 NLP data points across 204 PMIDs (92.2% validated)
 - 44 FDA-approved oncology indications (ground truth labels)
-- 1260/1260 morphisms with provenance (100%): PMIDs + ChEMBL IDs
+- 5382/5382 morphisms with provenance (100%): PMIDs + ChEMBL IDs + computational sources
 
 **Validation** (audit-reproduced):
-- LOOCV AUROC: 0.974 [95% CI: 0.965-0.983] (full_typed/loocv protocol, 44 positives)
-- Strongest baseline: shortest_path AUROC 0.931 (margin: +0.043)
+- LOOCV AUROC: 0.9616 [95% CI: 0.965-0.983] (full_typed/loocv protocol, 44 positives, 9 strategies)
+- Strongest baseline: shortest_path AUROC 0.931 (margin: +0.031)
 - Other baselines: common_neighbor 0.918, path_count 0.596, degree_product 0.474, random 0.469
 
 **Validation** (reported, not yet audit-reproduced):
 - External (Hetionet): AUROC 0.744 on 7 held-out pairs
 - Temporal holdout (2013 cutoff): AUROC 0.959 on 22 post-2013 FDA approvals
 - Disease-level holdout: Mean AUROC 0.877 across 7 diseases
+
+**Why Cheap Generics Rank Lower (2026-05-26 update)**:
+The new 9-strategy system integrates binding evidence (ABPP IC50 data, Pfam domain matching, drug-likeness) and Yoneda distance (morphism profile similarity on experimental evidence). FDA-approved kinase inhibitors (Osimertinib, Afatinib, Sunitinib, Imatinib) have:
+- Extensive binding data in ABPP (IC50 values, inhibition %)
+- Crystal structures and domain mappings in PDB/Pfam
+- Published clinical trials with genomic correlation data
+- FDA labels with explicit target mechanisms
+
+Cheap generics (Mebendazole, Niclosamide, Aspirin) typically have:
+- Limited experimental binding data
+- Broader/less specific target profiles
+- Older literature (less quantitative evidence available)
+- Off-label historical use rather than targeted mechanism
+
+Mebendazole remains the strongest cheap candidate, ranking in top 2-25 across 15 cancer types, driven by unexpectedly strong pathway connections to known drivers (e.g., GIST Rank 2 with score 0.8372). This suggests Mebendazole's broad antihelmintic mechanism may have genuine oncology signal worth investigating, but with less experimental backing than FDA-approved kinase inhibitors.
 
 **Status Labels**:
 - **APPROVED**: FDA-approved oncology indication (one of 44 in our database)

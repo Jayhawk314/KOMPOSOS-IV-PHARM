@@ -1,1 +1,0 @@
-# Battery bridge tests

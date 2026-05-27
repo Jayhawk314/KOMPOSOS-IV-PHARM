@@ -1,1 +1,0 @@
-# Polymer bridge test package
