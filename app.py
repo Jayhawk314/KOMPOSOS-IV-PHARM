@@ -861,7 +861,7 @@ across all targets.
 - It does not replace clinical judgment
 - It does not predict safety, toxicity, or pharmacokinetics
 - It does not account for patient-specific factors
-- AUROC of 0.94 on our 44-positive benchmark does not guarantee real-world
+- AUROC of 0.9689 on our 44-positive benchmark does not guarantee real-world
   performance
 - The system bridges knowledge silos; it does not generate new knowledge
 """)
@@ -920,21 +920,22 @@ approved for.
 
 | Metric | Value |
 |--------|-------|
-| AUROC | 0.965 [95% CI: 0.945-0.985] |
-| AUPRC | 0.634 |
+| AUROC | 0.9689 [95% CI: 0.948-0.990] |
+| AUPRC | 0.661 |
 | Positives | 44 FDA-approved oncology indications |
-| Strategies | 9 (incl. binding evidence + Yoneda distance) |
+| Strategies | 9 (incl. binding evidence + Yoneda distance + fixed Kan extension) |
 | Strongest baseline (shortest-path) | AUROC 0.931 |
-| Margin over baseline | +0.034 |
+| Margin over baseline | +0.038 |
 | ClinicalTrials.gov cross-check | 63% IN_TRIALS, 30% PRECLINICAL, 7% NOVEL |
 | Unique valid PMIDs | 581 |
 
 *The `remove_direct_labels` protocol removes Drug->Disease edges before scoring,
 so the system must predict via mechanistic paths only. This is the scientifically
-honest protocol for claiming repurposing capability. LOOCV AUROC (0.945) is slightly
-lower. Path scoring is confidence-weighted: high-quality paths contribute more than
-weak co-mention paths. Yoneda distance bonus adds structural similarity scoring on
-the clean evidence subgraph (MEASURED + ESTABLISHED edges only).*
+honest protocol for claiming repurposing capability. LOOCV AUROC (0.945) pending
+re-run with fixed Kan extension. Path scoring is confidence-weighted: high-quality
+paths contribute more than weak co-mention paths. Yoneda distance bonus adds structural
+similarity scoring on the clean evidence subgraph (MEASURED + ESTABLISHED edges only).
+Kan extension now uses only Drug analogs as comparators (2026-05-27 fix).*
 
 ### Limitations
 
