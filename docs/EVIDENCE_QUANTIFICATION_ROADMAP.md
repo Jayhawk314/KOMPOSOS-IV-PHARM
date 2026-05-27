@@ -1,9 +1,17 @@
 # Evidence Quantification Roadmap
 ## From Graph Coherence to Real Biological Measurements
 
-**Date:** 2026-05-25
-**Current State:** 609 PMIDs, 4944 edges, topology-based confidence scores
-**Goal:** Distinguish measured data from inferred relationships, add real quantitative evidence
+**Date:** 2026-05-25 (original roadmap)
+**Status (2026-05-26):** ✅ IMPLEMENTATION COMPLETE
+
+**Completion Summary:**
+- ✅ NLP PMID extraction: 373 data points from 204 PMIDs (92.2% validated)
+- ✅ Quantitative evidence tier: 204 edges with IC50, mutation freq, HR, response rate
+- ✅ Yoneda Distance Strategy: 9th oracle strategy as additive bonus
+- ✅ Benchmark improvements: AUROC 0.965 (+0.009), AUPRC 0.634 (+0.097)
+- See `CURRENT_STATE.md` and `SYSTEM_SUMMARY.md` for current metrics
+
+**Original Roadmap (below)** describes what was planned and is now complete.
 
 ---
 

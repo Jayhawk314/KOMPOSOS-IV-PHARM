@@ -19,8 +19,9 @@ Nothing is a black box.
 ## What the System is NOT
 
 - Not a clinical recommendation engine. Outputs are research hypotheses.
-- Not validated in clinical trials. AUROC ~0.83 means it ranks known
-  repurposing successes above random, but false positives exist.
+- Not validated in clinical trials. AUROC 0.965 with AUPRC 0.634 means the
+  system ranks known repurposing successes above random with good precision,
+  but false positives exist and clinical validation is required.
 - Not comprehensive. It covers 78 drugs, 366 proteins, 20 cancer types.
   Many drugs and diseases are outside its scope.
 - Not a replacement for literature review. It accelerates the search
@@ -28,17 +29,18 @@ Nothing is a black box.
 
 ## The Knowledge Graph
 
-**4,886 evidence edges** connecting drugs, proteins, and diseases:
+**5,382 evidence edges** connecting drugs, proteins, and diseases:
 
 | Source | Edges | What it provides |
 |--------|-------|------------------|
 | ChEMBL binding assays | 881 | Drug->Protein binding affinity (IC50/Ki/Kd) |
 | ESM2 protein embeddings | 422 | Protein->Protein structural similarity |
-| PubMed literature | 3,288 | Protein->Disease associations with PMIDs |
+| PubMed literature | 3,754 | Protein->Disease associations with PMIDs |
 | FDA approved mechanisms | 79 | Drug->Protein mechanisms from NDA labels |
 | KEGG pathways | 72 | Protein->Protein pathway relationships |
 | STRING PPI | 22 | Protein->Protein physical interactions |
 | ABPP experimental | 17 | Drug->Protein IC50 from activity-based profiling |
+| NLP quantitative extractions | 204 | IC50, mutation freq, hazard ratio, response rate (373 extractions, 92.2% validated) |
 
 **20 cancer types** with drug coverage:
 
@@ -288,17 +290,17 @@ oncology indications as positive labels.
 
 | Metric | Value |
 |--------|-------|
-| AUROC | 0.956 |
-| AUPRC | 0.537 |
+| AUROC | 0.965 |
+| AUPRC | 0.634 |
 | Hits@5 | 1.00 |
-| Hits@10 | 0.70 |
+| Hits@10 | 0.80 |
 
-Graph: 4,956 edges (confidence-weighted path scoring, 2026-05-24).
+Graph: 5,382 edges (9 strategies with Yoneda distance bonus, 2026-05-26). AUPRC improvement (+18%) driven by Yoneda distance strategy on MEASURED+ESTABLISHED evidence subgraph.
 
 **What the AUROC means for you:** If you pick a random known drug-disease
 pair and a random unknown pair, the system ranks the known pair higher
-96% of the time. This means the ranking is useful for prioritization —
-always verify with the evidence chains.
+97% of the time. This means the ranking is useful for prioritization —
+always verify with the evidence chains and mechanistic paths.
 
 ## Limitations
 

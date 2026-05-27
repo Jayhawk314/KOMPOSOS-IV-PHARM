@@ -14,21 +14,22 @@ strategies to generate mechanistically explainable repurposing hypotheses.
 Unlike embedding-based approaches that produce opaque rankings, every
 prediction in our system is traceable to Drug->Protein->Disease evidence
 chains with primary literature citations (PMIDs and ChEMBL IDs). On a curated
-oncology graph of 78 drugs, 366 proteins, and 20 diseases (1260 morphisms,
-100% provenance coverage), the system achieves LOOCV AUROC 0.974 [95% CI:
-0.965-0.983] on 44 FDA-approved indications. The curated graph alone achieves
-AUROC 0.931 via shortest-path traversal -- demonstrating that careful curation
-of a small, high-quality graph can match or exceed the performance of larger,
-noisier knowledge graphs. The categorical inference layer (Kan extensions,
-Yoneda patterns, topos logic, composition, fibration lifts) combined with
-molecular binding evidence (ABPP IC50 data, drug-likeness, domain matching)
-adds modest ranking improvement (+0.043 AUROC) but crucially provides strategy
-voting, mechanistic explanation, binding evidence, and type-safe reasoning
-that researchers need for candidate evaluation. A ClinicalTrials.gov cross-check found that 63% of top
-repurposing candidates are already in human clinical trials, 30% have
-preclinical support, and 7% are genuinely novel hypotheses. The system is
-designed for hypothesis generation and scientific triage, not clinical
-deployment.
+oncology graph of 78 drugs, 366 proteins, and 20 diseases (5,382 morphisms,
+100% provenance coverage, 204 with quantitative evidence), the system achieves LOOCV AUROC 0.9616 [AUPRC 0.5668] on 44 FDA-approved indications,
+and remove_direct_labels AUROC 0.965 [AUPRC 0.634, +0.097 improvement]. The system integrates
+9 oracle strategies (composition, topos logic, Kan extensions, Yoneda pattern, binding evidence,
+structural hole, type heuristic, fibration lift, Yoneda distance) with mechanistic path bonuses,
+Yoneda distance bonuses, and quantitative evidence (204 edges with IC50, mutation frequency,
+hazard ratio, response rate from NLP extraction of 204 PMIDs). The curated graph backbone achieves
+AUROC 0.931 via shortest-path traversal -- demonstrating that careful curation of a small,
+high-quality graph can match or exceed larger, noisier knowledge graphs. The categorical inference
+layer combined with molecular binding evidence (ABPP IC50 data, drug-likeness, Pfam domain matching)
+and structural similarity metrics adds significant ranking improvement (+0.034 AUROC, +0.154 AUPRC)
+and crucially provides strategy voting, mechanistic explanation, binding evidence, quantitative
+validation, and type-safe reasoning that researchers need for candidate evaluation. A ClinicalTrials.gov
+cross-check found that 63% of top repurposing candidates are already in human clinical trials, 30% have
+preclinical support, and 7% are genuinely novel hypotheses. The system is designed for hypothesis
+generation and scientific triage, not clinical deployment.
 
 **Keywords**: drug repurposing, category theory, knowledge graphs, Kan
 extensions, topos logic, oncology

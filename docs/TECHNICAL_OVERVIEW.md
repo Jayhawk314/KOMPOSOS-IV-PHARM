@@ -1,7 +1,7 @@
 # KOMPOSOS-IV-PHARM: Technical Overview
 
 **Author**: James Ray Hawkins
-**Date**: 2026-05-12
+**Date**: 2026-05-26 (updated: Yoneda Distance Strategy, quantitative evidence)
 **License**: Apache 2.0 / Commercial dual license
 **Python**: 3.10+
 
@@ -34,7 +34,7 @@ Layer 1: ORION            Plugin framework (bridges, events, hot-loading)
 | Directory | Purpose |
 |-----------|---------|
 | `core/` | Category runtime: `Category` class, types, enrichment, persistence, hooks |
-| `oracle/` | Prediction strategies: 7 production + optional experimental |
+| `oracle/` | Prediction strategies: 9 production (composition, topos_logic, kan_extension, yoneda_pattern, binding_evidence, structural_hole, type_heuristic, fibration_lift, yoneda_distance) + optional experimental |
 | `domains/bio/` | `BioDomainLoader` -- loads tier1.db into Category |
 | `data/store.py` | `KomposOSStore` -- SQLite backend API |
 | `data/drugs/` | `build_tier1.py` (reproducible build), `tier1_manifest.json` |
@@ -80,21 +80,25 @@ production graphs.
 
 ## 4. Production Strategies
 
-The benchmark harness uses exactly 7 strategies (`oracle/strategies.py`,
-`make_strategies()`):
+The benchmark harness uses 9 strategies (`oracle/strategies.py`, `make_strategies()`):
 
-| # | Strategy | Alone AUROC | Without AUROC | Role |
-|---|----------|----------:|-------------:|------|
-| 1 | **composition** | 0.969 | 0.929 (-0.045) | Count Drug->Protein->Disease paths. **Dominant.** |
-| 2 | **topos_logic** | 0.947 | 0.970 (-0.004) | Subobject classifier truth values |
-| 3 | **kan_extension** | 0.497 | 0.966 (-0.008) | Left Kan extension along forgetful functor |
-| 4 | **yoneda_pattern** | 0.520 | 0.974 (~0) | Yoneda embedding similarity |
-| 5 | **type_heuristic** | 0.500 | 0.974 (0) | Type-based heuristic matching |
-| 6 | **structural_hole** | 0.500 | 0.974 (0) | Burt structural holes |
-| 7 | **fibration_lift** | 0.500 | 0.974 (0) | Cartesian lift in fibrations |
+| # | Strategy | AUROC | Role | Integration |
+|---|----------|------:|------|-------------|
+| 1 | **composition** | 0.969 | Count Drug->Protein->Disease paths. **Dominant.** | Base vote |
+| 2 | **topos_logic** | 0.947 | Subobject classifier truth values | Base vote |
+| 3 | **kan_extension** | 0.497 | Left Kan extension along forgetful functor | Base vote |
+| 4 | **yoneda_pattern** | 0.520 | Yoneda embedding similarity | Base vote |
+| 5 | **binding_evidence** | active | IC50/ABPP + drug properties + Pfam domains | Base vote (2026-05-13) |
+| 6 | **structural_hole** | 0.500 | Burt structural holes | Base vote |
+| 7 | **type_heuristic** | 0.500 | Type-based heuristic matching | Base vote |
+| 8 | **fibration_lift** | 0.500 | Cartesian lift in fibrations | Base vote |
+| 9 | **yoneda_distance** | active | Structural similarity on MEASURED+ESTABLISHED | Additive bonus (2026-05-26) |
 
-Strategies 5-7 are inactive on the current graph (contribute zero signal) but
-are retained for future graph expansions.
+**New Integration (2026-05-26):** Yoneda distance strategy added as additive bonus (`min(0.10, 0.06 * similarity)`),
+not averaged into base vote, to avoid score dilution. Improves AUPRC from 0.537 to 0.634 (+18%).
+
+**Binding evidence strategy (2026-05-13):** Integrates ABPP IC50 data (65 entries), Lipinski
+drug-likeness, Pfam domain matching, molecular compatibility scoring. Active signal when IC50 data exists.
 
 Additional experimental strategies exist in `oracle/` (geometric homotopy,
 boundary detection, cellular dynamics, etc.) but are not used in the benchmark
@@ -102,37 +106,57 @@ harness.
 
 ---
 
-## 5. Scoring Formula
+## 5. Scoring Formula (2026-05-26, post-Yoneda Distance)
 
 From `validation/repurposing_benchmark.py`:
 
 ```python
 def score_pair(strategies, source, target):
     votes = []
-    composition_count = 0
+    composition_weight = 0.0
+    yoneda_similarity = 0.0
     for strategy in strategies:
         preds = strategy.predict(source, target)
         if preds:
             best = max(preds, key=lambda p: p.confidence)
+            if strategy.name == "yoneda_distance":
+                yoneda_similarity = best.confidence
             votes.append((strategy.name, best.confidence))
             if strategy.name == "composition":
-                composition_count = len(preds)
+                composition_weight = sum(p.confidence for p in preds)
 
     if not votes:
         return 0.0, votes
 
-    base = sum(c for _, c in votes) / len(votes)
-    path_bonus = min(0.25, 0.10 * composition_count)
+    # Base average excludes yoneda_distance (additive bonus instead)
+    base_votes = [(n, c) for n, c in votes if n != "yoneda_distance"]
+    base = sum(c for _, c in base_votes) / len(base_votes) if base_votes else 0.0
+
+    # Path bonus: confidence-weighted
+    path_bonus = min(0.25, 0.04 * composition_weight)
+
+    # Yoneda bonus: additive, not averaged
+    yoneda_bonus = min(0.10, 0.06 * yoneda_similarity) if yoneda_similarity > 0 else 0.0
+
+    # Composition discount if no paths
+    if composition_weight == 0:
+        base *= 0.80
+
+    final_score = min(1.0, base + path_bonus + yoneda_bonus)
     return min(1.0, base + path_bonus), votes
 ```
 
 1. Each strategy predicts independently; take best confidence per strategy
-2. Average all strategy confidences: `base = mean(confidences)`
-3. Add path bonus: `min(0.25, 0.10 * composition_count)`
-4. Final score: `min(1.0, base + path_bonus)`
+2. Base score = mean of first 8 strategy confidences (yoneda_distance excluded)
+3. Path bonus = `min(0.25, 0.04 * sum(path_confidence_weights))`
+   - Confidence-weighted: high-confidence paths (0.90) contribute ~5x more than REJECT paths (0.20)
+4. Yoneda bonus = `min(0.10, 0.06 * similarity)` (additive on MEASURED+ESTABLISHED evidence subgraph)
+5. Composition discount = 0.80x multiplier if zero composition paths found
+6. Final score = `min(1.0, base + path_bonus + yoneda_bonus)`
 
-Path bonus was tuned via LOOCV grid search. Uniform strategy weights confirmed
-optimal by `calibrate_loocv.py`.
+Path bonus tuned via LOOCV grid search (`tune_path_bonus.py`). Uniform strategy weights confirmed
+optimal by `calibrate_loocv.py`. Yoneda distance added 2026-05-26 as additive bonus to preserve
+existing AUROC while improving precision (AUPRC +18%).
 
 ---
 

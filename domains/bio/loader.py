@@ -89,12 +89,16 @@ class BioDomainLoader:
         for mor in morphisms:
             # Convert StoredMorphism to Category morphism
             # Category.connect(source, target, name=None, confidence=1.0, **metadata)
+            # Filter out keys that collide with connect() positional/keyword args.
+            meta = mor.metadata if mor.metadata else {}
+            safe_meta = {k: v for k, v in meta.items()
+                         if k not in ("source", "target", "name", "confidence")}
             self.category.connect(
                 mor.source_name,
                 mor.target_name,
                 name=mor.name,
                 confidence=mor.confidence if mor.confidence else 1.0,
-                **(mor.metadata if mor.metadata else {})
+                **safe_meta
             )
             self.loaded_count["morphisms"] += 1
 

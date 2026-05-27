@@ -186,6 +186,7 @@ def _detail_block(entry: dict) -> str:
             "fibration_lift": "Structural Inference",
             "topos_logic": "Evidence Integration",
             "binding_evidence": "Binding Evidence",
+            "yoneda_distance": "Structural Similarity",
         }
         for name, conf in entry["votes"]:
             label = strategy_labels.get(name, name)
@@ -222,6 +223,18 @@ def _detail_block(entry: dict) -> str:
                 lines.append(f"  Note: {drug} is a monoclonal antibody (not small molecule)")
         except Exception:
             pass  # Binding display is best-effort
+
+    # Show Yoneda structural similarity detail when the strategy voted
+    yoneda_vote = [c for n, c in entry["votes"] if n == "yoneda_distance"]
+    if yoneda_vote:
+        sim_score = yoneda_vote[0]
+        lines.append("")
+        lines.append("Structural similarity (Yoneda distance on MEASURED+ESTABLISHED):")
+        lines.append(f"  Similarity score: {sim_score:.3f} (distance {1.0 - sim_score:.3f})")
+        lines.append(
+            f"  Interpretation: {drug} shares {sim_score:.0%} of its high-quality "
+            f"target profile with a drug FDA-approved for {disease}"
+        )
 
     if entry["chains"]:
         # Classify chains by quality

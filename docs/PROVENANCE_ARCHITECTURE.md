@@ -1,6 +1,6 @@
 # Provenance Architecture
 
-Last updated: 2026-05-24
+Last updated: 2026-05-26
 
 ## Overview
 
@@ -8,36 +8,49 @@ Every morphism (edge) in tier1.db has a `provenance` field that documents
 where the data came from. This is the audit trail -- a researcher can trace
 any prediction back to its source.
 
-**Current state: 4,956/4,956 morphisms have provenance (100%)**
+**Current state: 5,382/5,382 morphisms have provenance (100%)**
 
-The graph has grown from 1,260 curated edges to 4,956 edges through a
-PubMed batch import of 3,145 Protein->Disease associations. All imported
-edges have PMID citations and were processed through a 5-layer categorical
-verification system that assigns quality classifications and confidence values.
+The graph has grown from 1,260 curated edges to 5,382 edges through:
+- PubMed batch import of 3,300+ Protein->Disease associations (2026-05-24)
+- NLP quantitative evidence extraction from 204 PMIDs (373 data points, 2026-05-25)
+- ChEMBL expansion and drug name normalization (2026-05-10)
+
+All edges have citations (PMIDs or ChEMBL IDs) and were processed through categorical
+verification or quantitative validation. 204 edges now include quantitative values
+(IC50, mutation frequency, hazard ratio, response rate).
 
 ## Data Sources (by count)
 
 | Source | Count | % | Description |
 |--------|-------|---|-------------|
-| PMID/Literature | 3,359 | 67.8% | PubMed literature citations (3,145 batch-imported + 214 curated) |
-| ChEMBL | 881 | 17.8% | Drug-target binding assays (IC50, Ki, Kd) from ChEMBL database |
-| ESM-2 | 422 | 8.5% | Protein embeddings, similarity scores from Meta's protein language model |
-| FDA | 79 | 1.6% | FDA-approved drug mechanisms with NDA/BLA numbers |
-| KEGG | 72 | 1.5% | KEGG pathway database (canonical signaling cascades) |
-| Curated protein sets | 51 | 1.0% | cancer_proteins.py / aml_proteins.py (curated from STRING/KEGG/Reactome) |
+| PMID/Literature | 3,754 | 69.7% | PubMed literature citations (3,300 batch-imported + 454 curated/NLP) |
+| ChEMBL | 881 | 16.4% | Drug-target binding assays (IC50, Ki, Kd) from ChEMBL database |
+| NLP Quantitative | 204 | 3.8% | IC50, mutation frequency, hazard ratio, response rate (373 extractions from 204 PMIDs) |
+| ESM-2 | 422 | 7.8% | Protein embeddings, similarity scores from Meta's protein language model |
+| FDA | 79 | 1.5% | FDA-approved drug mechanisms with NDA/BLA numbers |
+| KEGG | 72 | 1.3% | KEGG pathway database (canonical signaling cascades) |
+| Curated protein sets | 51 | 0.9% | cancer_proteins.py / aml_proteins.py (curated from STRING/KEGG/Reactome) |
 | STRING PPI | 22 | 0.4% | Protein-protein interactions from STRING database |
 | ABPP | 17 | 0.3% | Activity-based protein profiling experimental data with PMIDs |
 | Pathway inference | 16 | 0.3% | Pathway neighbor inference (protein linked via shared pathway) |
 | Established mechanisms | 12 | 0.2% | Well-known pharmacology (COX inhibitors, AMPK activator, etc.) |
 | GTEx | 12 | 0.2% | Gene expression from GTEx (tissue specificity) |
-| Other | 13 | 0.3% | DepMap (2), clinical (2), review (3), preclinical (2), CosMx (2), misc |
+| Other | 13 | 0.2% | DepMap, clinical, review, preclinical, CosMx, misc |
 
 ## Confidence-Based Quality Tiers
 
 Edges are classified into quality tiers by their assigned confidence value,
 which reflects evidence strength:
 
-### High Confidence (>= 0.70): 1,286 edges, 25.9%
+### Quantitative Tier (NEW, 2026-05-25): 204 edges with real measurements
+Edges upgraded from text-only PMID citations to include quantitative values:
+- IC50/Ki/Kd binding affinity (nM, μM, mM)
+- Mutation frequencies (%)
+- Hazard ratios (HR)
+- Response rates (% responding)
+- All values validated against PubMed abstracts (92.2% accuracy)
+
+### High Confidence (>= 0.70): 1,286 edges, 23.9%
 Authoritative databases with reproducible data:
 - ChEMBL assay results (IC50, Ki, Kd with assay IDs)
 - FDA drug labels (NDA/BLA numbers)
@@ -47,14 +60,14 @@ Authoritative databases with reproducible data:
 - ABPP experimental profiling
 - Curated literature with PMID verification
 
-### Medium Confidence (0.40 - 0.69): 588 edges, 11.9%
+### Medium Confidence (0.40 - 0.69): 588 edges, 10.9%
 Computationally derived or partially verified:
 - ESM-2 moderate-similarity pairs
 - PubMed edges classified as PARTIAL (passed some categorical verification)
 - Curated protein sets (cancer_proteins.py, aml_proteins.py)
 - GTEx expression data
 
-### Low Confidence (< 0.40): 3,082 edges, 62.2%
+### Low Confidence (< 0.40): 3,508 edges, 65.2%
 PubMed batch-imported edges that failed categorical verification:
 - ORPHAN (960 edges, conf 0.35): PubMed co-mention, no mechanistic path found
 - REJECT (2,122 edges, conf 0.20): Failed categorical verification, treat as noise

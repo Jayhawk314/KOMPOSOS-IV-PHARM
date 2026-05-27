@@ -52,6 +52,9 @@ class PredictionType(Enum):
     # From Binding Evidence (ABPP, Boltz2, Pfam domain matching)
     BINDING_EVIDENCE = "binding_evidence"
 
+    # From Yoneda Distance (STT structural similarity on clean subgraph)
+    YONEDA_DISTANCE = "yoneda_distance"
+
     # Meta
     ENSEMBLE = "ensemble"  # Combined from multiple strategies
 

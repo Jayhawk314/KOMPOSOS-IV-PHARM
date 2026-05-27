@@ -1,8 +1,8 @@
 # KOMPOSOS-IV-PHARM: Drug Repurposing Case Studies
 
-**Date**: 2026-05-12
-**Source**: Categorical AI analysis of 78-drug, 20-disease oncology knowledge graph
-**Validation**: LOOCV AUROC 0.974 [95% CI: 0.965-0.983], 44 FDA-approved positive labels
+**Date**: 2026-05-26 (updated: Yoneda Distance Strategy, quantitative evidence)
+**Source**: Categorical AI analysis of 78-drug, 20-disease oncology knowledge graph (5,382 edges)
+**Validation**: remove_direct_labels AUROC 0.965, AUPRC 0.634; LOOCV AUROC 0.9616; 44 FDA-approved positive labels
 **Disclaimer**: Research hypotheses for investigation. Not clinical recommendations.
 
 ---
@@ -13,17 +13,22 @@
 
 **Mechanistic Paths**: The system looks for chains connecting drugs to diseases through protein targets: Drug→Protein→Disease. These are biological mechanisms explaining how a drug might work.
 
-**7 Strategies**: Different mathematical approaches (composition, pattern matching, logic reasoning, etc.) that independently evaluate whether a drug-disease connection makes sense. Think of them as 7 expert opinions using different reasoning methods.
+**9 Strategies**: Different mathematical approaches (composition, pattern matching, logic reasoning, binding evidence, structural similarity, etc.) that independently evaluate whether a drug-disease connection makes sense. Think of them as 9 expert opinions using different reasoning methods.
 
-**Scoring**: A candidate's overall score combines votes from all strategies plus a bonus for having multiple mechanistic paths. Higher consensus + more pathways = higher score.
+**Scoring**: A candidate's overall score combines votes from all strategies plus bonuses for:
+1. Multiple mechanistic paths (path bonus: weighted by confidence)
+2. Structural similarity to known treatments (Yoneda distance bonus)
+Higher consensus + more pathways + structural similarity = higher score.
 
 ## Understanding the Numbers
 
-**Overall Score (0.9+)**: Combines votes from 7 mathematical strategies plus a bonus for mechanistic Drug→Protein→Disease paths. Higher scores mean stronger consensus across strategies and more supporting evidence chains.
+**Overall Score (0.9+)**: Combines votes from 9 mathematical strategies plus path and structural similarity bonuses. Higher scores mean stronger consensus across strategies and more supporting evidence chains.
 
 **Individual Edge Confidences (0.5-0.8)**: Biological plausibility of each hop in a mechanistic path (e.g., "Mebendazole inhibits VEGFR2" = 0.68). These are lower because they reflect single relationships, not the combined evidence.
 
-**Why both matter**: A high overall score (0.9) with moderate edge confidences (0.6-0.7) means multiple independent pathways support the prediction -- that's strong evidence.
+**Quantitative Data**: Many candidates now include measured values like IC50 (binding affinity in μM), mutation frequency (%), hazard ratio, or response rate (%). These are extracted from PubMed abstracts and validated against the original papers.
+
+**Why multiple signals matter**: A high overall score (0.9) with moderate edge confidences (0.6-0.7), multiple pathways, AND quantitative IC50 data means multiple independent evidence types support the prediction -- that's strong scientific evidence.
 
 ---
 

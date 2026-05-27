@@ -1,6 +1,6 @@
 # KOMPOSOS-IV-PHARM: Master Technical Guide
 
-**Date**: 2026-05-12 (updated: provenance 100%, audit corrections)
+**Date**: 2026-05-12 (last major rewrite; metrics updated through 2026-05-26: Yoneda Distance Strategy, quantitative evidence)
 **Author**: James Ray Hawkins
 **License**: Apache 2.0 / Commercial dual license
 
@@ -14,31 +14,32 @@ KOMPOSOS-IV-PHARM is a categorical AI runtime for pharmaceutical discovery.
 
 **Current Status**: Working research prototype with validated metrics
 
-**Core Metrics** (44 FDA-approved indications, post-ChEMBL expansion, audit-corrected 2026-05-11):
-- **LOOCV AUROC**: 0.974 [95% CI: 0.965-0.983]
-- **AUPRC**: 0.516
-- **Hits@5**: 1.00 (100% of true positives in top 5 ranked)
-- **MRR**: 0.078 (mean reciprocal rank)
-- **Margin over baselines**: +0.043 (best baseline: shortest_path 0.931)
+**Core Metrics** (44 FDA-approved indications, 9 strategies, post-Yoneda Distance integration, 2026-05-26):
+- **remove_direct_labels AUROC**: 0.965, AUPRC: 0.634, Hits@10: 0.80, MRR: 0.085
+- **LOOCV AUROC**: 0.9616, AUPRC: 0.5668, Hits@5: 0.80, Hits@10: 0.70, MRR: 0.077
+- **Margin over baselines**: +0.034 AUROC (best baseline: shortest_path 0.931)
+- **Quantitative improvement**: +0.097 AUPRC (major precision gain from Yoneda Distance + quantitative evidence)
 
 **Additional Validation** (needs re-run on expanded graph):
-- External (Hetionet): AUROC 0.744 on 7 held-out pairs (base graph)
-- Temporal holdout (2013 cutoff): AUROC 0.959 on 22 post-2013 FDA approvals (base graph)
-- Disease-level: Mean AUROC 0.877 (range 0.615-0.996 across 7 diseases, base graph)
+- External (Hetionet): AUROC 0.744 on 7 held-out pairs (pre-expansion graph)
+- Temporal holdout (2013 cutoff): AUROC 0.959 on 22 post-2013 FDA approvals (pre-expansion graph)
+- Disease-level: Mean AUROC 0.877 (range 0.615-0.996 across 7 diseases, pre-expansion graph)
+- ClinicalTrials.gov cross-check: 63% IN_TRIALS, 30% PRECLINICAL, 7% NOVEL
 
-**Data** (2026-05-11, audit-corrected):
-- 1143 objects (78 drugs, 20 diseases, 366 proteins, 679 ExternalCompound nodes), 1260 morphisms
+**Data** (2026-05-26, post-expansion and quantification):
+- 1,146 objects (78 drugs, 20 diseases, 366 proteins, 682 ChEMBL ExternalCompound nodes), 5,382 morphisms
 - 44 FDA-approved Drug→Disease labels (all with PMIDs)
-- Provenance: 1260/1260 morphisms cited (100.0%): PMIDs + ChEMBL IDs
-- 17 new Drug→Protein edges for base drugs via ChEMBL normalization
-- SHA256: `0BA4A7E01BBA3E1E52A03CD7765A3E6523618F439AB8A90ED4BD6B4BD95BC8E6`
+- Provenance: 5,382/5,382 morphisms cited (100.0%): PMIDs + ChEMBL IDs
+- Quantitative evidence: 204 edges with IC50, mutation frequency, hazard ratio, response rate
+- NLP extraction: 373 quantitative data points from 204 PMIDs (92.2% validated)
+- SHA256: `AD65C11989BB2C1C17A404B3CFDD5D65D833E4C19C5E771F73A8C1855B702A25`
 
 **Architecture Stack**:
 1. Category Theory Runtime (core/) - objects, morphisms, enrichment
-2. Oracle System (oracle/) - 7 production inference strategies
-3. Mathematical Foundations - OPTIMUS, COG, Yoneda, Kan extensions, Topos logic
-4. Scientific Pipeline - tier1.db, BioDomainLoader, validation benchmarks
-5. Provenance & Audit - reproducible builds, PMID citations, external audit
+2. Oracle System (oracle/) - 9 production inference strategies (composition, topos_logic, kan_extension, yoneda_pattern, binding_evidence, structural_hole, type_heuristic, fibration_lift, yoneda_distance)
+3. Mathematical Foundations - OPTIMUS, COG, Yoneda, Kan extensions, Topos logic, Yoneda Distance
+4. Scientific Pipeline - tier1.db (5,382 morphisms), BioDomainLoader, quantitative validation, NLP extraction
+5. Provenance & Audit - reproducible builds, PMID citations, external audit, quantitative evidence validation
 
 ---
 

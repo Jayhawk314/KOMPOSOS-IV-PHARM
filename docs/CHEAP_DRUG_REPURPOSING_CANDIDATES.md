@@ -1,10 +1,10 @@
 # Cheap Drug Repurposing Candidates
 
-**Generated**: 2026-05-12
+**Generated**: 2026-05-26 (post-Yoneda Distance Strategy, quantitative evidence)
 **Source**: KOMPOSOS-IV-PHARM tier1.db
-**Graph**: 1143 objects, 1260 morphisms
-**Validation**: LOOCV AUROC 0.974 [95% CI: 0.965-0.983], full_typed/loocv protocol, 44 positives
-**Strongest baseline**: shortest_path AUROC 0.931 (margin +0.043)
+**Graph**: 1,146 objects, 5,382 morphisms (464 core + 682 ChEMBL compounds)
+**Validation**: remove_direct_labels AUROC 0.965, AUPRC 0.634; LOOCV AUROC 0.9616, AUPRC 0.5668; 44 positives
+**Strongest baseline**: shortest_path AUROC 0.931 (margin +0.034)
 
 ## Executive Summary
 

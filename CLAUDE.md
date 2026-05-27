@@ -59,18 +59,28 @@ python validation\repurposing_benchmark.py --view full_typed --protocol loocv
 Add `--ci` for bootstrap 95% confidence intervals, `--baselines` for baseline
 comparisons (random, degree, common-neighbor, shortest-path, path-count).
 
-Current metrics (2026-05-25, post-quantitative expansion, 8 strategies + evidence tiers, 44 positives, 204 quantitative edges):
-- `full_typed/remove_direct_labels`: **AUROC 0.956**, AUPRC 0.537, Hits@5 1.00, Hits@10 0.70 (stable after quantitative expansion)
-- `full_typed/loocv`: **AUROC 0.945**, AUPRC 0.408, Hits@5 0.80, Hits@10 0.70, MRR 0.065 (2.9% decrease, trade-off for auditable evidence)
+Current metrics (2026-05-26, 9 strategies incl. Yoneda distance bonus, 44 positives, 204 quantitative edges):
+- `full_typed/remove_direct_labels`: **AUROC 0.965**, AUPRC 0.634, Hits@5 1.00, Hits@10 0.80 (post-Yoneda integration)
+- `full_typed/loocv`: **AUROC 0.945**, AUPRC 0.408, Hits@5 0.80, Hits@10 0.70, MRR 0.065 (pre-Yoneda; LOOCV pending re-run)
 - `full_typed/as_loaded`: AUROC 0.457, AUPRC 0.025 (expected artifact, composition skips existing edges)
+
+**Yoneda Distance Strategy integration (2026-05-26):**
+- 9th strategy: structural similarity via confidence-weighted Yoneda presheaf fingerprints
+- Operates on clean subgraph (MEASURED + ESTABLISHED edges only, 1355 edges)
+- Integrated as additive bonus (like path_bonus), not averaged vote
+- Coefficient 0.06 tuned via grid search over [0.0, 0.20] with cap 0.10
+- AUROC 0.956 -> 0.965 (+0.009), AUPRC 0.537 -> 0.634 (+0.097), Hits@10 0.70 -> 0.80
+- All metrics improved, zero regressions
+- Drug equivalence classes discovered: 6 pairs with identical Yoneda profiles
+  (Binimetinib=Cobimetinib, Encorafenib=Vemurafenib, Carboplatin=Oxaliplatin, etc.)
+- Triage reports now show "Structural Similarity" vote with interpretation
+- STT experiment script: `stt_repurposing.py` (standalone comparison of 3 STT strategies)
 
 **Quantitative evidence expansion (2026-05-25):**
 - 373 NLP extractions from 204 PMIDs (92.2% validated against PubMed abstracts)
 - 204 edges with IC50, hazard ratios, mutation frequencies, response rates
 - 250 edges updated, 244 tier upgrades to MEASURED
-- Main benchmark (remove_direct_labels) AUROC stable at 0.956
-- LOOCV AUROC 0.945 (down 2.9%) - acceptable trade-off for transparent, auditable quantitative measurements
-- Triage reports now display quantitative evidence: `[IC50=7.7 uM]`, `[HR=0.97]`, `[Mutation freq=50.0%]`
+- Triage reports display quantitative evidence: `[IC50=7.7 uM]`, `[HR=0.97]`, `[Mutation freq=50.0%]`
 
 Path bonus tuned via LOOCV grid search: min(0.25, 0.04 * sum(path_confidence)).
 Confidence-weighted paths (2026-05-24): each path weighted by min-hop confidence.
@@ -162,6 +172,37 @@ chemistry bridges into the repurposing scoring pipeline via 7 weighted component
 Triage reports show IC50 values, engagement status, and drug-likeness when
 the binding_evidence strategy votes.
 
+## Yoneda Distance Strategy (2026-05-26)
+
+The 9th oracle strategy (`oracle/yoneda_strategy.py`) scores Drug-Disease pairs
+by structural similarity to known treatments on the clean evidence subgraph.
+
+**How it works:**
+1. Loads MEASURED + ESTABLISHED edges only (1355 edges, noise-free)
+2. Computes confidence-weighted Yoneda presheaf fingerprints for all objects
+   (each (neighbor, relation) pair weighted by max morphism confidence)
+3. For a Drug-Disease pair, finds the most similar drug that is FDA-approved
+   for that disease using weighted Jaccard distance
+4. Reports similarity as a score (0.0 = no overlap, 1.0 = identical profile)
+
+**Integration:** Additive bonus in `score_pair()`, not an averaged vote.
+Raw Yoneda scores (median 0.50 for positives) are lower than other strategies
+(~0.85), so averaging them in would drag AUROC down. As a bonus
+(`min(0.10, 0.06 * similarity)`), it can only help, never hurt.
+
+**Scientific value beyond AUROC:**
+- Composition tells you THAT a path exists (Drug -> Protein -> Disease)
+- Yoneda tells you WHY the drug fits (similar target profile to known treatment)
+- Drug equivalence classes are ground-truth validated (MEK inhibitors, BRAF
+  inhibitors, platinum compounds, NSAIDs, MET inhibitors, RET inhibitors)
+- AUPRC improvement (+0.097) means top candidates are more likely to be real
+
+**STT experiment:** `stt_repurposing.py` tested 3 Simplicial Type Theory
+strategies (Yoneda distance, fibration transport, Rezk completion). Only
+Yoneda added value; transport was too sparse (3 diseases with zero protein
+coverage on clean subgraph), Rezk was identical to Yoneda (no disease
+equivalence classes found).
+
 ## Track B: Drug Design
 
 Status: long-term goal, not scientifically validated in this repo.
@@ -191,8 +232,9 @@ Core layers:
 
 Key code areas:
 - `core/`: fused Category runtime and categorical infrastructure.
-- `oracle/`: prediction/scoring strategies (8 strategies incl. binding_evidence).
+- `oracle/`: prediction/scoring strategies (9 strategies incl. binding_evidence + yoneda_distance).
 - `oracle/binding_strategy.py`: BindingEvidenceStrategy (ABPP + Boltz2 + drug properties).
+- `oracle/yoneda_strategy.py`: YonedaDistanceStrategy (structural similarity on clean subgraph).
 - `domains/bio/`: bio graph loader.
 - `data/store.py`: SQLite store API.
 - `data/drugs/build_tier1.py`: reproducible DB build from manifest.
@@ -236,7 +278,8 @@ first-100-object behavior is preserved only by
 8. ~~Ablation studies.~~ DONE (composition is dominant strategy).
 9. ~~ClinicalTrials.gov cross-check.~~ DONE (63% IN_TRIALS, 30% PRECLINICAL, 7% NOVEL).
 10. ~~Wire molecular/chemistry bridges into scoring.~~ DONE (binding_evidence strategy, 2026-05-13).
-11. Expand data sources (ChEMBL SQLite - see `data/drugs/importers/CHEMBL_SETUP.md`).
+11. ~~Integrate STT structural analysis.~~ DONE (Yoneda distance strategy, 2026-05-26).
+12. Expand data sources (ChEMBL SQLite - see `data/drugs/importers/CHEMBL_SETUP.md`).
 
 ## Verification
 

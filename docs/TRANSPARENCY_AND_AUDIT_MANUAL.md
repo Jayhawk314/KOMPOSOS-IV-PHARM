@@ -1,7 +1,7 @@
 # KOMPOSOS-IV-PHARM: Complete Transparency & Audit Manual
 ## From Beginner to Expert Understanding
 
-**Version:** 2026-05-24
+**Version:** 2026-05-26 (updated: 9 strategies, quantitative evidence, Yoneda Distance)
 **Author:** System Documentation
 **Purpose:** Explain every component of the drug repurposing system so users can audit, validate, and understand every prediction.
 
@@ -14,7 +14,7 @@
 3. [Core Concepts: Knowledge Graphs Explained](#3-core-concepts)
 4. [The Five Data Sources in Detail](#4-data-sources)
 5. [How Edges Are Created and Scored](#5-edge-creation)
-6. [The Prediction Engine: 8 Strategies Explained](#6-prediction-strategies)
+6. [The Prediction Engine: 9 Strategies Explained](#6-prediction-strategies)
 7. [Score Calculation: Math Behind Predictions](#7-score-calculation)
 8. [Audit Trails: Tracing Every Claim](#8-audit-trails)
 9. [Current Gaps and Solutions](#9-transparency-gaps)

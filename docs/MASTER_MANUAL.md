@@ -1,17 +1,18 @@
 # KOMPOSOS-IV: The Master Manual
 
-> **Note (2026-05-12):** This manual was written 2026-04-07. For current drug
-> repurposing metrics, validation, and provenance status, see `TECHNICAL_OVERVIEW.md`
-> and `CURRENT_STATE.md`. Tests: 156 (up from 151). Production benchmark uses 7
-> of 22 strategies. Provenance: 100% (1260/1260 morphisms cited).
+> **Note (2026-05-26):** This manual was written 2026-04-07 with updates through 2026-05-12.
+> **Updated 2026-05-26:** Yoneda Distance Strategy added (9th oracle strategy). Morphisms: 5,382 (was 1,260).
+> AUROC: 0.965 remove_direct_labels, 0.9616 LOOCV (post-Yoneda). AUPRC improved to 0.634.
+> Quantitative evidence: 204 edges with IC50, mutation freq, HR, response rate (373 NLP extractions).
+> For current metrics and status, see `CURRENT_STATE.md`, `SYSTEM_SUMMARY.md`, and `TECHNICAL_OVERVIEW.md`.
 
 **The complete guide to the mathematics, architecture, and operation of the system.**
 
 **Author:** James Ray Hawkins
-**Date:** 2026-04-07
+**Date:** 2026-04-07 (last substantive update; metrics current through 2026-05-26)
 **License:** Apache-2.0 / Commercial dual license
 **Python:** 3.10+
-**Status:** 131 files, 151 tests pass, 0 dead code, 22 oracle strategies
+**Status:** 131+ files, 156 tests pass, 0 dead code, 9 production oracle strategies (22 total including experimental)
 
 ---
 

@@ -32,7 +32,8 @@
       "WebFetch(domain:chembl.gitbook.io)",
       "Bash(git remote set-url:*)",
       "Bash(xargs:*)",
-      "Bash(tee:*)"
+      "Bash(tee:*)",
+      "Bash(test:*)"
     ]
   }
 }

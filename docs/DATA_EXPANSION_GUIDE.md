@@ -1,8 +1,8 @@
 # Data Expansion Guide for KOMPOSOS-IV-PHARM
 
-**Date**: 2026-05-14 (updated: 2026-05-24, PubMed expansion complete)
+**Date**: 2026-05-14 (updated: 2026-05-26, Yoneda Distance Strategy + quantitative evidence)
 **Purpose**: Recommendations for expanding tier1.db with high-quality biomedical data sources
-**Current State**: 464 objects (1,146 with ExternalCompound), 4,956 morphisms, 44 FDA-approved Drug→Disease labels, **100% provenance coverage**
+**Current State**: 464 objects (1,146 with ExternalCompound), 5,382 morphisms, 44 FDA-approved Drug→Disease labels, **100% provenance coverage**, 204 edges with quantitative evidence
 
 ---
 
@@ -19,12 +19,13 @@
 - **STRING PPI**: 22 protein-protein interactions
 - **ABPP**: 17 experimental drug-target IC50 entries
 
-**Provenance Status** (2026-05-24):
-- **4,956/4,956 morphisms have provenance (100.0%)**
+**Provenance Status** (2026-05-26):
+- **5,382/5,382 morphisms have provenance (100.0%)**
 - All 44 Drug→Disease treats edges cited (100%)
 - Zero uncited morphisms remain
 - PubMed batch edges classified by 5-layer categorical verification:
   PARTIAL (63 edges, conf 0.45-0.54), ORPHAN (960, conf 0.35), REJECT (2,122, conf 0.20)
+- Quantitative evidence tier: 204 edges with IC50, HR, mutation freq, response rate (NLP extracted + genomic)
 
 ---
 

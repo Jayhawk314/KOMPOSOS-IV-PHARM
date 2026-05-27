@@ -46,7 +46,7 @@ and gets back:
    paths with citations at every hop
 3. **Confidence scores** -- telling the researcher how much to trust each hop
    (0.90+ = authoritative database, 0.35 = PubMed co-mention only, 0.20 = noise)
-4. **Strategy votes** -- how many of 8 independent scoring methods agree
+4. **Strategy votes** -- how many of 9 independent scoring methods agree
 5. **Binding data** -- IC50 values, engagement percentages, and PMIDs when
    Activity-Based Protein Profiling (ABPP) data exists
 6. **Provenance fraction** -- what percentage of the evidence chain is cited
@@ -74,19 +74,20 @@ The system operates on a curated biomedical knowledge graph stored as a SQLite
 database (`data/drugs/tier1.db`), built deterministically from a JSON manifest
 (`data/drugs/tier1_manifest.json`).
 
-### Graph Composition (2026-05-25)
+### Graph Composition (2026-05-26)
 
 | Fact | Value |
 |------|-------|
-| Total objects | 464 |
+| Total objects | 1,146 (464 core + 682 ChEMBL ExternalCompound nodes) |
 | Drugs | 78 (FDA-approved, oncology focus) |
 | Diseases | 20 cancer types |
 | Proteins | 366 (receptors, oncogenes, signaling, etc.) |
-| Total edges (morphisms) | ~4,900 |
+| Total edges (morphisms) | 5,382 |
 | Curated edges | ~1,600 (ChEMBL, FDA, KEGG, ABPP, curated literature) |
 | PubMed batch-imported edges | ~3,300 (categorically verified, confidence-annotated) |
 | Approved indication labels | 44 (all FDA-approved oncology, all with PMIDs) |
 | Provenance coverage | 100% (every edge has a citation or database ID) |
+| Edges with quantitative values | 204 (IC50, mutation frequency, hazard ratio, response rate) |
 
 ### Data Sources
 
@@ -150,9 +151,9 @@ scores are stored in edge metadata for full transparency.
 
 ## How Scoring Works
 
-### The 8 Strategies
+### The 9 Strategies
 
-Each drug-disease pair is evaluated by 8 independent strategies. Each strategy
+Each drug-disease pair is evaluated by 9 independent strategies. Each strategy
 is a different mathematical or molecular lens:
 
 | # | Strategy | What it asks | Signal type |
@@ -165,35 +166,42 @@ is a different mathematical or molecular lens:
 | 6 | **Structural hole** | Would this edge close a network gap? | Graph topology |
 | 7 | **Type heuristic** | Do the types align for a treatment relationship? | Type constraint |
 | 8 | **Fibration lift** | Can structure be transferred across disease types? | Cross-domain |
+| 9 | **Yoneda distance** | Does this drug have a structurally similar treatment for the target disease? | Structural substitutability |
 
 Composition is the dominant strategy -- it contributes the most signal. The
-other strategies add modest but measurable value: the 8-strategy ensemble
-outperforms any single strategy (AUROC 0.974 vs best single 0.969).
+other strategies add modest but measurable value: the 9-strategy ensemble
+with Yoneda distance bonus outperforms the previous 8-strategy system
+(AUROC 0.965 vs previous 0.956).
 
-Strategies 5-7 are currently inactive on the graph (zero signal) but are
-retained for future graph expansions where they become relevant.
+The Yoneda distance strategy (2026-05-26) is integrated as an additive bonus
+(`min(0.10, 0.06 * similarity)`) rather than a base vote, preventing score
+dilution while capturing structural similarity signal on the MEASURED+ESTABLISHED
+evidence subgraph.
 
 ### Score Calculation
 
 ```
 1. Each strategy predicts independently; take best confidence per strategy
-2. Base score = mean of all strategy confidences that voted
+2. Base score = mean of all non-Yoneda strategy confidences
 3. Path bonus = min(0.25, 0.04 * sum(path_confidence_weights))
    - Each path weighted by its actual min-hop confidence
    - High-confidence paths (0.90) contribute ~5x more than REJECT paths (0.20)
-4. Final score = min(1.0, base + path_bonus)
+4. Yoneda bonus = min(0.10, 0.06 * yoneda_similarity) if yoneda_similarity > 0
+   - Applied as additive bonus, not averaged into base vote
+5. Discount for missing composition = 0.80 multiplier if zero composition paths
+6. Final score = min(1.0, base + path_bonus + yoneda_bonus)
 ```
 
-The confidence-weighted path bonus is key: it prevents low-quality PubMed
-co-mention edges from inflating scores. A single high-quality evidence chain
-(Drug->Protein with FDA citation, Protein->Disease with curated PMID) counts
-more than twenty noisy co-mention paths.
+The confidence-weighted path bonus prevents low-quality PubMed co-mention
+edges from inflating scores. The Yoneda distance bonus adds structural
+similarity signal on high-quality evidence without dragging down positives
+with lower cross-disease similarity scores.
 
 ---
 
 ## Validation: What the Numbers Mean
 
-### Primary Benchmark (2026-05-25)
+### Primary Benchmark (2026-05-26, post-Yoneda Distance Integration)
 
 Protocol: `remove_direct_labels` -- all 44 Drug->Disease "treats" edges are
 removed before scoring. The system must rediscover known approvals using only
@@ -202,22 +210,25 @@ pairs scored.
 
 | Metric | Value | What it means |
 |--------|------:|---------------|
-| AUROC | 0.956 | System ranks a random known pair above a random unknown pair 96% of the time |
-| AUPRC | 0.537 | Precision-recall balance (44 positives in 1,560 pairs = 2.8% base rate) |
+| AUROC | 0.965 | System ranks a random known pair above a random unknown pair 96.5% of the time |
+| AUPRC | 0.634 | Precision-recall: 44 positives in 1,560 pairs, improved from 0.537 |
 | Hits@5 | 1.00 | For each disease, a correct drug appears in the top 5 100% of the time |
+| Hits@10 | 0.80 | 80% of diseases have a correct drug in top 10 |
+| MRR | 0.085 | Mean reciprocal rank of first correct drug per disease |
 
-Graph: ~4,900 edges, confidence-weighted path scoring.
+Graph: 5,382 edges, confidence-weighted path scoring, Yoneda distance bonus.
 
 ### Historical Context
 
 The AUROC has moved through several phases as the graph and scoring evolved:
 
-| Period | Graph | Scoring | AUROC | What changed |
-|--------|-------|---------|------:|--------------|
-| May 13 | 1,260 curated edges | 0.10 * path_count | 0.974 (LOOCV) | Pre-expansion baseline |
-| May 13 | 1,260 curated edges | 0.10 * path_count | 0.940 (remove_direct) | Same graph, harder protocol |
-| May 24 | 4,900 edges | 0.10 * normalized_count | ~0.670 | PubMed expansion broke discrimination |
-| May 24 | 4,900 edges | 0.04 * sum(confidence) | 0.956 | Confidence-weighted fix restored it |
+| Period | Graph | Strategies | Scoring | AUROC | What changed |
+|--------|-------|-----------|---------|------:|--------------|
+| May 13 | 1,260 edges | 8 | 0.10 * path_count | 0.974 (LOOCV) | Pre-expansion baseline |
+| May 13 | 1,260 edges | 8 | 0.10 * path_count | 0.940 (remove_direct) | Same graph, harder protocol |
+| May 24 | 4,900 edges | 8 | 0.10 * normalized_count | ~0.670 | PubMed expansion broke discrimination |
+| May 24 | 4,900 edges | 8 | 0.04 * sum(confidence) | 0.956 | Confidence-weighted fix restored it |
+| May 26 | 5,382 edges | 9 | 0.04 * confidence + yoneda_bonus | 0.965 | Yoneda distance strategy added |
 
 The ~0.670 crash happened because the old path bonus formula treated all paths
 equally regardless of edge quality. With ~3,300 new PubMed edges, almost every
@@ -225,6 +236,11 @@ pair accumulated enough paths to max out the bonus. The confidence-weighted
 formula discriminates because positives (FDA-approved pairs) have paths through
 high-confidence edges (0.88-1.0) while most negatives have paths through
 low-confidence PubMed co-mentions (0.20-0.35).
+
+Yoneda distance integration (2026-05-26) improved AUROC by +0.009 and AUPRC
+by +0.097 by adding structural similarity signal on the MEASURED+ESTABLISHED
+evidence tier. Integrated as additive bonus to prevent score dilution from
+averaging lower-range confidence scores.
 
 ### Baselines (from LOOCV on curated graph, corrected 2026-05-11)
 
@@ -263,7 +279,7 @@ and only 7% are genuinely novel. This means the system surfaces clinically
 plausible hypotheses that real clinical teams have independently found worth
 investigating.
 
-### Ablation Study
+### Ablation Study (Pre-Yoneda, 8 strategies, LOOCV)
 
 | Configuration | AUROC | Delta |
 |---------------|------:|------:|
@@ -273,8 +289,12 @@ investigating.
 | Remove topos_logic | 0.970 | -0.004 |
 | Remove kan_extension | 0.972 | -0.002 |
 
-Composition dominates. The ensemble adds a modest but real signal above any
+Composition dominates. The ensemble adds modest but real signal above any
 single strategy.
+
+Post-Yoneda integration (9 strategies, remove_direct_labels):
+- Full 9-strategy system + additive Yoneda bonus: AUROC 0.965, AUPRC 0.634
+- Yoneda contribution: +0.009 AUROC, +0.097 AUPRC (precision improvement)
 
 ---
 
@@ -410,7 +430,7 @@ Layer 1: ORION            Plugin framework (bridges, events, hot-loading)
 | Directory | Purpose |
 |-----------|---------|
 | `core/` | Category runtime: `Category` class, types, enrichment, persistence |
-| `oracle/` | 8 prediction strategies including binding evidence |
+| `oracle/` | 9 prediction strategies including binding evidence and Yoneda distance |
 | `domains/bio/` | `BioDomainLoader` -- loads tier1.db into Category |
 | `data/store.py` | `KomposOSStore` -- SQLite backend API |
 | `data/drugs/` | Reproducible DB build, drug properties, manifests |
@@ -456,7 +476,11 @@ paths = cat.find_paths("Sorafenib", "RCC", max_length=4)
 | May 24 | 373 overly-broad curated edges removed (proteins linked to all 20 diseases) |
 | May 24 | Confidence-weighted path bonus deployed (0.670 -> 0.956 AUROC) |
 | May 24 | Triage output improvements: deduplication, ESM2 summaries, quality classification |
-| May 25 | System summary documented (this file) |
+| May 25 | System summary documented (this file), evidence quantification roadmap |
+| May 25 | NLP PMID extraction completed: 373 extractions from 204 PMIDs (92.2% validated) |
+| May 25 | Quantitative evidence expansion: 204 edges with IC50, HR, mutation frequencies |
+| May 26 | Yoneda Distance Strategy integrated as 9th oracle strategy (additive bonus model) |
+| May 26 | Benchmarks updated: AUROC 0.965, AUPRC 0.634, improved precision metrics |
 
 ---
 
