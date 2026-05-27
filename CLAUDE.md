@@ -59,10 +59,18 @@ python validation\repurposing_benchmark.py --view full_typed --protocol loocv
 Add `--ci` for bootstrap 95% confidence intervals, `--baselines` for baseline
 comparisons (random, degree, common-neighbor, shortest-path, path-count).
 
-Current metrics (2026-05-26, 9 strategies incl. Yoneda distance bonus, 44 positives, 204 quantitative edges):
-- `full_typed/remove_direct_labels`: **AUROC 0.965**, AUPRC 0.634, Hits@5 1.00, Hits@10 0.80 (post-Yoneda integration)
-- `full_typed/loocv`: **AUROC 0.945**, AUPRC 0.408, Hits@5 0.80, Hits@10 0.70, MRR 0.065 (pre-Yoneda; LOOCV pending re-run)
+Current metrics (2026-05-27, 9 strategies incl. Yoneda distance + fixed Kan extension, 44 positives, 204 quantitative edges):
+- `full_typed/remove_direct_labels`: **AUROC 0.9689**, AUPRC 0.661, Hits@5 1.00, Hits@10 0.80 (Kan extension fixed to use Drug analogs only)
+- `full_typed/loocv`: **AUROC 0.945**, AUPRC 0.408, Hits@5 0.80, Hits@10 0.70, MRR 0.065 (pre-Kan extension fix; rerun pending)
 - `full_typed/as_loaded`: AUROC 0.457, AUPRC 0.025 (expected artifact, composition skips existing edges)
+
+**Kan Extension Strategy fix (2026-05-27):**
+- Kan extension ("Drug Analogy") was returning 0.900 for 96.9% of pairs (zero discrimination)
+- Root cause: considered all objects (proteins, etc.) as analogs, not just drugs
+- Fixed: filter to only Drug objects at line 124 of `oracle/strategies.py`
+- Result: 56% of pairs now have variable scores; only returns when similar drugs exist
+- AUROC impact: 0.965 -> 0.9689 (+0.39%), AUPRC 0.634 -> 0.661 (+4.3%)
+- Negative pairs (like Sorafenib→AML) now score more accurately (0.910 -> 0.895)
 
 **Yoneda Distance Strategy integration (2026-05-26):**
 - 9th strategy: structural similarity via confidence-weighted Yoneda presheaf fingerprints
