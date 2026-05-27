@@ -28,6 +28,7 @@ from oracle.strategies import (
     CompositionStrategy,
     FibrationLiftStrategy,
     KanExtensionStrategy,
+    REPURPOSING_INTERMEDIATE_TYPES,
     StructuralHoleStrategy,
     TypeHeuristicStrategy,
     YonedaPatternStrategy,
@@ -136,9 +137,32 @@ QUALITY_TIERS = {
 }
 
 
+def _is_label_derived_bridge(mor, type_by_name: dict[str, str]) -> bool:
+    """Return True for protein->disease edges generated from drug indications."""
+    if (
+        type_by_name.get(mor.source_name) not in REPURPOSING_INTERMEDIATE_TYPES
+        or type_by_name.get(mor.target_name) != "Disease"
+    ):
+        return False
+
+    provenance = mor.provenance or ""
+    metadata = mor.metadata or {}
+    metadata_text = json.dumps(metadata, sort_keys=True) if isinstance(metadata, dict) else str(metadata)
+    bridge_markers = (
+        "via_drug",
+        "Drug-Target-Disease",
+        "Drug(",
+        "ABPP:",
+        "ChEMBL:via_drug_",
+    )
+    text = f"{provenance} {metadata_text}"
+    return any(marker in text for marker in bridge_markers)
+
+
 def load_full_typed_view(
     db_path: str = DB_PATH,
     skip_pair: Optional[tuple[str, str]] = None,
+    skip_pairs: Optional[set[tuple[str, str]]] = None,
     remove_direct_labels: bool = False,
     quality_tier: str = "all",
 ) -> tuple[Category, list[str]]:
@@ -155,6 +179,9 @@ def load_full_typed_view(
     objects = store.list_objects(limit=100000)
     morphisms = store.list_morphisms(limit=100000)
     type_by_name = {obj.name: obj.type_name for obj in objects}
+    heldout_pairs = set(skip_pairs or set())
+    if skip_pair:
+        heldout_pairs.add(skip_pair)
 
     referenced = {
         name
@@ -179,7 +206,9 @@ def load_full_typed_view(
         )
         if remove_direct_labels and is_drug_disease:
             continue
-        if skip_pair and is_drug_disease and (mor.source_name, mor.target_name) == skip_pair:
+        if is_drug_disease and (mor.source_name, mor.target_name) in heldout_pairs:
+            continue
+        if (remove_direct_labels or heldout_pairs) and _is_label_derived_bridge(mor, type_by_name):
             continue
 
         # Quality tier filter: always keep Drug->Disease treats edges (positives)
@@ -232,22 +261,38 @@ def drug_disease_pairs(category: Category) -> tuple[list[str], list[str], set[tu
     return drugs, diseases, positives
 
 
-def score_pair(strategies, source: str, target: str) -> tuple[float, list[tuple[str, float]]]:
+def _strategy_predictions(strategy, source: str, target: str, *, fail_on_error: bool):
+    try:
+        return strategy.predict(source, target)
+    except Exception as exc:
+        if fail_on_error:
+            raise RuntimeError(
+                f"Strategy {strategy.name!r} failed for {source}->{target}"
+            ) from exc
+        return []
+
+
+def score_pair(
+    strategies,
+    source: str,
+    target: str,
+    *,
+    fail_on_error: bool = False,
+) -> tuple[float, list[tuple[str, float]]]:
     votes: list[tuple[str, float]] = []
     composition_count = 0
     composition_weight = 0.0
     yoneda_similarity = 0.0
     for strategy in strategies:
-        try:
-            preds = strategy.predict(source, target)
-        except Exception:
-            preds = []
+        preds = _strategy_predictions(
+            strategy, source, target, fail_on_error=fail_on_error
+        )
         if preds:
             best = max(preds, key=lambda pred: pred.confidence)
             # Yoneda distance contributes as an additive bonus (like path_bonus),
             # not as a vote.  Its score range (median ~0.50 for positives) is
             # much lower than other strategies (~0.85), so averaging it in would
-            # drag AUROC down.  As a bonus it can only help, never hurt.
+            # make the ranking score harder to interpret.
             if strategy.name == "yoneda_distance":
                 yoneda_similarity = best.confidence
                 votes.append((strategy.name, best.confidence))
@@ -255,7 +300,7 @@ def score_pair(strategies, source: str, target: str) -> tuple[float, list[tuple[
                 votes.append((strategy.name, best.confidence))
             if strategy.name == "composition":
                 composition_count = len(preds)
-                # Weight each path by its actual min-hop confidence.
+                # Weight each path by its actual composed confidence.
                 # High-confidence paths (0.95) contribute ~5x more than
                 # REJECT paths (0.20).  Coefficient 0.04 means ~6 high-quality
                 # paths needed to reach the 0.25 cap, preventing score
@@ -273,9 +318,8 @@ def score_pair(strategies, source: str, target: str) -> tuple[float, list[tuple[
         base = 0.0
     path_bonus = min(0.25, 0.04 * composition_weight)
     # Yoneda bonus: small additive reward for structural similarity to a
-    # known treating drug on the clean (MEASURED+ESTABLISHED) subgraph.
-    # Coefficient 0.06 tuned via grid search: best tradeoff that improves
-    # AUROC (+0.009), AUPRC (+0.097), Hits@10 (+0.10) with no regressions.
+    # visible known treating drug on the clean, non-label fingerprint graph.
+    # This is a ranking bonus, not a calibrated probability.
     yoneda_bonus = min(0.10, 0.06 * yoneda_similarity) if yoneda_similarity > 0 else 0.0
     score = base + path_bonus + yoneda_bonus
 
@@ -302,10 +346,9 @@ def score_pair_detailed(strategies, source: str, target: str) -> dict:
     composition_weight = 0.0
     yoneda_similarity = 0.0
     for strategy in strategies:
-        try:
-            preds = strategy.predict(source, target)
-        except Exception:
-            preds = []
+        preds = _strategy_predictions(
+            strategy, source, target, fail_on_error=False
+        )
         if preds:
             best = max(preds, key=lambda pred: pred.confidence)
             votes.append((strategy.name, best.confidence))
@@ -580,7 +623,9 @@ def evaluate_category(
     for drug in drugs:
         for disease in diseases:
             pair = (drug, disease)
-            score, votes = score_pair(strategies, drug, disease)
+            score, votes = score_pair(
+                strategies, drug, disease, fail_on_error=True
+            )
             label = 1 if pair in positives else 0
             if votes:
                 scored_pairs += 1
@@ -656,13 +701,17 @@ def evaluate_loocv(db_path: str = DB_PATH, compute_ci: bool = False, compute_bas
     for held_pair in sorted(positives):
         fold_category, _ = load_full_typed_view(db_path, skip_pair=held_pair)
         strategies = make_strategies(fold_category)
-        held_score, held_votes = score_pair(strategies, *held_pair)
+        held_score, held_votes = score_pair(
+            strategies, *held_pair, fail_on_error=True
+        )
         held_scores.append(held_score)
         if not held_votes:
             true_unscored += 1
 
         for negative in negatives:
-            negative_score, _ = score_pair(strategies, *negative)
+            negative_score, _ = score_pair(
+                strategies, *negative, fail_on_error=True
+            )
             neg_score_sums[negative] += negative_score
             if held_score > negative_score:
                 concordant += 1
@@ -692,7 +741,15 @@ def evaluate_loocv(db_path: str = DB_PATH, compute_ci: bool = False, compute_bas
 
     ci_auroc = bootstrap_ci(all_scores, all_labels, _auroc_from_lists) if compute_ci else (0.0, 0.0)
     ci_auprc = bootstrap_ci(all_scores, all_labels, compute_auprc) if compute_ci else (0.0, 0.0)
-    baselines = compute_baselines(base_category, drugs, diseases, all_labels) if compute_baselines_flag else {}
+    baselines = {}
+    if compute_baselines_flag:
+        baseline_category, _ = load_full_typed_view(db_path, remove_direct_labels=True)
+        baseline_labels = [
+            1 if (drug, disease) in positives else 0
+            for drug in drugs
+            for disease in diseases
+        ]
+        baselines = compute_baselines(baseline_category, drugs, diseases, baseline_labels)
 
     return BenchmarkResult(
         view="full_typed",

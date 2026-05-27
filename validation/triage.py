@@ -40,9 +40,17 @@ from validation.repurposing_benchmark import (
     drug_disease_pairs,
     load_full_typed_view,
     make_strategies,
-    score_pair,
+    score_pair_detailed,
+)
+from validation.ranking_calibration import (
+    DEFAULT_CALIBRATION_PATH,
+    calibrate_score,
+    load_calibration,
 )
 from validation.trace_prediction import _build_provenance_index, trace_pair
+
+
+RANKING_CALIBRATION = load_calibration(DEFAULT_CALIBRATION_PATH)
 
 
 # ── Data helpers ──────────────────────────────────────────────────────
@@ -72,6 +80,11 @@ def _provenance_fraction(chains: list[dict]) -> tuple[int, int]:
     return cited, total
 
 
+def _benchmark_label_rate(score: float) -> float | None:
+    """Benchmark-calibrated FDA-label rate for a ranking score."""
+    return calibrate_score(score, RANKING_CALIBRATION)
+
+
 def self_check(category, drugs, diseases, positives) -> tuple[int, int]:
     """Count how many approved indications have at least one mechanistic path."""
     recoverable = 0
@@ -93,8 +106,10 @@ def triage_disease(category, strategies, disease: str, positives,
     drugs = sorted(obj.name for obj in category.objects() if obj.type_name == "Drug")
     results = []
     for drug in drugs:
-        score, votes = score_pair(strategies, drug, disease)
-        trace = trace_pair(category, drug, disease, strategies, provenance_index)
+        breakdown = score_pair_detailed(strategies, drug, disease)
+        score = breakdown["score"]
+        votes = breakdown["votes"]
+        trace = trace_pair(category, drug, disease, None, provenance_index)
         label = _label_for_pair((drug, disease), positives)
         cited, total_edges = _provenance_fraction(trace["chains"])
         results.append({
@@ -102,12 +117,14 @@ def triage_disease(category, strategies, disease: str, positives,
             "drug": drug,
             "disease": disease,
             "score": score,
+            "benchmark_label_rate": _benchmark_label_rate(score),
             "label": label,
             "votes": votes,
             "n_chains": trace["n_chains"],
             "chains": trace["chains"],
             "cited_edges": cited,
             "total_edges": total_edges,
+            "breakdown": breakdown,
         })
     results.sort(key=lambda r: -r["score"])
     for i, r in enumerate(results, 1):
@@ -124,8 +141,10 @@ def triage_drug(category, strategies, drug: str, positives,
     diseases = sorted(obj.name for obj in category.objects() if obj.type_name == "Disease")
     results = []
     for disease in diseases:
-        score, votes = score_pair(strategies, drug, disease)
-        trace = trace_pair(category, drug, disease, strategies, provenance_index)
+        breakdown = score_pair_detailed(strategies, drug, disease)
+        score = breakdown["score"]
+        votes = breakdown["votes"]
+        trace = trace_pair(category, drug, disease, None, provenance_index)
         label = _label_for_pair((drug, disease), positives)
         cited, total_edges = _provenance_fraction(trace["chains"])
         results.append({
@@ -133,12 +152,14 @@ def triage_drug(category, strategies, drug: str, positives,
             "drug": drug,
             "disease": disease,
             "score": score,
+            "benchmark_label_rate": _benchmark_label_rate(score),
             "label": label,
             "votes": votes,
             "n_chains": trace["n_chains"],
             "chains": trace["chains"],
             "cited_edges": cited,
             "total_edges": total_edges,
+            "breakdown": breakdown,
         })
     results.sort(key=lambda r: -r["score"])
     for i, r in enumerate(results, 1):
@@ -172,10 +193,25 @@ def _detail_block(entry: dict) -> str:
     label = entry["label"]
     lines.append(f"---- Detail: #{entry['rank']} {drug} -> {disease} ({label}) ----")
     lines.append("")
-    lines.append(f"Score: {entry['score']:.3f}")
+    lines.append(f"Ranking score: {entry['score']:.3f}")
+    label_rate = entry.get("benchmark_label_rate")
+    if label_rate is not None:
+        lines.append(
+            f"Benchmark label rate: {label_rate:.1%} "
+            "(score-bin FDA-label rate, not clinical probability)"
+        )
+    breakdown = entry.get("breakdown")
+    if breakdown:
+        lines.append(
+            "Score breakdown: "
+            f"base={breakdown['base']:.3f}, "
+            f"path_bonus={breakdown['path_bonus']:.3f}, "
+            f"yoneda_bonus={breakdown.get('yoneda_bonus', 0.0):.3f}, "
+            f"composition_paths={breakdown['composition_count']}"
+        )
 
     if entry["votes"]:
-        lines.append("Scoring evidence:")
+        lines.append("Strategy signal scores:")
         # Map technical names to user-friendly labels
         strategy_labels = {
             "kan_extension": "Drug Analogy",
@@ -290,7 +326,13 @@ def _detail_block(entry: dict) -> str:
                     elif quant_unit == "response_rate":
                         quant_info = f"  [Response rate={quant_val*100:.1f}%]"
 
-                prov_notes.append(f"     {prov_display} ({edge['source']}->{edge['target']}){quant_info}  confidence: {edge['confidence']:.2f}")
+                source_type = edge.get("source_type", "unknown_or_internal")
+                validation_status = edge.get("validation_status", "unclassified")
+                prov_notes.append(
+                    f"     {prov_display} ({edge['source']}->{edge['target']})"
+                    f"{quant_info}  confidence: {edge['confidence']:.2f}"
+                    f"  source_type={source_type} status={validation_status}"
+                )
             lines[-1] += " -> ".join(
                 [chain["edges"][0]["source"]]
                 + [f"-{e['relation']}-> {e['target']}" for e in chain["edges"]]
@@ -325,15 +367,15 @@ def format_terminal(results: list[dict], query_label: str,
     lines.append("")
 
     # Table header
-    hdr = f"{'Rank':>4}  {'Drug' if results and 'disease' != query_label else 'Target':<20s}  {'Score':>5}  {'Label':<10s}  {'Evidence':<10s}  {'Chains':>6}  Top Evidence Path"
+    hdr = f"{'Rank':>4}  {'Drug' if results and 'disease' != query_label else 'Target':<20s}  {'RankScore':>9}  {'Label':<10s}  {'Evidence':<10s}  {'Chains':>6}  Top Evidence Path"
     # Detect if this is drug-first (results have varying diseases) or disease-first
     is_drug_first = len(set(r["disease"] for r in results)) > 1
     if is_drug_first:
-        hdr = f"{'Rank':>4}  {'Disease':<20s}  {'Score':>5}  {'Label':<10s}  {'Evidence':<10s}  {'Chains':>6}  Top Evidence Path"
+        hdr = f"{'Rank':>4}  {'Disease':<20s}  {'RankScore':>9}  {'Label':<10s}  {'Evidence':<10s}  {'Chains':>6}  Top Evidence Path"
     else:
-        hdr = f"{'Rank':>4}  {'Drug':<20s}  {'Score':>5}  {'Label':<10s}  {'Evidence':<10s}  {'Chains':>6}  Top Evidence Path"
+        hdr = f"{'Rank':>4}  {'Drug':<20s}  {'RankScore':>9}  {'Label':<10s}  {'Evidence':<10s}  {'Chains':>6}  Top Evidence Path"
     lines.append(hdr)
-    lines.append(f"{'----':>4}  {'----':<20s}  {'-----':>5}  {'-----':<10s}  {'--------':<10s}  {'------':>6}  ----------------")
+    lines.append(f"{'----':>4}  {'----':<20s}  {'---------':>9}  {'-----':<10s}  {'--------':<10s}  {'------':>6}  ----------------")
 
     detail_entries = []
     for entry in results:
@@ -341,7 +383,7 @@ def format_terminal(results: list[dict], query_label: str,
         top_path = _top_evidence_path(entry["chains"])
         evidence_type = "Mechanistic" if entry["n_chains"] > 0 else "Analogy"
         lines.append(
-            f"{entry['rank']:>4}  {entity:<20s}  {entry['score']:.3f}  {entry['label']:<10s}  {evidence_type:<10s}  {entry['n_chains']:>6}  {top_path}"
+            f"{entry['rank']:>4}  {entity:<20s}  {entry['score']:>9.3f}  {entry['label']:<10s}  {evidence_type:<10s}  {entry['n_chains']:>6}  {top_path}"
         )
         if detail_all:
             detail_entries.append(entry)
@@ -381,10 +423,16 @@ def format_json(results: list[dict], query_label: str,
             "rank": entry["rank"],
             "drug": entry["drug"],
             "disease": entry["disease"],
-            "score": round(entry["score"], 4),
+            "ranking_score": round(entry["score"], 4),
+            "benchmark_label_rate": (
+                round(entry["benchmark_label_rate"], 6)
+                if entry.get("benchmark_label_rate") is not None
+                else None
+            ),
             "label": entry["label"],
             "evidence": "Mechanistic" if entry["n_chains"] > 0 else "Analogy",
             "strategy_votes": {name: round(conf, 4) for name, conf in entry["votes"]},
+            "score_breakdown": entry.get("breakdown"),
             "n_chains": entry["n_chains"],
             "provenance": {
                 "cited_edges": entry["cited_edges"],
@@ -417,7 +465,7 @@ def format_markdown(results: list[dict], query_label: str,
 
     is_drug_first = len(set(r["disease"] for r in results)) > 1
     entity_col = "Disease" if is_drug_first else "Drug"
-    lines.append(f"| Rank | {entity_col} | Score | Label | Chains | Cited | Top Evidence Path |")
+    lines.append(f"| Rank | {entity_col} | Ranking Score | Label | Chains | Cited | Top Evidence Path |")
     lines.append("|------|" + "-" * (len(entity_col) + 2) + "|-------|-------|--------|-------|-------------------|")
 
     for entry in results:
@@ -440,7 +488,21 @@ def format_markdown(results: list[dict], query_label: str,
             lines.append("")
             lines.append(f"### #{entry['rank']} {entry['drug']} -> {entry['disease']}")
             lines.append("")
-            lines.append(f"**Score:** {entry['score']:.3f}")
+            lines.append(f"**Ranking score:** {entry['score']:.3f}")
+            label_rate = entry.get("benchmark_label_rate")
+            if label_rate is not None:
+                lines.append(
+                    f"**Benchmark label rate:** {label_rate:.1%} "
+                    "(score-bin FDA-label rate, not clinical probability)"
+                )
+            breakdown = entry.get("breakdown")
+            if breakdown:
+                lines.append(
+                    f"**Breakdown:** base={breakdown['base']:.3f}, "
+                    f"path_bonus={breakdown['path_bonus']:.3f}, "
+                    f"yoneda_bonus={breakdown.get('yoneda_bonus', 0.0):.3f}, "
+                    f"composition_paths={breakdown['composition_count']}"
+                )
             lines.append("")
             if entry["votes"]:
                 lines.append("| Strategy | Score |")
@@ -481,6 +543,10 @@ def format_markdown(results: list[dict], query_label: str,
                                 edge_info += f" | Response rate={quant_val*100:.1f}%"
 
                         edge_info += f" (confidence: {edge['confidence']:.2f})"
+                        edge_info += (
+                            f" | source_type={edge.get('source_type', 'unknown_or_internal')}"
+                            f" | status={edge.get('validation_status', 'unclassified')}"
+                        )
                         lines.append(edge_info)
                 lines.append("")
             cited = entry["cited_edges"]
@@ -555,8 +621,10 @@ def main() -> int:
     # Route to correct triage mode
     if args.target and args.drug:
         # Specific pair: single-entry result with full detail
-        score, votes = score_pair(strategies, args.drug, args.target)
-        trace = trace_pair(category, args.drug, args.target, strategies, provenance_index)
+        breakdown = score_pair_detailed(strategies, args.drug, args.target)
+        score = breakdown["score"]
+        votes = breakdown["votes"]
+        trace = trace_pair(category, args.drug, args.target, None, provenance_index)
         label = _label_for_pair((args.drug, args.target), positives)
         cited, total_edges = _provenance_fraction(trace["chains"])
         results = [{
@@ -564,12 +632,14 @@ def main() -> int:
             "drug": args.drug,
             "disease": args.target,
             "score": score,
+            "benchmark_label_rate": _benchmark_label_rate(score),
             "label": label,
             "votes": votes,
             "n_chains": trace["n_chains"],
             "chains": trace["chains"],
             "cited_edges": cited,
             "total_edges": total_edges,
+            "breakdown": breakdown,
         }]
         query_label = f"{args.drug} -> {args.target}"
     elif args.target:

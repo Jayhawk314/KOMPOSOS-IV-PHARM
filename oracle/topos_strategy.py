@@ -30,7 +30,7 @@ from __future__ import annotations
 from typing import List, Dict, Any
 
 from oracle.prediction import Prediction, PredictionType, ConfidenceLevel
-from oracle.strategies import InferenceStrategy
+from oracle.strategies import InferenceStrategy, REPURPOSING_INTERMEDIATE_TYPES
 from core.category import Category
 
 
@@ -300,6 +300,42 @@ class ToposLogicStrategy(InferenceStrategy):
         if source_obj.type_name != "Drug" or target_obj.type_name != "Disease":
             return None
 
+        outgoing, _ = self._build_morphism_index()
+        confidences = []
+
+        for drug_edge in outgoing.get(source, []):
+            intermediate_obj = self.category.get(drug_edge.target)
+            if (
+                not intermediate_obj
+                or intermediate_obj.type_name not in REPURPOSING_INTERMEDIATE_TYPES
+            ):
+                continue
+
+            for disease_edge in outgoing.get(drug_edge.target, []):
+                if disease_edge.target == target:
+                    confidences.append(drug_edge.confidence * disease_edge.confidence)
+
+        if not confidences:
+            return None
+
+        avg_confidence = sum(confidences) / len(confidences)
+        max_confidence = max(confidences)
+
+        # Scale cap by path count: more independent paths -> higher ceiling.
+        path_count_factor = 1.0 + 0.1 * min(len(confidences) - 1, 4)
+        final_confidence = min(0.85, avg_confidence * path_count_factor)
+
+        return {
+            "confidence": final_confidence,
+            "reason": (
+                f"Found {len(confidences)} Drug->protein->disease pathway(s). "
+                f"Average pathway confidence: {avg_confidence:.2f}"
+            ),
+            "num_paths": len(confidences),
+            "avg_confidence": avg_confidence,
+            "max_confidence": max_confidence,
+        }
+
         # Find paths via proteins (up to 3 hops)
         try:
             paths = self.category.find_paths(source, target, max_length=4)
@@ -324,14 +360,10 @@ class ToposLogicStrategy(InferenceStrategy):
                             intermediate = first_mor.split('->')[1]
                             intermediate_obj = self.category.get(intermediate)
 
-                            # Check if intermediate is a protein
-                            protein_types = {
-                                "Receptor", "Signaling", "Transcription", "TumorSuppressor",
-                                "Apoptosis", "Oncogene", "DNARepair", "CellCycle", "Regulator",
-                                "Splicing", "Epigenetic", "Metabolic", "Structural", "Chaperone"
-                            }
-
-                            if intermediate_obj and intermediate_obj.type_name in protein_types:
+                            if (
+                                intermediate_obj
+                                and intermediate_obj.type_name in REPURPOSING_INTERMEDIATE_TYPES
+                            ):
                                 valid_paths.append(path)
                                 confidences.append(path.weight)
 

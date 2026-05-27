@@ -8,18 +8,48 @@
 
 ---
 
+## Current Audit Status (2026-05-27)
+
+The current strict result is:
+
+```bash
+python validation/repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --baselines --ci
+```
+
+- AUROC: **0.956240** [95% CI 0.9279-0.9789]
+- AUPRC: **0.551307** [95% CI 0.3968-0.6921]
+- Hits@5: 0.8000; Hits@10: 0.7000; Hits@20: 0.6500; MRR: 0.079520
+- Scored: 1476/1560 pairs; positives: 44; negatives: 1516
+- Baselines: degree_product 0.6307, common_neighbor 0.6260, path_count 0.5777, shortest_path 0.5775, random 0.5623
+
+Older tables in this document that report `0.965`, `0.9689`, `0.661`, `0.931`
+baselines, LOOCV, Hetionet, temporal, or disease-holdout results are historical
+until re-run under the corrected loader. The 2026-05-27 audit fixed:
+
+- YonedaDistance label leakage from a DB-level cache that ignored held-out folds.
+- YonedaPattern cross-type analogs such as proteins/functions being used as drug analogs.
+- BindingEvidence voting for drug targets not connected to the queried disease.
+- Composition confidence using min-hop confidence instead of multiplicative composition.
+- Strict holdout visibility of protein->disease edges explicitly derived from known drug indications.
+
+Source/provenance strings are present on all morphisms, and 609 PMID identifiers
+are present in provenance/metadata, but this is not the same as edge-specific
+citation validation. Quantitative NLP attribution remains an audit item.
+
+---
+
 ## Executive Summary
 
 | Metric | Value | Details |
 |--------|-------|---------|
-| **AUROC** | **0.965** | Full-typed view, remove_direct_labels protocol, 44 positives |
-| **AUPRC** | 0.634 | Top candidates more likely to be real |
-| **Hits@10** | 0.80 | 80% of approved pairs in top 10 |
-| **Confidence Interval** | ± 0.02 | 95% bootstrap CI (0.945–0.985) |
+| **AUROC** | **0.9562** | Corrected full-typed view, strict remove_direct_labels protocol, 44 positives |
+| **AUPRC** | 0.551 | Open-world unlabeled negatives; ranking metric, not prevalence |
+| **Hits@10** | 0.70 | 70% of approved pairs in top 10 |
+| **Confidence Interval** | [0.9279, 0.9789] | 95% bootstrap CI |
 | **Self-check** | 44/44 | All FDA-approved pairs recovered |
-| **Provenance** | 100% | 5,382 edges, 581 unique PMIDs |
+| **Source fields** | 5,382/5,382 | 609 PMID identifiers; edge-specific attribution audit pending |
 
-**Protocol**: Validation on 44 FDA-approved Drug→Disease pairs. Direct labels are removed during scoring (prevents leakage). Negatives are a balanced random sample of unlabeled pairs.
+**Protocol**: Validation on 44 FDA-approved Drug->Disease pairs. Direct labels and explicit drug-indication-derived protein->disease bridges are removed during scoring. Unlabeled pairs are open-world unknowns, not confirmed negatives.
 
 ---
 

@@ -31,6 +31,33 @@ from core.category import Category
 from data.embeddings import EmbeddingsEngine
 
 
+REPURPOSING_INTERMEDIATE_TYPES = {
+    "Protein",
+    "Receptor",
+    "Kinase",
+    "Enzyme",
+    "Transporter",
+    "Signaling",
+    "Apoptosis",
+    "GrowthFactor",
+    "Ligand",
+    "Marker",
+    "TranscriptionFactor",
+    "Transcription",
+    "TumorSuppressor",
+    "Oncogene",
+    "DNA_Repair",
+    "DNARepair",
+    "CellCycle",
+    "Regulator",
+    "Splicing",
+    "Epigenetic",
+    "Metabolic",
+    "Structural",
+    "Chaperone",
+}
+
+
 class InferenceStrategy(ABC):
     """Base class for all inference strategies."""
 
@@ -539,8 +566,9 @@ class YonedaPatternStrategy(InferenceStrategy):
 
         outgoing, incoming = self._build_morphism_index()
         existing = self._existing_morphism_pairs()
+        source_obj = self.category.get(source)
 
-        if (source, target) in existing:
+        if not source_obj or (source, target) in existing:
             return predictions
 
         # Build Hom(source, -) - outgoing morphism types
@@ -553,7 +581,11 @@ class YonedaPatternStrategy(InferenceStrategy):
 
         # Find objects with similar Hom patterns that connect to target
         for obj in self._get_objects():
-            if obj.name == source or obj.name == target:
+            if (
+                obj.name == source
+                or obj.name == target
+                or obj.type_name != source_obj.type_name
+            ):
                 continue
 
             obj_hom_out = {m.name for m in outgoing.get(obj.name, [])}
@@ -645,21 +677,14 @@ class CompositionStrategy(InferenceStrategy):
                     if not intermediate_obj:
                         continue
 
-                    # Valid protein types for drug repurposing
-                    protein_types = {
-                        "Receptor", "Signaling", "Transcription", "TumorSuppressor",
-                        "Apoptosis", "Oncogene", "DNARepair", "CellCycle", "Regulator",
-                        "Splicing", "Epigenetic", "Metabolic", "Structural", "Chaperone"
-                    }
-
-                    if intermediate_obj.type_name not in protein_types:
+                    if intermediate_obj.type_name not in REPURPOSING_INTERMEDIATE_TYPES:
                         continue
 
-                    # Use full confidence for valid Drug->Protein->Disease chains
-                    composed_confidence = min(mor1.confidence, mor2.confidence)
+                    # Confidence follows the multiplicative enriched-category rule.
+                    composed_confidence = mor1.confidence * mor2.confidence
                 else:
                     # For other types, apply penalty
-                    composed_confidence = min(mor1.confidence, mor2.confidence) * 0.85
+                    composed_confidence = mor1.confidence * mor2.confidence * 0.85
 
                 # Determine composed relation type
                 if mor1.name == mor2.name:

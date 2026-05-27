@@ -4,7 +4,9 @@
 
 KOMPOSOS-IV-PHARM applies a categorical AI runtime to drug discovery, focusing on finding existing drugs that can treat new diseases through computational analysis of biological networks. It combines path-based scoring (via category theory), machine learning strategies, and quantitative evidence tracing to recommend drug-disease pairs with mechanistic justification.
 
-**Current Status**: Track A (drug repurposing) is a working research prototype with **AUROC 0.965** on held-out FDA drug-disease pairs. Track B (de novo drug design) is a long-term goal, not yet scientifically validated.
+**Current Status**: Track A (drug repurposing) is a working research prototype with **AUROC 0.9562** on the current strict `remove_direct_labels` audit run. Track B (de novo drug design) is a long-term goal, not yet scientifically validated.
+
+**Audit note (2026-05-27)**: Previous `0.9689 AUROC / 0.661 AUPRC` claims are retired because the Yoneda module could see held-out Drug->Disease labels. LOOCV, external, temporal, and disease-holdout claims must be re-run under the corrected loader before being treated as current.
 
 ---
 
@@ -59,13 +61,15 @@ Planned capability: generate novel compounds with predicted binding, ADMET, and 
 
 | Metric | Value | Details |
 |--------|-------|---------|
-| **AUROC** | **0.965** | Full-typed view, remove_direct_labels protocol, 44 FDA pairs |
-| **AUPRC** | 0.634 | Top candidates more likely real |
-| **Hits@10** | 0.80 | 80% of true positives in top 10 |
-| **Provenance** | 100% | All 5,382 edges cite PMIDs or ChEMBL IDs |
-| **Data points** | 5,382 morphisms | 464 objects (78 drugs, 20 diseases, 366 proteins) |
+| **AUROC** | **0.9562** | Corrected full-typed view, strict remove_direct_labels protocol, 44 FDA pairs |
+| **AUPRC** | 0.551 | Open-world unlabeled negatives; use ranking/audit, not prevalence |
+| **Hits@10** | 0.70 | 70% of true positives in top 10 |
+| **Source fields** | 5,382/5,382 | 609 PMID identifiers found; edge-specific attribution audit pending |
+| **Data points** | 5,382 morphisms | 464 stored objects; 1,146 runtime objects after referenced endpoints load |
 
-See **[VALIDATION_AND_BENCHMARKS.md](VALIDATION_AND_BENCHMARKS.md)** for full metrics, confidence intervals, and external validation (Hetionet AUROC 0.744, temporal AUROC 0.959).
+See **[VALIDATION_AND_BENCHMARKS.md](VALIDATION_AND_BENCHMARKS.md)** for full metrics, confidence intervals, and retired external/temporal claims that require reproduction.
+
+See **[RESEARCH_INTEGRITY_AUDIT_2026-05-27.md](RESEARCH_INTEGRITY_AUDIT_2026-05-27.md)** for the leakage fixes, retired claims, and remaining evidence-attribution caveats.
 
 ---
 
@@ -135,10 +139,10 @@ KOMPOSOS-IV-PHARM/
 **Track A Database**: `data/drugs/tier1.db` (3.67 MB, reproducible build from manifest)
 
 - **Objects**: 78 FDA-approved drugs, 20 oncology diseases, 366 proteins (targets, pathways, regulators)
-- **Edges**: 5,382 morphisms with full provenance (581 unique PMIDs, ChEMBL IDs)
+- **Edges**: 5,382 morphisms with source strings (609 PMID identifiers, ChEMBL IDs)
 - **Quantitative**: 204 edges with IC50 binding data, hazard ratios, mutation frequencies
 - **Labels**: 44 FDA-approved Drug→Disease pairs (all mechanistically supported)
-- **100% provenance**: Every edge cites a PubMed ID or ChEMBL compound/target ID
+- **Source coverage**: Every edge has a provenance/source string; this is not the same as edge-specific citation validation
 
 Build your own: `python data/drugs/build_tier1.py --manifest data/drugs/tier1_manifest.json`
 
@@ -170,7 +174,7 @@ Output: Full detail on why it scores high (paths, quantitative evidence, structu
 python validation/repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --ci
 ```
 
-Output: AUROC 0.965 ± 0.02 (95% CI), AUPRC, Hits@K, confidence intervals.
+Output: AUROC 0.9562 [95% CI 0.9279-0.9789], AUPRC 0.551, Hits@K, confidence intervals.
 
 ### 4. Trace a prediction to evidence
 
@@ -184,15 +188,15 @@ Output: All supporting evidence chains, PMIDs, confidence breakdown per strategy
 
 ## Validation Summary
 
-The system recovers all 44 FDA-approved oncology drug-disease pairs with mechanistic justification. External validation confirms modest improvement over graph-topology baselines:
+The current corrected strict audit recovers all 44 FDA-approved oncology drug-disease pairs with mechanistic justification. Older external/temporal validations require reproduction under the corrected loader:
 
 | Protocol | AUROC | Details |
 |----------|-------|---------|
-| remove_direct_labels | 0.965 | Strongest; tests ranking of unknown pairs |
-| loocv | 0.945 | Leave-one-out cross-validation |
-| Hetionet (external) | 0.744 | 7 held-out pairs confirmed in external DB |
-| Temporal holdout | 0.959 | 22 FDA approvals post-2013 |
-| Mean disease holdout | 0.877 | Per-disease AUROC (range 0.615–0.996) |
+| remove_direct_labels | 0.9562 | Current corrected strict audit run |
+| loocv | pending | Must be re-run under corrected loader |
+| Hetionet (external) | retired/pending | Older claim not yet reproduced under corrected loader |
+| Temporal holdout | retired/pending | Older claim not yet reproduced under corrected loader |
+| Mean disease holdout | retired/pending | Older claim not yet reproduced under corrected loader |
 
 **Important**: Unlabeled Drug-Disease pairs are unknowns, not confirmed negatives. AUROC measures ranking quality on a balanced test set, not true prevalence.
 
@@ -245,8 +249,8 @@ Apache 2.0 (open source) / Commercial (dual license available)
 ## Author & Acknowledgments
 
 **Author**: James Ray Hawkins
-**Validation**: See [EVIDENCE_AND_PROVENANCE.md](EVIDENCE_AND_PROVENANCE.md) for 581 unique PMIDs and 100% edge provenance.
+**Validation**: See [EVIDENCE_AND_PROVENANCE.md](EVIDENCE_AND_PROVENANCE.md) for source/provenance coverage and remaining citation-attribution caveats.
 
 ---
 
-*Last updated: 2026-05-26 (Yoneda distance strategy integration, evidence quantification expansion)*
+*Last updated: 2026-05-27 (research-integrity audit, corrected validation metrics)*

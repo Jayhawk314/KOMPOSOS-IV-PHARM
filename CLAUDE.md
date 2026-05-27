@@ -13,6 +13,27 @@ drug-target-disease graph.
 Current audit rule: code and live data outrank stale docs. Always name the graph
 view and validation protocol with any AUROC.
 
+## Research Integrity Audit Update (2026-05-27)
+
+Do not advertise the retired `0.9689 AUROC / 0.661 AUPRC` result as current.
+That run was affected by label leakage in `oracle/yoneda_strategy.py`: the
+Yoneda cache loaded all Drug->Disease labels directly from `tier1.db`, so
+`remove_direct_labels` and LOOCV folds were not isolated. The corrected strict
+run also filters protein->disease bridge edges explicitly derived from known
+drug indications.
+
+Current strict validation command:
+
+```powershell
+python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --baselines --ci
+```
+
+Current strict result (2026-05-27, corrected loader/strategies):
+- `full_typed/remove_direct_labels`: **AUROC 0.956240** [0.9279, 0.9789], AUPRC 0.551307 [0.3968, 0.6921], Hits@5 0.80, Hits@10 0.70, Hits@20 0.65, MRR 0.079520.
+- Baselines on the same corrected graph: degree_product 0.6307, common_neighbor 0.6260, path_count 0.5777, shortest_path 0.5775, random 0.5623.
+- The database has source strings on 5,382/5,382 morphisms and 609 PMID identifiers, but this is not the same as edge-specific citation validation. Quantitative NLP attribution requires re-audit.
+- LOOCV, external Hetionet, temporal holdout, and disease holdout claims must be re-run under the corrected loader before being treated as current.
+
 Author: James Ray Hawkins
 License: Apache 2.0 / Commercial dual license
 Python: 3.10+
@@ -33,13 +54,13 @@ Status: working research prototype, not clinical or translational validation.
 Data source: `data/drugs/tier1.db`
 Reproducible build: `data/drugs/build_tier1.py` from `tier1_manifest.json`
 
-Full typed DB facts (2026-05-25, post-evidence quantification expansion):
+Full typed DB facts (2026-05-27 audit):
 - 464 objects, 5382 morphisms (+438 from computational expansion)
 - 78 drugs, 20 diseases, 366 proteins
 - 44 Drug->Disease approved indication labels (all FDA-approved, all with PMIDs)
 - All 44 positives have mechanistic paths (Drug->Protein->Disease)
 - 5382/5382 morphisms have provenance (100%): PMIDs + ChEMBL IDs + computational
-- 581 unique validated PMIDs (100% provenance coverage)
+- 609 PMID identifiers found in provenance/metadata strings
 - 204 edges with quantitative values (IC50, mutation frequencies, hazard ratios, response rates)
 - Evidence tier classification: MEASURED 1073, INFERRED 809, NOISE 2104, SPECULATIVE 955, ESTABLISHED 282, HYPOTHESIS 159
 - Data sources: PubMed (1,663 PMIDs searched: 609 original + 1,054 targeted search), ChEMBL, FDA, KEGG, STRING PPI (338 edges), ESM2 similarity (100 edges), cBioPortal genomic, ABPP
@@ -59,26 +80,28 @@ python validation\repurposing_benchmark.py --view full_typed --protocol loocv
 Add `--ci` for bootstrap 95% confidence intervals, `--baselines` for baseline
 comparisons (random, degree, common-neighbor, shortest-path, path-count).
 
-Current metrics (2026-05-27, 9 strategies incl. Yoneda distance + fixed Kan extension, 44 positives, 204 quantitative edges):
-- `full_typed/remove_direct_labels`: **AUROC 0.9689**, AUPRC 0.661, Hits@5 1.00, Hits@10 0.80 (Kan extension fixed to use Drug analogs only)
-- `full_typed/loocv`: **AUROC 0.945**, AUPRC 0.408, Hits@5 0.80, Hits@10 0.70, MRR 0.065 (pre-Kan extension fix; rerun pending)
+Current metrics (2026-05-27, corrected strict loader/strategies, 44 positives, 204 quantitative edges):
+- `full_typed/remove_direct_labels`: **AUROC 0.9562**, AUPRC 0.551, Hits@5 0.80, Hits@10 0.70 (Yoneda label leakage fixed; explicit label-derived bridge edges removed in holdout mode)
+- `full_typed/loocv`: rerun pending under corrected loader (older 0.945 result is stale)
 - `full_typed/as_loaded`: AUROC 0.457, AUPRC 0.025 (expected artifact, composition skips existing edges)
 
-**Kan Extension Strategy fix (2026-05-27):**
+**Strategy integrity fixes (2026-05-27):**
 - Kan extension ("Drug Analogy") was returning 0.900 for 96.9% of pairs (zero discrimination)
 - Root cause: considered all objects (proteins, etc.) as analogs, not just drugs
-- Fixed: filter to only Drug objects at line 124 of `oracle/strategies.py`
+- Fixed: filter to only Drug objects
 - Result: 56% of pairs now have variable scores; only returns when similar drugs exist
-- AUROC impact: 0.965 -> 0.9689 (+0.39%), AUPRC 0.634 -> 0.661 (+4.3%)
+- YonedaPatternStrategy had the same bug class and is now type-restricted to same-source-type comparators
+- YonedaDistanceStrategy now builds fingerprints from the caller's visible graph and excludes direct Drug->Disease labels from fingerprints
+- BindingEvidenceStrategy now requires a disease-linked intermediate target rather than any drug target
+- Composition confidence now uses multiplicative enriched-category composition instead of min-hop confidence
 - Negative pairs (like Sorafenib→AML) now score more accurately (0.910 -> 0.895)
 
 **Yoneda Distance Strategy integration (2026-05-26):**
 - 9th strategy: structural similarity via confidence-weighted Yoneda presheaf fingerprints
-- Operates on clean subgraph (MEASURED + ESTABLISHED edges only, 1355 edges)
+- Operates on visible clean subgraph (MEASURED + ESTABLISHED edges only); direct Drug->Disease labels are excluded from fingerprints
 - Integrated as additive bonus (like path_bonus), not averaged vote
 - Coefficient 0.06 tuned via grid search over [0.0, 0.20] with cap 0.10
-- AUROC 0.956 -> 0.965 (+0.009), AUPRC 0.537 -> 0.634 (+0.097), Hits@10 0.70 -> 0.80
-- All metrics improved, zero regressions
+- Earlier AUROC/AUPRC deltas are stale because the previous implementation could see held-out labels
 - Drug equivalence classes discovered: 6 pairs with identical Yoneda profiles
   (Binimetinib=Cobimetinib, Encorafenib=Vemurafenib, Carboplatin=Oxaliplatin, etc.)
 - Triage reports now show "Structural Similarity" vote with interpretation
@@ -91,21 +114,20 @@ Current metrics (2026-05-27, 9 strategies incl. Yoneda distance + fixed Kan exte
 - Triage reports display quantitative evidence: `[IC50=7.7 uM]`, `[HR=0.97]`, `[Mutation freq=50.0%]`
 
 Path bonus tuned via LOOCV grid search: min(0.25, 0.04 * sum(path_confidence)).
-Confidence-weighted paths (2026-05-24): each path weighted by min-hop confidence.
+Confidence-weighted paths (2026-05-27): each path is weighted by multiplicative composed confidence.
 Uniform strategy weights confirmed optimal by calibrate_loocv.py.
 
 as_loaded protocols show Hits@K regression because composition skips existing edges —
 positives get zero path bonus while negatives can. This is an artifact of the protocol,
 not real performance loss.
 
-LOOCV baselines (AUROC, corrected 2026-05-11):
-- strongest: shortest_path 0.931
-- system AUROC: 0.945 (post-quantitative expansion)
-- margin: +0.014 over strongest baseline (modest but scientifically honest)
+Corrected strict baselines (AUROC, 2026-05-27):
+- strongest: degree_product 0.6307
+- system AUROC: 0.9562
+- margin: +0.3255 over strongest baseline on the same corrected graph
 
-The old baseline table (shortest_path 0.559) was a label-order artifact corrected
-via audit. The honest claim is modest improvement over strong graph-topology baselines
-plus strategy votes, mechanistic paths, and evidence tracing for triage.
+Older baseline tables mentioning shortest_path 0.931 are stale for the current
+strict graph and should not be used without reproduction.
 
 Additional validation (reported but not fully audit-reproduced with executable scripts):
 - External (Hetionet): AUROC 0.744 on 7 held-out Hetionet-confirmed pairs

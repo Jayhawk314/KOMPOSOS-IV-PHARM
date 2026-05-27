@@ -11,6 +11,8 @@ Usage:
 """
 from __future__ import annotations
 
+import re
+import sqlite3
 import sys
 from pathlib import Path
 
@@ -25,6 +27,11 @@ from validation.repurposing_benchmark import (
     make_strategies,
     score_pair,
     score_pair_detailed,
+)
+from validation.ranking_calibration import (
+    DEFAULT_CALIBRATION_PATH,
+    calibrate_score,
+    load_calibration,
 )
 from validation.trace_prediction import _build_provenance_index, trace_pair
 from validation.triage import (
@@ -45,6 +52,7 @@ def load_graph():
     drugs, diseases, positives = drug_disease_pairs(category)
     strategies = make_strategies(category)
     provenance_index = _build_provenance_index(DB_PATH)
+    ranking_calibration = load_calibration(DEFAULT_CALIBRATION_PATH)
     n_objects = len(category.objects())
     n_morphisms = len(category.morphisms())
     check_recovered, check_total = self_check(
@@ -62,6 +70,21 @@ def load_graph():
             med_conf += 1
         else:
             low_conf += 1
+
+    pmids = set()
+    provenance_rows = 0
+    quantitative_edges = 0
+    with sqlite3.connect(DB_PATH) as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT provenance, metadata, quantitative_value FROM morphisms")
+        for provenance, metadata, quantitative_value in cursor.fetchall():
+            text = f"{provenance or ''} {metadata or ''}"
+            pmids.update(re.findall(r"PMID:?\s*(\d+)", text))
+            if provenance and provenance != "unknown":
+                provenance_rows += 1
+            if quantitative_value is not None:
+                quantitative_edges += 1
+
     return {
         "category": category,
         "drugs": drugs,
@@ -77,6 +100,10 @@ def load_graph():
         "high_conf": high_conf,
         "med_conf": med_conf,
         "low_conf": low_conf,
+        "pmid_count": len(pmids),
+        "provenance_rows": provenance_rows,
+        "quantitative_edges": quantitative_edges,
+        "ranking_calibration": ranking_calibration,
     }
 
 
@@ -106,8 +133,9 @@ st.sidebar.markdown(
     f"**Graph**: {g['n_objects']} objects, {g['n_morphisms']} edges\n\n"
     f"**Positives**: {g['n_positives']} FDA-approved\n\n"
     f"**Self-check**: {g['check_recovered']}/{g['check_total']} recoverable\n\n"
-    f"**Provenance**: 100% (581 unique PMIDs)\n\n"
-    f"**Quantitative data**: 204 edges with IC50/HR/mutation freq"
+    f"**Source fields**: {g['provenance_rows']}/{g['n_morphisms']} edges, "
+    f"{g['pmid_count']} PMID IDs\n\n"
+    f"**Quantitative fields**: {g['quantitative_edges']} edges with IC50/HR/mutation freq"
 )
 st.sidebar.markdown(
     f"**Edge quality**: High: {g['high_conf']} | "
@@ -131,11 +159,17 @@ def _top_trace(chains: list) -> str:
     return " \u2192 ".join(parts)
 
 
+def _benchmark_label_rate(score: float) -> float | None:
+    """Return benchmark-calibrated label rate for a ranking score."""
+    return calibrate_score(score, g.get("ranking_calibration"))
+
+
 def render_results_table(results):
     """Show ranked results as a streamlit table."""
     rows = []
+    has_calibration = g.get("ranking_calibration") is not None
     for r in results:
-        rows.append({
+        row = {
             "Rank": r["rank"],
             "Drug": r["drug"],
             "Disease": r["disease"],
@@ -145,7 +179,11 @@ def render_results_table(results):
             "Paths": r["n_chains"],
             "Cited": f"{r['cited_edges']}/{r['total_edges']}"
             if r["total_edges"] > 0 else "-",
-        })
+        }
+        if has_calibration:
+            label_rate = _benchmark_label_rate(r["score"])
+            row["Benchmark Label Rate"] = f"{label_rate:.1%}" if label_rate is not None else "-"
+        rows.append(row)
     st.dataframe(rows, use_container_width=True, hide_index=True)
 
 
@@ -356,14 +394,20 @@ def render_detail(entry):
     breakdown = entry.get("breakdown")
     if breakdown:
         c1, c2, c3, c4, c5 = st.columns(5)
-        c1.metric("Final Score", f"{entry['score']:.3f}")
-        c2.metric("Base (mean 8 votes)", f"{breakdown['base']:.3f}")
+        c1.metric("Ranking Score", f"{entry['score']:.3f}")
+        c2.metric("Base (active signals)", f"{breakdown['base']:.3f}")
         c3.metric("Path Bonus", f"{breakdown['path_bonus']:.3f}")
         c4.metric("Yoneda Bonus", f"{breakdown.get('yoneda_bonus', 0.0):.3f}")
         if breakdown["mechanistic_discount"]:
             c5.metric("Mech. Discount", "0.80x applied")
         else:
             c5.metric("Mech. Discount", "none")
+        label_rate = _benchmark_label_rate(entry["score"])
+        if label_rate is not None:
+            st.caption(
+                f"Benchmark-calibrated label rate for this score bin: {label_rate:.1%}. "
+                "This is derived from the validation benchmark and is not a clinical probability."
+            )
         if breakdown["composition_count"] > 0:
             st.caption(
                 f"Composition paths: {breakdown['composition_count']} | "
@@ -424,7 +468,10 @@ def render_detail(entry):
 
     # ── Strategy votes ───────────────────────────────────────────────
     if entry["votes"]:
-        st.markdown("**Strategy Votes**")
+        st.markdown("**Strategy Signal Scores**")
+        st.caption(
+            "These are heuristic ranking signals, not calibrated probabilities or clinical confidence."
+        )
         for name, conf in entry["votes"]:
             label = _strategy_label(name)
             hint = _strategy_hint(name)
@@ -524,6 +571,8 @@ def render_detail(entry):
                         f"- **{edge['source']}** -{edge['relation']}-> "
                         f"**{edge['target']}** "
                         f"(:{color}[conf: {conf:.2f}], {src_type} | {prov_display})"
+                        f"  \n  source_type: `{edge.get('source_type', 'unknown_or_internal')}`; "
+                        f"status: `{edge.get('validation_status', 'unclassified')}`"
                     )
 
     cited = entry["cited_edges"]
@@ -707,25 +756,27 @@ graph.
         )
 
     # ── Section C: Final Score Formula ───────────────────────────────
-    with st.expander("The Final Score Formula"):
+    with st.expander("The Ranking Score Formula"):
         st.markdown("""
-When you run a triage query, each drug-disease pair is scored in 3 steps:
+When you run a triage query, each drug-disease pair receives a ranking score.
+This score is for prioritization and audit, not a calibrated probability.
 
-**Step 1: Base score** = mean of 8 strategy votes (excluding Yoneda distance)
+**Step 1: Base score** = mean of active strategy signals (excluding Yoneda distance)
 
-Each of the 9 strategies independently scores the pair. The base score is
-the mean of the first 8 strategy votes. Yoneda distance is excluded from the
-average because its score range (median ~0.50) is much lower than other
-strategies (~0.85) -- averaging it in would drag scores down.
+Configured strategies may abstain when their evidence is absent. The base score
+is the mean of strategies that actually fire. Yoneda distance is excluded from
+the average because its score range is lower than the path and binding signals;
+it is used only as a small additive bonus.
 
 **Step 2: Path bonus** from compositional (mechanistic) paths
 
 For every Drug -> Protein -> Disease path found, the composition strategy
-reports the path confidence (minimum edge confidence along the path). The
-path bonus rewards having many high-quality mechanistic paths:
+reports the multiplicative path confidence. The path bonus rewards having many
+high-quality mechanistic paths:
 """)
         st.code(
-            "composition_weight = sum(min_edge_confidence for each path)\n"
+            "path_confidence = drug_to_protein_conf * protein_to_disease_conf\n"
+            "composition_weight = sum(path_confidence for each path)\n"
             "path_bonus = min(0.25, 0.04 * composition_weight)",
             language="python",
         )
@@ -745,10 +796,11 @@ cannot dominate the base score.
             language="python",
         )
         st.markdown("""
-The Yoneda distance strategy compares the drug's target profile to known
-treatments on the **clean evidence subgraph** (MEASURED + ESTABLISHED edges
-only, 1,355 edges). If the drug looks structurally similar to an approved
-treatment for this disease, it gets a small additive bonus (capped at 0.10).
+The Yoneda distance strategy compares the drug's profile to visible known
+treatments on the clean evidence subgraph. Direct Drug -> Disease labels are
+excluded from fingerprints; holdout protocols only expose training labels.
+If the drug looks structurally similar to an approved treatment for this
+disease, it gets a small additive bonus (capped at 0.10).
 
 This can only help, never hurt -- even zero similarity adds nothing.
 
@@ -763,8 +815,8 @@ the score is penalized:
             language="python",
         )
         st.markdown("""
-This ensures analogy-only predictions (from Kan extensions, binding evidence)
-rank below mechanistically-supported candidates at similar base scores.
+This keeps analogy-only predictions below mechanistically-supported candidates
+at similar base scores.
 
 **Final:**
 """)
@@ -774,6 +826,26 @@ rank below mechanistically-supported candidates at similar base scores.
         )
 
     # ── Section D: IC50 to Confidence ────────────────────────────────
+    with st.expander("Benchmark Calibration Is Separate"):
+        st.markdown("""
+The ranking score is converted to a **benchmark label rate** only after scoring.
+This calibration layer does not change strategy signals and does not feed back
+into the ranker.
+
+Calibration artifact:
+`reports/ranking_score_calibration_2026-05-27.json`
+
+Current method:
+
+1. Run the corrected `remove_direct_labels` benchmark.
+2. Sort all drug-disease pairs by ranking score.
+3. Split scores into quantile bins.
+4. Report the observed FDA-label rate in each bin, with monotone bin smoothing.
+
+The displayed benchmark label rate is useful for auditing score scale, but it is
+not a clinical probability and not a probability that a drug will work.
+""")
+
     with st.expander("IC50 to Confidence Mapping"):
         st.markdown("""
 When ABPP experimental data provides an IC50 value (half-maximal inhibitory
@@ -803,8 +875,8 @@ The 0.98 cap prevents any single IC50 from dominating the binding strategy.
     # ── Section E: Binding Evidence Strategy Weights ─────────────────
     with st.expander("Binding Evidence Strategy Weights"):
         st.markdown("""
-The **binding_evidence** strategy (1 of 8 strategies) scores each drug-protein
-link by combining 7 components:
+The **binding_evidence** strategy scores disease-connected drug-protein links by
+combining 7 components:
 
 | Component | Weight | Data Source |
 |-----------|--------|-------------|
@@ -821,9 +893,9 @@ drug-protein pair), its weight is redistributed proportionally among the
 remaining components. The system never penalizes missing data -- it just uses
 what it has.
 
-**Per-target scoring:** For a Drug -> Disease pair, the strategy scores ALL
-intermediate proteins (Drug -> Protein edges) and returns the **best** score
-across all targets.
+**Per-target scoring:** For a Drug -> Disease pair, the strategy scores
+intermediate proteins only when they sit on an observed Drug -> Protein ->
+Disease path, then returns the best score across those disease-linked targets.
 """)
 
     # ── Section F: How Researchers Should Use This ───────────────────
@@ -831,37 +903,37 @@ across all targets.
         st.markdown("""
 **Interpreting scores:**
 
-- **Score 0.90+** with high-confidence edges (0.70+): Strong candidate.
+- **Ranking score 0.90+** with high-confidence edges (0.70+): Strong candidate.
   Follow the cited PMIDs and check if there are clinical trials.
 
-- **Score 0.70-0.89** with mixed-confidence edges: Worth investigating.
-  Check how many strategies agreed (6/8 is stronger than 2/8).
+- **Ranking score 0.70-0.89** with mixed-confidence edges: Worth investigating.
+  Check how many strategies agreed and which evidence chains support them.
 
-- **Score 0.70+** with mostly low-confidence edges (0.20-0.35): Score may be
+- **Ranking score 0.70+** with mostly low-confidence edges (0.20-0.35): Score may be
   inflated by many weak PubMed co-mention paths. Verify the mechanism
   independently before investing resources.
 
-- **Score < 0.50**: Weak candidate. Only worth pursuing if you have
+- **Ranking score < 0.50**: Weak candidate. Only worth pursuing if you have
   independent experimental evidence.
 
 **What to look for in a triage report:**
 
-1. **Strategy agreement**: How many of the 8 strategies voted? More
+1. **Strategy agreement**: How many strategies produced signals? More
    agreement = more robust prediction.
 2. **Path quality**: Are the mechanistic chains built on high-confidence
    edges (ChEMBL, FDA) or speculative ones (PubMed co-mention)?
 3. **IC50 data**: If the binding_evidence strategy voted AND there are
    ABPP IC50 values, those are experimental measurements -- the strongest
    evidence type in this system.
-4. **Cited papers**: Every edge has a provenance string. Follow the PMIDs
-   to the original papers.
+4. **Cited papers**: Every edge has a source string. Follow the PMIDs
+   to the original papers and verify that the paper supports the exact edge.
 
 **What this system does NOT do:**
 
 - It does not replace clinical judgment
 - It does not predict safety, toxicity, or pharmacokinetics
 - It does not account for patient-specific factors
-- AUROC of 0.9689 on our 44-positive benchmark does not guarantee real-world
+- AUROC of 0.9747 on the current strict 44-positive benchmark does not guarantee real-world
   performance
 - The system bridges knowledge silos; it does not generate new knowledge
 """)
@@ -887,7 +959,7 @@ approved for.
 ### How It Works
 
 1. **Knowledge Graph**: {n_drugs} drugs, {n_obj - n_drugs - n_diseases} proteins, \
-{n_diseases} diseases, {n_mor} edges (100% provenance: 581 unique PMIDs + ChEMBL IDs, 204 edges with quantitative IC50/HR/mutation data)
+{n_diseases} diseases, {n_mor} edges ({g['provenance_rows']} source strings, {g['pmid_count']} PMID identifiers, {g['quantitative_edges']} edges with quantitative IC50/HR/mutation data)
 2. **9 Inference Strategies**: Each uses a different mathematical or molecular lens
    (composition, Kan extensions, Yoneda patterns, topos logic, structural holes,
    fibration lifts, type heuristics, binding evidence, Yoneda distance)
@@ -895,9 +967,9 @@ approved for.
    heuristic binding, drug-likeness (Lipinski), drug-target molecular compatibility
 4. **Yoneda Distance**: Structural similarity via presheaf fingerprints on clean
    evidence subgraph (MEASURED + ESTABLISHED edges only)
-5. **Scoring**: Average of 8 strategy confidences + path bonus + Yoneda bonus for
+5. **Scoring**: Mean of active strategy signals + path bonus + Yoneda bonus for
    Drug->Protein->Disease chains (see "How Scoring Works" page for the full formula)
-5. **Evidence**: Every prediction comes with traceable mechanistic paths,
+6. **Evidence**: Every prediction comes with traceable mechanistic paths,
    literature citations, and IC50 data where available
 """)
 
@@ -915,27 +987,58 @@ approved for.
         f"- Low confidence (< 0.40): **{g['low_conf']}** edges"
     )
 
-    st.markdown("""
-### Validation (remove_direct_labels protocol, 44 positives, full_typed view)
+    calibration = g.get("ranking_calibration")
+    if calibration:
+        cal_auroc = calibration.get("auroc")
+        cal_auroc_text = f"{float(cal_auroc):.4f}" if cal_auroc is not None else "unknown"
+        calibration_note = (
+            f"Loaded `{DEFAULT_CALIBRATION_PATH}` "
+            f"({calibration.get('protocol')}, {calibration.get('n_bins_requested')} bins, "
+            f"benchmark AUROC {cal_auroc_text})."
+        )
+    else:
+        calibration_note = (
+            f"No calibration artifact loaded at `{DEFAULT_CALIBRATION_PATH}`. "
+            "Run `python validation/build_ranking_score_calibration.py` to create it."
+        )
+
+    st.markdown(f"""
+### Validation (strict remove_direct_labels protocol, 44 positives, full_typed view)
 
 | Metric | Value |
 |--------|-------|
-| AUROC | 0.9689 [95% CI: 0.948-0.990] |
-| AUPRC | 0.661 |
+| AUROC | 0.9747 [95% CI: 0.9606-0.9855] |
+| AUPRC | 0.552 [95% CI: 0.4067-0.6983] |
+| Hits@5 | 1.000 |
+| Hits@10 | 0.600 |
+| Hits@20 | 0.600 |
 | Positives | 44 FDA-approved oncology indications |
-| Strategies | 9 (incl. binding evidence + Yoneda distance + fixed Kan extension) |
-| Strongest baseline (shortest-path) | AUROC 0.931 |
-| Margin over baseline | +0.038 |
-| ClinicalTrials.gov cross-check | 63% IN_TRIALS, 30% PRECLINICAL, 7% NOVEL |
-| Unique valid PMIDs | 581 |
+| Strongest baseline (degree_product) | AUROC 0.6307 |
+| Common-neighbor baseline | AUROC 0.6260 |
+| Margin over strongest baseline | +0.3440 |
+| PMID identifiers in DB | {g['pmid_count']} |
 
-*The `remove_direct_labels` protocol removes Drug->Disease edges before scoring,
-so the system must predict via mechanistic paths only. This is the scientifically
-honest protocol for claiming repurposing capability. LOOCV AUROC (0.945) pending
-re-run with fixed Kan extension. Path scoring is confidence-weighted: high-quality
-paths contribute more than weak co-mention paths. Yoneda distance bonus adds structural
-similarity scoring on the clean evidence subgraph (MEASURED + ESTABLISHED edges only).
-Kan extension now uses only Drug analogs as comparators (2026-05-27 fix).*
+*Current audited strict run: 2026-05-27. This protocol removes direct Drug->Disease
+edges and protein->disease bridge edges explicitly derived from known drug
+indications. The previous 0.9689 AUROC / 0.661 AUPRC display is retired because
+the Yoneda module could see held-out labels.*
+
+### Additional executable validations (2026-05-27)
+
+| Validation | Current result |
+|------------|----------------|
+| Corrected LOOCV | AUROC 0.9759, AUPRC 0.5537, Hits@10 0.600 |
+| Hetionet CtD external positives | AUROC 0.6345, AUPRC 0.0093, Hits@20 0.000 |
+| Temporal holdout, approvals > 2013 | AUROC 0.9780, AUPRC 0.2288, Hits@20 0.222 |
+| Disease holdout, diseases with >=2 labels | Mean AUROC 0.9504, mean AUPRC 0.6368 across 7 folds |
+
+### Ranking calibration
+
+{calibration_note}
+
+The calibrated value shown in candidate details is a benchmark FDA-label rate
+for the score bin. It is separate from strategy signal scores and is not a
+clinical probability.
 
 ### Limitations
 
@@ -943,10 +1046,15 @@ Kan extension now uses only Drug analogs as comparators (2026-05-27 fix).*
 - **Oncology only**: 20 cancer types currently
 - **Small graph**: {n_obj} objects vs 47k+ in published systems like Rephetio
 - **Open-world negatives**: Unlabeled pairs are unknowns, not confirmed negatives
+- **Citation attribution risk remains**: Source strings exist for every edge, but
+  the audit found PMID-without-context, measured-tier mismatch, and quantitative
+  support issues that need edge-level verification before wet-lab claims
 - **AUROC is sensitive to graph expansion**: Adding PubMed co-mention edges
   (low confidence) changes AUROC depending on protocol and quality tier filter
-- **Modest margin**: The system's advantage over graph-topology baselines is
-  modest; its value is in multi-strategy voting and evidence traceability
+- **External generalization is weak**: The Hetionet CtD check is much harder than
+  internal holdouts and currently has low precision-at-top
+- **Core value**: AUROC is useful, but the research value is the auditable
+  mechanistic trail, source typing, validation status, and citation provenance
 
 ### Citation
 

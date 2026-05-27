@@ -8,8 +8,9 @@ Yoneda presheaf to a drug known to treat Disease_Y, then Drug_X is a
 structural substitute.
 
 Operates on a clean subgraph (MEASURED + ESTABLISHED evidence tiers only)
-to avoid noise contamination. Uses confidence-weighted Jaccard distance
-rather than binary set comparison.
+to avoid noise contamination. Direct Drug->Disease labels are never part of
+fingerprints, and known-treatment comparators come only from the category
+provided by the caller so holdout protocols stay isolated.
 """
 
 from __future__ import annotations
@@ -25,49 +26,6 @@ from core.category import Category
 DB_PATH = "data/drugs/tier1.db"
 NON_PROTEIN_TYPES = {"Drug", "Disease", "ExternalCompound"}
 
-# Module-level cache: the clean subgraph, fingerprints, and known treatments
-# are DB-derived and do not change between LOOCV folds. Caching avoids
-# rebuilding 44 times during cross-validation.
-_cache: Dict[str, dict] = {}
-
-
-def _get_cached(db_path: str) -> dict:
-    """Return or build the shared clean subgraph, fingerprints, and treatments."""
-    if db_path not in _cache:
-        clean_cat = YonedaDistanceStrategy._load_clean_subgraph(db_path)
-        fingerprints: Dict[str, Dict[Tuple[str, str], float]] = {}
-        for obj in clean_cat.objects():
-            fp: Dict[Tuple[str, str], float] = {}
-            for m in clean_cat.morphisms_to(obj.name):
-                key = (m.source, m.name)
-                fp[key] = max(fp.get(key, 0.0), m.confidence)
-            for m in clean_cat.morphisms_from(obj.name):
-                key = (m.target, m.name)
-                fp[key] = max(fp.get(key, 0.0), m.confidence)
-            fingerprints[obj.name] = fp
-
-        known_treatments: Dict[str, Set[str]] = defaultdict(set)
-        conn = sqlite3.connect(db_path)
-        conn.row_factory = sqlite3.Row
-        cursor = conn.cursor()
-        cursor.execute(
-            "SELECT m.source_name, m.target_name "
-            "FROM morphisms m "
-            "JOIN objects src ON m.source_name = src.name "
-            "JOIN objects tgt ON m.target_name = tgt.name "
-            "WHERE src.type_name = 'Drug' AND tgt.type_name = 'Disease'"
-        )
-        for row in cursor.fetchall():
-            known_treatments[row["target_name"]].add(row["source_name"])
-        conn.close()
-
-        _cache[db_path] = {
-            "clean_cat": clean_cat,
-            "fingerprints": fingerprints,
-            "known_treatments": known_treatments,
-        }
-    return _cache[db_path]
-
 
 class YonedaDistanceStrategy(InferenceStrategy):
     """Score Drug-Disease pairs via Yoneda distance on clean evidence."""
@@ -77,21 +35,42 @@ class YonedaDistanceStrategy(InferenceStrategy):
     def __init__(self, category: Category, db_path: str = DB_PATH):
         super().__init__(category)
         self._db_path = db_path
-        cached = _get_cached(db_path)
-        self.clean_cat = cached["clean_cat"]
-        self._fingerprints: Dict[str, Dict[Tuple[str, str], float]] = cached["fingerprints"]
-        self._known_treatments: Dict[str, Set[str]] = cached["known_treatments"]
+        self.clean_cat = self._load_clean_subgraph(db_path, category)
+        self._fingerprints: Dict[str, Dict[Tuple[str, str], float]] = {
+            obj.name: self._weighted_fingerprint(obj.name)
+            for obj in self.clean_cat.objects()
+        }
+        self._known_treatments = self._known_treatments_from_category(category)
 
     # ------------------------------------------------------------------
     # Setup
     # ------------------------------------------------------------------
 
     @staticmethod
-    def _load_clean_subgraph(db_path: str) -> Category:
-        """Load Category with only MEASURED + ESTABLISHED edges."""
+    def _known_treatments_from_category(category: Category) -> Dict[str, Set[str]]:
+        """Collect visible Drug->Disease labels from the caller's graph only."""
+        treatments: Dict[str, Set[str]] = defaultdict(set)
+        for morphism in category.morphisms():
+            source = category.get(morphism.source)
+            target = category.get(morphism.target)
+            if (
+                source and target
+                and source.type_name == "Drug"
+                and target.type_name == "Disease"
+            ):
+                treatments[morphism.target].add(morphism.source)
+        return treatments
+
+    @staticmethod
+    def _load_clean_subgraph(db_path: str, category: Category) -> Category:
+        """Load visible, high-tier, non-label edges for structural fingerprints."""
         conn = sqlite3.connect(db_path)
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
+        visible_edges = {
+            (morphism.source, morphism.target, morphism.name)
+            for morphism in category.morphisms()
+        }
 
         type_map: Dict[str, str] = {}
         cursor.execute("SELECT name, type_name FROM objects")
@@ -99,8 +78,12 @@ class YonedaDistanceStrategy(InferenceStrategy):
             type_map[row["name"]] = row["type_name"]
 
         cursor.execute(
-            "SELECT source_name, target_name, name, confidence "
-            "FROM morphisms WHERE evidence_tier IN ('MEASURED', 'ESTABLISHED')"
+            "SELECT m.source_name, m.target_name, m.name, m.confidence, "
+            "src.type_name AS source_type, tgt.type_name AS target_type "
+            "FROM morphisms m "
+            "LEFT JOIN objects src ON m.source_name = src.name "
+            "LEFT JOIN objects tgt ON m.target_name = tgt.name "
+            "WHERE m.evidence_tier IN ('MEASURED', 'ESTABLISHED')"
         )
         edges = cursor.fetchall()
         conn.close()
@@ -108,6 +91,13 @@ class YonedaDistanceStrategy(InferenceStrategy):
         cat = Category("yoneda_clean", db_path=":memory:")
         seen: Set[str] = set()
         for edge in edges:
+            edge_key = (edge["source_name"], edge["target_name"], edge["name"])
+            is_direct_label = (
+                edge["source_type"] == "Drug"
+                and edge["target_type"] == "Disease"
+            )
+            if edge_key not in visible_edges or is_direct_label:
+                continue
             for obj_name in (edge["source_name"], edge["target_name"]):
                 if obj_name not in seen:
                     seen.add(obj_name)

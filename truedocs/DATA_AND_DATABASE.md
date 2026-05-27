@@ -10,12 +10,16 @@
 
 **Primary database**: `data/drugs/tier1.db` (SQLite, 3.67 MB)
 
-**Current stats** (2026-05-26):
+**Current stats** (2026-05-27 audit):
 - **Objects**: 464 (78 drugs, 20 diseases, 366 proteins)
 - **Morphisms**: 5,382 (all with provenance)
 - **Quantitative edges**: 204 (IC50, mutation freq, response rate, HR)
-- **Unique PMIDs**: 581
+- **PMID identifiers**: 609 found in provenance/metadata strings
 - **Evidence tiers**: MEASURED 1073, ESTABLISHED 282, INFERRED 809, SPECULATIVE 955, HYPOTHESIS 159, NOISE 2104
+
+Audit note: source/provenance string coverage is 100%, but this is not the
+same as edge-specific citation validation. Quantitative NLP attribution still
+needs re-verification before using evidence tiers as research-grade support.
 
 ---
 
@@ -369,9 +373,9 @@ values = extract_quantitative_values(pmid_list=list_of_pmids)
 
 ### Provenance
 
-- **PMIDs**: 581 unique, all linked to morphisms
+- **PMID identifiers**: 609 found in provenance/metadata strings
 - **ChEMBL IDs**: All 78 drugs + targets mapped
-- **Validation**: 92.2% accuracy on NLP extractions (vs. abstracts)
+- **Validation caveat**: NLP quantitative extraction attribution remains under audit
 
 ---
 

@@ -14,10 +14,10 @@ from multiple molecular bridges:
 4. Drug Properties - Lipinski drug-likeness and drug-target molecular compatibility
 5. Molecular Bridge Scorers - solubility/steric/reactivity scoring
 
-For each Drug->Disease pair, the strategy finds all intermediate proteins
-(Drug->Protein edges) and scores binding evidence for each Drug->Protein
-link.  The best binding score across all intermediate proteins becomes
-the strategy confidence.
+For each Drug->Disease pair, the strategy finds disease-connected
+intermediate proteins (Drug->Protein->Disease paths) and scores binding
+evidence for each Drug->Protein link. The best relevant binding score
+becomes the strategy confidence.
 
 This wires existing chemistry/molecular code from KOMPOSOS-III into the
 drug repurposing scoring pipeline.
@@ -32,7 +32,7 @@ from typing import List, Dict, Optional, Tuple
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from oracle.prediction import Prediction, PredictionType, ConfidenceLevel
-from oracle.strategies import InferenceStrategy
+from oracle.strategies import InferenceStrategy, REPURPOSING_INTERMEDIATE_TYPES
 from core.category import Category
 
 
@@ -127,8 +127,9 @@ class BindingEvidenceStrategy(InferenceStrategy):
         Predict Drug->Disease relationship via binding evidence.
 
         Only produces predictions for Drug->Disease pairs (object types
-        checked).  For each intermediate protein P with Drug->P edge,
-        aggregates binding evidence and returns the best.
+        checked). For each intermediate protein P on an observed
+        Drug->P->Disease path, aggregates binding evidence and returns the
+        best. Binding to an unrelated target is not disease evidence.
         """
         source_obj = self.category.get(source)
         target_obj = self.category.get(target)
@@ -139,13 +140,20 @@ class BindingEvidenceStrategy(InferenceStrategy):
 
         self._ensure_indices()
 
-        # Find intermediate proteins: Drug->Protein edges
+        # Restrict molecular support to proteins connected to this disease.
         drug_morphisms = self._outgoing.get(source, [])
         protein_targets = []
         for mor in drug_morphisms:
             tgt = self.category.get(mor.target)
-            if tgt and tgt.type_name not in ("Disease", "Drug", "ExternalCompound"):
-                protein_targets.append((mor.target, mor.confidence))
+            if tgt and tgt.type_name in REPURPOSING_INTERMEDIATE_TYPES:
+                disease_links = [
+                    link for link in self._outgoing.get(mor.target, [])
+                    if link.target == target
+                ]
+                if disease_links:
+                    protein_targets.append(
+                        (mor.target, mor.confidence, disease_links)
+                    )
 
         if not protein_targets:
             return []
@@ -156,10 +164,17 @@ class BindingEvidenceStrategy(InferenceStrategy):
         best_evidence: Dict = {}
         all_scores: List[Tuple[str, float, Dict]] = []
 
-        for protein_name, edge_confidence in protein_targets:
+        for protein_name, edge_confidence, disease_links in protein_targets:
             score, evidence = self._score_drug_protein(
                 source, protein_name, edge_confidence
             )
+            evidence["disease_links"] = [
+                {
+                    "relation": link.name,
+                    "confidence": link.confidence,
+                }
+                for link in disease_links
+            ]
             all_scores.append((protein_name, score, evidence))
             if score > best_score:
                 best_score = score

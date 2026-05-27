@@ -19,6 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from data.store import KomposOSStore
+from core.evidence_classification import classify_evidence
 from validation.repurposing_benchmark import (
     DB_PATH,
     drug_disease_pairs,
@@ -26,18 +27,14 @@ from validation.repurposing_benchmark import (
     make_strategies,
     score_pair,
 )
+from oracle.strategies import REPURPOSING_INTERMEDIATE_TYPES
 
 
-PROTEIN_TYPES = {
-    "Receptor", "Signaling", "Transcription", "TumorSuppressor",
-    "Apoptosis", "Oncogene", "DNARepair", "CellCycle", "Regulator",
-    "Splicing", "Epigenetic", "Metabolic", "Structural", "Chaperone",
-    "Transporter", "Ligand", "Enzyme", "Marker",
-}
+PROTEIN_TYPES = REPURPOSING_INTERMEDIATE_TYPES
 
 
-def _build_provenance_index(db_path: str) -> dict[tuple[str, str, str], tuple]:
-    """Build a lookup from (source, target, relation) -> (provenance, evidence_tier, quant_value, quant_unit) from SQLite."""
+def _build_provenance_index(db_path: str) -> dict[tuple[str, str, str], dict]:
+    """Build a lookup from edge key to provenance and derived audit fields."""
     import sqlite3
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
@@ -45,16 +42,18 @@ def _build_provenance_index(db_path: str) -> dict[tuple[str, str, str], tuple]:
     index = {}
     cursor.execute("""
         SELECT source_name, target_name, name, provenance, evidence_tier,
-               quantitative_value, value_unit
+               quantitative_value, value_unit, metadata
         FROM morphisms
     """)
-    for source, target, relation, prov, tier, quant_val, quant_unit in cursor.fetchall():
-        index[(source, target, relation)] = (
-            prov or "unknown",
-            tier or "HYPOTHESIS",
-            quant_val,  # Can be None
-            quant_unit  # Can be None
-        )
+    for source, target, relation, prov, tier, quant_val, quant_unit, metadata in cursor.fetchall():
+        classification = classify_evidence(prov, metadata, tier, quant_val)
+        index[(source, target, relation)] = {
+            "provenance": prov or "unknown",
+            "evidence_tier": tier or "HYPOTHESIS",
+            "quantitative_value": quant_val,
+            "value_unit": quant_unit,
+            **classification.to_dict(),
+        }
 
     conn.close()
     return index
@@ -94,11 +93,20 @@ def trace_pair(category, drug: str, disease: str, strategies=None,
             quant_value = None
             quant_unit = None
             if provenance_index:
-                prov_data = provenance_index.get((src, tgt, relation), ("unknown", "HYPOTHESIS", None, None))
-                provenance = prov_data[0]
-                evidence_tier = prov_data[1]
-                quant_value = prov_data[2] if len(prov_data) > 2 else None
-                quant_unit = prov_data[3] if len(prov_data) > 3 else None
+                prov_data = provenance_index.get((src, tgt, relation), {})
+                provenance = prov_data.get("provenance", "unknown")
+                evidence_tier = prov_data.get("evidence_tier", "HYPOTHESIS")
+                quant_value = prov_data.get("quantitative_value")
+                quant_unit = prov_data.get("value_unit")
+                source_type = prov_data.get("source_type", "unknown_or_internal")
+                validation_status = prov_data.get("validation_status", "unclassified")
+                citation_status = prov_data.get("citation_status", "no_source")
+                quantitative_status = prov_data.get("quantitative_status", "no_quantitative_value")
+            else:
+                source_type = "unknown_or_internal"
+                validation_status = "unclassified"
+                citation_status = "no_source"
+                quantitative_status = "no_quantitative_value"
             tgt_obj = category.get(tgt)
             edges.append({
                 "source": src,
@@ -108,6 +116,10 @@ def trace_pair(category, drug: str, disease: str, strategies=None,
                 "confidence": confidence,
                 "provenance": provenance,
                 "evidence_tier": evidence_tier,
+                "source_type": source_type,
+                "validation_status": validation_status,
+                "citation_status": citation_status,
+                "quantitative_status": quantitative_status,
                 "evidence_type": evidence_type,
                 "quantitative_value": quant_value,
                 "value_unit": quant_unit,
