@@ -78,7 +78,7 @@ Top 10 candidates for Melanoma:
 
 1. Sorafenib [APPROVED 2008]
    Score: 0.910
-   Votes: composition(0.88) path_bonus(0.08) binding_evidence(0.85) yoneda_distance(0.72)
+   Votes: Mechanistic Path(0.81) Binding Evidence(0.87) Drug Analogy(0.90)
    Evidence:
    - Sorafenib --inhibits--> BRAF [IC50=25.8 nM, PMID:12829955]
    - Sorafenib --inhibits--> VEGFR2 [PMID:18241329]
@@ -87,7 +87,7 @@ Top 10 candidates for Melanoma:
 
 2. Vemurafenib [APPROVED 2011]
    Score: 0.905
-   Votes: composition(0.87) binding_evidence(0.88) yoneda_distance(0.79)
+   Votes: Mechanistic Path(0.81) Binding Evidence(0.88) Structural Similarity(0.79)
    Evidence:
    - Vemurafenib --inhibits--> BRAF [IC50=13.1 nM, PMID:21346200]
    - BRAF --mutation--> Melanoma [Mutation freq=70.0%, PMID:15184864]
@@ -134,15 +134,13 @@ python validation/triage.py Melanoma --drug Vemurafenib
 Status: APPROVED (FDA 2011, PMID:21346200)
 
 Score breakdown:
-  composition:        0.867  [Drug→Protein→Disease paths]
-  path_bonus:         0.062  [High-confidence paths bonus]
-  binding_evidence:   0.880  [ABPP IC50: 13.1 nM]
-  yoneda_distance:    0.785  [Structural similarity to other BRAF inhibitors]
-  coherence:          0.720  [Logical consistency]
-  natural_transform:  0.650  [Morphism alignment]
-  conjecture:         0.580  [Rule-based prediction]
-  game_theory:        0.590  [Equilibrium analysis]
-  bayesian:           0.610  [Probabilistic score]
+  Mechanistic Path:    0.81  (composition)
+  Binding Evidence:    0.87  (IC50 + drug properties)
+  Interaction Profile: 0.73  (yoneda_pattern)
+  Structural Inference: 0.70 (fibration_lift)
+  Evidence Integration: 0.81 (topos_logic)
+  Drug Analogy:        0.90  (kan_extension)
+  Structural Similarity: 0.32 (yoneda_distance, live only)
 
 Final score: 0.905 (above decision threshold 0.50)
 
@@ -204,8 +202,8 @@ When you run `python validation/triage.py Melanoma`, the system:
 2. **Removes direct labels**: Melanoma → Drug edges temporarily removed (prevents leakage)
 3. **Finds all paths**: Drug → Protein → Disease paths for each drug
 4. **Scores each path**: Multiplies confidences along the path (e.g., 0.95 × 0.91 = 0.865)
-5. **Runs 9 strategies**: composition, binding evidence, Yoneda distance, etc.
-6. **Aggregates votes**: Weighted sum of strategy scores
+5. **Runs the active strategy profile**: composition, binding evidence, graph/categorical structure modules, and conditional Yoneda distance when visible comparators exist
+6. **Aggregates votes**: Combines active strategy scores into a ranking score
 7. **Ranks drugs**: Highest score first
 8. **Formats output**: Recovers FDA labels, formats evidence chains with PMIDs
 
@@ -223,10 +221,10 @@ When you run `python validation/triage.py Melanoma`, the system:
 
 Each strategy contributes a score 0.0–1.0. Examples:
 
-- **composition**: 0.88 = high-confidence Drug→Protein→Disease paths
-- **binding_evidence**: 0.85 = good ABPP IC50 binding data
-- **yoneda_distance**: 0.72 = structurally similar to other known treatments
-- **path_bonus**: 0.08 = paths are unusually high-confidence
+- **Mechanistic Path**: 0.81 = high-confidence Drug→Protein→Disease paths
+- **Binding Evidence**: 0.87 = good ABPP IC50 binding data
+- **Structural Similarity**: 0.32 = live/as-loaded structural similarity to visible known treatments; absent in strict `remove_direct_labels`
+- **Drug Analogy**: 0.90 = similarity to other drugs with similar targets
 
 ### Evidence Chains
 
@@ -353,7 +351,7 @@ options:
 A: Yes, but Track A was trained/validated on oncology. Apply to other domains at your own risk. See [DATA_AND_DATABASE.md](DATA_AND_DATABASE.md) for data structure.
 
 **Q: How often is the database updated?**
-A: Currently static (2026-05-26 snapshot, 610 PMID identifiers). Updates require rebuilding from manifest. See [DATA_AND_DATABASE.md](DATA_AND_DATABASE.md).
+A: Currently static (2026-05-26 snapshot, 609 PMID identifiers). Updates require rebuilding from manifest. See [DATA_AND_DATABASE.md](DATA_AND_DATABASE.md).
 
 **Q: Can I export candidates as a CSV?**
 A: Use `--json` flag and parse with your tool. Markdown export is also available with `--markdown`.

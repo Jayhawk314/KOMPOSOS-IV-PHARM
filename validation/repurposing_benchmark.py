@@ -30,7 +30,6 @@ from oracle.strategies import (
     KanExtensionStrategy,
     REPURPOSING_INTERMEDIATE_TYPES,
     StructuralHoleStrategy,
-    TypeHeuristicStrategy,
     YonedaPatternStrategy,
 )
 from oracle.topos_strategy import ToposLogicStrategy
@@ -39,6 +38,16 @@ from oracle.yoneda_strategy import YonedaDistanceStrategy
 
 
 DB_PATH = "data/drugs/tier1.db"
+REPURPOSING_STRATEGY_NAMES = (
+    "kan_extension",
+    "structural_hole",
+    "composition",
+    "yoneda_pattern",
+    "fibration_lift",
+    "topos_logic",
+    "binding_evidence",
+    "yoneda_distance",
+)
 
 
 @dataclass(frozen=True)
@@ -234,17 +243,32 @@ def load_full_typed_view(
 
 
 def make_strategies(category: Category):
-    return [
+    strategies = [
         KanExtensionStrategy(category),
-        TypeHeuristicStrategy(category),
         StructuralHoleStrategy(category),
         CompositionStrategy(category),
         YonedaPatternStrategy(category),
         FibrationLiftStrategy(category),
         ToposLogicStrategy(category),
         BindingEvidenceStrategy(category),
-        YonedaDistanceStrategy(category),
     ]
+    if _has_visible_drug_disease_labels(category):
+        strategies.append(YonedaDistanceStrategy(category))
+    return strategies
+
+
+def _has_visible_drug_disease_labels(category: Category) -> bool:
+    """Return True when Yoneda has visible treatment comparators."""
+    for morphism in category.morphisms():
+        source = category.get(morphism.source)
+        target = category.get(morphism.target)
+        if (
+            source and target
+            and source.type_name == "Drug"
+            and target.type_name == "Disease"
+        ):
+            return True
+    return False
 
 
 def drug_disease_pairs(category: Category) -> tuple[list[str], list[str], set[tuple[str, str]]]:

@@ -80,16 +80,16 @@ Two drugs with similar fingerprints are **structurally similar** even if they sh
 
 ### How It Works (Production)
 
-The Yoneda Distance Strategy (`oracle/yoneda_strategy.py`) is the 9th scoring strategy:
+The Yoneda Distance Strategy (`oracle/yoneda_strategy.py`) is a conditional live-triage structural signal:
 
 1. Load only MEASURED + ESTABLISHED edges (1,355 edges, noise-free subgraph)
 2. For each object, compute a confidence-weighted fingerprint:
    ```
    fingerprint(X) = {(neighbor, relation): max_confidence}
    ```
-3. For a Drug-Disease pair, find the most similar drug that treats that disease
+3. For a Drug-Disease pair, find the most similar visible drug that treats that disease
 4. Similarity = weighted Jaccard: `|intersection| / |union|` where weights are max confidence per key
-5. Integrated as additive bonus: `min(0.10, 0.06 * similarity)`
+5. Integrated as additive bonus: `min(0.10, 0.06 * similarity)` only when visible treatment comparators exist
 
 ### Drug Equivalence Classes Discovered
 
@@ -111,18 +111,20 @@ These equivalence classes are discovered purely from morphism structure -- no dr
 | AUPRC | 0.552 |
 | Hits@5 / Hits@10 / Hits@20 | 1.00 / 0.60 / 0.60 |
 
-Older Yoneda ablation deltas were development measurements. Treat them as
-historical until rerun under the corrected loader and leakage controls.
+Yoneda distance is **not active** in the strict `remove_direct_labels` run because
+that protocol removes all visible Drug->Disease treatment comparators before
+scoring. Older Yoneda ablation deltas were development measurements. Treat them
+as historical until rerun under the corrected loader and leakage controls.
 
 ### Origin: Simplicial Type Theory Experiment
 
 The Yoneda Distance Strategy originated from an STT (Simplicial Type Theory) experiment (`stt_repurposing.py`) that tested three strategies:
 
-1. **Yoneda Distance** -- presheaf fingerprint similarity (kept, integrated as 9th strategy)
+1. **Yoneda Distance** -- presheaf fingerprint similarity (kept as a conditional live-triage signal)
 2. **Fibration Transport** -- lift drug efficacy along disease-disease morphisms (dropped: too sparse, 3 diseases with zero protein coverage on clean subgraph)
 3. **Rezk Completion** -- merge Yoneda-isomorphic entities, propagate labels (dropped: identical to Yoneda, no disease equivalence classes found)
 
-Only Yoneda added value. The other two STT strategies failed not because the math is wrong, but because the current graph lacks the density they need (disease-disease morphisms are sparse).
+Only Yoneda produced a usable live-triage signal. The other two STT strategies failed not because the math is wrong, but because the current graph lacks the density they need (disease-disease morphisms are sparse).
 
 **Code**: `stt_repurposing.py` (standalone experiment), `oracle/yoneda_strategy.py` (production integration)
 
@@ -369,7 +371,7 @@ Simplicial Type Theory provides a type-theoretic framework for reasoning about i
 
 ### Three STT Strategies Tested
 
-**1. Yoneda Distance** (integrated as 9th strategy):
+**1. Yoneda Distance** (conditional live-triage strategy):
 - Compute presheaf fingerprints on clean evidence subgraph (MEASURED + ESTABLISHED only)
 - Score drug-disease pairs by similarity to known treatments
 - Uses confidence-weighted Jaccard distance
@@ -404,7 +406,7 @@ The `SheafCoherenceChecker` (`oracle/coherence.py`) validates predictions by:
 2. Detecting semantic contradictions via antonym pair detection
 3. Filtering incoherent predictions before scoring
 
-This is one of the 9 oracle strategies (the "coherence" strategy), contributing to the ensemble vote.
+This is a logical consistency component in the oracle layer. Whether it contributes to a given score depends on the active runtime strategy profile.
 
 **Code**: `oracle/coherence.py` (SheafCoherenceChecker)
 
@@ -431,28 +433,30 @@ In drug repurposing:
 
 ## How the Math Contributes to Drug Repurposing
 
-### Production Pipeline (9 Strategies)
+### Runtime Strategy Profiles
 
-The 9 oracle strategies that produce the current AUROC 0.9747 result use these mathematical frameworks:
+The strict AUROC 0.9747 result is produced by 7 active modules. Live triage uses
+8 modules because Yoneda distance is active when visible known-treatment
+comparators exist.
 
-| Strategy | Math Framework | Historical ablation note |
-|----------|---------------|------------------------:|
-| **Composition** | Enriched category composition (quantale) | -0.153 (dominant) |
-| **Binding Evidence** | Molecular chemistry + graph confidence | -0.045 |
-| **Path Bonus** | Confidence-weighted path aggregation | -0.015 |
-| **Yoneda Distance** | Yoneda presheaf fingerprints (STT) | -0.009 |
-| **Coherence** | Sheaf coherence (contradiction detection) | -0.005 |
-| **Conjecture** | Inductive rule learning from path patterns | -0.002 |
-| **Natural Transform** | Morphism alignment scoring | ~0 |
-| **Game Theory** | Equilibrium analysis | ~0 |
-| **Bayesian** | Probabilistic scoring | ~0 |
+| Runtime signal | Math Framework | Status |
+|----------------|---------------|--------|
+| **Composition** | Enriched category composition (quantale) | Active in live and strict profiles |
+| **Binding Evidence** | Molecular chemistry + graph confidence | Active in live and strict profiles |
+| **Path Bonus** | Confidence-weighted path aggregation | Active in live and strict profiles |
+| **Topos Logic** | Intuitionistic partial-evidence logic | Active in live and strict profiles |
+| **Kan Extension** | Categorical analogy over visible graph structure | Active in live and strict profiles |
+| **Yoneda Pattern** | Morphism-profile analogy | Active in live and strict profiles |
+| **Fibration Lift** | Fiber-preserving structural lift | Active in live and strict profiles |
+| **Structural Hole** | Triangle closure | Active in live and strict profiles |
+| **Yoneda Distance** | Yoneda presheaf fingerprints (STT) | Live triage only when comparators exist |
 
 ### Score Aggregation
 
 ```
-base = mean(8 strategy confidences)           # First 8 strategies
+base = mean(active strategy confidences except yoneda_distance)
 path_bonus = min(0.25, 0.04 * sum(path_conf)) # Confidence-weighted
-yoneda_bonus = min(0.10, 0.06 * similarity)   # Yoneda presheaf distance
+yoneda_bonus = min(0.10, 0.06 * similarity)   # Only when comparators exist
 score = min(1.0, base + path_bonus + yoneda_bonus)
 ```
 
@@ -475,7 +479,7 @@ score = min(1.0, base + path_bonus + yoneda_bonus)
 
 1. **Composition** (+0.153 AUROC): The enriched category framework naturally handles multi-hop inference with confidence propagation. This is the core engine.
 
-2. **Yoneda**: Structural similarity without feature engineering. Drug equivalence classes are discovered, not hardcoded; historical AUPRC lift estimates should be rerun under the corrected loader before being quoted.
+2. **Yoneda**: Structural similarity without feature engineering. Drug equivalence classes are discovered, not hardcoded. In the current runtime it is a conditional live-triage signal, not part of the all-labels-removed strict benchmark.
 
 3. **Type safety**: Category theory enforces that Drug->Disease predictions require protein intermediates. You can't accidentally compose Drug->Drug paths.
 

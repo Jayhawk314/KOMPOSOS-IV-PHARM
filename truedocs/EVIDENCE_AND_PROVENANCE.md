@@ -5,7 +5,7 @@
 **Audience**: Researchers (validating claims), scientists (understanding evidence), practitioners (checking candidate justification)
 
 **Key fact**: All 5,382 morphisms have source/provenance strings. The database
-contains 610 unique PMID identifiers, but source-string coverage is not the same
+contains 609 unique PMID identifiers, but source-string coverage is not the same
 as edge-specific citation validation.
 
 ---
@@ -34,7 +34,7 @@ This means:
 |----------|------:|----------------|
 | **Total morphisms** | 5,382 | SQLite edge rows |
 | Source/provenance strings | 5,382 | Every row has a source string |
-| Unique PMID identifiers | 610 | PMIDs detected in provenance/metadata strings |
+| Unique PMID identifiers | 609 | PMIDs detected in provenance/metadata strings |
 | Structured quantitative values | 204 | Edges with IC50, mutation, response, or HR values |
 
 Do not rewrite this as "100% validated PMIDs" or "100% validated provenance."
@@ -278,17 +278,15 @@ All Paths Ranked by Confidence:
 Strategy Votes:
 ─────────────────────────────────────────────
 
-Composition:        0.88  (best path confidence weighted by count)
-Path Bonus:         0.08  (high-confidence bonus)
-Binding Evidence:   0.85  (ABPP IC50, Lipinski score)
-Yoneda Distance:    0.72  (structural similarity)
-Coherence:          0.72  (logical consistency)
-Natural Transform:  0.65  (morphism alignment)
-Conjecture:         0.58  (rule learning)
-Game Theory:        0.59  (equilibrium)
-Bayesian:           0.61  (probabilistic)
+Mechanistic Path:    0.81  (composition)
+Binding Evidence:    0.87  (IC50 + drug properties)
+Interaction Profile: 0.73  (yoneda_pattern)
+Structural Inference: 0.70 (fibration_lift)
+Evidence Integration: 0.81 (topos_logic)
+Drug Analogy:        0.90  (kan_extension)
+Structural Similarity: 0.32 (yoneda_distance, live only)
 
-Final Score: 0.910 (average of 9 votes, threshold 0.50)
+Final Score: 0.910 (average of active signals + bonuses)
 Status: APPROVED (FDA 2008, PMID:18241329)
 
 PMIDs Cited (in order of importance):
@@ -385,7 +383,7 @@ Morphisms: 5,382
 
 Coverage check:
   Rows with source strings:   5,382 / 5,382 (100.0%)
-  Unique PMID identifiers:    610
+  Unique PMID identifiers:    609
   Structured value rows:      204
 
 Orphaned morphisms (no provenance):
@@ -425,7 +423,7 @@ python data/drugs/build_tier1.py --manifest data/drugs/tier1_manifest.json
 
 **Manifest format**: JSON file specifying:
 - Drug list (78 drugs with ChEMBL IDs)
-- Protein list (366 proteins with STRING/UniProt IDs)
+- Protein list (366 biological entities including receptors, oncogenes, tumor suppressors, and signaling molecules)
 - Disease list (20 oncology diseases)
 - Edge sources (ChEMBL, FDA, STRING, cBioPortal, ABPP, NLP)
 
@@ -469,7 +467,7 @@ See [DATA_AND_DATABASE.md](DATA_AND_DATABASE.md) for details on data schema and 
 
 ## Handling Updates
 
-Current database is static (2026-05-26 snapshot, 610 PMIDs).
+Current database is static (2026-05-26 snapshot, 609 PMIDs).
 
 **To update**:
 1. Modify manifest (add/remove drugs, diseases, edges)
@@ -516,7 +514,7 @@ If you use KOMPOSOS-IV data in a publication:
   author = {Hawkins, James Ray},
   year = {2026},
   url = {https://github.com/your-repo/KOMPOSOS-IV-PHARM},
-  note = {1146 runtime objects, 5382 morphisms, source strings on all morphisms, 610 PMID identifiers}
+  note = {1146 runtime objects, 5382 morphisms, source strings on all morphisms, 609 PMID identifiers}
 }
 ```
 

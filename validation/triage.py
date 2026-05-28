@@ -215,7 +215,6 @@ def _detail_block(entry: dict) -> str:
         # Map technical names to user-friendly labels
         strategy_labels = {
             "kan_extension": "Drug Analogy",
-            "type_heuristic": "Type Match",
             "structural_hole": "Network Closure",
             "composition": "Mechanistic Path",
             "yoneda_pattern": "Interaction Profile",

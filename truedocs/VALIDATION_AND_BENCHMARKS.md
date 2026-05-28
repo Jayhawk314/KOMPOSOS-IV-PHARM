@@ -27,6 +27,7 @@ Current output, rerun on 2026-05-27:
 | Task | 78 drugs x 20 diseases = 1,560 pairs |
 | Labels | 44 positives; 1,516 open-world unlabeled pairs |
 | Scored | 1,325 scored; 235 unscored |
+| Active strategy profile | 7 modules; Yoneda distance excluded because no Drug->Disease comparators remain |
 | AUROC | 0.974694 [95% CI 0.9606-0.9855] |
 | AUPRC | 0.551698 [95% CI 0.4067-0.6983] |
 | Hits@5 | 1.0000 |
@@ -49,6 +50,12 @@ module could see held-out Drug->Disease labels. The later `0.9562` value was an
 intermediate post-leakage audit result, superseded by the current Topos-aligned
 strict run above.
 
+Current runtime distinction:
+
+- **Live triage / `as_loaded`**: 8 modules, including conditional Yoneda distance.
+- **Strict `remove_direct_labels`**: 7 active modules. Yoneda distance is not listed
+  as active because all visible Drug->Disease treatment comparators are removed.
+
 ---
 
 ## Protocol Definitions
@@ -61,6 +68,8 @@ This is the primary internal validation protocol.
 2. Remove explicit label-derived Protein->Disease bridges.
 3. Score all 1,560 drug-disease pairs.
 4. Evaluate 44 FDA-approved pairs against 1,516 open-world unlabeled pairs.
+5. Exclude Yoneda distance from the active strategy list because its comparator
+   set is intentionally empty under this protocol.
 
 Unlabeled pairs are unknowns, not confirmed negatives. AUROC measures ranking
 order in this benchmark, not clinical probability.
@@ -219,7 +228,7 @@ benchmark. It is not a patient response probability.
 Current database facts:
 
 - 5,382 morphisms have source/provenance strings.
-- 610 unique PMID identifiers are present in provenance/metadata strings.
+- 609 unique PMID identifiers are present in provenance/metadata strings.
 - 204 morphisms have structured quantitative values.
 
 These facts do not mean 100% edge-specific citation validation. The read-only

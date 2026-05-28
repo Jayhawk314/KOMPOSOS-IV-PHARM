@@ -15,7 +15,7 @@ This report identifies cheap, FDA-approved generic drugs with mechanistic pathwa
 **Key facts**:
 - **37 cheap generics** screened across **20 cancer types**
 - **70 drug-disease entries** with mechanistic pathway support
-- Rankings based on 9 categorical inference strategies (composition, binding evidence, Yoneda distance, path bonus, coherence, conjecture, natural transform, game theory, bayesian)
+- Rankings based on the active PHARM strategy profile: composition, structural holes, Kan extension, Yoneda pattern, fibration lift, topos logic, binding evidence, and conditional Yoneda distance in live triage
 - Every prediction backed by source-linked evidence chains (PMIDs, ChEMBL IDs, FDA/KEGG/STRING/computational provenance as applicable)
 - System validation: AUROC 0.9747 [95% CI: 0.9606-0.9855] (remove_direct_labels, 44 FDA positives)
 - ClinicalTrials.gov cross-check: 63% of top predictions already in human trials
@@ -33,7 +33,7 @@ Each candidate entry includes:
 | Field | Meaning |
 |-------|---------|
 | **Rank** | Position among all 78 drugs for that disease |
-| **Score** | Combined score from 9 strategies (0.0-1.0) |
+| **Score** | Ranking score from active strategy signals plus path and conditional Yoneda bonuses (0.0-1.0) |
 | **Status** | APPROVED (in our 44 FDA labels) or NOT_APPROVED |
 | **Mechanistic paths** | Count of Drug->Protein->Disease chains found |
 | **Path details** | Specific protein intermediates with confidence scores |
@@ -46,7 +46,7 @@ Scores above 0.80 indicate strong mechanistic support. Scores 0.70-0.80 indicate
 
 ## Why Cheap Generics Rank Lower Than Targeted Therapies
 
-With the current 9-strategy system (including binding evidence and Yoneda distance), FDA-approved kinase inhibitors with strong experimental backing rank highest. Cheap generics typically appear in ranks 2-50 rather than top 10, reflecting calibration toward evidence-backed predictions.
+With the current live triage profile (including binding evidence and conditional Yoneda distance), FDA-approved kinase inhibitors with strong experimental backing rank highest. Cheap generics typically appear in ranks 2-50 rather than top 10, reflecting calibration toward evidence-backed predictions.
 
 **Targeted therapies** (Osimertinib, Sunitinib, Imatinib) benefit from:
 - Extensive ABPP IC50 data (65 experimental entries)
@@ -368,21 +368,19 @@ python validation\triage.py Melanoma --all
 
 ### Scoring
 
-Categorical AI analysis combining 9 strategies over the drug-target-disease knowledge graph:
+Categorical AI analysis over the drug-target-disease knowledge graph:
 
 ```
-base = mean(8 strategy confidences)         # composition, binding_evidence,
-                                             # coherence, conjecture, natural_transform,
-                                             # game_theory, bayesian, path_bonus
+base = mean(active strategy confidences except yoneda_distance)
 path_bonus = min(0.25, 0.04 * sum(path_confidence))  # confidence-weighted
-yoneda_bonus = min(0.10, 0.06 * similarity)           # structural similarity
+yoneda_bonus = min(0.10, 0.06 * similarity)           # live triage only when comparators exist
 score = min(1.0, base + path_bonus + yoneda_bonus)
 ```
 
 ### Graph
 
-- **464 objects**: 78 drugs, 366 proteins, 20 diseases
-- **5,382 morphisms**: source strings on all morphisms; 610 PMID identifiers plus ChEMBL/FDA/KEGG/STRING/computational sources
+- **464 objects**: 78 drugs, 20 diseases, 269 `Protein` rows plus typed protein/pathway classes
+- **5,382 morphisms**: source strings on all morphisms; 609 PMID identifiers plus ChEMBL/FDA/KEGG/STRING/computational sources
 - **204 edges** with quantitative evidence (IC50, mutation freq, HR, response rates)
 - **Evidence tiers**: MEASURED 1,073 | ESTABLISHED 282 | INFERRED 809 | SPECULATIVE 955 | HYPOTHESIS 159 | NOISE 2,104
 

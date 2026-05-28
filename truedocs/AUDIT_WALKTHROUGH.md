@@ -16,7 +16,7 @@ An audit trail is a complete record of how a prediction was made:
 2. **Provenance per edge**: Where did each edge come from? (PMID, ChEMBL ID)
 3. **Strategy reasoning**: WHY did each strategy vote the way it did?
 4. **Score derivation**: How was the final score calculated? (formula, step by step)
-5. **Clinical validation**: Does the prediction match clinical reality?
+5. **Label/status check**: Does the prediction match known approvals or external evidence?
 
 ---
 
@@ -24,7 +24,7 @@ An audit trail is a complete record of how a prediction was made:
 
 **Query**: Can Venetoclax treat AML?
 
-**Clinical reality**: YES -- FDA-approved 2016 for AML in combination with azacitidine/decitabine.
+**Known approval status**: YES -- FDA-approved 2016 for AML in combination with azacitidine/decitabine.
 
 ### Step 1: Find Mechanistic Paths
 
@@ -92,7 +92,7 @@ Strategies 7-9 (Natural Transform, Game Theory, Bayesian):
 ### Step 3: Score Calculation
 
 ```python
-# Step 1: Base score (mean of 8 strategies, excluding yoneda_distance)
+# Step 1: Base score (mean of active non-Yoneda strategy signals)
 votes = [0.87, 0.92, 0.80, 0.72, 0.65, 0.70, 0.68]
 # (composition, binding, coherence, conjecture, nat_transform, game, bayesian)
 # Note: path_bonus is computed separately
@@ -377,7 +377,7 @@ When auditing any prediction, check these flags:
 ### Green Flags (High Quality)
 
 - ✓ Multiple mechanistic paths (composition > 0.70)
-- ✓ All edges have source strings (610 PMID identifiers across the graph, plus ChEMBL/FDA/KEGG/STRING/computational sources)
+- ✓ All edges have source strings (609 PMID identifiers across the graph, plus ChEMBL/FDA/KEGG/STRING/computational sources)
 - ✓ Experimental evidence (ABPP IC50, ChEMBL binding data)
 - ✓ Multiple data sources agree
 - ✓ Quantitative values (IC50, mutation freq)
@@ -448,8 +448,8 @@ After NLP extraction: BRAF → Melanoma, confidence 0.85, tier MEASURED
 ### What AUROC 0.9747 Means
 
 ```
-Given a random approved Drug-Disease pair and a random non-approved pair:
-  There is a 97.47% probability the strict benchmark ranks the approved pair higher.
+Given a random approved Drug-Disease pair and a random unlabeled comparison pair:
+  The strict benchmark usually ranks the approved pair higher.
 ```
 
 ### What AUROC 0.9747 Does NOT Mean
@@ -529,7 +529,7 @@ Apply the green/yellow/red flag checklist above.
 | **MRR** | Mean Reciprocal Rank (how early positives appear) |
 | **Presheaf** | Object defined by its neighborhood (Yoneda) |
 | **Provenance** | Source and evidence for a claim (PMID, ChEMBL ID) |
-| **Strategy** | Algorithm for scoring Drug-Disease pairs (9 total) |
+| **Strategy** | Algorithm/module for scoring Drug-Disease pairs; active count depends on protocol |
 | **Yoneda distance** | Structural similarity via presheaf fingerprint comparison |
 
 ---
@@ -543,4 +543,4 @@ Apply the green/yellow/red flag checklist above.
 
 ---
 
-*Last updated: 2026-05-26 (9 strategies, quantitative evidence, Yoneda distance)*
+*Last updated: 2026-05-28 (runtime strategy profiles, quantitative evidence, conditional Yoneda distance)*

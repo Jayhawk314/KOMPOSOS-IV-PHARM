@@ -2,11 +2,11 @@
 
 **Categorical AI for pharmaceutical discovery: drug repurposing via mechanistic paths and structural similarity.**
 
-KOMPOSOS-IV-PHARM applies a categorical AI runtime to drug discovery, focusing on finding existing drugs that can treat new diseases through computational analysis of biological networks. It combines path-based scoring (via category theory), machine learning strategies, and quantitative evidence tracing to recommend drug-disease pairs with mechanistic justification.
+KOMPOSOS-IV-PHARM applies a categorical AI runtime to drug discovery, focusing on finding existing drugs that can treat new diseases through computational analysis of biological networks. It combines path-based categorical scoring, graph-structure strategy modules, binding/evidence scoring, and quantitative evidence tracing to recommend drug-disease pairs with mechanistic justification.
 
 **Current Status**: Track A (drug repurposing) is a working research prototype with **AUROC 0.9747** on the current strict `remove_direct_labels` audit run. Track B (de novo drug design) is a long-term goal, not yet scientifically validated.
 
-**Audit note (2026-05-27)**: The older `0.9689 AUROC / 0.661 AUPRC` claim is retired because the Yoneda module could see held-out Drug->Disease labels. An intermediate `0.9562` strict result was later superseded by the current Topos-aligned strict run shown here. LOOCV, external, temporal, and disease-holdout scripts have also been rerun under the corrected loader.
+**Audit note (2026-05-28)**: The older `0.9689 AUROC / 0.661 AUPRC` claim is retired because the Yoneda module could see held-out Drug->Disease labels. An intermediate `0.9562` strict result was later superseded by the current Topos-aligned strict run shown here. The live triage profile has 8 modules and includes Yoneda distance only when visible known-treatment comparators exist. The strict `remove_direct_labels` benchmark has 7 active modules because it removes all Drug->Disease comparator labels before scoring.
 
 ---
 
@@ -42,14 +42,13 @@ Recommends FDA-approved drugs to treat diseases by analyzing:
 
 1. **Mechanistic paths**: Drug → Protein → Disease chains with confidence scores
 2. **Quantitative evidence**: IC50 binding data, clinical response rates, mutation frequencies (204 edges)
-3. **Structural similarity**: Yoneda distance (are other drugs treating this disease with similar targets?)
+3. **Conditional structural similarity**: Yoneda distance in live triage when visible known-treatment comparators exist
 4. **Confidence-weighted composition**: How certain are the biological connections?
 
-**Example**: For Melanoma, the system ranks BRAF/MEK inhibitors first (correct) and can justify them with:
-- Sorafenib → BRAF/VEGFR2 → Melanoma (mutated BRAF pathway)
-- IC50 = 25.8 nM from PMID:12829955
-- Structural match to Vemurafenib (both inhibit BRAF)
-- FDA indication: 2008, PMID:18241329
+**Example**: For Melanoma, the live triage output highlights MAPK/BRAF-pathway candidates and separates `APPROVED` labels from `NOT_APPROVED` candidates:
+- Sorafenib -> BRAF -> Melanoma (mechanistic candidate, not a current 44-label approval)
+- Sorafenib-BRAF IC50 = 0.022 uM from PMID:15001789 in the local evidence dump
+- Conditional Yoneda distance can report structural similarity to visible approved Melanoma drugs when comparator labels are present
 
 ### Track B: Drug Design (Long-term)
 
@@ -64,7 +63,7 @@ Planned capability: generate novel compounds with predicted binding, ADMET, and 
 | **AUROC** | **0.9747** | Corrected full-typed view, strict remove_direct_labels protocol, 44 FDA pairs |
 | **AUPRC** | 0.552 | Open-world unlabeled negatives; use ranking/audit, not prevalence |
 | **Hits@5 / Hits@10 / Hits@20** | 1.000 / 0.600 / 0.600 | Current strict `remove_direct_labels` run |
-| **Source fields** | 5,382/5,382 | 610 PMID identifiers found; edge-specific attribution audit still required |
+| **Source fields** | 5,382/5,382 | 609 PMID identifiers found in provenance/metadata strings; edge-specific attribution audit still required |
 | **Data points** | 5,382 morphisms | 1,146 runtime objects; 78 drugs, 20 diseases, 44 FDA-positive labels |
 
 See **[VALIDATION_AND_BENCHMARKS.md](VALIDATION_AND_BENCHMARKS.md)** for full metrics, confidence intervals, and external/temporal/disease-holdout caveats.
@@ -78,7 +77,7 @@ See **[RESEARCH_INTEGRITY_AUDIT_2026-05-27.md](RESEARCH_INTEGRITY_AUDIT_2026-05-
 **Objects** = Drugs, Proteins, Diseases
 **Morphisms** = Biological relationships (Drug inhibits Protein, Protein regulates Pathway, etc.) with confidence scores
 **Paths** = Mechanistic chains (Drug → Protein → Pathway → Disease) with multiplicative confidence
-**Strategies** = 9 scoring methods (composition, binding evidence, Yoneda distance, etc.) that vote on Drug-Disease pairs
+**Strategies** = active scoring modules. Live triage uses 8 modules including conditional Yoneda distance; strict `remove_direct_labels` uses 7 active modules because Yoneda has no visible Drug->Disease comparators.
 
 Why category theory? It naturally models composition (mechanistic paths), supports extensibility (adding new object types and strategies), and provides honesty (confidence propagation through multiplicative rules).
 
@@ -117,13 +116,13 @@ KOMPOSOS-IV-PHARM/
 │   ├── ARCHITECTURE.md                # 5-layer stack, design decisions
 │   ├── API_REFERENCE.md               # Core API, examples
 │   ├── DATA_AND_DATABASE.md           # Schema, stats, reproducible build
-│   ├── STRATEGIES_IN_DEPTH.md         # All 9 strategies explained
+│   ├── STRATEGIES_IN_DEPTH.md         # Runtime strategy profiles explained
 │   ├── CHEMISTRY_AND_BINDING.md       # Molecular properties, Lipinski
 │   ├── CATEGORICAL_THEORY_PRIMER.md   # Intuitive category theory
 │   ├── CONTRIBUTING.md                # Code standards, adding strategies
 │   └── TROUBLESHOOTING_AND_FAQ.md     # Common issues & Q&A
 ├── core/                              # Category runtime (objects, morphisms)
-├── oracle/                            # Scoring strategies (9 total)
+├── oracle/                            # Runtime strategy modules
 ├── validation/                        # Benchmark harness, triage CLI
 ├── data/
 │   └── drugs/                         # Drug repurposing data (tier1.db)
@@ -138,8 +137,8 @@ KOMPOSOS-IV-PHARM/
 
 **Track A Database**: `data/drugs/tier1.db` (3.67 MB, reproducible build from manifest)
 
-- **Objects**: 78 FDA-approved drugs, 20 oncology diseases, 366 proteins (targets, pathways, regulators)
-- **Edges**: 5,382 morphisms with source strings (610 PMID identifiers, ChEMBL IDs)
+- **Objects**: 78 FDA-approved drugs, 20 oncology diseases, 366 protein/pathway/regulatory objects
+- **Edges**: 5,382 morphisms with source strings (609 PMID identifiers in provenance/metadata strings, plus ChEMBL/FDA/KEGG/STRING/computational provenance)
 - **Quantitative**: 204 edges with IC50 binding data, hazard ratios, mutation frequencies
 - **Labels**: 44 FDA-approved Drug→Disease pairs (all mechanistically supported)
 - **Source coverage**: Every edge has a provenance/source string; this is not the same as edge-specific citation validation
@@ -253,4 +252,4 @@ Apache 2.0 (open source) / Commercial (dual license available)
 
 ---
 
-*Last updated: 2026-05-27 (research-integrity audit, corrected validation metrics)*
+*Last updated: 2026-05-28 (runtime strategy profile and README examples audited against local output)*

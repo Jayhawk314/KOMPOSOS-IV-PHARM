@@ -1,6 +1,6 @@
 # Strategies In Depth
 
-**Purpose**: Detailed explanation of all 9 scoring strategies with mathematics, code locations, and performance impact.
+**Purpose**: Detailed explanation of the current runtime strategy profiles, historical strategy experiments, mathematics, code locations, and audit caveats.
 
 **Audience**: Researchers, developers extending the system
 
@@ -8,21 +8,20 @@
 
 ## Overview
 
-All strategies produce a score [0, 1] for a Drug-Disease pair. Scores are normalized and aggregated (arithmetic mean) into a final score.
+The current drug-repurposing runtime does not use the older fixed-count ensemble described in early notes. Strict `remove_direct_labels` validation uses 7 active modules; live/as-loaded triage can use 8 when Yoneda comparators are visible. Some sections below describe historical or development modules and should not be quoted as current active benchmark components unless they appear in `validation/repurposing_benchmark.py::make_strategies`.
 
-| Strategy | AUROC Contribution | Role |
-|----------|-------------------|------|
-| **Composition** | Dominant | Path-based scoring (Drug→Protein→Disease) |
-| **Path Bonus** | Tuning | High-confidence path bonus |
-| **Binding Evidence** | Moderate | IC50 + drug properties |
-| **Yoneda Distance** | +0.009 | Structural similarity |
-| **Coherence** | Minor | Logical consistency |
-| **Conjecture** | Minor | Rule learning |
-| **Natural Transform** | Negligible | Morphism alignment |
-| **Game Theory** | Negligible | Equilibrium analysis |
-| **Bayesian** | Negligible | Probabilistic |
+| Runtime module | Active profile | Role |
+|----------------|----------------|------|
+| `kan_extension` | strict + live | Analogy/extension over typed graph neighborhoods |
+| `structural_hole` | strict + live | Graph-structure bridge signal |
+| `composition` | strict + live | Mechanistic Drug→...→Disease paths |
+| `yoneda_pattern` | strict + live | Local categorical fingerprint patterning |
+| `fibration_lift` | strict + live | Typed lifting over related objects |
+| `topos_logic` | strict + live | Logic-style support from graph evidence |
+| `binding_evidence` | strict + live | IC50 + drug/target compatibility |
+| `yoneda_distance` | live only when direct labels are visible | Comparator similarity bonus |
 
-**Ablation note**: Historical development runs showed composition as the dominant signal. Current strict full-system run is AUROC 0.9747; per-strategy ablations should be rerun under the corrected loader before being quoted as current.
+**Ablation note**: Historical development runs showed composition as the dominant signal. Current strict full-system run is AUROC 0.9747 with 7 active modules; per-strategy ablations should be rerun under the corrected loader before being quoted as current.
 
 ---
 
@@ -37,7 +36,7 @@ score = weighted_mean(path_confidences)
 where path_confidence = ∏(edge_confidence)
 ```
 
-**Code location**: `oracle/composition_strategy.py`
+**Code location**: `oracle/strategies.py::CompositionStrategy`
 
 **Algorithm**:
 
@@ -49,7 +48,7 @@ def composition_score(cat: Category, drug: str, disease: str) -> float:
         return 0.0
 
     # Weight each path by its confidence (multiplicative)
-    confidences = [path.confidence for path in paths]
+    confidences = [path.weight for path in paths]
 
     # Favor drugs with many high-confidence paths
     if len(confidences) == 0:
@@ -83,24 +82,16 @@ bonus = min(0.25, 0.04 × sum(path_confidence))
 final_score = composition_score + bonus
 ```
 
-**Code location**: `oracle/path_bonus_strategy.py`
+**Code location**: `validation/repurposing_benchmark.py::score_pair`
 
 **Algorithm**:
 
 ```python
 def path_bonus_score(cat: Category, drug: str, disease: str) -> float:
     """Add bonus for high-confidence paths"""
-    composition = composition_score(cat, drug, disease)
-
-    # Calculate bonus
     paths = cat.find_paths(drug, disease, max_length=4)
-    if not paths:
-        bonus = 0.0
-    else:
-        path_sum = sum(p.confidence for p in paths)
-        bonus = min(0.25, 0.04 * path_sum)
-
-    return min(1.0, composition + bonus)
+    composition_weight = sum(p.weight for p in paths)
+    return min(0.25, 0.04 * composition_weight)
 ```
 
 **Hyperparameter**: Coefficient 0.04 was tuned via LOOCV grid search over [0.0, 0.20].
@@ -202,7 +193,7 @@ morphism_conf = morphism.confidence  # 0.0–1.0
 
 ---
 
-## Strategy 4: Yoneda Distance (NEW 2026-05-26)
+## Strategy 4: Yoneda Distance (conditional live triage)
 
 **Purpose**: Structural similarity via presheaf fingerprints.
 
@@ -223,13 +214,13 @@ def yoneda_distance_score(cat: Category, drug: str, disease: str) -> float:
 
     # Build presheaf for drug (neighbors + relation weights)
     drug_presheaf = {}
-    morphisms = cat.list_morphisms(source=drug, limit=None)
+    morphisms = cat.morphisms_from(drug)
     for m in morphisms:
-        key = (m.target.name, m.name)
+        key = (m.target, m.name)
         drug_presheaf[key] = m.confidence
 
     # Find reference drugs (already approved for this disease)
-    approved_for_disease = [m.source for m in cat.list_morphisms(target=disease)
+    approved_for_disease = [m.source for m in cat.morphisms_to(disease)
                            if m.name == 'treats']
 
     if not approved_for_disease:
@@ -268,9 +259,9 @@ Vemurafenib presheaf (reference drug):
 
 Jaccard distance: |union| / |intersection| = 5 / 3 = 1.67, similarity = 1 - (1.67 - 1) = 0.60
 
-**Integration**: Not averaged (too low compared to other strategies). Instead, added as small bonus (weight 0.06, capped 0.10).
+**Integration**: Not averaged into the strict benchmark. In live/as-loaded triage, it is added as a small bonus (weight 0.06, capped 0.10) only when visible known-treatment comparators exist.
 
-**Performance**: Ablation shows +0.009 AUROC improvement, +0.097 AUPRC improvement.
+**Performance**: Historical development ablations suggested AUROC/AUPRC lift. Under the corrected strict `remove_direct_labels` loader, Yoneda distance has no comparators and is inactive, so those old deltas should not be quoted as current strict-benchmark impact.
 
 **Drug equivalence classes discovered**:
 - Binimetinib ≈ Cobimetinib (both MEK inhibitors)
@@ -279,11 +270,11 @@ Jaccard distance: |union| / |intersection| = 5 / 3 = 1.67, similarity = 1 - (1.6
 
 ---
 
-## Strategy 5: Coherence
+## Historical/Experimental Module: Coherence
 
 **Purpose**: Logical consistency via verdict lattices.
 
-**Code location**: `oracle/coherence_strategy.py`
+**Code location**: historical notes; not an active current module
 
 **Idea**: Check if paths support or contradict each other.
 
@@ -295,19 +286,19 @@ def coherence_score(cat: Category, drug: str, disease: str) -> float:
     # All paths should point to same conclusion
     # If one path says treatment works, another says it doesn't: lower score
 
-    consensus = mean([path.confidence for path in paths])
-    variance = std([path.confidence for path in paths])
+    consensus = mean([path.weight for path in paths])
+    variance = std([path.weight for path in paths])
 
     # Lower variance = more coherent
     coherence = 1.0 - (variance / 1.0)  # Normalize variance
     return max(0.0, min(1.0, coherence))
 ```
 
-**Performance**: Ablation shows -0.005 AUROC if removed (minor).
+**Performance**: Historical only. Do not quote as current strict-benchmark impact without rerunning ablation.
 
 ---
 
-## Strategy 6: Conjecture (Rule Learning)
+## Historical/Experimental Module: Conjecture (Rule Learning)
 
 **Purpose**: Learn inductive rules from data patterns.
 
@@ -338,11 +329,11 @@ def conjecture_score(cat: Category, drug: str, disease: str) -> float:
 
 ---
 
-## Strategy 7: Natural Transformation
+## Historical/Experimental Module: Natural Transformation
 
 **Purpose**: Morphism alignment (category-theoretic concept).
 
-**Code location**: `oracle/natural_transform_strategy.py`
+**Code location**: `oracle/natural_transformation.py`
 
 **Idea**: Do morphism patterns align across different drugs?
 
@@ -352,14 +343,14 @@ Example: If Sorafenib→BRAF and Vemurafenib→BRAF, they have aligned morphisms
 def natural_transform_score(cat: Category, drug: str, disease: str) -> float:
     """Measure morphism alignment with reference drugs"""
     # Compare morphism patterns with approved drugs for the disease
-    approved = [m.source for m in cat.list_morphisms(target=disease) if m.name == 'treats']
+    approved = [m.source for m in cat.morphisms_to(disease) if m.name == 'treats']
 
     if not approved:
         return 0.0
 
     # Count morphism overlaps
-    drug_targets = set([m.target.name for m in cat.list_morphisms(source=drug)])
-    approved_targets = set([m.target.name for m in cat.list_morphisms(source=approved[0])])
+    drug_targets = set([m.target for m in cat.morphisms_from(drug)])
+    approved_targets = set([m.target for m in cat.morphisms_from(approved[0])])
 
     overlap = len(drug_targets & approved_targets)
     union = len(drug_targets | approved_targets)
@@ -371,11 +362,11 @@ def natural_transform_score(cat: Category, drug: str, disease: str) -> float:
 
 ---
 
-## Strategy 8: Game Theory
+## Historical/Experimental Module: Game Theory
 
 **Purpose**: Equilibrium analysis of biological interactions.
 
-**Code location**: `oracle/game_theory_strategy.py`
+**Code location**: `oracle/game_strategy.py`
 
 **Idea**: Model drug-protein-disease as a game; compute equilibrium.
 
@@ -399,11 +390,11 @@ def game_theory_score(cat: Category, drug: str, disease: str) -> float:
 
 ---
 
-## Strategy 9: Bayesian
+## Historical/Experimental Module: Bayesian
 
 **Purpose**: Probabilistic scoring.
 
-**Code location**: `oracle/bayesian_strategy.py`
+**Code location**: historical notes; no active `oracle/bayesian_strategy.py` module in the current runtime profile
 
 **Idea**: Treat confidence scores as probabilities.
 
@@ -436,26 +427,29 @@ def bayesian_score(cat: Category, drug: str, disease: str) -> float:
 ## Strategy Aggregation
 
 ```python
-def score_pair(cat: Category, drug: str, disease: str) -> float:
-    """Aggregate all 9 strategies"""
+def score_pair(strategies, source: str, target: str) -> tuple[float, list[tuple[str, float]]]:
+    """Aggregate the active runtime strategy profile."""
 
-    scores = {
-        'composition': composition_score(cat, drug, disease),
-        'path_bonus': path_bonus_score(cat, drug, disease),
-        'binding_evidence': binding_evidence_score(cat, drug, disease),
-        'yoneda_distance': yoneda_distance_score(cat, drug, disease),
-        'coherence': coherence_score(cat, drug, disease),
-        'conjecture': conjecture_score(cat, drug, disease),
-        'natural_transform': natural_transform_score(cat, drug, disease),
-        'game_theory': game_theory_score(cat, drug, disease),
-        'bayesian': bayesian_score(cat, drug, disease),
-    }
+    votes = []
+    composition_weight = 0.0
+    yoneda_similarity = 0.0
 
-    # Normalize and aggregate
-    normalized = {k: max(0.0, min(1.0, v)) for k, v in scores.items()}
-    final_score = mean(normalized.values())
+    for strategy in strategies:
+        preds = strategy.predict(source, target)
+        if not preds:
+            continue
+        best = max(preds, key=lambda pred: pred.confidence)
+        votes.append((strategy.name, best.confidence))
+        if strategy.name == "composition":
+            composition_weight = sum(pred.confidence for pred in preds)
+        if strategy.name == "yoneda_distance":
+            yoneda_similarity = best.confidence
 
-    return final_score
+    base_votes = [(name, conf) for name, conf in votes if name != "yoneda_distance"]
+    base = sum(conf for _, conf in base_votes) / len(base_votes) if base_votes else 0.0
+    path_bonus = min(0.25, 0.04 * composition_weight)
+    yoneda_bonus = min(0.10, 0.06 * yoneda_similarity) if yoneda_similarity > 0 else 0.0
+    return min(1.0, base + path_bonus + yoneda_bonus), votes
 ```
 
 **Weights**: Current production scoring uses the calibrated strategy combiner. Ranking-score calibration is tracked separately from strategy signal scores.
@@ -482,7 +476,7 @@ Tested uniform vs. composition-dominant weights during development:
 
 ## Performance Per Strategy
 
-Median contribution to AUROC (via ablation):
+Historical median contribution to AUROC (via development ablation; rerun before quoting as current):
 
 ```
 Composition:         -0.153 (dominant)
@@ -490,7 +484,7 @@ Binding Evidence:    -0.045 (moderate)
 Coherence:           -0.005 (minor)
 Conjecture:          -0.002 (minor)
 Path Bonus:          -0.015 (tuning)
-Yoneda Distance:     -0.009 (bonus)
+Yoneda Distance:     historical live-triage bonus; inactive in strict remove_direct_labels
 Natural Transform:   -0.000 (none)
 Game Theory:         -0.000 (none)
 Bayesian:            -0.000 (none)
@@ -521,4 +515,4 @@ Key checklist:
 
 ---
 
-*Last updated: 2026-05-26 (Yoneda distance integration)*
+*Last updated: 2026-05-28 (runtime strategy profiles and conditional Yoneda clarified)*

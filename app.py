@@ -91,6 +91,7 @@ def load_graph():
         "diseases": diseases,
         "positives": positives,
         "strategies": strategies,
+        "strategy_names": [strategy.name for strategy in strategies],
         "provenance_index": provenance_index,
         "n_objects": n_objects,
         "n_morphisms": n_morphisms,
@@ -136,6 +137,10 @@ st.sidebar.markdown(
     f"**Source fields**: {g['provenance_rows']}/{g['n_morphisms']} edges, "
     f"{g['pmid_count']} PMID IDs\n\n"
     f"**Quantitative fields**: {g['quantitative_edges']} edges with IC50/HR/mutation freq"
+)
+st.sidebar.caption(
+    f"Live strategy profile: {len(g['strategy_names'])} modules; "
+    f"Yoneda {'active' if 'yoneda_distance' in g['strategy_names'] else 'inactive'}"
 )
 st.sidebar.markdown(
     f"**Edge quality**: High: {g['high_conf']} | "
@@ -192,10 +197,6 @@ STRATEGY_DISPLAY = {
     "kan_extension": {
         "label": "Drug Analogy",
         "hint": "Similar drugs treat similar diseases",
-    },
-    "type_heuristic": {
-        "label": "Type Match",
-        "hint": "Drug-protein-disease type compatibility",
     },
     "structural_hole": {
         "label": "Network Closure",
@@ -371,12 +372,6 @@ def _generate_strategy_explanation(strategy_name: str, drug: str, disease: str,
         return (
             f"**Evidence integration:** Combines partial evidence from multiple sources using topos logic (intuitionistic logic over the knowledge graph). "
             f"Higher score = more consistent partial evidence across different viewpoints."
-        )
-
-    elif strategy_name == "type_heuristic":
-        return (
-            f"**Type compatibility:** Checks if the types along potential paths are biologically compatible. "
-            f"Example: Kinase inhibitor (drug type) \u2192 Kinase (protein type) \u2192 Cancer (disease type) has good type flow."
         )
 
     return ""
@@ -761,12 +756,12 @@ graph.
 When you run a triage query, each drug-disease pair receives a ranking score.
 This score is for prioritization and audit, not a calibrated probability.
 
-**Step 1: Base score** = mean of active strategy signals (excluding Yoneda distance)
+**Step 1: Base score** = mean of active strategy signals
 
 Configured strategies may abstain when their evidence is absent. The base score
-is the mean of strategies that actually fire. Yoneda distance is excluded from
-the average because its score range is lower than the path and binding signals;
-it is used only as a small additive bonus.
+is the mean of strategies that actually fire, excluding Yoneda distance when it
+is present. Yoneda distance is not averaged with the other signals; it is used
+only as a small additive bonus.
 
 **Step 2: Path bonus** from compositional (mechanistic) paths
 
@@ -798,9 +793,13 @@ cannot dominate the base score.
         st.markdown("""
 The Yoneda distance strategy compares the drug's profile to visible known
 treatments on the clean evidence subgraph. Direct Drug -> Disease labels are
-excluded from fingerprints; holdout protocols only expose training labels.
+excluded from fingerprints. Yoneda is included only when visible treatment
+comparators exist; in the strict `remove_direct_labels` benchmark it is not an
+active strategy because all Drug -> Disease comparator labels are removed.
+
 If the drug looks structurally similar to an approved treatment for this
-disease, it gets a small additive bonus (capped at 0.10).
+disease in the live triage graph, it gets a small additive bonus (capped at
+0.10).
 
 This can only help, never hurt -- even zero similarity adds nothing.
 
@@ -960,15 +959,16 @@ approved for.
 
 1. **Knowledge Graph**: {n_drugs} drugs, {n_obj - n_drugs - n_diseases} proteins, \
 {n_diseases} diseases, {n_mor} edges ({g['provenance_rows']} source strings, {g['pmid_count']} PMID identifiers, {g['quantitative_edges']} edges with quantitative IC50/HR/mutation data)
-2. **9 Inference Strategies**: Each uses a different mathematical or molecular lens
+2. **Live triage strategy profile**: 8 active strategy modules
    (composition, Kan extensions, Yoneda patterns, topos logic, structural holes,
-   fibration lifts, type heuristics, binding evidence, Yoneda distance)
+   fibration lifts, binding evidence, Yoneda distance)
 3. **Binding Evidence**: IC50/engagement data from ABPP experiments, Boltz2
    heuristic binding, drug-likeness (Lipinski), drug-target molecular compatibility
 4. **Yoneda Distance**: Structural similarity via presheaf fingerprints on clean
    evidence subgraph (MEASURED + ESTABLISHED edges only)
-5. **Scoring**: Mean of active strategy signals + path bonus + Yoneda bonus for
-   Drug->Protein->Disease chains (see "How Scoring Works" page for the full formula)
+5. **Scoring**: Mean of active strategy signals + path bonus, plus a conditional
+   Yoneda bonus when visible known-treatment comparators exist (see "How Scoring
+   Works" page for the full formula)
 6. **Evidence**: Every prediction comes with traceable mechanistic paths,
    literature citations, and IC50 data where available
 """)
@@ -1012,16 +1012,19 @@ approved for.
 | Hits@5 | 1.000 |
 | Hits@10 | 0.600 |
 | Hits@20 | 0.600 |
+| Strategy profile | 7 active modules; Yoneda distance excluded because no Drug->Disease comparators remain |
 | Positives | 44 FDA-approved oncology indications |
 | Strongest baseline (degree_product) | AUROC 0.6307 |
 | Common-neighbor baseline | AUROC 0.6260 |
 | Margin over strongest baseline | +0.3440 |
 | PMID identifiers in DB | {g['pmid_count']} |
 
-*Current audited strict run: 2026-05-27. This protocol removes direct Drug->Disease
-edges and protein->disease bridge edges explicitly derived from known drug
-indications. The previous 0.9689 AUROC / 0.661 AUPRC display is retired because
-the Yoneda module could see held-out labels.*
+*Current audited strict run: 2026-05-27, rechecked after the strategy-profile
+cleanup. This protocol removes direct Drug->Disease edges and protein->disease
+bridge edges explicitly derived from known drug indications. Because all visible
+Drug->Disease comparators are removed, Yoneda distance is not active in this
+strict benchmark. The previous 0.9689 AUROC / 0.661 AUPRC display is retired
+because an earlier Yoneda cache could see held-out labels.*
 
 ### Additional executable validations (2026-05-27)
 

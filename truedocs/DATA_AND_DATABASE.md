@@ -10,11 +10,11 @@
 
 **Primary database**: `data/drugs/tier1.db` (SQLite, 3.67 MB)
 
-**Current stats** (2026-05-27 audit):
-- **Objects**: 464 (78 drugs, 20 diseases, 366 proteins)
+**Current stats** (2026-05-28 audit):
+- **Objects**: 464 total (78 drugs, 20 diseases, 269 `Protein` rows plus typed protein/pathway classes)
 - **Morphisms**: 5,382 (all with provenance)
 - **Quantitative edges**: 204 (IC50, mutation freq, response rate, HR)
-- **PMID identifiers**: 609 found in provenance/metadata strings
+PMID identifiers: 609 found in provenance/metadata strings
 - **Evidence tiers**: MEASURED 1073, ESTABLISHED 282, INFERRED 809, SPECULATIVE 955, HYPOTHESIS 159, NOISE 2104
 
 Audit note: source/provenance string coverage is 100%, but this is not the
@@ -29,13 +29,13 @@ needs re-verification before using evidence tiers as research-grade support.
 
 ```sql
 CREATE TABLE objects (
-    id INTEGER PRIMARY KEY,
-    name TEXT UNIQUE NOT NULL,
+    name TEXT PRIMARY KEY,
     type_name TEXT NOT NULL,
-    confidence REAL DEFAULT 1.0,
-    provenance TEXT,
+    metadata TEXT NOT NULL,
     embedding BLOB,
-    metadata TEXT
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL,
+    provenance TEXT NOT NULL
 );
 
 CREATE INDEX idx_object_name ON objects(name);
@@ -43,13 +43,12 @@ CREATE INDEX idx_object_type ON objects(type_name);
 ```
 
 **Columns**:
-- `id`: Unique identifier (auto-incremented)
-- `name`: String identifier (e.g., "Sorafenib", "BRAF", "Melanoma")
+- `name`: Primary string identifier (e.g., "Sorafenib", "BRAF", "Melanoma")
 - `type_name`: Object type ("Drug", "Protein", "Disease")
-- `confidence`: Prior confidence [0, 1]
-- `provenance`: PMID, ChEMBL ID, or source reference
-- `embedding`: Optional vector representation (NULL for now)
 - `metadata`: JSON-serialized additional data
+- `embedding`: Optional vector representation (NULL for now)
+- `created_at`, `updated_at`: Row timestamps
+- `provenance`: PMID, ChEMBL ID, or source reference
 
 ---
 
@@ -57,48 +56,77 @@ CREATE INDEX idx_object_type ON objects(type_name);
 
 ```sql
 CREATE TABLE morphisms (
-    id INTEGER PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     name TEXT NOT NULL,
-    source_id INTEGER NOT NULL,
-    target_id INTEGER NOT NULL,
+    source_name TEXT NOT NULL,
+    target_name TEXT NOT NULL,
+    metadata TEXT NOT NULL,
     confidence REAL NOT NULL,
-    provenance TEXT,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL,
+    provenance TEXT NOT NULL,
     evidence_tier TEXT,
-    metadata TEXT,
-    FOREIGN KEY(source_id) REFERENCES objects(id),
-    FOREIGN KEY(target_id) REFERENCES objects(id)
+    quantitative_value REAL,
+    value_unit TEXT,
+    sample_size INTEGER,
+    confidence_lower REAL,
+    confidence_upper REAL
 );
 
-CREATE INDEX idx_morphism_source ON morphisms(source_id);
-CREATE INDEX idx_morphism_target ON morphisms(target_id);
+CREATE INDEX idx_morphism_source ON morphisms(source_name);
+CREATE INDEX idx_morphism_target ON morphisms(target_name);
 CREATE INDEX idx_morphism_name ON morphisms(name);
 ```
 
 **Columns**:
+- `id`: Deterministic string ID (`name:source->target`)
 - `name`: Relation type ("inhibits", "mutated_in", "treats", etc.)
-- `source_id`: Source object ID
-- `target_id`: Target object ID
+- `source_name`: Source object name
+- `target_name`: Target object name
+- `metadata`: JSON (IC50 value, units, etc.)
 - `confidence`: Confidence [0, 1]
+- `created_at`, `updated_at`: Row timestamps
 - `provenance`: PMID or ChEMBL ID
 - `evidence_tier`: MEASURED, ESTABLISHED, INFERRED, SPECULATIVE, HYPOTHESIS, NOISE
-- `metadata`: JSON (IC50 value, units, etc.)
+- `quantitative_value`, `value_unit`, `sample_size`, `confidence_lower`, `confidence_upper`: optional normalized quantitative fields
 
 ---
 
-### 2-Cells Table (Experimental)
+### Paths and Higher-Categorical Tables
 
 ```sql
-CREATE TABLE two_cells (
-    id INTEGER PRIMARY KEY,
-    morphism1_id INTEGER,
-    morphism2_id INTEGER,
-    equivalence_score REAL,
-    FOREIGN KEY(morphism1_id) REFERENCES morphisms(id),
-    FOREIGN KEY(morphism2_id) REFERENCES morphisms(id)
+CREATE TABLE paths (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    morphism_ids TEXT NOT NULL,
+    source_name TEXT NOT NULL,
+    target_name TEXT NOT NULL,
+    length INTEGER NOT NULL,
+    metadata TEXT NOT NULL,
+    confidence REAL NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    provenance TEXT NOT NULL
+);
+
+CREATE TABLE higher_morphisms (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    source_morphism_id TEXT NOT NULL,
+    target_morphism_id TEXT NOT NULL,
+    metadata TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL
+);
+
+CREATE TABLE equivalence_classes (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    object_names TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL
 );
 ```
 
-Used for Yoneda equivalence discovery (morphisms between morphisms).
+These tables support path caching and higher-categorical experiments. In the
+current `tier1.db` snapshot they are present but empty.
 
 ---
 
@@ -133,12 +161,12 @@ Used for Yoneda equivalence discovery (morphisms between morphisms).
 
 ---
 
-### Proteins (366 total)
+### Proteins and Typed Biological Objects
 
 **Types**:
-1. **Drug targets**: Kinases, GPCRs, proteases (~100)
-2. **Regulators**: Pathways, transcription factors (~150)
-3. **Disease-associated**: Mutation drivers, biomarkers (~116)
+1. **Protein rows**: 269 objects with `type_name = "Protein"`
+2. **Typed protein/pathway classes**: signaling, receptor, transcription, apoptosis, tumor suppressor, oncogene, regulator, and related classes
+3. **Disease-associated entities**: mutation drivers, biomarkers, pathways, and drug targets
 
 **Properties**:
 - `name`: Protein name or gene symbol
@@ -227,10 +255,10 @@ python data/drugs/build_tier1.py --manifest data/drugs/tier1_manifest.json
 
 ## Data Import Process
 
-### ChEMBL (872 morphisms)
+### ChEMBL
 
 ```python
-from data.drugs.importers.chembl_importer import import_chembl
+from data.drugs.importers.import_chembl import import_chembl
 
 # Import all drug-target interactions
 import_chembl(store, chembl_db='data/external/chembl_33.db')
@@ -245,10 +273,7 @@ import_chembl(store, chembl_db='data/external/chembl_33.db')
 ### FDA Labels (44 morphisms)
 
 ```python
-from data.drugs.importers.fda_importer import import_fda_labels
-
-# Import FDA-approved oncology indications
-import_fda_labels(store, fda_file='data/drugs/fda_oncology_approvals.csv')
+# FDA labels are loaded by the tier1 build from curated manifest/source files.
 
 # Adds:
 # - Treats morphisms (Drug → Disease)
@@ -256,10 +281,10 @@ import_fda_labels(store, fda_file='data/drugs/fda_oncology_approvals.csv')
 # - Approval date metadata
 ```
 
-### STRING PPI (338 morphisms)
+### STRING PPI
 
 ```python
-from data.drugs.importers.string_importer import import_string
+from data.drugs.importers.import_string import import_string
 
 # Import protein-protein interactions
 import_string(store, string_file='data/external/9606.protein.links.v11.5.txt')
@@ -273,10 +298,8 @@ import_string(store, string_file='data/external/9606.protein.links.v11.5.txt')
 ### cBioPortal Genomics (45+ morphisms)
 
 ```python
-from data.drugs.importers.cbioportal_importer import import_genomics
-
-# Import mutation frequencies
-import_genomics(store, mutations_file='data/external/cbioportal_mutations.csv')
+# cBioPortal-derived mutation-frequency edges are loaded by the tier1 build
+# from curated manifest/source files.
 
 # Adds:
 # - Mutated_in morphisms (Protein → Disease)
@@ -287,10 +310,7 @@ import_genomics(store, mutations_file='data/external/cbioportal_mutations.csv')
 ### ABPP IC50 (65 morphisms)
 
 ```python
-from data.drugs.importers.abpp_importer import import_abpp
-
-# Import experimental IC50 data
-import_abpp(store, abpp_file='data/external/abpp_ic50.tsv')
+# ABPP IC50 values are consumed by the binding evidence strategy and tier1 build.
 
 # Adds/updates:
 # - IC50 metadata on inhibits morphisms
@@ -300,10 +320,8 @@ import_abpp(store, abpp_file='data/external/abpp_ic50.tsv')
 ### NLP PMID Extraction (373 quantitative points)
 
 ```python
-from nlp.pmid_extractor import extract_quantitative_values
-
-# Extract IC50, mutation freq, response rate from abstracts
-values = extract_quantitative_values(pmid_list=list_of_pmids)
+# Quantitative extractions are represented in morphism metadata and normalized
+# quantitative columns where available.
 
 # Adds metadata to morphisms:
 # - IC50 values (nM, μM units normalized)
@@ -373,7 +391,7 @@ values = extract_quantitative_values(pmid_list=list_of_pmids)
 
 ### Provenance
 
-- **PMID identifiers**: 609 found in provenance/metadata strings
+PMID identifiers: 609 found in provenance/metadata strings
 - **ChEMBL IDs**: All 78 drugs + targets mapped
 - **Validation caveat**: NLP quantitative extraction attribution remains under audit
 
@@ -387,16 +405,15 @@ values = extract_quantitative_values(pmid_list=list_of_pmids)
 from data.store import KomposOSStore
 
 store = KomposOSStore('data/drugs/tier1.db')
-drugs = store.list_objects(type_name='Drug', limit=None)
+drugs = store.get_objects_by_type('Drug')
 print([d.name for d in drugs])
 ```
 
 ### Query all morphisms for a drug
 
 ```python
-drug = store.get_object('Sorafenib')
-morphisms = store.list_morphisms(source_id=drug.id, limit=None)
-targets = [m.target.name for m in morphisms if m.name == 'inhibits']
+morphisms = store.get_morphisms_from('Sorafenib')
+targets = [m.target_name for m in morphisms if m.name == 'inhibits']
 print(f"Targets of Sorafenib: {targets}")
 ```
 
@@ -409,7 +426,7 @@ print(f"Morphisms with IC50: {len(quantitative)}")
 
 for m in quantitative[:5]:
     ic50 = m.metadata.get('ic50_nm')
-    print(f"{m.source.name} → {m.target.name}: IC50 = {ic50} nM")
+    print(f"{m.source_name} → {m.target_name}: IC50 = {ic50} nM")
 ```
 
 ---
@@ -451,4 +468,4 @@ python data/drugs/build_tier1.py --manifest data/drugs/tier1_manifest.json
 
 ---
 
-*Last updated: 2026-05-26*
+*Last updated: 2026-05-28*

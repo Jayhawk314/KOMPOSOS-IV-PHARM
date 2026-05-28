@@ -32,7 +32,7 @@ python validation\repurposing_benchmark.py --view full_typed --protocol remove_d
 Current strict result (2026-05-27, corrected loader/strategies):
 - `full_typed/remove_direct_labels`: **AUROC 0.974694** [0.9606, 0.9855], AUPRC 0.551698 [0.4067, 0.6983], Hits@5 1.00, Hits@10 0.60, Hits@20 0.60, MRR 0.078750.
 - Baselines on the same corrected graph: degree_product 0.6307, common_neighbor 0.6260, path_count 0.5777, shortest_path 0.5775, random 0.5623.
-- The database has source strings on 5,382/5,382 morphisms and 610 PMID identifiers, but this is not the same as edge-specific citation validation. Quantitative NLP attribution requires edge-level audit.
+- The database has source strings on 5,382/5,382 morphisms and 609 PMID identifiers, but this is not the same as edge-specific citation validation. Quantitative NLP attribution requires edge-level audit.
 - Current executable holdouts: LOOCV AUROC 0.975916 / AUPRC 0.553703; Hetionet external AUROC 0.634479 / AUPRC 0.009255; temporal year>2013 AUROC 0.977994 / AUPRC 0.228793; disease-holdout mean AUROC 0.950416 / mean AUPRC 0.636826.
 
 Author: James Ray Hawkins
@@ -57,11 +57,11 @@ Reproducible build: `data/drugs/build_tier1.py` from `tier1_manifest.json`
 
 Full typed DB facts (2026-05-27 audit):
 - 1,146 runtime objects, 5,382 stored morphisms
-- 78 drugs, 20 diseases, 366 proteins
+- 78 drugs, 20 diseases, 366 biological entities
 - 44 Drug->Disease approved indication labels (all FDA-approved, all with source strings)
 - All 44 positives have mechanistic paths (Drug->Protein->Disease)
 - 5382/5382 morphisms have source/provenance strings; this is not equivalent to source-validated evidence
-- 610 PMID identifiers found in provenance/metadata strings
+- 609 PMID identifiers found in provenance/metadata strings
 - 204 edges with quantitative values (IC50, mutation frequencies, hazard ratios, response rates)
 - Evidence tier classification: MEASURED 1073, INFERRED 809, NOISE 2104, SPECULATIVE 955, ESTABLISHED 282, HYPOTHESIS 159
 - Data sources: PubMed, ChEMBL, FDA, KEGG, STRING PPI (338 edges), ESM2 similarity, cBioPortal genomic, ABPP

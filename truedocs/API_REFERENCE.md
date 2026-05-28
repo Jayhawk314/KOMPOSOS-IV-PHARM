@@ -20,7 +20,7 @@ cat = Category(name='DrugRepurposing')
 
 #### Methods
 
-##### `add(name: str, type_name: str, confidence: float = 1.0, metadata: dict = None) → Object`
+##### `add(name: str, **kwargs) -> Object`
 
 Add an object to the category.
 
@@ -33,24 +33,24 @@ disease = cat.add('Melanoma', type_name='Disease')
 
 **Parameters**:
 - `name`: Unique identifier (string)
-- `type_name`: Object type ('Drug', 'Protein', 'Disease', custom)
-- `confidence`: Prior confidence [0, 1] (default 1.0)
+- `type_name`: Object type ('Drug', 'Protein', 'Disease', custom); default is `"Object"`
 - `metadata`: Dict with optional properties (SMILES, molecular weight, etc.)
+- `provenance`: Optional source string for the object
 
 **Returns**: Object instance
 
 ---
 
-##### `connect(source: str, target: str, name: str, confidence: float, provenance: str = None) → Morphism`
+##### `connect(source: str, target: str, name: str = "r", confidence: float = 1.0, fn: Callable = None, **metadata) -> Morphism`
 
 Add a morphism (relationship) between objects.
 
 ```python
 m1 = cat.connect('Sorafenib', 'BRAF', name='inhibits',
-                 confidence=0.95, provenance='PMID:12829955')
+                 confidence=0.95, source_ref='PMID:15001789')
 
 m2 = cat.connect('BRAF', 'Melanoma', name='mutated_in',
-                 confidence=0.91, provenance='PMID:15184864')
+                 confidence=0.91, source_ref='PMID:15184864')
 ```
 
 **Parameters**:
@@ -58,13 +58,16 @@ m2 = cat.connect('BRAF', 'Melanoma', name='mutated_in',
 - `target`: Target object name
 - `name`: Morphism type ('inhibits', 'mutated_in', 'treats', etc.)
 - `confidence`: Relationship strength [0, 1]
-- `provenance`: PMID, ChEMBL ID, or reference
+- `fn`: Optional callable for executable morphisms
+- `metadata`: Extra key-value data. In the current `connect()` shorthand, extra
+  fields are stored in `morphism.metadata`; construct `Morphism(...)` and call
+  `add_morphism()` when you need to set the dedicated `provenance` field.
 
 **Returns**: Morphism instance
 
 ---
 
-##### `find_paths(source: str, target: str, max_length: int = 4) → List[Path]`
+##### `find_paths(source: str, target: str, max_length: int = 10) -> List[Path]`
 
 Find all paths between two objects.
 
@@ -72,9 +75,8 @@ Find all paths between two objects.
 paths = cat.find_paths('Sorafenib', 'Melanoma', max_length=4)
 
 for path in paths:
-    print(f"Confidence: {path.confidence:.3f}")
-    print(f"Morphisms: {[m.name for m in path.morphisms]}")
-    print(f"Objects: {' → '.join([m.source.name + '(' + m.target.name + ')' for m in path.morphisms])}")
+    print(f"Weight: {path.weight:.3f}")
+    print(f"Morphism ids: {path.morphism_ids}")
 ```
 
 **Parameters**:
@@ -86,63 +88,69 @@ for path in paths:
 
 **Path properties**:
 ```python
-path.morphisms   # List of Morphism objects in order
-path.confidence  # Product of morphism confidences
-path.hops        # Number of edges in path
-path.objects     # List of objects along path
+path.morphism_ids  # Ordered morphism ids along the path
+path.weight        # Product of morphism confidences under the multiplicative quantale
+path.length        # Number of edges in path
+path.source        # Start object name
+path.target        # End object name
 ```
 
 ---
 
-##### `score_pair(drug: str, disease: str) → float`
+### Drug Repurposing Scoring API
 
-Score a Drug-Disease pair using all 9 strategies.
+`core.Category` does not expose a `score_pair()` method. Drug-repurposing
+scoring lives in `validation.repurposing_benchmark`:
 
 ```python
-score = cat.score_pair('Sorafenib', 'Melanoma')
+from validation.repurposing_benchmark import load_full_typed_view, make_strategies, score_pair
+
+category, _ = load_full_typed_view(remove_direct_labels=False)
+strategies = make_strategies(category)
+score, votes = score_pair(strategies, 'Sorafenib', 'Melanoma', fail_on_error=True)
 print(f"Score: {score:.3f} (threshold: 0.50)")
 ```
 
-**Returns**: Float [0, 1] (0.50 is decision threshold)
+Live/as-loaded scoring uses 8 modules when Yoneda has visible known-treatment
+comparators. Strict `remove_direct_labels` scoring uses 7 active modules because
+those comparators are removed before scoring.
 
 ---
 
-##### `get_object(name: str) → Object`
+##### `get(name: str) -> Object | None`
 
 Retrieve an object by name.
 
 ```python
-drug = cat.get_object('Sorafenib')
-print(f"Type: {drug.type_name}, Confidence: {drug.confidence}")
+drug = cat.get('Sorafenib')
+print(f"Type: {drug.type_name}")
 ```
 
 ---
 
-##### `list_objects(type_name: str = None, limit: int = 100) → List[Object]`
+##### `objects() -> List[Object]`
 
 List all objects (optionally filtered by type).
 
 ```python
-all_drugs = cat.list_objects(type_name='Drug', limit=None)  # All drugs
-drugs_subset = cat.list_objects(type_name='Drug', limit=10)  # First 10
+all_drugs = [obj for obj in cat.objects() if obj.type_name == 'Drug']
+drugs_subset = all_drugs[:10]
 
 print(f"Total drugs: {len(all_drugs)}")
 ```
 
-**Important**: Always specify `limit=None` for production queries (default limit=100 is safety measure).
-
 ---
 
-##### `list_morphisms(source: str = None, target: str = None, limit: int = 100) → List[Morphism]`
+##### `morphisms()`, `morphisms_from(source)`, `morphisms_to(target)`
 
 List morphisms (optionally filtered).
 
 ```python
 # All morphisms from Sorafenib
-morphisms_from_drug = cat.list_morphisms(source='Sorafenib', limit=None)
+morphisms_from_drug = cat.morphisms_from('Sorafenib')
 
 # All morphisms to Melanoma
-morphisms_to_disease = cat.list_morphisms(target='Melanoma', limit=None)
+morphisms_to_disease = cat.morphisms_to('Melanoma')
 ```
 
 ---
@@ -161,7 +169,7 @@ store = KomposOSStore('data/drugs/tier1.db')
 
 #### Methods
 
-##### `get_object(name: str) → Object`
+##### `get_object(name: str) -> StoredObject | None`
 
 Retrieve object from database.
 
@@ -171,29 +179,34 @@ drug = store.get_object('Sorafenib')
 
 ---
 
-##### `add_object(obj: Object) → Object`
+##### `add_object(obj: StoredObject) -> bool`
 
 Write object to database.
 
 ```python
-obj = Object(name='NewDrug', type_name='Drug', confidence=0.9)
+from data.store import StoredObject
+
+obj = StoredObject(name='NewDrug', type_name='Drug')
 store.add_object(obj)
 ```
 
 ---
 
-##### `list_objects(type_name: str = None, limit: int = 100) → List[Object]`
+##### `list_objects(limit: int = 100, offset: int = 0) -> List[StoredObject]`
 
 Query objects with pagination.
 
 ```python
 # Safe for production: always use limit=None for full results
 all_objects = store.list_objects(limit=None)
+
+# Type-specific query
+drugs = store.get_objects_by_type('Drug')
 ```
 
 ---
 
-##### `list_morphisms(source_id: int = None, target_id: int = None, limit: int = 100) → List[Morphism]`
+##### `list_morphisms(limit: int = 100, offset: int = 0) -> List[StoredMorphism]`
 
 Query morphisms.
 
@@ -208,20 +221,23 @@ morphisms = store.list_morphisms(limit=None)
 ### Benchmark Harness
 
 ```python
-from validation.repurposing_benchmark import (
-    load_view, evaluate_protocol, report_metrics
-)
+from validation.repurposing_benchmark import load_full_typed_view, evaluate_category
 
 # Load database
-view = load_view('full_typed')
+category, missing_endpoints = load_full_typed_view(remove_direct_labels=True)
 
 # Evaluate protocol
-results = evaluate_protocol(view, protocol='remove_direct_labels')
+result = evaluate_category(
+    category,
+    view='full_typed',
+    protocol='remove_direct_labels',
+    compute_ci=False,
+)
 
 # Report metrics
-print(f"AUROC: {results['auroc']:.3f}")
-print(f"AUPRC: {results['auprc']:.3f}")
-print(f"Hits@10: {results['hits_at_10']:.2f}")
+print(f"AUROC: {result.auroc:.3f}")
+print(f"AUPRC: {result.auprc:.3f}")
+print(f"Hits@10: {result.hits_at_10:.2f}")
 ```
 
 ---
@@ -232,13 +248,16 @@ print(f"Hits@10: {results['hits_at_10']:.2f}")
 python validation/triage.py Melanoma --top 10 --json
 ```
 
-Programmatic access:
+Programmatic access uses the same helper functions as the CLI:
 
 ```python
-from validation.triage import run_triage
+from validation.repurposing_benchmark import load_full_typed_view, drug_disease_pairs, make_strategies
+from validation.triage import triage_disease
 
-results = run_triage(disease='Melanoma', top=10, output_format='json')
-print(results)
+category, _ = load_full_typed_view()
+drugs, diseases, positives = drug_disease_pairs(category)
+strategies = make_strategies(category)
+results = triage_disease(category, strategies, 'Melanoma', positives, top=10, show_all=False)
 ```
 
 ---
@@ -246,15 +265,18 @@ print(results)
 ### Trace Prediction
 
 ```bash
-python validation/trace_prediction.py Melanoma Sorafenib
+python validation/trace_prediction.py Sorafenib Melanoma
 ```
 
 Programmatic access:
 
 ```python
+from validation.repurposing_benchmark import load_full_typed_view, make_strategies
 from validation.trace_prediction import trace_pair
 
-trace = trace_pair('Melanoma', 'Sorafenib')
+category, _ = load_full_typed_view()
+strategies = make_strategies(category)
+trace = trace_pair(category, 'Sorafenib', 'Melanoma', strategies)
 print(f"Evidence chains: {len(trace['paths'])}")
 for path in trace['paths']:
     print(f"  {path['confidence']:.3f}: {path['description']}")
@@ -267,44 +289,28 @@ for path in trace['paths']:
 ### Adding a Custom Strategy
 
 ```python
-from oracle import STRATEGIES
+from oracle.strategies import InferenceStrategy
 from core.category import Category
 
-def my_custom_strategy(cat: Category, drug: str, disease: str) -> float:
-    """
-    Custom scoring strategy.
+class MyCustomStrategy(InferenceStrategy):
+    name = "my_custom_strategy"
 
-    Args:
-        cat: Category instance
-        drug: Drug name (string)
-        disease: Disease name (string)
-
-    Returns:
-        Score [0, 1]
-    """
-    # Your logic here
-    paths = cat.find_paths(drug, disease, max_length=4)
-    if not paths:
-        return 0.0
-
-    # Example: average confidence of top 3 paths
-    top_paths = sorted(paths, key=lambda p: p.confidence, reverse=True)[:3]
-    score = sum(p.confidence for p in top_paths) / len(top_paths) if top_paths else 0.0
-
-    return max(0.0, min(1.0, score))  # Clamp to [0, 1]
-
-# Register strategy
-STRATEGIES['my_custom_strategy'] = my_custom_strategy
+    def predict(self, source: str, target: str):
+        # Return a list of oracle.prediction.Prediction objects.
+        # See existing strategies in oracle/strategies.py for exact patterns.
+        return []
 ```
 
 ### Strategy Signature
 
-All strategies must have this signature:
+Benchmark strategies are classes with a `predict(source, target)` method:
 
 ```python
-def strategy_score(cat: Category, drug: str, disease: str) -> float:
-    """Returns score [0, 1]"""
-    pass
+class StrategyName(InferenceStrategy):
+    name = "strategy_name"
+
+    def predict(self, source: str, target: str):
+        return []  # list[Prediction]
 ```
 
 ---
@@ -318,11 +324,8 @@ from data.store import KomposOSStore
 
 store = KomposOSStore('data/drugs/tier1.db')
 
-# Add IC50 data to morphism
-morphism = store.get_morphism_by_names('Sorafenib', 'BRAF')
-morphism.metadata['ic50_nm'] = 25.8
-morphism.provenance = 'PMID:12829955'
-store.update_morphism(morphism)
+# Current workflow: add quantitative evidence through manifest/build scripts.
+# Direct in-place update helpers are not a stable public API.
 ```
 
 ---
@@ -356,18 +359,20 @@ bridge.register(cat)
 
 ```python
 from core.category import Category
-from domains.bio.loader import BioDomainLoader
 from data.store import KomposOSStore
+from validation.repurposing_benchmark import load_full_typed_view
 
 # 1. Load existing database
 print("Loading database...")
-loader = BioDomainLoader()
-cat = loader.load('data/drugs/tier1.db')
-print(f"Loaded {len(cat.objects)} objects, {len(cat.morphisms)} morphisms")
+store = KomposOSStore('data/drugs/tier1.db')
+cat, diseases = load_full_typed_view(store, view="full_typed")
+print(f"Loaded {len(cat.objects())} objects (runtime view), {len(cat.morphisms())} morphisms")
 
 # 2. Query a pair
 print("\nScoring Sorafenib for Melanoma...")
-score = cat.score_pair('Sorafenib', 'Melanoma')
+from validation.repurposing_benchmark import make_strategies, score_pair
+strategies = make_strategies(cat)
+score, votes = score_pair(strategies, 'Sorafenib', 'Melanoma')
 print(f"Score: {score:.3f}")
 
 # 3. Find supporting paths
@@ -375,19 +380,19 @@ print("\nFinding mechanistic paths...")
 paths = cat.find_paths('Sorafenib', 'Melanoma', max_length=3)
 print(f"Found {len(paths)} paths:")
 for i, path in enumerate(paths[:3], 1):
-    hops = ' → '.join([m.name for m in path.morphisms])
-    print(f"  {i}. {hops} (confidence: {path.confidence:.3f})")
+    hops = ' -> '.join(path.morphism_ids)
+    print(f"  {i}. {hops} (weight: {path.weight:.3f})")
 
 # 4. Trace evidence
 from validation.trace_prediction import trace_pair
 print("\nTracing evidence...")
-trace = trace_pair('Melanoma', 'Sorafenib')
-print(f"Top PMIDs: {trace['pmids'][:3]}")
+trace = trace_pair(cat, 'Sorafenib', 'Melanoma', strategies)
+print(f"Evidence chains: {len(trace['paths'])}")
 
 # 5. Batch score all drugs for disease
 print("\nScoring all drugs for Melanoma...")
-drugs = [obj.name for obj in cat.list_objects(type_name='Drug', limit=None)]
-scores = {drug: cat.score_pair(drug, 'Melanoma') for drug in drugs}
+drugs = [obj.name for obj in cat.objects() if obj.type_name == 'Drug']
+scores = {drug: score_pair(strategies, drug, 'Melanoma')[0] for drug in drugs}
 
 # 6. Rank and display
 ranked = sorted(scores.items(), key=lambda x: x[1], reverse=True)
@@ -404,11 +409,11 @@ for rank, (drug, score) in enumerate(ranked[:5], 1):
 
 ```python
 disease = 'Melanoma'
-drugs = [obj.name for obj in cat.list_objects(type_name='Drug', limit=None)]
+drugs = [obj.name for obj in cat.objects() if obj.type_name == 'Drug']
 
 candidates = []
 for drug in drugs:
-    score = cat.score_pair(drug, disease)
+    score = score_pair(strategies, drug, disease)[0]
     candidates.append((drug, score))
 
 ranked = sorted(candidates, key=lambda x: x[1], reverse=True)
@@ -421,8 +426,8 @@ drugs = ['Sorafenib', 'Vemurafenib', 'Imatinib']
 
 targets_sets = []
 for drug in drugs:
-    morphisms = cat.list_morphisms(source=drug, limit=None)
-    targets = {m.target.name for m in morphisms if m.name == 'inhibits'}
+    morphisms = cat.morphisms_from(drug)
+    targets = {m.target for m in morphisms if m.name == 'inhibits'}
     targets_sets.append(targets)
 
 common_targets = set.intersection(*targets_sets)
@@ -440,19 +445,22 @@ paths = cat.find_paths(drug, disease, max_length=4)
 # Extract evidence
 evidence = []
 for path in paths:
-    for morphism in path.morphisms:
+    for morphism_id in path.morphism_ids:
+        morphism = cat.get_morphism(morphism_id)
+        if morphism is None:
+            continue
         evidence.append({
-            'source': morphism.source.name,
-            'target': morphism.target.name,
+            'source': morphism.source,
+            'target': morphism.target,
             'relation': morphism.name,
             'confidence': morphism.confidence,
-            'pmid': morphism.provenance
+            'provenance': morphism.provenance,
         })
 
 # Display
 for item in evidence:
     print(f"{item['source']} --{item['relation']}--> {item['target']} "
-          f"({item['confidence']:.2f}, {item['pmid']})")
+          f"({item['confidence']:.2f}, {item['provenance']})")
 ```
 
 ---
@@ -470,14 +478,11 @@ for item in evidence:
 
 ```python
 try:
-    score = cat.score_pair('UnknownDrug', 'Melanoma')
-except ObjectNotFoundError as e:
-    print(f"Drug not in database: {e}")
-
-try:
-    paths = cat.find_paths('Sorafenib', 'UnknownDisease')
-except ObjectNotFoundError as e:
-    print(f"Disease not in database: {e}")
+    if cat.get('UnknownDrug') is None:
+        raise ValueError('Drug not in category')
+    score, votes = score_pair(strategies, 'UnknownDrug', 'Melanoma')
+except ValueError as e:
+    print(e)
 ```
 
 ---
@@ -490,4 +495,4 @@ except ObjectNotFoundError as e:
 
 ---
 
-*Last updated: 2026-05-26*
+*Last updated: 2026-05-28 (API examples audited against current code names)*

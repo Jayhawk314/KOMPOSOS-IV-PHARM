@@ -67,7 +67,7 @@ Current executable facts (2026-05-27):
   - 100 ESM2 protein similarity (all 20 diseases covered)
   - 58 other computational/genomic edges
 - 204 edges with quantitative values (IC50, mutation freq, hazard ratios)
-- 610 unique PMID identifiers in provenance/metadata strings
+- 609 unique PMID identifiers in provenance/metadata strings
 - Source strings on all 5,382 morphisms; this is not edge-specific citation validation
 - 373 NLP-extracted quantitative data points reported; attribution needs edge-level audit
 - 6 "inferred:" edges REMOVED (were circular — system predictions as labels)

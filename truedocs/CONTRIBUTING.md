@@ -108,31 +108,31 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
 # oracle/my_new_strategy.py
 """My new strategy description"""
 
-from core.category import Category
+from oracle.prediction import Prediction
+from oracle.strategies import InferenceStrategy
 
-def my_new_strategy_score(
-    cat: Category,
-    drug: str,
-    disease: str
-) -> float:
-    """
-    Score a Drug-Disease pair with my new strategy.
+class MyNewStrategy(InferenceStrategy):
+    name = "my_new_strategy"
 
-    Returns:
-        Float [0, 1]
-    """
-    # Your logic here
-    return score
+    def predict(self, source: str, target: str) -> list[Prediction]:
+        """Return predictions for a source-target pair."""
+        # Your logic here
+        return []
 ```
 
 ### Step 2: Register strategy
 
-In `oracle/__init__.py`:
+Wire it into the active profile in `validation/repurposing_benchmark.py`:
 
 ```python
-from oracle.my_new_strategy import my_new_strategy_score
+from oracle.my_new_strategy import MyNewStrategy
 
-STRATEGIES['my_new_strategy'] = my_new_strategy_score
+def make_strategies(category):
+    strategies = [
+        # existing runtime modules...
+        MyNewStrategy(category),
+    ]
+    return strategies
 ```
 
 ### Step 3: Write tests
@@ -140,17 +140,17 @@ STRATEGIES['my_new_strategy'] = my_new_strategy_score
 ```python
 # tests/test_my_new_strategy.py
 import pytest
-from oracle.my_new_strategy import my_new_strategy_score
+from oracle.my_new_strategy import MyNewStrategy
 
 def test_score_range():
     """Score must be [0, 1]"""
-    score = my_new_strategy_score(cat, 'Sorafenib', 'Melanoma')
-    assert 0.0 <= score <= 1.0
+    predictions = MyNewStrategy(cat).predict('Sorafenib', 'Melanoma')
+    assert all(0.0 <= pred.confidence <= 1.0 for pred in predictions)
 
 def test_known_pairs():
     """Test on known approvals"""
-    score = my_new_strategy_score(cat, 'Sorafenib', 'Melanoma')
-    assert score > 0.5  # Expected to score high
+    predictions = MyNewStrategy(cat).predict('Sorafenib', 'Melanoma')
+    assert predictions
 ```
 
 ### Step 4: Run regression test
@@ -253,7 +253,7 @@ Before submitting PR:
 - [ ] Self-check: 44/44 FDA pairs recoverable
 - [ ] AUROC ≥ 0.96: (remove_direct_labels protocol)
 - [ ] Zero new orphaned morphisms: `audit_provenance.py`
-- [ ] source strings on all 5,382 morphisms: All new edges have PMID/ChEMBL
+- [ ] source strings on all 5,382 morphisms remain populated; new edges have source/provenance strings
 - [ ] Metrics reported correctly: Specify view, protocol, pair count
 - [ ] Documentation updated: Code comments, truedocs/ docs, or docstrings
 
@@ -297,7 +297,7 @@ AUROC: 0.9747
   in tight loops. See Issue #42 for performance target.
 
 ✗ Claiming "100% accuracy" contradicts previous work.
-  Suggest: "Improved accuracy to 0.96 AUROC (from 0.89)."
+  Suggest: "Improved ranking AUROC to 0.96 (from 0.89)."
 ```
 
 ---
@@ -374,7 +374,7 @@ We value accuracy over optimism. Example:
 
 ✓ Good: "AUROC 0.9747 (full_typed view, remove_direct_labels
    protocol, 44 FDA pairs, 1516 unlabeled comparison pairs, 95% CI
-   [0.9606, 0.9855]). Composed strategy averaging 9 component scores."
+   [0.9606, 0.9855]). Current strict profile uses 7 active modules."
 ```
 
 ### Limitations
@@ -382,7 +382,7 @@ We value accuracy over optimism. Example:
 Always document what your code/strategy doesn't do:
 
 ```python
-def my_strategy_score(cat, drug, disease) -> float:
+def predict(self, source: str, target: str):
     """
     Score Drug-Disease pairs using [method].
 
@@ -457,4 +457,4 @@ Open an issue on GitHub or email the maintainers.
 
 ---
 
-*Last updated: 2026-05-26*
+*Last updated: 2026-05-28*

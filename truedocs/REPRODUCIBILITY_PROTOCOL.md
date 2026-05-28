@@ -24,6 +24,11 @@ Strict benchmark confidence intervals:
 All current benchmark runs use 78 drugs, 20 diseases, 44 positives, and 1,516
 open-world unlabeled pairs. Unlabeled pairs are not confirmed negatives.
 
+Strategy profile note: live triage uses 8 modules and includes Yoneda distance
+when visible known-treatment comparators exist. The primary strict
+`remove_direct_labels` run uses 7 active modules because all Drug->Disease
+comparator labels are removed before scoring.
+
 ---
 
 ## Canonical Commands
@@ -112,10 +117,10 @@ python -c "import re,sqlite3; rows=sqlite3.connect('data/drugs/tier1.db').execut
 Expected:
 
 ```text
-5382 5382 610 204
+5382 5382 609 204
 ```
 
-Interpretation: all morphisms have source/provenance strings, 610 unique PMID
+Interpretation: all morphisms have source/provenance strings, 609 unique PMID
 identifiers are present, and 204 morphisms have structured quantitative values.
 This is not the same as edge-specific citation validation.
 
@@ -156,7 +161,7 @@ strings on all morphisms, with edge-specific attribution audit still required."
 > KOMPOSOS-IV-PHARM is a research prototype for drug repurposing over a curated
 > drug-target-disease knowledge graph. Under the `full_typed/remove_direct_labels`
 > protocol on 78 drugs x 20 diseases (44 FDA-approved indications vs. 1,516
-> open-world unlabeled pairs), the current nine-strategy scorer achieves AUROC
+> open-world unlabeled pairs), the current strict 7-module scorer achieves AUROC
 > 0.974694 [0.9606, 0.9855] and AUPRC 0.551698 [0.4067, 0.6983]. Every
 > prediction can be traced to graph evidence chains with source strings and edge
 > confidence values. These are retrospective ranking metrics, not clinical

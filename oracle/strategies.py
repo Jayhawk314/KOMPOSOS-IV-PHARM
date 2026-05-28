@@ -1,21 +1,23 @@
 """
-Nine inference strategies for the KOMPOSOS-IV Categorical Oracle.
+Inference strategies for the KOMPOSOS-IV Categorical Oracle.
 
 Each strategy implements a different approach to predicting missing morphisms:
 1. KanExtensionStrategy - Uses categorical Kan extensions (colimit computation)
 2. SemanticSimilarityStrategy - Uses embedding similarity
 3. TemporalReasoningStrategy - Uses temporal metadata (birth/death dates)
-4. TypeHeuristicStrategy - Uses object type constraints
-5. YonedaPatternStrategy - Uses morphism pattern matching
-6. CompositionStrategy - Uses path composition (A->B->C implies A->C)
-7. FibrationLiftStrategy - Uses fibration structure for Cartesian lifts
-8. StructuralHoleStrategy - Finds triangles that should close
-9. GeometricStrategy - Uses Ricci curvature for geometric inference
+4. YonedaPatternStrategy - Uses morphism pattern matching
+5. CompositionStrategy - Uses path composition (A->B->C implies A->C)
+6. FibrationLiftStrategy - Uses fibration structure for Cartesian lifts
+7. StructuralHoleStrategy - Finds triangles that should close
+8. GeometricStrategy - Uses Ricci curvature for geometric inference
 
 Additional strategies (imported from separate modules):
-10. ToposLogicStrategy - Uses intuitionistic logic for partial-evidence claims
-11. NaturalTransformationStrategy - Detects pattern variants via naturality squares
-12. OperadicDecompositionStrategy - Decomposes n-ary relations into binary trees
+9. ToposLogicStrategy - Uses intuitionistic logic for partial-evidence claims
+10. NaturalTransformationStrategy - Detects pattern variants via naturality squares
+11. OperadicDecompositionStrategy - Decomposes n-ary relations into binary trees
+
+TypeHeuristicStrategy remains available as a legacy strategy, but it is not
+part of the default runtime strategy profile.
 """
 
 import sys
@@ -246,7 +248,7 @@ class SemanticSimilarityStrategy(InferenceStrategy):
             predictions.append(Prediction(
                 source=source,
                 target=target,
-                predicted_relation="related_to",  # Generic, type heuristics will refine
+                predicted_relation="related_to",
                 prediction_type=PredictionType.SEMANTIC_SIMILARITY,
                 strategy_name=self.name,
                 confidence=confidence,
@@ -1046,17 +1048,50 @@ class GeometricStrategy(InferenceStrategy):
 # Strategy Registry
 # =============================================================================
 
-def create_all_strategies(category: Category, embeddings: EmbeddingsEngine) -> List[InferenceStrategy]:
+def _has_object_types(category: Category, *type_names: str) -> bool:
+    """Return True when the category has all requested object types."""
+    try:
+        present = {obj.type_name for obj in category.objects()}
+    except Exception:
+        return False
+    return set(type_names).issubset(present)
+
+
+def _has_visible_drug_disease_labels(category: Category) -> bool:
+    """Return True when Yoneda distance has treatment comparators."""
+    try:
+        morphisms = category.morphisms()
+    except Exception:
+        return False
+    for morphism in morphisms:
+        source = category.get(morphism.source)
+        target = category.get(morphism.target)
+        if (
+            source and target
+            and source.type_name == "Drug"
+            and target.type_name == "Disease"
+        ):
+            return True
+    return False
+
+
+def create_all_strategies(
+    category: Category,
+    embeddings: EmbeddingsEngine,
+    include_type_heuristic: bool = False,
+    include_yoneda_distance: bool = True,
+) -> List[InferenceStrategy]:
     """Create all inference strategies (built-in + imported)."""
     strategies = [
         KanExtensionStrategy(category),
         TemporalReasoningStrategy(category),
-        TypeHeuristicStrategy(category),
         YonedaPatternStrategy(category),
         CompositionStrategy(category),
         FibrationLiftStrategy(category),
         StructuralHoleStrategy(category),
     ]
+    if include_type_heuristic:
+        strategies.insert(2, TypeHeuristicStrategy(category))
 
     # Add SemanticSimilarityStrategy only if embeddings available
     try:
@@ -1081,6 +1116,19 @@ def create_all_strategies(category: Category, embeddings: EmbeddingsEngine) -> L
         strategies.append(ToposLogicStrategy(category))
     except ImportError:
         pass
+
+    # YonedaDistanceStrategy: STT-derived structural drug similarity on the
+    # clean MEASURED+ESTABLISHED evidence subgraph.
+    if (
+        include_yoneda_distance
+        and _has_object_types(category, "Drug", "Disease")
+        and _has_visible_drug_disease_labels(category)
+    ):
+        try:
+            from oracle.yoneda_strategy import YonedaDistanceStrategy
+            strategies.append(YonedaDistanceStrategy(category))
+        except Exception:
+            pass
 
     # NaturalTransformationStrategy: pattern variant detection (activates natural_transformations.py)
     try:

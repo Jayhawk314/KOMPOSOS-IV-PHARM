@@ -12,7 +12,7 @@
 
 Drug repurposing (or "drug repositioning") is finding new uses for existing, FDA-approved drugs. It's faster and cheaper than designing a drug from scratch because:
 
-1. The drug is already proven safe in humans
+1. The drug has human safety data in its approved context
 2. Manufacturing is established
 3. Side effect profiles are known
 4. Only clinical testing for the new indication is needed
@@ -94,7 +94,7 @@ This means: if Drug A is approved for Disease D, and Drug B is structurally/mech
 | Clinical response rates | 52 edges |
 | Hazard ratios / survival | 42 edges |
 | **Source strings** | 5,382/5,382 morphisms |
-| Unique PMID identifiers | 610 |
+| Unique PMID identifiers | 609 |
 | ChEMBL target IDs | ChEMBL-derived edges |
 
 ### Data Sources
@@ -117,7 +117,7 @@ every edge has been manually validated against the cited text.
 
 ## How Scoring Works
 
-The system uses **9 strategies** that vote on each Drug-Disease pair. Here's the lineup:
+The system uses an active strategy profile that votes on each Drug-Disease pair. Strict `remove_direct_labels` runs use 7 active modules; live/as-loaded triage can add Yoneda distance when known-treatment comparators are visible.
 
 ### Strategy 1: Composition (Dominant)
 
@@ -150,9 +150,9 @@ Integrates ABPP IC50 data, Boltz2 heuristic binding prediction, and drug-likenes
 
 See [CHEMISTRY_AND_BINDING.md](CHEMISTRY_AND_BINDING.md) for details.
 
-### Strategies 4–9: Advanced Methods
+### Additional Runtime Modules
 
-4. **Yoneda Distance** (NEW 2026-05-26): Structural similarity presheaf fingerprints (weight 0.06 bonus, capped 0.10)
+4. **Yoneda Distance** (live/as-loaded only when comparators exist): Structural similarity presheaf fingerprints (weight 0.06 bonus, capped 0.10)
 5. **Conjecture**: Rule learning from path patterns (sparse, experimental)
 6. **Coherence**: Logical consistency scoring via verdict lattices
 7. **Natural Transformation**: Morphism alignment scoring
@@ -163,7 +163,7 @@ See [STRATEGIES_IN_DEPTH.md](STRATEGIES_IN_DEPTH.md) for full mathematical detai
 
 ### Aggregation
 
-All votes are normalized to [0, 1] and combined via weighted averaging (uniform weights confirmed optimal by LOOCV calibration). Final score = average of all 9 strategy scores.
+Active votes are normalized to [0, 1] and combined into a ranking score. The live/as-loaded score may include a separate Yoneda bonus when comparators exist; the strict `remove_direct_labels` benchmark does not.
 
 **Decision threshold**: 0.50 (classifies pairs as likely/unlikely repurposing candidates)
 
@@ -175,7 +175,7 @@ All votes are normalized to [0, 1] and combined via weighted averaging (uniform 
 
 | Metric | Value | Interpretation |
 |--------|-------|-----------------|
-| **AUROC** | **0.9747** | 97.47% probability the strict benchmark ranks a labeled positive above an unlabeled pair |
+| **AUROC** | **0.9747** | Pairwise ranking signal: the strict benchmark usually ranks a labeled positive above an unlabeled pair |
 | **AUPRC** | 0.552 | Precision-recall ranking signal versus a 2.82% positive-label prevalence |
 | **Hits@5** | 1.00 | 100% of true positives in top 5 (impressive for 78 drugs) |
 | **Hits@10** | 0.60 | 60% Hits@10 under the strict benchmark |
@@ -237,7 +237,7 @@ Output: Same format, but drugs ranked instead of diseases.
 python validation/triage.py Melanoma --drug Vemurafenib
 ```
 
-Output: Full detail mode (all 9 strategy scores, complete evidence chain, confidence breakdown).
+Output: Full detail mode (active strategy scores, complete evidence chain, confidence breakdown).
 
 ### Batch Processing
 
@@ -298,7 +298,7 @@ python validation/triage.py Melanoma --all
 | Feature | KOMPOSOS-IV | DrugBank |
 |---------|-------------|----------|
 | **Data type** | Mechanistic networks | Drug/protein/interaction tables |
-| **Scoring** | Path-based + 9 strategies | Label-based lookup |
+| **Scoring** | Path/evidence/structure modules | Label-based lookup |
 | **Repurposing** | Computational ranking | Manual curation |
 | **Validation** | AUROC 0.9747 on held-out | Not evaluated for ranking |
 
@@ -414,7 +414,7 @@ python data/drugs/build_tier1.py \
 3. ✓ Direct Drug→Disease labels are removed during scoring (no leakage)
 4. ✓ Unlabeled pairs treated as unknowns, not confirmed negatives
 5. ✓ Report AUPRC, Hits@K, MRR, confidence intervals (95% bootstrap)
-6. ✓ Source coverage required: 610 PMID identifiers and source strings on all 5,382 morphisms; edge-specific citation validation remains separate
+6. ✓ Source coverage required: 609 PMID identifiers and source strings on all 5,382 morphisms; edge-specific citation validation remains separate
 7. ✓ No fallback/mock scientific claims (Boltz2 labeled as heuristic, Yoneda results honest)
 
 ---
@@ -430,7 +430,7 @@ python data/drugs/build_tier1.py \
 ### To Understand the Science
 
 1. [EVIDENCE_AND_PROVENANCE.md](EVIDENCE_AND_PROVENANCE.md) — Where data comes from
-2. [STRATEGIES_IN_DEPTH.md](STRATEGIES_IN_DEPTH.md) — All 9 strategies explained
+2. [STRATEGIES_IN_DEPTH.md](STRATEGIES_IN_DEPTH.md) — Runtime strategy profiles explained
 3. [CATEGORICAL_THEORY_PRIMER.md](CATEGORICAL_THEORY_PRIMER.md) — Why category theory
 
 ### To Extend the Code
@@ -441,4 +441,4 @@ python data/drugs/build_tier1.py \
 
 ---
 
-*Last updated: 2026-05-26 (Yoneda distance integration, evidence quantification)*
+*Last updated: 2026-05-28 (runtime strategy profiles and conditional Yoneda clarified)*

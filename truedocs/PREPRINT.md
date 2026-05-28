@@ -8,7 +8,7 @@
 
 ## Abstract
 
-We present KOMPOSOS-IV-PHARM, an auditable drug repurposing system that combines a sourced biomedical knowledge graph with categorical inference strategies to generate mechanistically explainable repurposing hypotheses. Unlike embedding-based approaches that produce opaque rankings, every prediction is traceable to Drug->Protein->Disease evidence chains with source strings and citation identifiers where available. On the current oncology graph of 78 drugs, 366 proteins, and 20 diseases (5,382 morphisms, source strings on all morphisms, 610 unique PMID identifiers, and 204 edges with quantitative values), the system achieves AUROC 0.9747 [95% CI: 0.9606-0.9855] and AUPRC 0.552 [95% CI: 0.4067-0.6983] under the strict remove_direct_labels protocol on 44 FDA-approved indications. The strongest simple graph baseline is degree_product AUROC 0.6307, giving a +0.3440 margin. The categorical inference layer adds strategy signals, mechanistic explanation, quantitative evidence (IC50, mutation frequencies, response rates), and type-safe reasoning for candidate triage. The system is designed for hypothesis generation and scientific triage, not clinical deployment.
+We present KOMPOSOS-IV-PHARM, an auditable drug repurposing system that combines a sourced biomedical knowledge graph with categorical inference strategies to generate mechanistically explainable repurposing hypotheses. Unlike embedding-based approaches that produce opaque rankings, every prediction is traceable to Drug->Protein->Disease evidence chains with source strings and citation identifiers where available. On the current oncology graph of 78 drugs, 366 biological entities, and 20 diseases (5,382 morphisms, source strings on all morphisms, 609 unique PMID identifiers, and 204 edges with quantitative values), the system achieves AUROC 0.9747 [95% CI: 0.9606-0.9855] and AUPRC 0.552 [95% CI: 0.4067-0.6983] under the strict remove_direct_labels protocol on 44 FDA-approved indications. The strongest simple graph baseline is degree_product AUROC 0.6307, giving a +0.3440 margin. The categorical inference layer adds strategy signals, mechanistic explanation, quantitative evidence (IC50, mutation frequencies, response rates), and type-safe reasoning for candidate triage. The system is designed for hypothesis generation and scientific triage, not clinical deployment.
 
 **Keywords**: drug repurposing, category theory, knowledge graphs, Yoneda presheaves, evidence tracing, oncology
 
@@ -16,18 +16,18 @@ We present KOMPOSOS-IV-PHARM, an auditable drug repurposing system that combines
 
 ## 1. Introduction
 
-Drug repurposing -- finding new therapeutic uses for existing approved drugs -- offers a faster, cheaper path to treatment than de novo drug discovery. Computational approaches using knowledge graphs have shown promise, with systems like Rephetio (Himmelstein et al., 2017) and others achieving strong predictive performance. However, most systems rely on embedding-based or machine learning approaches that function as black boxes, providing rankings without mechanistic explanations.
+Drug repurposing -- finding new therapeutic uses for existing approved drugs -- offers a faster, cheaper path to treatment than de novo drug discovery. Computational approaches using knowledge graphs have shown promise, with systems like Rephetio (Himmelstein et al., 2017) and others achieving strong predictive performance. However, many systems rely on latent-feature or embedding-based approaches that function as black boxes, providing rankings without mechanistic explanations.
 
-**For non-computational readers**: A knowledge graph is a network where drugs, proteins, and diseases are nodes connected by directed relationships (edges) with confidence scores. Example: "Sorafenib -inhibits-> BRAF" and "BRAF -drives-> Melanoma" form a Drug->Protein->Disease mechanistic path. Our system uses nine different mathematical strategies to evaluate whether such paths are biologically plausible, then combines their votes into a final score.
+**For non-computational readers**: A knowledge graph is a network where drugs, proteins, and diseases are nodes connected by directed relationships (edges) with confidence scores. Example: "Sorafenib -inhibits-> BRAF" and "BRAF -drives-> Melanoma" form a Drug->Protein->Disease mechanistic path. The current system uses runtime strategy profiles made of graph/categorical and evidence-scoring modules, then combines their signals into a ranking score.
 
 We present a fundamentally different approach: using enriched category theory as the computational framework for drug repurposing. Category theory provides a principled mathematical foundation for reasoning about relationships, with operations like composition (transitive closure with confidence propagation), Yoneda presheaves (structural similarity via neighborhood fingerprints), and enriched hom-sets (confidence-weighted reasoning) that have natural interpretations in the biomedical domain.
 
 Our contributions:
 
-1. **A categorical inference framework** with 9 strategies grounded in different mathematical lenses, each producing interpretable predictions
-2. **Auditable source trail**: every edge has a source/provenance string, with 610 unique PMID identifiers; edge-specific citation validation remains an audit task
+1. **A categorical inference framework** with explicit runtime strategy profiles: 7 active modules in the strict `remove_direct_labels` benchmark and 8 modules in live triage when Yoneda comparators are visible
+2. **Auditable source trail**: every edge has a source/provenance string, with 609 unique PMID identifiers; edge-specific citation validation remains an audit task
 3. **Quantitative evidence integration**: 204 edges carry IC50 binding constants, mutation frequencies, clinical response rates, or hazard ratios; endpoint-specific NLP attribution remains under audit
-4. **Structural similarity via Yoneda distance**: drug equivalence classes discovered from presheaf fingerprints on the clean evidence subgraph; historical ablation lift must be rerun under the corrected loader
+4. **Conditional structural similarity via Yoneda distance**: presheaf fingerprints on the clean evidence subgraph are used in live triage when known-treatment comparators remain visible; historical ablation lift must be rerun before publication claims
 5. **Rigorous validation**: multiple protocols (remove_direct_labels, LOOCV), bootstrap CIs, 5 graph baselines, ablation studies, external validation (Hetionet, temporal holdout), and clinical trial cross-checks
 6. **An open-source triage tool** for scientists to inspect and audit predictions
 
@@ -40,7 +40,7 @@ Our contributions:
 The knowledge graph was built from curated sources:
 
 - **Drugs**: 78 FDA-approved drugs (oncology focus), sourced from ChEMBL and manual curation
-- **Proteins**: 366 proteins including receptors, oncogenes, tumor suppressors, and signaling molecules, sourced from ChEMBL drug_mechanism table, STRING PPI, cBioPortal, and literature
+- **Proteins**: 366 biological entities including receptors, oncogenes, tumor suppressors, and signaling molecules, sourced from ChEMBL drug_mechanism table, STRING PPI, cBioPortal, and literature
 - **Diseases**: 20 cancer types
 - **Morphisms**: 5,382 directed edges with confidence scores [0, 1]:
   - Drug->Protein (inhibits, activates, modulates): from ChEMBL drug mechanisms, ABPP
@@ -50,7 +50,7 @@ The knowledge graph was built from curated sources:
 - **Quantitative evidence**: 204 edges with IC50, mutation frequencies, hazard ratios, response rates
   - NLP extraction from 204 PMIDs (373 data points reported; edge-specific attribution audit pending)
   - ABPP experimental IC50 data (65 entries)
-- **Source fields**: 5,382/5,382 morphisms have source/provenance strings; 610 unique PMID identifiers were detected. This is not equivalent to edge-specific citation validation.
+- **Source fields**: 5,382/5,382 morphisms have source/provenance strings; 609 unique PMID identifiers were detected. This is not equivalent to edge-specific citation validation.
 - **Evidence tier classification**: MEASURED 1,073, ESTABLISHED 282, INFERRED 809, SPECULATIVE 955, HYPOTHESIS 159, NOISE 2,104
 
 The graph is stored as a SQLite database (`tier1.db`) built deterministically from a JSON manifest via `build_tier1.py`.
@@ -61,38 +61,32 @@ The graph is modeled as a category enriched over a multiplicative quantale: obje
 
 ### 2.3 Inference Strategies
 
-Nine strategies predict missing Drug->Disease morphisms:
+The production benchmark uses explicit runtime profiles rather than a fixed "nine strategy" ensemble.
 
-1. **CompositionStrategy** (dominant): Transitive closure -- Drug->Protein->Disease paths with multiplicative confidence. Requires protein intermediates (type filtering).
+**Strict `remove_direct_labels` profile, current primary claim**:
 
-2. **PathBonusStrategy**: Additive bonus for high-confidence paths: `min(0.25, 0.04 * sum(path_confidence))`. Tuned via LOOCV grid search.
+1. **KanExtensionStrategy**: categorical extension over observed morphisms.
+2. **StructuralHoleStrategy**: graph-structure bridge signal.
+3. **CompositionStrategy**: Drug->Protein->Disease path composition with confidence propagation.
+4. **YonedaPatternStrategy**: morphism-profile analogy signal.
+5. **FibrationLiftStrategy**: typed lifting signal where graph structure supports it.
+6. **ToposLogicStrategy**: logical/evidence consistency signal.
+7. **BindingEvidenceStrategy**: ABPP IC50 data, Boltz2 heuristic binding, drug properties, molecular compatibility, domain matching, and graph confidence.
 
-3. **BindingEvidenceStrategy**: Integrates ABPP IC50 data (weight 0.30), Boltz2 heuristic binding (0.10), Lipinski drug-likeness (0.10), molecular compatibility (0.10), Pfam domain matching (0.10), and graph confidence (0.20).
-
-4. **YonedaDistanceStrategy** (new): Computes confidence-weighted Yoneda presheaf fingerprints on MEASURED+ESTABLISHED edges only (1,355 edges). For a Drug-Disease pair, finds the most similar drug that is FDA-approved for that disease using weighted Jaccard distance. Integrated as additive bonus: `min(0.10, 0.06 * similarity)`.
-
-5. **CoherenceStrategy**: Logical consistency scoring via verdict lattices.
-
-6. **ConjectureStrategy**: Inductive rule learning from path patterns.
-
-7. **NaturalTransformStrategy**: Morphism alignment scoring across drugs.
-
-8. **GameTheoryStrategy**: Equilibrium analysis of biological interactions.
-
-9. **BayesianStrategy**: Probabilistic scoring.
+**Live triage/as-loaded profile**: the seven modules above plus **YonedaDistanceStrategy** when visible Drug->Disease comparator labels exist. YonedaDistanceStrategy computes confidence-weighted presheaf fingerprints on MEASURED+ESTABLISHED edges and scores similarity to known treatments. It is intentionally inactive in the strict `remove_direct_labels` benchmark because that protocol removes the comparator labels before scoring.
 
 ### 2.4 Scoring
 
-For each Drug-Disease pair, all strategies are queried. Scores are combined:
+For each Drug-Disease pair, the active runtime profile is queried. Scores are combined:
 
 ```
-base = mean(strategy_confidences[0:8])  # First 8 strategies
+base = mean(active_strategy_confidences excluding yoneda_distance)
 path_bonus = min(0.25, 0.04 * sum(path_confidence))  # Confidence-weighted
-yoneda_bonus = min(0.10, 0.06 * yoneda_similarity)  # Additive
+yoneda_bonus = min(0.10, 0.06 * yoneda_similarity) if comparators_exist else 0.0
 score = min(1.0, base + path_bonus + yoneda_bonus)
 ```
 
-Strategy weights are uniform (confirmed optimal by LOOCV grid search via `calibrate_loocv.py`). The path bonus was tuned via LOOCV grid search over [0.0, 0.20]. The Yoneda coefficient (0.06) was tuned via grid search over [0.0, 0.20] with cap 0.10.
+The path bonus was tuned via LOOCV grid search over [0.0, 0.20]. The Yoneda coefficient (0.06, cap 0.10) is used only when the active runtime graph still contains known-treatment comparators. The strict benchmark result reported here is a 7-module run without active Yoneda distance.
 
 ### 2.5 Evaluation Protocol
 
@@ -136,19 +130,20 @@ under the corrected loader before the deltas are quoted as current estimates.
 
 | Configuration | AUROC | Delta |
 |---------------|------:|------:|
-| Full system (9 strategies) | 0.9747 | -- |
+| Current strict profile (7 active modules) | 0.9747 | -- |
 | Remove composition | 0.812 | -0.153 |
 | Remove binding_evidence | 0.920 | -0.045 |
 | Remove path_bonus | 0.950 | -0.015 |
 | Remove yoneda_distance | 0.956 | -0.009 |
 | Remove coherence | 0.960 | -0.005 |
 | Remove conjecture | 0.963 | -0.002 |
-| Remove remaining 3 | 0.9747 | ~0 |
+| Remove remaining low-impact historical modules | 0.9747 | ~0 |
 | Composition only | 0.890 | -0.075 |
 
 Historical ablations identify composition as the dominant strategy. Binding
-evidence and Yoneda distance provide meaningful augmentation, but exact effect
-sizes remain pending rerun under the corrected loader.
+evidence provides current strict-benchmark signal. Yoneda distance provides a
+live-triage signal when comparators exist, but its strict-benchmark effect size
+is not current because the corrected strict loader leaves no comparators.
 
 ### 3.4 Yoneda Distance Integration
 
@@ -156,7 +151,7 @@ The ablation values below are historical and should be rerun before being used
 as current contribution estimates. The current strict full-system result is
 0.9747 AUROC / 0.552 AUPRC.
 
-The Yoneda distance strategy (9th strategy) operates on a clean subgraph of MEASURED + ESTABLISHED edges only (1,355 edges), computing confidence-weighted presheaf fingerprints for all objects.
+Yoneda distance is a conditional live-triage strategy. It operates on a clean subgraph of MEASURED + ESTABLISHED edges only, computing confidence-weighted presheaf fingerprints for all objects and comparing a candidate drug with visible known treatments for the same disease.
 
 **Historical impact before the final Topos/scoring alignment**:
 - Historical development runs suggested AUROC/AUPRC lift, but these effect sizes need rerun under the corrected loader before publication.
@@ -212,9 +207,9 @@ The categorical framework's primary contribution is architectural, not just perf
 
 2. **Typed composition with confidence**: Enriched category composition naturally handles multi-hop inference with confidence propagation and type constraints (Drug->Disease predictions REQUIRE protein intermediates).
 
-3. **Strategy voting**: Nine independent mathematical lenses produce consensus or disagreement, giving researchers a richer signal than a single score.
+3. **Strategy voting**: Multiple graph/categorical and evidence lenses produce consensus or disagreement, giving researchers a richer signal than a single score.
 
-4. **Structural similarity via Yoneda**: Composition tells you THAT a path exists; Yoneda tells you WHY the drug fits (similar target profile to known treatment). Drug equivalence classes are ground-truth validated.
+4. **Structural similarity via Yoneda**: Composition tells you THAT a path exists; live-triage Yoneda can explain WHY a drug resembles visible known treatments through target-profile similarity. Drug equivalence classes are structural clusters, not clinical ground truth by themselves.
 
 5. **Quantitative evidence integration**: IC50, mutation frequencies, and clinical response rates are displayed alongside mechanistic paths, enabling informed triage decisions.
 
@@ -232,7 +227,7 @@ A researcher using our system can trace any prediction to primary literature in 
 
 **Open-world negatives**: Unlabeled pairs are unknowns, not confirmed negatives. AUROC measures ranking ability in a specific graph context.
 
-**Path bonus tuning**: The path bonus coefficient (0.04) and Yoneda coefficient (0.06) were tuned via LOOCV grid search. The grids were small and improvements are mechanistically interpretable, but this is a potential source of optimistic bias.
+**Path and bonus tuning**: The path bonus coefficient (0.04) and live-triage Yoneda coefficient (0.06) came from small grid searches. The strict benchmark reported here does not use active Yoneda distance, but any tuned coefficient remains a potential source of optimistic bias until independently validated.
 
 **No prospective validation**: All results are retrospective. Clinical utility requires prospective validation.
 

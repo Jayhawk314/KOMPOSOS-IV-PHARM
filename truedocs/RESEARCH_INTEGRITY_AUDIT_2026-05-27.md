@@ -77,7 +77,7 @@ Fix: benchmark evaluation now fails loudly on strategy errors. The UI still tole
 ## Evidence/Provenance Caveats
 
 - The database has source/provenance strings on all 5,382 morphisms.
-- There are 610 PMID identifiers in provenance/metadata strings.
+- There are 609 PMID identifiers in provenance/metadata strings.
 - This is not equivalent to saying every edge has edge-specific citation validation.
 - Quantitative NLP extraction metadata needs a separate attribution audit because some values appear attached by shared PMID rather than by endpoint/relation-specific extraction.
 - Evidence tiers should not be read as regulatory or experimental certainty until the extraction and tiering pipeline is repaired and rerun.

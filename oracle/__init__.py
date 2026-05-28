@@ -2,15 +2,16 @@
 KOMPOSOS-IV Categorical Oracle
 ================================
 
-The Oracle system generates predictions using 8 rigorous inference strategies:
+The Oracle system generates predictions using structural inference strategies:
 1. KanExtensionStrategy - Categorical Kan extensions (colimit computation)
 2. SemanticSimilarityStrategy - Embedding-based similarity
 3. TemporalReasoningStrategy - Temporal metadata analysis
-4. TypeHeuristicStrategy - Type-constrained inference
-5. YonedaPatternStrategy - Morphism pattern matching
-6. CompositionStrategy - Path composition (transitive closure)
-7. FibrationLiftStrategy - Cartesian lift predictions
-8. StructuralHoleStrategy - Triangle closure
+4. YonedaPatternStrategy - Morphism pattern matching
+5. CompositionStrategy - Path composition (transitive closure)
+6. FibrationLiftStrategy - Cartesian lift predictions
+7. StructuralHoleStrategy - Triangle closure
+8. YonedaDistanceStrategy - Drug-repurposing structural similarity when
+   Drug/Disease objects are present
 
 Predictions are validated by:
 - SheafCoherenceChecker - Ensures predictions agree on overlaps
@@ -38,7 +39,6 @@ from oracle.strategies import (
     KanExtensionStrategy,
     SemanticSimilarityStrategy,
     TemporalReasoningStrategy,
-    TypeHeuristicStrategy,
     YonedaPatternStrategy,
     CompositionStrategy,
     FibrationLiftStrategy,
@@ -67,7 +67,7 @@ class CategoricalOracle:
     """
     The KOMPOSOS-IV Categorical Oracle.
 
-    Uses 8 inference strategies backed by:
+    Uses structural inference strategies backed by:
     - Category theory (Kan extensions)
     - Semantic analysis (embeddings)
     - Game theory (Nash equilibrium)
@@ -104,17 +104,23 @@ class CategoricalOracle:
         self.min_confidence = min_confidence
         self.max_predictions = max_predictions
 
-        # Initialize all 8 strategies
+        # Initialize default structural strategies.  The legacy type heuristic is
+        # intentionally not part of this runtime profile.
         self.strategies: List[InferenceStrategy] = [
             KanExtensionStrategy(category),
             SemanticSimilarityStrategy(category, embeddings),
             TemporalReasoningStrategy(category),
-            TypeHeuristicStrategy(category),
             YonedaPatternStrategy(category),
             CompositionStrategy(category),
             FibrationLiftStrategy(category),
             StructuralHoleStrategy(category),
         ]
+        if self._has_visible_drug_disease_labels(category):
+            try:
+                from oracle.yoneda_strategy import YonedaDistanceStrategy
+                self.strategies.append(YonedaDistanceStrategy(category))
+            except Exception as exc:
+                print(f"Warning: Yoneda distance strategy unavailable: {exc}")
 
         # Initialize validation and optimization components
         self.coherence_checker = SheafCoherenceChecker(embeddings)
@@ -323,6 +329,24 @@ class CategoricalOracle:
             total_candidates=0,
             computation_time_ms=computation_time,
         )
+
+    @staticmethod
+    def _has_visible_drug_disease_labels(category: Category) -> bool:
+        """Return True when Yoneda distance has treatment comparators."""
+        try:
+            morphisms = category.morphisms()
+        except Exception:
+            return False
+        for morphism in morphisms:
+            source = category.get(morphism.source)
+            target = category.get(morphism.target)
+            if (
+                source and target
+                and source.type_name == "Drug"
+                and target.type_name == "Disease"
+            ):
+                return True
+        return False
 
 
 # Export main classes

@@ -24,7 +24,7 @@ Layer 2: KOMPOSOS-IV Category Runtime
          ├─ Morphisms (relationships with confidence)
          ├─ Enrichment (quantale-based confidence composition)
          ├─ Persistence (SQLite backend)
-         └─ Strategies (9 scoring strategies)
+         └─ Runtime strategy modules
          ↓
 Layer 1: ORION                Plugin framework (bridges, events)
 ```
@@ -55,23 +55,23 @@ Layer 1: ORION                Plugin framework (bridges, events)
 class Object:
     name: str
     type_name: str  # "Drug", "Protein", "Disease"
-    confidence: float = 1.0
     metadata: dict
-    provenance: str  # PMID or ChEMBL ID
+    provenance: str
 
 class Morphism:
     name: str  # "inhibits", "mutated_in", "treats"
-    source: Object
-    target: Object
+    source: str
+    target: str
     confidence: float  # 0.0–1.0
     provenance: str
 
 class Category:
     """Main runtime for drug repurposing graph"""
-    def add(self, name: str, type_name: str) -> Object
-    def connect(self, src: str, tgt: str, name: str, confidence: float) -> Morphism
-    def find_paths(self, src: str, tgt: str, max_length: int = 4) -> List[Path]
-    def score_pair(self, drug: str, disease: str) -> float
+    def add(self, name: str, **kwargs) -> Object
+    def connect(self, source: str, target: str, name: str = "r", confidence: float = 1.0, **metadata) -> Morphism
+    def find_paths(self, source: str, target: str, max_length: int = 10) -> List[Path]
+    def objects(self) -> List[Object]
+    def morphisms(self) -> List[Morphism]
 ```
 
 **Key design decisions**:
@@ -84,9 +84,9 @@ class Category:
    - Allows nuanced prediction (not just binary relationships)
    - Propagates through paths automatically
 
-3. **Persistence layer**: All objects/morphisms auto-sync to SQLite (`KomposOSStore`)
-   - Database is the source of truth
-   - No in-memory divergence from disk
+3. **Persistence layer**: `KomposOSStore` is the durable SQLite source for `tier1.db`.
+   - Benchmark and triage loaders copy rows into a runtime `Category`
+   - The runtime graph is treated as read-only during validation
 
 ### Layer 3: Infinity-Cosmos (Higher Categorical Structures)
 
@@ -138,7 +138,7 @@ presheaf = {
 3. **Claim auditing**: Did the system's evidence support its conclusion?
    - Logs reasoning chain for human inspection
 
-**Integration**: COG scores are aggregated as one of the 9 strategies (weight 0.15).
+**Integration**: COG/verification components support audit and scoring context; they are not counted as separate active modules in the current PHARM scorer.
 
 ### Layer 5: OPTIMUS (Categorical Gradient Descent)
 
@@ -169,14 +169,15 @@ presheaf = {
 
 ```python
 from core.category import Category
-from domains.bio.loader import BioDomainLoader
+from validation.repurposing_benchmark import load_full_typed_view
+from data.store import KomposOSStore
 
-# Load database into Category
-loader = BioDomainLoader()
-cat = loader.load('data/drugs/tier1.db')
+# Load database into Category via benchmark view
+store = KomposOSStore('data/drugs/tier1.db')
+cat, diseases = load_full_typed_view(store, view="full_typed")
 
-# cat now has 464 objects, 5382 morphisms
-print(len(cat.objects), len(cat.morphisms))
+# cat now has 1146 objects (464 from DB + referenced endpoints), 5382 morphisms
+print(len(cat.objects()), len(cat.morphisms()))
 ```
 
 ### 2. Path Finding
@@ -186,91 +187,87 @@ print(len(cat.objects), len(cat.morphisms))
 paths = cat.find_paths('Sorafenib', 'Melanoma', max_length=4)
 
 for path in paths:
-    hops = [morphism.name for morphism in path.morphisms]
-    confidence = path.confidence  # multiplicative
-    print(f"Path: {' → '.join(hops)}, Confidence: {confidence:.3f}")
+    hops = path.morphism_ids
+    confidence = path.weight  # multiplicative
+    print(f"Path: {' -> '.join(hops)}, Confidence: {confidence:.3f}")
 ```
 
-Output:
+Illustrative output shape:
 ```
-Path: inhibits → mutated_in, Confidence: 0.865
-Path: inhibits → promotes → supports, Confidence: 0.597
-Path: inhibits → upregulates → activates, Confidence: 0.412
+Path: inhibits:BRAF..., Confidence: 0.807
+Path: inhibits:BRAF... -> phosphorylates:MEK1..., Confidence: 0.757
 ...
 ```
 
 ### 3. Strategy Voting
 
 ```python
-from oracle import strategies
+from validation.repurposing_benchmark import make_strategies, score_pair
 
-# Initialize all 9 strategies
-score_composition = strategies.composition_score(cat, 'Sorafenib', 'Melanoma')
-score_binding = strategies.binding_evidence_score(cat, 'Sorafenib', 'Melanoma')
-score_yoneda = strategies.yoneda_distance_score(cat, 'Sorafenib', 'Melanoma')
-# ... (6 more strategies)
+# Initialize active runtime strategy profile
+strategies = make_strategies(category)
+score, votes = score_pair(strategies, 'Sorafenib', 'Melanoma')
 
-# Aggregate votes (uniform weights)
-final_score = mean([
-    score_composition, score_binding, score_yoneda,
-    score_coherence, score_conjecture, score_natural_transform,
-    score_game_theory, score_bayesian
-])
+# Live triage includes Yoneda only when visible known-treatment comparators exist.
+# Strict remove_direct_labels excludes Yoneda because those comparators are removed.
 ```
 
 ### 4. Persistence
 
-All objects/morphisms auto-sync to SQLite:
+For the durable `tier1.db` source, use `KomposOSStore`:
 
 ```python
 from data.store import KomposOSStore
 
 store = KomposOSStore('data/drugs/tier1.db')
 drug = store.get_object('Sorafenib')
-morphisms_from_drug = store.list_morphisms(source='Sorafenib')
+morphisms_from_drug = store.get_morphisms_from('Sorafenib')
 ```
 
 **Database schema**:
 ```sql
 CREATE TABLE objects (
-    id INTEGER PRIMARY KEY,
-    name TEXT UNIQUE,
+    name TEXT PRIMARY KEY,
     type_name TEXT,
-    confidence REAL,
+    metadata TEXT,
+    embedding BLOB,
+    created_at TEXT,
+    updated_at TEXT,
     provenance TEXT
 );
 
 CREATE TABLE morphisms (
-    id INTEGER PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     name TEXT,
-    source_id INTEGER,
-    target_id INTEGER,
+    source_name TEXT,
+    target_name TEXT,
+    metadata TEXT,
     confidence REAL,
     provenance TEXT,
-    FOREIGN KEY(source_id) REFERENCES objects(id),
-    FOREIGN KEY(target_id) REFERENCES objects(id)
+    evidence_tier TEXT,
+    quantitative_value REAL,
+    value_unit TEXT,
+    sample_size INTEGER,
+    confidence_lower REAL,
+    confidence_upper REAL
 );
 ```
 
 ---
 
-## Oracle Strategies (9 Total)
+## Runtime Strategy Profiles
 
-All strategy implementations are in `oracle/`:
+The current drug-repurposing scorer is assembled by
+`validation/repurposing_benchmark.py::make_strategies`.
 
-| Strategy | File | Role | Weight |
-|----------|------|------|--------|
-| Composition | `oracle/composition_strategy.py` | Dominant path-based | Dominant |
-| Path Bonus | `oracle/path_bonus_strategy.py` | High-confidence bonus | Tuning |
-| Binding Evidence | `oracle/binding_strategy.py` | IC50 + drug properties | Moderate |
-| Yoneda Distance | `oracle/yoneda_strategy.py` | Structural similarity | Bonus |
-| Coherence | `oracle/coherence_strategy.py` | Logical consistency | Minor |
-| Conjecture | `oracle/conjecture_strategy.py` | Rule learning | Minor |
-| Natural Transform | `oracle/natural_transform_strategy.py` | Morphism alignment | Negligible |
-| Game Theory | `oracle/game_theory_strategy.py` | Equilibrium analysis | Negligible |
-| Bayesian | `oracle/bayesian_strategy.py` | Probabilistic | Negligible |
+| Profile | Active modules |
+|---------|----------------|
+| Strict `remove_direct_labels` | `kan_extension`, `structural_hole`, `composition`, `yoneda_pattern`, `fibration_lift`, `topos_logic`, `binding_evidence` |
+| Live/as-loaded triage | Strict modules plus conditional `yoneda_distance` when Drug->Disease comparator labels are visible |
 
-**Aggregation**: Normalize each strategy to [0, 1], compute arithmetic mean.
+**Aggregation**: active non-Yoneda strategy scores are averaged; path confidence
+adds a bounded path bonus; Yoneda distance, when present, contributes a bounded
+bonus rather than being averaged into the base.
 
 See [STRATEGIES_IN_DEPTH.md](STRATEGIES_IN_DEPTH.md) for mathematical details.
 
@@ -280,22 +277,13 @@ See [STRATEGIES_IN_DEPTH.md](STRATEGIES_IN_DEPTH.md) for mathematical details.
 
 Plugins extend functionality without modifying core:
 
-### ABPP Bridge (`abpp_bridge.py`)
+### ABPP / Binding Evidence
 
-Loads experimental IC50 data (65 entries) and enriches morphisms.
+Experimental IC50 data are used through `oracle/binding_strategy.py` and the
+ABPP bridge classes it imports. The current database contains 65 ABPP entries
+used by the binding evidence strategy.
 
-```python
-from bridges.abpp_bridge import ABPPBridge
-
-bridge = ABPPBridge()
-bridge.register()  # Hooks into morphism creation
-
-# When a Drug-Protein morphism is created, ABPP queries:
-# - Is there an IC50 value for this pair?
-# - If yes, enrich morphism with quantitative data
-```
-
-### Boltz2 Bridge (`boltz2_bridge.py`)
+### Boltz2 Fallback
 
 Heuristic binding prediction (fallback when no ABPP data).
 
@@ -311,11 +299,10 @@ Confidence: 0.60–0.80 (lower than experimental ABPP)
 Integrates claim verification.
 
 ```python
-from bridges.cog_reasoning import COGBridge
+from bridges.cog_reasoning import CogReasoningPlugin
 
-cog = COGBridge()
-# Analyzes prediction for logical consistency
-consistency_score = cog.coherence_score(cat, 'Sorafenib', 'Melanoma')
+cog = CogReasoningPlugin()
+# Asynchronous plugin for claim verification and explanation hooks.
 ```
 
 ---
@@ -331,9 +318,8 @@ For each drug in tier1.db:
   └─ Find all paths: Drug → ... → Melanoma (max 4 hops)
      ├─ Composition score: best path confidence
      ├─ Binding evidence: IC50 + drug properties
-     ├─ Yoneda distance: structural similarity
-     ├─ ... (6 more strategies)
-     └─ Final score = mean of 9 strategy scores
+     ├─ Conditional Yoneda distance: structural similarity when comparators exist
+    └─ Final score = mean(active signals except Yoneda) + path bonus + conditional Yoneda bonus
          ↓
 Rank drugs by score (descending)
          ↓
@@ -344,7 +330,7 @@ Display to user
 
 **Computational cost**:
 - Path finding: O(n × m^h) where n=drugs, m=edges, h=max path length
-- Strategy scoring: O(n × strategies) = O(78 × 9) = ~700 evaluations
+- Strategy scoring: O(n × active modules) = O(78 × 7/8) per disease
 - Typical runtime: 2–5 seconds for full disease triage (first run includes path cache)
 
 ---
@@ -356,8 +342,8 @@ triage.py (entry point)
     ↓
 validation/triage.py
     ├─ core/category.py (Category runtime)
-    ├─ oracle/ (9 strategies)
-    ├─ domains/bio/loader.py (Database loading)
+    ├─ oracle/ (runtime strategy modules)
+    ├─ validation/repurposing_benchmark.py (Database loading + scoring)
     ├─ data/store.py (SQLite backend)
     ├─ bridges/ (COG, OPTIMUS, ABPP, Boltz2)
     └─ chemistry/ (Pfam, drug properties)
@@ -365,7 +351,7 @@ validation/triage.py
 repurposing_benchmark.py (evaluation harness)
     ├─ core/category.py
     ├─ oracle/
-    ├─ domains/bio/loader.py
+    ├─ data/store.py
     └─ validation/repurposing_benchmark_manifest.json
 
 build_tier1.py (reproducible data build)
@@ -386,46 +372,40 @@ Follow this 6-step template:
 ```python
 # oracle/my_strategy.py
 
-from core.category import Category
+from oracle.strategies import InferenceStrategy
 
-def my_strategy_score(cat: Category, drug: str, disease: str) -> float:
-    """Your custom scoring logic"""
-    # Compute score 0.0–1.0
-    return score
+class MyStrategy(InferenceStrategy):
+    name = "my_strategy"
+
+    def predict(self, source: str, target: str):
+        # Return list[Prediction]; see oracle/strategies.py for examples.
+        return []
 ```
 
-### Step 2: Register in oracle/__init__.py
+### Step 2: Wire into the active profile
 
 ```python
-from oracle.my_strategy import my_strategy_score
+from oracle.my_strategy import MyStrategy
 
-STRATEGIES = {
-    'composition': composition_score,
-    'binding_evidence': binding_evidence_score,
-    ...
-    'my_strategy': my_strategy_score,  # Add here
-}
+def make_strategies(category):
+    strategies = [
+        # existing modules...
+        MyStrategy(category),
+    ]
+    return strategies
 ```
 
-### Step 3: Add to aggregation
+### Step 3: Verify aggregation
 
-In `oracle/__init__.py` or `validation/repurposing_benchmark.py`:
+In `validation/repurposing_benchmark.py`, `score_pair()` aggregates strategy
+`Prediction.confidence` values. If the new module needs special treatment
+like Yoneda's bounded bonus, document and test it explicitly.
 
-```python
-def score_pair(cat, drug, disease):
-    votes = {
-        'composition': composition_score(...),
-        'binding_evidence': binding_evidence_score(...),
-        ...
-        'my_strategy': my_strategy_score(...),  # Include in voting
-    }
-    return mean(votes.values())
-```
 
 ### Step 4: Test regression
 
 ```bash
-pytest tests/test_oracle_strategies.py -k "my_strategy"
+python validation/repurposing_benchmark.py --view full_typed --protocol remove_direct_labels
 ```
 
 Verify:
@@ -470,25 +450,23 @@ def find_paths_cached(cat: Category, src: str, tgt: str) -> List[Path]:
 Ensure SQLite has indexes:
 
 ```sql
-CREATE INDEX idx_morphism_source ON morphisms(source_id);
-CREATE INDEX idx_morphism_target ON morphisms(target_id);
+CREATE INDEX idx_morphism_source ON morphisms(source_name);
+CREATE INDEX idx_morphism_target ON morphisms(target_name);
 CREATE INDEX idx_object_name ON objects(name);
 ```
 
-### Parallel Scoring
+### Batch Scoring
 
-Score multiple drugs in parallel:
+Score multiple drugs with the benchmark scorer:
 
 ```python
-from multiprocessing import Pool
-
-def score_all_drugs(cat, disease, n_workers=4):
-    with Pool(n_workers) as pool:
-        scores = pool.starmap(
-            lambda drug: (drug, score_pair(cat, drug, disease)),
-            [(d, disease) for d in cat.drugs()]
-        )
-    return scores
+def score_all_drugs(cat, disease):
+    strategies = make_strategies(cat)
+    drugs = [obj.name for obj in cat.objects() if obj.type_name == "Drug"]
+    return {
+        drug: score_pair(strategies, drug, disease)[0]
+        for drug in drugs
+    }
 ```
 
 ---
@@ -510,7 +488,7 @@ def score_all_drugs(cat, disease, n_workers=4):
 ### Documentation
 
 - Code comments for non-obvious logic
-- PMID citations in docstrings
+- Source/provenance strings on new scientific edges
 - Example usage in module docstrings
 
 ---
@@ -523,7 +501,7 @@ Before merging to main:
 - [ ] 44/44 self-check passes
 - [ ] AUROC ≥ 0.96 (remove_direct_labels protocol)
 - [ ] Zero new orphaned morphisms (audit_provenance.py)
-- [ ] source strings on all 5,382 morphisms on new edges (all have PMID/ChEMBL)
+- [ ] source strings on all 5,382 morphisms remain populated after rebuild
 - [ ] Benchmark metrics reported with full protocol spec
 - [ ] Code reviewed by 1+ other developer
 
@@ -534,7 +512,7 @@ Before merging to main:
 ### To understand specific components:
 
 - [API_REFERENCE.md](API_REFERENCE.md) — Core APIs with examples
-- [STRATEGIES_IN_DEPTH.md](STRATEGIES_IN_DEPTH.md) — All 9 strategies
+- [STRATEGIES_IN_DEPTH.md](STRATEGIES_IN_DEPTH.md) — Runtime strategy profiles
 - [CONTRIBUTING.md](CONTRIBUTING.md) — Adding features
 
 ### To extend the system:
@@ -550,4 +528,4 @@ Before merging to main:
 
 ---
 
-*Last updated: 2026-05-26 (5-layer stack, 9 strategies, Yoneda integration)*
+*Last updated: 2026-05-28 (runtime strategy profiles; conditional Yoneda integration)*
