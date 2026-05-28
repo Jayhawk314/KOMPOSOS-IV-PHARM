@@ -2,7 +2,7 @@
 
 **What it is**: A research prototype that recommends FDA-approved drugs to treat diseases by analyzing mechanistic paths, quantitative evidence, and structural similarity.
 
-**Current status**: Working system with AUROC 0.9562 on held-out FDA drug-disease pairs. All 44 approved pairs are recoverable with mechanistic justification.
+**Current status**: Working system with AUROC 0.9747 on held-out FDA drug-disease pairs. All 44 approved pairs are recoverable with mechanistic justification.
 
 **Audience**: Practitioners (how to triage), researchers (validation claims), all (conceptual understanding)
 
@@ -54,7 +54,9 @@ Beyond binary "targets this protein," KOMPOSOS-IV integrates actual binding data
 - **Clinical response rates**: What % of patients respond? (Vemurafenib + BRAF mutation: 48% response rate)
 - **Hazard ratios**: Survival improvement? (HR = 0.97 in one trial)
 
-These are extracted from PubMed abstracts (92.2% validated) and ABPP experimental data. Each quantitative edge is linked to a PMID.
+These come from PubMed NLP extraction and ABPP experimental data. Quantitative
+values are source-linked, but endpoint-specific citation attribution still needs
+audit.
 
 ### 3. Structural Similarity (Yoneda Distance)
 
@@ -73,27 +75,27 @@ This means: if Drug A is approved for Disease D, and Drug B is structurally/mech
 
 ---
 
-## Current Data (As of 2026-05-26)
+## Current Data (As of 2026-05-27)
 
 ### Database Summary
 
 | Metric | Value |
 |--------|-------|
-| **Objects** | 464 total |
+| **Objects** | 1,146 runtime objects |
 | Drugs | 78 FDA-approved |
 | Diseases | 20 oncology |
-| Proteins | 366 (targets, pathways, regulators) |
+| Proteins / biomedical entities | imported targets, pathways, regulators, and supporting entities |
 | **Morphisms** | 5,382 edges |
 | Direct labels (Drug→Disease) | 44 FDA-approved |
-| Mechanistic paths | 5,338 (all with provenance) |
+| Mechanistic/source edges | 5,382 with source strings |
 | **Quantitative edges** | 204 |
 | IC50 / binding data | 65 edges (ABPP + PubMed) |
 | Mutation frequencies | 45 edges |
 | Clinical response rates | 52 edges |
 | Hazard ratios / survival | 42 edges |
-| **Provenance** | 100% coverage |
-| Unique PMIDs cited | 609 |
-| ChEMBL target IDs | all edges |
+| **Source strings** | 5,382/5,382 morphisms |
+| Unique PMID identifiers | 610 |
+| ChEMBL target IDs | ChEMBL-derived edges |
 
 ### Data Sources
 
@@ -107,7 +109,9 @@ This means: if Drug A is approved for Disease D, and Drug B is structurally/mech
 | ABPP | 65 edges | experimental IC50 values |
 | ESM2 similarity | 100 edges | protein similarity (fallback) |
 
-All edges include either a PMID (PubMed) or ChEMBL ID (drug/target). Zero uncited morphisms.
+All morphisms include a source/provenance string such as PMID, ChEMBL, FDA,
+KEGG, STRING, ESM2, or review metadata. This is source coverage, not proof that
+every edge has been manually validated against the cited text.
 
 ---
 
@@ -171,32 +175,33 @@ All votes are normalized to [0, 1] and combined via weighted averaging (uniform 
 
 | Metric | Value | Interpretation |
 |--------|-------|-----------------|
-| **AUROC** | **0.9562** | 96.5% probability model ranks random positive higher than random negative |
-| **AUPRC** | 0.551 | 63.4% precision when recalling all positives (top candidates likely real) |
+| **AUROC** | **0.9747** | 97.47% probability the strict benchmark ranks a labeled positive above an unlabeled pair |
+| **AUPRC** | 0.552 | Precision-recall ranking signal versus a 2.82% positive-label prevalence |
 | **Hits@5** | 1.00 | 100% of true positives in top 5 (impressive for 78 drugs) |
-| **Hits@10** | 0.80 | 80% of true positives in top 10 |
-| **MRR** | 0.065 | Mean reciprocal rank (how early on average) |
+| **Hits@10** | 0.60 | 60% Hits@10 under the strict benchmark |
+| **MRR** | 0.0788 | Mean reciprocal rank |
 
 ### Cross-Validation (loocv protocol)
 
-- **AUROC**: pending (leave-one-out cross-validation)
-- **AUPRC**: 0.408
-- **Hits@10**: 0.70
+- **AUROC**: 0.975916
+- **AUPRC**: 0.553703
+- **Hits@5 / Hits@10 / Hits@20**: 0.8000 / 0.6000 / 0.6000
+- **MRR**: 0.077237
 
 ### External Validation
 
 | Protocol | AUROC | Details |
-|----------|-------|---------|
-| Hetionet | pending | 7 held-out pairs; external DB confirmation |
-| Temporal | pending | 22 FDA approvals post-2013 (tests true future data) |
-| Disease-level | pending | Mean AUROC across 7 diseases (range 0.615–0.996) |
+|----------|------:|---------|
+| Hetionet CtD | 0.6345 | AUPRC 0.0093 on 7 external positives; weak top-rank recovery |
+| Temporal | 0.9780 | AUPRC 0.2288 on 18 held-out approvals after 2013 |
+| Disease-level | 0.9504 mean | Mean AUPRC 0.6368 across 7 diseases; weakest AUROC 0.7872 |
 
 ### Honest Caveats
 
 - **remove_direct_labels protocol removes Drug→Disease edges during scoring** (prevents leakage). This is the fairest protocol for ranking unknown pairs.
-- **as_loaded protocol shows lower AUROC (0.457)** because composition skips direct labels (edge removal artifact, not real performance loss).
+- **as_loaded protocol is not the primary claim**. Current rerun: AUROC 0.738831, AUPRC 0.049407; use strict label-removal or LOOCV for current reporting.
 - **Unlabeled pairs are unknown unknowns**. Can't distinguish "truly no relationship" from "not yet discovered."
-- **50% positive rate in test set is balanced but unrealistic**. Real prevalence of true drug-disease relationships is unknown (likely << 50%).
+- **Open-world labels**: 44 positives vs. 1,516 unlabeled pairs in the strict task. Unlabeled pairs are unknowns, not confirmed negatives.
 
 See [VALIDATION_AND_BENCHMARKS.md](VALIDATION_AND_BENCHMARKS.md) for full details, confidence intervals, and honest interpretation.
 
@@ -282,7 +287,7 @@ python validation/triage.py Melanoma --all
 | **Data size** | 464 objects, 5,382 edges | ~50k nodes, ~500k edges |
 | **Specificity** | Oncology drugs (78) | All domains |
 | **Quantitative** | 204 edges with IC50/HR/mutation | Limited quantitative |
-| **Our AUROC** | 0.9562 (our data) | pending (external validation) |
+| **Our AUROC** | 0.9747 (strict internal task) | 0.6345 in Hetionet CtD external validation |
 | **Transparency** | source strings on all 5,382 morphisms (PMID/ChEMBL) | Graph + paper |
 | **Update cycle** | Manual + reproducible build | Regular (Hetionet team) |
 
@@ -295,7 +300,7 @@ python validation/triage.py Melanoma --all
 | **Data type** | Mechanistic networks | Drug/protein/interaction tables |
 | **Scoring** | Path-based + 9 strategies | Label-based lookup |
 | **Repurposing** | Computational ranking | Manual curation |
-| **Validation** | AUROC 0.9562 on held-out | Not evaluated for ranking |
+| **Validation** | AUROC 0.9747 on held-out | Not evaluated for ranking |
 
 **Use case**: KOMPOSOS-IV for candidate discovery; DrugBank for drug properties/targets.
 
@@ -306,7 +311,7 @@ python validation/triage.py Melanoma --all
 | **Interpretability** | Explicit paths + PMIDs | Black box |
 | **Generalization** | Few drugs per disease ok | Needs dense matrix |
 | **New drugs** | Works (uses targets) | Cold-start problem |
-| **Validation** | AUROC pending (LOOCV) | Depends on train/test |
+| **Validation** | AUROC 0.9759 in current LOOCV | Depends on train/test |
 
 **Use case**: KOMPOSOS-IV for interpretable, knowledge-grounded predictions.
 
@@ -371,7 +376,7 @@ For any candidate ranked high by KOMPOSOS-IV:
 Every metric is reproducible:
 
 ```bash
-# Reproduce AUROC 0.9562
+# Reproduce AUROC 0.9747
 python validation/repurposing_benchmark.py \
   --view full_typed \
   --protocol remove_direct_labels
@@ -409,7 +414,7 @@ python data/drugs/build_tier1.py \
 3. ✓ Direct Drug→Disease labels are removed during scoring (no leakage)
 4. ✓ Unlabeled pairs treated as unknowns, not confirmed negatives
 5. ✓ Report AUPRC, Hits@K, MRR, confidence intervals (95% bootstrap)
-6. ✓ Provenance required: 609 PMID identifiers, zero uncited morphisms
+6. ✓ Source coverage required: 610 PMID identifiers and source strings on all 5,382 morphisms; edge-specific citation validation remains separate
 7. ✓ No fallback/mock scientific claims (Boltz2 labeled as heuristic, Yoneda results honest)
 
 ---

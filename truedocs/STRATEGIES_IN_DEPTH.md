@@ -22,7 +22,7 @@ All strategies produce a score [0, 1] for a Drug-Disease pair. Scores are normal
 | **Game Theory** | Negligible | Equilibrium analysis |
 | **Bayesian** | Negligible | Probabilistic |
 
-**Ablation result**: Composition alone scores 0.890 AUROC; all 9 together score 0.9562.
+**Ablation note**: Historical development runs showed composition as the dominant signal. Current strict full-system run is AUROC 0.9747; per-strategy ablations should be rerun under the corrected loader before being quoted as current.
 
 ---
 
@@ -458,7 +458,7 @@ def score_pair(cat: Category, drug: str, disease: str) -> float:
     return final_score
 ```
 
-**Weights**: All uniform (confirmed optimal by LOOCV calibration 2026-05-24).
+**Weights**: Current production scoring uses the calibrated strategy combiner. Ranking-score calibration is tracked separately from strategy signal scores.
 
 ---
 
@@ -469,14 +469,14 @@ def score_pair(cat: Category, drug: str, disease: str) -> float:
 Tuned via LOOCV grid search:
 - Grid: [0.0, 0.01, 0.02, ..., 0.20]
 - Metric: LOOCV AUROC
-- Result: 0.04 is optimal (pending AUROC)
+- Result: 0.04 is the current production value; rerun calibration before changing it.
 
 ### Strategy Weights
 
-Tested uniform vs. composition-dominant weights:
-- Uniform: AUROC pending
-- Composition-heavy: AUROC 0.943 (slightly worse)
-- Result: Uniform weights are optimal
+Tested uniform vs. composition-dominant weights during development:
+- Uniform/current combiner: strict AUROC 0.9747 in the current full run
+- Composition-heavy: historical AUROC 0.943 (slightly worse)
+- Result: keep the current combiner unless a fresh calibration run improves both ranking metrics and auditability
 
 ---
 
@@ -496,7 +496,7 @@ Game Theory:         -0.000 (none)
 Bayesian:            -0.000 (none)
 ```
 
-Sum of contributions: ~0.23 (less than full system 0.9562, due to non-additivity and baseline ~0.75 from random).
+Sum of contributions: ~0.23 (less than full system 0.9747, due to non-additivity and baseline ~0.75 from random).
 
 ---
 

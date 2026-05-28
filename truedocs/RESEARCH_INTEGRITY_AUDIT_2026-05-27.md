@@ -16,13 +16,13 @@ Result after fixes:
 
 | Metric | Value |
 |--------|-------|
-| AUROC | 0.956240 [0.9279, 0.9789] |
-| AUPRC | 0.551307 [0.3968, 0.6921] |
-| Hits@5 | 0.8000 |
-| Hits@10 | 0.7000 |
-| Hits@20 | 0.6500 |
-| MRR | 0.079520 |
-| Scored pairs | 1476 / 1560 |
+| AUROC | 0.974694 [0.9606, 0.9855] |
+| AUPRC | 0.551698 [0.4067, 0.6983] |
+| Hits@5 | 1.0000 |
+| Hits@10 | 0.6000 |
+| Hits@20 | 0.6000 |
+| MRR | 0.078750 |
+| Scored pairs | 1325 / 1560 |
 
 Baselines on the same corrected graph:
 
@@ -77,27 +77,25 @@ Fix: benchmark evaluation now fails loudly on strategy errors. The UI still tole
 ## Evidence/Provenance Caveats
 
 - The database has source/provenance strings on all 5,382 morphisms.
-- There are 609 PMID identifiers in provenance/metadata strings.
+- There are 610 PMID identifiers in provenance/metadata strings.
 - This is not equivalent to saying every edge has edge-specific citation validation.
 - Quantitative NLP extraction metadata needs a separate attribution audit because some values appear attached by shared PMID rather than by endpoint/relation-specific extraction.
 - Evidence tiers should not be read as regulatory or experimental certainty until the extraction and tiering pipeline is repaired and rerun.
 
-## Retired Or Pending Claims
+## Retired Or Superseded Claims
 
-The following claims should not be presented as current until reproduced under the corrected loader:
+The following claims should not be presented as current:
 
 - `0.9689 AUROC / 0.661 AUPRC`
-- LOOCV metrics from before the Yoneda leakage fix
-- Hetionet external validation
-- temporal holdout validation
-- disease-holdout validation
+- `0.9562 AUROC` as the current strict result; it was an intermediate post-leakage result superseded by the current strict run
+- LOOCV, Hetionet, temporal, and disease-holdout values from before the corrected loader reruns
 - "581 unique validated PMIDs" and "100% validated provenance"
 - shortest-path baseline `0.931` for the current strict graph
 
-## Recommended Next Validation Work
+## Validation Work Status
 
-1. Rerun LOOCV under the corrected loader.
-2. Rebuild external, temporal, and disease-holdout scripts so they are executable and versioned.
-3. Add a read-only citation-attribution audit for each edge: endpoint mentions, relation support, quantitative value support, and abstract/full-text provenance.
-4. Split evidence tiers into source type and validation status. For example, do not put computational ESM2 or unverified NLP extractions in a tier that reads like direct measurement.
-5. Calibrate ranking scores separately from strategy signal scores. Current scores are prioritization scores, not probabilities.
+1. LOOCV has been rerun under the corrected loader: AUROC 0.975916, AUPRC 0.553703.
+2. External, temporal, and disease-holdout scripts are executable and rerun; Hetionet external precision-at-top remains weak.
+3. A read-only citation-attribution audit is still required for each edge: endpoint mentions, relation support, quantitative value support, and abstract/full-text provenance.
+4. Evidence tiers must continue to separate source type from validation status. Computational ESM2 or unverified NLP extractions must not be described as direct measurement.
+5. Ranking scores must stay separate from strategy signal scores. Current scores are prioritization/ranking scores, not clinical probabilities.

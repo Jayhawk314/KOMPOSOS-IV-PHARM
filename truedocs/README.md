@@ -4,9 +4,9 @@
 
 KOMPOSOS-IV-PHARM applies a categorical AI runtime to drug discovery, focusing on finding existing drugs that can treat new diseases through computational analysis of biological networks. It combines path-based scoring (via category theory), machine learning strategies, and quantitative evidence tracing to recommend drug-disease pairs with mechanistic justification.
 
-**Current Status**: Track A (drug repurposing) is a working research prototype with **AUROC 0.9562** on the current strict `remove_direct_labels` audit run. Track B (de novo drug design) is a long-term goal, not yet scientifically validated.
+**Current Status**: Track A (drug repurposing) is a working research prototype with **AUROC 0.9747** on the current strict `remove_direct_labels` audit run. Track B (de novo drug design) is a long-term goal, not yet scientifically validated.
 
-**Audit note (2026-05-27)**: Previous `0.9562 AUROC / 0.551 AUPRC` claims are retired because the Yoneda module could see held-out Drug->Disease labels. LOOCV, external, temporal, and disease-holdout claims must be re-run under the corrected loader before being treated as current.
+**Audit note (2026-05-27)**: The older `0.9689 AUROC / 0.661 AUPRC` claim is retired because the Yoneda module could see held-out Drug->Disease labels. An intermediate `0.9562` strict result was later superseded by the current Topos-aligned strict run shown here. LOOCV, external, temporal, and disease-holdout scripts have also been rerun under the corrected loader.
 
 ---
 
@@ -61,13 +61,13 @@ Planned capability: generate novel compounds with predicted binding, ADMET, and 
 
 | Metric | Value | Details |
 |--------|-------|---------|
-| **AUROC** | **0.9562** | Corrected full-typed view, strict remove_direct_labels protocol, 44 FDA pairs |
-| **AUPRC** | 0.551 | Open-world unlabeled negatives; use ranking/audit, not prevalence |
-| **Hits@10** | 0.70 | 70% of true positives in top 10 |
-| **Source fields** | 5,382/5,382 | 609 PMID identifiers found; edge-specific attribution audit pending |
-| **Data points** | 5,382 morphisms | 464 stored objects; 1,146 runtime objects after referenced endpoints load |
+| **AUROC** | **0.9747** | Corrected full-typed view, strict remove_direct_labels protocol, 44 FDA pairs |
+| **AUPRC** | 0.552 | Open-world unlabeled negatives; use ranking/audit, not prevalence |
+| **Hits@5 / Hits@10 / Hits@20** | 1.000 / 0.600 / 0.600 | Current strict `remove_direct_labels` run |
+| **Source fields** | 5,382/5,382 | 610 PMID identifiers found; edge-specific attribution audit still required |
+| **Data points** | 5,382 morphisms | 1,146 runtime objects; 78 drugs, 20 diseases, 44 FDA-positive labels |
 
-See **[VALIDATION_AND_BENCHMARKS.md](VALIDATION_AND_BENCHMARKS.md)** for full metrics, confidence intervals, and retired external/temporal claims that require reproduction.
+See **[VALIDATION_AND_BENCHMARKS.md](VALIDATION_AND_BENCHMARKS.md)** for full metrics, confidence intervals, and external/temporal/disease-holdout caveats.
 
 See **[RESEARCH_INTEGRITY_AUDIT_2026-05-27.md](RESEARCH_INTEGRITY_AUDIT_2026-05-27.md)** for the leakage fixes, retired claims, and remaining evidence-attribution caveats.
 
@@ -139,7 +139,7 @@ KOMPOSOS-IV-PHARM/
 **Track A Database**: `data/drugs/tier1.db` (3.67 MB, reproducible build from manifest)
 
 - **Objects**: 78 FDA-approved drugs, 20 oncology diseases, 366 proteins (targets, pathways, regulators)
-- **Edges**: 5,382 morphisms with source strings (609 PMID identifiers, ChEMBL IDs)
+- **Edges**: 5,382 morphisms with source strings (610 PMID identifiers, ChEMBL IDs)
 - **Quantitative**: 204 edges with IC50 binding data, hazard ratios, mutation frequencies
 - **Labels**: 44 FDA-approved Drug→Disease pairs (all mechanistically supported)
 - **Source coverage**: Every edge has a provenance/source string; this is not the same as edge-specific citation validation
@@ -174,7 +174,7 @@ Output: Full detail on why it scores high (paths, quantitative evidence, structu
 python validation/repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --ci
 ```
 
-Output: AUROC 0.9562 [95% CI 0.9279-0.9789], AUPRC 0.551, Hits@K, confidence intervals.
+Output: AUROC 0.9747 [95% CI 0.9606-0.9855], AUPRC 0.552, Hits@K, confidence intervals.
 
 ### 4. Trace a prediction to evidence
 
@@ -192,11 +192,11 @@ The current corrected strict audit recovers all 44 FDA-approved oncology drug-di
 
 | Protocol | AUROC | Details |
 |----------|-------|---------|
-| remove_direct_labels | 0.9562 | Current corrected strict audit run |
-| loocv | pending | Must be re-run under corrected loader |
-| Hetionet (external) | retired/pending | Older claim not yet reproduced under corrected loader |
-| Temporal holdout | retired/pending | Older claim not yet reproduced under corrected loader |
-| Mean disease holdout | retired/pending | Older claim not yet reproduced under corrected loader |
+| remove_direct_labels | 0.9747 | Current corrected strict audit run |
+| loocv | 0.9759 | AUPRC 0.5537; Hits@10 0.600 |
+| Hetionet (external) | 0.6345 | AUPRC 0.0093; low precision-at-top |
+| Temporal holdout | 0.9780 | Approval year > 2013; AUPRC 0.2288 |
+| Mean disease holdout | 0.9504 | Mean AUPRC 0.6368 across 7 disease folds |
 
 **Important**: Unlabeled Drug-Disease pairs are unknowns, not confirmed negatives. AUROC measures ranking quality on a balanced test set, not true prevalence.
 

@@ -101,17 +101,18 @@ Drugs with identical Yoneda presheaf fingerprints on the clean subgraph:
 | Encorafenib | Vemurafenib | BRAF inhibitors | FDA labels match |
 | Carboplatin | Oxaliplatin | Platinum compounds | FDA labels match |
 
-These equivalence classes are discovered purely from morphism structure -- no drug class annotations are used. They are ground-truth validated against FDA indication labels.
+These equivalence classes are discovered purely from morphism structure -- no drug class annotations are used. They are biologically plausible and overlap with FDA-labeled drug classes, but the ablation effect should be rerun under the corrected loader before quoting as a current effect size.
 
 ### Impact on Metrics
 
-| Metric | Before Yoneda | After Yoneda | Delta |
-|--------|-------------:|-------------:|------:|
-| AUROC | 0.956 | 0.9562 | +0.009 |
-| AUPRC | 0.537 | 0.551 | +0.097 |
-| Hits@10 | 0.70 | 0.80 | +0.10 |
+| Metric | Current strict run |
+|--------|-------------------:|
+| AUROC | 0.9747 |
+| AUPRC | 0.552 |
+| Hits@5 / Hits@10 / Hits@20 | 1.00 / 0.60 / 0.60 |
 
-The AUPRC improvement (+0.097) is the most significant: top-ranked candidates are substantially more likely to be real approvals.
+Older Yoneda ablation deltas were development measurements. Treat them as
+historical until rerun under the corrected loader and leakage controls.
 
 ### Origin: Simplicial Type Theory Experiment
 
@@ -372,7 +373,7 @@ Simplicial Type Theory provides a type-theoretic framework for reasoning about i
 - Compute presheaf fingerprints on clean evidence subgraph (MEASURED + ESTABLISHED only)
 - Score drug-disease pairs by similarity to known treatments
 - Uses confidence-weighted Jaccard distance
-- **Result**: AUROC +0.009, AUPRC +0.097 -- significant precision improvement
+- **Development result**: historical ablations suggested AUROC/AUPRC lift, but the effect size must be rerun under the corrected loader before being treated as current.
 
 **2. Fibration Transport** (not integrated):
 - Lift drug efficacy along disease-disease morphisms via cartesian transport
@@ -432,9 +433,9 @@ In drug repurposing:
 
 ### Production Pipeline (9 Strategies)
 
-The 9 oracle strategies that produce the AUROC 0.9562 result use these mathematical frameworks:
+The 9 oracle strategies that produce the current AUROC 0.9747 result use these mathematical frameworks:
 
-| Strategy | Math Framework | AUROC Impact (ablation) |
+| Strategy | Math Framework | Historical ablation note |
 |----------|---------------|------------------------:|
 | **Composition** | Enriched category composition (quantale) | -0.153 (dominant) |
 | **Binding Evidence** | Molecular chemistry + graph confidence | -0.045 |
@@ -474,7 +475,7 @@ score = min(1.0, base + path_bonus + yoneda_bonus)
 
 1. **Composition** (+0.153 AUROC): The enriched category framework naturally handles multi-hop inference with confidence propagation. This is the core engine.
 
-2. **Yoneda** (+0.097 AUPRC): Structural similarity without feature engineering. Drug equivalence classes are discovered, not hardcoded.
+2. **Yoneda**: Structural similarity without feature engineering. Drug equivalence classes are discovered, not hardcoded; historical AUPRC lift estimates should be rerun under the corrected loader before being quoted.
 
 3. **Type safety**: Category theory enforces that Drug->Disease predictions require protein intermediates. You can't accidentally compose Drug->Drug paths.
 
@@ -482,7 +483,7 @@ score = min(1.0, base + path_bonus + yoneda_bonus)
 
 ### What the math does NOT do
 
-- The categorical framework does not outperform graph baselines by a large margin (+0.3255 AUROC over degree_product). Most predictive signal comes from graph connectivity and curation quality.
+- The categorical framework does not outperform graph baselines by a large margin (+0.3440 AUROC over degree_product). Most predictive signal comes from graph connectivity and curation quality.
 
 - The more sophisticated structures (Gray coherence, ZFC dual engine, OPTIMUS) are implemented but not yet proven to improve drug repurposing metrics. They represent architectural investments for future capability.
 

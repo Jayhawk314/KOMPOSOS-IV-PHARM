@@ -264,12 +264,12 @@ Before submitting PR:
 When reporting AUROC or other metrics, always include:
 
 ```
-AUROC: 0.9562
+AUROC: 0.9747
   View: full_typed
   Protocol: remove_direct_labels
   Positives: 44
-  Negatives: 2998
-  95% CI: [0.9279, 0.9789]
+  Negatives/unlabeled pairs: 1516
+  95% CI: [0.9606, 0.9855]
   Label policy: Direct Drug→Disease edges removed during scoring
 ```
 
@@ -369,12 +369,12 @@ Impact:
 We value accuracy over optimism. Example:
 
 ```
-❌ Bad: "Our system achieves 96.5% accuracy"
+❌ Bad: "Our system achieves 97.47% accuracy"
    (Misleading: AUROC ≠ accuracy, and on a 50% base rate)
 
-✓ Good: "AUROC 0.9562 (full_typed view, remove_direct_labels
-   protocol, 44 FDA pairs, 2998 balanced negatives, 95% CI
-   [0.9279, 0.9789]). Composed strategy averaging 9 component scores."
+✓ Good: "AUROC 0.9747 (full_typed view, remove_direct_labels
+   protocol, 44 FDA pairs, 1516 unlabeled comparison pairs, 95% CI
+   [0.9606, 0.9855]). Composed strategy averaging 9 component scores."
 ```
 
 ### Limitations

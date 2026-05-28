@@ -1,10 +1,12 @@
 # Evidence and Provenance
 
-**Purpose**: Document data sources, evidence tracing, and why source strings on all 5,382 morphisms matters.
+**Purpose**: Document data sources, evidence tracing, and why source strings on all 5,382 morphisms matter.
 
 **Audience**: Researchers (validating claims), scientists (understanding evidence), practitioners (checking candidate justification)
 
-**Key fact**: All 5,382 morphisms have provenance (PMID or ChEMBL ID). Zero uncited edges.
+**Key fact**: All 5,382 morphisms have source/provenance strings. The database
+contains 610 unique PMID identifiers, but source-string coverage is not the same
+as edge-specific citation validation.
 
 ---
 
@@ -12,29 +14,33 @@
 
 In pharmaceutical discovery, "garbage in = garbage out." A prediction is only as good as its evidence.
 
-**KOMPOSOS-IV principle**: Every biological relationship (morphism) must cite a source:
+**KOMPOSOS-IV principle**: Every biological relationship (morphism) must carry a source:
 - **PMID**: PubMed ID (peer-reviewed paper)
 - **ChEMBL ID**: ChEMBL compound or target ID (curated database)
 - **FDA**: FDA approval record (regulatory source)
 
 This means:
-- **You can fact-check every claim** (follow the PMID)
+- **You can fact-check every claim** (follow the PMID/database/source string)
 - **You can assess evidence quality** (primary paper vs. review)
 - **You can audit the system** (detect stale or erroneous data)
 
 ---
 
-## Provenance Coverage (As of 2026-05-26)
+## Source Coverage (As of 2026-05-27)
 
 ### By the Numbers
 
-| Category | Count | Coverage |
-|----------|-------|----------|
-| **Total morphisms** | 5,382 | 100% |
-| With PMID | 3,847 | 71.4% |
-| With ChEMBL ID | 1,535 | 28.5% |
-| With both | — | — |
-| **Uncited edges** | 0 | **0%** |
+| Category | Count | Interpretation |
+|----------|------:|----------------|
+| **Total morphisms** | 5,382 | SQLite edge rows |
+| Source/provenance strings | 5,382 | Every row has a source string |
+| Unique PMID identifiers | 610 | PMIDs detected in provenance/metadata strings |
+| Structured quantitative values | 204 | Edges with IC50, mutation, response, or HR values |
+
+Do not rewrite this as "100% validated PMIDs" or "100% validated provenance."
+The still-needed audit is edge-specific attribution: endpoint mentions, relation
+support, quantitative value support, and whether the support is from abstract or
+full text.
 
 ### By Data Type
 
@@ -64,14 +70,14 @@ This means:
 
 **Coverage**:
 - 373 quantitative data points from 204 unique PMIDs
-- 92.2% validation rate (manually checked against abstracts)
+- Automated/manual checks reported high extraction agreement, but endpoint-specific attribution still needs audit
 - Example: PMID:12829955 (Sorafenib IC50 for BRAF = 25.8 nM)
 
 **Process**:
 1. Query PubMed for drug + target + measurement keyword (IC50, Kd, Ki, etc.)
 2. Extract via NLP/regex from abstracts
 3. Normalize units (nM, μM, etc.)
-4. Validate against abstract text (92.2% accuracy)
+4. Validate endpoint, relation, and quantitative value support against abstract/full text
 5. Store with PMID
 
 **Limitations**:
@@ -374,13 +380,13 @@ Provenance Audit Report
 =======================
 
 Database: data/drugs/tier1.db
-Objects: 464
+Runtime objects: 1,146
 Morphisms: 5,382
 
 Coverage check:
-  Morphisms with PMID:        3,847 / 5,382 (71.4%)
-  Morphisms with ChEMBL ID:   1,535 / 5,382 (28.5%)
-  Morphisms with PMID or ID:  5,382 / 5,382 (100.0%) ✓
+  Rows with source strings:   5,382 / 5,382 (100.0%)
+  Unique PMID identifiers:    610
+  Structured value rows:      204
 
 Orphaned morphisms (no provenance):
   Count: 0
@@ -396,14 +402,15 @@ Quantitative values by PMID:
 Self-check (FDA labels):
   Expected: 44 FDA-approved pairs
   Found: 44 / 44 (100%) ✓
-  All with PMIDs: 44 / 44 (100%) ✓
+  All with source strings: 44 / 44 (100%)
 
 Stale data check:
   Newest PMID: PMID:26193519 (2015, still current)
   Oldest PMID: PMID:10021768 (2000, classic reference)
   Mean publication year: 2008
 
-Conclusion: All morphisms traced. Zero uncited edges. Database ready for publication.
+Conclusion: All morphisms have source strings. Edge-specific citation attribution
+still requires the dedicated audit.
 ```
 
 ---
@@ -462,7 +469,7 @@ See [DATA_AND_DATABASE.md](DATA_AND_DATABASE.md) for details on data schema and 
 
 ## Handling Updates
 
-Current database is static (2026-05-26 snapshot, 609 PMIDs).
+Current database is static (2026-05-26 snapshot, 610 PMIDs).
 
 **To update**:
 1. Modify manifest (add/remove drugs, diseases, edges)
@@ -509,7 +516,7 @@ If you use KOMPOSOS-IV data in a publication:
   author = {Hawkins, James Ray},
   year = {2026},
   url = {https://github.com/your-repo/KOMPOSOS-IV-PHARM},
-  note = {464 objects, 5382 morphisms, 609 PMID identifiers, 100\% provenance}
+  note = {1146 runtime objects, 5382 morphisms, source strings on all morphisms, 610 PMID identifiers}
 }
 ```
 

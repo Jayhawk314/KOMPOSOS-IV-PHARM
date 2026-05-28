@@ -19,7 +19,7 @@ data from computational inference:
 
 **Evidence Tiers (Priority Order):**
 - **MEASURED** (1073 edges): IC50, response rates, mutation frequencies, clinical trial data
-  - Quantified: 204 edges with actual values (373 NLP extractions, 92.2% validated against PubMed abstracts)
+  - Quantified: 204 edges with actual values; NLP attribution still needs edge-level audit
   - Confidence 0.70-1.00: verify the measurement method and sample size
 - **ESTABLISHED** (296 edges): FDA approvals, KEGG canonical pathways
   - Confidence 0.90-1.00: authoritative, verify for clinical context
@@ -52,11 +52,13 @@ drug-target-disease knowledge graph.
 
 ## Current Track A Reality
 
-Source DB: `data/drugs/tier1.db` (PubMed-expanded + categorically annotated 2026-05-24)
+Source DB: `data/drugs/tier1.db` (PubMed-expanded + categorically annotated; current audit 2026-05-27)
 Reproducible build: `data/drugs/build_tier1.py` from `tier1_manifest.json`
 
-Direct SQLite facts (2026-05-25, post-evidence quantification):
-- 464 objects total: 78 drugs, 20 diseases, 366 proteins + other types
+Current executable facts (2026-05-27):
+- Runtime `full_typed` graph: 1,146 objects, 5,382 morphisms
+- Strict benchmark graph after direct-label/bridge removal: 5,329 morphisms
+- 78 drugs, 20 diseases
 - 44 Drug->Disease labels (FDA-approved oncology indications)
 - 5,382 morphisms total:
   - 1,600 curated (ChEMBL, FDA, KEGG, ABPP)
@@ -65,17 +67,19 @@ Direct SQLite facts (2026-05-25, post-evidence quantification):
   - 100 ESM2 protein similarity (all 20 diseases covered)
   - 58 other computational/genomic edges
 - 204 edges with quantitative values (IC50, mutation freq, hazard ratios)
-- 609 unique validated PMIDs (source strings on all 5,382 morphisms coverage)
-- 373 NLP-extracted quantitative data points (92.2% validated against abstracts from 1,663 PMIDs searched)
+- 610 unique PMID identifiers in provenance/metadata strings
+- Source strings on all 5,382 morphisms; this is not edge-specific citation validation
+- 373 NLP-extracted quantitative data points reported; attribution needs edge-level audit
 - 6 "inferred:" edges REMOVED (were circular — system predictions as labels)
 - PubMed edges carry categorical metadata (delta, score, layer_scores)
 - Curated edges: source strings on all 5,382 morphisms (PMIDs, ChEMBL IDs, KEGG, FDA)
 - PubMed edges: all have PMID provenance + categorical confidence annotations
 - All 44 treats edges have PMIDs or FDA citations
 
-**Current benchmark (2026-05-26, post-Yoneda integration, 9 strategies):**
-- `full_typed/remove_direct_labels`: **AUROC 0.9562**, AUPRC 0.551, Hits@5 1.00, Hits@10 0.80
-- `full_typed/loocv`: **AUROC pending**, AUPRC 0.408, Hits@5 0.80 (pre-Yoneda; pending re-run)
+**Current benchmark (2026-05-27, corrected loader/scorer, 9 strategies):**
+- `full_typed/remove_direct_labels`: **AUROC 0.9747** [0.9606, 0.9855], AUPRC 0.552 [0.4067, 0.6983], Hits@5 1.00, Hits@10 0.60, Hits@20 0.60, MRR 0.078750
+- `full_typed/loocv`: **AUROC 0.975916**, AUPRC 0.553703, Hits@5 0.80, Hits@10 0.60, Hits@20 0.60, MRR 0.077237
+- Strongest simple baseline on strict run: degree_product AUROC 0.6307 (margin +0.3440)
 - Yoneda distance bonus: `min(0.10, 0.06 * similarity)` — additive, never reduces scores
 - Path bonus formula: `min(0.25, 0.04 * sum(p.confidence))` — weighted by min-hop confidence
 - Hits@5 perfect on remove_direct_labels - every disease has ≥1 FDA-approved drug in top 5
@@ -87,7 +91,7 @@ Direct SQLite facts (2026-05-25, post-evidence quantification):
 - 0.830/0.698 = post-PubMed, OLD scoring that counted paths equally regardless of
   confidence. Stale — replaced by confidence-weighted scoring.
 - 0.956 = confidence-weighted path bonus, 8 strategies (2026-05-24).
-- **0.9562 = current live number** with 9th strategy (Yoneda distance bonus, 2026-05-26).
+- **0.9747 = current live number** with 9th strategy (Yoneda distance bonus, 2026-05-26).
 - The 373 overly-broad edges (proteins linked to all 20 diseases) were removed during
   provenance audit. This partially deflated the old 0.971 number.
 
@@ -106,9 +110,9 @@ Direct SQLite facts (2026-05-25, post-evidence quantification):
    - All 5,382 morphisms classified by provenance source and verification status
 
 2. **NLP Quantitative Extraction** (`nlp/pmid_extractor.py`):
-   - Processed all 609 PMIDs for IC50, response rates, hazard ratios, mutation frequencies
+   - Processed all 610 PMIDs for IC50, response rates, hazard ratios, mutation frequencies
    - 21 PMIDs (3.4%) contain extractable quantitative data
-   - 28 extractions: 100% validated against actual PubMed abstracts
+   - Automated checks reported extractable quantitative values, but edge-specific attribution is not fully re-audited
    - Examples: "KRAS 43% mutations", "IC50 = 0.10 μM", "HR 2.12"
 
 3. **Genomic Data Integration** (`scripts/extract_cbioportal.py`):
@@ -127,7 +131,7 @@ Direct SQLite facts (2026-05-25, post-evidence quantification):
    - Confidence scores now reflect biological strength, not just graph topology
 
 **Validation:**
-- Automated validation script confirms 100% of NLP extractions against abstracts
+- Automated validation checks exist, but do not justify "100% validated provenance" wording
 - Confidence thresholds: ≥0.7 for MEASURED tier upgrade
 - Range validation: IC50 0.001-1000 μM, response rate 0-1, HR 0.1-5
 
@@ -193,8 +197,8 @@ Post-PubMed import, OLD scoring (2026-05-24, before path fix):
 - `full_typed/loocv`: AUROC 0.797, Hits@5 1.00
 - These numbers are STALE — replaced by confidence-weighted scoring below.
 
-Post-Yoneda integration (2026-05-26, CURRENT):
-- `full_typed/remove_direct_labels`: **AUROC 0.9562**, AUPRC 0.551, Hits@5 1.00, Hits@10 0.80
+Post-Yoneda integration (2026-05-26):
+- Superseded by the 2026-05-27 corrected-loader strict/LOOCV runs above.
 
 Post-PubMed import, confidence-weighted scoring (2026-05-24):
 - `full_typed/remove_direct_labels`: AUROC 0.956, AUPRC 0.537, Hits@5 1.00
@@ -208,36 +212,35 @@ Uniform strategy weights confirmed optimal by `calibrate_loocv.py`.
 as_loaded protocols show Hits@K = 0.00 (artifact: composition skips existing edges).
 The scientifically valid protocols are loocv and remove_direct_labels.
 
-**LOOCV baselines (AUROC, corrected 2026-05-11)**:
-The old baseline table (degree_product 0.559) was a label-order artifact corrected
-via audit. Corrected values:
-- shortest_path: 0.6307
-- common_neighbor: 0.918
-- path_count: 0.596
-- degree_product: 0.474
-- random: 0.469
+**Current strict baselines (2026-05-27, same graph/labels as primary run):**
+- degree_product: 0.6307
+- common_neighbor: 0.6260
+- path_count: 0.5777
+- shortest_path: 0.5775
+- random: 0.5623
 
-**System AUROC: 0.974, margin +0.043 over strongest baseline.**
-Honest claim is substantial improvement over strong graph baselines plus mechanistic
-explanations, strategy votes, evidence chains, and triage CLI.
+**System AUROC: 0.9747, margin +0.3440 over degree_product.**
+Honest claim is strong retrospective ranking plus mechanistic explanations,
+strategy votes, evidence chains, and triage CLI. Do not describe this as
+clinical probability or clinical validation.
 
 Use `--ci --baselines` flags for full output.
 
-## Additional Validation (reported but not audit-reproduced)
+## Additional Validation (rerun 2026-05-27)
 
-**Note**: Executable scripts and frozen held-out artifacts not preserved. Treat as
-directional evidence pending reproduction.
+External (Hetionet CtD): AUROC 0.634479, AUPRC 0.009255 on 7 external positives.
+This is weak precision-at-top and should be reported as a caution.
 
-External (Hetionet): Reported AUROC pending on 7 Hetionet-confirmed pairs.
+Temporal holdout (cutoff 2013): AUROC 0.977994, AUPRC 0.228793 on 18 held-out
+post-2013 approvals. Hits@5 is 0.0000.
 
-Temporal holdout (cutoff 2013): Reported AUROC pending on 22 post-2013 FDA approvals.
-
-Disease-level holdout: Reported mean AUROC pending across 7 diseases.
+Disease-level holdout: mean AUROC 0.950416, median AUROC 0.967123, mean AUPRC
+0.636826 across 7 disease folds; weakest fold is Colorectal_Cancer AUROC 0.787162.
 
 ## OpenTargets Experiment (2026-05-11)
 
 Tested cancer-filtered OpenTargets import (3 score thresholds: 0.5, 0.6, 0.7).
-All degraded AUROC: 0.974 → 0.952-0.9562. **Decision: DO NOT DEPLOY**.
+All degraded AUROC: 0.974 → 0.952-0.9747. **Decision: DO NOT DEPLOY**.
 Curated graph > automated expansion.
 
 ## Important Loader Rule
@@ -268,7 +271,7 @@ protocol removes or holds them out.
 4. ~~Add external, temporal, disease-level validation.~~ DONE.
 5. ~~Build candidate triage CLI.~~ DONE (`validation/triage.py`).
 6. ~~Write complete technical documentation.~~ DONE (`MASTER_TECHNICAL.md`, `DATA_EXPANSION_GUIDE.md`).
-7. ~~Tune score combiners.~~ DONE (path bonus tuned via LOOCV grid search, AUROC pending->0.9562).
+7. ~~Tune score combiners.~~ DONE (path bonus tuned; current strict AUROC 0.9747).
 8. ~~Expand data sources.~~ DONE (ChEMBL deployed 2026-05-10: +269 proteins, +872 morphisms, drug name normalization).
 9. ~~Complete provenance for remaining 302 uncited morphisms.~~ DONE (100% coverage, 2026-05-12).
 10. ~~Ablation studies.~~ DONE (composition is dominant strategy, path bonus +0.017 AUROC).
@@ -277,7 +280,7 @@ protocol removes or holds them out.
 ## Latest Session (2026-05-26): STT Yoneda Distance Strategy Integration
 
 **Problem:** The existing 8 strategies are strong on AUROC (0.956) but weaker on
-precision metrics (AUPRC 0.537, Hits@10 0.70). Composition finds mechanistic paths
+precision metrics (AUPRC 0.537, Hits@10 0.60). Composition finds mechanistic paths
 but doesn't answer "does this drug look like something that already works?"
 
 **STT Experiment (`stt_repurposing.py`):** Tested 3 Simplicial Type Theory
@@ -294,16 +297,19 @@ than other strategies (~0.85). Averaging as a 9th vote dragged AUROC from 0.956 
 `min(0.10, 0.06 * similarity)` on top of the base score. Can only help, never hurt.
 Coefficient 0.06 tuned via grid search over [0.0, 0.20].
 
-**Result (full_typed/remove_direct_labels):**
+**Current result (full_typed/remove_direct_labels, rerun 2026-05-27):**
 
-| Metric | Before (8 strategies) | After (9 strategies) | Delta |
-|--------|----------------------|---------------------|-------|
-| AUROC  | 0.956                | **0.9562**           | +0.009 |
-| AUPRC  | 0.537                | **0.551**           | +0.097 |
-| Hits@5 | 1.00                 | 1.00                | --     |
-| Hits@10| 0.70                 | **0.80**            | +0.10  |
-| Hits@20| 0.60                 | **0.75**            | +0.15  |
-| MRR    | 0.080                | **0.085**           | +0.005 |
+| Metric | Value |
+|--------|------:|
+| AUROC | **0.9747** |
+| AUPRC | **0.552** |
+| Hits@5 | 1.00 |
+| Hits@10 | 0.60 |
+| Hits@20 | 0.60 |
+| MRR | 0.0788 |
+
+Older ablation deltas around Yoneda were useful during development, but should be
+rerun under the corrected loader before being quoted as current effect sizes.
 
 **Drug equivalence classes discovered (Yoneda distance = 0.0):**
 - Binimetinib = Cobimetinib (MEK inhibitors)
@@ -495,8 +501,8 @@ CID confirmed by MW match. Performance maintained post-correction.
 **Impact:**
 - Graph: 195→464 objects, 388→1260 morphisms
 - Provenance: 22.2%→76.0%→100% (1260/1260 cited, completed 2026-05-12)
-- LOOCV AUROC: 0.9562→0.974 [0.9562, 0.983]
-- All baselines still far below (CI lower bound 0.9562 vs best baseline 0.566)
+- LOOCV AUROC: 0.9747→0.974 [0.9747, 0.983]
+- All baselines still far below (CI lower bound 0.9747 vs best baseline 0.566)
 
 **Files:** `CHEMBL_NORMALIZATION_2026-05-10.md`, `DEPLOYMENT_2026-05-10.md` document the work.
 

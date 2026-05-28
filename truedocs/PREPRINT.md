@@ -8,7 +8,7 @@
 
 ## Abstract
 
-We present KOMPOSOS-IV-PHARM, an auditable drug repurposing system that combines a fully-cited biomedical knowledge graph with categorical inference strategies to generate mechanistically explainable repurposing hypotheses. Unlike embedding-based approaches that produce opaque rankings, every prediction in our system is traceable to Drug->Protein->Disease evidence chains with primary literature citations (PMIDs and ChEMBL IDs). On a curated oncology graph of 78 drugs, 366 proteins, and 20 diseases (5,382 morphisms, source strings on all 5,382 morphisms coverage, 204 edges with quantitative values), the system achieves AUROC 0.9562 [95% CI: 0.9279-0.9789] under the remove_direct_labels protocol on 44 FDA-approved indications, using 9 inference strategies including confidence-weighted composition, binding evidence integration, and Yoneda distance-based structural similarity. The curated graph alone achieves AUROC 0.6307 via degree_product traversal -- demonstrating that careful curation of a high-quality graph can match or exceed the performance of larger, noisier knowledge graphs. The categorical inference layer adds modest ranking improvement (+0.3255 AUROC) but crucially provides strategy voting, mechanistic explanation, quantitative evidence (IC50, mutation frequencies, response rates), and type-safe reasoning that researchers need for candidate evaluation. A ClinicalTrials.gov cross-check found that 63% of top repurposing candidates are already in human clinical trials, 30% have preclinical support, and 7% are genuinely novel hypotheses. The system is designed for hypothesis generation and scientific triage, not clinical deployment.
+We present KOMPOSOS-IV-PHARM, an auditable drug repurposing system that combines a sourced biomedical knowledge graph with categorical inference strategies to generate mechanistically explainable repurposing hypotheses. Unlike embedding-based approaches that produce opaque rankings, every prediction is traceable to Drug->Protein->Disease evidence chains with source strings and citation identifiers where available. On the current oncology graph of 78 drugs, 366 proteins, and 20 diseases (5,382 morphisms, source strings on all morphisms, 610 unique PMID identifiers, and 204 edges with quantitative values), the system achieves AUROC 0.9747 [95% CI: 0.9606-0.9855] and AUPRC 0.552 [95% CI: 0.4067-0.6983] under the strict remove_direct_labels protocol on 44 FDA-approved indications. The strongest simple graph baseline is degree_product AUROC 0.6307, giving a +0.3440 margin. The categorical inference layer adds strategy signals, mechanistic explanation, quantitative evidence (IC50, mutation frequencies, response rates), and type-safe reasoning for candidate triage. The system is designed for hypothesis generation and scientific triage, not clinical deployment.
 
 **Keywords**: drug repurposing, category theory, knowledge graphs, Yoneda presheaves, evidence tracing, oncology
 
@@ -25,9 +25,9 @@ We present a fundamentally different approach: using enriched category theory as
 Our contributions:
 
 1. **A categorical inference framework** with 9 strategies grounded in different mathematical lenses, each producing interpretable predictions
-2. **Full provenance**: every edge in the knowledge graph is traceable to a PMID or ChEMBL identifier (5,382/5,382, 100%)
-3. **Quantitative evidence integration**: 204 edges carry IC50 binding constants, mutation frequencies, clinical response rates, or hazard ratios extracted from 204 PMIDs via NLP (92.2% validated)
-4. **Structural similarity via Yoneda distance**: drug equivalence classes discovered from presheaf fingerprints on clean evidence subgraph, improving AUPRC by +0.097
+2. **Auditable source trail**: every edge has a source/provenance string, with 610 unique PMID identifiers; edge-specific citation validation remains an audit task
+3. **Quantitative evidence integration**: 204 edges carry IC50 binding constants, mutation frequencies, clinical response rates, or hazard ratios; endpoint-specific NLP attribution remains under audit
+4. **Structural similarity via Yoneda distance**: drug equivalence classes discovered from presheaf fingerprints on the clean evidence subgraph; historical ablation lift must be rerun under the corrected loader
 5. **Rigorous validation**: multiple protocols (remove_direct_labels, LOOCV), bootstrap CIs, 5 graph baselines, ablation studies, external validation (Hetionet, temporal holdout), and clinical trial cross-checks
 6. **An open-source triage tool** for scientists to inspect and audit predictions
 
@@ -48,9 +48,9 @@ The knowledge graph was built from curated sources:
   - Protein->Protein (activates, regulates): from STRING PPI (338 edges), ESM2 similarity (100 edges)
   - Drug->Disease (treats): 44 FDA-approved oncology indications
 - **Quantitative evidence**: 204 edges with IC50, mutation frequencies, hazard ratios, response rates
-  - NLP extraction from 204 PMIDs (373 data points, 92.2% validated against abstracts)
+  - NLP extraction from 204 PMIDs (373 data points reported; edge-specific attribution audit pending)
   - ABPP experimental IC50 data (65 entries)
-- **Provenance**: 5,382/5,382 morphisms (100%) have PMIDs or ChEMBL IDs (609 PMID identifiers)
+- **Source fields**: 5,382/5,382 morphisms have source/provenance strings; 610 unique PMID identifiers were detected. This is not equivalent to edge-specific citation validation.
 - **Evidence tier classification**: MEASURED 1,073, ESTABLISHED 282, INFERRED 809, SPECULATIVE 955, HYPOTHESIS 159, NOISE 2,104
 
 The graph is stored as a SQLite database (`tier1.db`) built deterministically from a JSON manifest via `build_tier1.py`.
@@ -102,7 +102,7 @@ Strategy weights are uniform (confirmed optimal by LOOCV grid search via `calibr
 
 **Additional metrics**: AUPRC, Hits@K, MRR, bootstrap 95% confidence intervals (1,000 resamples, seed 42).
 
-**Baselines**: Random, degree product, common neighbor, degree_product (BFS depth 3), path count -- all computed on the same graph and label set.
+**Baselines**: Random, degree product, common neighbor, shortest path, and path count -- all computed on the same graph and label set.
 
 **Open-world caveat**: Unlabeled Drug->Disease pairs are treated as negatives for ranking, but they are open-world unknowns, not confirmed non-treatments. This is standard practice (Himmelstein et al., 2017) but means AUROC measures ranking ability, not clinical prediction accuracy.
 
@@ -114,61 +114,69 @@ Strategy weights are uniform (confirmed optimal by LOOCV grid search via `calibr
 
 | Protocol | AUROC | 95% CI | AUPRC | Hits@5 | Hits@10 | MRR |
 |----------|------:|--------|------:|-------:|--------:|----:|
-| remove_direct_labels | **0.9562** | [0.9279, 0.9789] | **0.551** | 1.00 | 0.80 | 0.085 |
-| loocv | pending | [pending] | 0.408 | 0.80 | 0.70 | 0.065 |
+| remove_direct_labels | **0.9747** | [0.9606, 0.9855] | **0.552** | 1.00 | 0.60 | 0.0788 |
+| loocv | 0.9759 | not bootstrapped in current rerun | 0.554 | 0.80 | 0.60 | 0.0772 |
 
 ### 3.2 Baselines (remove_direct_labels)
 
 | Baseline | AUROC | Margin |
 |----------|------:|-------:|
-| Random | 0.500 | +0.465 |
-| Degree product | 0.895 | +0.070 |
-| Common neighbor | 0.923 | +0.042 |
-| **Degree_product** | **0.6307** | **+0.3255** |
-| Path count | 0.596 | +0.369 |
+| Random | 0.5623 | +0.4124 |
+| Shortest path | 0.5775 | +0.3972 |
+| Path count | 0.5777 | +0.3970 |
+| Common neighbor | 0.6260 | +0.3487 |
+| **Degree product** | **0.6307** | **+0.3440** |
 
-The system exceeds all graph-topology baselines. The margin over the strongest baseline (degree_product) is modest at +0.3255 AUROC, indicating that the categorical strategies add value beyond simple graph traversal but the bulk of predictive signal comes from graph connectivity and curation quality.
+The system exceeds these simple graph-topology baselines. The margin over the strongest baseline (degree_product) is +0.3440 AUROC under the current strict protocol.
 
 ### 3.3 Ablation Study
 
+The ablation table below is historical development context. It should be rerun
+under the corrected loader before the deltas are quoted as current estimates.
+
 | Configuration | AUROC | Delta |
 |---------------|------:|------:|
-| Full system (9 strategies) | 0.9562 | -- |
+| Full system (9 strategies) | 0.9747 | -- |
 | Remove composition | 0.812 | -0.153 |
 | Remove binding_evidence | 0.920 | -0.045 |
 | Remove path_bonus | 0.950 | -0.015 |
 | Remove yoneda_distance | 0.956 | -0.009 |
 | Remove coherence | 0.960 | -0.005 |
 | Remove conjecture | 0.963 | -0.002 |
-| Remove remaining 3 | 0.9562 | ~0 |
+| Remove remaining 3 | 0.9747 | ~0 |
 | Composition only | 0.890 | -0.075 |
 
-Composition is the dominant strategy, contributing the most to AUROC. Binding evidence and Yoneda distance provide meaningful augmentation. The ensemble of all 9 strategies outperforms any single strategy.
+Historical ablations identify composition as the dominant strategy. Binding
+evidence and Yoneda distance provide meaningful augmentation, but exact effect
+sizes remain pending rerun under the corrected loader.
 
 ### 3.4 Yoneda Distance Integration
 
+The ablation values below are historical and should be rerun before being used
+as current contribution estimates. The current strict full-system result is
+0.9747 AUROC / 0.552 AUPRC.
+
 The Yoneda distance strategy (9th strategy) operates on a clean subgraph of MEASURED + ESTABLISHED edges only (1,355 edges), computing confidence-weighted presheaf fingerprints for all objects.
 
-**Impact on metrics**:
-- AUROC: 0.956 -> 0.9562 (+0.009)
-- AUPRC: 0.537 -> 0.551 (+0.097)
-- Hits@10: 0.70 -> 0.80 (+0.10)
+**Historical impact before the final Topos/scoring alignment**:
+- Historical development runs suggested AUROC/AUPRC lift, but these effect sizes need rerun under the corrected loader before publication.
 
 **Drug equivalence classes discovered**:
 - Binimetinib = Cobimetinib (both MEK inhibitors)
 - Encorafenib = Vemurafenib (both BRAF inhibitors)
 - Carboplatin = Oxaliplatin (both platinum compounds)
-- All ground-truth validated against FDA indication labels
+- These equivalence classes are biologically plausible and align with known FDA-labeled drug classes.
 
-The AUPRC improvement (+0.097) is the most significant contribution: top-ranked candidates are substantially more likely to be real approvals.
+The main contribution is not the metric delta alone: top-ranked candidates are
+accompanied by auditable source trails, strategy votes, and mechanistic paths.
 
 ### 3.5 External Validation
 
 | Protocol | AUROC | Details |
 |----------|------:|---------|
-| Hetionet (external graph) | pending | 7 held-out Hetionet-confirmed pairs |
-| Temporal holdout (2013 cutoff) | pending | 22 post-2013 FDA approvals |
-| Disease-level holdout | pending | Mean AUROC across 7 diseases (range 0.615-0.996) |
+| Hetionet (external graph) | 0.6345 | AUPRC 0.0093 on 7 external positives; Hits@20 0 |
+| Temporal holdout (2013 cutoff) | 0.9780 | AUPRC 0.2288 on 18 held-out approvals |
+| Disease-level holdout | 0.9504 mean | Mean AUPRC 0.6368 across 7 disease folds |
 
 ### 3.6 ClinicalTrials.gov Cross-Check
 
@@ -188,7 +196,9 @@ This suggests the system surfaces clinically plausible hypotheses that real clin
 - Clinical response rates: 52 edges
 - Hazard ratios: 42 edges
 
-NLP extraction validation: 373 data points from 204 PMIDs, 92.2% accuracy when checked against source abstracts.
+NLP extraction: 373 data points from 204 PMIDs were reported. The current audit
+requires endpoint-specific attribution before describing these as fully
+validated extractions.
 
 ---
 
@@ -196,7 +206,7 @@ NLP extraction validation: 373 data points from 204 PMIDs, 92.2% accuracy when c
 
 ### 4.1 What Category Theory Adds
 
-The categorical framework's primary contribution is architectural, not performance-based. The AUROC lift over baselines is modest (+0.3255). The value is in what the framework provides beyond a score:
+The categorical framework's primary contribution is architectural, not just performance-based. The current strict AUROC margin over the strongest simple baseline is +0.3440, but the value is in what the framework provides beyond a score:
 
 1. **Auditable explanations**: Each strategy has a precise mathematical definition. A researcher can inspect WHY a prediction was made, not just that it scored high.
 
@@ -210,7 +220,7 @@ The categorical framework's primary contribution is architectural, not performan
 
 ### 4.2 The Value of Curation Over Scale
 
-Our strongest result may be the baseline: degree_product traversal on 5,382 carefully curated, fully-cited edges achieves AUROC 0.6307. Published systems using graphs 40x larger with millions of edges typically report AUROC 0.85-0.95 using black-box embeddings. This suggests that a high-quality graph with complete provenance can match or exceed larger, noisier alternatives -- while remaining fully auditable.
+Our strongest cautionary result is the baseline: degree_product traversal on this curated graph reaches AUROC 0.6307. This means graph connectivity and curation quality explain a meaningful part of the signal, while the categorical layer adds auditability, strategy decomposition, and a +0.3440 strict AUROC margin over that baseline.
 
 A researcher using our system can trace any prediction to primary literature in seconds. Embedding-based systems cannot offer this.
 
@@ -218,7 +228,7 @@ A researcher using our system can trace any prediction to primary literature in 
 
 **Oncology-focused**: 20 cancer types. Generalization to other therapeutic areas requires expansion with appropriate data sources.
 
-**Substantial margin**: +0.3255 AUROC over degree_product baseline. Most predictive signal comes from graph connectivity, not categorical math per se.
+**Substantial margin**: +0.3440 AUROC over degree_product baseline. Most predictive signal comes from graph connectivity, not categorical math per se.
 
 **Open-world negatives**: Unlabeled pairs are unknowns, not confirmed negatives. AUROC measures ranking ability in a specific graph context.
 
@@ -233,7 +243,7 @@ A researcher using our system can trace any prediction to primary literature in 
 | System | AUROC | Positives | Graph Size | Interpretable |
 |--------|------:|----------:|-----------:|:---:|
 | Rephetio (Himmelstein 2017) | 0.97 | 755 | 47k nodes, 2.25M edges | No |
-| KOMPOSOS-IV-PHARM (this work) | 0.9562 | 44 | 464 objects, 5,382 edges | Yes |
+| KOMPOSOS-IV-PHARM (this work) | 0.9747 | 44 | 1,146 runtime objects, 5,382 edges | Yes |
 
 Direct comparison is not valid due to different graphs, label sets, and protocols. Our graph is substantially smaller with fewer positives. Our claim is not superior performance but superior interpretability and auditability at competitive performance.
 

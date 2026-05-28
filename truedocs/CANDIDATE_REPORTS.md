@@ -16,8 +16,8 @@ This report identifies cheap, FDA-approved generic drugs with mechanistic pathwa
 - **37 cheap generics** screened across **20 cancer types**
 - **70 drug-disease entries** with mechanistic pathway support
 - Rankings based on 9 categorical inference strategies (composition, binding evidence, Yoneda distance, path bonus, coherence, conjecture, natural transform, game theory, bayesian)
-- Every prediction backed by cited evidence chains (PMIDs, ChEMBL IDs)
-- System validation: AUROC 0.9562 [95% CI: 0.9279-0.9789] (remove_direct_labels, 44 FDA positives)
+- Every prediction backed by source-linked evidence chains (PMIDs, ChEMBL IDs, FDA/KEGG/STRING/computational provenance as applicable)
+- System validation: AUROC 0.9747 [95% CI: 0.9606-0.9855] (remove_direct_labels, 44 FDA positives)
 - ClinicalTrials.gov cross-check: 63% of top predictions already in human trials
 
 **Important**: NOT_APPROVED means the drug-disease pair is not in our 44 FDA-approved oncology indications. It does **not** mean the combination is unstudied. Many candidates are already in clinical trials or published literature.
@@ -382,7 +382,7 @@ score = min(1.0, base + path_bonus + yoneda_bonus)
 ### Graph
 
 - **464 objects**: 78 drugs, 366 proteins, 20 diseases
-- **5,382 morphisms**: 100% with provenance (PMIDs + ChEMBL IDs)
+- **5,382 morphisms**: source strings on all morphisms; 610 PMID identifiers plus ChEMBL/FDA/KEGG/STRING/computational sources
 - **204 edges** with quantitative evidence (IC50, mutation freq, HR, response rates)
 - **Evidence tiers**: MEASURED 1,073 | ESTABLISHED 282 | INFERRED 809 | SPECULATIVE 955 | HYPOTHESIS 159 | NOISE 2,104
 
@@ -390,10 +390,10 @@ score = min(1.0, base + path_bonus + yoneda_bonus)
 
 | Protocol | AUROC | 95% CI | AUPRC |
 |----------|------:|--------|------:|
-| remove_direct_labels | 0.9562 | [0.9279, 0.9789] | 0.551 |
-| loocv | pending | [pending] | 0.408 |
+| remove_direct_labels | 0.9747 | [0.9606, 0.9855] | 0.552 |
+| loocv | 0.9759 | not bootstrapped in current rerun | 0.554 |
 
-Strongest baseline: degree_product AUROC 0.6307 (margin: +0.3255).
+Strongest baseline: degree_product AUROC 0.6307 (margin: +0.3440).
 
 ### Status Labels
 

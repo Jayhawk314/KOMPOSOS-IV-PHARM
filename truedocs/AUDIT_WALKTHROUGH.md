@@ -355,7 +355,7 @@ When you run `python validation/triage.py Melanoma`, the output includes:
 ```
 
 **What to check**:
-- **Each edge has a PMID**: Traceable to literature
+- **Each edge has a source string**: trace to PMID, ChEMBL, FDA, KEGG, STRING, or computational provenance
 - **Quantitative values**: IC50, mutation frequency add confidence
 - **Path length**: Shorter paths (2 hops) are stronger than long ones (4 hops)
 
@@ -377,7 +377,7 @@ When auditing any prediction, check these flags:
 ### Green Flags (High Quality)
 
 - ✓ Multiple mechanistic paths (composition > 0.70)
-- ✓ All edges have PMIDs (source strings on all 5,382 morphisms)
+- ✓ All edges have source strings (610 PMID identifiers across the graph, plus ChEMBL/FDA/KEGG/STRING/computational sources)
 - ✓ Experimental evidence (ABPP IC50, ChEMBL binding data)
 - ✓ Multiple data sources agree
 - ✓ Quantitative values (IC50, mutation freq)
@@ -445,28 +445,28 @@ After NLP extraction: BRAF → Melanoma, confidence 0.85, tier MEASURED
 
 ## Interpreting AUROC
 
-### What AUROC 0.9562 Means
+### What AUROC 0.9747 Means
 
 ```
 Given a random approved Drug-Disease pair and a random non-approved pair:
-  There is a 96.5% probability the system ranks the approved pair higher.
+  There is a 97.47% probability the strict benchmark ranks the approved pair higher.
 ```
 
-### What AUROC 0.9562 Does NOT Mean
+### What AUROC 0.9747 Does NOT Mean
 
 ```
-✗ "96.5% of predictions are correct" (AUROC ≠ accuracy)
+✗ "97.47% of predictions are correct" (AUROC ≠ accuracy)
 ✗ "The model is clinically validated" (retrospective ranking ≠ clinical trial)
-✗ "All candidates will work" (AUPRC 0.551 means ~37% false positives in top ranks)
+✗ "All candidates will work" (AUPRC 0.552 is a ranking metric under open-world labels)
 ✗ "The model can't be fooled" (label leakage is possible without proper protocol)
 ```
 
 ### Protocol Matters
 
 ```
-remove_direct_labels: AUROC 0.9562 (fair -- Drug→Disease edges removed)
-loocv:               AUROC pending (stricter -- leave-one-out cross-validation)
-as_loaded:           AUROC 0.457 (artifact -- composition skips direct edges)
+remove_direct_labels: AUROC 0.9747, AUPRC 0.552 (current primary strict run)
+loocv:               AUROC 0.975916, AUPRC 0.553703 (leave-one-out)
+as_loaded:           AUROC 0.738831, AUPRC 0.049407 (not primary claim)
 
 Always report: AUROC {value} ({view}/{protocol}, {positive_count} positives)
 ```

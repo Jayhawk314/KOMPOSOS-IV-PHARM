@@ -175,7 +175,7 @@ python validation/trace_prediction.py Melanoma CandidateDrug
 
 ## Benchmark Issues
 
-### "AUROC not 0.9562" or metrics diverge
+### "AUROC not 0.9747" or metrics diverge
 
 **Cause**: Different view/protocol; stale database; code changes
 
@@ -186,7 +186,8 @@ python validation/repurposing_benchmark.py \
   --view full_typed \
   --protocol remove_direct_labels
 
-# Expected: AUROC 0.9562 ```
+# Expected: AUROC 0.9747, AUPRC 0.552
+```
 
 **Check**:
 - Correct view: `full_typed` (not `legacy`)
@@ -274,19 +275,20 @@ with open('candidates.csv', 'w') as f:
 
 ---
 
-### Q: Why AUROC 0.9562? Is it overfit?
+### Q: Why AUROC 0.9747? Is it overfit?
 
-**A**: No, not overfit. Evidence:
-- **LOOCV AUROC**: pending (leave-one-out cross-validation, gold standard)
-- **External (Hetionet)**: pending (different database)
-- **Temporal (post-2013)**: pending (true future data)
-- **Disease-level holdout**: pending (per-disease average)
+**A**: Treat it as strong retrospective ranking, not clinical validation. Evidence:
+- **LOOCV AUROC**: 0.975916, AUPRC 0.553703
+- **External (Hetionet CtD)**: AUROC 0.634479, AUPRC 0.009255; weak precision-at-top
+- **Temporal (post-2013)**: AUROC 0.977994, AUPRC 0.228793
+- **Disease-level holdout**: mean AUROC 0.950416 across 7 disease folds
 
-0.9562 is on self-validation with label removal; pending is LOOCV (more honest).
+The strict 0.9747 result is useful, but the external Hetionet result is a clear
+caution against overclaiming.
 
 ---
 
-### Q: Can I reproduce AUROC 0.9562 exactly?
+### Q: Can I reproduce AUROC 0.9747 exactly?
 
 **A**: Yes, if you:
 1. Use exact same database (tier1.db)

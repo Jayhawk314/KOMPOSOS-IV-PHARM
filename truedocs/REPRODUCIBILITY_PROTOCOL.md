@@ -1,321 +1,174 @@
 # Reproducibility Protocol
 
-**Purpose**: Operational protocol and audit checklist for verifying all metrics, claims, and data integrity.
+**Purpose**: operational checklist for reproducing current metrics and auditing
+data integrity.
 
-**Audience**: Auditors, reproducibility reviewers, developers running validation
-
-**Key principle**: The AUROC is a validation metric confirming the ranking is useful. The actual product is the researcher's audit trail: Drug->Protein->Disease paths with cited evidence, confidence scores per hop, strategy vote breakdowns, and quantitative data leading to clinical trial decisions.
-
----
-
-## Current Verified Metrics (2026-05-26)
-
-| Graph | Protocol | Morphisms | Strategies | AUROC | AUPRC | Hits@5 | Hits@10 | MRR |
-|-------|----------|----------:|----------:|---------:|---------:|---------:|---------:|------:|
-| Full graph | `remove_direct_labels` | 5,382 | 9 | **0.9562** | **0.551** | 1.00 | 0.80 | 0.085 |
-| Full graph | `loocv` | 5,382 | 9 | **pending** | 0.408 | 0.80 | 0.70 | 0.065 |
-| Full graph | `as_loaded` | 5,382 | 9 | 0.457 | 0.025 | — | — | — |
-
-All runs: 78 drugs x 20 diseases = 1,560 pairs, 44 positives, 1,516 negatives.
+**Rule**: code and database state outrank stale docs. Every metric must include
+view, protocol, positive count, negative policy, and date.
 
 ---
 
-## Canonical Harness Commands
+## Current Verified Metrics (2026-05-27)
 
-Run these exact commands to reproduce metrics:
+| Graph | Protocol | AUROC | AUPRC | Hits@5 | Hits@10 | Hits@20 | MRR |
+|-------|----------|------:|------:|-------:|--------:|--------:|----:|
+| Full graph | `remove_direct_labels` | 0.974694 | 0.551698 | 1.0000 | 0.6000 | 0.6000 | 0.078750 |
+| Full graph | `loocv` | 0.975916 | 0.553703 | 0.8000 | 0.6000 | 0.6000 | 0.077237 |
+| Full graph | `as_loaded` | 0.738831 | 0.049407 | 0.0000 | 0.0000 | 0.0000 | 0.002825 |
+
+Strict benchmark confidence intervals:
+
+- AUROC: [0.9606, 0.9855]
+- AUPRC: [0.4067, 0.6983]
+
+All current benchmark runs use 78 drugs, 20 diseases, 44 positives, and 1,516
+open-world unlabeled pairs. Unlabeled pairs are not confirmed negatives.
+
+---
+
+## Canonical Commands
 
 ```powershell
-# Primary metric (AUROC 0.9562)
-python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels
+# Primary strict metric
+python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --baselines --ci
 
-# With 95% confidence intervals (1000 bootstrap resamples, seed=42)
-python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --ci
-
-# Cross-validation (AUROC pending)
+# Leave-one-positive-edge-out validation
 python validation\repurposing_benchmark.py --view full_typed --protocol loocv
 
-# With baseline comparisons
-python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --baselines
+# Dataset/protocol artifact check
+python validation\repurposing_benchmark.py --view full_typed --protocol as_loaded
 
-# Legacy view (historical comparison only)
-python validation\repurposing_benchmark.py --view legacy --protocol as_loaded
+# External, temporal, and disease holdouts
+python validation\external_validation.py
+python validation\temporal_holdout.py --cutoff 2013
+python validation\disease_holdout.py --min-positives 2
 ```
 
 ---
 
-## Dataset Verification
+## Expected Strict Output
 
-**Source**: `data/drugs/tier1.db`
-
-Check these values against the database:
-
-```powershell
-# Verify object counts
-python -c "
-from data.store import KomposOSStore
-s = KomposOSStore('data/drugs/tier1.db')
-objs = s.list_objects(limit=None)
-types = {}
-for o in objs:
-    types[o.type_name] = types.get(o.type_name, 0) + 1
-print(f'Total objects: {len(objs)}')
-for t, c in sorted(types.items()):
-    print(f'  {t}: {c}')
-"
+```text
+View:       full_typed
+Protocol:   remove_direct_labels
+Objects:    1146
+Morphisms:  5329
+Task:       78 drugs x 20 diseases = 1560 pairs
+Labels:     44 positives, 1516 negatives
+Scored:     1325 scored, 235 unscored
+AUROC:      0.974694  95% CI [0.9606, 0.9855]
+AUPRC:      0.551698  95% CI [0.4067, 0.6983]
+Hits@5:     1.0000
+Hits@10:    0.6000
+Hits@20:    0.6000
+MRR:        0.078750
 ```
 
-**Expected output**:
-```
-Total objects: 464
-  Disease: 20
-  Drug: 78
-  Protein: 366
-```
+Baselines:
 
-```powershell
-# Verify morphism counts and provenance
-python -c "
-from data.store import KomposOSStore
-s = KomposOSStore('data/drugs/tier1.db')
-morphisms = s.list_morphisms(limit=None)
-total = len(morphisms)
-with_prov = sum(1 for m in morphisms if m.provenance and m.provenance != 'unknown')
-print(f'Total morphisms: {total}')
-print(f'With provenance: {with_prov}/{total} ({100*with_prov/total:.1f}%)')
-"
-```
-
-**Expected output**:
-```
-Total morphisms: 5382
-With provenance: 5382/5382 (100.0%)
+```text
+degree_product       AUROC 0.6307  (ours +0.3440)
+common_neighbor      AUROC 0.6260  (ours +0.3487)
+path_count           AUROC 0.5777  (ours +0.3970)
+shortest_path        AUROC 0.5775  (ours +0.3972)
+random               AUROC 0.5623  (ours +0.4124)
 ```
 
 ---
 
-## Scoring System Verification
+## Holdout Scripts
 
-Nine strategies, combined via mean + confidence-weighted path bonus + Yoneda distance bonus:
+| Script | Current Result |
+|--------|----------------|
+| `validation\external_validation.py` | Hetionet CtD external AUROC 0.634479, AUPRC 0.009255, Hits@20 0.0000 |
+| `validation\temporal_holdout.py --cutoff 2013` | Year > 2013 AUROC 0.977994, AUPRC 0.228793, Hits@20 0.2222 |
+| `validation\disease_holdout.py --min-positives 2` | Mean AUROC 0.950416, mean AUPRC 0.636826 across 7 folds |
 
-### Score Aggregation Formula
-
-```python
-# From validation/repurposing_benchmark.py::score_pair()
-#
-# 1. Each strategy's best prediction is collected
-# 2. Base score = mean of first 8 strategy confidences (excluding yoneda_distance)
-# 3. Path bonus: min(0.25, 0.04 * sum(path_confidence))
-# 4. Yoneda distance bonus: min(0.10, 0.06 * similarity) -- additive, not averaged
-# 5. Final score: min(1.0, base + path_bonus + yoneda_bonus)
-```
-
-### Strategy Ablation (Expanded Graph, 5,382 Edges)
-
-| Strategy | Role | Without AUROC | Delta |
-|----------|------|-------------:|------:|
-| **composition** | Mechanistic 2-hop paths | 0.812 | -0.153 |
-| **binding_evidence** | ABPP + drug properties + Pfam | 0.920 | -0.045 |
-| **path_bonus** | Confidence-weighted path bonus | 0.950 | -0.015 |
-| **yoneda_distance** | Presheaf fingerprint similarity | 0.956 | -0.009 |
-| **coherence** | Logical consistency | 0.960 | -0.005 |
-| **conjecture** | Rule learning | 0.963 | -0.002 |
-| **natural_transform** | Morphism alignment | 0.9562 | ~0 |
-| **game_theory** | Equilibrium analysis | 0.9562 | ~0 |
-| **bayesian** | Probabilistic scoring | 0.9562 | ~0 |
-
-Composition remains the dominant strategy.
+External Hetionet performance is weak at the top of the ranking and should be
+reported as a limitation.
 
 ---
 
-## Audit Checklist (10 Items)
+## Database Checks
 
-Before claiming any metric, verify all 10 items:
-
-### 1. Run canonical harness with full flags
+Current runtime graph:
 
 ```powershell
-python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --ci --baselines
+python -c "from validation.repurposing_benchmark import load_full_typed_view, drug_disease_pairs; c,_=load_full_typed_view(); d,dis,pos=drug_disease_pairs(c); print(len(c.objects()), len(c.morphisms()), len(d), len(dis), len(pos))"
 ```
 
-Record: view, protocol, object count, morphism count, drugs, diseases, positives, negatives, AUROC, CI, AUPRC, baseline comparison.
+Expected:
 
-### 2. Confirm BioDomainLoader loads all object rows
+```text
+1146 5382 78 20 44
+```
+
+Current source-field count:
 
 ```powershell
-python -c "
-from domains.bio.loader import BioDomainLoader
-loader = BioDomainLoader()
-cat = loader.load('data/drugs/tier1.db')
-print(f'Objects loaded: {len(cat.objects)}')
-assert len(cat.objects) >= 464, 'BioDomainLoader did not load all objects'
-print('PASS: All objects loaded')
-"
+python -c "import re,sqlite3; rows=sqlite3.connect('data/drugs/tier1.db').execute('select provenance, metadata, quantitative_value from morphisms').fetchall(); pmids=set(); [pmids.update(re.findall('PMID:?\\s*(\\d+)', ((p or '')+' '+(m or '')))) for p,m,q in rows]; print(len(rows), sum(1 for p,m,q in rows if p and p!='unknown'), len(pmids), sum(1 for p,m,q in rows if q is not None))"
 ```
 
-### 3. Confirm legacy view is the only truncated view
+Expected:
 
-`load_legacy_view()` in `validation/repurposing_benchmark.py` is the only place using the old first-100-object behavior. Verify no other code path uses `limit=100` for production queries.
-
-### 4. Inspect composition strategy for direct-edge use
-
-CompositionStrategy finds Drug->Protein->Disease 2-hop paths and does NOT use direct Drug->Disease edges. Verify:
-
-```powershell
-python -c "
-# Composition should find paths THROUGH proteins, not direct Drug->Disease
-from core.category import Category
-from domains.bio.loader import BioDomainLoader
-loader = BioDomainLoader()
-cat = loader.load('data/drugs/tier1.db')
-paths = cat.find_paths('Sorafenib', 'Melanoma', max_length=2)
-for p in paths[:3]:
-    hops = [m.name for m in p.morphisms]
-    intermediates = [m.target.type_name for m in p.morphisms[:-1]]
-    print(f'Path: {hops}, intermediates: {intermediates}')
-    assert 'Protein' in intermediates or len(p.morphisms) > 1, 'Direct edge used!'
-print('PASS: Composition uses protein intermediates')
-"
+```text
+5382 5382 610 204
 ```
 
-### 5. Inspect profile/analogy strategies for label contamination
-
-Kan extension and Yoneda pattern strategies can be influenced by other direct Drug->Disease labels unless those labels are removed or held out. For scientific claims, always use `remove_direct_labels` or `loocv` protocol.
-
-### 6. Verify all 44 positives have mechanistic paths
-
-```powershell
-pytest tests\test_repurposing_benchmark.py -k "test_all_positives_have_mechanistic_paths" -v
-```
-
-### 7. Check provenance coverage
-
-```powershell
-python validation\audit_provenance.py
-```
-
-Expected: 5,382/5,382 morphisms cited (100%), zero uncited edges.
-
-### 8. Confirm open-world negative treatment
-
-Unlabeled Drug-Disease pairs are treated as open-world unknowns, not proven negatives. Verify benchmark code does not assert negatives are "true negatives."
-
-### 9. Confirm CI lower bound exceeds strongest baseline
-
-```powershell
-# AUROC 95% CI lower bound should exceed degree_product baseline (0.6307)
-python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --ci
-```
-
-Check: CI lower bound (pending) > degree_product baseline (0.6307).
-
-### 10. Verify DB reproducibility
-
-```powershell
-# Rebuild and compare
-python data\drugs\build_tier1.py --manifest data\drugs\tier1_manifest.json
-# Compare SHA256 hash of rebuilt DB to known value
-```
+Interpretation: all morphisms have source/provenance strings, 610 unique PMID
+identifiers are present, and 204 morphisms have structured quantitative values.
+This is not the same as edge-specific citation validation.
 
 ---
 
-## Leakage Policy
+## Evidence Audit Checks
 
-| Strategy | Leakage Risk | Mitigation |
-|----------|-------------|------------|
-| Composition | None | Uses only Drug->Protein->Disease paths |
-| Binding Evidence | None | Uses ABPP/drug properties, not labels |
-| Yoneda Distance | Low | Uses MEASURED+ESTABLISHED subgraph only |
-| Coherence | None | Measures internal consistency |
-| Conjecture | Low | Rule learning from path patterns |
-| Kan Extension | Medium | Can see other Drug->Disease labels |
-| Natural Transform | Low | Morphism alignment |
-| Game Theory | None | Equilibrium analysis |
-| Bayesian | None | Probabilistic scoring |
+```powershell
+python validation\citation_attribution_audit.py --out reports\citation_attribution_audit_2026-05-27.csv
+python validation\evidence_tier_audit.py --out reports\evidence_tier_split_2026-05-27.csv
+```
 
-**For scientific claims**: Always use `remove_direct_labels` or `loocv` protocol. These remove all 44 direct Drug->Disease edges before scoring.
+Current risk flags:
+
+| Flag | Count |
+|------|------:|
+| PMID without context | 549 |
+| MEASURED-tier mismatch | 156 |
+| Quantitative value not endpoint-specific | 27 |
+
+Do not claim "100% validated provenance." The defensible claim is "source
+strings on all morphisms, with edge-specific attribution audit still required."
+
+---
+
+## Retired And Superseded Numbers
+
+- `0.9689 AUROC / 0.661 AUPRC`: retired because of Yoneda label leakage.
+- `0.9562 AUROC`: intermediate post-leakage strict result, superseded by the
+  current `0.974694` strict run after Topos/scoring alignment.
+- `shortest_path 0.931`: stale baseline claim; current strongest simple
+  baseline is degree_product AUROC 0.6307.
 
 ---
 
 ## Recommended Claim Language
 
-### Defensible
+> KOMPOSOS-IV-PHARM is a research prototype for drug repurposing over a curated
+> drug-target-disease knowledge graph. Under the `full_typed/remove_direct_labels`
+> protocol on 78 drugs x 20 diseases (44 FDA-approved indications vs. 1,516
+> open-world unlabeled pairs), the current nine-strategy scorer achieves AUROC
+> 0.974694 [0.9606, 0.9855] and AUPRC 0.551698 [0.4067, 0.6983]. Every
+> prediction can be traced to graph evidence chains with source strings and edge
+> confidence values. These are retrospective ranking metrics, not clinical
+> probabilities.
 
-> KOMPOSOS-IV-PHARM is a research prototype for drug repurposing over a curated drug-target-disease knowledge graph (5,382 edges, source strings on all 5,382 morphisms). Under the remove_direct_labels protocol on 78 drugs x 20 diseases (44 FDA-approved indications), the nine-strategy scorer with confidence-weighted path bonus and Yoneda distance bonus achieves AUROC 0.9562 [95% CI: 0.9279-0.9789]. Every prediction traces to cited evidence chains (PMIDs, ChEMBL IDs) with confidence scores per hop. 63% of top repurposing candidates are already in human clinical trials. These are internal retrospective ranking metrics under open-world negative assumptions.
+Do not claim:
 
-### Do NOT claim
-
-- Clinical readiness or deployment capability
-- AUROC without specifying protocol and graph size
-- "No leakage" without naming the protocol
-- Drug design, Boltz, ABPP, or ADMET validation from Track A metrics
-- "Novel discovery" for candidates that may already be in trials
-- Historical AUROC numbers (0.974 on 1,260 edges) without noting that graph has been expanded
-
----
-
-## Historical Metrics (For Reference Only)
-
-### Pre-Expansion Graph (1,260 edges, 2026-05-12)
-
-| View | Protocol | AUROC | AUPRC | Hits@5 |
-|------|----------|------:|------:|-------:|
-| full_typed | loocv | 0.974 | 0.530 | 1.00 |
-| full_typed | remove_direct_labels | 0.940 | 0.431 | — |
-| legacy | as_loaded | 0.6307 | 0.465 | — |
-
-These were measured on the pre-expansion graph with the old path bonus formula `min(0.25, 0.10 * composition_count)`.
-
-### Baseline Correction (2026-05-11)
-
-The old baseline table (degree_product 0.559) was a label-order artifact corrected via audit. The corrected value is degree_product 0.6307.
+- Clinical readiness.
+- "No leakage" without naming the protocol and label-removal policy.
+- 100% validated citation provenance.
+- External generalization without mentioning Hetionet AUROC 0.634479 and Hits@20 0.
 
 ---
 
-## Completed Audit Work
-
-- [x] External validation (Hetionet AUROC pending, 7 pairs)
-- [x] Temporal holdout (AUROC pending, 22 post-2013 FDA approvals)
-- [x] Disease-level holdout (mean AUROC pending, 7 diseases)
-- [x] Complete provenance (5,382/5,382, 100%)
-- [x] Reproducible DB build (`data/drugs/build_tier1.py`)
-- [x] Zero unreferenced objects
-- [x] Ablation studies (composition dominant)
-- [x] ClinicalTrials.gov cross-check (63% IN_TRIALS)
-- [x] Fix LOOCV baseline label-order bug (2026-05-11)
-- [x] PubMed batch import + NLP quantitative extraction (373 values, 92.2% validated)
-- [x] Confidence-weighted path bonus (tuned via LOOCV grid search)
-- [x] Binding evidence strategy (8th strategy, ABPP + drug properties + Pfam)
-- [x] Yoneda distance strategy (9th strategy, presheaf fingerprints)
-
-### Remaining
-
-- [ ] Re-run LOOCV baselines on expanded graph (5,382 edges)
-- [ ] Re-run external validation on expanded graph (Hetionet, temporal, disease-level)
-- [ ] Re-run ablation study on expanded graph (partial: Yoneda ablation done)
-
----
-
-## Quick Verification Script
-
-Run this single script to verify the system is in a valid state:
-
-```powershell
-# Full verification pipeline
-python -c "print('1. Running benchmark...')" && ^
-python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels && ^
-python -c "print('2. Running self-check...')" && ^
-pytest tests\test_repurposing_benchmark.py -q && ^
-python -c "print('3. All checks passed')"
-```
-
----
-
-## See Also
-
-- [VALIDATION_AND_BENCHMARKS.md](VALIDATION_AND_BENCHMARKS.md) -- Metrics explained
-- [EVIDENCE_AND_PROVENANCE.md](EVIDENCE_AND_PROVENANCE.md) -- Data sources
-- [AUDIT_WALKTHROUGH.md](AUDIT_WALKTHROUGH.md) -- Worked audit trail examples
-
----
-
-*Last updated: 2026-05-26 (post-Yoneda Distance Strategy integration)*
+*Last updated: 2026-05-27.*
