@@ -23,6 +23,9 @@ dev = [
 demo = [
     "streamlit>=1.30",
 ]
+bio = [
+    "esm>=3.0.0",
+]
 
 [tool.setuptools.packages.find]
 include = ["core*"]

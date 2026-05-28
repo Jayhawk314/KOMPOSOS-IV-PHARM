@@ -107,11 +107,18 @@ This means: if Drug A is approved for Disease D, and Drug B is structurally/mech
 | STRING PPI | 338 edges | protein-protein interactions |
 | cBioPortal | 45+ edges | genomic data (mutation freq, CNV, expression) |
 | ABPP | 65 edges | experimental IC50 values |
-| ESM2 similarity | 100 edges | protein similarity (fallback) |
+| Protein similarity | 100 edges | protein similarity (fallback); labeled ESM2 in DB, pending ESMC re-derivation |
 
 All morphisms include a source/provenance string such as PMID, ChEMBL, FDA,
-KEGG, STRING, ESM2, or review metadata. This is source coverage, not proof that
-every edge has been manually validated against the cited text.
+KEGG, STRING, ESM2/ESMC, or review metadata. This is source coverage, not proof
+that every edge has been manually validated against the cited text.
+
+**ESMC-300M integration (2026-05-28)**: The protein language model engine
+(`data/bio_embeddings.py`) has been upgraded from ESM2 to ESMC-300M (960d,
+EvolutionaryScale). Triage reports now include ESMC protein family classification
+(Family Extrapolation / Cross-Family Related / Cross-Family Novel) for each
+candidate. The 424 ESM2-labeled manifest edges are pending re-derivation with
+real ESMC protein sequence similarities via `scripts/rederive_esmc_edges.py`.
 
 ---
 

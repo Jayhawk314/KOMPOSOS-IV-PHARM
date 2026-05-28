@@ -39,8 +39,24 @@ Each candidate entry includes:
 | **Path details** | Specific protein intermediates with confidence scores |
 | **PMIDs** | Literature citations for individual edges |
 | **Quantitative evidence** | IC50, mutation freq, HR, response rates where available |
+| **ESMC classification** | Family Extrapolation, Cross-Family Related, or Cross-Family Novel (when ESMC engine available) |
 
 Scores above 0.80 indicate strong mechanistic support. Scores 0.70-0.80 indicate moderate support. Multiple mechanistic paths increase confidence.
+
+**ESMC protein classification (2026-05-28)**: Triage reports now include an ESMC
+protein family classification for each candidate. This compares the drug's direct
+protein targets against targets of approved treatments for the same disease using
+ESMC-300M protein sequence cosine similarity:
+
+| Classification | ESMC Similarity | Meaning |
+|----------------|----------------|---------|
+| **Family Extrapolation** | >= 0.95 | Drug targets the same protein family as an approved treatment |
+| **Cross-Family Related** | 0.80-0.95 | Drug targets structurally related but distinct proteins |
+| **Cross-Family Novel** | < 0.80 | Drug targets structurally distinct proteins (novel mechanism) |
+
+This classification does not affect ranking scores. It adds interpretability --
+a researcher can see whether a prediction follows from known protein homology or
+represents a genuinely novel mechanistic hypothesis.
 
 ---
 

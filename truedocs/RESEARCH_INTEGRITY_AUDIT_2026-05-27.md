@@ -97,5 +97,5 @@ The following claims should not be presented as current:
 1. LOOCV has been rerun under the corrected loader: AUROC 0.975916, AUPRC 0.553703.
 2. External, temporal, and disease-holdout scripts are executable and rerun; Hetionet external precision-at-top remains weak.
 3. A read-only citation-attribution audit is still required for each edge: endpoint mentions, relation support, quantitative value support, and abstract/full-text provenance.
-4. Evidence tiers must continue to separate source type from validation status. Computational ESM2 or unverified NLP extractions must not be described as direct measurement.
+4. Evidence tiers must continue to separate source type from validation status. Computational protein similarity (ESM2/ESMC) or unverified NLP extractions must not be described as direct measurement.
 5. Ranking scores must stay separate from strategy signal scores. Current scores are prioritization/ranking scores, not clinical probabilities.

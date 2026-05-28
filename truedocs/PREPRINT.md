@@ -45,7 +45,7 @@ The knowledge graph was built from curated sources:
 - **Morphisms**: 5,382 directed edges with confidence scores [0, 1]:
   - Drug->Protein (inhibits, activates, modulates): from ChEMBL drug mechanisms, ABPP
   - Protein->Disease (driver_of, associated_with): from literature curation, cBioPortal
-  - Protein->Protein (activates, regulates): from STRING PPI (338 edges), ESM2 similarity (100 edges)
+  - Protein->Protein (activates, regulates): from STRING PPI (338 edges), protein sequence similarity (100 edges; engine upgraded from ESM2 to ESMC-300M, pending edge re-derivation)
   - Drug->Disease (treats): 44 FDA-approved oncology indications
 - **Quantitative evidence**: 204 edges with IC50, mutation frequencies, hazard ratios, response rates
   - NLP extraction from 204 PMIDs (373 data points reported; edge-specific attribution audit pending)

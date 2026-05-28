@@ -28,6 +28,8 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import contextlib
+import io
 import json
 import sys
 from pathlib import Path
@@ -51,6 +53,133 @@ from validation.trace_prediction import _build_provenance_index, trace_pair
 
 
 RANKING_CALIBRATION = load_calibration(DEFAULT_CALIBRATION_PATH)
+
+
+# ── ESMC protein classification ─────────────────────────────────────
+
+def _load_esmc_embedder():
+    """Load ESMC embedder with graceful fallback.
+
+    Suppresses loading messages for clean triage output. Returns None
+    if the esm package is not installed or sequences are unavailable.
+    """
+    try:
+        from data.bio_embeddings import BiologicalEmbeddingsEngine
+        with contextlib.redirect_stdout(io.StringIO()), \
+             contextlib.redirect_stderr(io.StringIO()):
+            embedder = BiologicalEmbeddingsEngine(device='cpu')
+        if embedder.is_available:
+            return embedder
+    except Exception:
+        pass
+    return None
+
+
+def _esmc_classify(entry, positives, category, embedder):
+    """Classify a drug-disease prediction using ESMC protein similarity.
+
+    Compares the drug's target proteins against proteins targeted by
+    approved treatments for the same disease.
+
+    Returns dict with:
+        classification: Family Extrapolation / Cross-Family Related / Cross-Family Novel
+        max_similarity: highest ESMC cosine similarity found
+        interpretation: human-readable explanation
+        drug_target, reference_target, reference_drug: best matching pair
+    """
+    drug = entry["drug"]
+    disease = entry["disease"]
+
+    # Extract drug's DIRECT target proteins (first hop in each chain).
+    # Using only first-hop targets avoids false matches from downstream
+    # intermediates (e.g. Imatinib->KRAS->BRAF would incorrectly match
+    # BRAF inhibitors if we used all intermediates).
+    drug_proteins = set()
+    for chain in entry.get("chains", []):
+        edges = chain.get("edges", [])
+        if edges:
+            first_target = edges[0].get("target")
+            if first_target and first_target != disease:
+                drug_proteins.add(first_target)
+
+    if not drug_proteins:
+        return None
+
+    # Build type index for filtering
+    obj_types = {obj.name: obj.type_name for obj in category.objects()}
+
+    # Find approved drugs for this disease (excluding the drug being evaluated)
+    approved_drugs = {d for d, dis in positives if dis == disease and d != drug}
+
+    if not approved_drugs:
+        return {
+            "classification": "No Reference",
+            "max_similarity": 0.0,
+            "interpretation": "no approved treatments for this disease to compare against",
+        }
+
+    # Find approved drugs' target proteins via direct morphisms
+    ref_proteins = {}  # protein_name -> reference_drug
+    for ad in approved_drugs:
+        for m in category.morphisms_from(ad):
+            tgt_type = obj_types.get(m.target)
+            if tgt_type and tgt_type not in ('Drug', 'Disease'):
+                ref_proteins[m.target] = ad
+
+    if not ref_proteins:
+        return {
+            "classification": "No Reference Targets",
+            "max_similarity": 0.0,
+            "interpretation": "approved treatments have no mapped protein targets",
+        }
+
+    # Compute max ESMC similarity between drug targets and reference targets
+    max_sim = 0.0
+    best = None
+    for dp in drug_proteins:
+        for rp, ref_drug in ref_proteins.items():
+            try:
+                sim = embedder.similarity(dp, rp)
+                if sim > max_sim:
+                    max_sim = sim
+                    best = (dp, rp, ref_drug, sim)
+            except (ValueError, RuntimeError):
+                continue
+
+    # ESMC-300M thresholds (calibrated from observed distribution):
+    # Same-family pairs: 0.95+ (KRAS-NRAS 0.99, BRAF-RAF1 0.99, EGFR-ERBB2 0.95)
+    # Cross-family large proteins: 0.80-0.95 (TP53-BRAF 0.93, EGFR-BRAF 0.93)
+    # Structurally diverse: <0.80 (KRAS-MTOR 0.42, KRAS-EGFR 0.68)
+    if max_sim >= 0.95:
+        classification = "Family Extrapolation"
+        interpretation = (
+            f"{drug} targets {best[0]} (ESMC sim {max_sim:.2f} to "
+            f"{best[1]}, target of {best[2]})"
+        )
+    elif max_sim >= 0.80:
+        classification = "Cross-Family Related"
+        interpretation = (
+            f"{drug}'s targets are structurally related to known treatment targets "
+            f"(best: {best[0]} vs {best[1]}, sim {max_sim:.2f})"
+        )
+    else:
+        classification = "Cross-Family Novel"
+        interpretation = (
+            f"{drug}'s targets are structurally distinct from known treatments"
+            + (f" (best: {best[0]} vs {best[1]}, sim {max_sim:.2f})" if best else "")
+        )
+
+    result = {
+        "classification": classification,
+        "max_similarity": round(max_sim, 3),
+        "interpretation": interpretation,
+    }
+    if best:
+        result["drug_target"] = best[0]
+        result["reference_target"] = best[1]
+        result["reference_drug"] = best[2]
+
+    return result
 
 
 # ── Data helpers ──────────────────────────────────────────────────────
@@ -271,6 +400,19 @@ def _detail_block(entry: dict) -> str:
             f"target profile with a drug FDA-approved for {disease}"
         )
 
+    # Show ESMC protein family classification
+    esmc = entry.get("esmc_classification")
+    if esmc:
+        lines.append("")
+        lines.append(f"ESMC protein classification: {esmc['classification']}")
+        lines.append(f"  Max protein similarity: {esmc['max_similarity']:.3f}")
+        lines.append(f"  {esmc['interpretation']}")
+        if esmc.get("drug_target"):
+            lines.append(
+                f"  Best match: {esmc['drug_target']} <-> {esmc['reference_target']} "
+                f"(via {esmc['reference_drug']})"
+            )
+
     if entry["chains"]:
         # Classify chains by quality
         high_chains = []  # all hops >= 0.70
@@ -300,13 +442,19 @@ def _detail_block(entry: dict) -> str:
             prov_notes = []
             for edge in chain["edges"]:
                 prov = edge.get("provenance", "unknown")
-                # Summarize ESM2 provenance instead of dumping 30+ similarity scores
-                if prov and prov.startswith("ESM2:"):
-                    esm_scores = [float(s.split("(")[1].rstrip(")"))
+                # Summarize protein similarity provenance instead of dumping 30+ scores
+                if prov and (prov.startswith("ESM2:") or prov.startswith("ESMC:")
+                             or prov.startswith("text_similarity:")):
+                    sim_scores = [float(s.split("(")[1].rstrip(")"))
                                   for s in prov.split("; ") if "(" in s]
-                    n = len(esm_scores)
-                    avg = sum(esm_scores) / n if n else 0
-                    prov_display = f"ESM2 protein similarity ({n} proteins, avg {avg:.2f})"
+                    n = len(sim_scores)
+                    avg = sum(sim_scores) / n if n else 0
+                    if prov.startswith("ESMC:"):
+                        prov_display = f"ESMC protein similarity ({n} proteins, avg {avg:.2f})"
+                    elif prov.startswith("text_similarity:"):
+                        prov_display = f"text similarity ({n} proteins, avg {avg:.2f})"
+                    else:
+                        prov_display = f"ESM2 protein similarity ({n} proteins, avg {avg:.2f})"
                 elif prov and prov != "unknown":
                     prov_display = prov
                 else:
@@ -438,6 +586,7 @@ def format_json(results: list[dict], query_label: str,
                 "total_edges": entry["total_edges"],
             },
             "chains": entry["chains"],
+            "esmc_classification": entry.get("esmc_classification"),
         }
         report["candidates"].append(candidate)
     return json.dumps(report, indent=2, default=str)
@@ -508,6 +657,17 @@ def format_markdown(results: list[dict], query_label: str,
                 lines.append("|----------|-------|")
                 for name, conf in entry["votes"]:
                     lines.append(f"| {name} | {conf:.2f} |")
+                lines.append("")
+            esmc = entry.get("esmc_classification")
+            if esmc:
+                lines.append(f"**ESMC Protein Classification:** {esmc['classification']}")
+                lines.append(f"- Max protein similarity: {esmc['max_similarity']:.3f}")
+                lines.append(f"- {esmc['interpretation']}")
+                if esmc.get("drug_target"):
+                    lines.append(
+                        f"- Best match: {esmc['drug_target']} <-> "
+                        f"{esmc['reference_target']} (via {esmc['reference_drug']})"
+                    )
                 lines.append("")
             if entry["chains"]:
                 lines.append("**Evidence chains:**")
@@ -588,6 +748,9 @@ def main() -> int:
     strategies = make_strategies(category)
     provenance_index = _build_provenance_index(args.db)
 
+    # Load ESMC embedder for protein classification (graceful fallback)
+    embedder = _load_esmc_embedder()
+
     n_objects = len(category.objects())
     n_morphisms = len(category.morphisms())
     n_positives = len(positives)
@@ -655,6 +818,13 @@ def main() -> int:
             category, strategies, args.drug, positives, provenance_index,
             top_n=args.top, show_all=args.show_all,
         )
+
+    # Add ESMC protein family classification to displayed results
+    if embedder is not None:
+        for entry in results:
+            entry["esmc_classification"] = _esmc_classify(
+                entry, positives, category, embedder
+            )
 
     # Render output
     if args.as_json:

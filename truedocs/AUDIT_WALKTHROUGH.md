@@ -386,7 +386,7 @@ When auditing any prediction, check these flags:
 ### Yellow Flags (Medium Quality)
 
 - ⚠ Only 1 mechanistic path
-- ⚠ Some edges inferred (ESM2 similarity, pathway inference)
+- ⚠ Some edges inferred (protein similarity, pathway inference)
 - ⚠ Mixed evidence quality (curated + computational)
 - ⚠ No quantitative values
 - ⚠ Low Yoneda similarity (no structural match to known treatments)
@@ -397,7 +397,7 @@ When auditing any prediction, check these flags:
 - ✗ Edges lack provenance
 - ✗ Contradicts known biology (e.g., inhibiting tumor suppressor)
 - ✗ Protein not in relevant cancer pathway
-- ✗ Only weak similarity evidence (ESM2 only)
+- ✗ Only weak similarity evidence (protein similarity only)
 - ✗ Clinical trial already failed for this indication
 
 ---
@@ -416,7 +416,7 @@ Every edge has a confidence score [0, 1]. Here's how they're derived:
 | **FDA indication** | 0.90-1.0 | Sorafenib approved for Melanoma |
 | **STRING PPI** | 0.60-0.80 | BRAF activates MEK1 (combined score > 0.7) |
 | **Literature co-mention (PubMed)** | 0.50-0.70 | TP53 + Breast Cancer (15,000+ papers) |
-| **Protein similarity (ESM2)** | 0.55-0.65 | KRAS similar to NRAS (88% cosine) |
+| **Protein similarity (ESMC-300M)** | 0.55-0.65 | KRAS similar to NRAS (99% ESMC cosine) |
 | **Computational prediction** | 0.40-0.60 | Pathway inference, heuristic |
 
 ### Multi-Source Reconciliation

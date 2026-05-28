@@ -64,7 +64,7 @@ Full typed DB facts (2026-05-27 audit):
 - 609 PMID identifiers found in provenance/metadata strings
 - 204 edges with quantitative values (IC50, mutation frequencies, hazard ratios, response rates)
 - Evidence tier classification: MEASURED 1073, INFERRED 809, NOISE 2104, SPECULATIVE 955, ESTABLISHED 282, HYPOTHESIS 159
-- Data sources: PubMed, ChEMBL, FDA, KEGG, STRING PPI (338 edges), ESM2 similarity, cBioPortal genomic, ABPP
+- Data sources: PubMed, ChEMBL, FDA, KEGG, STRING PPI (338 edges), protein similarity (ESMC-300M engine; legacy ESM2 edge labels pending re-derivation), cBioPortal genomic, ABPP
 - NLP PMID extraction: 373 quantitative data points from 204 PMIDs; edge-specific attribution remains under audit
 - ChEMBL drug names normalized (salt forms stripped, matched to base drugs)
 - DB SHA256: `[updated after Phase 2-5 completion]`
@@ -159,8 +159,9 @@ python validation\triage.py Melanoma --drug Vemurafenib
 ```
 
 Every report includes: self-check (44/44 approved indications recoverable),
-strategy vote breakdown, source-linked evidence chains, provenance coverage per
-candidate, and APPROVED/NOT_APPROVED labels. NOT_APPROVED means not in our
+strategy vote breakdown, ESMC protein family classification (when available),
+source-linked evidence chains, provenance coverage per candidate, and
+APPROVED/NOT_APPROVED labels. NOT_APPROVED means not in our
 44 FDA oncology indications (may already be in trials/literature). Detail
 auto-expands for top-5 NOT_APPROVED candidates in terminal mode; specific
 pair mode always shows full detail.
@@ -266,6 +267,7 @@ Key code areas:
 - `oracle/`: prediction/scoring strategies (9 strategies incl. binding_evidence + yoneda_distance).
 - `oracle/binding_strategy.py`: BindingEvidenceStrategy (ABPP + Boltz2 + drug properties).
 - `oracle/yoneda_strategy.py`: YonedaDistanceStrategy (structural similarity on clean subgraph).
+- `data/bio_embeddings.py`: ESMC-300M protein language model embeddings (960d).
 - `domains/bio/`: bio graph loader.
 - `data/store.py`: SQLite store API.
 - `data/drugs/build_tier1.py`: reproducible DB build from manifest.
