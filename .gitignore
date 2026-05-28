@@ -37,7 +37,6 @@ Thumbs.db
 
 # Project specific
 *.db
-!data/drugs/tier1.db
 *.sqlite
 *.sqlite3
 *.pkl
@@ -65,8 +64,10 @@ data/spatial/
 data/external/
 
 # Track B: Chemical Bridges
-abpp_bridge.py
-boltz2_bridge.py
+# Keep Track B bridges out of the default app deploy except where explicitly needed.
+# NOTE: `abpp_bridge.py` is required to reproduce "MEASURED" evidence layers, so it
+# is intentionally *not* ignored.
+# boltz2_bridge.py is also included for consistency.
 chemistry/
 geometry/
 spatial_biology/
@@ -115,6 +116,7 @@ data/tuning_results.json
 data/drugs/*manifest*.json
 data/drugs/*_ot*.json
 data/drugs/*.db
+!data/drugs/tier1.db
 
 # Old databases and sessions
 example_knowledge.db

@@ -76,7 +76,16 @@ def load_graph():
     quantitative_edges = 0
     with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT provenance, metadata, quantitative_value FROM morphisms")
+        cursor.execute("PRAGMA table_info(morphisms)")
+        morphism_columns = {row[1] for row in cursor.fetchall()}
+        quant_expr = (
+            "quantitative_value"
+            if "quantitative_value" in morphism_columns
+            else "NULL AS quantitative_value"
+        )
+        cursor.execute(
+            f"SELECT provenance, metadata, {quant_expr} FROM morphisms"
+        )
         for provenance, metadata, quantitative_value in cursor.fetchall():
             text = f"{provenance or ''} {metadata or ''}"
             pmids.update(re.findall(r"PMID:?\s*(\d+)", text))

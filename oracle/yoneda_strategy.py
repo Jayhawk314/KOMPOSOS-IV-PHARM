@@ -77,13 +77,57 @@ class YonedaDistanceStrategy(InferenceStrategy):
         for row in cursor.fetchall():
             type_map[row["name"]] = row["type_name"]
 
+        cursor.execute("PRAGMA table_info(morphisms)")
+        morphism_columns = {row["name"] for row in cursor.fetchall()}
+        if "source_name" in morphism_columns:
+            source_col = "source_name"
+        elif "source" in morphism_columns:
+            source_col = "source"
+        else:
+            raise sqlite3.OperationalError(
+                "Unsupported morphisms schema: missing source column "
+                "(expected source_name or source)"
+            )
+
+        if "target_name" in morphism_columns:
+            target_col = "target_name"
+        elif "target" in morphism_columns:
+            target_col = "target"
+        else:
+            raise sqlite3.OperationalError(
+                "Unsupported morphisms schema: missing target column "
+                "(expected target_name or target)"
+            )
+
+        if "name" in morphism_columns:
+            rel_col = "name"
+        elif "predicate" in morphism_columns:
+            rel_col = "predicate"
+        else:
+            raise sqlite3.OperationalError(
+                "Unsupported morphisms schema: missing relation column "
+                "(expected name or predicate)"
+            )
+
+        if "evidence_tier" in morphism_columns:
+            clean_filter = "m.evidence_tier IN ('MEASURED', 'ESTABLISHED')"
+        else:
+            # Older checked-in DBs predate evidence_tier. Keep the app usable
+            # by approximating the clean subgraph with high-confidence edges.
+            clean_filter = "m.confidence >= 0.70"
+
         cursor.execute(
-            "SELECT m.source_name, m.target_name, m.name, m.confidence, "
-            "src.type_name AS source_type, tgt.type_name AS target_type "
+            "SELECT "
+            f"m.{source_col} AS source_name, "
+            f"m.{target_col} AS target_name, "
+            f"m.{rel_col} AS name, "
+            "m.confidence AS confidence, "
+            "src.type_name AS source_type, "
+            "tgt.type_name AS target_type "
             "FROM morphisms m "
-            "LEFT JOIN objects src ON m.source_name = src.name "
-            "LEFT JOIN objects tgt ON m.target_name = tgt.name "
-            "WHERE m.evidence_tier IN ('MEASURED', 'ESTABLISHED')"
+            f"LEFT JOIN objects src ON m.{source_col} = src.name "
+            f"LEFT JOIN objects tgt ON m.{target_col} = tgt.name "
+            f"WHERE {clean_filter}"
         )
         edges = cursor.fetchall()
         conn.close()

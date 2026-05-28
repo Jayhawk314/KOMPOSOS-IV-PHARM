@@ -37,15 +37,34 @@ def _build_provenance_index(db_path: str) -> dict[tuple[str, str, str], dict]:
     """Build a lookup from edge key to provenance and derived audit fields."""
     import sqlite3
     conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
     index = {}
-    cursor.execute("""
-        SELECT source_name, target_name, name, provenance, evidence_tier,
-               quantitative_value, value_unit, metadata
+    cursor.execute("PRAGMA table_info(morphisms)")
+    columns = {row["name"] for row in cursor.fetchall()}
+    tier_expr = "evidence_tier" if "evidence_tier" in columns else "'HYPOTHESIS' AS evidence_tier"
+    quant_expr = (
+        "quantitative_value"
+        if "quantitative_value" in columns
+        else "NULL AS quantitative_value"
+    )
+    unit_expr = "value_unit" if "value_unit" in columns else "NULL AS value_unit"
+
+    cursor.execute(f"""
+        SELECT source_name, target_name, name, provenance, {tier_expr},
+               {quant_expr}, {unit_expr}, metadata
         FROM morphisms
     """)
-    for source, target, relation, prov, tier, quant_val, quant_unit, metadata in cursor.fetchall():
+    for row in cursor.fetchall():
+        source = row["source_name"]
+        target = row["target_name"]
+        relation = row["name"]
+        prov = row["provenance"]
+        tier = row["evidence_tier"]
+        quant_val = row["quantitative_value"]
+        quant_unit = row["value_unit"]
+        metadata = row["metadata"]
         classification = classify_evidence(prov, metadata, tier, quant_val)
         index[(source, target, relation)] = {
             "provenance": prov or "unknown",
