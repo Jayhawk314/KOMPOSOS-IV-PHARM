@@ -430,12 +430,21 @@ The coordinates are generated candidate atom coordinates in the chosen pocket fr
 
 ## SMILES Generation
 
-SMILES generation is currently hybrid:
+SMILES generation is graph-native (implemented 2026-05-29):
 
-- Deterministic fallback strings from fragment names.
-- Optional RDKit canonicalization if RDKit accepts the generated SMILES.
+- Primary path (`graph_native_smiles`): the assembled atom/bond graph (every
+  fragment atom, intra-fragment bonds, and cross-fragment bonds) is built into
+  an RDKit molecule, sanitized, and emitted as canonical SMILES. Valid candidates
+  also carry real RDKit descriptors (MW, logP, HBD/HBA, TPSA, rings, rotatable
+  bonds) in `rdkit_properties`.
+- Fallback path: when a heuristic assembly is chemically invalid (e.g. an
+  over-valent atom), the engine falls back to the older name-based SMILES string.
+- Each candidate reports `smiles_method` (`graph_native` or `fallback`).
 
-This is sufficient for triage, but not final chemistry. A production system should use a proper graph object throughout assembly and generate the SMILES directly from the molecular graph.
+Graph-native validity is ~96% across the co-crystal pocket benchmark (the rest
+fall back). Disable with `--no-graph-smiles`. This is the prerequisite for
+descriptor calculation and docking preparation; pose-level chemistry still needs
+docking/MD.
 
 ## Integrated Evidence Layer
 
@@ -779,9 +788,13 @@ The current fragments are better than toy chemistry, but not yet broad enough fo
 
 The categorical assembly pose is not a docked pose. The RDKit relaxation term is molecular graph sanity, not protein-ligand pose minimization.
 
-### SMILES Generation Is Not Fully Graph-Native
+### SMILES Generation Is Now Graph-Native (~96%)
 
-Fallback SMILES are deterministic but simplified. Full graph-native assembly should replace this.
+Graph-native RDKit construction from the assembled graph is the primary path
+(~96% valid on the benchmark); the simplified name-based string is now only a
+fallback for chemically invalid assemblies. Remaining invalid assemblies reflect
+heuristic fragment gluing that produces bad valences -- improving assembly
+chemistry (not SMILES generation) is the next lever.
 
 ### PHARM Binding Prior Is Not Experimental Evidence
 
