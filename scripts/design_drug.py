@@ -564,8 +564,9 @@ def detect_grid_pocket_center(
             "grid_spacing": round(float(grid_spacing), 3),
             "grid_points_evaluated": float(evaluated),
             "valid_cavity_points": 0.0,
+            "buried_points": 0,
+            "largest_cavity_points": 0,
             "best_grid_score": 0.0,
-            "best_buriedness": 0.0,
         }
 
     candidate_array = np.array(candidate_points, dtype=float)
