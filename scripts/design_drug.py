@@ -993,6 +993,7 @@ class MolecularDesignEngine:
         clash_scale: float = 0.62,
         use_rdkit_conformers: bool = True,
         use_rdkit_relaxation: bool = True,
+        use_graph_native_smiles: bool = True,
         pocket_mode: str = "auto",
     ):
         self.beam_width = beam_width
@@ -1001,6 +1002,7 @@ class MolecularDesignEngine:
         self.max_atoms = max_atoms
         self.clash_scale = clash_scale
         self.use_rdkit_relaxation = use_rdkit_relaxation
+        self.use_graph_native_smiles = use_graph_native_smiles
         self.pocket_mode = pocket_mode
         self.fragment_library = build_fragment_library(use_rdkit_conformers=use_rdkit_conformers)
         self.rotations = rotation_library()
@@ -1355,11 +1357,20 @@ class MolecularDesignEngine:
         return unique
 
     def candidate_dict(self, index: int, assembly: MolecularAssembly, pocket: Pocket) -> Dict:
-        smiles, validated = fallback_smiles(assembly)
-        canonical_smiles, smiles_validated = canonicalize_smiles(smiles)
-        if smiles_validated:
-            smiles = canonical_smiles
-            validated = True
+        smiles_method = "fallback"
+        rdkit_properties: Dict[str, float] = {}
+        if self.use_graph_native_smiles:
+            graph_smiles, graph_valid, rdkit_properties = graph_native_smiles(assembly)
+        else:
+            graph_smiles, graph_valid = "", False
+        if graph_valid:
+            smiles, validated, smiles_method = graph_smiles, True, "graph_native"
+        else:
+            smiles, validated = fallback_smiles(assembly)
+            canonical_smiles, smiles_validated = canonicalize_smiles(smiles)
+            if smiles_validated:
+                smiles = canonical_smiles
+                validated = True
         atoms = assembly.all_atoms()
         return {
             "candidate_id": f"MOL-{index:04d}",
@@ -1367,6 +1378,8 @@ class MolecularDesignEngine:
             "score_terms": assembly.score_terms,
             "smiles": smiles,
             "smiles_validated": validated,
+            "smiles_method": smiles_method,
+            "rdkit_properties": rdkit_properties,
             "fragment_trace": assembly.trace,
             "fragments": assembly.fragment_names(),
             "morphism_count": len(assembly.cross_bonds),
@@ -1517,6 +1530,102 @@ def fallback_smiles(assembly: MolecularAssembly) -> Tuple[str, bool]:
     return FRAGMENT_SMILES.get(seed, seed) + tail, False
 
 
+def _rdkit_bond_type(order: float):
+    from rdkit.Chem import BondType
+
+    if abs(order - 1.5) < 0.25:
+        return BondType.AROMATIC
+    if abs(order - 2.0) < 0.25:
+        return BondType.DOUBLE
+    if abs(order - 3.0) < 0.25:
+        return BondType.TRIPLE
+    return BondType.SINGLE
+
+
+def graph_native_smiles(assembly: MolecularAssembly) -> Tuple[str, bool, Dict[str, float]]:
+    """Build an RDKit molecule from the assembled atom/bond graph.
+
+    Unlike fallback_smiles (which concatenates per-fragment SMILES strings by
+    name), this uses the real assembled graph: every fragment atom, its
+    intra-fragment bonds, and the cross-fragment bonds formed during assembly.
+    Returns (canonical_smiles, valid, properties). valid is False when the
+    heuristic assembly produced a chemically invalid graph (e.g. over-valent
+    atoms); callers should then fall back. Honestly reporting that fraction is
+    itself a signal about assembly chemistry quality.
+    """
+    try:
+        from rdkit import Chem, RDLogger
+        from rdkit.Chem import Crippen, Descriptors, Lipinski, rdMolDescriptors
+    except Exception:
+        return "", False, {}
+
+    RDLogger.DisableLog("rdApp.*")  # heuristic graphs fail often; don't spam stderr
+
+    atoms = assembly.all_atoms()
+    if not atoms:
+        return "", False, {}
+
+    editable = Chem.RWMol()
+    index_map: Dict[Tuple[int, int], int] = {}
+    for placed_id, atom_index, fragment_atom, _coord in atoms:
+        rd_atom = Chem.Atom(str(fragment_atom.element).capitalize())
+        if getattr(fragment_atom, "aromatic", False):
+            rd_atom.SetIsAromatic(True)
+            # Pyrrole-type aromatic N (the H-bond donor in imidazole/pyrazole)
+            # needs an explicit H for RDKit to kekulize the 5-membered ring.
+            if rd_atom.GetSymbol() == "N" and getattr(fragment_atom, "donor", False):
+                rd_atom.SetNumExplicitHs(1)
+                rd_atom.SetNoImplicit(True)
+        index_map[(placed_id, atom_index)] = editable.AddAtom(rd_atom)
+
+    added: set = set()
+
+    def link(global_i: int, global_j: int, order: float) -> None:
+        key = (min(global_i, global_j), max(global_i, global_j))
+        if global_i == global_j or key in added:
+            return
+        added.add(key)
+        bond_type = _rdkit_bond_type(order)
+        editable.AddBond(global_i, global_j, bond_type)
+        if bond_type.name == "AROMATIC":
+            editable.GetAtomWithIdx(global_i).SetIsAromatic(True)
+            editable.GetAtomWithIdx(global_j).SetIsAromatic(True)
+
+    for placed in assembly.placed_fragments:
+        for bond in placed.fragment.bonds:
+            i = index_map.get((placed.placed_id, bond.atom_i))
+            j = index_map.get((placed.placed_id, bond.atom_j))
+            if i is not None and j is not None:
+                link(i, j, bond.order)
+
+    for cross in assembly.cross_bonds:
+        i = index_map.get((cross.source_fragment_id, cross.source_atom_index))
+        j = index_map.get((cross.target_fragment_id, cross.target_atom_index))
+        if i is not None and j is not None:
+            link(i, j, cross.order)
+
+    mol = editable.GetMol()
+    try:
+        Chem.SanitizeMol(mol)
+        smiles = Chem.MolToSmiles(mol)
+    except Exception:
+        return "", False, {}
+    if not smiles:
+        return "", False, {}
+
+    properties = {
+        "molecular_weight": round(float(Descriptors.MolWt(mol)), 3),
+        "logp": round(float(Crippen.MolLogP(mol)), 3),
+        "h_bond_donors": int(Lipinski.NumHDonors(mol)),
+        "h_bond_acceptors": int(Lipinski.NumHAcceptors(mol)),
+        "tpsa": round(float(rdMolDescriptors.CalcTPSA(mol)), 3),
+        "rings": int(rdMolDescriptors.CalcNumRings(mol)),
+        "rotatable_bonds": int(rdMolDescriptors.CalcNumRotatableBonds(mol)),
+        "heavy_atoms": int(mol.GetNumHeavyAtoms()),
+    }
+    return smiles, True, properties
+
+
 def canonicalize_smiles(smiles: str) -> Tuple[str, bool]:
     try:
         from rdkit import Chem
@@ -1609,6 +1718,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max-atoms", type=int, default=40, help="Maximum heavy atoms per candidate")
     parser.add_argument("--no-rdkit-fragments", action="store_true", help="Use built-in toy fragment coordinates")
     parser.add_argument("--no-rdkit-relax", action="store_true", help="Disable RDKit ETKDG/UFF relaxation score")
+    parser.add_argument("--no-graph-smiles", action="store_true", help="Disable graph-native RDKit SMILES (use name-based fallback only)")
     parser.add_argument("--out", type=Path, default=Path("reports/design_drug_results.json"), help="JSON output path")
     parser.add_argument("--csv", dest="csv_path", type=Path, default=None, help="CSV summary output path")
     parser.add_argument("--no-csv", action="store_true", help="Disable CSV summary")
@@ -1628,6 +1738,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             max_atoms=args.max_atoms,
             use_rdkit_conformers=not args.no_rdkit_fragments,
             use_rdkit_relaxation=not args.no_rdkit_relax,
+            use_graph_native_smiles=not args.no_graph_smiles,
             pocket_mode=args.pocket_mode,
         )
         result = engine.design(
