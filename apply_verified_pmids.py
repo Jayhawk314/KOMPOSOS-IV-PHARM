@@ -1,54 +1,68 @@
 #!/usr/bin/env python3
 import sqlite3
+import re
 
 DB_PATH = "data/drugs/tier1.db"
+VERIF_FILE = "final_verification_results.txt"
 
 # Read verification results - only the YES entries
-verified_pmids = {}
-with open('verification_results.txt') as f:
+verified_pmids = []
+with open(VERIF_FILE) as f:
     for line in f:
         if line.startswith('#') or not line.strip():
             continue
         parts = line.strip().split('|')
         if len(parts) >= 5 and parts[4] == 'YES':
-            rowid = parts[0]
-            pmid = parts[3]
             protein = parts[1]
             disease = parts[2]
-            verified_pmids[rowid] = (pmid, protein, disease)
+            pmid = parts[3]
+            verified_pmids.append((protein, disease, pmid))
 
-print(f"Found {len(verified_pmids)} verified PMIDs to add")
+print(f"Found {len(verified_pmids)} verified PMIDs in {VERIF_FILE}")
 
 # Connect to database
 conn = sqlite3.connect(DB_PATH)
 cur = conn.cursor()
 
-# Update each edge with verified PMID
-for rowid, (pmid, protein, disease) in verified_pmids.items():
-    # Get current provenance
-    cur.execute("SELECT provenance FROM morphisms WHERE rowid = ?", (rowid,))
-    row = cur.fetchone()
-    if not row:
-        print(f"WARNING: rowid {rowid} not found")
+updated_count = 0
+for protein, disease, pmid in verified_pmids:
+    # Find the edge
+    cur.execute(
+        "SELECT id, provenance FROM morphisms WHERE source_name = ? AND target_name = ?",
+        (protein, disease)
+    )
+    rows = cur.fetchall()
+    
+    if not rows:
+        # Try finding by protein in the target (some edges are directed differently)
+        cur.execute(
+            "SELECT id, provenance FROM morphisms WHERE source_name = ? AND target_name = ?",
+            (disease, protein)
+        )
+        rows = cur.fetchall()
+
+    if not rows:
+        # print(f"  [-] {protein} -> {disease} not found in DB")
         continue
 
-    current_prov = row[0] or ""
-
-    # Add PMID to provenance
-    if f"PMID:{pmid}" not in current_prov:
-        if current_prov and not current_prov.endswith(';'):
-            new_prov = f"{current_prov}; PMID:{pmid}"
-        elif current_prov:
-            new_prov = f"{current_prov} PMID:{pmid}"
-        else:
-            new_prov = f"PMID:{pmid}"
-
-        cur.execute("UPDATE morphisms SET provenance = ? WHERE rowid = ?", (new_prov, rowid))
-        print(f"Updated {rowid}: {protein}->{disease} with PMID:{pmid}")
+    for morph_id, current_prov in rows:
+        # Add PMID to provenance if not already there
+        if f"PMID:{pmid}" not in (current_prov or ""):
+            new_prov = current_prov if current_prov and current_prov != "unknown" else ""
+            if new_prov:
+                if not new_prov.endswith(';'):
+                    new_prov += ";"
+                new_prov += f" PMID:{pmid}"
+            else:
+                new_prov = f"PMID:{pmid}"
+            
+            cur.execute("UPDATE morphisms SET provenance = ? WHERE id = ?", (new_prov, morph_id))
+            updated_count += 1
+            print(f"  [+] Updated {protein}->{disease} with PMID:{pmid}")
 
 # Commit changes
 conn.commit()
-print(f"\nCommitted {len(verified_pmids)} PMID updates to database")
+print(f"\nApplied {updated_count} PMID updates to database")
 
 # Show summary
 cur.execute("SELECT COUNT(*) FROM morphisms WHERE provenance LIKE '%PMID:%'")

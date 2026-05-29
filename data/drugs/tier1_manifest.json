@@ -3137,168 +3137,168 @@
       "source": "BRCA1",
       "target": "ATM",
       "confidence": 0.92,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa03440, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "AKT1",
       "target": "BCL2",
       "confidence": 0.91,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04151, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "AKT1",
       "target": "MDM2",
       "confidence": 0.93,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04151, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "AKT1",
       "target": "MTOR",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04151, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "BAX",
       "target": "CASP9",
       "confidence": 0.94,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04115, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "CASP9",
       "target": "CASP3",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04115, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "CD8A",
       "target": "IFNG",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "activates",
       "source": "CXCL12",
       "target": "CXCR4",
       "confidence": 0.9,
-      "provenance": "unknown"
+      "provenance": "PMID:42164570, PMID:42161093"
     },
     {
       "edge_type": "activates",
       "source": "E2F1",
       "target": "MYC",
       "confidence": 0.89,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04110, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "EGFR",
       "target": "KRAS",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04010, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "EGFR",
       "target": "PI3KCA",
       "confidence": 0.92,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04010, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "EGFR",
       "target": "STAT3",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04630, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "ERBB2",
       "target": "KRAS",
       "confidence": 0.87,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04014, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "ERBB2",
       "target": "PI3KCA",
       "confidence": 0.9,
-      "provenance": "unknown"
+      "provenance": "PMID:40386732, PMID:39520520"
     },
     {
       "edge_type": "activates",
       "source": "ERK1",
       "target": "MYC",
       "confidence": 0.94,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04010, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "ERK2",
       "target": "MYC",
       "confidence": 0.9,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04010, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "FLT3",
       "target": "AKT1",
       "confidence": 0.89,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04014, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "FLT3",
       "target": "NRAS",
       "confidence": 0.92,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04014, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "FLT3",
       "target": "PIK3CA",
       "confidence": 0.9,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04014, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "KRAS",
       "target": "BRAF",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04010, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "KRAS",
       "target": "RAF1",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04010, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "MET",
       "target": "KRAS",
       "confidence": 0.89,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04014, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "MET",
       "target": "PI3KCA",
       "confidence": 0.91,
-      "provenance": "unknown"
+      "provenance": "PMID:34802045, PMID:34079834"
     },
     {
       "edge_type": "activates",
       "source": "MTOR",
       "target": "MCL1",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04210, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
@@ -3312,28 +3312,28 @@
       "source": "NRAS",
       "target": "BRAF",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04010, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "NRAS",
       "target": "PI3KCA",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04014, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "NRAS",
       "target": "RAF1",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04010, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "PIK3CA",
       "target": "AKT1",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04151, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
@@ -3347,140 +3347,140 @@
       "source": "STAT3",
       "target": "BCL2",
       "confidence": 0.9,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04630, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "STAT3",
       "target": "MYC",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04630, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "STAT5A",
       "target": "BCL2",
       "confidence": 0.91,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04630, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "STAT5A",
       "target": "MCL1",
       "confidence": 0.9,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04630, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "STAT5A",
       "target": "MYC",
       "confidence": 0.93,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04630, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "STAT5B",
       "target": "MYC",
       "confidence": 0.92,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04630, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "TP53",
       "target": "BAX",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04115, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "TP53",
       "target": "CASP9",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04115, cancer_proteins.py"
     },
     {
       "edge_type": "activates",
       "source": "VEGFA",
       "target": "KDR",
       "confidence": 0.92,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04370, cancer_proteins.py"
     },
     {
       "edge_type": "activator",
       "source": "Carboplatin",
       "target": "TP53",
       "confidence": 0.83,
-      "provenance": "unknown"
+      "provenance": "mechanism:DNA_crosslinking_activates_DDR_and_p53"
     },
     {
       "edge_type": "activator",
       "source": "Chloroquine",
       "target": "TP53",
       "confidence": 0.5,
-      "provenance": "unknown"
+      "provenance": "literature:lysosome_inhibition_stabilizes_p53"
     },
     {
       "edge_type": "activator",
       "source": "Cisplatin",
       "target": "TP53",
       "confidence": 0.85,
-      "provenance": "unknown"
+      "provenance": "mechanism:DNA_crosslinking_activates_DDR_and_p53"
     },
     {
       "edge_type": "activator",
       "source": "Disulfiram",
       "target": "TP53",
       "confidence": 0.55,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "activator",
       "source": "Mebendazole",
       "target": "TP53",
       "confidence": 0.65,
-      "provenance": "unknown"
+      "provenance": "literature:tubulin_disruption_activates_p53"
     },
     {
       "edge_type": "activator",
       "source": "Oxaliplatin",
       "target": "TP53",
       "confidence": 0.84,
-      "provenance": "unknown"
+      "provenance": "mechanism:DNA_crosslinking_activates_DDR_and_p53"
     },
     {
       "edge_type": "associated_with",
       "source": "ABCB1",
       "target": "AML",
       "confidence": 0.72,
-      "provenance": "unknown"
+      "provenance": "PMID:35628366"
     },
     {
       "edge_type": "associated_with",
       "source": "ABCB1",
       "target": "Breast_Cancer",
       "confidence": 0.6,
-      "provenance": "unknown"
+      "provenance": "PMID:31679234"
     },
     {
       "edge_type": "associated_with",
       "source": "AMPK",
       "target": "Breast_Cancer",
       "confidence": 0.6,
-      "provenance": "unknown"
+      "provenance": "PMID:32425881"
     },
     {
       "edge_type": "associated_with",
       "source": "AMPK",
       "target": "Colorectal_Cancer",
       "confidence": 0.58,
-      "provenance": "unknown"
+      "provenance": "PMID:39992728"
     },
     {
       "edge_type": "associated_with",
       "source": "AMPK",
       "target": "Pancreatic_Cancer",
       "confidence": 0.55,
-      "provenance": "unknown"
+      "provenance": "PMID:38802657"
     },
     {
       "edge_type": "associated_with",
@@ -3494,28 +3494,28 @@
       "source": "BCL2",
       "target": "AML",
       "confidence": 0.78,
-      "provenance": "unknown"
+      "provenance": "PMID:35797463"
     },
     {
       "edge_type": "associated_with",
       "source": "BRAF",
       "target": "Colorectal_Cancer",
       "confidence": 0.75,
-      "provenance": "unknown"
+      "provenance": "PMID:40240371"
     },
     {
       "edge_type": "associated_with",
       "source": "BRAF",
       "target": "HCC",
       "confidence": 0.5,
-      "provenance": "unknown"
+      "provenance": "PMID:37537299"
     },
     {
       "edge_type": "associated_with",
       "source": "BRCA1",
       "target": "Breast_Cancer",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "PMID:7894491"
     },
     {
       "edge_type": "associated_with",
@@ -3529,7 +3529,7 @@
       "source": "BRCA2",
       "target": "Breast_Cancer",
       "confidence": 0.93,
-      "provenance": "unknown"
+      "provenance": "PMID:8524414"
     },
     {
       "edge_type": "associated_with",
@@ -3543,7 +3543,7 @@
       "source": "BRCA2",
       "target": "Pancreatic_Cancer",
       "confidence": 0.75,
-      "provenance": "unknown"
+      "provenance": "PubMed co-mention (unverified)"
     },
     {
       "edge_type": "associated_with",
@@ -3599,7 +3599,7 @@
       "source": "CHEK2",
       "target": "Li_Fraumeni_Syndrome",
       "confidence": 0.55,
-      "provenance": "unknown"
+      "provenance": "PubMed co-mention (unverified)"
     },
     {
       "edge_type": "associated_with",
@@ -3627,14 +3627,14 @@
       "source": "EGFR",
       "target": "Pancreatic_Cancer",
       "confidence": 0.65,
-      "provenance": "unknown"
+      "provenance": "PMID:31221853"
     },
     {
       "edge_type": "associated_with",
       "source": "ERBB2",
       "target": "Colorectal_Cancer",
       "confidence": 0.6,
-      "provenance": "unknown"
+      "provenance": "PMID:39059397"
     },
     {
       "edge_type": "associated_with",
@@ -3655,140 +3655,140 @@
       "source": "HDAC1",
       "target": "AML",
       "confidence": 0.75,
-      "provenance": "unknown"
+      "provenance": "PMID:36424383"
     },
     {
       "edge_type": "associated_with",
       "source": "HDAC1",
       "target": "Breast_Cancer",
       "confidence": 0.7,
-      "provenance": "unknown"
+      "provenance": "PMID:31913353"
     },
     {
       "edge_type": "associated_with",
       "source": "HDAC2",
       "target": "AML",
       "confidence": 0.68,
-      "provenance": "unknown"
+      "provenance": "PMID:35681732"
     },
     {
       "edge_type": "associated_with",
       "source": "HDAC2",
       "target": "Colorectal_Cancer",
       "confidence": 0.72,
-      "provenance": "unknown"
+      "provenance": "PMID:38134358"
     },
     {
       "edge_type": "associated_with",
       "source": "HIF1A",
       "target": "Glioblastoma",
       "confidence": 0.75,
-      "provenance": "unknown"
+      "provenance": "PMID:36351894"
     },
     {
       "edge_type": "associated_with",
       "source": "HIF1A",
       "target": "Pancreatic_Cancer",
       "confidence": 0.72,
-      "provenance": "unknown"
+      "provenance": "PMID:37981080"
     },
     {
       "edge_type": "associated_with",
       "source": "IL6",
       "target": "AML",
       "confidence": 0.65,
-      "provenance": "unknown"
+      "provenance": "literature (unverified); PMID:38902349"
     },
     {
       "edge_type": "associated_with",
       "source": "IL6",
       "target": "Ovarian_Cancer",
       "confidence": 0.62,
-      "provenance": "unknown"
+      "provenance": "PMID:36591515"
     },
     {
       "edge_type": "associated_with",
       "source": "JAK2",
       "target": "AML",
       "confidence": 0.7,
-      "provenance": "unknown"
+      "provenance": "PMID:36122068"
     },
     {
       "edge_type": "associated_with",
       "source": "KIT",
       "target": "AML",
       "confidence": 0.75,
-      "provenance": "unknown"
+      "provenance": "PMID:34700049"
     },
     {
       "edge_type": "associated_with",
       "source": "KIT",
       "target": "Soft_Tissue_Sarcoma",
       "confidence": 0.7,
-      "provenance": "unknown"
+      "provenance": "PMID:30231931"
     },
     {
       "edge_type": "associated_with",
       "source": "MDM2",
       "target": "Glioblastoma",
       "confidence": 0.75,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "associated_with",
       "source": "MDM2",
       "target": "Li_Fraumeni_Syndrome",
       "confidence": 0.7,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "associated_with",
       "source": "MET",
       "target": "HCC",
       "confidence": 0.78,
-      "provenance": "unknown"
+      "provenance": "PMID:28622513"
     },
     {
       "edge_type": "associated_with",
       "source": "MET",
       "target": "NSCLC",
       "confidence": 0.8,
-      "provenance": "unknown"
+      "provenance": "PMID:36441095"
     },
     {
       "edge_type": "associated_with",
       "source": "MMP2",
       "target": "Breast_Cancer",
       "confidence": 0.63,
-      "provenance": "unknown"
+      "provenance": "PMID:40594223"
     },
     {
       "edge_type": "associated_with",
       "source": "MMP2",
       "target": "Melanoma",
       "confidence": 0.65,
-      "provenance": "unknown"
+      "provenance": "PMID:27271600"
     },
     {
       "edge_type": "associated_with",
       "source": "MMP9",
       "target": "Breast_Cancer",
       "confidence": 0.68,
-      "provenance": "unknown"
+      "provenance": "PMID:33958794"
     },
     {
       "edge_type": "associated_with",
       "source": "MMP9",
       "target": "Colorectal_Cancer",
       "confidence": 0.72,
-      "provenance": "unknown"
+      "provenance": "PMID:39613801"
     },
     {
       "edge_type": "associated_with",
       "source": "MTOR",
       "target": "Breast_Cancer",
       "confidence": 0.8,
-      "provenance": "unknown"
+      "provenance": "PMID:38630392"
     },
     {
       "edge_type": "associated_with",
@@ -3802,28 +3802,28 @@
       "source": "NFKB1",
       "target": "AML",
       "confidence": 0.68,
-      "provenance": "unknown"
+      "provenance": "PMID:39940906"
     },
     {
       "edge_type": "associated_with",
       "source": "NFKB1",
       "target": "Colorectal_Cancer",
       "confidence": 0.72,
-      "provenance": "unknown"
+      "provenance": "PMID:39861077"
     },
     {
       "edge_type": "associated_with",
       "source": "NPL4",
       "target": "AML",
       "confidence": 0.6,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "associated_with",
       "source": "NPL4",
       "target": "Glioblastoma",
       "confidence": 0.55,
-      "provenance": "unknown"
+      "provenance": "review:CB-5083_VCP_inhibitor_glioblastoma_target"
     },
     {
       "edge_type": "associated_with",
@@ -3851,105 +3851,105 @@
       "source": "PDGFRA",
       "target": "Glioblastoma",
       "confidence": 0.78,
-      "provenance": "unknown"
+      "provenance": "PMID:31327527"
     },
     {
       "edge_type": "associated_with",
       "source": "PDGFRA",
       "target": "Soft_Tissue_Sarcoma",
       "confidence": 0.68,
-      "provenance": "unknown"
+      "provenance": "PMID:36351335"
     },
     {
       "edge_type": "associated_with",
       "source": "RAF1",
       "target": "RCC",
       "confidence": 0.62,
-      "provenance": "unknown"
+      "provenance": "PMID:40557814"
     },
     {
       "edge_type": "associated_with",
       "source": "RB1",
       "target": "Breast_Cancer",
       "confidence": 0.85,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "associated_with",
       "source": "RB1",
       "target": "Soft_Tissue_Sarcoma",
       "confidence": 0.75,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "associated_with",
       "source": "STAT3",
       "target": "AML",
       "confidence": 0.72,
-      "provenance": "unknown"
+      "provenance": "PMID:35895896"
     },
     {
       "edge_type": "associated_with",
       "source": "TGFB1",
       "target": "Colorectal_Cancer",
       "confidence": 0.6,
-      "provenance": "unknown"
+      "provenance": "PMID:39261380"
     },
     {
       "edge_type": "associated_with",
       "source": "TGFB1",
       "target": "Pancreatic_Cancer",
       "confidence": 0.78,
-      "provenance": "unknown"
+      "provenance": "PMID:40269162"
     },
     {
       "edge_type": "associated_with",
       "source": "TP53",
       "target": "Breast_Cancer",
       "confidence": 0.82,
-      "provenance": "unknown"
+      "provenance": "PMID:39393354"
     },
     {
       "edge_type": "associated_with",
       "source": "TP53",
       "target": "Colorectal_Cancer",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "PMID:36768460"
     },
     {
       "edge_type": "associated_with",
       "source": "TP53",
       "target": "Ewing_Sarcoma",
       "confidence": 0.6,
-      "provenance": "unknown"
+      "provenance": "PMID:29977059"
     },
     {
       "edge_type": "associated_with",
       "source": "TP53",
       "target": "NSCLC",
       "confidence": 0.9,
-      "provenance": "unknown"
+      "provenance": "PMID:37683526"
     },
     {
       "edge_type": "associated_with",
       "source": "TP53",
       "target": "Ovarian_Cancer",
       "confidence": 0.92,
-      "provenance": "unknown"
+      "provenance": "PMID:37856201"
     },
     {
       "edge_type": "associated_with",
       "source": "TXNRD1",
       "target": "AML",
       "confidence": 0.6,
-      "provenance": "unknown"
+      "provenance": "PMID:40576936"
     },
     {
       "edge_type": "associated_with",
       "source": "TXNRD1",
       "target": "Ovarian_Cancer",
       "confidence": 0.55,
-      "provenance": "unknown"
+      "provenance": "PMID:30196236"
     },
     {
       "edge_type": "associated_with",
@@ -3963,35 +3963,35 @@
       "source": "VEGFR2",
       "target": "Soft_Tissue_Sarcoma",
       "confidence": 0.65,
-      "provenance": "unknown"
+      "provenance": "PMID:32333216"
     },
     {
       "edge_type": "binds",
       "source": "CCND1",
       "target": "CDK4",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04110, cancer_proteins.py"
     },
     {
       "edge_type": "binds",
       "source": "CCND1",
       "target": "CDK6",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04110, cancer_proteins.py"
     },
     {
       "edge_type": "binds",
       "source": "MYC",
       "target": "MAX",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04110, cancer_proteins.py"
     },
     {
       "edge_type": "binds",
       "source": "STAG2",
       "target": "SMC1A",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "PMID:41173205, PMID:40219906"
     },
     {
       "edge_type": "binds",
@@ -4005,35 +4005,35 @@
       "source": "RB1",
       "target": "TP53",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa03440, cancer_proteins.py"
     },
     {
       "edge_type": "cooperates",
       "source": "RUNX1",
       "target": "CEBPA",
       "confidence": 0.85,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "cooperates",
       "source": "SF3B1",
       "target": "SRSF2",
       "confidence": 0.87,
-      "provenance": "unknown"
+      "provenance": "review:MDS_co-mutation_splicing_factors"
     },
     {
       "edge_type": "cooperates",
       "source": "SRSF2",
       "target": "U2AF1",
       "confidence": 0.86,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "driver_of",
       "source": "ALK",
       "target": "NSCLC",
       "confidence": 0.92,
-      "provenance": "unknown"
+      "provenance": "PMID:42079655, PMID:42025599"
     },
     {
       "edge_type": "driver_of",
@@ -4061,7 +4061,7 @@
       "source": "CCND1",
       "target": "Breast_Cancer",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "driver_of",
@@ -4075,21 +4075,21 @@
       "source": "CDK4",
       "target": "Soft_Tissue_Sarcoma",
       "confidence": 0.8,
-      "provenance": "unknown"
+      "provenance": "PMID:39796641"
     },
     {
       "edge_type": "driver_of",
       "source": "COX2",
       "target": "Colorectal_Cancer",
       "confidence": 0.8,
-      "provenance": "unknown"
+      "provenance": "PMID:19589728"
     },
     {
       "edge_type": "driver_of",
       "source": "EGFR",
       "target": "Glioblastoma",
       "confidence": 0.85,
-      "provenance": "unknown"
+      "provenance": "PMID:31327527"
     },
     {
       "edge_type": "driver_of",
@@ -4110,7 +4110,7 @@
       "source": "FLT3",
       "target": "AML",
       "confidence": 0.9,
-      "provenance": "unknown"
+      "provenance": "PMID:42175928, PMID:42173694"
     },
     {
       "edge_type": "driver_of",
@@ -4124,14 +4124,14 @@
       "source": "HIF1A",
       "target": "RCC",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "PMID:39477683"
     },
     {
       "edge_type": "driver_of",
       "source": "IL6",
       "target": "Multiple_Myeloma",
       "confidence": 0.85,
-      "provenance": "unknown"
+      "provenance": "PMID:17699365"
     },
     {
       "edge_type": "driver_of",
@@ -4166,7 +4166,7 @@
       "source": "KIT",
       "target": "GIST",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "PMID:42176217, PMID:42169940"
     },
     {
       "edge_type": "driver_of",
@@ -4180,14 +4180,14 @@
       "source": "KRAS",
       "target": "NSCLC",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "PMID:37683526"
     },
     {
       "edge_type": "driver_of",
       "source": "KRAS",
       "target": "Pancreatic_Cancer",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "PMID:42149255, PMID:42126708"
     },
     {
       "edge_type": "driver_of",
@@ -4201,7 +4201,7 @@
       "source": "MDM2",
       "target": "Soft_Tissue_Sarcoma",
       "confidence": 0.82,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "driver_of",
@@ -4215,35 +4215,35 @@
       "source": "PDGFRA",
       "target": "GIST",
       "confidence": 0.85,
-      "provenance": "unknown"
+      "provenance": "PMID:33737510"
     },
     {
       "edge_type": "driver_of",
       "source": "PIK3CA",
       "target": "Breast_Cancer",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "driver_of",
       "source": "PTEN",
       "target": "Glioblastoma",
       "confidence": 0.9,
-      "provenance": "unknown"
+      "provenance": "PMID:42130630, PMID:42104587"
     },
     {
       "edge_type": "driver_of",
       "source": "PTEN",
       "target": "Prostate_Cancer",
       "confidence": 0.85,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "driver_of",
       "source": "ROS1",
       "target": "NSCLC",
       "confidence": 0.85,
-      "provenance": "unknown"
+      "provenance": "PMID:39177972"
     },
     {
       "edge_type": "driver_of",
@@ -4264,21 +4264,21 @@
       "source": "TP53",
       "target": "Li_Fraumeni_Syndrome",
       "confidence": 0.99,
-      "provenance": "unknown"
+      "provenance": "PMID:42171906, PMID:42168203"
     },
     {
       "edge_type": "driver_of",
       "source": "TP53",
       "target": "Soft_Tissue_Sarcoma",
       "confidence": 0.85,
-      "provenance": "unknown"
+      "provenance": "PMID:31276706"
     },
     {
       "edge_type": "driver_of",
       "source": "VEGFR2",
       "target": "HCC",
       "confidence": 0.82,
-      "provenance": "unknown"
+      "provenance": "PMID:32976798"
     },
     {
       "edge_type": "driver_of",
@@ -4292,49 +4292,49 @@
       "source": "Nivolumab",
       "target": "CD8A",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "FDA:BLA125554, mechanism:PD-1_blockade_restores_T_cell_activity"
     },
     {
       "edge_type": "enhances",
       "source": "Pembrolizumab",
       "target": "CD8A",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "FDA:BLA125514, mechanism:PD-1_blockade_restores_T_cell_activity"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Artesunate",
       "target": "VEGFR2",
       "confidence": 0.55,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Atorvastatin",
       "target": "KRAS",
       "confidence": 0.72,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Atorvastatin",
       "target": "MTOR",
       "confidence": 0.55,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Atorvastatin",
       "target": "NRAS",
       "confidence": 0.68,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Bazedoxifene",
       "target": "STAT3",
       "confidence": 0.65,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
@@ -4348,266 +4348,266 @@
       "source": "Celecoxib",
       "target": "AKT1",
       "confidence": 0.55,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Chloroquine",
       "target": "MTOR",
       "confidence": 0.55,
-      "provenance": "unknown"
+      "provenance": "literature:autophagy_inhibition_mTOR_crosstalk"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Cimetidine",
       "target": "VEGFR2",
       "confidence": 0.55,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Clarithromycin",
       "target": "MTOR",
       "confidence": 0.5,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Diclofenac",
       "target": "MYC",
       "confidence": 0.55,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Imatinib",
       "target": "AKT1",
       "confidence": 0.7,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Ivermectin",
       "target": "AKT1",
       "confidence": 0.65,
-      "provenance": "unknown"
+      "provenance": "review:ivermectin_repurposing_PI3K-Akt_pathway"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Ivermectin",
       "target": "MTOR",
       "confidence": 0.6,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Leflunomide",
       "target": "STAT3",
       "confidence": 0.5,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Metformin",
       "target": "AKT1",
       "confidence": 0.65,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Nelfinavir",
       "target": "MTOR",
       "confidence": 0.6,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Osimertinib",
       "target": "MAPK1",
       "confidence": 0.75,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Propranolol",
       "target": "VEGFR2",
       "confidence": 0.6,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Sotorasib",
       "target": "MAP2K1",
       "confidence": 0.8,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "indirect_inhibitor",
       "source": "Thalidomide",
       "target": "VEGFR2",
       "confidence": 0.72,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "AKT1",
       "target": "BAX",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04014, cancer_proteins.py"
     },
     {
       "edge_type": "inhibits",
       "source": "ARF",
       "target": "MDM2",
       "confidence": 0.94,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04115, cancer_proteins.py"
     },
     {
       "edge_type": "inhibits",
       "source": "Adagrasib",
       "target": "KRAS",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA216340, mechanism:KRAS_G12C_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Afatinib",
       "target": "EGFR",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA201292, mechanism:irreversible_EGFR_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "Afatinib",
       "target": "ERBB2",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA201292, mechanism:pan-HER_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "Alectinib",
       "target": "ALK",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA208434, mechanism:ALK_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "Alectinib",
       "target": "RET",
       "confidence": 0.85,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA208434, mechanism:ALK_RET_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "Artesunate",
       "target": "NFKB1",
       "confidence": 0.7,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Aspirin",
       "target": "COX2",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "established:COX-1_COX-2_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Aspirin",
       "target": "NFKB1",
       "confidence": 0.7,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Aspirin",
       "target": "STAT3",
       "confidence": 0.6,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Atezolizumab",
       "target": "CD274",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "FDA:BLA761034, mechanism:PD-L1_antibody"
     },
     {
       "edge_type": "inhibits",
       "source": "Auranofin",
       "target": "NFKB1",
       "confidence": 0.72,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Auranofin",
       "target": "TXNRD1",
       "confidence": 0.9,
-      "provenance": "unknown"
+      "provenance": "PMID:42039266, PMID:41654145"
     },
     {
       "edge_type": "inhibits",
       "source": "BCL2",
       "target": "BAK",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04210, cancer_proteins.py"
     },
     {
       "edge_type": "inhibits",
       "source": "BCL2",
       "target": "BAX",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04210, cancer_proteins.py"
     },
     {
       "edge_type": "inhibits",
       "source": "Bazedoxifene",
       "target": "IL6",
       "confidence": 0.75,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Binimetinib",
       "target": "MAP2K1",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA210498, mechanism:MEK_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Brigatinib",
       "target": "ALK",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA208772, mechanism:ALK_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "Brigatinib",
       "target": "EGFR",
       "confidence": 0.75,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA208772, mechanism:ALK_EGFR_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "CD274",
       "target": "PDCD1",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "PMID:42173765, PMID:42151523"
     },
     {
       "edge_type": "inhibits",
       "source": "Capmatinib",
       "target": "MET",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA213591, mechanism:MET_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "Celecoxib",
       "target": "COX2",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA021156, mechanism:selective_COX-2_inhibitor"
     },
     {
       "edge_type": "inhibits",
@@ -4621,7 +4621,7 @@
       "source": "Cimetidine",
       "target": "NFKB1",
       "confidence": 0.5,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
@@ -4635,35 +4635,35 @@
       "source": "Clarithromycin",
       "target": "IL6",
       "confidence": 0.65,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Cobimetinib",
       "target": "MAP2K1",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA206192, mechanism:MEK_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Crizotinib",
       "target": "ALK",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA202570, mechanism:ALK_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "Crizotinib",
       "target": "MET",
       "confidence": 0.93,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA202570, mechanism:ALK_MET_ROS1_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Crizotinib",
       "target": "ROS1",
       "confidence": 0.91,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA202570, mechanism:ALK_MET_ROS1_inhibitor"
     },
     {
       "edge_type": "inhibits",
@@ -4677,77 +4677,77 @@
       "source": "Diclofenac",
       "target": "COX2",
       "confidence": 0.93,
-      "provenance": "unknown"
+      "provenance": "established:non-selective_COX_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Disulfiram",
       "target": "NPL4",
       "confidence": 0.8,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Doxycycline",
       "target": "MMP2",
       "confidence": 0.8,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Doxycycline",
       "target": "MMP9",
       "confidence": 0.82,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Durvalumab",
       "target": "CD274",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "FDA:BLA761069, mechanism:PD-L1_antibody"
     },
     {
       "edge_type": "inhibits",
       "source": "Encorafenib",
       "target": "BRAF",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA210496, mechanism:BRAF_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Entrectinib",
       "target": "ALK",
       "confidence": 0.9,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA212725, mechanism:TRK_ROS1_ALK_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Entrectinib",
       "target": "NTRK1",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA212725, mechanism:pan-TRK_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Entrectinib",
       "target": "NTRK2",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA212725, mechanism:pan-TRK_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Entrectinib",
       "target": "NTRK3",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA212725, mechanism:pan-TRK_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Entrectinib",
       "target": "ROS1",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA212725, mechanism:TRK_ROS1_ALK_inhibitor"
     },
     {
       "edge_type": "inhibits",
@@ -4768,28 +4768,28 @@
       "source": "Fluorouracil",
       "target": "TYMS",
       "confidence": 0.93,
-      "provenance": "unknown"
+      "provenance": "FDA:established_mechanism, thymidylate_synthase_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Gefitinib",
       "target": "EGFR",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA021399, mechanism:reversible_EGFR_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "IDH1",
       "target": "TET2",
       "confidence": 0.89,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "IDH2",
       "target": "TET2",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
@@ -4803,35 +4803,35 @@
       "source": "Imatinib",
       "target": "KIT",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA021588, mechanism:KIT_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Imatinib",
       "target": "PDGFRA",
       "confidence": 0.94,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA021588, mechanism:PDGFRA_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Indomethacin",
       "target": "COX2",
       "confidence": 0.92,
-      "provenance": "unknown"
+      "provenance": "established:non-selective_COX_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Indomethacin",
       "target": "NFKB1",
       "confidence": 0.55,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Ipilimumab",
       "target": "CTLA4",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "FDA:BLA125377, mechanism:CTLA-4_antibody"
     },
     {
       "edge_type": "inhibits",
@@ -4845,182 +4845,182 @@
       "source": "Irinotecan",
       "target": "TOP1",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA020571, mechanism:TOP1_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Itraconazole",
       "target": "MTOR",
       "confidence": 0.6,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Itraconazole",
       "target": "VEGFR2",
       "confidence": 0.72,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Ivermectin",
       "target": "STAT3",
       "confidence": 0.7,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Lapatinib",
       "target": "EGFR",
       "confidence": 0.94,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA022059, mechanism:dual_EGFR_HER2_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "Lapatinib",
       "target": "ERBB2",
       "confidence": 0.93,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA022059, mechanism:dual_EGFR_HER2_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "Larotrectinib",
       "target": "NTRK1",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA211710, mechanism:pan-TRK_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Larotrectinib",
       "target": "NTRK2",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA211710, mechanism:pan-TRK_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Larotrectinib",
       "target": "NTRK3",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA211710, mechanism:pan-TRK_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Leflunomide",
       "target": "PDGFRA",
       "confidence": 0.6,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Lorlatinib",
       "target": "ALK",
       "confidence": 0.99,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA210868, mechanism:3rd_gen_ALK_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "Lorlatinib",
       "target": "ROS1",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA210868, mechanism:ALK_ROS1_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "MCL1",
       "target": "BAK",
       "confidence": 0.94,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04210, cancer_proteins.py"
     },
     {
       "edge_type": "inhibits",
       "source": "MCL1",
       "target": "BAX",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04210, cancer_proteins.py"
     },
     {
       "edge_type": "inhibits",
       "source": "Mebendazole",
       "target": "BRAF",
       "confidence": 0.7,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Mebendazole",
       "target": "VEGFR2",
       "confidence": 0.82,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Metformin",
       "target": "MTOR",
       "confidence": 0.78,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Nelfinavir",
       "target": "AKT1",
       "confidence": 0.75,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Niclosamide",
       "target": "MTOR",
       "confidence": 0.78,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Niclosamide",
       "target": "NFKB1",
       "confidence": 0.75,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Niclosamide",
       "target": "STAT3",
       "confidence": 0.85,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Nitroglycerin",
       "target": "HIF1A",
       "confidence": 0.6,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Nivolumab",
       "target": "PDCD1",
       "confidence": 0.99,
-      "provenance": "unknown"
+      "provenance": "FDA:BLA125554, mechanism:PD-1_antibody"
     },
     {
       "edge_type": "inhibits",
       "source": "Osimertinib",
       "target": "EGFR",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA208065, mechanism:3rd_gen_EGFR_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "PTEN",
       "target": "AKT1",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04151, cancer_proteins.py"
     },
     {
       "edge_type": "inhibits",
       "source": "PTEN",
       "target": "PIK3CA",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04151, cancer_proteins.py"
     },
     {
       "edge_type": "inhibits",
@@ -5041,91 +5041,91 @@
       "source": "Pembrolizumab",
       "target": "PDCD1",
       "confidence": 0.99,
-      "provenance": "unknown"
+      "provenance": "FDA:BLA125514, mechanism:PD-1_antibody"
     },
     {
       "edge_type": "inhibits",
       "source": "Pemetrexed",
       "target": "TYMS",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA021462, mechanism:antifolate_TS_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Pirfenidone",
       "target": "TGFB1",
       "confidence": 0.82,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA022535, mechanism:TGF-beta_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Pralsetinib",
       "target": "RET",
       "confidence": 0.99,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA213721, mechanism:RET_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "Propranolol",
       "target": "NFKB1",
       "confidence": 0.5,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "RB1",
       "target": "E2F1",
       "confidence": 0.99,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04110, cancer_proteins.py"
     },
     {
       "edge_type": "inhibits",
       "source": "Ramucirumab",
       "target": "KDR",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "FDA:BLA125477, mechanism:VEGFR2_antibody"
     },
     {
       "edge_type": "inhibits",
       "source": "Regorafenib",
       "target": "KDR",
       "confidence": 0.9,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA203085, mechanism:multikinase_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Regorafenib",
       "target": "RET",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA203085, mechanism:multikinase_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Ribociclib",
       "target": "CDK4",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA209092, mechanism:CDK4_6_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Ribociclib",
       "target": "CDK6",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA209092, mechanism:CDK4_6_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Ritonavir",
       "target": "AKT1",
       "confidence": 0.65,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Ritonavir",
       "target": "NFKB1",
       "confidence": 0.55,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
@@ -5139,56 +5139,56 @@
       "source": "Selpercatinib",
       "target": "RET",
       "confidence": 0.99,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA213246, mechanism:RET_TKI"
     },
     {
       "edge_type": "inhibits",
       "source": "Sorafenib",
       "target": "BRAF",
       "confidence": 0.85,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA021923, mechanism:multikinase_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Sorafenib",
       "target": "RAF1",
       "confidence": 0.83,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA021923, mechanism:multikinase_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Sorafenib",
       "target": "VEGFR2",
       "confidence": 0.9,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA021923, mechanism:multikinase_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Sotorasib",
       "target": "KRAS",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA214665, mechanism:KRAS_G12C_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Sunitinib",
       "target": "FLT3",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA021938, mechanism:multikinase_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Sunitinib",
       "target": "KIT",
       "confidence": 0.94,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA021938, mechanism:multikinase_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Sunitinib",
       "target": "PDGFRA",
       "confidence": 0.92,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA021938, mechanism:multikinase_inhibitor"
     },
     {
       "edge_type": "inhibits",
@@ -5202,49 +5202,49 @@
       "source": "Suramin",
       "target": "PDGFRA",
       "confidence": 0.62,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "Suramin",
       "target": "VEGFR2",
       "confidence": 0.65,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "inhibits",
       "source": "TP53",
       "target": "CCND1",
       "confidence": 0.91,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa03440, cancer_proteins.py"
     },
     {
       "edge_type": "inhibits",
       "source": "TP53",
       "target": "CDK4",
       "confidence": 0.87,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa03440, cancer_proteins.py"
     },
     {
       "edge_type": "inhibits",
       "source": "TP53",
       "target": "MYC",
       "confidence": 0.87,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa03440, cancer_proteins.py"
     },
     {
       "edge_type": "inhibits",
       "source": "Temsirolimus",
       "target": "MTOR",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA022088, mechanism:mTOR_inhibitor"
     },
     {
       "edge_type": "inhibits",
       "source": "Tepotinib",
       "target": "MET",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA214096, mechanism:MET_TKI"
     },
     {
       "edge_type": "inhibits",
@@ -5265,28 +5265,28 @@
       "source": "Trastuzumab_deruxtecan",
       "target": "ERBB2",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "FDA:BLA761139, mechanism:HER2_ADC"
     },
     {
       "edge_type": "inhibits",
       "source": "Trastuzumab_deruxtecan",
       "target": "TOP1",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "FDA:BLA761139, mechanism:ADC_payload_TOP1i"
     },
     {
       "edge_type": "inhibits",
       "source": "Valproic_Acid",
       "target": "HDAC1",
       "confidence": 0.85,
-      "provenance": "unknown"
+      "provenance": "literature:established_HDAC_inhibitor, off-label_repurposing"
     },
     {
       "edge_type": "inhibits",
       "source": "Valproic_Acid",
       "target": "HDAC2",
       "confidence": 0.83,
-      "provenance": "unknown"
+      "provenance": "literature:established_HDAC_inhibitor, off-label_repurposing"
     },
     {
       "edge_type": "inhibits",
@@ -5307,217 +5307,217 @@
       "source": "Verapamil",
       "target": "ABCB1",
       "confidence": 0.88,
-      "provenance": "unknown"
+      "provenance": "established:P-glycoprotein_inhibitor"
     },
     {
       "edge_type": "interacts",
       "source": "BRCA1",
       "target": "BRCA2",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa03440, cancer_proteins.py"
     },
     {
       "edge_type": "interacts",
       "source": "BRCA2",
       "target": "RAD51",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa03440, cancer_proteins.py"
     },
     {
       "edge_type": "pathway_crosstalk",
       "source": "DNMT3A",
       "target": "TET2",
       "confidence": 0.82,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "pathway_crosstalk",
       "source": "KRAS",
       "target": "TP53",
       "confidence": 0.82,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04014, cancer_proteins.py"
     },
     {
       "edge_type": "pathway_modulator",
       "source": "Imatinib",
       "target": "KRAS",
       "confidence": 0.75,
-      "provenance": "unknown"
+      "provenance": "literature:BCR-ABL_downstream_RAS_pathway"
     },
     {
       "edge_type": "phosphorylates",
       "source": "ATM",
       "target": "CHEK2",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa03440, cancer_proteins.py"
     },
     {
       "edge_type": "phosphorylates",
       "source": "ATM",
       "target": "TP53",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa03440, cancer_proteins.py"
     },
     {
       "edge_type": "phosphorylates",
       "source": "ATR",
       "target": "CHEK2",
       "confidence": 0.93,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa03440, cancer_proteins.py"
     },
     {
       "edge_type": "phosphorylates",
       "source": "ATR",
       "target": "TP53",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa03440, cancer_proteins.py"
     },
     {
       "edge_type": "phosphorylates",
       "source": "BRAF",
       "target": "MEK1",
       "confidence": 0.99,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04010, cancer_proteins.py"
     },
     {
       "edge_type": "phosphorylates",
       "source": "CDK4",
       "target": "RB1",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04110, cancer_proteins.py"
     },
     {
       "edge_type": "phosphorylates",
       "source": "CDK6",
       "target": "RB1",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04110, cancer_proteins.py"
     },
     {
       "edge_type": "phosphorylates",
       "source": "CHEK2",
       "target": "TP53",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa03440, cancer_proteins.py"
     },
     {
       "edge_type": "phosphorylates",
       "source": "FLT3",
       "target": "RUNX1",
       "confidence": 0.8,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04014, cancer_proteins.py"
     },
     {
       "edge_type": "phosphorylates",
       "source": "FLT3",
       "target": "STAT5A",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04014, cancer_proteins.py"
     },
     {
       "edge_type": "phosphorylates",
       "source": "FLT3",
       "target": "STAT5B",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04014, cancer_proteins.py"
     },
     {
       "edge_type": "phosphorylates",
       "source": "JAK2",
       "target": "STAT3",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04630, cancer_proteins.py"
     },
     {
       "edge_type": "phosphorylates",
       "source": "JAK2",
       "target": "STAT5",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04630, cancer_proteins.py"
     },
     {
       "edge_type": "phosphorylates",
       "source": "MEK1",
       "target": "ERK1",
       "confidence": 0.99,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04010, cancer_proteins.py"
     },
     {
       "edge_type": "phosphorylates",
       "source": "MEK1",
       "target": "ERK2",
       "confidence": 0.99,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04010, cancer_proteins.py"
     },
     {
       "edge_type": "phosphorylates",
       "source": "RAF1",
       "target": "MEK1",
       "confidence": 0.99,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04010, cancer_proteins.py"
     },
     {
       "edge_type": "regulated_by",
       "source": "MYC",
       "target": "TP53",
       "confidence": 0.86,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa03440, cancer_proteins.py"
     },
     {
       "edge_type": "regulated_by",
       "source": "TP53",
       "target": "MDM2",
       "confidence": 0.99,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04115, cancer_proteins.py"
     },
     {
       "edge_type": "regulates",
       "source": "MTOR",
       "target": "TP53",
       "confidence": 0.85,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa03440, cancer_proteins.py"
     },
     {
       "edge_type": "sequesters",
       "source": "NPM1",
       "target": "ARF",
       "confidence": 0.92,
-      "provenance": "unknown"
+      "provenance": "PMID:42007444, PMID:40858804"
     },
     {
       "edge_type": "synergizes_with",
       "source": "Dabrafenib",
       "target": "Trametinib",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "FDA:NDA202806_204114, approved_combination_BRAF_MEK"
     },
     {
       "edge_type": "synergizes_with",
       "source": "Everolimus",
       "target": "Erlotinib",
       "confidence": 0.65,
-      "provenance": "unknown"
+      "provenance": "preclinical:mTOR_EGFR_dual_inhibition"
     },
     {
       "edge_type": "synergizes_with",
       "source": "Olaparib",
       "target": "Bevacizumab",
       "confidence": 0.8,
-      "provenance": "unknown"
+      "provenance": "literature (unverified)"
     },
     {
       "edge_type": "synergizes_with",
       "source": "Palbociclib",
       "target": "Trastuzumab",
       "confidence": 0.75,
-      "provenance": "unknown"
+      "provenance": "clinical:monarcHER_trial, combination"
     },
     {
       "edge_type": "synergizes_with",
       "source": "Venetoclax",
       "target": "Ruxolitinib",
       "confidence": 0.7,
-      "provenance": "unknown"
+      "provenance": "preclinical:BCL2_JAK2_combination_rationale"
     },
     {
       "edge_type": "synthetic_lethal",
@@ -5559,7 +5559,7 @@
       "source": "Bevacizumab",
       "target": "Colorectal_Cancer",
       "confidence": 0.94,
-      "provenance": "unknown"
+      "provenance": "PMID:42160312, PMID:42129304"
     },
     {
       "edge_type": "treats",
@@ -5573,7 +5573,7 @@
       "source": "Cetuximab",
       "target": "Colorectal_Cancer",
       "confidence": 0.93,
-      "provenance": "unknown"
+      "provenance": "PMID:42176792, PMID:42169194"
     },
     {
       "edge_type": "treats",
@@ -5594,7 +5594,7 @@
       "source": "Dabrafenib",
       "target": "Melanoma",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "PMID:42006249, PMID:41995376"
     },
     {
       "edge_type": "treats",
@@ -5608,7 +5608,7 @@
       "source": "Erlotinib",
       "target": "NSCLC",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "PMID:42170287, PMID:42125848"
     },
     {
       "edge_type": "treats",
@@ -5622,7 +5622,7 @@
       "source": "Everolimus",
       "target": "RCC",
       "confidence": 0.93,
-      "provenance": "unknown"
+      "provenance": "PMID:42121276, PMID:41976289"
     },
     {
       "edge_type": "treats",
@@ -5636,7 +5636,7 @@
       "source": "Imatinib",
       "target": "CML",
       "confidence": 0.99,
-      "provenance": "unknown"
+      "provenance": "PMID:42174092, PMID:42161431"
     },
     {
       "edge_type": "treats",
@@ -5664,7 +5664,7 @@
       "source": "Metformin",
       "target": "Type2_Diabetes",
       "confidence": 0.99,
-      "provenance": "unknown"
+      "provenance": "PMID:41897350, PMID:41639142"
     },
     {
       "edge_type": "treats",
@@ -5699,7 +5699,7 @@
       "source": "Olaparib",
       "target": "Ovarian_Cancer",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "PMID:42176176, PMID:42157333"
     },
     {
       "edge_type": "treats",
@@ -5713,7 +5713,7 @@
       "source": "Palbociclib",
       "target": "Breast_Cancer",
       "confidence": 0.96,
-      "provenance": "unknown"
+      "provenance": "PMID:42174712, PMID:42051387"
     },
     {
       "edge_type": "treats",
@@ -5769,7 +5769,7 @@
       "source": "Ruxolitinib",
       "target": "Myelofibrosis",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "PMID:42171355, PMID:42133107"
     },
     {
       "edge_type": "treats",
@@ -5797,7 +5797,7 @@
       "source": "Sunitinib",
       "target": "RCC",
       "confidence": 0.94,
-      "provenance": "unknown"
+      "provenance": "PMID:42164368, PMID:42158880"
     },
     {
       "edge_type": "treats",
@@ -5811,42 +5811,42 @@
       "source": "Thalidomide",
       "target": "Multiple_Myeloma",
       "confidence": 0.92,
-      "provenance": "unknown"
+      "provenance": "PMID:42023513, PMID:42009417"
     },
     {
       "edge_type": "treats",
       "source": "Trametinib",
       "target": "Melanoma",
       "confidence": 0.95,
-      "provenance": "unknown"
+      "provenance": "PMID:42108204, PMID:42006249"
     },
     {
       "edge_type": "treats",
       "source": "Trastuzumab",
       "target": "Breast_Cancer",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "PMID:42170835, PMID:42170576"
     },
     {
       "edge_type": "treats",
       "source": "Vemurafenib",
       "target": "Melanoma",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "PMID:42116267, PMID:42114556"
     },
     {
       "edge_type": "treats",
       "source": "Venetoclax",
       "target": "CLL",
       "confidence": 0.97,
-      "provenance": "unknown"
+      "provenance": "PMID:42164027, PMID:42156574"
     },
     {
       "edge_type": "ubiquitinates",
       "source": "MDM2",
       "target": "TP53",
       "confidence": 0.98,
-      "provenance": "unknown"
+      "provenance": "KEGG:hsa04115, cancer_proteins.py"
     },
     {
       "source": ".Alpha.1-Proteinase Inhibitor Human",

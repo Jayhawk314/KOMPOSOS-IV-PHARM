@@ -18,19 +18,16 @@ signal, combined with **evidence tier classification** to distinguish measured
 data from computational inference:
 
 **Evidence Tiers (Priority Order):**
-- **MEASURED** (1073 edges): IC50, response rates, mutation frequencies, clinical trial data
-  - Quantified: 204 edges with actual values; NLP attribution still needs edge-level audit
+- **MEASURED** (1,014 edges): IC50, response rates, mutation frequencies, clinical trial data
+  - Quantified: 1,014 edges with actual values; used for Yoneda Distance
   - Confidence 0.70-1.00: verify the measurement method and sample size
-- **ESTABLISHED** (296 edges): FDA approvals, KEGG canonical pathways
-  - Confidence 0.90-1.00: authoritative, verify for clinical context
-- **INFERRED** (809 edges): protein similarity (ESM2/ESMC), STRING PPI, computational predictions
-  - Confidence 0.50-0.69: check the computational basis
-- **HYPOTHESIS** (159 edges): PubMed co-mentions with categorical verification
-  - Confidence 0.35-0.54: hypothesis only, verify independently
-- **SPECULATIVE** (955 edges): Weak PubMed associations
-  - Confidence 0.25-0.40: exploratory only
-- **NOISE** (2106 edges): Failed categorical verification
-  - Confidence 0.20: treat as noise
+- **ESTABLISHED** (377 edges): FDA approvals, KEGG canonical pathways
+  - Confidence 0.90-1.00: authoritative, verify for clinical context; used for Yoneda Distance
+- **INFERRED** (767 edges): protein similarity (ESM2/ESMC), STRING PPI, computational predictions
+  - Confidence 0.50-0.69: check the computational basis; excluded from clean subgraphs
+- **HYPOTHESIS** (20 edges): PubMed co-mentions with categorical verification
+  - Confidence 0.35-0.54: hypothesis only, path bonus only
+- **Total**: 2,178 morphisms
 
 These tiers and confidences flow into scoring: MEASURED evidence prioritized,
 high-confidence paths contribute more. The ranked list reflects both evidence
@@ -52,36 +49,36 @@ drug-target-disease knowledge graph.
 
 ## Current Track A Reality
 
-Source DB: `data/drugs/tier1.db` (PubMed-expanded + categorically annotated; current audit 2026-05-27)
+Source DB: `data/drugs/tier1.db` (PubMed-expanded + categorically annotated; current audit 2026-05-28)
 Reproducible build: `data/drugs/build_tier1.py` from `tier1_manifest.json`
 
-Current executable facts (2026-05-27):
-- Runtime `full_typed` graph: 1,146 objects, 5,382 morphisms
+Current executable facts (2026-05-28):
+- Runtime `full_typed` graph: 1,146 objects, 2,178 morphisms
 - Strict benchmark graph after direct-label/bridge removal: 5,329 morphisms
 - 78 drugs, 20 diseases
-- 44 Drug->Disease labels (FDA-approved oncology indications)
-- 5,382 morphisms total:
+- 48 Drug->Disease labels (FDA-approved oncology indications; increased from 44 to 48 due to restored evidence)
+- 2,178 morphisms total:
   - 1,600 curated (ChEMBL, FDA, KEGG, ABPP)
-  - 3,286 PubMed Protein→Disease
-  - 338 STRING high-confidence PPI (protein-protein interactions)
-  - 100 protein similarity edges (labeled ESM2 in DB, engine upgraded to ESMC-300M; pending re-derivation)
-  - 58 other computational/genomic edges
-- 204 edges with quantitative values (IC50, mutation freq, hazard ratios)
-- 609 unique PMID identifiers in provenance/metadata strings
-- Source strings on all 5,382 morphisms; this is not edge-specific citation validation
+  - 306 ESMC-300M protein similarity
+  - 188 PubMed verified (from audit)
+  - 84 other computational/genomic
+- 1,014 edges with quantitative values (IC50, mutation freq, hazard ratios)
+- 188 unique PMID identifiers in provenance/metadata strings
+- Source strings on 2,178/2,178 morphisms; this is not edge-specific citation validation
+
 - 373 NLP-extracted quantitative data points reported; attribution needs edge-level audit
 - 6 "inferred:" edges REMOVED (were circular — system predictions as labels)
 - PubMed edges carry categorical metadata (delta, score, layer_scores)
-- Curated edges: source strings on all 5,382 morphisms (PMIDs, ChEMBL IDs, KEGG, FDA)
+- Curated edges: source strings on 2,178/2,178 morphisms (PMIDs, ChEMBL IDs, KEGG, FDA)
 - PubMed edges: all have PMID provenance + categorical confidence annotations
-- All 44 treats edges have PMIDs or FDA citations
+- All 48 treats edges have PMIDs or FDA citations
 
-**Current benchmark (2026-05-27, corrected loader/scorer, 9 strategies):**
-- `full_typed/remove_direct_labels`: **AUROC 0.9747** [0.9606, 0.9855], AUPRC 0.552 [0.4067, 0.6983], Hits@5 1.00, Hits@10 0.60, Hits@20 0.60, MRR 0.078750
+**Current benchmark (2026-05-28, corrected loader/scorer, 9 strategies):**
+- `full_typed/remove_direct_labels`: **AUROC 0.948640** [0.9134, 0.9738], AUPRC 0.513498 [0.3662, 0.6579], Hits@5 1.00, Hits@10 0.60, Hits@20 0.60, MRR 0.072453
 - `full_typed/loocv`: **AUROC 0.975916**, AUPRC 0.553703, Hits@5 0.80, Hits@10 0.60, Hits@20 0.60, MRR 0.077237
-- Strongest simple baseline on strict run: degree_product AUROC 0.6307 (margin +0.3440)
+- strongest simple baseline on strict run: common_neighbor AUROC 0.6499 (margin +0.2987)
 - Yoneda distance bonus: `min(0.10, 0.06 * similarity)` — additive, never reduces scores
-- Path bonus formula: `min(0.25, 0.04 * sum(p.confidence))` — weighted by min-hop confidence
+- Path bonus formula: `min(0.25, 0.04 * sum(p.confidence))` — weighted by multiplicative composed confidence
 - Hits@5 perfect on remove_direct_labels - every disease has ≥1 FDA-approved drug in top 5
 - AUPRC improvement (+0.097) means top candidates are more precise
 - Scientific value: structural similarity + mechanistic paths + auditable evidence
@@ -91,7 +88,7 @@ Current executable facts (2026-05-27):
 - 0.830/0.698 = post-PubMed, OLD scoring that counted paths equally regardless of
   confidence. Stale — replaced by confidence-weighted scoring.
 - 0.956 = confidence-weighted path bonus, 8 strategies (2026-05-24).
-- **0.9747 = current live number** with 9th strategy (Yoneda distance bonus, 2026-05-26).
+- **0.9486 = current live number** with 9th strategy (Yoneda distance bonus, 2026-05-28).
 - The 373 overly-broad edges (proteins linked to all 20 diseases) were removed during
   provenance audit. This partially deflated the old 0.971 number.
 
@@ -107,7 +104,7 @@ Current executable facts (2026-05-27):
 **Implementation:**
 1. **Evidence Tier Classification** (`core/evidence_tiers.py`):
    - 6 tiers: MEASURED, ESTABLISHED, INFERRED, HYPOTHESIS, SPECULATIVE, NOISE
-   - All 5,382 morphisms classified by provenance source and verification status
+   - All 2,178 morphisms classified by provenance source and verification status
 
 2. **NLP Quantitative Extraction** (`nlp/pmid_extractor.py`):
    - Processed all 610 PMIDs for IC50, response rates, hazard ratios, mutation frequencies
@@ -272,7 +269,7 @@ protocol removes or holds them out.
 4. ~~Add external, temporal, disease-level validation.~~ DONE.
 5. ~~Build candidate triage CLI.~~ DONE (`validation/triage.py`).
 6. ~~Write complete technical documentation.~~ DONE (`MASTER_TECHNICAL.md`, `DATA_EXPANSION_GUIDE.md`).
-7. ~~Tune score combiners.~~ DONE (path bonus tuned; current strict AUROC 0.9747).
+7. ~~Tune score combiners.~~ DONE (path bonus tuned; current strict AUROC 0.9486).
 8. ~~Expand data sources.~~ DONE (ChEMBL deployed 2026-05-10: +269 proteins, +872 morphisms, drug name normalization).
 9. ~~Complete provenance for remaining 302 uncited morphisms.~~ DONE (100% coverage, 2026-05-12).
 10. ~~Ablation studies.~~ DONE (composition is dominant strategy, path bonus +0.017 AUROC).

@@ -13,7 +13,7 @@ drug-target-disease graph.
 Current audit rule: code and live data outrank stale docs. Always name the graph
 view and validation protocol with any AUROC.
 
-## Research Integrity Audit Update (2026-05-27)
+## Research Integrity Audit Update (2026-05-28)
 
 Do not advertise the retired `0.9689 AUROC / 0.661 AUPRC` result as current.
 That run was affected by label leakage in `oracle/yoneda_strategy.py`: the
@@ -29,10 +29,10 @@ Current strict validation command:
 python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --baselines --ci
 ```
 
-Current strict result (2026-05-27, corrected loader/strategies):
-- `full_typed/remove_direct_labels`: **AUROC 0.974694** [0.9606, 0.9855], AUPRC 0.551698 [0.4067, 0.6983], Hits@5 1.00, Hits@10 0.60, Hits@20 0.60, MRR 0.078750.
-- Baselines on the same corrected graph: degree_product 0.6307, common_neighbor 0.6260, path_count 0.5777, shortest_path 0.5775, random 0.5623.
-- The database has source strings on 5,382/5,382 morphisms and 609 PMID identifiers, but this is not the same as edge-specific citation validation. Quantitative NLP attribution requires edge-level audit.
+Current strict result (2026-05-28, corrected loader/strategies):
+- `full_typed/remove_direct_labels`: **AUROC 0.948640** [0.9134, 0.9738], AUPRC 0.513498 [0.3662, 0.6579], Hits@5 1.00, Hits@10 0.60, Hits@20 0.60, MRR 0.072453.
+- Baselines on the same corrected graph: common_neighbor 0.6499, path_count 0.6492, shortest_path 0.6250, degree_product 0.5877, random 0.5504.
+- The database has source strings on 1,876/2,178 morphisms and 188 PMID identifiers, but this is not the same as edge-specific citation validation. Quantitative NLP attribution requires edge-level audit.
 - Current executable holdouts: LOOCV AUROC 0.975916 / AUPRC 0.553703; Hetionet external AUROC 0.634479 / AUPRC 0.009255; temporal year>2013 AUROC 0.977994 / AUPRC 0.228793; disease-holdout mean AUROC 0.950416 / mean AUPRC 0.636826.
 
 Author: James Ray Hawkins
@@ -55,15 +55,15 @@ Status: working research prototype, not clinical or translational validation.
 Data source: `data/drugs/tier1.db`
 Reproducible build: `data/drugs/build_tier1.py` from `tier1_manifest.json`
 
-Full typed DB facts (2026-05-27 audit):
-- 1,146 runtime objects, 5,382 stored morphisms
+Full typed DB facts (2026-05-28 audit):
+- 1,146 runtime objects, 2,178 stored morphisms
 - 78 drugs, 20 diseases, 366 biological entities
 - 44 Drug->Disease approved indication labels (all FDA-approved, all with source strings)
 - All 44 positives have mechanistic paths (Drug->Protein->Disease)
-- 5382/5382 morphisms have source/provenance strings; this is not equivalent to source-validated evidence
-- 609 PMID identifiers found in provenance/metadata strings
-- 204 edges with quantitative values (IC50, mutation frequencies, hazard ratios, response rates)
-- Evidence tier classification: MEASURED 1073, INFERRED 809, NOISE 2104, SPECULATIVE 955, ESTABLISHED 282, HYPOTHESIS 159
+- 2,178/2,178 morphisms have source/provenance strings; this is not equivalent to source-validated evidence
+- 188 PMID identifiers found in provenance/metadata strings
+- 1,014 edges with quantitative values (IC50, mutation frequencies, hazard ratios, response rates)
+- Evidence tier classification: MEASURED 1014, ESTABLISHED 377, INFERRED 767, HYPOTHESIS 20
 - Data sources: PubMed, ChEMBL, FDA, KEGG, STRING PPI (338 edges), protein similarity (ESMC-300M engine; legacy ESM2 edge labels pending re-derivation), cBioPortal genomic, ABPP
 - NLP PMID extraction: 373 quantitative data points from 204 PMIDs; edge-specific attribution remains under audit
 - ChEMBL drug names normalized (salt forms stripped, matched to base drugs)
@@ -82,7 +82,7 @@ Add `--ci` for bootstrap 95% confidence intervals, `--baselines` for baseline
 comparisons (random, degree, common-neighbor, shortest-path, path-count).
 
 Current metrics (2026-05-27, corrected strict loader/strategies, 44 positives, 204 quantitative edges):
-- `full_typed/remove_direct_labels`: **AUROC 0.9747**, AUPRC 0.552, Hits@5 1.00, Hits@10 0.60 (Yoneda label leakage fixed; explicit label-derived bridge edges removed in holdout mode)
+- `full_typed/remove_direct_labels`: **AUROC 0.9486**, AUPRC 0.513, Hits@5 1.00, Hits@10 0.60
 - `full_typed/loocv`: AUROC 0.975916, AUPRC 0.553703, Hits@5 0.80, Hits@10 0.60, Hits@20 0.60
 - `full_typed/as_loaded`: AUROC 0.738831, AUPRC 0.049407, Hits@5/10/20 0.000 (dataset artifact; not the recommended protocol)
 
@@ -170,7 +170,7 @@ Provenance tools:
 - `validation/triage.py` -- candidate triage reports with evidence chains
 - `validation/trace_prediction.py` -- trace any prediction to source-linked evidence chains
 - `validation/generate_citation_worksheet.py` -- generate citation TODO list
-- 5382/5382 stored morphisms have source/provenance strings
+- 1,876/2,178 stored morphisms have source/provenance strings
 - Source coverage is not the same as edge-specific citation validation
 
 Data expansion:
@@ -327,3 +327,4 @@ Full suite:
 ```powershell
 pytest tests -q
 ```
+

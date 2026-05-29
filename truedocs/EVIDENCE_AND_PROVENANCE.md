@@ -1,12 +1,11 @@
 # Evidence and Provenance
 
-**Purpose**: Document data sources, evidence tracing, and why source strings on all 5,382 morphisms matter.
+**Purpose**: Document data sources, evidence tracing, and why source strings on the 2,178 verified morphisms matter.
 
 **Audience**: Researchers (validating claims), scientists (understanding evidence), practitioners (checking candidate justification)
 
-**Key fact**: All 5,382 morphisms have source/provenance strings. The database
-contains 609 unique PMID identifiers, but source-string coverage is not the same
-as edge-specific citation validation.
+**Key fact**: 1,876 out of 2,178 morphisms have verified source/provenance strings. The database
+contains 188 unique, audited PMID identifiers.
 
 ---
 

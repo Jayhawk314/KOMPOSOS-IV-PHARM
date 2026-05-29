@@ -510,7 +510,7 @@ def format_terminal(results: list[dict], query_label: str,
     lines.append("=" * 60)
     lines.append(f"Graph: {n_objects} objects, {n_morphisms} morphisms, {n_positives} approved indications")
     lines.append(f"Self-check: {check_recovered}/{check_total} approved indications mechanistically recoverable")
-    lines.append("Labels: APPROVED = in our 44 FDA oncology indications; NOT_APPROVED = not in our list (may still be in trials/literature)")
+    lines.append("Labels: APPROVED = in our 48 FDA oncology indications; NOT_APPROVED = not in our list (may still be in trials/literature)")
     lines.append("")
 
     # Table header
@@ -680,10 +680,20 @@ def format_markdown(results: list[dict], query_label: str,
                     lines.append(f"{i}. {' '.join(path_parts)}")
                     for edge in chain["edges"]:
                         prov = edge.get("provenance", "unknown")
-                        prov_str = prov if prov != "unknown" else "uncited"
-                        if prov_str.startswith("PMID:"):
-                            pmid_id = prov_str.replace("PMID:", "")
-                            prov_str = f"[{prov}](https://pubmed.ncbi.nlm.nih.gov/{pmid_id})"
+                        if prov == "unknown":
+                            prov_str = "uncited"
+                        elif "PMID:" in prov:
+                            # Extract all PMIDs using regex to handle "ABPP; PMID:1234" etc.
+                            import re
+                            pmid_matches = re.findall(r"PMID:?\s*(\d+)", prov)
+                            if pmid_matches:
+                                prov_str = prov
+                                for p in pmid_matches:
+                                    prov_str = prov_str.replace(f"PMID:{p}", f"[PMID:{p}](https://pubmed.ncbi.nlm.nih.gov/{p})")
+                            else:
+                                prov_str = prov
+                        else:
+                            prov_str = prov
 
                         # Format edge info with quantitative data if available
                         edge_info = f"   - {edge['source']}->{edge['target']}: {prov_str}"

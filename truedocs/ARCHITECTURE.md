@@ -176,7 +176,7 @@ from data.store import KomposOSStore
 store = KomposOSStore('data/drugs/tier1.db')
 cat, diseases = load_full_typed_view(store, view="full_typed")
 
-# cat now has 1146 objects (464 from DB + referenced endpoints), 5382 morphisms
+# cat now has 1,146 objects and 2,178 morphisms
 print(len(cat.objects()), len(cat.morphisms()))
 ```
 
@@ -529,3 +529,4 @@ Before merging to main:
 ---
 
 *Last updated: 2026-05-28 (runtime strategy profiles; conditional Yoneda integration)*
+iles; conditional Yoneda integration)*

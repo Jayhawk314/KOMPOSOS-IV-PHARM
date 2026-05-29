@@ -141,7 +141,7 @@ g = load_graph()
 st.sidebar.markdown("---")
 st.sidebar.markdown(
     f"**Graph**: {g['n_objects']} objects, {g['n_morphisms']} edges\n\n"
-    f"**Positives**: {g['n_positives']} FDA-approved\n\n"
+    f"**Positives**: {g['n_positives']} FDA-approved (48 verified)\n\n"
     f"**Self-check**: {g['check_recovered']}/{g['check_total']} recoverable\n\n"
     f"**Source fields**: {g['provenance_rows']}/{g['n_morphisms']} edges, "
     f"{g['pmid_count']} PMID IDs\n\n"
@@ -566,9 +566,17 @@ def render_detail(entry):
                         prov_display = "co-mention (unverified)"
                     elif prov == "unknown":
                         prov_display = "uncited"
-                    elif prov.startswith("PMID:"):
-                        pmid_id = prov.split(",")[0].replace("PMID:", "").strip()
-                        prov_display = f"[{prov}](https://pubmed.ncbi.nlm.nih.gov/{pmid_id})"
+                    elif "PMID:" in prov:
+                        # Extract all PMIDs using regex to handle "ABPP; PMID:1234" etc.
+                        pmid_matches = re.findall(r"PMID:?\s*(\d+)", prov)
+                        if pmid_matches:
+                            links = [f"[PMID:{p}](https://pubmed.ncbi.nlm.nih.gov/{p})" for p in pmid_matches]
+                            # Replace the PMID parts in the display
+                            prov_display = prov
+                            for p in pmid_matches:
+                                prov_display = prov_display.replace(f"PMID:{p}", f"[PMID:{p}](https://pubmed.ncbi.nlm.nih.gov/{p})")
+                        else:
+                            prov_display = prov
                     else:
                         prov_display = prov
                     st.markdown(
@@ -1012,30 +1020,29 @@ approved for.
         )
 
     st.markdown(f"""
-### Validation (strict remove_direct_labels protocol, 44 positives, full_typed view)
+### Validation (strict remove_direct_labels protocol, 48 positives, full_typed view)
 
 | Metric | Value |
 |--------|-------|
-| AUROC | 0.9747 [95% CI: 0.9606-0.9855] |
-| AUPRC | 0.552 [95% CI: 0.4067-0.6983] |
+| AUROC | 0.948640 [95% CI: 0.9134-0.9738] |
+| AUPRC | 0.513498 [95% CI: 0.3662-0.6579] |
 | Hits@5 | 1.000 |
 | Hits@10 | 0.600 |
 | Hits@20 | 0.600 |
 | Strategy profile | 7 active modules; Yoneda distance excluded because no Drug->Disease comparators remain |
-| Positives | 44 FDA-approved oncology indications |
-| Strongest baseline (degree_product) | AUROC 0.6307 |
-| Common-neighbor baseline | AUROC 0.6260 |
-| Margin over strongest baseline | +0.3440 |
+| Positives | 48 FDA-approved oncology indications |
+| Strongest baseline (common_neighbor) | AUROC 0.6499 |
+| Margin over strongest baseline | +0.2987 |
 | PMID identifiers in DB | {g['pmid_count']} |
 
-*Current audited strict run: 2026-05-27, rechecked after the strategy-profile
+*Current audited strict run: 2026-05-28, rechecked after the strategy-profile
 cleanup. This protocol removes direct Drug->Disease edges and protein->disease
 bridge edges explicitly derived from known drug indications. Because all visible
 Drug->Disease comparators are removed, Yoneda distance is not active in this
 strict benchmark. The previous 0.9689 AUROC / 0.661 AUPRC display is retired
 because an earlier Yoneda cache could see held-out labels.*
 
-### Additional executable validations (2026-05-27)
+### Additional executable validations (2026-05-28)
 
 | Validation | Current result |
 |------------|----------------|

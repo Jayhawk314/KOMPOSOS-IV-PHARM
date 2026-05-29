@@ -29,18 +29,18 @@
     },
     {
       "source": "Bevacizumab",
-      "target": "Ovarian_Cancer",
-      "name": "associated_with",
-      "confidence": 0.72,
-      "provenance": "inferred:Drug(Olaparib)_treats_Ovarian_Cancer_targets_Bevacizumab",
-      "metadata": "{\"source_file\": \"tier1.db\", \"evidence_type\": \"Drug-Target-Disease Inference\", \"via_drug\": \"Olaparib\"}"
-    },
-    {
-      "source": "Bevacizumab",
       "target": "Breast_Cancer",
       "name": "associated_with",
       "confidence": 0.72,
       "provenance": "inferred:Drug(Olaparib)_treats_Breast_Cancer_targets_Bevacizumab",
+      "metadata": "{\"source_file\": \"tier1.db\", \"evidence_type\": \"Drug-Target-Disease Inference\", \"via_drug\": \"Olaparib\"}"
+    },
+    {
+      "source": "Bevacizumab",
+      "target": "Ovarian_Cancer",
+      "name": "associated_with",
+      "confidence": 0.72,
+      "provenance": "inferred:Drug(Olaparib)_treats_Ovarian_Cancer_targets_Bevacizumab",
       "metadata": "{\"source_file\": \"tier1.db\", \"evidence_type\": \"Drug-Target-Disease Inference\", \"via_drug\": \"Olaparib\"}"
     },
     {
@@ -53,115 +53,115 @@
     },
     {
       "source": "PI3KCA",
-      "target": "Ovarian_Cancer",
-      "name": "associated_with",
-      "confidence": 0.6,
-      "provenance": "pathway:neighbor_of_MET",
-      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"MET\"}"
-    },
-    {
-      "source": "PI3KCA",
       "target": "Multiple_Myeloma",
       "name": "associated_with",
       "confidence": 0.6,
-      "provenance": "pathway:neighbor_of_MET",
-      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"MET\"}"
-    },
-    {
-      "source": "PI3KCA",
-      "target": "Ewing_Sarcoma",
-      "name": "associated_with",
-      "confidence": 0.6,
-      "provenance": "pathway:neighbor_of_MET",
-      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"MET\"}"
-    },
-    {
-      "source": "PI3KCA",
-      "target": "RCC",
-      "name": "associated_with",
-      "confidence": 0.6,
-      "provenance": "pathway:neighbor_of_MET",
-      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"MET\"}"
-    },
-    {
-      "source": "PI3KCA",
-      "target": "Li_Fraumeni_Syndrome",
-      "name": "associated_with",
-      "confidence": 0.6,
-      "provenance": "pathway:neighbor_of_MET",
-      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"MET\"}"
+      "provenance": "pathway:neighbor_of_ERBB2",
+      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"ERBB2\"}"
     },
     {
       "source": "PI3KCA",
       "target": "Melanoma",
       "name": "associated_with",
       "confidence": 0.6,
-      "provenance": "pathway:neighbor_of_MET",
-      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"MET\"}"
-    },
-    {
-      "source": "PI3KCA",
-      "target": "AML",
-      "name": "associated_with",
-      "confidence": 0.6,
-      "provenance": "pathway:neighbor_of_MET",
-      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"MET\"}"
-    },
-    {
-      "source": "PI3KCA",
-      "target": "CLL",
-      "name": "associated_with",
-      "confidence": 0.6,
-      "provenance": "pathway:neighbor_of_MET",
-      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"MET\"}"
-    },
-    {
-      "source": "PI3KCA",
-      "target": "Soft_Tissue_Sarcoma",
-      "name": "associated_with",
-      "confidence": 0.6,
-      "provenance": "pathway:neighbor_of_MET",
-      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"MET\"}"
-    },
-    {
-      "source": "PI3KCA",
-      "target": "Myelofibrosis",
-      "name": "associated_with",
-      "confidence": 0.6,
-      "provenance": "pathway:neighbor_of_MET",
-      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"MET\"}"
+      "provenance": "pathway:neighbor_of_ERBB2",
+      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"ERBB2\"}"
     },
     {
       "source": "PI3KCA",
       "target": "Type2_Diabetes",
       "name": "associated_with",
       "confidence": 0.6,
-      "provenance": "pathway:neighbor_of_MET",
-      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"MET\"}"
+      "provenance": "pathway:neighbor_of_ERBB2",
+      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"ERBB2\"}"
     },
     {
       "source": "PI3KCA",
-      "target": "Prostate_Cancer",
+      "target": "Ovarian_Cancer",
       "name": "associated_with",
       "confidence": 0.6,
-      "provenance": "pathway:neighbor_of_MET",
-      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"MET\"}"
+      "provenance": "pathway:neighbor_of_ERBB2",
+      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"ERBB2\"}"
+    },
+    {
+      "source": "PI3KCA",
+      "target": "CLL",
+      "name": "associated_with",
+      "confidence": 0.6,
+      "provenance": "pathway:neighbor_of_ERBB2",
+      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"ERBB2\"}"
+    },
+    {
+      "source": "PI3KCA",
+      "target": "Soft_Tissue_Sarcoma",
+      "name": "associated_with",
+      "confidence": 0.6,
+      "provenance": "pathway:neighbor_of_ERBB2",
+      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"ERBB2\"}"
     },
     {
       "source": "PI3KCA",
       "target": "CML",
       "name": "associated_with",
       "confidence": 0.6,
-      "provenance": "pathway:neighbor_of_MET",
-      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"MET\"}"
+      "provenance": "pathway:neighbor_of_ERBB2",
+      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"ERBB2\"}"
+    },
+    {
+      "source": "PI3KCA",
+      "target": "Myelofibrosis",
+      "name": "associated_with",
+      "confidence": 0.6,
+      "provenance": "pathway:neighbor_of_ERBB2",
+      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"ERBB2\"}"
+    },
+    {
+      "source": "PI3KCA",
+      "target": "Prostate_Cancer",
+      "name": "associated_with",
+      "confidence": 0.6,
+      "provenance": "pathway:neighbor_of_ERBB2",
+      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"ERBB2\"}"
     },
     {
       "source": "PI3KCA",
       "target": "GIST",
       "name": "associated_with",
       "confidence": 0.6,
-      "provenance": "pathway:neighbor_of_MET",
-      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"MET\"}"
+      "provenance": "pathway:neighbor_of_ERBB2",
+      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"ERBB2\"}"
+    },
+    {
+      "source": "PI3KCA",
+      "target": "Li_Fraumeni_Syndrome",
+      "name": "associated_with",
+      "confidence": 0.6,
+      "provenance": "pathway:neighbor_of_ERBB2",
+      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"ERBB2\"}"
+    },
+    {
+      "source": "PI3KCA",
+      "target": "AML",
+      "name": "associated_with",
+      "confidence": 0.6,
+      "provenance": "pathway:neighbor_of_ERBB2",
+      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"ERBB2\"}"
+    },
+    {
+      "source": "PI3KCA",
+      "target": "Ewing_Sarcoma",
+      "name": "associated_with",
+      "confidence": 0.6,
+      "provenance": "pathway:neighbor_of_ERBB2",
+      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"ERBB2\"}"
+    },
+    {
+      "source": "PI3KCA",
+      "target": "RCC",
+      "name": "associated_with",
+      "confidence": 0.6,
+      "provenance": "pathway:neighbor_of_ERBB2",
+      "metadata": "{\"source_file\": \"cancer_proteins.py\", \"evidence_type\": \"Pathway Neighbor Inference\", \"via_protein\": \"ERBB2\"}"
     }
   ]
 }

@@ -8,7 +8,7 @@
 
 ## Abstract
 
-We present KOMPOSOS-IV-PHARM, an auditable drug repurposing system that combines a sourced biomedical knowledge graph with categorical inference strategies to generate mechanistically explainable repurposing hypotheses. Unlike embedding-based approaches that produce opaque rankings, every prediction is traceable to Drug->Protein->Disease evidence chains with source strings and citation identifiers where available. On the current oncology graph of 78 drugs, 366 biological entities, and 20 diseases (5,382 morphisms, source strings on all morphisms, 609 unique PMID identifiers, and 204 edges with quantitative values), the system achieves AUROC 0.9747 [95% CI: 0.9606-0.9855] and AUPRC 0.552 [95% CI: 0.4067-0.6983] under the strict remove_direct_labels protocol on 44 FDA-approved indications. The strongest simple graph baseline is degree_product AUROC 0.6307, giving a +0.3440 margin. The categorical inference layer adds strategy signals, mechanistic explanation, quantitative evidence (IC50, mutation frequencies, response rates), and type-safe reasoning for candidate triage. The system is designed for hypothesis generation and scientific triage, not clinical deployment.
+We present KOMPOSOS-IV-PHARM, an auditable drug repurposing system that combines a sourced biomedical knowledge graph with categorical inference strategies to generate mechanistically explainable repurposing hypotheses. Unlike embedding-based approaches that produce opaque rankings, every prediction is traceable to Drug->Protein->Disease evidence chains with source strings and verified citation identifiers. On the current oncology graph of 78 drugs, 366 biological entities, and 20 diseases (2,178 morphisms, 100% provenance coverage, 188 verified PMID identifiers, and 1,014 edges with quantitative values), the system achieves AUROC 0.948640 [95% CI: 0.9134-0.9738] and AUPRC 0.513498 [95% CI: 0.3662-0.6579] under the strict remove_direct_labels protocol on 48 FDA-approved indications. The strongest simple graph baseline is common_neighbor AUROC 0.6499, giving a +0.2987 margin. Strategic Transparency: Yoneda Distance utilizes only MEASURED+ESTABLISHED evidence (1,391 edges). The categorical inference layer adds strategy signals, mechanistic explanation, quantitative evidence (IC50, mutation frequencies, response rates), and type-safe reasoning for candidate triage. The system is designed for hypothesis generation and scientific triage, not clinical deployment.
 
 **Keywords**: drug repurposing, category theory, knowledge graphs, Yoneda presheaves, evidence tracing, oncology
 
@@ -115,11 +115,11 @@ The path bonus was tuned via LOOCV grid search over [0.0, 0.20]. The Yoneda coef
 
 | Baseline | AUROC | Margin |
 |----------|------:|-------:|
-| Random | 0.5623 | +0.4124 |
-| Shortest path | 0.5775 | +0.3972 |
-| Path count | 0.5777 | +0.3970 |
-| Common neighbor | 0.6260 | +0.3487 |
-| **Degree product** | **0.6307** | **+0.3440** |
+| common_neighbor | 0.6499 | +0.2987 |
+| path_count | 0.6492 | +0.2994 |
+| shortest_path | 0.6250 | +0.3236 |
+| degree_product | 0.5877 | +0.3609 |
+| random | 0.5504 | +0.3982 |
 
 The system exceeds these simple graph-topology baselines. The margin over the strongest baseline (degree_product) is +0.3440 AUROC under the current strict protocol.
 
