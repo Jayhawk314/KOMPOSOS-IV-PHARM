@@ -1,0 +1,750 @@
+{
+  "schema": "komposos.category_m.pocket_recovery.v1",
+  "settings": {
+    "radius": 10.0,
+    "manifest": "data\\benchmarks\\cocrystal_holdout.json"
+  },
+  "aggregate": {
+    "structures_total": 10,
+    "structures_scored": 10,
+    "structures_skipped": [],
+    "per_mode": {
+      "grid": {
+        "median_centroid_error_A": 5.367,
+        "frac_within_4A": 0.4,
+        "frac_within_6A": 0.5,
+        "mean_contact_recall": 0.81,
+        "mean_contact_precision": 0.26,
+        "mean_contact_f1": 0.384
+      },
+      "centroid": {
+        "median_centroid_error_A": 12.229,
+        "frac_within_4A": 0.0,
+        "frac_within_6A": 0.1,
+        "mean_contact_recall": 0.479,
+        "mean_contact_precision": 0.123,
+        "mean_contact_f1": 0.192
+      },
+      "ligand": {
+        "median_centroid_error_A": 0.0,
+        "frac_within_4A": 1.0,
+        "frac_within_6A": 1.0,
+        "mean_contact_recall": 0.995,
+        "mean_contact_precision": 0.295,
+        "mean_contact_f1": 0.451
+      }
+    },
+    "grid_vs_centroid": {
+      "median_error_reduction_A_vs_centroid": 6.862,
+      "recall_lift_vs_centroid": 0.331
+    },
+    "interpretation": [
+      "centroid_error compares the predicted pocket center to the nearest real cognate-ligand centroid.",
+      "grid should beat centroid on error and recall for the engine to be a useful pocket finder.",
+      "ligand mode is an oracle ceiling (perfectly centered), not a prediction.",
+      "This is geometry recovery only. It does not measure binding, affinity, or ranking of actives vs decoys."
+    ]
+  },
+  "structures": [
+    {
+      "pdb_id": "1IEP",
+      "target_id": "ABL1",
+      "known_drug": "imatinib",
+      "family": "kinase",
+      "status": "ok",
+      "protein_atoms": 4458,
+      "cognate_ligand_resname": "STI",
+      "cognate_ligand_instances": 2,
+      "cognate_ligand_atoms_largest": 37,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=3756:score=4.0",
+          "predicted_center": [
+            6.529,
+            91.256,
+            61.756
+          ],
+          "centroid_error_A": 8.595,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 1,
+          "num_predicted_pocket_residues": 42,
+          "num_true_contact_residues": 24,
+          "num_overlap_residues": 15,
+          "contact_precision": 0.357,
+          "contact_recall": 0.625,
+          "contact_f1": 0.455
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            14.105,
+            72.371,
+            39.846
+          ],
+          "centroid_error_A": 30.949,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 38,
+          "num_true_contact_residues": 21,
+          "num_overlap_residues": 0,
+          "contact_precision": 0.0,
+          "contact_recall": 0.0,
+          "contact_f1": 0.0
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            15.614,
+            53.38,
+            15.455
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 62,
+          "num_true_contact_residues": 21,
+          "num_overlap_residues": 20,
+          "contact_precision": 0.323,
+          "contact_recall": 0.952,
+          "contact_f1": 0.482
+        }
+      }
+    },
+    {
+      "pdb_id": "1UDT",
+      "target_id": "PDE5A",
+      "known_drug": "sildenafil",
+      "family": "phosphodiesterase",
+      "status": "ok",
+      "protein_atoms": 2542,
+      "cognate_ligand_resname": "VIA",
+      "cognate_ligand_instances": 1,
+      "cognate_ligand_atoms_largest": 33,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=2012:score=25.0",
+          "predicted_center": [
+            -0.177,
+            64.763,
+            80.527
+          ],
+          "centroid_error_A": 4.087,
+          "within_4A": false,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 56,
+          "num_true_contact_residues": 14,
+          "num_overlap_residues": 14,
+          "contact_precision": 0.25,
+          "contact_recall": 1.0,
+          "contact_f1": 0.4
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            -8.328,
+            56.088,
+            84.348
+          ],
+          "centroid_error_A": 14.679,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 65,
+          "num_true_contact_residues": 14,
+          "num_overlap_residues": 6,
+          "contact_precision": 0.092,
+          "contact_recall": 0.429,
+          "contact_f1": 0.152
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            1.44,
+            67.015,
+            83.53
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 54,
+          "num_true_contact_residues": 14,
+          "num_overlap_residues": 14,
+          "contact_precision": 0.259,
+          "contact_recall": 1.0,
+          "contact_f1": 0.412
+        }
+      }
+    },
+    {
+      "pdb_id": "1YET",
+      "target_id": "HSP90AA1",
+      "known_drug": "geldanamycin",
+      "family": "chaperone",
+      "status": "ok",
+      "protein_atoms": 1678,
+      "cognate_ligand_resname": "GDM",
+      "cognate_ligand_instances": 1,
+      "cognate_ligand_atoms_largest": 40,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=1584:score=13.0",
+          "predicted_center": [
+            41.264,
+            -46.361,
+            64.151
+          ],
+          "centroid_error_A": 1.466,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 48,
+          "num_true_contact_residues": 17,
+          "num_overlap_residues": 17,
+          "contact_precision": 0.354,
+          "contact_recall": 1.0,
+          "contact_f1": 0.523
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            33.483,
+            -48.085,
+            62.187
+          ],
+          "centroid_error_A": 8.58,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 61,
+          "num_true_contact_residues": 17,
+          "num_overlap_residues": 13,
+          "contact_precision": 0.213,
+          "contact_recall": 0.765,
+          "contact_f1": 0.333
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            41.202,
+            -46.548,
+            65.603
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 48,
+          "num_true_contact_residues": 17,
+          "num_overlap_residues": 17,
+          "contact_precision": 0.354,
+          "contact_recall": 1.0,
+          "contact_f1": 0.523
+        }
+      }
+    },
+    {
+      "pdb_id": "3ERT",
+      "target_id": "ESR1",
+      "known_drug": "4-hydroxytamoxifen",
+      "family": "nuclear_receptor",
+      "status": "ok",
+      "protein_atoms": 1932,
+      "cognate_ligand_resname": "OHT",
+      "cognate_ligand_instances": 1,
+      "cognate_ligand_atoms_largest": 29,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=1887:score=17.0",
+          "predicted_center": [
+            35.767,
+            -2.946,
+            18.165
+          ],
+          "centroid_error_A": 8.642,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 39,
+          "num_true_contact_residues": 17,
+          "num_overlap_residues": 11,
+          "contact_precision": 0.282,
+          "contact_recall": 0.647,
+          "contact_f1": 0.393
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            22.393,
+            5.434,
+            21.89
+          ],
+          "centroid_error_A": 12.141,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 58,
+          "num_true_contact_residues": 17,
+          "num_overlap_residues": 7,
+          "contact_precision": 0.121,
+          "contact_recall": 0.412,
+          "contact_f1": 0.187
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            31.575,
+            -1.59,
+            25.599
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 52,
+          "num_true_contact_residues": 17,
+          "num_overlap_residues": 17,
+          "contact_precision": 0.327,
+          "contact_recall": 1.0,
+          "contact_f1": 0.493
+        }
+      }
+    },
+    {
+      "pdb_id": "1M2Z",
+      "target_id": "NR3C1",
+      "known_drug": "dexamethasone",
+      "family": "nuclear_receptor",
+      "status": "ok",
+      "protein_atoms": 4476,
+      "cognate_ligand_resname": "DEX",
+      "cognate_ligand_instances": 2,
+      "cognate_ligand_atoms_largest": 29,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=3801:score=4.0",
+          "predicted_center": [
+            20.572,
+            32.81,
+            -3.691
+          ],
+          "centroid_error_A": 12.514,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 1,
+          "num_predicted_pocket_residues": 55,
+          "num_true_contact_residues": 19,
+          "num_overlap_residues": 10,
+          "contact_precision": 0.182,
+          "contact_recall": 0.526,
+          "contact_f1": 0.27
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            31.503,
+            20.439,
+            -0.148
+          ],
+          "centroid_error_A": 18.943,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 1,
+          "num_predicted_pocket_residues": 56,
+          "num_true_contact_residues": 19,
+          "num_overlap_residues": 2,
+          "contact_precision": 0.036,
+          "contact_recall": 0.105,
+          "contact_f1": 0.053
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            30.45,
+            7.071,
+            13.293
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 67,
+          "num_true_contact_residues": 20,
+          "num_overlap_residues": 20,
+          "contact_precision": 0.299,
+          "contact_recall": 1.0,
+          "contact_f1": 0.46
+        }
+      }
+    },
+    {
+      "pdb_id": "1HXW",
+      "target_id": "HIV1_PR",
+      "known_drug": "ritonavir",
+      "family": "aspartic_protease",
+      "status": "ok",
+      "protein_atoms": 1852,
+      "cognate_ligand_resname": "RIT",
+      "cognate_ligand_instances": 1,
+      "cognate_ligand_atoms_largest": 50,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=1492:score=23.0",
+          "predicted_center": [
+            11.69,
+            22.99,
+            5.08
+          ],
+          "centroid_error_A": 1.528,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 60,
+          "num_true_contact_residues": 24,
+          "num_overlap_residues": 24,
+          "contact_precision": 0.4,
+          "contact_recall": 1.0,
+          "contact_f1": 0.571
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            15.964,
+            25.965,
+            3.501
+          ],
+          "centroid_error_A": 5.917,
+          "within_4A": false,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 65,
+          "num_true_contact_residues": 24,
+          "num_overlap_residues": 23,
+          "contact_precision": 0.354,
+          "contact_recall": 0.958,
+          "contact_f1": 0.517
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            10.783,
+            23.13,
+            3.858
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 60,
+          "num_true_contact_residues": 24,
+          "num_overlap_residues": 24,
+          "contact_precision": 0.4,
+          "contact_recall": 1.0,
+          "contact_f1": 0.571
+        }
+      }
+    },
+    {
+      "pdb_id": "1AZM",
+      "target_id": "CA2",
+      "known_drug": "acetazolamide",
+      "family": "lyase",
+      "status": "ok",
+      "protein_atoms": 2019,
+      "cognate_ligand_resname": "AZM",
+      "cognate_ligand_instances": 1,
+      "cognate_ligand_atoms_largest": 13,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=1645:score=14.0",
+          "predicted_center": [
+            34.158,
+            15.118,
+            -20.265
+          ],
+          "centroid_error_A": 2.036,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 58,
+          "num_true_contact_residues": 8,
+          "num_overlap_residues": 8,
+          "contact_precision": 0.138,
+          "contact_recall": 1.0,
+          "contact_f1": 0.242
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            36.68,
+            14.676,
+            -12.861
+          ],
+          "centroid_error_A": 6.568,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 59,
+          "num_true_contact_residues": 8,
+          "num_overlap_residues": 8,
+          "contact_precision": 0.136,
+          "contact_recall": 1.0,
+          "contact_f1": 0.239
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            34.271,
+            16.432,
+            -18.714
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 58,
+          "num_true_contact_residues": 8,
+          "num_overlap_residues": 8,
+          "contact_precision": 0.138,
+          "contact_recall": 1.0,
+          "contact_f1": 0.242
+        }
+      }
+    },
+    {
+      "pdb_id": "4DFR",
+      "target_id": "DHFR",
+      "known_drug": "methotrexate",
+      "family": "reductase",
+      "status": "ok",
+      "protein_atoms": 2508,
+      "cognate_ligand_resname": "MTX",
+      "cognate_ligand_instances": 2,
+      "cognate_ligand_atoms_largest": 33,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=2314:score=42.0",
+          "predicted_center": [
+            23.433,
+            65.725,
+            45.832
+          ],
+          "centroid_error_A": 6.648,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 1,
+          "num_predicted_pocket_residues": 56,
+          "num_true_contact_residues": 14,
+          "num_overlap_residues": 13,
+          "contact_precision": 0.232,
+          "contact_recall": 0.929,
+          "contact_f1": 0.371
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            19.737,
+            61.965,
+            35.324
+          ],
+          "centroid_error_A": 10.119,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 1,
+          "num_predicted_pocket_residues": 46,
+          "num_true_contact_residues": 14,
+          "num_overlap_residues": 5,
+          "contact_precision": 0.109,
+          "contact_recall": 0.357,
+          "contact_f1": 0.167
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            19.735,
+            62.603,
+            25.001
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 51,
+          "num_true_contact_residues": 16,
+          "num_overlap_residues": 16,
+          "contact_precision": 0.314,
+          "contact_recall": 1.0,
+          "contact_f1": 0.478
+        }
+      }
+    },
+    {
+      "pdb_id": "2PRG",
+      "target_id": "PPARG",
+      "known_drug": "rosiglitazone",
+      "family": "nuclear_receptor",
+      "status": "ok",
+      "protein_atoms": 4413,
+      "cognate_ligand_resname": "BRL",
+      "cognate_ligand_instances": 2,
+      "cognate_ligand_atoms_largest": 25,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=3451:score=5.0",
+          "predicted_center": [
+            49.144,
+            -46.864,
+            10.973
+          ],
+          "centroid_error_A": 12.931,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 34,
+          "num_true_contact_residues": 16,
+          "num_overlap_residues": 6,
+          "contact_precision": 0.176,
+          "contact_recall": 0.375,
+          "contact_f1": 0.24
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            51.177,
+            -17.348,
+            24.461
+          ],
+          "centroid_error_A": 20.355,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 54,
+          "num_true_contact_residues": 16,
+          "num_overlap_residues": 3,
+          "contact_precision": 0.056,
+          "contact_recall": 0.188,
+          "contact_f1": 0.086
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            49.721,
+            -36.983,
+            19.295
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 57,
+          "num_true_contact_residues": 16,
+          "num_overlap_residues": 16,
+          "contact_precision": 0.281,
+          "contact_recall": 1.0,
+          "contact_f1": 0.438
+        }
+      }
+    },
+    {
+      "pdb_id": "1EVE",
+      "target_id": "ACHE",
+      "known_drug": "donepezil",
+      "family": "hydrolase",
+      "status": "ok",
+      "protein_atoms": 4254,
+      "cognate_ligand_resname": "E20",
+      "cognate_ligand_instances": 1,
+      "cognate_ligand_atoms_largest": 28,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=2798:score=24.0",
+          "predicted_center": [
+            2.39,
+            64.688,
+            67.45
+          ],
+          "centroid_error_A": 0.72,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 60,
+          "num_true_contact_residues": 14,
+          "num_overlap_residues": 14,
+          "contact_precision": 0.233,
+          "contact_recall": 1.0,
+          "contact_f1": 0.378
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            5.012,
+            65.079,
+            55.877
+          ],
+          "centroid_error_A": 12.318,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 74,
+          "num_true_contact_residues": 14,
+          "num_overlap_residues": 8,
+          "contact_precision": 0.108,
+          "contact_recall": 0.571,
+          "contact_f1": 0.182
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            2.781,
+            64.383,
+            67.971
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 55,
+          "num_true_contact_residues": 14,
+          "num_overlap_residues": 14,
+          "contact_precision": 0.255,
+          "contact_recall": 1.0,
+          "contact_f1": 0.406
+        }
+      }
+    }
+  ]
+}

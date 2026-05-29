@@ -27,6 +27,29 @@ Grid vs centroid: **+6.3 A** median error reduction, **+0.27** contact recall.
 (Cofactors such as HEM/FAD/NAD(P) are blocklisted so the cognate ligand is the
 drug, not a cofactor. 1CX2 ground truth is now the inhibitor S58, not heme.)
 
+## Generalization: held-out set (frozen thresholds)
+
+The thresholds above were tuned on the 10 training co-crystals. To test whether
+they generalize, the same frozen detector was run on a **held-out set of 10 new
+co-crystals across 9 new target families** (`data/benchmarks/cocrystal_holdout.json`,
+report `reports/pocket_recovery_holdout.json`): ABL1, PDE5, HSP90, ERa, GR, HIV-1
+protease, carbonic anhydrase II, DHFR, PPARg, AChE.
+
+| Mode | Median error (A) | Within 4A | Within 6A | Mean contact recall |
+|------|-----------------:|----------:|----------:|--------------------:|
+| grid | **5.4** | **40%** | **50%** | **0.81** |
+| centroid | 12.2 | 0% | 10% | 0.48 |
+
+Grid beats centroid by **6.9 A** median and **+0.33** recall, and wins on **10/10**
+held-out structures (recall is even higher than on the training set). The detector
+generalizes to targets and families it was not tuned on. Sub-2 A on AChE (0.7),
+HSP90 (1.5), HIV protease (1.5); weakest on PPARg (12.9) and GR (12.5), both large
+multi-lobed nuclear-receptor pockets.
+
+Held-out per-structure (grid / centroid centroid error, A):
+1IEP 8.6/30.9 | 1UDT 4.1/14.7 | 1YET 1.5/8.6 | 3ERT 8.6/12.1 | 1M2Z 12.5/18.9 |
+1HXW 1.5/5.9 | 1AZM 2.0/6.6 | 4DFR 6.6/10.1 | 2PRG 12.9/20.4 | 1EVE 0.7/12.3
+
 For reference, the previous detector (single-max-buriedness, since replaced)
 scored 22.2 A median / 0% within 6 A / 0.151 recall — worse than centroid.
 

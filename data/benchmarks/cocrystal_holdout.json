@@ -1,0 +1,28 @@
+{
+  "schema": "komposos.category_m.cocrystal_benchmark.v1",
+  "description": "Held-out co-crystal set for honest generalization testing of the pocket detector. These structures and targets were NOT used to tune the detector thresholds (clearance 3.0-5.5 A, buriedness >= 0.78, cluster link 3.2 A). Run with the same frozen detector. Diverse families: kinase, phosphodiesterase, chaperone, two nuclear receptors, aspartic protease, carbonic anhydrase, reductase, AChE, PPAR.",
+  "ligand_additive_blocklist": [
+    "SO4", "PO4", "PI", "GOL", "EDO", "PEG", "PGE", "PG4", "1PE", "2PE", "MPD",
+    "ACT", "ACY", "DMS", "FMT", "CIT", "FLC", "TRS", "EPE", "MES", "BME", "DTT",
+    "NAG", "BMA", "MAN", "FUC", "GAL", "NDG", "BGC", "SCN", "AZI", "IMD", "NO3",
+    "CL", "BR", "IOD", "NA", "K", "MG", "ZN", "CA", "MN", "FE", "NI", "CU", "CD",
+    "HG", "CO", "GTP", "GDP", "GNP", "GSP", "ADP", "ATP", "ANP", "AGS",
+    "HEM", "HEC", "HEA", "HEB", "HEO", "FAD", "FMN", "NAD", "NAP", "NDP",
+    "NAI", "NAJ", "PLP", "COA", "SAM", "SAH", "TPP", "FES", "SF4", "BCL",
+    "CLA", "B12", "PQQ", "MGD", "F3S", "PNS"
+  ],
+  "min_ligand_atoms": 12,
+  "contact_distance_A": 4.0,
+  "structures": [
+    {"pdb_id": "1IEP", "chain": "A", "target_id": "ABL1", "protein_id": "P00519", "disease": "cml", "known_drug": "imatinib", "family": "kinase"},
+    {"pdb_id": "1UDT", "chain": "A", "target_id": "PDE5A", "protein_id": "O76074", "disease": "erectile_dysfunction", "known_drug": "sildenafil", "family": "phosphodiesterase"},
+    {"pdb_id": "1YET", "chain": "A", "target_id": "HSP90AA1", "protein_id": "P07900", "disease": "cancer", "known_drug": "geldanamycin", "family": "chaperone"},
+    {"pdb_id": "3ERT", "chain": "A", "target_id": "ESR1", "protein_id": "P03372", "disease": "breast_cancer", "known_drug": "4-hydroxytamoxifen", "family": "nuclear_receptor"},
+    {"pdb_id": "1M2Z", "chain": "A", "target_id": "NR3C1", "protein_id": "P04150", "disease": "inflammation", "known_drug": "dexamethasone", "family": "nuclear_receptor"},
+    {"pdb_id": "1HXW", "chain": "A", "target_id": "HIV1_PR", "protein_id": "Q72874", "disease": "hiv", "known_drug": "ritonavir", "family": "aspartic_protease"},
+    {"pdb_id": "1AZM", "chain": "A", "target_id": "CA2", "protein_id": "P00918", "disease": "glaucoma", "known_drug": "acetazolamide", "family": "lyase"},
+    {"pdb_id": "4DFR", "chain": "A", "target_id": "DHFR", "protein_id": "P0ABQ4", "disease": "antibacterial", "known_drug": "methotrexate", "family": "reductase", "ligand_resname": "MTX"},
+    {"pdb_id": "2PRG", "chain": "A", "target_id": "PPARG", "protein_id": "P37231", "disease": "diabetes", "known_drug": "rosiglitazone", "family": "nuclear_receptor"},
+    {"pdb_id": "1EVE", "chain": "A", "target_id": "ACHE", "protein_id": "P04058", "disease": "alzheimers", "known_drug": "donepezil", "family": "hydrolase"}
+  ]
+}
