@@ -1,0 +1,5 @@
+# Local docking tooling (binaries, prepped PDBQT, temp poses) — never committed.
+# The docking adapter locates the Vina binary here as a fallback; see
+# docs/DOCKING_SETUP.md to populate it.
+*
+!.gitignore
