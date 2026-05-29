@@ -1,0 +1,750 @@
+{
+  "schema": "komposos.category_m.pocket_recovery.v1",
+  "settings": {
+    "radius": 10.0,
+    "manifest": "C:\\Users\\JAMES\\github\\KOMPOSOS-IV-CHEM-TB\\data\\benchmarks\\cocrystal_small.json"
+  },
+  "aggregate": {
+    "structures_total": 10,
+    "structures_scored": 10,
+    "structures_skipped": [],
+    "per_mode": {
+      "grid": {
+        "median_centroid_error_A": 5.612,
+        "frac_within_4A": 0.4,
+        "frac_within_6A": 0.5,
+        "mean_contact_recall": 0.697,
+        "mean_contact_precision": 0.271,
+        "mean_contact_f1": 0.387
+      },
+      "centroid": {
+        "median_centroid_error_A": 11.869,
+        "frac_within_4A": 0.0,
+        "frac_within_6A": 0.0,
+        "mean_contact_recall": 0.428,
+        "mean_contact_precision": 0.128,
+        "mean_contact_f1": 0.196
+      },
+      "ligand": {
+        "median_centroid_error_A": 0.0,
+        "frac_within_4A": 1.0,
+        "frac_within_6A": 1.0,
+        "mean_contact_recall": 0.986,
+        "mean_contact_precision": 0.364,
+        "mean_contact_f1": 0.526
+      }
+    },
+    "grid_vs_centroid": {
+      "median_error_reduction_A_vs_centroid": 6.257,
+      "recall_lift_vs_centroid": 0.269
+    },
+    "interpretation": [
+      "centroid_error compares the predicted pocket center to the nearest real cognate-ligand centroid.",
+      "grid should beat centroid on error and recall for the engine to be a useful pocket finder.",
+      "ligand mode is an oracle ceiling (perfectly centered), not a prediction.",
+      "This is geometry recovery only. It does not measure binding, affinity, or ranking of actives vs decoys."
+    ]
+  },
+  "structures": [
+    {
+      "pdb_id": "1M17",
+      "target_id": "EGFR",
+      "known_drug": "erlotinib",
+      "family": "kinase",
+      "status": "ok",
+      "protein_atoms": 2497,
+      "cognate_ligand_resname": "AQ4",
+      "cognate_ligand_instances": 1,
+      "cognate_ligand_atoms_largest": 29,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=2532:score=20.0",
+          "predicted_center": [
+            23.053,
+            2.208,
+            52.329
+          ],
+          "centroid_error_A": 2.263,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 53,
+          "num_true_contact_residues": 15,
+          "num_overlap_residues": 15,
+          "contact_precision": 0.283,
+          "contact_recall": 1.0,
+          "contact_f1": 0.441
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            23.264,
+            9.927,
+            59.402
+          ],
+          "centroid_error_A": 11.782,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 60,
+          "num_true_contact_residues": 15,
+          "num_overlap_residues": 6,
+          "contact_precision": 0.1,
+          "contact_recall": 0.4,
+          "contact_f1": 0.16
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            22.014,
+            0.253,
+            52.794
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 49,
+          "num_true_contact_residues": 15,
+          "num_overlap_residues": 15,
+          "contact_precision": 0.306,
+          "contact_recall": 1.0,
+          "contact_f1": 0.469
+        }
+      }
+    },
+    {
+      "pdb_id": "1XKK",
+      "target_id": "EGFR",
+      "known_drug": "lapatinib",
+      "family": "kinase",
+      "status": "ok",
+      "protein_atoms": 2249,
+      "cognate_ligand_resname": "FMM",
+      "cognate_ligand_instances": 1,
+      "cognate_ligand_atoms_largest": 40,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=1919:score=22.0",
+          "predicted_center": [
+            17.354,
+            33.831,
+            39.146
+          ],
+          "centroid_error_A": 0.746,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 58,
+          "num_true_contact_residues": 23,
+          "num_overlap_residues": 22,
+          "contact_precision": 0.379,
+          "contact_recall": 0.957,
+          "contact_f1": 0.543
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            19.228,
+            42.619,
+            36.773
+          ],
+          "centroid_error_A": 9.077,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 63,
+          "num_true_contact_residues": 23,
+          "num_overlap_residues": 13,
+          "contact_precision": 0.206,
+          "contact_recall": 0.565,
+          "contact_f1": 0.302
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            17.182,
+            33.932,
+            38.428
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 57,
+          "num_true_contact_residues": 23,
+          "num_overlap_residues": 22,
+          "contact_precision": 0.386,
+          "contact_recall": 0.957,
+          "contact_f1": 0.55
+        }
+      }
+    },
+    {
+      "pdb_id": "3OG7",
+      "target_id": "BRAF",
+      "known_drug": "vemurafenib",
+      "family": "kinase",
+      "status": "ok",
+      "protein_atoms": 4002,
+      "cognate_ligand_resname": "032",
+      "cognate_ligand_instances": 1,
+      "cognate_ligand_atoms_largest": 33,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=3216:score=6.0",
+          "predicted_center": [
+            -2.586,
+            -2.384,
+            7.953
+          ],
+          "centroid_error_A": 28.226,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 54,
+          "num_true_contact_residues": 16,
+          "num_overlap_residues": 0,
+          "contact_precision": 0.0,
+          "contact_recall": 0.0,
+          "contact_f1": 0.0
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            0.04,
+            -1.945,
+            -6.319
+          ],
+          "centroid_error_A": 13.739,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 57,
+          "num_true_contact_residues": 16,
+          "num_overlap_residues": 6,
+          "contact_precision": 0.105,
+          "contact_recall": 0.375,
+          "contact_f1": 0.164
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            1.869,
+            -2.638,
+            -19.918
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 57,
+          "num_true_contact_residues": 16,
+          "num_overlap_residues": 16,
+          "contact_precision": 0.281,
+          "contact_recall": 1.0,
+          "contact_f1": 0.438
+        }
+      }
+    },
+    {
+      "pdb_id": "2XP2",
+      "target_id": "ALK",
+      "known_drug": "crizotinib",
+      "family": "kinase",
+      "status": "ok",
+      "protein_atoms": 2262,
+      "cognate_ligand_resname": "VGH",
+      "cognate_ligand_instances": 1,
+      "cognate_ligand_atoms_largest": 30,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=1962:score=30.0",
+          "predicted_center": [
+            36.314,
+            44.368,
+            8.011
+          ],
+          "centroid_error_A": 6.957,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 44,
+          "num_true_contact_residues": 15,
+          "num_overlap_residues": 12,
+          "contact_precision": 0.273,
+          "contact_recall": 0.8,
+          "contact_f1": 0.407
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            38.082,
+            46.914,
+            17.164
+          ],
+          "centroid_error_A": 11.874,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 61,
+          "num_true_contact_residues": 15,
+          "num_overlap_residues": 7,
+          "contact_precision": 0.115,
+          "contact_recall": 0.467,
+          "contact_f1": 0.184
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            29.923,
+            47.066,
+            8.539
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 51,
+          "num_true_contact_residues": 15,
+          "num_overlap_residues": 15,
+          "contact_precision": 0.294,
+          "contact_recall": 1.0,
+          "contact_f1": 0.455
+        }
+      }
+    },
+    {
+      "pdb_id": "2WGJ",
+      "target_id": "MET",
+      "known_drug": "crizotinib",
+      "family": "kinase",
+      "status": "ok",
+      "protein_atoms": 2309,
+      "cognate_ligand_resname": "VGH",
+      "cognate_ligand_instances": 1,
+      "cognate_ligand_atoms_largest": 30,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=1969:score=16.0",
+          "predicted_center": [
+            19.272,
+            82.853,
+            4.692
+          ],
+          "centroid_error_A": 2.61,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 58,
+          "num_true_contact_residues": 17,
+          "num_overlap_residues": 17,
+          "contact_precision": 0.293,
+          "contact_recall": 1.0,
+          "contact_f1": 0.453
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            15.267,
+            77.32,
+            10.507
+          ],
+          "centroid_error_A": 11.007,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 58,
+          "num_true_contact_residues": 17,
+          "num_overlap_residues": 10,
+          "contact_precision": 0.172,
+          "contact_recall": 0.588,
+          "contact_f1": 0.267
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            21.696,
+            83.729,
+            4.282
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 56,
+          "num_true_contact_residues": 17,
+          "num_overlap_residues": 17,
+          "contact_precision": 0.304,
+          "contact_recall": 1.0,
+          "contact_f1": 0.466
+        }
+      }
+    },
+    {
+      "pdb_id": "5L2I",
+      "target_id": "CDK6",
+      "known_drug": "palbociclib",
+      "family": "kinase",
+      "status": "ok",
+      "protein_atoms": 2084,
+      "cognate_ligand_resname": "LQQ",
+      "cognate_ligand_instances": 1,
+      "cognate_ligand_atoms_largest": 62,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=1924:score=5.0",
+          "predicted_center": [
+            11.798,
+            29.546,
+            -3.757
+          ],
+          "centroid_error_A": 13.648,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 38,
+          "num_true_contact_residues": 20,
+          "num_overlap_residues": 9,
+          "contact_precision": 0.237,
+          "contact_recall": 0.45,
+          "contact_f1": 0.31
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            17.908,
+            36.943,
+            0.36
+          ],
+          "centroid_error_A": 13.358,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 63,
+          "num_true_contact_residues": 20,
+          "num_overlap_residues": 7,
+          "contact_precision": 0.111,
+          "contact_recall": 0.35,
+          "contact_f1": 0.169
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            13.978,
+            28.183,
+            9.647
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 47,
+          "num_true_contact_residues": 20,
+          "num_overlap_residues": 20,
+          "contact_precision": 0.426,
+          "contact_recall": 1.0,
+          "contact_f1": 0.597
+        }
+      }
+    },
+    {
+      "pdb_id": "3KRR",
+      "target_id": "JAK2",
+      "known_drug": "kinase_inhibitor",
+      "family": "kinase",
+      "status": "ok",
+      "protein_atoms": 2350,
+      "cognate_ligand_resname": "DQX",
+      "cognate_ligand_instances": 1,
+      "cognate_ligand_atoms_largest": 36,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=2019:score=16.0",
+          "predicted_center": [
+            16.785,
+            15.155,
+            5.269
+          ],
+          "centroid_error_A": 4.267,
+          "within_4A": false,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 49,
+          "num_true_contact_residues": 22,
+          "num_overlap_residues": 21,
+          "contact_precision": 0.429,
+          "contact_recall": 0.955,
+          "contact_f1": 0.592
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            17.773,
+            19.863,
+            -2.967
+          ],
+          "centroid_error_A": 11.367,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 61,
+          "num_true_contact_residues": 22,
+          "num_overlap_residues": 9,
+          "contact_precision": 0.148,
+          "contact_recall": 0.409,
+          "contact_f1": 0.217
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            15.13,
+            11.389,
+            4.134
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 50,
+          "num_true_contact_residues": 22,
+          "num_overlap_residues": 22,
+          "contact_precision": 0.44,
+          "contact_recall": 1.0,
+          "contact_f1": 0.611
+        }
+      }
+    },
+    {
+      "pdb_id": "1CX2",
+      "target_id": "PTGS2",
+      "known_drug": "SC-558",
+      "family": "oxygenase",
+      "status": "ok",
+      "protein_atoms": 21756,
+      "cognate_ligand_resname": "S58",
+      "cognate_ligand_instances": 4,
+      "cognate_ligand_atoms_largest": 28,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=3.358:valid=4479:score=1.0",
+          "predicted_center": [
+            5.688,
+            39.57,
+            51.472
+          ],
+          "centroid_error_A": 24.338,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 3,
+          "num_predicted_pocket_residues": 50,
+          "num_true_contact_residues": 18,
+          "num_overlap_residues": 1,
+          "contact_precision": 0.02,
+          "contact_recall": 0.056,
+          "contact_f1": 0.029
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            42.335,
+            33.591,
+            36.082
+          ],
+          "centroid_error_A": 29.252,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 21,
+          "num_true_contact_residues": 18,
+          "num_overlap_residues": 0,
+          "contact_precision": 0.0,
+          "contact_recall": 0.0,
+          "contact_f1": 0.0
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            24.263,
+            21.528,
+            16.497
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 62,
+          "num_true_contact_residues": 18,
+          "num_overlap_residues": 18,
+          "contact_precision": 0.29,
+          "contact_recall": 1.0,
+          "contact_f1": 0.45
+        }
+      }
+    },
+    {
+      "pdb_id": "6O0K",
+      "target_id": "BCL2",
+      "known_drug": "venetoclax",
+      "family": "protein_protein_interaction",
+      "status": "ok",
+      "protein_atoms": 1172,
+      "cognate_ligand_resname": "LBM",
+      "cognate_ligand_instances": 1,
+      "cognate_ligand_atoms_largest": 61,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=1145:score=8.0",
+          "predicted_center": [
+            -11.819,
+            3.161,
+            -16.84
+          ],
+          "centroid_error_A": 8.144,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 45,
+          "num_true_contact_residues": 21,
+          "num_overlap_residues": 17,
+          "contact_precision": 0.378,
+          "contact_recall": 0.81,
+          "contact_f1": 0.515
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            -3.641,
+            1.855,
+            -11.382
+          ],
+          "centroid_error_A": 11.863,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 68,
+          "num_true_contact_residues": 21,
+          "num_overlap_residues": 15,
+          "contact_precision": 0.221,
+          "contact_recall": 0.714,
+          "contact_f1": 0.337
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            -15.357,
+            2.24,
+            -9.562
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 36,
+          "num_true_contact_residues": 21,
+          "num_overlap_residues": 19,
+          "contact_precision": 0.528,
+          "contact_recall": 0.905,
+          "contact_f1": 0.667
+        }
+      }
+    },
+    {
+      "pdb_id": "6OIM",
+      "target_id": "KRAS",
+      "known_drug": "sotorasib",
+      "family": "gtpase_g12c",
+      "status": "ok",
+      "protein_atoms": 1336,
+      "cognate_ligand_resname": "MOV",
+      "cognate_ligand_instances": 1,
+      "cognate_ligand_atoms_largest": 41,
+      "modes": {
+        "grid": {
+          "mode": "grid",
+          "pocket_mode_label": "grid_cavity:spacing=2.5:valid=1253:score=6.0",
+          "predicted_center": [
+            3.571,
+            -9.668,
+            -2.314
+          ],
+          "centroid_error_A": 2.404,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 38,
+          "num_true_contact_residues": 17,
+          "num_overlap_residues": 16,
+          "contact_precision": 0.421,
+          "contact_recall": 0.941,
+          "contact_f1": 0.582
+        },
+        "centroid": {
+          "mode": "centroid",
+          "pocket_mode_label": "protein_centroid",
+          "predicted_center": [
+            6.767,
+            0.474,
+            7.119
+          ],
+          "centroid_error_A": 13.121,
+          "within_4A": false,
+          "within_6A": false,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 69,
+          "num_true_contact_residues": 17,
+          "num_overlap_residues": 7,
+          "contact_precision": 0.101,
+          "contact_recall": 0.412,
+          "contact_f1": 0.163
+        },
+        "ligand": {
+          "mode": "ligand",
+          "pocket_mode_label": "explicit_center",
+          "predicted_center": [
+            1.872,
+            -8.26,
+            -1.361
+          ],
+          "centroid_error_A": 0.0,
+          "within_4A": true,
+          "within_6A": true,
+          "matched_instance_index": 0,
+          "num_predicted_pocket_residues": 44,
+          "num_true_contact_residues": 17,
+          "num_overlap_residues": 17,
+          "contact_precision": 0.386,
+          "contact_recall": 1.0,
+          "contact_f1": 0.557
+        }
+      }
+    }
+  ]
+}

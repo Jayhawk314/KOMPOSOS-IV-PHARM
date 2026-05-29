@@ -1,0 +1,78 @@
+{
+  "schema": "komposos.category_m.cocrystal_benchmark.v1",
+  "description": "Small retrospective co-crystal benchmark for pocket and contact recovery (Milestone 1+2). Each entry is a known protein-ligand complex from the RCSB PDB across the priority target families. The cognate ligand is auto-detected as the largest non-additive HETATM residue group unless ligand_resname is given. protein_id and disease are context metadata only and do not affect pocket-recovery scoring.",
+  "ligand_additive_blocklist": [
+    "SO4", "PO4", "PI", "GOL", "EDO", "PEG", "PGE", "PG4", "1PE", "2PE", "MPD",
+    "ACT", "ACY", "DMS", "FMT", "CIT", "FLC", "TRS", "EPE", "MES", "BME", "DTT",
+    "NAG", "BMA", "MAN", "FUC", "GAL", "NDG", "BGC", "SCN", "AZI", "IMD", "NO3",
+    "CL", "BR", "IOD", "NA", "K", "MG", "ZN", "CA", "MN", "FE", "NI", "CU", "CD",
+    "HG", "CO", "GTP", "GDP", "GNP", "GSP", "ADP", "ATP", "ANP", "AGS",
+    "HEM", "HEC", "HEA", "HEB", "HEO", "FAD", "FMN", "NAD", "NAP", "NDP",
+    "NAI", "NAJ", "PLP", "COA", "SAM", "SAH", "TPP", "FES", "SF4", "BCL",
+    "CLA", "B12", "PQQ", "MGD", "F3S", "PNS"
+  ],
+  "min_ligand_atoms": 12,
+  "contact_distance_A": 4.0,
+  "structures": [
+    {
+      "pdb_id": "1M17", "chain": "A",
+      "target_id": "EGFR", "protein_id": "P00533",
+      "disease": "lung_cancer", "known_drug": "erlotinib",
+      "family": "kinase"
+    },
+    {
+      "pdb_id": "1XKK", "chain": "A",
+      "target_id": "EGFR", "protein_id": "P00533",
+      "disease": "breast_cancer", "known_drug": "lapatinib",
+      "family": "kinase"
+    },
+    {
+      "pdb_id": "3OG7", "chain": "A",
+      "target_id": "BRAF", "protein_id": "P15056",
+      "disease": "melanoma", "known_drug": "vemurafenib",
+      "family": "kinase"
+    },
+    {
+      "pdb_id": "2XP2", "chain": "A",
+      "target_id": "ALK", "protein_id": "Q9UM73",
+      "disease": "lung_cancer", "known_drug": "crizotinib",
+      "family": "kinase"
+    },
+    {
+      "pdb_id": "2WGJ", "chain": "A",
+      "target_id": "MET", "protein_id": "P08581",
+      "disease": "lung_cancer", "known_drug": "crizotinib",
+      "family": "kinase"
+    },
+    {
+      "pdb_id": "5L2I", "chain": "A",
+      "target_id": "CDK6", "protein_id": "Q00534",
+      "disease": "breast_cancer", "known_drug": "palbociclib",
+      "family": "kinase"
+    },
+    {
+      "pdb_id": "3KRR", "chain": "A",
+      "target_id": "JAK2", "protein_id": "O60674",
+      "disease": "myelofibrosis", "known_drug": "kinase_inhibitor",
+      "family": "kinase"
+    },
+    {
+      "pdb_id": "1CX2", "chain": "A",
+      "target_id": "PTGS2", "protein_id": "P35354",
+      "disease": "inflammation", "known_drug": "SC-558",
+      "family": "oxygenase"
+    },
+    {
+      "pdb_id": "6O0K", "chain": "A",
+      "target_id": "BCL2", "protein_id": "P10415",
+      "disease": "leukemia", "known_drug": "venetoclax",
+      "family": "protein_protein_interaction"
+    },
+    {
+      "pdb_id": "6OIM", "chain": "A",
+      "target_id": "KRAS", "protein_id": "P01116",
+      "disease": "lung_cancer", "known_drug": "sotorasib",
+      "family": "gtpase_g12c"
+    }
+  ]
+}
