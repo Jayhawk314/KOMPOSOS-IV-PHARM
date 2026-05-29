@@ -1,0 +1,5169 @@
+{
+  "total": 626,
+  "counts": {
+    "POLARITY_CONFLICT": 59,
+    "PASS": 541,
+    "SUBSTRING_FALSE_POSITIVE": 22,
+    "KEYWORD_LOST": 4
+  },
+  "pass_rate": 0.8642172523961661,
+  "by_relation": {
+    "activates": {
+      "POLARITY_CONFLICT": 11,
+      "PASS": 31,
+      "SUBSTRING_FALSE_POSITIVE": 2,
+      "KEYWORD_LOST": 2
+    },
+    "activator": {
+      "POLARITY_CONFLICT": 1
+    },
+    "associated_with": {
+      "PASS": 262,
+      "SUBSTRING_FALSE_POSITIVE": 12
+    },
+    "driver_of": {
+      "POLARITY_CONFLICT": 5,
+      "PASS": 8
+    },
+    "inhibits": {
+      "POLARITY_CONFLICT": 42,
+      "PASS": 190,
+      "KEYWORD_LOST": 2,
+      "SUBSTRING_FALSE_POSITIVE": 7
+    },
+    "interacts": {
+      "PASS": 2
+    },
+    "phosphorylates": {
+      "PASS": 12
+    },
+    "sequesters": {
+      "SUBSTRING_FALSE_POSITIVE": 1
+    },
+    "synergizes_with": {
+      "PASS": 3
+    },
+    "treats": {
+      "PASS": 32
+    },
+    "binds": {
+      "PASS": 1
+    }
+  },
+  "examples": {
+    "POLARITY_CONFLICT": [
+      {
+        "source": "AKT1",
+        "target": "MDM2",
+        "relation": "activates",
+        "pmid": "29515768",
+        "proof_sentence": "Romidepsin decreased the protein levels of Akt1 and Mdm2, leading to induction of p21 in p53-null cells."
+      },
+      {
+        "source": "ERK1",
+        "target": "MYC",
+        "relation": "activates",
+        "pmid": "39502045",
+        "proof_sentence": "Results Compared with the normal tissue,the ccRCC tissue showed up-regulated mRNA and protein levels of PSMB8 (both P&lt;0.001),which were associated with the TNM stage of patients with ccRCC (P&lt;0.001).Compared with the negative control "
+      },
+      {
+        "source": "Metformin",
+        "target": "AMPK",
+        "relation": "activates",
+        "pmid": "42199531",
+        "proof_sentence": "Using metformin, a classical AMPK activator, we demonstrated that pharmacological activation of AMPK suppresses microglial PANoptosis, promotes a shift toward an anti-inflammatory microglial phenotype, and suppresses the associated pro-infl"
+      },
+      {
+        "source": "STAT5A",
+        "target": "BCL2",
+        "relation": "activates",
+        "pmid": "29274969",
+        "proof_sentence": "The mRNA levels of genes encoding proteins related to mammary activity (&#x3b1;-lactalbumin, &#x3b2;-casein, and acetyl-coenzyme A carboxylase), apoptosis (Bax, Bcl2, and caspase-3), PRL receptors (PRLR; long and short forms), signal transd"
+      },
+      {
+        "source": "STAT5A",
+        "target": "MYC",
+        "relation": "activates",
+        "pmid": "39191751",
+        "proof_sentence": "Here we generate Stat5a and Stat5b tyrosine-to-phenylalanine mutant knockin mice and find they have greatly reduced CD8+ T-cell numbers and profoundly diminished IL-2-induced proliferation of these cells, and this correlates with reduced in"
+      }
+    ],
+    "SUBSTRING_FALSE_POSITIVE": [
+      {
+        "source": "EGFR",
+        "target": "PI3KCA",
+        "relation": "activates",
+        "pmid": "39052000",
+        "proof_sentence": "Therefore, to build a patient-relevant in vivo model of human glioblastoma, we expressed common oncogenic variants including activated human EGFRvIII and PI3KCAH1047R under the control of the radial glial-specific promoter her4.1 in syngene"
+      },
+      {
+        "source": "MET",
+        "target": "HCC",
+        "relation": "associated_with",
+        "pmid": "42173324",
+        "proof_sentence": "To evaluate in a meta-analysis the efficacy of external beam radiotherapy (EBRT) with immunotherapy (IO) in hepatobiliary malignancies, including hepatocellular carcinoma (HCC) and cholangiocarcinoma (CCA), and identify factors associated w"
+      },
+      {
+        "source": "Lorlatinib",
+        "target": "ROS1",
+        "relation": "inhibits",
+        "pmid": "41974115",
+        "proof_sentence": "BackgroundLorlatinib, a third-generation ALK/ROS1 inhibitor, is highly effective in ALK-positive non-small-cell lung cancer (NSCLC), particularly for intracranial disease."
+      },
+      {
+        "source": "NPM1",
+        "target": "ARF",
+        "relation": "sequesters",
+        "pmid": "38106181",
+        "proof_sentence": "Here we show that NPM1 sequesters p14ARF within phase-separated condensates, facilitating the assembly of p14ARF into a gel-like meso-scale network."
+      },
+      {
+        "source": "Acarbose",
+        "target": "MGAM",
+        "relation": "inhibits",
+        "pmid": "34527658",
+        "proof_sentence": "In order to explore the conformational changes in the active pocket and unbinding pathway for NtMGAM, molecular dynamics (MD) simulations and adaptive steered molecular dynamics (ASMD) simulations were performed for two NtMGAM-inhibitor [de"
+      }
+    ],
+    "KEYWORD_LOST": [
+      {
+        "source": "IDH2",
+        "target": "TET2",
+        "relation": "inhibits",
+        "pmid": "38413410",
+        "proof_sentence": "Particularly early and pronounced reductions of clone sizes were found in subclones driven by mutations in genes involved in regulation of methylation (n&#x2009;=&#x2009;1 DNMT3A, n&#x2009;=&#x2009;1 IDH2, n&#x2009;=&#x2009;1 TET2)."
+      },
+      {
+        "source": "Itraconazole",
+        "target": "VEGFR2",
+        "relation": "inhibits",
+        "pmid": "28666022",
+        "proof_sentence": "Itraconazole had anti-angiogenic activity along with the reduction of VEGFR2 and VEGF levels."
+      },
+      {
+        "source": "Histamine",
+        "target": "HRH1",
+        "relation": "activates",
+        "pmid": "39886963",
+        "proof_sentence": "Loratadine, a histamine receptor H1 (HRH1) antagonist, shows both anti&#x2011;inflammatory and anticancer properties."
+      },
+      {
+        "source": "Iloprost",
+        "target": "PTGIR",
+        "relation": "activates",
+        "pmid": "35781537",
+        "proof_sentence": "Our rodent model experiment suggested that treatment with the PGI2 analog iloprost and adoptive transfer of fcgr3 knockout (fcgr3-/-) NK cells aggravated EMs progression and that genetic ablation of ptgis (ptgis-/-) in ectopic lesions and t"
+      }
+    ]
+  },
+  "detailed": [
+    {
+      "edge_id": "activates:AKT1->MDM2",
+      "source": "AKT1",
+      "target": "MDM2",
+      "relation": "activates",
+      "pmid": "29515768",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "activates:CXCL12->CXCR4",
+      "source": "CXCL12",
+      "target": "CXCR4",
+      "relation": "activates",
+      "pmid": "41987219",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:EGFR->PI3KCA",
+      "source": "EGFR",
+      "target": "PI3KCA",
+      "relation": "activates",
+      "pmid": "39052000",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "activates:EGFR->STAT3",
+      "source": "EGFR",
+      "target": "STAT3",
+      "relation": "activates",
+      "pmid": "42177207",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:ERK1->MYC",
+      "source": "ERK1",
+      "target": "MYC",
+      "relation": "activates",
+      "pmid": "39502045",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "activates:ERK2->MYC",
+      "source": "ERK2",
+      "target": "MYC",
+      "relation": "activates",
+      "pmid": "37463244",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:KRAS->RAF1",
+      "source": "KRAS",
+      "target": "RAF1",
+      "relation": "activates",
+      "pmid": "37805663",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Metformin->AMPK",
+      "source": "Metformin",
+      "target": "AMPK",
+      "relation": "activates",
+      "pmid": "42199531",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "activates:NRAS->BRAF",
+      "source": "NRAS",
+      "target": "BRAF",
+      "relation": "activates",
+      "pmid": "42046460",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:STAT5A->BCL2",
+      "source": "STAT5A",
+      "target": "BCL2",
+      "relation": "activates",
+      "pmid": "29274969",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "activates:STAT5A->MYC",
+      "source": "STAT5A",
+      "target": "MYC",
+      "relation": "activates",
+      "pmid": "39191751",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "activates:STAT5B->MYC",
+      "source": "STAT5B",
+      "target": "MYC",
+      "relation": "activates",
+      "pmid": "39191751",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "activates:TP53->CASP9",
+      "source": "TP53",
+      "target": "CASP9",
+      "relation": "activates",
+      "pmid": "37055935",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "activator:Chloroquine->TP53",
+      "source": "Chloroquine",
+      "target": "TP53",
+      "relation": "activator",
+      "pmid": "32401642",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "associated_with:ABCB1->AML",
+      "source": "ABCB1",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "41301675",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ABCB1->Breast_Cancer",
+      "source": "ABCB1",
+      "target": "Breast_Cancer",
+      "relation": "associated_with",
+      "pmid": "41935021",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BCL2->AML",
+      "source": "BCL2",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "42166356",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Breast_Cancer",
+      "source": "BRCA1",
+      "target": "Breast_Cancer",
+      "relation": "associated_with",
+      "pmid": "42201356",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Ovarian_Cancer",
+      "source": "BRCA1",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "42190606",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRCA2->Breast_Cancer",
+      "source": "BRCA2",
+      "target": "Breast_Cancer",
+      "relation": "associated_with",
+      "pmid": "42201356",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CD4->Melanoma",
+      "source": "CD4",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "42140948",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CDK4->Breast_Cancer",
+      "source": "CDK4",
+      "target": "Breast_Cancer",
+      "relation": "associated_with",
+      "pmid": "42187623",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:EGFR->Colorectal_Cancer",
+      "source": "EGFR",
+      "target": "Colorectal_Cancer",
+      "relation": "associated_with",
+      "pmid": "42194940",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ERBB2->Colorectal_Cancer",
+      "source": "ERBB2",
+      "target": "Colorectal_Cancer",
+      "relation": "associated_with",
+      "pmid": "42056442",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:Fluorouracil->TOP2A",
+      "source": "Fluorouracil",
+      "target": "TOP2A",
+      "relation": "associated_with",
+      "pmid": "31479512",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:HDAC2->AML",
+      "source": "HDAC2",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "39479811",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:HIF1A->Glioblastoma",
+      "source": "HIF1A",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "41007296",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:JAK2->AML",
+      "source": "JAK2",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "42101375",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:KIT->AML",
+      "source": "KIT",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "41917970",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MDM2->Glioblastoma",
+      "source": "MDM2",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "41515979",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MET->HCC",
+      "source": "MET",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "42173324",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "associated_with:MET->NSCLC",
+      "source": "MET",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "42187575",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MMP2->Melanoma",
+      "source": "MMP2",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "41793972",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MMP9->Colorectal_Cancer",
+      "source": "MMP9",
+      "target": "Colorectal_Cancer",
+      "relation": "associated_with",
+      "pmid": "42152201",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MTOR->RCC",
+      "source": "MTOR",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "42155824",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PDCD1->NSCLC",
+      "source": "PDCD1",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "40509568",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PDGFRA->Soft_Tissue_Sarcoma",
+      "source": "PDGFRA",
+      "target": "Soft_Tissue_Sarcoma",
+      "relation": "associated_with",
+      "pmid": "33524869",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:RB1->Soft_Tissue_Sarcoma",
+      "source": "RB1",
+      "target": "Soft_Tissue_Sarcoma",
+      "relation": "associated_with",
+      "pmid": "39516677",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:TGFB1->Colorectal_Cancer",
+      "source": "TGFB1",
+      "target": "Colorectal_Cancer",
+      "relation": "associated_with",
+      "pmid": "40075643",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:TP53->Breast_Cancer",
+      "source": "TP53",
+      "target": "Breast_Cancer",
+      "relation": "associated_with",
+      "pmid": "42201356",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:TP53->Ovarian_Cancer",
+      "source": "TP53",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "42181460",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "driver_of:ALK->NSCLC",
+      "source": "ALK",
+      "target": "NSCLC",
+      "relation": "driver_of",
+      "pmid": "42187575",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "driver_of:BCL2->CLL",
+      "source": "BCL2",
+      "target": "CLL",
+      "relation": "driver_of",
+      "pmid": "41010009",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "driver_of:EGFR->NSCLC",
+      "source": "EGFR",
+      "target": "NSCLC",
+      "relation": "driver_of",
+      "pmid": "42182703",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "driver_of:ERBB2->Breast_Cancer",
+      "source": "ERBB2",
+      "target": "Breast_Cancer",
+      "relation": "driver_of",
+      "pmid": "41554087",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "driver_of:FLT3->AML",
+      "source": "FLT3",
+      "target": "AML",
+      "relation": "driver_of",
+      "pmid": "41958931",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "driver_of:JAK2->Myelofibrosis",
+      "source": "JAK2",
+      "target": "Myelofibrosis",
+      "relation": "driver_of",
+      "pmid": "41991667",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "driver_of:KDR->HCC",
+      "source": "KDR",
+      "target": "HCC",
+      "relation": "driver_of",
+      "pmid": "25123269",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "driver_of:KIT->GIST",
+      "source": "KIT",
+      "target": "GIST",
+      "relation": "driver_of",
+      "pmid": "42080642",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "driver_of:PDGFRA->GIST",
+      "source": "PDGFRA",
+      "target": "GIST",
+      "relation": "driver_of",
+      "pmid": "41635891",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "driver_of:PIK3CA->Breast_Cancer",
+      "source": "PIK3CA",
+      "target": "Breast_Cancer",
+      "relation": "driver_of",
+      "pmid": "42074235",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "driver_of:PTEN->Prostate_Cancer",
+      "source": "PTEN",
+      "target": "Prostate_Cancer",
+      "relation": "driver_of",
+      "pmid": "42207152",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "driver_of:TOP2A->Breast_Cancer",
+      "source": "TOP2A",
+      "target": "Breast_Cancer",
+      "relation": "driver_of",
+      "pmid": "39931818",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "driver_of:VEGFR2->RCC",
+      "source": "VEGFR2",
+      "target": "RCC",
+      "relation": "driver_of",
+      "pmid": "38868177",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:AKT1->BAX",
+      "source": "AKT1",
+      "target": "BAX",
+      "relation": "inhibits",
+      "pmid": "41599705",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:ARF->MDM2",
+      "source": "ARF",
+      "target": "MDM2",
+      "relation": "inhibits",
+      "pmid": "41297313",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Adagrasib->KRAS",
+      "source": "Adagrasib",
+      "target": "KRAS",
+      "relation": "inhibits",
+      "pmid": "42122163",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Afatinib->EGFR",
+      "source": "Afatinib",
+      "target": "EGFR",
+      "relation": "inhibits",
+      "pmid": "42151084",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Afatinib->ERBB2",
+      "source": "Afatinib",
+      "target": "ERBB2",
+      "relation": "inhibits",
+      "pmid": "40612504",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Alectinib->ALK",
+      "source": "Alectinib",
+      "target": "ALK",
+      "relation": "inhibits",
+      "pmid": "42163606",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Alectinib->RET",
+      "source": "Alectinib",
+      "target": "RET",
+      "relation": "inhibits",
+      "pmid": "40599544",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Auranofin->TXNRD1",
+      "source": "Auranofin",
+      "target": "TXNRD1",
+      "relation": "inhibits",
+      "pmid": "41061336",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:BCL2->BAK",
+      "source": "BCL2",
+      "target": "BAK",
+      "relation": "inhibits",
+      "pmid": "42067913",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Bazedoxifene->IL6",
+      "source": "Bazedoxifene",
+      "target": "IL6",
+      "relation": "inhibits",
+      "pmid": "39152779",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Binimetinib->MAP2K1",
+      "source": "Binimetinib",
+      "target": "MAP2K1",
+      "relation": "inhibits",
+      "pmid": "32472116",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Brigatinib->ALK",
+      "source": "Brigatinib",
+      "target": "ALK",
+      "relation": "inhibits",
+      "pmid": "41985019",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Brigatinib->EGFR",
+      "source": "Brigatinib",
+      "target": "EGFR",
+      "relation": "inhibits",
+      "pmid": "41611070",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:CD274->PDCD1",
+      "source": "CD274",
+      "target": "PDCD1",
+      "relation": "inhibits",
+      "pmid": "41655134",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Capmatinib->MET",
+      "source": "Capmatinib",
+      "target": "MET",
+      "relation": "inhibits",
+      "pmid": "41573491",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Crizotinib->ALK",
+      "source": "Crizotinib",
+      "target": "ALK",
+      "relation": "inhibits",
+      "pmid": "41869672",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Crizotinib->MET",
+      "source": "Crizotinib",
+      "target": "MET",
+      "relation": "inhibits",
+      "pmid": "42015375",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Crizotinib->ROS1",
+      "source": "Crizotinib",
+      "target": "ROS1",
+      "relation": "inhibits",
+      "pmid": "41754770",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Dabrafenib->BRAF",
+      "source": "Dabrafenib",
+      "target": "BRAF",
+      "relation": "inhibits",
+      "pmid": "42143022",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Doxycycline->MMP9",
+      "source": "Doxycycline",
+      "target": "MMP9",
+      "relation": "inhibits",
+      "pmid": "41803116",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Encorafenib->BRAF",
+      "source": "Encorafenib",
+      "target": "BRAF",
+      "relation": "inhibits",
+      "pmid": "41920914",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Entrectinib->ALK",
+      "source": "Entrectinib",
+      "target": "ALK",
+      "relation": "inhibits",
+      "pmid": "41322192",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Entrectinib->NTRK1",
+      "source": "Entrectinib",
+      "target": "NTRK1",
+      "relation": "inhibits",
+      "pmid": "41744839",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Entrectinib->NTRK2",
+      "source": "Entrectinib",
+      "target": "NTRK2",
+      "relation": "inhibits",
+      "pmid": "41744839",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Entrectinib->NTRK3",
+      "source": "Entrectinib",
+      "target": "NTRK3",
+      "relation": "inhibits",
+      "pmid": "41744839",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Entrectinib->ROS1",
+      "source": "Entrectinib",
+      "target": "ROS1",
+      "relation": "inhibits",
+      "pmid": "41837926",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Erlotinib->EGFR",
+      "source": "Erlotinib",
+      "target": "EGFR",
+      "relation": "inhibits",
+      "pmid": "42156718",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Everolimus->MTOR",
+      "source": "Everolimus",
+      "target": "MTOR",
+      "relation": "inhibits",
+      "pmid": "42126699",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Gefitinib->EGFR",
+      "source": "Gefitinib",
+      "target": "EGFR",
+      "relation": "inhibits",
+      "pmid": "42198266",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:IDH1->TET2",
+      "source": "IDH1",
+      "target": "TET2",
+      "relation": "inhibits",
+      "pmid": "37642636",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:IDH2->TET2",
+      "source": "IDH2",
+      "target": "TET2",
+      "relation": "inhibits",
+      "pmid": "38413410",
+      "category": "KEYWORD_LOST"
+    },
+    {
+      "edge_id": "inhibits:Imatinib->KIT",
+      "source": "Imatinib",
+      "target": "KIT",
+      "relation": "inhibits",
+      "pmid": "42041590",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Imatinib->PDGFRA",
+      "source": "Imatinib",
+      "target": "PDGFRA",
+      "relation": "inhibits",
+      "pmid": "42066836",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Indomethacin->COX2",
+      "source": "Indomethacin",
+      "target": "COX2",
+      "relation": "inhibits",
+      "pmid": "41857108",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Irinotecan->TOP1",
+      "source": "Irinotecan",
+      "target": "TOP1",
+      "relation": "inhibits",
+      "pmid": "39512899",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Itraconazole->MTOR",
+      "source": "Itraconazole",
+      "target": "MTOR",
+      "relation": "inhibits",
+      "pmid": "36875717",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Itraconazole->VEGFR2",
+      "source": "Itraconazole",
+      "target": "VEGFR2",
+      "relation": "inhibits",
+      "pmid": "28666022",
+      "category": "KEYWORD_LOST"
+    },
+    {
+      "edge_id": "inhibits:Ivermectin->STAT3",
+      "source": "Ivermectin",
+      "target": "STAT3",
+      "relation": "inhibits",
+      "pmid": "35568994",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Lapatinib->EGFR",
+      "source": "Lapatinib",
+      "target": "EGFR",
+      "relation": "inhibits",
+      "pmid": "42089475",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Larotrectinib->NTRK1",
+      "source": "Larotrectinib",
+      "target": "NTRK1",
+      "relation": "inhibits",
+      "pmid": "41744839",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Larotrectinib->NTRK2",
+      "source": "Larotrectinib",
+      "target": "NTRK2",
+      "relation": "inhibits",
+      "pmid": "41744839",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Larotrectinib->NTRK3",
+      "source": "Larotrectinib",
+      "target": "NTRK3",
+      "relation": "inhibits",
+      "pmid": "41744839",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Lorlatinib->ALK",
+      "source": "Lorlatinib",
+      "target": "ALK",
+      "relation": "inhibits",
+      "pmid": "42151084",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Lorlatinib->ROS1",
+      "source": "Lorlatinib",
+      "target": "ROS1",
+      "relation": "inhibits",
+      "pmid": "41974115",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "inhibits:Mebendazole->BRAF",
+      "source": "Mebendazole",
+      "target": "BRAF",
+      "relation": "inhibits",
+      "pmid": "28157711",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Mebendazole->VEGFR2",
+      "source": "Mebendazole",
+      "target": "VEGFR2",
+      "relation": "inhibits",
+      "pmid": "22780961",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Nelfinavir->AKT1",
+      "source": "Nelfinavir",
+      "target": "AKT1",
+      "relation": "inhibits",
+      "pmid": "34136086",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Niclosamide->STAT3",
+      "source": "Niclosamide",
+      "target": "STAT3",
+      "relation": "inhibits",
+      "pmid": "40492423",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Osimertinib->EGFR",
+      "source": "Osimertinib",
+      "target": "EGFR",
+      "relation": "inhibits",
+      "pmid": "42182601",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:PTEN->AKT1",
+      "source": "PTEN",
+      "target": "AKT1",
+      "relation": "inhibits",
+      "pmid": "42154572",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:PTEN->PIK3CA",
+      "source": "PTEN",
+      "target": "PIK3CA",
+      "relation": "inhibits",
+      "pmid": "42154572",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Palbociclib->CDK4",
+      "source": "Palbociclib",
+      "target": "CDK4",
+      "relation": "inhibits",
+      "pmid": "42160728",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Palbociclib->CDK6",
+      "source": "Palbociclib",
+      "target": "CDK6",
+      "relation": "inhibits",
+      "pmid": "41548293",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Pembrolizumab->PDCD1",
+      "source": "Pembrolizumab",
+      "target": "PDCD1",
+      "relation": "inhibits",
+      "pmid": "30836329",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Pemetrexed->TYMS",
+      "source": "Pemetrexed",
+      "target": "TYMS",
+      "relation": "inhibits",
+      "pmid": "23060591",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Pralsetinib->RET",
+      "source": "Pralsetinib",
+      "target": "RET",
+      "relation": "inhibits",
+      "pmid": "42107510",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:RB1->E2F1",
+      "source": "RB1",
+      "target": "E2F1",
+      "relation": "inhibits",
+      "pmid": "37949681",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Ribociclib->CDK4",
+      "source": "Ribociclib",
+      "target": "CDK4",
+      "relation": "inhibits",
+      "pmid": "42192962",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Ribociclib->CDK6",
+      "source": "Ribociclib",
+      "target": "CDK6",
+      "relation": "inhibits",
+      "pmid": "40722732",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Ruxolitinib->JAK2",
+      "source": "Ruxolitinib",
+      "target": "JAK2",
+      "relation": "inhibits",
+      "pmid": "42179186",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Selpercatinib->RET",
+      "source": "Selpercatinib",
+      "target": "RET",
+      "relation": "inhibits",
+      "pmid": "42199509",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Sorafenib->BRAF",
+      "source": "Sorafenib",
+      "target": "BRAF",
+      "relation": "inhibits",
+      "pmid": "41137979",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Sorafenib->RAF1",
+      "source": "Sorafenib",
+      "target": "RAF1",
+      "relation": "inhibits",
+      "pmid": "41347828",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Sotorasib->KRAS",
+      "source": "Sotorasib",
+      "target": "KRAS",
+      "relation": "inhibits",
+      "pmid": "42144204",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Sunitinib->FLT3",
+      "source": "Sunitinib",
+      "target": "FLT3",
+      "relation": "inhibits",
+      "pmid": "40410534",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Suramin->VEGFR2",
+      "source": "Suramin",
+      "target": "VEGFR2",
+      "relation": "inhibits",
+      "pmid": "29450744",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:TP53->CDK4",
+      "source": "TP53",
+      "target": "CDK4",
+      "relation": "inhibits",
+      "pmid": "42174712",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Temsirolimus->MTOR",
+      "source": "Temsirolimus",
+      "target": "MTOR",
+      "relation": "inhibits",
+      "pmid": "41896217",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Tepotinib->MET",
+      "source": "Tepotinib",
+      "target": "MET",
+      "relation": "inhibits",
+      "pmid": "41760894",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Trametinib->MEK1",
+      "source": "Trametinib",
+      "target": "MEK1",
+      "relation": "inhibits",
+      "pmid": "42152474",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Trastuzumab->ERBB2",
+      "source": "Trastuzumab",
+      "target": "ERBB2",
+      "relation": "inhibits",
+      "pmid": "41798167",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Trastuzumab_deruxtecan->TOP1",
+      "source": "Trastuzumab_deruxtecan",
+      "target": "TOP1",
+      "relation": "inhibits",
+      "pmid": "40672227",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Valproic_Acid->HDAC1",
+      "source": "Valproic_Acid",
+      "target": "HDAC1",
+      "relation": "inhibits",
+      "pmid": "39589225",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Valproic_Acid->HDAC2",
+      "source": "Valproic_Acid",
+      "target": "HDAC2",
+      "relation": "inhibits",
+      "pmid": "39666740",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Vemurafenib->BRAF",
+      "source": "Vemurafenib",
+      "target": "BRAF",
+      "relation": "inhibits",
+      "pmid": "42179788",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Venetoclax->BCL2",
+      "source": "Venetoclax",
+      "target": "BCL2",
+      "relation": "inhibits",
+      "pmid": "42166356",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Verapamil->ABCB1",
+      "source": "Verapamil",
+      "target": "ABCB1",
+      "relation": "inhibits",
+      "pmid": "40721853",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "interacts:BRCA1->BRCA2",
+      "source": "BRCA1",
+      "target": "BRCA2",
+      "relation": "interacts",
+      "pmid": "35779338",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "interacts:BRCA2->RAD51",
+      "source": "BRCA2",
+      "target": "RAD51",
+      "relation": "interacts",
+      "pmid": "40923759",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "phosphorylates:ATM->CHEK2",
+      "source": "ATM",
+      "target": "CHEK2",
+      "relation": "phosphorylates",
+      "pmid": "41532283",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "phosphorylates:ATM->TP53",
+      "source": "ATM",
+      "target": "TP53",
+      "relation": "phosphorylates",
+      "pmid": "39014282",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "phosphorylates:ATR->CHEK2",
+      "source": "ATR",
+      "target": "CHEK2",
+      "relation": "phosphorylates",
+      "pmid": "29988075",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "phosphorylates:ATR->TP53",
+      "source": "ATR",
+      "target": "TP53",
+      "relation": "phosphorylates",
+      "pmid": "33172976",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "phosphorylates:CDK4->RB1",
+      "source": "CDK4",
+      "target": "RB1",
+      "relation": "phosphorylates",
+      "pmid": "41196681",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "phosphorylates:CDK6->RB1",
+      "source": "CDK6",
+      "target": "RB1",
+      "relation": "phosphorylates",
+      "pmid": "41946996",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "phosphorylates:FLT3->RUNX1",
+      "source": "FLT3",
+      "target": "RUNX1",
+      "relation": "phosphorylates",
+      "pmid": "36473282",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "phosphorylates:FLT3->STAT5A",
+      "source": "FLT3",
+      "target": "STAT5A",
+      "relation": "phosphorylates",
+      "pmid": "40833602",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "phosphorylates:JAK2->STAT3",
+      "source": "JAK2",
+      "target": "STAT3",
+      "relation": "phosphorylates",
+      "pmid": "42201814",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "phosphorylates:JAK2->STAT5",
+      "source": "JAK2",
+      "target": "STAT5",
+      "relation": "phosphorylates",
+      "pmid": "42111053",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "phosphorylates:MEK1->ERK1",
+      "source": "MEK1",
+      "target": "ERK1",
+      "relation": "phosphorylates",
+      "pmid": "42082145",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "phosphorylates:MEK1->ERK2",
+      "source": "MEK1",
+      "target": "ERK2",
+      "relation": "phosphorylates",
+      "pmid": "38510679",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "sequesters:NPM1->ARF",
+      "source": "NPM1",
+      "target": "ARF",
+      "relation": "sequesters",
+      "pmid": "38106181",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "synergizes_with:Dabrafenib->Trametinib",
+      "source": "Dabrafenib",
+      "target": "Trametinib",
+      "relation": "synergizes_with",
+      "pmid": "42088195",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "synergizes_with:Everolimus->Erlotinib",
+      "source": "Everolimus",
+      "target": "Erlotinib",
+      "relation": "synergizes_with",
+      "pmid": "42032072",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "synergizes_with:Venetoclax->Ruxolitinib",
+      "source": "Venetoclax",
+      "target": "Ruxolitinib",
+      "relation": "synergizes_with",
+      "pmid": "42007254",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Afatinib->NSCLC",
+      "source": "Afatinib",
+      "target": "NSCLC",
+      "relation": "treats",
+      "pmid": "42158804",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Alectinib->NSCLC",
+      "source": "Alectinib",
+      "target": "NSCLC",
+      "relation": "treats",
+      "pmid": "42158271",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Atezolizumab->NSCLC",
+      "source": "Atezolizumab",
+      "target": "NSCLC",
+      "relation": "treats",
+      "pmid": "42135591",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Binimetinib->Melanoma",
+      "source": "Binimetinib",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "41914670",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Cetuximab->Colorectal_Cancer",
+      "source": "Cetuximab",
+      "target": "Colorectal_Cancer",
+      "relation": "treats",
+      "pmid": "42199488",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Cobimetinib->Melanoma",
+      "source": "Cobimetinib",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "42091854",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Dabrafenib->Melanoma",
+      "source": "Dabrafenib",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "42195328",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Gefitinib->NSCLC",
+      "source": "Gefitinib",
+      "target": "NSCLC",
+      "relation": "treats",
+      "pmid": "42189390",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Imatinib->CML",
+      "source": "Imatinib",
+      "target": "CML",
+      "relation": "treats",
+      "pmid": "42154176",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Imatinib->GIST",
+      "source": "Imatinib",
+      "target": "GIST",
+      "relation": "treats",
+      "pmid": "42136545",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Ipilimumab->Melanoma",
+      "source": "Ipilimumab",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "42200697",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Metformin->Type2_Diabetes",
+      "source": "Metformin",
+      "target": "Type2_Diabetes",
+      "relation": "treats",
+      "pmid": "40466424",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Nivolumab->Melanoma",
+      "source": "Nivolumab",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "42200697",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Nivolumab->NSCLC",
+      "source": "Nivolumab",
+      "target": "NSCLC",
+      "relation": "treats",
+      "pmid": "42158883",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Olaparib->Breast_Cancer",
+      "source": "Olaparib",
+      "target": "Breast_Cancer",
+      "relation": "treats",
+      "pmid": "42183723",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Osimertinib->NSCLC",
+      "source": "Osimertinib",
+      "target": "NSCLC",
+      "relation": "treats",
+      "pmid": "42201025",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Palbociclib->Breast_Cancer",
+      "source": "Palbociclib",
+      "target": "Breast_Cancer",
+      "relation": "treats",
+      "pmid": "42173733",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Pembrolizumab->Melanoma",
+      "source": "Pembrolizumab",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "42190314",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Pembrolizumab->NSCLC",
+      "source": "Pembrolizumab",
+      "target": "NSCLC",
+      "relation": "treats",
+      "pmid": "42187584",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Ramucirumab->Colorectal_Cancer",
+      "source": "Ramucirumab",
+      "target": "Colorectal_Cancer",
+      "relation": "treats",
+      "pmid": "42159904",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Regorafenib->Colorectal_Cancer",
+      "source": "Regorafenib",
+      "target": "Colorectal_Cancer",
+      "relation": "treats",
+      "pmid": "42163782",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Regorafenib->GIST",
+      "source": "Regorafenib",
+      "target": "GIST",
+      "relation": "treats",
+      "pmid": "42136545",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Regorafenib->HCC",
+      "source": "Regorafenib",
+      "target": "HCC",
+      "relation": "treats",
+      "pmid": "42199561",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Ribociclib->Breast_Cancer",
+      "source": "Ribociclib",
+      "target": "Breast_Cancer",
+      "relation": "treats",
+      "pmid": "42185928",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Ruxolitinib->Myelofibrosis",
+      "source": "Ruxolitinib",
+      "target": "Myelofibrosis",
+      "relation": "treats",
+      "pmid": "42179186",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Sorafenib->HCC",
+      "source": "Sorafenib",
+      "target": "HCC",
+      "relation": "treats",
+      "pmid": "42193056",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Sorafenib->RCC",
+      "source": "Sorafenib",
+      "target": "RCC",
+      "relation": "treats",
+      "pmid": "41990693",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Sunitinib->GIST",
+      "source": "Sunitinib",
+      "target": "GIST",
+      "relation": "treats",
+      "pmid": "42136545",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Trametinib->Melanoma",
+      "source": "Trametinib",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "42195328",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Trastuzumab->Breast_Cancer",
+      "source": "Trastuzumab",
+      "target": "Breast_Cancer",
+      "relation": "treats",
+      "pmid": "42204863",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Vemurafenib->Melanoma",
+      "source": "Vemurafenib",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "42114556",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "treats:Venetoclax->CLL",
+      "source": "Venetoclax",
+      "target": "CLL",
+      "relation": "treats",
+      "pmid": "42184194",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Abatacept->CD86",
+      "source": "Abatacept",
+      "target": "CD86",
+      "relation": "inhibits",
+      "pmid": "39383033",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Abatacept->CD80",
+      "source": "Abatacept",
+      "target": "CD80",
+      "relation": "inhibits",
+      "pmid": "39383033",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Abemaciclib->CDK4",
+      "source": "Abemaciclib",
+      "target": "CDK4",
+      "relation": "inhibits",
+      "pmid": "42194689",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Abemaciclib->CDK6",
+      "source": "Abemaciclib",
+      "target": "CDK6",
+      "relation": "inhibits",
+      "pmid": "41845059",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Abiraterone->CYP17A1",
+      "source": "Abiraterone",
+      "target": "CYP17A1",
+      "relation": "inhibits",
+      "pmid": "41453691",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Abrocitinib->JAK1",
+      "source": "Abrocitinib",
+      "target": "JAK1",
+      "relation": "inhibits",
+      "pmid": "42186623",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Acalabrutinib->BTK",
+      "source": "Acalabrutinib",
+      "target": "BTK",
+      "relation": "inhibits",
+      "pmid": "42192981",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Acarbose->MGAM",
+      "source": "Acarbose",
+      "target": "MGAM",
+      "relation": "inhibits",
+      "pmid": "34527658",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "inhibits:Acetazolamide->CA1",
+      "source": "Acetazolamide",
+      "target": "CA1",
+      "relation": "inhibits",
+      "pmid": "37748571",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Acetazolamide->CA2",
+      "source": "Acetazolamide",
+      "target": "CA2",
+      "relation": "inhibits",
+      "pmid": "39789216",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Acetazolamide->CA4",
+      "source": "Acetazolamide",
+      "target": "CA4",
+      "relation": "inhibits",
+      "pmid": "41565998",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Afamelanotide->MC1R",
+      "source": "Afamelanotide",
+      "target": "MC1R",
+      "relation": "activates",
+      "pmid": "36367494",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Afatinib->ERBB4",
+      "source": "Afatinib",
+      "target": "ERBB4",
+      "relation": "inhibits",
+      "pmid": "37366888",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Aflibercept->VEGFA",
+      "source": "Aflibercept",
+      "target": "VEGFA",
+      "relation": "inhibits",
+      "pmid": "41373488",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Alemtuzumab->CD52",
+      "source": "Alemtuzumab",
+      "target": "CD52",
+      "relation": "inhibits",
+      "pmid": "39883995",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Alendronate->FDPS",
+      "source": "Alendronate",
+      "target": "FDPS",
+      "relation": "inhibits",
+      "pmid": "22278941",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Aliskiren->REN",
+      "source": "Aliskiren",
+      "target": "REN",
+      "relation": "inhibits",
+      "pmid": "40566708",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Allopurinol->XDH",
+      "source": "Allopurinol",
+      "target": "XDH",
+      "relation": "inhibits",
+      "pmid": "33716782",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Alpelisib->PIK3CA",
+      "source": "Alpelisib",
+      "target": "PIK3CA",
+      "relation": "inhibits",
+      "pmid": "42196155",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Ambenonium->ACHE",
+      "source": "Ambenonium",
+      "target": "ACHE",
+      "relation": "inhibits",
+      "pmid": "41271088",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Aminocaproic Acid->PLG",
+      "source": "Aminocaproic Acid",
+      "target": "PLG",
+      "relation": "inhibits",
+      "pmid": "11679580",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Aminoglutethimide->CYP11A1",
+      "source": "Aminoglutethimide",
+      "target": "CYP11A1",
+      "relation": "inhibits",
+      "pmid": "32497050",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Amivantamab->EGFR",
+      "source": "Amivantamab",
+      "target": "EGFR",
+      "relation": "inhibits",
+      "pmid": "42048802",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Amivantamab->MET",
+      "source": "Amivantamab",
+      "target": "MET",
+      "relation": "inhibits",
+      "pmid": "42048802",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Anagliptin->DPP4",
+      "source": "Anagliptin",
+      "target": "DPP4",
+      "relation": "inhibits",
+      "pmid": "37115489",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Angiotensin Ii->AGTR1",
+      "source": "Angiotensin Ii",
+      "target": "AGTR1",
+      "relation": "activates",
+      "pmid": "40538245",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Anifrolumab->IFNAR1",
+      "source": "Anifrolumab",
+      "target": "IFNAR1",
+      "relation": "inhibits",
+      "pmid": "41756273",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Anisindione->GGCX",
+      "source": "Anisindione",
+      "target": "GGCX",
+      "relation": "inhibits",
+      "pmid": "41290650",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Apalutamide->AR",
+      "source": "Apalutamide",
+      "target": "AR",
+      "relation": "inhibits",
+      "pmid": "40578932",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Aprepitant->TACR1",
+      "source": "Aprepitant",
+      "target": "TACR1",
+      "relation": "inhibits",
+      "pmid": "41985871",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Aprotinin->PLG",
+      "source": "Aprotinin",
+      "target": "PLG",
+      "relation": "inhibits",
+      "pmid": "26614523",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Aripiprazole->DRD2",
+      "source": "Aripiprazole",
+      "target": "DRD2",
+      "relation": "activates",
+      "pmid": "39098130",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Aripiprazole->HTR2A",
+      "source": "Aripiprazole",
+      "target": "HTR2A",
+      "relation": "inhibits",
+      "pmid": "19387614",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Asciminib->ABL1",
+      "source": "Asciminib",
+      "target": "ABL1",
+      "relation": "inhibits",
+      "pmid": "42078354",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Atenolol->ADRB1",
+      "source": "Atenolol",
+      "target": "ADRB1",
+      "relation": "inhibits",
+      "pmid": "41417111",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Atomoxetine->SLC6A2",
+      "source": "Atomoxetine",
+      "target": "SLC6A2",
+      "relation": "inhibits",
+      "pmid": "33944622",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Atorvastatin->HMGCR",
+      "source": "Atorvastatin",
+      "target": "HMGCR",
+      "relation": "inhibits",
+      "pmid": "41866501",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Atosiban->OXTR",
+      "source": "Atosiban",
+      "target": "OXTR",
+      "relation": "inhibits",
+      "pmid": "41007660",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Atropine->CHRM3",
+      "source": "Atropine",
+      "target": "CHRM3",
+      "relation": "inhibits",
+      "pmid": "40624113",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Atropine->CHRM1",
+      "source": "Atropine",
+      "target": "CHRM1",
+      "relation": "inhibits",
+      "pmid": "40624113",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Atropine->CHRM2",
+      "source": "Atropine",
+      "target": "CHRM2",
+      "relation": "inhibits",
+      "pmid": "40624113",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Avacincaptad Pegol->C5",
+      "source": "Avacincaptad Pegol",
+      "target": "C5",
+      "relation": "inhibits",
+      "pmid": "39722646",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Avacopan->C5AR1",
+      "source": "Avacopan",
+      "target": "C5AR1",
+      "relation": "inhibits",
+      "pmid": "41580904",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Avapritinib->KIT",
+      "source": "Avapritinib",
+      "target": "KIT",
+      "relation": "inhibits",
+      "pmid": "41961082",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Avapritinib->PDGFRA",
+      "source": "Avapritinib",
+      "target": "PDGFRA",
+      "relation": "inhibits",
+      "pmid": "41517566",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Avatrombopag->MPL",
+      "source": "Avatrombopag",
+      "target": "MPL",
+      "relation": "activates",
+      "pmid": "29905956",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Baricitinib->JAK1",
+      "source": "Baricitinib",
+      "target": "JAK1",
+      "relation": "inhibits",
+      "pmid": "42013280",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Baricitinib->JAK2",
+      "source": "Baricitinib",
+      "target": "JAK2",
+      "relation": "inhibits",
+      "pmid": "41984049",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Belatacept->CD86",
+      "source": "Belatacept",
+      "target": "CD86",
+      "relation": "inhibits",
+      "pmid": "40849621",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Belatacept->CD80",
+      "source": "Belatacept",
+      "target": "CD80",
+      "relation": "inhibits",
+      "pmid": "41754737",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Belumosudil->ROCK2",
+      "source": "Belumosudil",
+      "target": "ROCK2",
+      "relation": "inhibits",
+      "pmid": "42198791",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Belzutifan->EPAS1",
+      "source": "Belzutifan",
+      "target": "EPAS1",
+      "relation": "inhibits",
+      "pmid": "42089431",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Bempedoic Acid->ACLY",
+      "source": "Bempedoic Acid",
+      "target": "ACLY",
+      "relation": "inhibits",
+      "pmid": "41320340",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Benazepril->ACE",
+      "source": "Benazepril",
+      "target": "ACE",
+      "relation": "inhibits",
+      "pmid": "41065910",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Benzbromarone->SLC22A12",
+      "source": "Benzbromarone",
+      "target": "SLC22A12",
+      "relation": "inhibits",
+      "pmid": "16135657",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Betaxolol->ADRB1",
+      "source": "Betaxolol",
+      "target": "ADRB1",
+      "relation": "inhibits",
+      "pmid": "37857642",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Bicalutamide->AR",
+      "source": "Bicalutamide",
+      "target": "AR",
+      "relation": "inhibits",
+      "pmid": "42097033",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "inhibits:Bisoprolol->ADRB1",
+      "source": "Bisoprolol",
+      "target": "ADRB1",
+      "relation": "inhibits",
+      "pmid": "37753361",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Bosutinib->ABL1",
+      "source": "Bosutinib",
+      "target": "ABL1",
+      "relation": "inhibits",
+      "pmid": "42078354",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Bosutinib->SRC",
+      "source": "Bosutinib",
+      "target": "SRC",
+      "relation": "inhibits",
+      "pmid": "42040766",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Bosutinib->LYN",
+      "source": "Bosutinib",
+      "target": "LYN",
+      "relation": "inhibits",
+      "pmid": "41707990",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "activates:Bremelanotide->MC4R",
+      "source": "Bremelanotide",
+      "target": "MC4R",
+      "relation": "activates",
+      "pmid": "33455598",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Brinzolamide->CA2",
+      "source": "Brinzolamide",
+      "target": "CA2",
+      "relation": "inhibits",
+      "pmid": "35008590",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Bumetanide->SLC12A1",
+      "source": "Bumetanide",
+      "target": "SLC12A1",
+      "relation": "inhibits",
+      "pmid": "27447551",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Burosumab->FGF23",
+      "source": "Burosumab",
+      "target": "FGF23",
+      "relation": "inhibits",
+      "pmid": "41634723",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Buspirone->HTR1A",
+      "source": "Buspirone",
+      "target": "HTR1A",
+      "relation": "activates",
+      "pmid": "21990073",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Cabergoline->DRD2",
+      "source": "Cabergoline",
+      "target": "DRD2",
+      "relation": "activates",
+      "pmid": "38612419",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Calcitonin->CALCR",
+      "source": "Calcitonin",
+      "target": "CALCR",
+      "relation": "activates",
+      "pmid": "40943623",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Calcitriol->VDR",
+      "source": "Calcitriol",
+      "target": "VDR",
+      "relation": "activates",
+      "pmid": "42031173",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Canagliflozin->SLC5A2",
+      "source": "Canagliflozin",
+      "target": "SLC5A2",
+      "relation": "inhibits",
+      "pmid": "40719816",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Capecitabine->TYMS",
+      "source": "Capecitabine",
+      "target": "TYMS",
+      "relation": "inhibits",
+      "pmid": "39353904",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Caplacizumab->VWF",
+      "source": "Caplacizumab",
+      "target": "VWF",
+      "relation": "inhibits",
+      "pmid": "40779401",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Captopril->ACE",
+      "source": "Captopril",
+      "target": "ACE",
+      "relation": "inhibits",
+      "pmid": "42198438",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "activates:Carbachol->CHRM3",
+      "source": "Carbachol",
+      "target": "CHRM3",
+      "relation": "activates",
+      "pmid": "27606721",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Carbidopa->DDC",
+      "source": "Carbidopa",
+      "target": "DDC",
+      "relation": "inhibits",
+      "pmid": "41416996",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Carglumic Acid->CPS1",
+      "source": "Carglumic Acid",
+      "target": "CPS1",
+      "relation": "activates",
+      "pmid": "38637895",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Carmustine->GSR",
+      "source": "Carmustine",
+      "target": "GSR",
+      "relation": "inhibits",
+      "pmid": "36635256",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "binds:Catumaxomab->EPCAM",
+      "source": "Catumaxomab",
+      "target": "EPCAM",
+      "relation": "binds",
+      "pmid": "29269044",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Cedazuridine->CDA",
+      "source": "Cedazuridine",
+      "target": "CDA",
+      "relation": "inhibits",
+      "pmid": "33904891",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Celecoxib->PTGS2",
+      "source": "Celecoxib",
+      "target": "PTGS2",
+      "relation": "inhibits",
+      "pmid": "42163885",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Ceritinib->ALK",
+      "source": "Ceritinib",
+      "target": "ALK",
+      "relation": "inhibits",
+      "pmid": "42181273",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Certolizumab Pegol->TNF",
+      "source": "Certolizumab Pegol",
+      "target": "TNF",
+      "relation": "inhibits",
+      "pmid": "41809285",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Cetrorelix->GNRHR",
+      "source": "Cetrorelix",
+      "target": "GNRHR",
+      "relation": "inhibits",
+      "pmid": "39667624",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Cilastatin->DPEP1",
+      "source": "Cilastatin",
+      "target": "DPEP1",
+      "relation": "inhibits",
+      "pmid": "41490187",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Cilostazol->PDE3A",
+      "source": "Cilostazol",
+      "target": "PDE3A",
+      "relation": "inhibits",
+      "pmid": "34440764",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Cimetidine->HRH2",
+      "source": "Cimetidine",
+      "target": "HRH2",
+      "relation": "inhibits",
+      "pmid": "26907350",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Cinacalcet->CASR",
+      "source": "Cinacalcet",
+      "target": "CASR",
+      "relation": "activates",
+      "pmid": "41886073",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Clascoterone->AR",
+      "source": "Clascoterone",
+      "target": "AR",
+      "relation": "inhibits",
+      "pmid": "31141847",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Clemastine->HRH1",
+      "source": "Clemastine",
+      "target": "HRH1",
+      "relation": "inhibits",
+      "pmid": "35234502",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Clofibrate->PPARA",
+      "source": "Clofibrate",
+      "target": "PPARA",
+      "relation": "activates",
+      "pmid": "18188449",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "inhibits:Clopidogrel->P2RY12",
+      "source": "Clopidogrel",
+      "target": "P2RY12",
+      "relation": "inhibits",
+      "pmid": "34589424",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Clozapine->HTR2A",
+      "source": "Clozapine",
+      "target": "HTR2A",
+      "relation": "inhibits",
+      "pmid": "39405910",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Clozapine->DRD2",
+      "source": "Clozapine",
+      "target": "DRD2",
+      "relation": "inhibits",
+      "pmid": "39405910",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Concizumab->TFPI",
+      "source": "Concizumab",
+      "target": "TFPI",
+      "relation": "inhibits",
+      "pmid": "41615376",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Copanlisib->PIK3CA",
+      "source": "Copanlisib",
+      "target": "PIK3CA",
+      "relation": "inhibits",
+      "pmid": "40635161",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "activates:Cortisone->NR3C1",
+      "source": "Cortisone",
+      "target": "NR3C1",
+      "relation": "activates",
+      "pmid": "21806804",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Crovalimab->C5",
+      "source": "Crovalimab",
+      "target": "C5",
+      "relation": "inhibits",
+      "pmid": "41526265",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Dacomitinib->EGFR",
+      "source": "Dacomitinib",
+      "target": "EGFR",
+      "relation": "inhibits",
+      "pmid": "42200352",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Dacomitinib->ERBB2",
+      "source": "Dacomitinib",
+      "target": "ERBB2",
+      "relation": "inhibits",
+      "pmid": "38724606",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Dacomitinib->ERBB4",
+      "source": "Dacomitinib",
+      "target": "ERBB4",
+      "relation": "inhibits",
+      "pmid": "40746531",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Dantrolene->RYR1",
+      "source": "Dantrolene",
+      "target": "RYR1",
+      "relation": "inhibits",
+      "pmid": "40983303",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Dantrolene->RYR3",
+      "source": "Dantrolene",
+      "target": "RYR3",
+      "relation": "inhibits",
+      "pmid": "39173065",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Dapagliflozin->SLC5A2",
+      "source": "Dapagliflozin",
+      "target": "SLC5A2",
+      "relation": "inhibits",
+      "pmid": "41968633",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Daratumumab->CD38",
+      "source": "Daratumumab",
+      "target": "CD38",
+      "relation": "inhibits",
+      "pmid": "41828851",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Darolutamide->AR",
+      "source": "Darolutamide",
+      "target": "AR",
+      "relation": "inhibits",
+      "pmid": "41235005",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Decitabine->DNMT3A",
+      "source": "Decitabine",
+      "target": "DNMT3A",
+      "relation": "inhibits",
+      "pmid": "40504084",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Decitabine->DNMT1",
+      "source": "Decitabine",
+      "target": "DNMT1",
+      "relation": "inhibits",
+      "pmid": "41679964",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Degarelix->GNRHR",
+      "source": "Degarelix",
+      "target": "GNRHR",
+      "relation": "inhibits",
+      "pmid": "41552336",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Denosumab->TNFSF11",
+      "source": "Denosumab",
+      "target": "TNFSF11",
+      "relation": "inhibits",
+      "pmid": "41461683",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Deucravacitinib->TYK2",
+      "source": "Deucravacitinib",
+      "target": "TYK2",
+      "relation": "inhibits",
+      "pmid": "42202148",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Deuruxolitinib->JAK3",
+      "source": "Deuruxolitinib",
+      "target": "JAK3",
+      "relation": "inhibits",
+      "pmid": "37219075",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Dicyclomine->CHRM1",
+      "source": "Dicyclomine",
+      "target": "CHRM1",
+      "relation": "inhibits",
+      "pmid": "38262412",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Dipyridamole->SLC29A1",
+      "source": "Dipyridamole",
+      "target": "SLC29A1",
+      "relation": "inhibits",
+      "pmid": "32339528",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Disulfiram->ALDH2",
+      "source": "Disulfiram",
+      "target": "ALDH2",
+      "relation": "inhibits",
+      "pmid": "42168200",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Dobutamine->ADRB1",
+      "source": "Dobutamine",
+      "target": "ADRB1",
+      "relation": "activates",
+      "pmid": "23470310",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Dofetilide->KCNH2",
+      "source": "Dofetilide",
+      "target": "KCNH2",
+      "relation": "inhibits",
+      "pmid": "39128897",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Donepezil->ACHE",
+      "source": "Donepezil",
+      "target": "ACHE",
+      "relation": "inhibits",
+      "pmid": "42184581",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Dorzolamide->CA2",
+      "source": "Dorzolamide",
+      "target": "CA2",
+      "relation": "inhibits",
+      "pmid": "34986321",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Doxercalciferol->VDR",
+      "source": "Doxercalciferol",
+      "target": "VDR",
+      "relation": "activates",
+      "pmid": "21647319",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "activates:Dronabinol->CNR1",
+      "source": "Dronabinol",
+      "target": "CNR1",
+      "relation": "activates",
+      "pmid": "22403795",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Dronedarone->HCN4",
+      "source": "Dronedarone",
+      "target": "HCN4",
+      "relation": "inhibits",
+      "pmid": "21279331",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Dupilumab->IL4R",
+      "source": "Dupilumab",
+      "target": "IL4R",
+      "relation": "inhibits",
+      "pmid": "39941924",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Echothiophate->ACHE",
+      "source": "Echothiophate",
+      "target": "ACHE",
+      "relation": "inhibits",
+      "pmid": "10661498",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Echothiophate Iodide->ACHE",
+      "source": "Echothiophate Iodide",
+      "target": "ACHE",
+      "relation": "inhibits",
+      "pmid": "3779439",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Eculizumab->C5",
+      "source": "Eculizumab",
+      "target": "C5",
+      "relation": "inhibits",
+      "pmid": "42074848",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Edrophonium->ACHE",
+      "source": "Edrophonium",
+      "target": "ACHE",
+      "relation": "inhibits",
+      "pmid": "27297626",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Eflornithine->ODC1",
+      "source": "Eflornithine",
+      "target": "ODC1",
+      "relation": "inhibits",
+      "pmid": "33934471",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Elagolix->GNRHR",
+      "source": "Elagolix",
+      "target": "GNRHR",
+      "relation": "inhibits",
+      "pmid": "37175271",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Eliglustat->UGCG",
+      "source": "Eliglustat",
+      "target": "UGCG",
+      "relation": "inhibits",
+      "pmid": "41734065",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Empagliflozin->SLC5A2",
+      "source": "Empagliflozin",
+      "target": "SLC5A2",
+      "relation": "inhibits",
+      "pmid": "39385699",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Enalapril->ACE",
+      "source": "Enalapril",
+      "target": "ACE",
+      "relation": "inhibits",
+      "pmid": "41903810",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Enalaprilat->ACE",
+      "source": "Enalaprilat",
+      "target": "ACE",
+      "relation": "inhibits",
+      "pmid": "40518035",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Enasidenib->IDH2",
+      "source": "Enasidenib",
+      "target": "IDH2",
+      "relation": "inhibits",
+      "pmid": "41075807",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Ensartinib->ALK",
+      "source": "Ensartinib",
+      "target": "ALK",
+      "relation": "inhibits",
+      "pmid": "42137140",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Entacapone->COMT",
+      "source": "Entacapone",
+      "target": "COMT",
+      "relation": "inhibits",
+      "pmid": "42172775",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Enzalutamide->AR",
+      "source": "Enzalutamide",
+      "target": "AR",
+      "relation": "inhibits",
+      "pmid": "42203314",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Epalrestat->AKR1B1",
+      "source": "Epalrestat",
+      "target": "AKR1B1",
+      "relation": "inhibits",
+      "pmid": "42193464",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Etanercept->TNF",
+      "source": "Etanercept",
+      "target": "TNF",
+      "relation": "inhibits",
+      "pmid": "42177286",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Etelcalcetide->CASR",
+      "source": "Etelcalcetide",
+      "target": "CASR",
+      "relation": "activates",
+      "pmid": "30009474",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Etoposide->TOP2A",
+      "source": "Etoposide",
+      "target": "TOP2A",
+      "relation": "inhibits",
+      "pmid": "42163424",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Evinacumab->ANGPTL3",
+      "source": "Evinacumab",
+      "target": "ANGPTL3",
+      "relation": "inhibits",
+      "pmid": "41179333",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Evogliptin->DPP4",
+      "source": "Evogliptin",
+      "target": "DPP4",
+      "relation": "inhibits",
+      "pmid": "41096775",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Evolocumab->PCSK9",
+      "source": "Evolocumab",
+      "target": "PCSK9",
+      "relation": "inhibits",
+      "pmid": "42205681",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Exenatide->GLP1R",
+      "source": "Exenatide",
+      "target": "GLP1R",
+      "relation": "activates",
+      "pmid": "41206637",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Ezetimibe->NPC1L1",
+      "source": "Ezetimibe",
+      "target": "NPC1L1",
+      "relation": "inhibits",
+      "pmid": "40732982",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Fedratinib->JAK2",
+      "source": "Fedratinib",
+      "target": "JAK2",
+      "relation": "inhibits",
+      "pmid": "41984049",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Fenofibrate->PPARA",
+      "source": "Fenofibrate",
+      "target": "PPARA",
+      "relation": "activates",
+      "pmid": "36796223",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Fenoldopam->DRD1",
+      "source": "Fenoldopam",
+      "target": "DRD1",
+      "relation": "activates",
+      "pmid": "41915656",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Filgotinib->JAK1",
+      "source": "Filgotinib",
+      "target": "JAK1",
+      "relation": "inhibits",
+      "pmid": "41922262",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Filgotinib->JAK2",
+      "source": "Filgotinib",
+      "target": "JAK2",
+      "relation": "inhibits",
+      "pmid": "37763071",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Finasteride->SRD5A2",
+      "source": "Finasteride",
+      "target": "SRD5A2",
+      "relation": "inhibits",
+      "pmid": "37984619",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Flecainide->SCN5A",
+      "source": "Flecainide",
+      "target": "SCN5A",
+      "relation": "inhibits",
+      "pmid": "41877019",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Fluphenazine->DRD2",
+      "source": "Fluphenazine",
+      "target": "DRD2",
+      "relation": "inhibits",
+      "pmid": "31955999",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Flutamide->AR",
+      "source": "Flutamide",
+      "target": "AR",
+      "relation": "inhibits",
+      "pmid": "40669789",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Fluvastatin->HMGCR",
+      "source": "Fluvastatin",
+      "target": "HMGCR",
+      "relation": "inhibits",
+      "pmid": "34927546",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Formoterol->ADRB2",
+      "source": "Formoterol",
+      "target": "ADRB2",
+      "relation": "activates",
+      "pmid": "37502964",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Forodesine->PNP",
+      "source": "Forodesine",
+      "target": "PNP",
+      "relation": "inhibits",
+      "pmid": "24948692",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Fosinopril->ACE",
+      "source": "Fosinopril",
+      "target": "ACE",
+      "relation": "inhibits",
+      "pmid": "37954960",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Fostamatinib->SYK",
+      "source": "Fostamatinib",
+      "target": "SYK",
+      "relation": "inhibits",
+      "pmid": "42026764",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Fostamatinib Disodium->SYK",
+      "source": "Fostamatinib Disodium",
+      "target": "SYK",
+      "relation": "inhibits",
+      "pmid": "21279990",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Fulvestrant->ESR1",
+      "source": "Fulvestrant",
+      "target": "ESR1",
+      "relation": "inhibits",
+      "pmid": "41457969",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Furosemide->SLC12A1",
+      "source": "Furosemide",
+      "target": "SLC12A1",
+      "relation": "inhibits",
+      "pmid": "28402032",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Galantamine Hydrobromide->ACHE",
+      "source": "Galantamine Hydrobromide",
+      "target": "ACHE",
+      "relation": "inhibits",
+      "pmid": "38878700",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Ganirelix->GNRHR",
+      "source": "Ganirelix",
+      "target": "GNRHR",
+      "relation": "inhibits",
+      "pmid": "34959589",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Gemfibrozil->PPARA",
+      "source": "Gemfibrozil",
+      "target": "PPARA",
+      "relation": "activates",
+      "pmid": "30898012",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Gilteritinib->FLT3",
+      "source": "Gilteritinib",
+      "target": "FLT3",
+      "relation": "inhibits",
+      "pmid": "42139346",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Gilteritinib->AXL",
+      "source": "Gilteritinib",
+      "target": "AXL",
+      "relation": "inhibits",
+      "pmid": "40578406",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Glasdegib->SMO",
+      "source": "Glasdegib",
+      "target": "SMO",
+      "relation": "inhibits",
+      "pmid": "41439992",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "activates:Glucagon->GCGR",
+      "source": "Glucagon",
+      "target": "GCGR",
+      "relation": "activates",
+      "pmid": "41820018",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Golimumab->TNF",
+      "source": "Golimumab",
+      "target": "TNF",
+      "relation": "inhibits",
+      "pmid": "42082137",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Histamine->HRH1",
+      "source": "Histamine",
+      "target": "HRH1",
+      "relation": "activates",
+      "pmid": "39886963",
+      "category": "KEYWORD_LOST"
+    },
+    {
+      "edge_id": "inhibits:Hydroxychloroquine->TLR9",
+      "source": "Hydroxychloroquine",
+      "target": "TLR9",
+      "relation": "inhibits",
+      "pmid": "40545150",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Ibalizumab->CD4",
+      "source": "Ibalizumab",
+      "target": "CD4",
+      "relation": "inhibits",
+      "pmid": "41964438",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Ibrutinib->BTK",
+      "source": "Ibrutinib",
+      "target": "BTK",
+      "relation": "inhibits",
+      "pmid": "42193957",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "inhibits:Ibudilast->PDE3A",
+      "source": "Ibudilast",
+      "target": "PDE3A",
+      "relation": "inhibits",
+      "pmid": "16674936",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Idelalisib->PIK3CD",
+      "source": "Idelalisib",
+      "target": "PIK3CD",
+      "relation": "inhibits",
+      "pmid": "38705383",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Iloprost->PTGIR",
+      "source": "Iloprost",
+      "target": "PTGIR",
+      "relation": "activates",
+      "pmid": "35781537",
+      "category": "KEYWORD_LOST"
+    },
+    {
+      "edge_id": "inhibits:Imatinib->ABL1",
+      "source": "Imatinib",
+      "target": "ABL1",
+      "relation": "inhibits",
+      "pmid": "41987522",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Imetelstat->TERT",
+      "source": "Imetelstat",
+      "target": "TERT",
+      "relation": "inhibits",
+      "pmid": "25118183",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Imidapril->ACE",
+      "source": "Imidapril",
+      "target": "ACE",
+      "relation": "inhibits",
+      "pmid": "27088094",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "activates:Imiquimod->TLR7",
+      "source": "Imiquimod",
+      "target": "TLR7",
+      "relation": "activates",
+      "pmid": "42050361",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Inavolisib->PIK3CA",
+      "source": "Inavolisib",
+      "target": "PIK3CA",
+      "relation": "inhibits",
+      "pmid": "41989051",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "activates:Indacaterol->ADRB2",
+      "source": "Indacaterol",
+      "target": "ADRB2",
+      "relation": "activates",
+      "pmid": "25134539",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Isatuximab->CD38",
+      "source": "Isatuximab",
+      "target": "CD38",
+      "relation": "inhibits",
+      "pmid": "40552130",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Istradefylline->ADORA2A",
+      "source": "Istradefylline",
+      "target": "ADORA2A",
+      "relation": "inhibits",
+      "pmid": "39373701",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Ivabradine->HCN4",
+      "source": "Ivabradine",
+      "target": "HCN4",
+      "relation": "inhibits",
+      "pmid": "39988103",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Ivosidenib->IDH1",
+      "source": "Ivosidenib",
+      "target": "IDH1",
+      "relation": "inhibits",
+      "pmid": "41995710",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "activates:Lanreotide->SSTR5",
+      "source": "Lanreotide",
+      "target": "SSTR5",
+      "relation": "activates",
+      "pmid": "12920656",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Lasmiditan->HTR1F",
+      "source": "Lasmiditan",
+      "target": "HTR1F",
+      "relation": "activates",
+      "pmid": "41060776",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Lazertinib->EGFR",
+      "source": "Lazertinib",
+      "target": "EGFR",
+      "relation": "inhibits",
+      "pmid": "41859193",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Lecanemab->APP",
+      "source": "Lecanemab",
+      "target": "APP",
+      "relation": "inhibits",
+      "pmid": "39496415",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "inhibits:Leflunomide->DHODH",
+      "source": "Leflunomide",
+      "target": "DHODH",
+      "relation": "inhibits",
+      "pmid": "41869756",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Lesinurad->SLC22A12",
+      "source": "Lesinurad",
+      "target": "SLC22A12",
+      "relation": "inhibits",
+      "pmid": "30315176",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Letrozole->CYP19A1",
+      "source": "Letrozole",
+      "target": "CYP19A1",
+      "relation": "inhibits",
+      "pmid": "40454501",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Leuprolide->GNRHR",
+      "source": "Leuprolide",
+      "target": "GNRHR",
+      "relation": "activates",
+      "pmid": "36799164",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Levodopa->DRD3",
+      "source": "Levodopa",
+      "target": "DRD3",
+      "relation": "activates",
+      "pmid": "25445374",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "activates:Linaclotide->GUCY2C",
+      "source": "Linaclotide",
+      "target": "GUCY2C",
+      "relation": "activates",
+      "pmid": "36548082",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "inhibits:Linagliptin->DPP4",
+      "source": "Linagliptin",
+      "target": "DPP4",
+      "relation": "inhibits",
+      "pmid": "41898596",
+      "category": "POLARITY_CONFLICT"
+    },
+    {
+      "edge_id": "associated_with:ERBB2->HCC",
+      "source": "ERBB2",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "39546955",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:VEGFR2->CLL",
+      "source": "VEGFR2",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "15809205",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:VEGFR2->NSCLC",
+      "source": "VEGFR2",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "39612105",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:TP53->Prostate_Cancer",
+      "source": "TP53",
+      "target": "Prostate_Cancer",
+      "relation": "associated_with",
+      "pmid": "42138020",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:TP53->CLL",
+      "source": "TP53",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "41814015",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:TP53->HCC",
+      "source": "TP53",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "42184606",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PTEN->Breast_Cancer",
+      "source": "PTEN",
+      "target": "Breast_Cancer",
+      "relation": "associated_with",
+      "pmid": "42201356",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:RB1->Glioblastoma",
+      "source": "RB1",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "41231102",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:RB1->CML",
+      "source": "RB1",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "32507070",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:RB1->Prostate_Cancer",
+      "source": "RB1",
+      "target": "Prostate_Cancer",
+      "relation": "associated_with",
+      "pmid": "42138020",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:RB1->AML",
+      "source": "RB1",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "32917124",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:RB1->GIST",
+      "source": "RB1",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "40108758",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:RB1->Melanoma",
+      "source": "RB1",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "41936939",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:NRAS->Melanoma",
+      "source": "NRAS",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "42193039",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:NRAS->AML",
+      "source": "NRAS",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "42118855",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MYC->Pancreatic_Cancer",
+      "source": "MYC",
+      "target": "Pancreatic_Cancer",
+      "relation": "associated_with",
+      "pmid": "42097492",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MYC->CML",
+      "source": "MYC",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "39774797",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MYC->RCC",
+      "source": "MYC",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "41889506",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MYC->GIST",
+      "source": "MYC",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "39636317",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MYC->NSCLC",
+      "source": "MYC",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "41928013",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MYC->Ewing_Sarcoma",
+      "source": "MYC",
+      "target": "Ewing_Sarcoma",
+      "relation": "associated_with",
+      "pmid": "41801971",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MYC->HCC",
+      "source": "MYC",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "42099234",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:AKT1->Pancreatic_Cancer",
+      "source": "AKT1",
+      "target": "Pancreatic_Cancer",
+      "relation": "associated_with",
+      "pmid": "42094816",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:AKT1->CML",
+      "source": "AKT1",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "27137869",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:AKT1->CLL",
+      "source": "AKT1",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "32664705",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:AKT1->Colorectal_Cancer",
+      "source": "AKT1",
+      "target": "Colorectal_Cancer",
+      "relation": "associated_with",
+      "pmid": "42094816",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:AKT1->AML",
+      "source": "AKT1",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "41397617",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:AKT1->GIST",
+      "source": "AKT1",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "31553483",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:AKT1->HCC",
+      "source": "AKT1",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "42094816",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MTOR->Pancreatic_Cancer",
+      "source": "MTOR",
+      "target": "Pancreatic_Cancer",
+      "relation": "associated_with",
+      "pmid": "42157383",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MTOR->Ovarian_Cancer",
+      "source": "MTOR",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "42049334",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MTOR->Glioblastoma",
+      "source": "MTOR",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "42132406",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MTOR->CML",
+      "source": "MTOR",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "42132406",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MTOR->GIST",
+      "source": "MTOR",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "42132406",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MTOR->Melanoma",
+      "source": "MTOR",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "41995376",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MTOR->Multiple_Myeloma",
+      "source": "MTOR",
+      "target": "Multiple_Myeloma",
+      "relation": "associated_with",
+      "pmid": "41046532",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ERK1->Pancreatic_Cancer",
+      "source": "ERK1",
+      "target": "Pancreatic_Cancer",
+      "relation": "associated_with",
+      "pmid": "41045302",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ERK1->Myelofibrosis",
+      "source": "ERK1",
+      "target": "Myelofibrosis",
+      "relation": "associated_with",
+      "pmid": "35356507",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ERK1->Glioblastoma",
+      "source": "ERK1",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "41759882",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ERK1->AML",
+      "source": "ERK1",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "38135130",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ERK1->GIST",
+      "source": "ERK1",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "27469332",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ERK1->Melanoma",
+      "source": "ERK1",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "41873352",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ERK1->HCC",
+      "source": "ERK1",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "42089079",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ERK2->CLL",
+      "source": "ERK2",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "32954947",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ERK2->AML",
+      "source": "ERK2",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "18931459",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ERK2->NSCLC",
+      "source": "ERK2",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "40383937",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ERK2->Melanoma",
+      "source": "ERK2",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "41873352",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ERK2->HCC",
+      "source": "ERK2",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "31612032",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MEK1->CLL",
+      "source": "MEK1",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "22160382",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MEK1->Colorectal_Cancer",
+      "source": "MEK1",
+      "target": "Colorectal_Cancer",
+      "relation": "associated_with",
+      "pmid": "39731938",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MEK1->GIST",
+      "source": "MEK1",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "23376254",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "associated_with:MEK1->NSCLC",
+      "source": "MEK1",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "35655775",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:RAF1->AML",
+      "source": "RAF1",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "40727567",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:RAF1->HCC",
+      "source": "RAF1",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "42074524",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT3->Prostate_Cancer",
+      "source": "STAT3",
+      "target": "Prostate_Cancer",
+      "relation": "associated_with",
+      "pmid": "41908237",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT3->CLL",
+      "source": "STAT3",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "40427031",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT3->Melanoma",
+      "source": "STAT3",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "42142674",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CDK4->Ovarian_Cancer",
+      "source": "CDK4",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "41883369",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CDK4->Glioblastoma",
+      "source": "CDK4",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "42011292",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CDK4->CLL",
+      "source": "CDK4",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "36573331",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CDK4->RCC",
+      "source": "CDK4",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "36890610",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "associated_with:CDK4->AML",
+      "source": "CDK4",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "41551728",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CDK4->GIST",
+      "source": "CDK4",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "31553483",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CDK4->NSCLC",
+      "source": "CDK4",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "41442003",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CDK4->Melanoma",
+      "source": "CDK4",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "41053077",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CDK6->CLL",
+      "source": "CDK6",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "36573331",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CDK6->RCC",
+      "source": "CDK6",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "37294700",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "associated_with:CDK6->AML",
+      "source": "CDK6",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "40883610",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CDK6->NSCLC",
+      "source": "CDK6",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "42155168",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CDK6->Melanoma",
+      "source": "CDK6",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "39495991",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CDK6->HCC",
+      "source": "CDK6",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "42034462",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:E2F1->Glioblastoma",
+      "source": "E2F1",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "41231102",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:E2F1->CLL",
+      "source": "E2F1",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "12036888",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:E2F1->RCC",
+      "source": "E2F1",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "40067251",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:E2F1->AML",
+      "source": "E2F1",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "37665348",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:E2F1->GIST",
+      "source": "E2F1",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "29451912",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BAX->Pancreatic_Cancer",
+      "source": "BAX",
+      "target": "Pancreatic_Cancer",
+      "relation": "associated_with",
+      "pmid": "41387974",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BAX->Ovarian_Cancer",
+      "source": "BAX",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "41480643",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BAX->CLL",
+      "source": "BAX",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "40848636",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BAX->RCC",
+      "source": "BAX",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "40358820",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CASP3->CML",
+      "source": "CASP3",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "32507070",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CASP3->Prostate_Cancer",
+      "source": "CASP3",
+      "target": "Prostate_Cancer",
+      "relation": "associated_with",
+      "pmid": "41885368",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CASP3->CLL",
+      "source": "CASP3",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "31463762",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CASP3->AML",
+      "source": "CASP3",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "40954399",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CASP3->Melanoma",
+      "source": "CASP3",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "41053010",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CASP3->Multiple_Myeloma",
+      "source": "CASP3",
+      "target": "Multiple_Myeloma",
+      "relation": "associated_with",
+      "pmid": "31242129",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CASP9->RCC",
+      "source": "CASP9",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "23645041",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CASP9->AML",
+      "source": "CASP9",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "40954399",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CASP9->Multiple_Myeloma",
+      "source": "CASP9",
+      "target": "Multiple_Myeloma",
+      "relation": "associated_with",
+      "pmid": "19362737",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ATM->CML",
+      "source": "ATM",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "32272770",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ATM->RCC",
+      "source": "ATM",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "39369320",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ATM->AML",
+      "source": "ATM",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "38164802",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ATM->NSCLC",
+      "source": "ATM",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "41982701",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "associated_with:ATM->Ewing_Sarcoma",
+      "source": "ATM",
+      "target": "Ewing_Sarcoma",
+      "relation": "associated_with",
+      "pmid": "35326688",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "associated_with:ATM->Breast_Cancer",
+      "source": "ATM",
+      "target": "Breast_Cancer",
+      "relation": "associated_with",
+      "pmid": "42201356",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ATR->Ovarian_Cancer",
+      "source": "ATR",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "41735312",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ATR->CML",
+      "source": "ATR",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "32272770",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ATR->HCC",
+      "source": "ATR",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "40896397",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CHEK2->Breast_Cancer",
+      "source": "CHEK2",
+      "target": "Breast_Cancer",
+      "relation": "associated_with",
+      "pmid": "42201356",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MDM2->Ovarian_Cancer",
+      "source": "MDM2",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "41681824",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MDM2->CML",
+      "source": "MDM2",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "39591691",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MDM2->CLL",
+      "source": "MDM2",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "39061962",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MDM2->GIST",
+      "source": "MDM2",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "41288319",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MDM2->Melanoma",
+      "source": "MDM2",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "41565392",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MDM2->HCC",
+      "source": "MDM2",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "41751440",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MDM2->Multiple_Myeloma",
+      "source": "MDM2",
+      "target": "Multiple_Myeloma",
+      "relation": "associated_with",
+      "pmid": "41608334",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:RAD51->Colorectal_Cancer",
+      "source": "RAD51",
+      "target": "Colorectal_Cancer",
+      "relation": "associated_with",
+      "pmid": "42178953",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:RAD51->RCC",
+      "source": "RAD51",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "38607586",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "associated_with:RAD51->NSCLC",
+      "source": "RAD51",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "41764215",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:RAD51->Ewing_Sarcoma",
+      "source": "RAD51",
+      "target": "Ewing_Sarcoma",
+      "relation": "associated_with",
+      "pmid": "36042341",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:RAD51->HCC",
+      "source": "RAD51",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "42037569",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5A->AML",
+      "source": "STAT5A",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "34462525",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:NPM1->AML",
+      "source": "NPM1",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "42166362",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ARF->AML",
+      "source": "ARF",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "39756487",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:DNMT3A->AML",
+      "source": "DNMT3A",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "42173285",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:TET2->AML",
+      "source": "TET2",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "42173285",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:IDH1->AML",
+      "source": "IDH1",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "42101375",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:IDH2->AML",
+      "source": "IDH2",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "42142041",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PTEN->AML",
+      "source": "PTEN",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "42166356",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:RUNX1->AML",
+      "source": "RUNX1",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "42173285",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:SRSF2->AML",
+      "source": "SRSF2",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "42101375",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:U2AF1->AML",
+      "source": "U2AF1",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "42101375",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAG2->AML",
+      "source": "STAG2",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "41938529",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MAP2K1->AML",
+      "source": "MAP2K1",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "38431286",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:KIT->CML",
+      "source": "KIT",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "42188055",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PDGFRA->CML",
+      "source": "PDGFRA",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "24813417",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRAF->RCC",
+      "source": "BRAF",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "42093098",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:FLT3->RCC",
+      "source": "FLT3",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "29662541",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:RET->HCC",
+      "source": "RET",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "41514495",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BAK->CLL",
+      "source": "BAK",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "31249651",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MCL1->Breast_Cancer",
+      "source": "MCL1",
+      "target": "Breast_Cancer",
+      "relation": "associated_with",
+      "pmid": "41895619",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PI3KCA->Colorectal_Cancer",
+      "source": "PI3KCA",
+      "target": "Colorectal_Cancer",
+      "relation": "associated_with",
+      "pmid": "31934127",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PI3KCA->Glioblastoma",
+      "source": "PI3KCA",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "29110584",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CCND1->Ewing_Sarcoma",
+      "source": "CCND1",
+      "target": "Ewing_Sarcoma",
+      "relation": "associated_with",
+      "pmid": "35326688",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CCND1->Ovarian_Cancer",
+      "source": "CCND1",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "41815138",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PIK3CA->Glioblastoma",
+      "source": "PIK3CA",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "41944918",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CCND1->AML",
+      "source": "CCND1",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "38698063",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CCND1->CLL",
+      "source": "CCND1",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "39691246",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MAPK1->AML",
+      "source": "MAPK1",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "38879648",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MAPK1->CLL",
+      "source": "MAPK1",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "32954947",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:SRC->AML",
+      "source": "SRC",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "42123320",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CHEK2->AML",
+      "source": "CHEK2",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "29902706",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:NFKB1->CLL",
+      "source": "NFKB1",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "39596634",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->CLL",
+      "source": "STAT5B",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "27367207",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:KDR->AML",
+      "source": "KDR",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "17577783",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5->CLL",
+      "source": "STAT5",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "40427031",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PDGFRA->AML",
+      "source": "PDGFRA",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "36517458",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PTEN->CLL",
+      "source": "PTEN",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "34750354",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:JAK2->CLL",
+      "source": "JAK2",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "34105916",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRAF->AML",
+      "source": "BRAF",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "41279970",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ERBB2->CML",
+      "source": "ERBB2",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "24386251",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRCA2->RCC",
+      "source": "BRCA2",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "42151595",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CCND1->RCC",
+      "source": "CCND1",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "36741922",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:EGFR->CML",
+      "source": "EGFR",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "39591691",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:EGFR->GIST",
+      "source": "EGFR",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "39636317",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BCL2->RCC",
+      "source": "BCL2",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "41612594",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BCL2->GIST",
+      "source": "BCL2",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "40108758",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:SRC->RCC",
+      "source": "SRC",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "40260977",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:FLT3->CML",
+      "source": "FLT3",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "40229844",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:KDR->RCC",
+      "source": "KDR",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "10208873",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Soft_Tissue_Sarcoma",
+      "source": "BRCA1",
+      "target": "Soft_Tissue_Sarcoma",
+      "relation": "associated_with",
+      "pmid": "27643881",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->RCC",
+      "source": "BRCA1",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "41612594",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->CML",
+      "source": "BRCA1",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "30153072",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->GIST",
+      "source": "BRCA1",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "26150619",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PIK3CA->RCC",
+      "source": "PIK3CA",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "42155824",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PIK3CA->GIST",
+      "source": "PIK3CA",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "31570771",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PTEN->Soft_Tissue_Sarcoma",
+      "source": "PTEN",
+      "target": "Soft_Tissue_Sarcoma",
+      "relation": "associated_with",
+      "pmid": "39516677",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PTEN->RCC",
+      "source": "PTEN",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "41612594",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PTEN->GIST",
+      "source": "PTEN",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "31553483",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:KRAS->RCC",
+      "source": "KRAS",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "41113969",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:KRAS->GIST",
+      "source": "KRAS",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "37663588",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:JAK2->CML",
+      "source": "JAK2",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "39104388",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRAF->GIST",
+      "source": "BRAF",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "42192570",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PDGFRB->CML",
+      "source": "PDGFRB",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "20806817",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:ERBB2->Ovarian_Cancer",
+      "source": "ERBB2",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "41438580",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:KIT->NSCLC",
+      "source": "KIT",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "42057882",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRCA2->Multiple_Myeloma",
+      "source": "BRCA2",
+      "target": "Multiple_Myeloma",
+      "relation": "associated_with",
+      "pmid": "39283233",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5A->NSCLC",
+      "source": "STAT5A",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "25137041",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5A->RCC",
+      "source": "STAT5A",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "27347102",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5A->Ovarian_Cancer",
+      "source": "STAT5A",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "28536310",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5A->HCC",
+      "source": "STAT5A",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "37187255",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5A->CML",
+      "source": "STAT5A",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "31861239",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CCND1->HCC",
+      "source": "CCND1",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "41655866",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CCND1->Glioblastoma",
+      "source": "CCND1",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "41898348",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MAPK1->Multiple_Myeloma",
+      "source": "MAPK1",
+      "target": "Multiple_Myeloma",
+      "relation": "associated_with",
+      "pmid": "35203396",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MAPK1->NSCLC",
+      "source": "MAPK1",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "40383937",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MAPK1->Melanoma",
+      "source": "MAPK1",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "34771574",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BCL2->Melanoma",
+      "source": "BCL2",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "41987808",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:NRAS->Pancreatic_Cancer",
+      "source": "NRAS",
+      "target": "Pancreatic_Cancer",
+      "relation": "associated_with",
+      "pmid": "38463885",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:NRAS->HCC",
+      "source": "NRAS",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "40383831",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:SRC->Multiple_Myeloma",
+      "source": "SRC",
+      "target": "Multiple_Myeloma",
+      "relation": "associated_with",
+      "pmid": "41386885",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:SRC->Ewing_Sarcoma",
+      "source": "SRC",
+      "target": "Ewing_Sarcoma",
+      "relation": "associated_with",
+      "pmid": "31521948",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:SRC->Melanoma",
+      "source": "SRC",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "42067550",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:SRC->Glioblastoma",
+      "source": "SRC",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "42200036",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CHEK2->Prostate_Cancer",
+      "source": "CHEK2",
+      "target": "Prostate_Cancer",
+      "relation": "associated_with",
+      "pmid": "41970070",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CHEK2->NSCLC",
+      "source": "CHEK2",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "36061833",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CHEK2->Melanoma",
+      "source": "CHEK2",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "41936939",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:CHEK2->Glioblastoma",
+      "source": "CHEK2",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "37712615",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:NFKB1->NSCLC",
+      "source": "NFKB1",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "26221384",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:NFKB1->Ovarian_Cancer",
+      "source": "NFKB1",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "40689422",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:NFKB1->Melanoma",
+      "source": "NFKB1",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "27145040",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->Pancreatic_Cancer",
+      "source": "STAT5B",
+      "target": "Pancreatic_Cancer",
+      "relation": "associated_with",
+      "pmid": "27035235",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->NSCLC",
+      "source": "STAT5B",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "25137041",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->RCC",
+      "source": "STAT5B",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "32640276",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->Ovarian_Cancer",
+      "source": "STAT5B",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "28536310",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->CML",
+      "source": "STAT5B",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "31861239",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->Glioblastoma",
+      "source": "STAT5B",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "24878107",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:KDR->Breast_Cancer",
+      "source": "KDR",
+      "target": "Breast_Cancer",
+      "relation": "associated_with",
+      "pmid": "39611063",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:KDR->Pancreatic_Cancer",
+      "source": "KDR",
+      "target": "Pancreatic_Cancer",
+      "relation": "associated_with",
+      "pmid": "34485332",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:KDR->Ovarian_Cancer",
+      "source": "KDR",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "25667501",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Multiple_Myeloma",
+      "source": "BRCA1",
+      "target": "Multiple_Myeloma",
+      "relation": "associated_with",
+      "pmid": "41940254",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Prostate_Cancer",
+      "source": "BRCA1",
+      "target": "Prostate_Cancer",
+      "relation": "associated_with",
+      "pmid": "41970070",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Ewing_Sarcoma",
+      "source": "BRCA1",
+      "target": "Ewing_Sarcoma",
+      "relation": "associated_with",
+      "pmid": "36187937",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->HCC",
+      "source": "BRCA1",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "40215812",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Melanoma",
+      "source": "BRCA1",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "42199731",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Glioblastoma",
+      "source": "BRCA1",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "41168197",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PIK3CA->Pancreatic_Cancer",
+      "source": "PIK3CA",
+      "target": "Pancreatic_Cancer",
+      "relation": "associated_with",
+      "pmid": "41848679",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5->Multiple_Myeloma",
+      "source": "STAT5",
+      "target": "Multiple_Myeloma",
+      "relation": "associated_with",
+      "pmid": "38231476",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5->Prostate_Cancer",
+      "source": "STAT5",
+      "target": "Prostate_Cancer",
+      "relation": "associated_with",
+      "pmid": "31817042",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5->RCC",
+      "source": "STAT5",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "20339477",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5->HCC",
+      "source": "STAT5",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "36374927",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:STAT5->CML",
+      "source": "STAT5",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "42033509",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MET->Pancreatic_Cancer",
+      "source": "MET",
+      "target": "Pancreatic_Cancer",
+      "relation": "associated_with",
+      "pmid": "42173830",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "associated_with:MET->Ewing_Sarcoma",
+      "source": "MET",
+      "target": "Ewing_Sarcoma",
+      "relation": "associated_with",
+      "pmid": "39893262",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "associated_with:MET->Ovarian_Cancer",
+      "source": "MET",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "42102910",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "associated_with:MET->Melanoma",
+      "source": "MET",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "42144199",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "associated_with:PDGFRA->Breast_Cancer",
+      "source": "PDGFRA",
+      "target": "Breast_Cancer",
+      "relation": "associated_with",
+      "pmid": "41416224",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PDGFRA->Ovarian_Cancer",
+      "source": "PDGFRA",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "41416224",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PDGFRA->Melanoma",
+      "source": "PDGFRA",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "41839173",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PTEN->NSCLC",
+      "source": "PTEN",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "42201046",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PTEN->Ewing_Sarcoma",
+      "source": "PTEN",
+      "target": "Ewing_Sarcoma",
+      "relation": "associated_with",
+      "pmid": "23628818",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PTEN->Ovarian_Cancer",
+      "source": "PTEN",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "42095894",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PTEN->HCC",
+      "source": "PTEN",
+      "target": "HCC",
+      "relation": "associated_with",
+      "pmid": "41898638",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PTEN->Type2_Diabetes",
+      "source": "PTEN",
+      "target": "Type2_Diabetes",
+      "relation": "associated_with",
+      "pmid": "42144710",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PTEN->Melanoma",
+      "source": "PTEN",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "42146866",
+      "category": "SUBSTRING_FALSE_POSITIVE"
+    },
+    {
+      "edge_id": "associated_with:KRAS->Melanoma",
+      "source": "KRAS",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "40990023",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:JAK2->Melanoma",
+      "source": "JAK2",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "41995376",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRAF->Ewing_Sarcoma",
+      "source": "BRAF",
+      "target": "Ewing_Sarcoma",
+      "relation": "associated_with",
+      "pmid": "23974990",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:BRAF->Ovarian_Cancer",
+      "source": "BRAF",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "41646943",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:PDGFRB->Glioblastoma",
+      "source": "PDGFRB",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "42148707",
+      "category": "PASS"
+    },
+    {
+      "edge_id": "associated_with:MMP9->NSCLC",
+      "source": "MMP9",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "41794778",
+      "category": "PASS"
+    },
+    {
+      "edge_id": null,
+      "source": "Erlotinib",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "39979023",
+      "category": "PASS"
+    },
+    {
+      "edge_id": null,
+      "source": "Bevacizumab",
+      "target": "Breast_Cancer",
+      "relation": "associated_with",
+      "pmid": "42128502",
+      "category": "PASS"
+    },
+    {
+      "edge_id": null,
+      "source": "Bevacizumab",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "42152360",
+      "category": "PASS"
+    },
+    {
+      "edge_id": null,
+      "source": "Ruxolitinib",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "40456521",
+      "category": "PASS"
+    },
+    {
+      "edge_id": null,
+      "source": "PI3KCA",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "33603851",
+      "category": "PASS"
+    },
+    {
+      "edge_id": null,
+      "source": "PI3KCA",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "31934127",
+      "category": "PASS"
+    }
+  ]
+}

@@ -62,7 +62,7 @@ Planned capability: generate novel compounds with predicted binding, ADMET, and 
 | **AUROC** | **0.9486** | Corrected full-typed view, strict remove_direct_labels protocol, 48 FDA pairs |
 | **AUPRC** | 0.513 | Open-world unlabeled negatives; 95% CI [0.3662, 0.6579] |
 | **Hits@5 / Hits@10 / Hits@20** | 1.000 / 0.600 / 0.600 | Current strict `remove_direct_labels` run |
-| **Source fields** | 2,178/2,178 | 100% provenance coverage; 188 verified PMID identifiers |
+| **Source fields** | 2,178/2,178 | 100% source-string coverage (≠ citation validation); 884 PMID-bearing edges (805 distinct), 594 RELATION-VERIFIED / 215 LEXICAL-COOCCURRENCE |
 | **Data points** | 2,178 morphisms | 1,146 runtime objects; 78 drugs, 20 diseases, 48 FDA-positive labels |
 
 See **[VALIDATION_AND_BENCHMARKS.md](VALIDATION_AND_BENCHMARKS.md)** for full metrics, confidence intervals, and external/temporal/disease-holdout caveats.
@@ -137,8 +137,8 @@ KOMPOSOS-IV-PHARM/
 **Track A Database**: `data/drugs/tier1.db` (reproducible build from manifest)
 
 - **Objects**: 78 FDA-approved drugs, 20 oncology diseases, 366 protein/pathway/regulatory objects (1,146 total runtime objects)
-- **Edges**: 2,178 morphisms with 100% provenance coverage (all 2,178 edges have source strings)
-- **Verified PMIDs**: 188 unique identifiers from audit master
+- **Edges**: 2,178 morphisms with 100% source-string coverage (all 2,178 edges have source strings; this is not the same as citation validation)
+- **PMID-backed edges**: 884 edges carry a PMID (805 distinct), tiered as 594 RELATION-VERIFIED (agent-confirmed directed/signed) and 215 LEXICAL-COOCCURRENCE (automated co-occurrence + polarity screen only)
 - **Labels**: 48 FDA-approved Drug→Disease pairs (all mechanistically supported)
 - **Strategic Transparency**: Yoneda Distance uses only MEASURED+ESTABLISHED edges (1,391).
 

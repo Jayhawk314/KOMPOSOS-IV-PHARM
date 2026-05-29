@@ -32,8 +32,30 @@ python validation\repurposing_benchmark.py --view full_typed --protocol remove_d
 Current strict result (2026-05-28, corrected loader/strategies):
 - `full_typed/remove_direct_labels`: **AUROC 0.948640** [0.9134, 0.9738], AUPRC 0.513498 [0.3662, 0.6579], Hits@5 1.00, Hits@10 0.60, Hits@20 0.60, MRR 0.072453.
 - Baselines on the same corrected graph: common_neighbor 0.6499, path_count 0.6492, shortest_path 0.6250, degree_product 0.5877, random 0.5504.
-- The database has source strings on 1,876/2,178 morphisms and 188 PMID identifiers, but this is not the same as edge-specific citation validation. Quantitative NLP attribution requires edge-level audit.
+- The database has source strings on 2,178/2,178 morphisms and 805 distinct PMIDs (884 PMID-bearing edges), but this is not the same as edge-specific citation validation. PMID-backed edges are now tiered (see Provenance Tiering Update below): 594 RELATION-VERIFIED, 215 LEXICAL-COOCCURRENCE. Quantitative NLP attribution requires edge-level audit.
 - Current executable holdouts: LOOCV AUROC 0.975916 / AUPRC 0.553703; Hetionet external AUROC 0.634479 / AUPRC 0.009255; temporal year>2013 AUROC 0.977994 / AUPRC 0.228793; disease-holdout mean AUROC 0.950416 / mean AUPRC 0.636826.
+
+## Provenance Tiering Update (2026-05-29)
+
+The literature-provenance layer was made honest and tiered. The prior
+`[ACTION-VERIFIED]` tag overclaimed: it marked edges where a drug/target/action
+keyword merely co-occurred in one sentence. The pipeline (`scripts/`:
+`scrape_triplet_pmids.py` -> `verify_triplet_abstracts.py` -> `inject_honest_provenance.py`)
+was fixed (all abstract sections captured; word-boundary gene-symbol matching so
+`MET` no longer matches "metabolism"; relation-aware polarity rejection; expanded
+keyword stems) and re-run, yielding 737 candidate proofs. All 737 were then
+adjudicated in-session by the agent (NO API tokens) for whether the cited
+sentence asserts the **directed, signed** relation.
+
+Result tags (metadata only — they do NOT feed scoring; AUROC is unchanged at
+0.948640):
+- **594 `[RELATION-VERIFIED]`**: agent-confirmed directed/signed relation in the cited sentence.
+- **215 `[LEXICAL-COOCCURRENCE]`**: passed automated co-occurrence + polarity screen only; not verified.
+- Full adjudication: 600 VERIFIED / 137 COOCCUR. Precision by relation: treats 100%,
+  inhibits 93%, associated_with 75%, activates 61%. Verdicts with notes:
+  `data/relation_extraction_verdicts.json`. Read-only re-audit: `scripts/audit_verified_provenance.py`.
+- The retired "188 audited PMIDs" figure was the count of distinct PMIDs *present* in
+  provenance strings (now 805); presence is not verification. Do not advertise it as audited.
 
 Author: James Ray Hawkins
 License: Apache 2.0 / Commercial dual license
@@ -61,7 +83,8 @@ Full typed DB facts (2026-05-28 audit):
 - 44 Drug->Disease approved indication labels (all FDA-approved, all with source strings)
 - All 44 positives have mechanistic paths (Drug->Protein->Disease)
 - 2,178/2,178 morphisms have source/provenance strings; this is not equivalent to source-validated evidence
-- 188 PMID identifiers found in provenance/metadata strings
+- 805 distinct PMIDs present in provenance/metadata strings; 884 edges carry a PMID
+- Provenance tiers (2026-05-29): 594 RELATION-VERIFIED (agent-confirmed directed/signed), 215 LEXICAL-COOCCURRENCE (automated co-occurrence + polarity screen only)
 - 1,014 edges with quantitative values (IC50, mutation frequencies, hazard ratios, response rates)
 - Evidence tier classification: MEASURED 1014, ESTABLISHED 377, INFERRED 767, HYPOTHESIS 20
 - Data sources: PubMed, ChEMBL, FDA, KEGG, STRING PPI (338 edges), protein similarity (ESMC-300M engine; legacy ESM2 edge labels pending re-derivation), cBioPortal genomic, ABPP

@@ -36,10 +36,16 @@ def main():
     for edge in verified_edges:
         src = edge['source']
         tgt = edge['target']
+        rel = edge['relation']
         pmid = edge['pmid']
-        
-        # Get current provenance
-        cur.execute("SELECT id, provenance FROM morphisms WHERE source_name = ? AND target_name = ?", (src, tgt))
+
+        # Match on relation too: parallel edges between the same node pair can
+        # carry different relations, and a proof verifies one specific relation.
+        # Matching only (source, target) would stamp it onto all of them.
+        cur.execute(
+            "SELECT id, provenance FROM morphisms WHERE source_name = ? AND target_name = ? AND name = ?",
+            (src, tgt, rel),
+        )
         rows = cur.fetchall()
         
         for morph_id, current_prov in rows:
@@ -74,10 +80,11 @@ def main():
     for edge in verified_edges:
         src = edge['source']
         tgt = edge['target']
+        rel = edge['relation']
         pmid = edge['pmid']
-        
+
         for m in manifest['morphisms']:
-            if m['source'] == src and m['target'] == tgt:
+            if m['source'] == src and m['target'] == tgt and m.get('edge_type') == rel:
                 base_prov = m.get('provenance', '')
                 if base_prov == "unknown":
                     base_prov = ""

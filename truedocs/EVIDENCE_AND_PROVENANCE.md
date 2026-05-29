@@ -1,11 +1,17 @@
 # Evidence and Provenance
 
-**Purpose**: Document data sources, evidence tracing, and why source strings on the 2,178 verified morphisms matter.
+**Purpose**: Document data sources, evidence tracing, and why source strings on the 2,178 morphisms matter.
 
 **Audience**: Researchers (validating claims), scientists (understanding evidence), practitioners (checking candidate justification)
 
-**Key fact**: 1,876 out of 2,178 morphisms have verified source/provenance strings. The database
-contains 188 unique, audited PMID identifiers.
+**Key fact**: All 2,178 morphisms carry a source/provenance string (100% source-string
+coverage), and 884 carry a PMID (805 distinct PMIDs). Source-string coverage is **not** the
+same as edge-specific citation validation. PMID-backed edges are tiered by how the citation was
+checked: **594 RELATION-VERIFIED** (an agent confirmed the cited sentence asserts the directed,
+signed relation) and **215 LEXICAL-COOCCURRENCE** (the cited sentence passed an automated
+co-occurrence + polarity screen only — not verified). The earlier "188 audited PMIDs" figure was
+simply the count of distinct PMIDs *present in* provenance strings at one point; presence is not
+human or relation-level verification.
 
 ---
 
@@ -31,10 +37,13 @@ This means:
 
 | Category | Count | Interpretation |
 |----------|------:|----------------|
-| **Total morphisms** | 5,382 | SQLite edge rows |
-| Source/provenance strings | 5,382 | Every row has a source string |
-| Unique PMID identifiers | 609 | PMIDs detected in provenance/metadata strings |
-| Structured quantitative values | 204 | Edges with IC50, mutation, response, or HR values |
+| **Total morphisms** | 2,178 | SQLite edge rows |
+| Source/provenance strings | 2,178 | Every row has a source string (100% source-string coverage) |
+| Edges carrying a PMID | 884 | PMID present in provenance |
+| Unique PMID identifiers | 805 | distinct PMIDs detected in provenance/metadata strings |
+| RELATION-VERIFIED edges | 594 | agent-confirmed the cited sentence asserts the directed, signed relation |
+| LEXICAL-COOCCURRENCE edges | 215 | cited sentence passed automated co-occurrence + polarity screen only (not verified) |
+| Structured quantitative values | 1,014 | Edges with IC50, mutation, response, or HR values |
 
 Do not rewrite this as "100% validated PMIDs" or "100% validated provenance."
 The still-needed audit is edge-specific attribution: endpoint mentions, relation

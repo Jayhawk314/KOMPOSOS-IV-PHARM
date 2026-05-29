@@ -12,14 +12,14 @@
 
 **Current stats** (2026-05-28 audit):
 - **Objects**: 1,146 total (including referenced types)
-- **Morphisms**: 2,178 (100% provenance coverage)
+- **Morphisms**: 2,178 (100% source-string coverage; ≠ citation validation)
 - **FDA Labels**: 48 approved Drug->Disease pairs
 - **Quantitative edges**: 1,014 (IC50, mutation freq, response rate, HR)
-- **Verified PMIDs**: 188 found in provenance/metadata strings
+- **PMID-backed edges**: 884 carry a PMID (805 distinct); 594 RELATION-VERIFIED (agent-confirmed directed/signed), 215 LEXICAL-COOCCURRENCE (automated co-occurrence + polarity screen only)
 - **Evidence tiers**: MEASURED 1014, ESTABLISHED 377, INFERRED 767, HYPOTHESIS 20
 - **Strategic Transparency**: Yoneda Distance uses only MEASURED+ESTABLISHED (1,391 edges).
 
-Audit note: 100% provenance coverage (2,178/2,178 edges) achieved after restoring 302 'unknown' source strings.
+Audit note: 100% source-string coverage (2,178/2,178 edges) achieved after restoring 302 'unknown' source strings. Source-string coverage is not the same as edge-level citation validation.
 
 ---
 
@@ -391,7 +391,9 @@ import_string(store, string_file='data/external/9606.protein.links.v11.5.txt')
 
 ### Provenance
 
-Verified PMIDs: 188 unique identifiers from audit master.
+PMID-backed edges: 884 carry a PMID (805 distinct). Tiered by how checked: 594 RELATION-VERIFIED
+(agent-confirmed the cited sentence asserts the directed, signed relation), 215 LEXICAL-COOCCURRENCE
+(automated co-occurrence + polarity screen only — not verified). Source-string coverage is not citation validation.
 - **ChEMBL IDs**: All 78 drugs + targets mapped
 - **Strategic Transparency**: Yoneda Distance restricted to MEASURED+ESTABLISHED evidence.
 
@@ -435,7 +437,9 @@ for m in quantitative[:5]:
 
 | Date | Version | Changes |
 |------|---------|---------|
-| 2026-05-28 | 2.1 | Finalized 100% provenance coverage (2,178/2,178), 188 verified PMIDs, 48 FDA labels |
+| 2026-05-29 | 2.3 | Full 737-proof adjudication (in-session, no API): 594 RELATION-VERIFIED, 215 LEXICAL-COOCCURRENCE. Precision treats 100% / inhibits 93% / associated_with 75% / activates 61%. Scoring unchanged (AUROC 0.948640) |
+| 2026-05-28 | 2.2 | Honest provenance tiering begun (initial 78 RELATION-VERIFIED); corrected "188 audited PMIDs" overclaim (805 distinct PMIDs present, presence ≠ verification) |
+| 2026-05-28 | 2.1 | 100% source-string coverage (2,178/2,178), 48 FDA labels |
 | 2026-05-26 | 2.0 | Yoneda integration, evidence quantification (373 extractions) |
 | 2026-05-24 | 1.9 | Path bonus tuning, LOOCV calibration |
 | 2026-05-13 | 1.8 | Binding evidence strategy, ABPP integration |

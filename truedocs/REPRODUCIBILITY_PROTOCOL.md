@@ -109,16 +109,20 @@ Expected:
 Current source-field count:
 
 ```powershell
-python -c "import re,sqlite3; rows=sqlite3.connect('data/drugs/tier1.db').execute('select provenance, metadata, quantitative_value from morphisms').fetchall(); pmids=set(); [pmids.update(re.findall('PMID:?\\s*(\\d+)', ((p or '')+' '+(m or '')))) for p,m,q in rows]; print(len(rows), sum(1 for p,m,q in rows if p and p!='unknown'), len(pmids), sum(1 for p,m,q in rows if q is not None))"
+python -c "import re,sqlite3; rows=sqlite3.connect('data/drugs/tier1.db').execute('select provenance, metadata, evidence_tier from morphisms').fetchall(); pmids=set(); [pmids.update(re.findall('PMID:?\\s*(\\d+)', ((p or '')+' '+(m or '')))) for p,m,t in rows]; print(len(rows), sum(1 for p,m,t in rows if p and p!='unknown'), len(pmids), sum(1 for p,m,t in rows if t=='MEASURED'))"
 ```
 
 Expected:
 
 ```text
-2178 2178 188 1014
+2178 2178 805 1014
 ```
 
-Interpretation: 100% provenance coverage (2,178/2,178 edges have source strings), 188 verified PMID identifiers are present, and 1,014 morphisms have structured quantitative values.
+Interpretation: 100% source-string coverage (2,178/2,178 edges have source strings — not the same as
+citation validation), 805 distinct PMID identifiers are *present* in provenance/metadata (presence is
+not verification), and 1,014 morphisms are MEASURED-tier (IC50/mutation/response/HR). Of the
+PMID-backed edges, 594 are RELATION-VERIFIED (agent-confirmed directed/signed) and 215 are
+LEXICAL-COOCCURRENCE (automated co-occurrence + polarity screen only).
 
 ---
 
@@ -129,7 +133,7 @@ python validation\citation_attribution_audit.py --out reports\citation_attributi
 python validation\evidence_tier_audit.py --out reports\evidence_tier_split_2026-05-28.csv
 ```
 
-The system achieves 100% provenance coverage after restoring 302 'unknown' edges.
+The system achieves 100% source-string coverage after restoring 302 'unknown' edges (source-string presence is not edge-level citation verification).
 
 ---
 
@@ -148,9 +152,9 @@ The system achieves 100% provenance coverage after restoring 302 'unknown' edges
 > drug-target-disease knowledge graph. Under the `full_typed/remove_direct_labels`
 > protocol on 78 drugs x 20 diseases (48 FDA-approved indications vs. 1,512
 > open-world unlabeled pairs), the current strict 7-module scorer achieves AUROC
-> 0.948640 [0.9134, 0.9738] and AUPRC 0.513498 [0.3662, 0.6579]. 100% provenance
-> coverage (2,178/2,178 edges) is verified. Every prediction can be traced to
-> graph evidence chains with source strings and verified citation identifiers.
+> 0.948640 [0.9134, 0.9738] and AUPRC 0.513498 [0.3662, 0.6579]. 100% source-string
+> coverage (2,178/2,178 edges; not the same as citation validation). Every prediction can be traced to
+> graph evidence chains with source strings and tiered citation identifiers (594 RELATION-VERIFIED, 215 LEXICAL-COOCCURRENCE).
 > Strategic Transparency: Yoneda distance uses only MEASURED+ESTABLISHED evidence (1,391 edges).
 
 Do not claim:

@@ -229,13 +229,13 @@ benchmark. It is not a patient response probability.
 
 Current database facts:
 
-- **100% provenance coverage**: 2,178/2,178 morphisms have source/provenance strings.
-- **188 unique PMID identifiers** are verified from audit master.
+- **100% source-string coverage**: 2,178/2,178 morphisms have source/provenance strings (not the same as citation validation).
+- **884 PMID-backed edges** (805 distinct PMIDs), tiered as 594 RELATION-VERIFIED (agent-confirmed directed/signed) and 215 LEXICAL-COOCCURRENCE (automated co-occurrence + polarity screen only).
 - **1,014 morphisms** have structured quantitative values.
 
-The system achieves 100% honest provenance after restoring 302 'unknown' edges from the verified master.
+The system achieves 100% source-string coverage after restoring 302 'unknown' edges. Source-string presence is not edge-level citation verification.
 Every prediction can be traced to graph evidence chains with source strings
-and verified citation identifiers.
+and tiered citation identifiers (594 RELATION-VERIFIED, 215 LEXICAL-COOCCURRENCE; the rest source-string only).
 
 ---
 

@@ -60,11 +60,19 @@ Current executable facts (2026-05-28):
 - 2,178 morphisms total:
   - 1,600 curated (ChEMBL, FDA, KEGG, ABPP)
   - 306 ESMC-300M protein similarity
-  - 188 PubMed verified (from audit)
   - 84 other computational/genomic
 - 1,014 edges with quantitative values (IC50, mutation freq, hazard ratios)
-- 188 unique PMID identifiers in provenance/metadata strings
+- 805 unique PMID identifiers present in provenance/metadata strings; 884 edges carry a PMID
 - Source strings on 2,178/2,178 morphisms; this is not edge-specific citation validation
+- Provenance tiering (2026-05-29, action-verified pipeline re-derived + agent-adjudicated, NO API):
+  - 594 edges `[RELATION-VERIFIED]`: an agent confirmed the cited sentence asserts the
+    directed, signed relation (full 737-proof set adjudicated: 600 VERIFIED / 137 COOCCUR)
+  - 215 edges `[LEXICAL-COOCCURRENCE]`: cited sentence passed an automated co-occurrence +
+    polarity screen only (NOT verified)
+  - "188 audited PMIDs" was an overclaim (it was the count of distinct PMIDs *present* in
+    provenance; presence != verification). Tag `[ACTION-VERIFIED]` was renamed to honest tiers.
+  - Adjudication precision by relation: treats 100%, inhibits 93%, associated_with 75%,
+    activates 61%. Tier tags are metadata only — they do NOT affect scoring (AUROC unchanged).
 
 - 373 NLP-extracted quantitative data points reported; attribution needs edge-level audit
 - 6 "inferred:" edges REMOVED (were circular — system predictions as labels)
