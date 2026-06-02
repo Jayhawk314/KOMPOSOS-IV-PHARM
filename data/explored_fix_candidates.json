@@ -1,0 +1,1412 @@
+[
+  {
+    "edge_id": "activates:Pembrolizumab->CD4",
+    "source": "Pembrolizumab",
+    "target": "CD4",
+    "relation": "activates",
+    "pmid": "39632711",
+    "reason": "no keyword for 'activates' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Herein, we demonstrated improved antitumor effects through combination treatment with denfivontinib and pembrolizumab which resulted in enhanced differentiation into effector CD4+ and CD8+ memory T cells, accompanied by an increase in IFN-&#x3b3; expression in the YHIM-2004 xenograft model derived from patients with non-small cell lung cancer."
+  },
+  {
+    "edge_id": "associated_with:ABCB1->Breast_Cancer",
+    "source": "ABCB1",
+    "target": "Breast_Cancer",
+    "relation": "associated_with",
+    "pmid": "41935021",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "These nutritional insults also consistently impair expression and activity of protective efflux transporters, P-glycoprotein (P-gp/ABCB1), breast cancer resistance protein (BCRP/ABCG2) and multidrug resistance protein 2 (MRP2/ABCC2), weakening xenobiotic defence."
+  },
+  {
+    "edge_id": "associated_with:BCL2->AML",
+    "source": "BCL2",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "42166356",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "iPSC-derived aneuploid HSPCs and primary AML-CK patient samples exhibited a conserved gene expression signature marked by upregulation of PTEN, cohesins, and anti-apoptotic factor BCL2, indicative of a shared aneuploid cell state in HSPCs."
+  },
+  {
+    "edge_id": "associated_with:Fluorouracil->TOP2A",
+    "source": "Fluorouracil",
+    "target": "TOP2A",
+    "relation": "associated_with",
+    "pmid": "31479512",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Based on concurrent biomarker expression, combinations of immunotherapy with platinum (ERCC1 negativity) or with doxorubicin, epirubicin or etoposide (TOP2A positivity) have a higher probability of response, whereas combinations with irinotecan or topotecan (TOPO1 positivity), with gemcitabine (RRM1 negativity), and fluorouracil, pemetrexed or capecitabine (TS negativity) may be of less benefit."
+  },
+  {
+    "edge_id": "associated_with:HIF1A->Glioblastoma",
+    "source": "HIF1A",
+    "target": "Glioblastoma",
+    "relation": "associated_with",
+    "pmid": "41007296",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "This study evaluates the prognostic significance of the WWOX/HIF1A interaction across cancers, breast cancer subtypes, glioblastoma (GBM), low-grade glioma (LGG), and hepatocellular carcinoma (HCC) through gene expression and pathway analysis focused on metabolism, ECM, and epithelial-mesenchymal transition."
+  },
+  {
+    "edge_id": "associated_with:MET->NSCLC",
+    "source": "MET",
+    "target": "NSCLC",
+    "relation": "associated_with",
+    "pmid": "42187575",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Herein, we report a case of an elderly patient with ALK-rearrangement and exceptionally high PD-L1 expression (TPS &#x2265; 95%) NSCLC who experienced disease progression following first-line lorlatinib with genetically confirmed MET amplification."
+  },
+  {
+    "edge_id": "associated_with:MTOR->RCC",
+    "source": "MTOR",
+    "target": "RCC",
+    "relation": "associated_with",
+    "pmid": "42155824",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "mTOR pathway activation was assessed by quantifying expression of GPNMB in 16 cases of eosinophilic vacuolated tumor (EVT), 13 cases of low grade oncocytic tumor (LOT), 10 cases of eosinophilic solid and cystic renal cell carcinoma (ESC-RCC), and 1 case of xanthomatous giant cell renal cell carcinoma (XGC-RCC), all with previous sequencing."
+  },
+  {
+    "edge_id": "associated_with:PDGFRA->Soft_Tissue_Sarcoma",
+    "source": "PDGFRA",
+    "target": "Soft_Tissue_Sarcoma",
+    "relation": "associated_with",
+    "pmid": "33524869",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "While the anti-PDGFRA antibody olaratumab failed to confirm an impact on survival in unselected advanced soft tissue sarcoma (STS) patients, the level of expression and the prognosis of platelet-derived growth factor (PDGF) receptors and ligands in STS remain unclear."
+  },
+  {
+    "edge_id": "associated_with:TGFB1->Colorectal_Cancer",
+    "source": "TGFB1",
+    "target": "Colorectal_Cancer",
+    "relation": "associated_with",
+    "pmid": "40075643",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "While CAFGs exhibit synchronized expression with TGFB1 in colorectal cancer (CRC), such patterns have yet to be confirmed in GC due to the limitations of available microdissected data."
+  },
+  {
+    "edge_id": "indirect_inhibitor:Atorvastatin->MTOR",
+    "source": "Atorvastatin",
+    "target": "MTOR",
+    "relation": "indirect_inhibitor",
+    "pmid": "37181137",
+    "reason": "no keyword for 'indirect_inhibitor' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Simvastatin and atorvastatin may inhibit cellular proliferation via BCL-2/p53, Bax/Bak, and PI3K/Akt/mTOR signalling pathways."
+  },
+  {
+    "edge_id": "indirect_inhibitor:Bevacizumab->VEGFR2",
+    "source": "Bevacizumab",
+    "target": "VEGFR2",
+    "relation": "indirect_inhibitor",
+    "pmid": "41868199",
+    "reason": "no keyword for 'indirect_inhibitor' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "NGS yielded actionable alterations targeted after conventional surgery/chemoradiation therapy: imatinib (for KIT and PDGRA amplification) and bevacizumab (for KDR [VEGFR2] amplification); everolimus (mTOR inhibitor for TSC2 and PTEN loss-of-function alterations); and ivosidenib (IDH1 inhibitor for IDH1 mutations in two cases, including the oligosarcoma)."
+  },
+  {
+    "edge_id": "indirect_inhibitor:Diclofenac->MYC",
+    "source": "Diclofenac",
+    "target": "MYC",
+    "relation": "indirect_inhibitor",
+    "pmid": "23874405",
+    "reason": "no keyword for 'indirect_inhibitor' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Thus, diclofenac targets tumor cell proliferation via two mechanisms, that is inhibition of MYC and lactate transport."
+  },
+  {
+    "edge_id": "indirect_inhibitor:Ivermectin->MTOR",
+    "source": "Ivermectin",
+    "target": "MTOR",
+    "relation": "indirect_inhibitor",
+    "pmid": "35568994",
+    "reason": "no keyword for 'indirect_inhibitor' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Mechanism studies correlated well with cellular phenotypes observed in ivermectin-treated cells, and demonstrated inhibition of mTOR/STAT3 pathway, suppression of epithelial mesenchymal transition (EMT) and reduced expression of stem cell markers."
+  },
+  {
+    "edge_id": "indirect_inhibitor:Metformin->AKT1",
+    "source": "Metformin",
+    "target": "AKT1",
+    "relation": "indirect_inhibitor",
+    "pmid": "34335983",
+    "reason": "no keyword for 'indirect_inhibitor' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Finally, we observed that metformin, a new anti-cancer drug, can significantly induce CCDC65 to suppress ENO1-AKT1 complex-mediated cell proliferation and EMT signals and finally suppresses the malignant phenotypes of gastric cancer cells."
+  },
+  {
+    "edge_id": "inhibits:Cisplatin->TOP2A",
+    "source": "Cisplatin",
+    "target": "TOP2A",
+    "relation": "inhibits",
+    "pmid": "41235254",
+    "reason": "no keyword for 'inhibits' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Functional assays combined with TOP2A knockdown evaluated cisplatin sensitivity and malignant phenotypes (proliferation, invasion, migration) in resistant cells."
+  },
+  {
+    "edge_id": "inhibits:Dabrafenib->BRAF",
+    "source": "Dabrafenib",
+    "target": "BRAF",
+    "relation": "inhibits",
+    "pmid": "42143022",
+    "reason": "entities (Dabrafenib, BRAF) match failed (substring or missing)",
+    "verdict": "REJECT",
+    "proof_sentence": "Although patients with the BRAFV600E alteration respond to the type I RAF inhibitor (RAFi) dabrafenib with trametinib, most rapidly develop adaptive or acquired resistance."
+  },
+  {
+    "edge_id": "inhibits:Mebendazole->BRAF",
+    "source": "Mebendazole",
+    "target": "BRAF",
+    "relation": "inhibits",
+    "pmid": "28157711",
+    "reason": "entities (Mebendazole, BRAF) match failed (substring or missing)",
+    "verdict": "REJECT",
+    "proof_sentence": "Proteochemometric computational methods coupled with kinase assays showed that mebendazole (MBZ) binds and inhibits kinases important in cancer, especially both BRAFWT and BRAFV600E."
+  },
+  {
+    "edge_id": "synergizes_with:Dabrafenib->Trametinib",
+    "source": "Dabrafenib",
+    "target": "Trametinib",
+    "relation": "synergizes_with",
+    "pmid": "42169194",
+    "reason": "no keyword for 'synergizes_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "We present a case of PLC secondary to rectal cancer harboring a BRAF V600E mutation that achieved complete response after relapse with triple combination therapy (dabrafenib, trametinib and cetuximab)."
+  },
+  {
+    "edge_id": "synergizes_with:Everolimus->Erlotinib",
+    "source": "Everolimus",
+    "target": "Erlotinib",
+    "relation": "synergizes_with",
+    "pmid": "42032072",
+    "reason": "no keyword for 'synergizes_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "BIOMEDE was a randomized phase 2 trial comparing the efficacy in terms of overall survival (OS) (primary endpoint) of epidermal growth factor receptor (EGFR) inhibitor erlotinib, mTOR inhibitor everolimus and multitargeted tyrosine kinase inhibitor dasatinib in combination with radiotherapy in patients with a biopsy-proven DIPG."
+  },
+  {
+    "edge_id": "synergizes_with:Olaparib->Bevacizumab",
+    "source": "Olaparib",
+    "target": "Bevacizumab",
+    "relation": "synergizes_with",
+    "pmid": "42007996",
+    "reason": "no keyword for 'synergizes_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Further, ZW191 is effective in vivo in combination with clinically relevant standard of care drugs olaparib, bevacizumab, and paclitaxel."
+  },
+  {
+    "edge_id": "synergizes_with:Venetoclax->Ruxolitinib",
+    "source": "Venetoclax",
+    "target": "Ruxolitinib",
+    "relation": "synergizes_with",
+    "pmid": "42007254",
+    "reason": "no keyword for 'synergizes_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Functional small-molecule screening of primary acute myeloid leukemia (AML) samples identified ex vivo synergy between the JAK1/2 inhibitor, ruxolitinib (Rux), and venetoclax (Ven) in newly diagnosed and relapsed/refractory (R/R) AML."
+  },
+  {
+    "edge_id": "treats:Nivolumab->RCC",
+    "source": "Nivolumab",
+    "target": "RCC",
+    "relation": "treats",
+    "pmid": "42204034",
+    "reason": "no keyword for 'treats' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Pembrolizumab plus lenvatinib (Pem-Len) and nivolumab plus cabozantinib (Nivo-Cabo) are effective first-line regimens for metastatic renal cell carcinoma (RCC); however, real-world data directly comparing these regimens are limited."
+  },
+  {
+    "edge_id": "treats:Olaparib->Breast_Cancer",
+    "source": "Olaparib",
+    "target": "Breast_Cancer",
+    "relation": "treats",
+    "pmid": "42183723",
+    "reason": "no keyword for 'treats' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "IntroductionSince 2023 olaparib has been commissioned in the United Kingdom for breast cancer for patients with breast cancer gene 1 and 2 (BRCA1 and 2) positive, human epidermal growth factor receptor 2 (HER2)-negative, high-risk early disease after chemotherapy."
+  },
+  {
+    "edge_id": "treats:Pembrolizumab->Melanoma",
+    "source": "Pembrolizumab",
+    "target": "Melanoma",
+    "relation": "treats",
+    "pmid": "42190314",
+    "reason": "no keyword for 'treats' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Substudy 02C of the phase I-II KEYMAKER-U02 study was designed to evaluate neoadjuvant pembrolizumab as monotherapy and in combination with investigational agents, followed by surgery and adjuvant pembrolizumab in participants with resectable stage IIIB-D melanoma."
+  },
+  {
+    "edge_id": "inhibits:Cetrorelix->GNRHR",
+    "source": "Cetrorelix",
+    "target": "GNRHR",
+    "relation": "inhibits",
+    "pmid": "41458598",
+    "reason": "no keyword for 'inhibits' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "FOXO1, p-AKT and GnRHR knockdown via siRNA was performed to reverse cetrorelix-induced apoptosis."
+  },
+  {
+    "edge_id": "inhibits:Danicopan->CFD",
+    "source": "Danicopan",
+    "target": "CFD",
+    "relation": "inhibits",
+    "pmid": "41308544",
+    "reason": "no keyword for 'inhibits' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Here, we assessed the role of CFD in MAFLD and danicopan therapy using HFD mice, patient sera, and hepatocytes via CRISPR knockout and pharmacological interventions."
+  },
+  {
+    "edge_id": "inhibits:Daratumumab->CD38",
+    "source": "Daratumumab",
+    "target": "CD38",
+    "relation": "inhibits",
+    "pmid": "42078821",
+    "reason": "no keyword for 'inhibits' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In recent years, plasma-cell depletion with daratumumab, a monoclonal antibody against CD38, has been used successfully for treatment-resistant patients with various autoimmune diseases, including iTTP, although long-term data remain limited."
+  },
+  {
+    "edge_id": "inhibits:Fluoxetine->SLC6A4",
+    "source": "Fluoxetine",
+    "target": "SLC6A4",
+    "relation": "inhibits",
+    "pmid": "41372259",
+    "reason": "no keyword for 'inhibits' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In mice with genetic ablation of the serotonin transporter (Slc6a4-/-, target site for SSRI) and depleted peripheral (nonneuronal) synthesis of serotonin (Tph1-/-), fluoxetine did not elicited uterotropic response."
+  },
+  {
+    "edge_id": "associated_with:VEGFR2->CLL",
+    "source": "VEGFR2",
+    "target": "CLL",
+    "relation": "associated_with",
+    "pmid": "21519633",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "CLL cells express and secrete VEGF and possess phosphorylated VEGFR2."
+  },
+  {
+    "edge_id": "associated_with:VEGFR2->GIST",
+    "source": "VEGFR2",
+    "target": "GIST",
+    "relation": "associated_with",
+    "pmid": "27995483",
+    "reason": "entities (VEGFR2, GIST) match failed (substring or missing)",
+    "verdict": "REJECT",
+    "proof_sentence": "In addition, higher expression of vascular endothelial growth factor receptors (VEGFR2 and VEFGR3) was seen in GIST430."
+  },
+  {
+    "edge_id": "associated_with:VEGFR2->NSCLC",
+    "source": "VEGFR2",
+    "target": "NSCLC",
+    "relation": "associated_with",
+    "pmid": "39612105",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "The detailed molecular mechanisms were subsequently elucidated, and it was found that miR-155-5p bound with HuR to increase the stability and expression levels of VEGFR2, which further activated the tumor-promoting PI3K/Akt/mTOR signal pathway, and M2-exos-enhanced cancer progression in NSCLC cells were apparently suppressed by downregulating VEGFR2 and PI3K inhibitor LY294002 co-treatment."
+  },
+  {
+    "edge_id": "associated_with:RB1->NSCLC",
+    "source": "RB1",
+    "target": "NSCLC",
+    "relation": "associated_with",
+    "pmid": "40514658",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "This study highlights the potential of peptide-modified Rb1@T-exo as a targeted therapeutic platform for overcoming immunotherapy resistance in PI3K-mutated NSCLC and provides a promising direction for future anti-tumor therapies."
+  },
+  {
+    "edge_id": "associated_with:NRAS->AML",
+    "source": "NRAS",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "42118855",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "NRAS and KRAS are among the most frequently mutated genes in AML, but their clinical impact has not been well-characterized."
+  },
+  {
+    "edge_id": "associated_with:AKT1->Pancreatic_Cancer",
+    "source": "AKT1",
+    "target": "Pancreatic_Cancer",
+    "relation": "associated_with",
+    "pmid": "42094816",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Elevated PRMT5 expression has been observed in multiple GI cancer subtypes, comprising gastric cancer (GC), colorectal cancer (CRC), hepatocellular carcinoma (HCC) and pancreatic cancer, where PRMT5 markedly contributes to tumorigenesis via symmetric dimethylation of histone (e.g., dimethylation of histone H4 at arginine 3) and non-histone substrates [e.g., AKT1 and sterol regulatory element-binding protein 1a (SREBP1a)]."
+  },
+  {
+    "edge_id": "associated_with:AKT1->Colorectal_Cancer",
+    "source": "AKT1",
+    "target": "Colorectal_Cancer",
+    "relation": "associated_with",
+    "pmid": "42094816",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Elevated PRMT5 expression has been observed in multiple GI cancer subtypes, comprising gastric cancer (GC), colorectal cancer (CRC), hepatocellular carcinoma (HCC) and pancreatic cancer, where PRMT5 markedly contributes to tumorigenesis via symmetric dimethylation of histone (e.g., dimethylation of histone H4 at arginine 3) and non-histone substrates [e.g., AKT1 and sterol regulatory element-binding protein 1a (SREBP1a)]."
+  },
+  {
+    "edge_id": "associated_with:AKT1->GIST",
+    "source": "AKT1",
+    "target": "GIST",
+    "relation": "associated_with",
+    "pmid": "16707477",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Lentivirus constructs were used to stably express constitutively active AKT1 or AKT2 in GIST cells to study the role of AKT signaling in metabolism and cell survival."
+  },
+  {
+    "edge_id": "associated_with:AKT1->HCC",
+    "source": "AKT1",
+    "target": "HCC",
+    "relation": "associated_with",
+    "pmid": "42094816",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Elevated PRMT5 expression has been observed in multiple GI cancer subtypes, comprising gastric cancer (GC), colorectal cancer (CRC), hepatocellular carcinoma (HCC) and pancreatic cancer, where PRMT5 markedly contributes to tumorigenesis via symmetric dimethylation of histone (e.g., dimethylation of histone H4 at arginine 3) and non-histone substrates [e.g., AKT1 and sterol regulatory element-binding protein 1a (SREBP1a)]."
+  },
+  {
+    "edge_id": "associated_with:MTOR->Myelofibrosis",
+    "source": "MTOR",
+    "target": "Myelofibrosis",
+    "relation": "associated_with",
+    "pmid": "38785062",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "iMCD-TAFRO (thrombocytopenia, anasarca, fever/elevated CRP, reticulin myelofibrosis/renal dysfunction, organ enlargement) is resistant to IL-6 inhibitors, and cyclosporine and mTOR inhibitors are sometimes effective."
+  },
+  {
+    "edge_id": "associated_with:ERK1->Pancreatic_Cancer",
+    "source": "ERK1",
+    "target": "Pancreatic_Cancer",
+    "relation": "associated_with",
+    "pmid": "41045302",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "We detected the expression of PLK1 in pancreatic cancer tissues and cell lines and study the effects of PLK1 and Gemcitabine on cell viability and apoptosis of GEM-resistant pancreatic cancer PANC-1 cells and Gemcitabine sensitive BxPC-3 cells; Using inhibitors or siRNA, we further investigate the effects of PLK1 on ERK1/2, AKT1, and pro-apoptotic genes PUMA, Bim, and Noxa; We finally investigated the effect of the combined onvansertib and Gemcitabine on the growth of PANC-1 subcutaneous transplant tumors in nude mice and explored its possible mechanism of action."
+  },
+  {
+    "edge_id": "associated_with:ERK1->Glioblastoma",
+    "source": "ERK1",
+    "target": "Glioblastoma",
+    "relation": "associated_with",
+    "pmid": "41759882",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Furthermore, RNA sequencing and Western blot analyses showed that GCK suppresses glioblastoma progression by dephosphorylating p-ERK1/2 via upregulation of DUSP5 expression."
+  },
+  {
+    "edge_id": "associated_with:ERK1->AML",
+    "source": "ERK1",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "41474263",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In JAK2+ myeloid neoplasms, p-STAT3, p-ERK1/2, and MYC showed a significantly elevated percentage of tumor cell positivity in AML compared to M/N group."
+  },
+  {
+    "edge_id": "associated_with:ERK1->GIST",
+    "source": "ERK1",
+    "target": "GIST",
+    "relation": "associated_with",
+    "pmid": "37274797",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Moreover, the inhibition of TAF15 expression significantly decreased the phosphorylation level of RAF1, MEK and ERK1/2 in GIST cells and xenograft tissues, while the total RAF1, MEK and ERK1/2 had no significant change."
+  },
+  {
+    "edge_id": "associated_with:ERK1->NSCLC",
+    "source": "ERK1",
+    "target": "NSCLC",
+    "relation": "associated_with",
+    "pmid": "41709211",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "CSE upregulates FOXC1 expression by activating the ERK1/2 signaling pathway, thereby facilitating NSCLC progression."
+  },
+  {
+    "edge_id": "associated_with:ERK1->HCC",
+    "source": "ERK1",
+    "target": "HCC",
+    "relation": "associated_with",
+    "pmid": "42089079",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Importantly, our findings indicate that ERK1/2 can control the expression of XIAP, leading to the resistance of HCC to anoikis in cell-based and mouse models."
+  },
+  {
+    "edge_id": "associated_with:ERK2->AML",
+    "source": "ERK2",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "18931459",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Therefore, since MM6 cell line has a similar expression profile to primary human t(9;11) AML in general and expresses uniquely a strong Erk1/Erk2 MAPK pathway including HRAS, it can be used as a model for HRAS-positive t(9;11) AML."
+  },
+  {
+    "edge_id": "associated_with:ERK2->HCC",
+    "source": "ERK2",
+    "target": "HCC",
+    "relation": "associated_with",
+    "pmid": "31612032",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Interleukin (IL)-8 and extracellular signal-regulated kinase (ERK) 2 play key roles in tumor progression, but the relationship between IL-8 and/or ERK2 expression in hepatocellular carcinoma (HCC) tissues and postoperative recurrence or survival is unclear."
+  },
+  {
+    "edge_id": "associated_with:MEK1->GIST",
+    "source": "MEK1",
+    "target": "GIST",
+    "relation": "associated_with",
+    "pmid": "23376254",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "So downregulation of PEBP1 does not activate the Ras-Raf-1-MEK1/2-ERK1/2 pathway by phosphorylation of MEK1/2 and does not influence ETV1 expression in GIST."
+  },
+  {
+    "edge_id": "associated_with:MEK1->HCC",
+    "source": "MEK1",
+    "target": "HCC",
+    "relation": "associated_with",
+    "pmid": "41078702",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Ectopic expression of KSR1 led to increased phosphorylation of MEK1/2 and ERK1/2 in HCC cells and murine livers, confirming activation of the signaling pathway."
+  },
+  {
+    "edge_id": "associated_with:RAF1->CLL",
+    "source": "RAF1",
+    "target": "CLL",
+    "relation": "associated_with",
+    "pmid": "9593470",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Kinetics studies demonstrated that CLL cells constitutively express transcripts of so-called immediate response nuclear proto-oncogenes c-myc, c-fos as well as cytoplasmic proto-oncogenes hck and c-raf1, i.e., genes coding for tyrosine and serine-threonine protein kinases, respectively."
+  },
+  {
+    "edge_id": "associated_with:RAF1->AML",
+    "source": "RAF1",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "40727567",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Using Real-Time PCR, we investigated the RAF1, miR-146 b-3p, and Circ-RPL15 network expression in AML."
+  },
+  {
+    "edge_id": "associated_with:RAF1->GIST",
+    "source": "RAF1",
+    "target": "GIST",
+    "relation": "associated_with",
+    "pmid": "37274797",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Moreover, the inhibition of TAF15 expression significantly decreased the phosphorylation level of RAF1, MEK and ERK1/2 in GIST cells and xenograft tissues, while the total RAF1, MEK and ERK1/2 had no significant change."
+  },
+  {
+    "edge_id": "associated_with:RAF1->NSCLC",
+    "source": "RAF1",
+    "target": "NSCLC",
+    "relation": "associated_with",
+    "pmid": "40227502",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Analysis of RAF1 expression in NSCLC and its relationship with targeted therapy resistance and apoptosis through bioinformatics methods."
+  },
+  {
+    "edge_id": "associated_with:RAF1->HCC",
+    "source": "RAF1",
+    "target": "HCC",
+    "relation": "associated_with",
+    "pmid": "42074524",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In vitro cellular experiments demonstrated that knocking down RFXANK significantly inhibited the proliferative capacity of HCC cells and reduced RAF1 protein expression."
+  },
+  {
+    "edge_id": "associated_with:STAT3->CML",
+    "source": "STAT3",
+    "target": "CML",
+    "relation": "associated_with",
+    "pmid": "40353923",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Through the cancerSEA and CCLE databases, the expression of STAT3 in CML was verified and analyzed."
+  },
+  {
+    "edge_id": "associated_with:STAT3->CLL",
+    "source": "STAT3",
+    "target": "CLL",
+    "relation": "associated_with",
+    "pmid": "40427031",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "While STAT5 signaling could alter the homeostasis of na&#xef;ve (nTreg) and activated (aTreg) subsets, which are capable of suppressing also CLL patients' responses to microbial antigens, perturbed STAT3 signaling could drive CXCR5 expression in circulating T-follicular regulatory cells (Tfr) and their entry into the lymph node/tumor microenvironment."
+  },
+  {
+    "edge_id": "associated_with:CDK4->AML",
+    "source": "CDK4",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "41551728",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Present studies show that FHD-286 induced differentiation and lethality in AML cells with MECOM-r, perturbed chromatin accessibility and depleted expression of EVI1, c-Myc, CD44 and CDK4."
+  },
+  {
+    "edge_id": "associated_with:CDK6->RCC",
+    "source": "CDK6",
+    "target": "RCC",
+    "relation": "associated_with",
+    "pmid": "32277426",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In conclusion, miR-206 suppresses proliferation and EMT of RCC by inhibiting CDK6 expression."
+  },
+  {
+    "edge_id": "associated_with:CDK6->Melanoma",
+    "source": "CDK6",
+    "target": "Melanoma",
+    "relation": "associated_with",
+    "pmid": "39495991",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "The results revealed that Lnc NEAT1 and CDK6 were elevated, while miR-152-3p was downregulated in melanoma."
+  },
+  {
+    "edge_id": "associated_with:CDK6->HCC",
+    "source": "CDK6",
+    "target": "HCC",
+    "relation": "associated_with",
+    "pmid": "42034462",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In conclusion, our study has demonstrated the potential of using miR-195 mimic RNA as a therapeutic strategy to target the CDK6 gene in HCC with reduced miR-195 expression."
+  },
+  {
+    "edge_id": "associated_with:E2F1->CLL",
+    "source": "E2F1",
+    "target": "CLL",
+    "relation": "associated_with",
+    "pmid": "12036888",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "To elucidate the biochemical processes involved in the pathogenesis of B-CLL and MCL, we analyzed the expression level of a set of genes that play central roles in apoptotic or cell proliferation pathways and of candidate genes from frequently altered genomic regions, namely ATM, BAX, BCL2, CCND1, CCND3, CDK2, CDK4, CDKN1A, CDKN1B, E2F1, ETV5, MYC, RB1, SELL, TFDP2, TNFSF10, and TP53."
+  },
+  {
+    "edge_id": "associated_with:E2F1->RCC",
+    "source": "E2F1",
+    "target": "RCC",
+    "relation": "associated_with",
+    "pmid": "40067251",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In this study, we found that the expression level of the long noncoding RNA (lncRNA) E2F1 messenger RNA stabilizing factor (EMS) was significantly higher in sorafenib-resistant RCC tissues and cell lines than in sorafenib-sensitive RCC tissues and cell lines."
+  },
+  {
+    "edge_id": "associated_with:E2F1->GIST",
+    "source": "E2F1",
+    "target": "GIST",
+    "relation": "associated_with",
+    "pmid": "29451912",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Furthermore, we observed a significant higher expression of p21 and E2F1 in KIT mutant GISTs compared to PDGFRA mutant and wt GISTs."
+  },
+  {
+    "edge_id": "associated_with:BAX->RCC",
+    "source": "BAX",
+    "target": "RCC",
+    "relation": "associated_with",
+    "pmid": "40358820",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Furthermore, co-culture experiments were performed and we found that sunitinib-resistant RCC cells-derived exosomes (R-exos) promoted cell proliferation and upregulated proliferation-related genes cyclin D1 (CCND1) and proliferating cell nuclear antigen (PCNA) expression, and inhibited apoptosis and the expression of Bax and Caspase-3 of sunitinib-resistant RCC (RCC/R) cells by delivering lncRNA small nuclear RNA host gene 16 (SNHG16)."
+  },
+  {
+    "edge_id": "associated_with:BAX->AML",
+    "source": "BAX",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "41815913",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Treatment with Visomitin promoted differentiation of AML cells, as indicated by increased CD14 expression, and induced apoptosis by downregulating anti-apoptotic proteins (Mcl-1, Bcl-XL) while upregulating pro-apoptotic factors (Bak, Bax)."
+  },
+  {
+    "edge_id": "associated_with:BAX->GIST",
+    "source": "BAX",
+    "target": "GIST",
+    "relation": "associated_with",
+    "pmid": "16830365",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Their biological behaviors were analyzed using the expression of p21WAF1 and Bax in 52 cases of GIST."
+  },
+  {
+    "edge_id": "associated_with:BAX->Breast_Cancer",
+    "source": "BAX",
+    "target": "Breast_Cancer",
+    "relation": "associated_with",
+    "pmid": "42196148",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Among them, only three circRNAs, namely circ-BAX-6c, circ-BAX-18 and circ-BAX-74, are expressed in all studied triple-negative breast cancer (BrCa) cell lines and in the normal one; moreover, circ-BAX-18 is the only one comprising a novel microexon with canonical splice sites."
+  },
+  {
+    "edge_id": "associated_with:CASP3->Pancreatic_Cancer",
+    "source": "CASP3",
+    "target": "Pancreatic_Cancer",
+    "relation": "associated_with",
+    "pmid": "39237260",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "The tumor expression of ANXA1 and cleaved Caspase-3 (c-Casp3) and numbers of tumor-infiltrating CD68+ macrophages in 151 cases of pancreatic cancer were examined by immunohistochemistry and immunofluorescence."
+  },
+  {
+    "edge_id": "associated_with:CASP3->Ovarian_Cancer",
+    "source": "CASP3",
+    "target": "Ovarian_Cancer",
+    "relation": "associated_with",
+    "pmid": "40517225",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Seven core genes were identified, with six (GAPDH, CASP3, PPARG, ESR1, CYCS, SIRT1, and CCND1) exhibiting differential expression in the TCGA ovarian cancer cohort."
+  },
+  {
+    "edge_id": "associated_with:CASP3->Prostate_Cancer",
+    "source": "CASP3",
+    "target": "Prostate_Cancer",
+    "relation": "associated_with",
+    "pmid": "41885368",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "CAPN5 expression was significantly lower, whereas BIRC2, CASP3, CD63, FMO5, IRF6, PFDN1, PRDX6, PSMD2, RIT1, S100A2, THBS1, and XRCC2 were significantly elevated in EVs from patients with significant prostate cancer (n&#x2009;=&#x2009;14) compared with cancer-free individuals and patients with insignificant disease (n&#x2009;=&#x2009;14)."
+  },
+  {
+    "edge_id": "associated_with:CASP3->AML",
+    "source": "CASP3",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "40954399",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Findings demonstrated a significant decrease in piR-33195, as well as increased CASP3 and CASP9 expression, in bone marrow samples from AML patients and the KG1 cell line, 24, 48, and 72 hours after transfection with antisense LNA Gamers."
+  },
+  {
+    "edge_id": "associated_with:CASP3->Melanoma",
+    "source": "CASP3",
+    "target": "Melanoma",
+    "relation": "associated_with",
+    "pmid": "41053010",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Furthermore, we identify specificity protein 1 (SP1) as a transcriptional regulator of CASP3 expression, and show that its inhibition reduces caspase-3 expression and impairs melanoma cell migration."
+  },
+  {
+    "edge_id": "associated_with:CASP9->AML",
+    "source": "CASP9",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "40954399",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Findings demonstrated a significant decrease in piR-33195, as well as increased CASP3 and CASP9 expression, in bone marrow samples from AML patients and the KG1 cell line, 24, 48, and 72 hours after transfection with antisense LNA Gamers."
+  },
+  {
+    "edge_id": "associated_with:ATM->Prostate_Cancer",
+    "source": "ATM",
+    "target": "Prostate_Cancer",
+    "relation": "associated_with",
+    "pmid": "42092965",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "ATM-deficient prostate cancer cells exhibited marked sensitivity to pharmacological inhibition of poly (ADP-ribose) glycohydrolase (PARG) using with PDD00017273, an effect that was consistently observed across multiple cell lines and partially restored by ATM re-expression."
+  },
+  {
+    "edge_id": "associated_with:ATM->CLL",
+    "source": "ATM",
+    "target": "CLL",
+    "relation": "associated_with",
+    "pmid": "40693823",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "For patients with SF3B1MUT CLL, the most common co-mutated genes were ATM (11 of 45; 24.4%) and TP53 (11 of 45; 24.4%)."
+  },
+  {
+    "edge_id": "associated_with:ATR->GIST",
+    "source": "ATR",
+    "target": "GIST",
+    "relation": "associated_with",
+    "pmid": "39453756",
+    "reason": "entities (ATR, GIST) match failed (substring or missing)",
+    "verdict": "REJECT",
+    "proof_sentence": "Patients were recruited to four cohorts: T1: ATRX-mutant leiomyosarcoma; T2: ATM-mutant solid tumors; T3: solid tumors with mutations in RS-associated genes; and T4: SDH-deficient gastrointestinal stromal tumors (GIST)."
+  },
+  {
+    "edge_id": "associated_with:ATR->Multiple_Myeloma",
+    "source": "ATR",
+    "target": "Multiple_Myeloma",
+    "relation": "associated_with",
+    "pmid": "34301753",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "MEDI2228 enriched IFN I signaling and enhanced expression of IFN-stimulated genes in multiple myeloma cell lines following the induction of DNA damage-ATM/ATR-CHK1/2 pathways."
+  },
+  {
+    "edge_id": "associated_with:MDM2->Multiple_Myeloma",
+    "source": "MDM2",
+    "target": "Multiple_Myeloma",
+    "relation": "associated_with",
+    "pmid": "41608334",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In multiple myeloma (MM), increased MDM2 expression has been reported and may play a role in disease progression and resistance to therapy."
+  },
+  {
+    "edge_id": "associated_with:RAD51->Glioblastoma",
+    "source": "RAD51",
+    "target": "Glioblastoma",
+    "relation": "associated_with",
+    "pmid": "40211735",
+    "reason": "entities (RAD51, Glioblastoma) match failed (substring or missing)",
+    "verdict": "REJECT",
+    "proof_sentence": "The results of this study suggest that aberrant RAD51AP1 expression is a crucial mechanism by which EGFRvIII -mutant glioblastoma resists TMZ chemotherapy, laying the groundwork for future personalized medicine."
+  },
+  {
+    "edge_id": "associated_with:RAD51->NSCLC",
+    "source": "RAD51",
+    "target": "NSCLC",
+    "relation": "associated_with",
+    "pmid": "41764215",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Inhibition of RAD51 or restoration of miR-320a led to enhanced lipid peroxidation, as evidenced by increased lipid ROS accumulation and reduced GPX4 expression, ultimately sensitizing NSCLC cells to radiotherapy."
+  },
+  {
+    "edge_id": "associated_with:RAD51->Ewing_Sarcoma",
+    "source": "RAD51",
+    "target": "Ewing_Sarcoma",
+    "relation": "associated_with",
+    "pmid": "36042341",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Using comprehensive microarray approaches, we observed that expression of the HR genes, particularly of RAD51, is upregulated in TL+ Ewing sarcoma cell lines, WE-68 and SK-N-MC, as in the other TL+ tumor cell lines and one defective in DNA mismatch repair (MMR)."
+  },
+  {
+    "edge_id": "associated_with:RAD51->HCC",
+    "source": "RAD51",
+    "target": "HCC",
+    "relation": "associated_with",
+    "pmid": "42037569",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Collectively, these findings indicate that TONSL facilitates HCC development by supporting RAD51-mediated DNA repair and suppressing apoptosis, and its elevated expression serves as a marker of poor prognosis."
+  },
+  {
+    "edge_id": "associated_with:NPM1->AML",
+    "source": "NPM1",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "42145737",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In newly diagnosed AML cases, the most frequently mutated genes included FLT3 (19%), NPM1 (19%), DNMT3A (17%), and NRAS (17%)."
+  },
+  {
+    "edge_id": "associated_with:ARF->AML",
+    "source": "ARF",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "39756487",
+    "reason": "entities (ARF, AML) match failed (substring or missing)",
+    "verdict": "REJECT",
+    "proof_sentence": "In this study, we found that the higher expression of ARF3 is correlated with poorer prognosis in AML patients."
+  },
+  {
+    "edge_id": "associated_with:KRAS->AML",
+    "source": "KRAS",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "42118855",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "NRAS and KRAS are among the most frequently mutated genes in AML, but their clinical impact has not been well-characterized."
+  },
+  {
+    "edge_id": "associated_with:PTEN->AML",
+    "source": "PTEN",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "42166356",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "iPSC-derived aneuploid HSPCs and primary AML-CK patient samples exhibited a conserved gene expression signature marked by upregulation of PTEN, cohesins, and anti-apoptotic factor BCL2, indicative of a shared aneuploid cell state in HSPCs."
+  },
+  {
+    "edge_id": "associated_with:MAP2K1->AML",
+    "source": "MAP2K1",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "38431286",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Consistently, the expression of MAP2K1 was reduced by the treatment of EtOH in AML-12 cells."
+  },
+  {
+    "edge_id": "associated_with:RET->HCC",
+    "source": "RET",
+    "target": "HCC",
+    "relation": "associated_with",
+    "pmid": "41514495",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "This study revealed that BPGM in hepatocytes could enhance RET expression via increasing its lactylation in malignant cells and promote M2 polarization of macrophages, both of which contributed to HCC progression."
+  },
+  {
+    "edge_id": "associated_with:PI3KCA->Colorectal_Cancer",
+    "source": "PI3KCA",
+    "target": "Colorectal_Cancer",
+    "relation": "associated_with",
+    "pmid": "31934127",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "PTEN expression in left colorectal cancer (LCC) was absent, while PI3KCA and PI3KCB in right colorectal cancer (RCC) were significantly higher than those in LCC."
+  },
+  {
+    "edge_id": "associated_with:PI3KCA->NSCLC",
+    "source": "PI3KCA",
+    "target": "NSCLC",
+    "relation": "associated_with",
+    "pmid": "41221490",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "This integrated multi-step analysis identified potentially altered pathways with a biological impact on squamous-NSCLC oncogenesis, suggesting that the PI3KCA/mTOR pathway could affect the prognosis of resected SCC patients through both genomic aberrations and impaired expression."
+  },
+  {
+    "edge_id": "associated_with:KRAS->HCC",
+    "source": "KRAS",
+    "target": "HCC",
+    "relation": "associated_with",
+    "pmid": "42180053",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In vivo, porphyrin-LNP-si-CTNNB1 significantly reduced tumor burden by approximately 67% (p&#xa0;&lt;&#xa0;0.0001), liver-to-body weight ratio by 50% (p&#xa0;&lt;&#xa0;0.0001), histological tumor grade, and &#x3b2;-catenin expression in CTNNB1/KRAS-driven HCC mice by approximately 58% (p&#xa0;&lt;&#xa0;0.0001)."
+  },
+  {
+    "edge_id": "associated_with:KRAS->Glioblastoma",
+    "source": "KRAS",
+    "target": "Glioblastoma",
+    "relation": "associated_with",
+    "pmid": "39805854",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "We found that glioblastoma (GBM) cells expressing patient-derived Kirsten rat sarcoma (KRAS) or phosphoinositide-3-kinase (PI3K) active mutants showed enhanced cell death under ischemia-mimetic conditions in vitro and were more likely to develop into necrotic tumors in vivo."
+  },
+  {
+    "edge_id": "associated_with:PI3KCA->Glioblastoma",
+    "source": "PI3KCA",
+    "target": "Glioblastoma",
+    "relation": "associated_with",
+    "pmid": "29110584",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Expression of a panel of seven microRNAs (hsa-miR-34a, hsa-miR-16, hsa-miR-17, hsa-miR-21, hsa-miR-221, hsa-miR-326, and hsa-miR-375) and seven target genes ( E2F3, PI3KCA, TOM34, WNT5A, PDCD4, DFFA, and EGFR) in 43 glioblastoma multiforme specimens were profiled compared to non-cancer tissues via quantitative reverse transcription-polymerase chain reaction."
+  },
+  {
+    "edge_id": "associated_with:CCND1->Ewing_Sarcoma",
+    "source": "CCND1",
+    "target": "Ewing_Sarcoma",
+    "relation": "associated_with",
+    "pmid": "35326688",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In this study, we investigated the regulation of CCND1 expression in Ewing sarcoma cells upon exposure to chemotherapeutic drugs."
+  },
+  {
+    "edge_id": "associated_with:CCND1->Ovarian_Cancer",
+    "source": "CCND1",
+    "target": "Ovarian_Cancer",
+    "relation": "associated_with",
+    "pmid": "41815138",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Here, we examined how HOXB8 regulates this pathway and downstream CCND1 expression, as well as its impact on ovarian cancer cell invasion and migration."
+  },
+  {
+    "edge_id": "associated_with:PIK3CA->Glioblastoma",
+    "source": "PIK3CA",
+    "target": "Glioblastoma",
+    "relation": "associated_with",
+    "pmid": "41944918",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "The causal roles of PIK3CA and NF1 expression in glioblastoma multiforme (GBM) pathogenesis and their immune-regulatory functions remain poorly understood."
+  },
+  {
+    "edge_id": "associated_with:CCND1->AML",
+    "source": "CCND1",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "38698063",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "The antiproliferative effects of wogonin on THP-1 cells of AML-M5 presented a dose-dependent and time-dependent manner, inducing apoptosis, blocking the cell cycle at the G2/M phase, decreasing the expressions of CCND1, CDK2, and CyclinA2 mRNA, as well as AKT and p-AKT proteins."
+  },
+  {
+    "edge_id": "associated_with:NFKB1->CLL",
+    "source": "NFKB1",
+    "target": "CLL",
+    "relation": "associated_with",
+    "pmid": "39596634",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Results: RS samples showed increased proportions of malignant cells expressing NF-&#x3ba;B components, including NFKB1, NFKB2, RELA, IKBKG, MAP3K14, CHUK, and IKBKB, with significantly higher expression levels than in CLL."
+  },
+  {
+    "edge_id": "associated_with:KDR->AML",
+    "source": "KDR",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "17577783",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "To analyze if altered signals are coordinated and to evaluate their effect on this disease, we have investigated in acute myeloid leukemia samples (AML) the expression and activation status of procoagulant/proangiogenic tissue factor receptor (TF), angiogenic protein VEGF, its cell surface receptor, KDR, and two intracellular proteins involved in their regulation: extracellular regulated kinase (ERK1/2) and nuclear factor kappa-B (NFkappaB)."
+  },
+  {
+    "edge_id": "associated_with:BRCA1->AML",
+    "source": "BRCA1",
+    "target": "AML",
+    "relation": "associated_with",
+    "pmid": "40853433",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "This collaborative article is co-authored by a haematologist and her patient who was immunocompromised following a bone marrow transplant for acute myeloid leukaemia (AML), which was probably chemotherapy-induced following treatment for a BReast CAncer gene 1 (BRCA1)-mutated breast cancer."
+  },
+  {
+    "edge_id": "associated_with:STAT5->CLL",
+    "source": "STAT5",
+    "target": "CLL",
+    "relation": "associated_with",
+    "pmid": "40427031",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "While STAT5 signaling could alter the homeostasis of na&#xef;ve (nTreg) and activated (aTreg) subsets, which are capable of suppressing also CLL patients' responses to microbial antigens, perturbed STAT3 signaling could drive CXCR5 expression in circulating T-follicular regulatory cells (Tfr) and their entry into the lymph node/tumor microenvironment."
+  },
+  {
+    "edge_id": "associated_with:JAK2->CLL",
+    "source": "JAK2",
+    "target": "CLL",
+    "relation": "associated_with",
+    "pmid": "34105916",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "The study of the expression of JAK2 mRNA in blood leukocytes of 41 patients with B-CLL, 16 patients with CML, 12 patients with multiple myeloma and 39 donors using the developed \"real-time\" PCR method."
+  },
+  {
+    "edge_id": "associated_with:BRCA2->GIST",
+    "source": "BRCA2",
+    "target": "GIST",
+    "relation": "associated_with",
+    "pmid": "34805171",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In particular, DNA repair-related genes, including MLH1, MSH6, BRCA1, BRCA2, and POLE, are frequently mutated in GISTs, suggesting that immune checkpoint blockade may have promising clinical applications for these GIST subpopulations."
+  },
+  {
+    "edge_id": "associated_with:NFKB1->CML",
+    "source": "NFKB1",
+    "target": "CML",
+    "relation": "associated_with",
+    "pmid": "27898405",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "AlbAGE significantly increased urine protein-to-creatinine ratio; glomerular area; renal CML content and macrophage infiltration; expression of Ager, Nfkb1, Agt, Ren, Tgfb1, Col4a1, Txnip, Bax/Bcl2 ratio; and 4-HNE and ROS contents."
+  },
+  {
+    "edge_id": "associated_with:FLT3->CML",
+    "source": "FLT3",
+    "target": "CML",
+    "relation": "associated_with",
+    "pmid": "40688985",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Tyrosine kinase inhibitors (TKIs) have transformed outcomes in chronic myeloid leukemia (CML) and FLT3-mutated acute myeloid leukemia (AML), yet durable remissions are curtailed by the emergence of drug resistance."
+  },
+  {
+    "edge_id": "associated_with:KDR->RCC",
+    "source": "KDR",
+    "target": "RCC",
+    "relation": "associated_with",
+    "pmid": "10208873",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Of these genes, the expression of TIE1, KDR, and FGFR-4 was studied in RCC tissue and cell lines by Northern blot analysis."
+  },
+  {
+    "edge_id": "associated_with:BRCA1->Soft_Tissue_Sarcoma",
+    "source": "BRCA1",
+    "target": "Soft_Tissue_Sarcoma",
+    "relation": "associated_with",
+    "pmid": "27643881",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In this study, we evaluated the immunohistochemical expression of PARP1, &#x3b3;H2AX, BRCA1, and BRCA2 and their prognostic significance in 112 cases of soft tissue sarcoma (STS)."
+  },
+  {
+    "edge_id": "associated_with:BRCA1->GIST",
+    "source": "BRCA1",
+    "target": "GIST",
+    "relation": "associated_with",
+    "pmid": "34805171",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In particular, DNA repair-related genes, including MLH1, MSH6, BRCA1, BRCA2, and POLE, are frequently mutated in GISTs, suggesting that immune checkpoint blockade may have promising clinical applications for these GIST subpopulations."
+  },
+  {
+    "edge_id": "associated_with:PTEN->CML",
+    "source": "PTEN",
+    "target": "CML",
+    "relation": "associated_with",
+    "pmid": "35993473",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In the case-control study, the mRNA expression of PTEN, LEF1, JAK3, LC3 and p62 genes were measured in 51 CML patients (6 patients before treatment and 45 patients under treatment with imatinib mesylate) and 40 healthy controls using the Real-time PCR method."
+  },
+  {
+    "edge_id": "associated_with:PTEN->GIST",
+    "source": "PTEN",
+    "target": "GIST",
+    "relation": "associated_with",
+    "pmid": "36001861",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "PTEN expression and genomic analysis were performed on two independent GIST-60 (n = 60) and GIST-100 (n = 100) cohorts, respectively."
+  },
+  {
+    "edge_id": "associated_with:KRAS->GIST",
+    "source": "KRAS",
+    "target": "GIST",
+    "relation": "associated_with",
+    "pmid": "37663588",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Here, we present two KRAS-mutated wild-type gastrointestinal tumours (GISTs)."
+  },
+  {
+    "edge_id": "associated_with:PDGFRB->GIST",
+    "source": "PDGFRB",
+    "target": "GIST",
+    "relation": "associated_with",
+    "pmid": "33524869",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "PDGF receptor (PDGFR) A expression was lowest in MLPS (P &lt; 0.002), whereas PDGFRB and L expressions were lowest in GIST and SyS (P &lt; 0.0004)."
+  },
+  {
+    "edge_id": "associated_with:ERBB2->Ovarian_Cancer",
+    "source": "ERBB2",
+    "target": "Ovarian_Cancer",
+    "relation": "associated_with",
+    "pmid": "41438580",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Integrative bioinformatics of cisplatin-treated ovarian cancer datasets from the Gene Expression Omnibus (n=255) identified six molecular drivers of resistance: Kaiso (ZBTB33), pregnane X receptor (PXR), NF-&#x3ba;B, HER2 (ERBB2), P-glycoprotein (P-gp/ABCB1), and HIF1A."
+  },
+  {
+    "edge_id": "associated_with:KIT->NSCLC",
+    "source": "KIT",
+    "target": "NSCLC",
+    "relation": "associated_with",
+    "pmid": "42057882",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In vitro, the effect of BUD23 knockdown on the viability, motility and apoptosis of NSCLC cell lines was evaluated by Cell Counting Kit-8, wound healing and Annexin V/PI flow cytometry assays, respectively, and the mRNA expression levels of potential downstream genes were quantified by reverse transcription-quantitative PCR."
+  },
+  {
+    "edge_id": "associated_with:STAT5A->CML",
+    "source": "STAT5A",
+    "target": "CML",
+    "relation": "associated_with",
+    "pmid": "31861239",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "We also obtained evidence that 17f inhibits STAT5B but not STAT5A protein expression in resistant CML and AML cells."
+  },
+  {
+    "edge_id": "associated_with:CCND1->HCC",
+    "source": "CCND1",
+    "target": "HCC",
+    "relation": "associated_with",
+    "pmid": "41655866",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Further experiments confirmed that NARF positively regulated the expression of key Wnt target genes (MYC, CCND1, SNAIL, and TWIST1) in HCC cells."
+  },
+  {
+    "edge_id": "associated_with:CCND1->Glioblastoma",
+    "source": "CCND1",
+    "target": "Glioblastoma",
+    "relation": "associated_with",
+    "pmid": "41898348",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "PBMCs from glioblastoma patients exhibited increased expression of the regulatory genes SOCS1, SOCS3, and PTEN, while CCND1 was downregulated."
+  },
+  {
+    "edge_id": "associated_with:MAPK1->Multiple_Myeloma",
+    "source": "MAPK1",
+    "target": "Multiple_Myeloma",
+    "relation": "associated_with",
+    "pmid": "35203396",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "MiRNA-8074 is a molecule with the potential to regulate the expression of key genes related to the pathogenesis of multiple myeloma (MM), i.e., TP53, MYC, MAPK1, and KIAA."
+  },
+  {
+    "edge_id": "associated_with:MAPK1->Prostate_Cancer",
+    "source": "MAPK1",
+    "target": "Prostate_Cancer",
+    "relation": "associated_with",
+    "pmid": "39061044",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Bioinformatics analysis showed that MYC gene was highly expressed and CCND1 and MAPK1 were low expressed in prostate cancer tissues."
+  },
+  {
+    "edge_id": "associated_with:MAPK1->Pancreatic_Cancer",
+    "source": "MAPK1",
+    "target": "Pancreatic_Cancer",
+    "relation": "associated_with",
+    "pmid": "38943117",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In cell experiments, pancreatic cancer cells were grouped, and the expression levels of SOX4, MAPK1, and the phosphorylation level of IQGAP1 were detected by RT-qPCR and Western blot experiments."
+  },
+  {
+    "edge_id": "associated_with:NRAS->Prostate_Cancer",
+    "source": "NRAS",
+    "target": "Prostate_Cancer",
+    "relation": "associated_with",
+    "pmid": "34484381",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Out of cDNA array findings, only 7 genes: CDKN2A, AKT1, NRAS, PIK3CA, RB1, BRAF, and TP53 are differentially expressed and shown as significant in the development of bone tumors, approximately 15 pathways have been identified, including pathways for non-small cell lung cancer, prostate cancer, pancreatic cancer, chronic myeloid leukemia, and glioma, consisting of all the identified 7 genes."
+  },
+  {
+    "edge_id": "associated_with:SRC->Ewing_Sarcoma",
+    "source": "SRC",
+    "target": "Ewing_Sarcoma",
+    "relation": "associated_with",
+    "pmid": "31521948",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "This work reports the impact of stress-induced TNC expression on enhancing cell invadopodia formation, provides evidence for a feed forward loop between TNC and Src to promote cell metastatic behavior, and highlights a pathway by which microenvironment-driven TNC expression could be therapeutically targeted in Ewing sarcoma."
+  },
+  {
+    "edge_id": "associated_with:SRC->Melanoma",
+    "source": "SRC",
+    "target": "Melanoma",
+    "relation": "associated_with",
+    "pmid": "42067550",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Analysis of datasets from The Cancer Genome Atlas (TCGA) and Genotype-Tissue Expression (GTEx) revealed that B lymphocyte tyrosine kinase (BLK), a member of the Src family kinases, is significantly downregulated in melanoma samples."
+  },
+  {
+    "edge_id": "associated_with:CHEK2->HCC",
+    "source": "CHEK2",
+    "target": "HCC",
+    "relation": "associated_with",
+    "pmid": "38857680",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "The results of bioinformatics showed that ATM, CHEK2, CDC25C, CDK1, and KNL1 were highly expressed in patients with HCC and cancer tissues, indicating that these genes have certain value in the clinical diagnosis of HCC."
+  },
+  {
+    "edge_id": "associated_with:NFKB1->Ovarian_Cancer",
+    "source": "NFKB1",
+    "target": "Ovarian_Cancer",
+    "relation": "associated_with",
+    "pmid": "40689422",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Using spatial transcriptomics, we show that the short-term 1-day exposure to ovarian cancer-derived sEVs alters expression of 68 transcripts in secretory cells, the progenitor of high-grade serous ovarian cancer, notably upregulating immune-related mRNA, including CXCL family chemokines, VCAM1, and pro-inflammatory mediators (NFKB1, IL1B, and IFNA7/17)."
+  },
+  {
+    "edge_id": "associated_with:STAT5B->Colorectal_Cancer",
+    "source": "STAT5B",
+    "target": "Colorectal_Cancer",
+    "relation": "associated_with",
+    "pmid": "40100436",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "The major cell types of colorectal cancer were CD4Tconv, CD8T, CD8Tex, Tprolif, Treg and STAT3 and STAT5B widely expressed in these cells."
+  },
+  {
+    "edge_id": "associated_with:STAT5B->Pancreatic_Cancer",
+    "source": "STAT5B",
+    "target": "Pancreatic_Cancer",
+    "relation": "associated_with",
+    "pmid": "27035235",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "In the present study, we examined the expression and role of STAT5b in human pancreatic cancer cell lines."
+  },
+  {
+    "edge_id": "associated_with:STAT5B->NSCLC",
+    "source": "STAT5B",
+    "target": "NSCLC",
+    "relation": "associated_with",
+    "pmid": "25137041",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "The expression levels of STAT5A, STAT5B, and COX-2 genes were increased in 69%, 79%, and 71% NSCLC samples respectively, while PIAS3 expression was decreased in the majority (69%) of the studied tissues."
+  },
+  {
+    "edge_id": "associated_with:STAT5B->RCC",
+    "source": "STAT5B",
+    "target": "RCC",
+    "relation": "associated_with",
+    "pmid": "32640276",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "RCC patients with high expression of STAT2/4 and low/medium expression of STAT5B had a poor overall survival."
+  },
+  {
+    "edge_id": "associated_with:STAT5B->CML",
+    "source": "STAT5B",
+    "target": "CML",
+    "relation": "associated_with",
+    "pmid": "31861239",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "We also obtained evidence that 17f inhibits STAT5B but not STAT5A protein expression in resistant CML and AML cells."
+  },
+  {
+    "edge_id": "associated_with:KDR->Prostate_Cancer",
+    "source": "KDR",
+    "target": "Prostate_Cancer",
+    "relation": "associated_with",
+    "pmid": "39349877",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "A combination of weighted gene co-expression network analysis and single-cell sequencing has identified nine dysregulated immune hub genes (AMACR, KCNN3, MME, EGFR, FLT1, GDF15, KDR, IGF1, and KRT7) that are believed to have significant involvement in the biological pathways involved with the advancement of prostate cancer enviriment."
+  },
+  {
+    "edge_id": "associated_with:KDR->Ovarian_Cancer",
+    "source": "KDR",
+    "target": "Ovarian_Cancer",
+    "relation": "associated_with",
+    "pmid": "25667501",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "CCNI and KDR mRNA expression was detected in all EOC tissues and ovarian cancer cell lines."
+  },
+  {
+    "edge_id": "associated_with:STAT5->CML",
+    "source": "STAT5",
+    "target": "CML",
+    "relation": "associated_with",
+    "pmid": "42033509",
+    "reason": "entities (STAT5, CML) match failed (substring or missing)",
+    "verdict": "REJECT",
+    "proof_sentence": "The transcription factor STAT5A, a principal downstream effector of BCR::ABL1, has emerged as a key transcriptional regulator implicated in the development of TKI resistance.&#xa0;This study aims to functionally validate the role of STAT5A in TKI-resistant CML by employing CRISPR/Cas9-mediated gene knockout and assessing the downstream molecular and phenotypic alterations."
+  },
+  {
+    "edge_id": "associated_with:PDGFRA->Pancreatic_Cancer",
+    "source": "PDGFRA",
+    "target": "Pancreatic_Cancer",
+    "relation": "associated_with",
+    "pmid": "29157747",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Proximity ligation assay quantified the expression levels of 36 pancreatic cancer-specific candidate seromarkers: Axl, BMP2, CA 125, CA 19-9, CEA, CXCL-1/6/9/10, EGFR, Gas6, Her2, IGF-2, IGFBP-2/3/7, IL-6/6Ra/7/8/12, mesothelin, MMP-1/2/3/7, osteopontin, PDGFRa, PDK1, PF4, RegIV, SPARC, TGF-&#x3b2;, VEGF-A/D, and YKL40."
+  },
+  {
+    "edge_id": "associated_with:PTEN->NSCLC",
+    "source": "PTEN",
+    "target": "NSCLC",
+    "relation": "associated_with",
+    "pmid": "42201046",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "PTEN protein expression was evaluated by immunohistochemistry in a tissue microarray from resected NSCLC patients, and findings were validated using publicly available datasets including TCGA-RPPA, GEO/EGA-based transcriptomic cohorts, and large genomic resources."
+  },
+  {
+    "edge_id": "associated_with:PTEN->Ovarian_Cancer",
+    "source": "PTEN",
+    "target": "Ovarian_Cancer",
+    "relation": "associated_with",
+    "pmid": "42095894",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "H3K9me3&#x2011;modified RASSF2 promotes ovarian cancer metastasis by regulating PTEN expression, which may offer a potential therapeutic target to counteract distant dissemination of OV."
+  },
+  {
+    "edge_id": "associated_with:KRAS->Melanoma",
+    "source": "KRAS",
+    "target": "Melanoma",
+    "relation": "associated_with",
+    "pmid": "40990023",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "IgA and IgG expression in tumors have shown predictive value in melanoma and KRAS-mutated, but not KRAS wild-type, lung adenocarcinoma (LUAD)."
+  },
+  {
+    "edge_id": "associated_with:MMP9->NSCLC",
+    "source": "MMP9",
+    "target": "NSCLC",
+    "relation": "associated_with",
+    "pmid": "41794778",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "Mechanistically, NSUN2 first initiates the m5C within YAP mRNA and then ALYREF recognizes m5C modification on YAP mRNA, YBX1 was more likely to bind to the transitive m5C from ALYREF and then promoted YAP mRNA stability through impeding the combination between AGO2 and YAP mRNA whereby increasing the expression of YAP with interaction with eIF3a and thus excessive cell growth and metastasis via regulation of YAP's target genes of CTGF, Cyr61 MMP2, MMP9 in NSCLC."
+  },
+  {
+    "edge_id": null,
+    "source": "PI3KCA",
+    "target": "RCC",
+    "relation": "associated_with",
+    "pmid": "31934127",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "PTEN expression in left colorectal cancer (LCC) was absent, while PI3KCA and PI3KCB in right colorectal cancer (RCC) were significantly higher than those in LCC."
+  },
+  {
+    "edge_id": null,
+    "source": "PI3KCA",
+    "target": "RCC",
+    "relation": "associated_with",
+    "pmid": "31934127",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "PTEN expression in left colorectal cancer (LCC) was absent, while PI3KCA and PI3KCB in right colorectal cancer (RCC) were significantly higher than those in LCC."
+  },
+  {
+    "edge_id": null,
+    "source": "PI3KCA",
+    "target": "RCC",
+    "relation": "associated_with",
+    "pmid": "31934127",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "PTEN expression in left colorectal cancer (LCC) was absent, while PI3KCA and PI3KCB in right colorectal cancer (RCC) were significantly higher than those in LCC."
+  },
+  {
+    "edge_id": null,
+    "source": "PI3KCA",
+    "target": "RCC",
+    "relation": "associated_with",
+    "pmid": "31934127",
+    "reason": "no keyword for 'associated_with' (co-occurrence only)",
+    "verdict": "HOLLOW",
+    "proof_sentence": "PTEN expression in left colorectal cancer (LCC) was absent, while PI3KCA and PI3KCB in right colorectal cancer (RCC) were significantly higher than those in LCC."
+  }
+]

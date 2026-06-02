@@ -1,0 +1,4432 @@
+{
+  "summary": {
+    "total": 737,
+    "agree": 596,
+    "hollow": 134,
+    "reject": 7
+  },
+  "detailed": [
+    {
+      "edge_id": "activates:CD8A->IFNG",
+      "pmid": "25387892",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:CXCL12->CXCR4",
+      "pmid": "42188783",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:EGFR->STAT3",
+      "pmid": "42177207",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:ERK1->MYC",
+      "pmid": "40831365",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:ERK2->MYC",
+      "pmid": "37463244",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:FLT3->AKT1",
+      "pmid": "20972423",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:FLT3->NRAS",
+      "pmid": "41943422",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:KRAS->BRAF",
+      "pmid": "41862948",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:NRAS->BRAF",
+      "pmid": "42104999",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Pembrolizumab->CD4",
+      "pmid": "39632711",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'activates' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:ABCB1->AML",
+      "pmid": "41301675",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ABCB1->Breast_Cancer",
+      "pmid": "41935021",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:BCL2->AML",
+      "pmid": "42166356",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:BRAF->Colorectal_Cancer",
+      "pmid": "42200009",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Breast_Cancer",
+      "pmid": "42201356",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Ovarian_Cancer",
+      "pmid": "42190606",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA2->Breast_Cancer",
+      "pmid": "42201356",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA2->Pancreatic_Cancer",
+      "pmid": "41899580",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CD274->NSCLC",
+      "pmid": "41699717",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CD4->Melanoma",
+      "pmid": "42140948",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CDK4->Breast_Cancer",
+      "pmid": "42187623",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:EGFR->Colorectal_Cancer",
+      "pmid": "42194940",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ERBB2->Colorectal_Cancer",
+      "pmid": "42056442",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:Fluorouracil->TOP2A",
+      "pmid": "31479512",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:HDAC1->AML",
+      "pmid": "36899123",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:HDAC1->Breast_Cancer",
+      "pmid": "40924735",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:HDAC2->AML",
+      "pmid": "36849955",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:HIF1A->Glioblastoma",
+      "pmid": "41007296",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:JAK2->AML",
+      "pmid": "42175603",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KIT->AML",
+      "pmid": "42161658",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KIT->Soft_Tissue_Sarcoma",
+      "pmid": "34489967",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MDM2->Glioblastoma",
+      "pmid": "41515979",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MET->NSCLC",
+      "pmid": "42187575",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:MMP2->Melanoma",
+      "pmid": "41793972",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MMP9->Colorectal_Cancer",
+      "pmid": "42152201",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MTOR->RCC",
+      "pmid": "42155824",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:PDCD1->Melanoma",
+      "pmid": "40556672",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PDCD1->NSCLC",
+      "pmid": "40509568",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PDGFRA->Soft_Tissue_Sarcoma",
+      "pmid": "33524869",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:RB1->Soft_Tissue_Sarcoma",
+      "pmid": "39516677",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:TGFB1->Colorectal_Cancer",
+      "pmid": "40075643",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:TP53->Breast_Cancer",
+      "pmid": "42174712",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:TP53->Ovarian_Cancer",
+      "pmid": "42181460",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "binds:CCND1->CDK4",
+      "pmid": "41905455",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "binds:CCND1->CDK6",
+      "pmid": "41394743",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "binds:MYC->MAX",
+      "pmid": "41775601",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "binds:STAG2->SMC1A",
+      "pmid": "41173205",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "binds:Thalidomide->CRBN",
+      "pmid": "41565821",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "driver_of:BRAF->Melanoma",
+      "pmid": "42126185",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "driver_of:CCND1->Breast_Cancer",
+      "pmid": "41640445",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "driver_of:ERBB2->Breast_Cancer",
+      "pmid": "41554087",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "driver_of:FLT3->AML",
+      "pmid": "42198431",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "driver_of:HIF1A->RCC",
+      "pmid": "38064865",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "driver_of:JAK2->Myelofibrosis",
+      "pmid": "41991667",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "driver_of:KDR->HCC",
+      "pmid": "25123269",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "driver_of:KIT->GIST",
+      "pmid": "42080642",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "driver_of:KRAS->NSCLC",
+      "pmid": "42075590",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "driver_of:KRAS->Pancreatic_Cancer",
+      "pmid": "42092950",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "driver_of:PDGFRA->GIST",
+      "pmid": "41635891",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "driver_of:PIK3CA->Breast_Cancer",
+      "pmid": "42074235",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "driver_of:ROS1->NSCLC",
+      "pmid": "42075590",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "driver_of:TOP2A->Breast_Cancer",
+      "pmid": "39931818",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "indirect_inhibitor:Atorvastatin->MTOR",
+      "pmid": "37181137",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'indirect_inhibitor' (co-occurrence only)"
+    },
+    {
+      "edge_id": "indirect_inhibitor:Bevacizumab->VEGFR2",
+      "pmid": "41868199",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'indirect_inhibitor' (co-occurrence only)"
+    },
+    {
+      "edge_id": "indirect_inhibitor:Diclofenac->MYC",
+      "pmid": "23874405",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'indirect_inhibitor' (co-occurrence only)"
+    },
+    {
+      "edge_id": "indirect_inhibitor:Ivermectin->MTOR",
+      "pmid": "35568994",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'indirect_inhibitor' (co-occurrence only)"
+    },
+    {
+      "edge_id": "indirect_inhibitor:Metformin->AKT1",
+      "pmid": "34335983",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'indirect_inhibitor' (co-occurrence only)"
+    },
+    {
+      "edge_id": "inhibits:ARF->MDM2",
+      "pmid": "41297313",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Adagrasib->KRAS",
+      "pmid": "42122163",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Afatinib->EGFR",
+      "pmid": "42151084",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Afatinib->ERBB2",
+      "pmid": "40612504",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Alectinib->ALK",
+      "pmid": "42163606",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Alectinib->RET",
+      "pmid": "40599544",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Aspirin->STAT3",
+      "pmid": "35869624",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Auranofin->TXNRD1",
+      "pmid": "41061336",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Bazedoxifene->IL6",
+      "pmid": "39152779",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Brigatinib->ALK",
+      "pmid": "42136297",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:CD274->PDCD1",
+      "pmid": "41655134",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Capmatinib->MET",
+      "pmid": "42130628",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Cisplatin->TOP2A",
+      "pmid": "41235254",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'inhibits' (co-occurrence only)"
+    },
+    {
+      "edge_id": "inhibits:Cobimetinib->MAP2K1",
+      "pmid": "39986525",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Crizotinib->ALK",
+      "pmid": "42136678",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Crizotinib->MET",
+      "pmid": "42015375",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Crizotinib->ROS1",
+      "pmid": "41754770",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Dabrafenib->BRAF",
+      "pmid": "42143022",
+      "verdict": "REJECT",
+      "reason": "entities (Dabrafenib, BRAF) match failed (substring or missing)"
+    },
+    {
+      "edge_id": "inhibits:Encorafenib->BRAF",
+      "pmid": "41920914",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Entrectinib->ALK",
+      "pmid": "41837926",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Entrectinib->NTRK1",
+      "pmid": "41744839",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Entrectinib->NTRK2",
+      "pmid": "41744839",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Entrectinib->NTRK3",
+      "pmid": "41744839",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Entrectinib->ROS1",
+      "pmid": "41837926",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Erlotinib->EGFR",
+      "pmid": "42156718",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Everolimus->MTOR",
+      "pmid": "42126699",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Fluorouracil->TYMS",
+      "pmid": "39949800",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Gefitinib->EGFR",
+      "pmid": "42198266",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Imatinib->KIT",
+      "pmid": "42041590",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Imatinib->PDGFRA",
+      "pmid": "42066836",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Indomethacin->COX2",
+      "pmid": "41857108",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Indomethacin->NFKB1",
+      "pmid": "31166414",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Irinotecan->TOP1",
+      "pmid": "39512899",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Itraconazole->MTOR",
+      "pmid": "41314647",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Itraconazole->VEGFR2",
+      "pmid": "28666022",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Ivermectin->STAT3",
+      "pmid": "35568994",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Lapatinib->EGFR",
+      "pmid": "42089475",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Larotrectinib->NTRK1",
+      "pmid": "41744839",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Larotrectinib->NTRK2",
+      "pmid": "41744839",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Larotrectinib->NTRK3",
+      "pmid": "41744839",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Lorlatinib->ALK",
+      "pmid": "42170281",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Lorlatinib->ROS1",
+      "pmid": "41704605",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Mebendazole->BRAF",
+      "pmid": "28157711",
+      "verdict": "REJECT",
+      "reason": "entities (Mebendazole, BRAF) match failed (substring or missing)"
+    },
+    {
+      "edge_id": "inhibits:Mebendazole->VEGFR2",
+      "pmid": "22780961",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Nelfinavir->AKT1",
+      "pmid": "34136086",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Osimertinib->EGFR",
+      "pmid": "42182601",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:PTEN->PIK3CA",
+      "pmid": "42154572",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Palbociclib->CDK4",
+      "pmid": "42160728",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Palbociclib->CDK6",
+      "pmid": "41548293",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Pembrolizumab->PDCD1",
+      "pmid": "30836329",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Pemetrexed->TYMS",
+      "pmid": "23060591",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Pirfenidone->TGFB1",
+      "pmid": "22033529",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Pralsetinib->RET",
+      "pmid": "42107510",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:RB1->E2F1",
+      "pmid": "37949681",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Ribociclib->CDK4",
+      "pmid": "42192962",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Ribociclib->CDK6",
+      "pmid": "40722732",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Selpercatinib->RET",
+      "pmid": "42199509",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Sorafenib->BRAF",
+      "pmid": "41497266",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Sorafenib->RAF1",
+      "pmid": "41347828",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Sotorasib->KRAS",
+      "pmid": "42144204",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Sunitinib->FLT3",
+      "pmid": "40410534",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Sunitinib->KIT",
+      "pmid": "41517566",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Suramin->VEGFR2",
+      "pmid": "29450744",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:TP53->CCND1",
+      "pmid": "40766702",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:TP53->CDK4",
+      "pmid": "42174712",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:TP53->MYC",
+      "pmid": "42193437",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Tepotinib->MET",
+      "pmid": "41760894",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Trametinib->MEK1",
+      "pmid": "42152474",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Trastuzumab->ERBB2",
+      "pmid": "41798167",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Trastuzumab_deruxtecan->TOP1",
+      "pmid": "40672227",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Valproic_Acid->HDAC2",
+      "pmid": "39666740",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Vemurafenib->BRAF",
+      "pmid": "42179788",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Verapamil->ABCB1",
+      "pmid": "40721853",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "interacts:BRCA1->BRCA2",
+      "pmid": "35779338",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "interacts:BRCA2->RAD51",
+      "pmid": "40923759",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "phosphorylates:ATM->CHEK2",
+      "pmid": "41532283",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "phosphorylates:ATM->TP53",
+      "pmid": "39014282",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "phosphorylates:ATR->CHEK2",
+      "pmid": "29988075",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "phosphorylates:ATR->TP53",
+      "pmid": "33172976",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "phosphorylates:CDK4->RB1",
+      "pmid": "41196681",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "phosphorylates:CDK6->RB1",
+      "pmid": "41946996",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "phosphorylates:CHEK2->TP53",
+      "pmid": "20976220",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "phosphorylates:FLT3->RUNX1",
+      "pmid": "36473282",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "phosphorylates:FLT3->STAT5A",
+      "pmid": "40833602",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "phosphorylates:JAK2->STAT3",
+      "pmid": "42201814",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "phosphorylates:JAK2->STAT5",
+      "pmid": "42111053",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "phosphorylates:MEK1->ERK1",
+      "pmid": "42121888",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "phosphorylates:MEK1->ERK2",
+      "pmid": "38510679",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "phosphorylates:RAF1->MEK1",
+      "pmid": "40686145",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "synergizes_with:Dabrafenib->Trametinib",
+      "pmid": "42169194",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'synergizes_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "synergizes_with:Everolimus->Erlotinib",
+      "pmid": "42032072",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'synergizes_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "synergizes_with:Olaparib->Bevacizumab",
+      "pmid": "42007996",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'synergizes_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "synergizes_with:Venetoclax->Ruxolitinib",
+      "pmid": "42007254",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'synergizes_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "treats:Afatinib->NSCLC",
+      "pmid": "42158804",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Alectinib->NSCLC",
+      "pmid": "42158271",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Atezolizumab->NSCLC",
+      "pmid": "42138243",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Binimetinib->Melanoma",
+      "pmid": "41914670",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Cetuximab->Colorectal_Cancer",
+      "pmid": "42199488",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Cobimetinib->Melanoma",
+      "pmid": "42091854",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Crizotinib->NSCLC",
+      "pmid": "42201505",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Dabrafenib->Melanoma",
+      "pmid": "42195328",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Erlotinib->Pancreatic_Cancer",
+      "pmid": "41799523",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Gefitinib->NSCLC",
+      "pmid": "42189390",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Imatinib->CML",
+      "pmid": "42154176",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Imatinib->GIST",
+      "pmid": "42136545",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Ipilimumab->Melanoma",
+      "pmid": "42200697",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Metformin->Type2_Diabetes",
+      "pmid": "40466424",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Nivolumab->Melanoma",
+      "pmid": "42200697",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Nivolumab->NSCLC",
+      "pmid": "42192342",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Nivolumab->RCC",
+      "pmid": "42204034",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'treats' (co-occurrence only)"
+    },
+    {
+      "edge_id": "treats:Olaparib->Breast_Cancer",
+      "pmid": "42183723",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'treats' (co-occurrence only)"
+    },
+    {
+      "edge_id": "treats:Osimertinib->NSCLC",
+      "pmid": "42203350",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Palbociclib->Breast_Cancer",
+      "pmid": "42173733",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Pembrolizumab->Melanoma",
+      "pmid": "42190314",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'treats' (co-occurrence only)"
+    },
+    {
+      "edge_id": "treats:Pembrolizumab->NSCLC",
+      "pmid": "42192983",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Ramucirumab->Colorectal_Cancer",
+      "pmid": "42159904",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Regorafenib->Colorectal_Cancer",
+      "pmid": "42163782",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Regorafenib->GIST",
+      "pmid": "42136545",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Regorafenib->HCC",
+      "pmid": "42199561",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Ribociclib->Breast_Cancer",
+      "pmid": "42192962",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Ruxolitinib->Myelofibrosis",
+      "pmid": "42171355",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Sorafenib->HCC",
+      "pmid": "42193056",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Sorafenib->RCC",
+      "pmid": "41303409",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Sunitinib->GIST",
+      "pmid": "42136545",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Temsirolimus->RCC",
+      "pmid": "40978096",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Thalidomide->Multiple_Myeloma",
+      "pmid": "41733524",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Trametinib->Melanoma",
+      "pmid": "42195328",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Trastuzumab->Breast_Cancer",
+      "pmid": "42204863",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Vemurafenib->Melanoma",
+      "pmid": "42114556",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "treats:Venetoclax->CLL",
+      "pmid": "42156574",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Abatacept->CD86",
+      "pmid": "39383033",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Abatacept->CD80",
+      "pmid": "39383033",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Abemaciclib->CDK4",
+      "pmid": "42194689",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Abemaciclib->CDK6",
+      "pmid": "41845059",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Abiraterone->CYP17A1",
+      "pmid": "41453691",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Abrocitinib->JAK1",
+      "pmid": "42186623",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Acarbose->MGAM",
+      "pmid": "22058037",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Acetazolamide->CA2",
+      "pmid": "39789216",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Acetazolamide->CA4",
+      "pmid": "41565998",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Acetylcholine->CHRM3",
+      "pmid": "40120585",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Afamelanotide->MC1R",
+      "pmid": "36367494",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Afatinib->ERBB4",
+      "pmid": "36991174",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Aflibercept->VEGFA",
+      "pmid": "41373488",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Albuterol->ADRB2",
+      "pmid": "32732018",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Alefacept->CD2",
+      "pmid": "27495762",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Alemtuzumab->CD52",
+      "pmid": "39883995",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Alirocumab->PCSK9",
+      "pmid": "42002510",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Aliskiren->REN",
+      "pmid": "40566708",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Allopurinol->XDH",
+      "pmid": "36575190",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Alpelisib->PIK3CA",
+      "pmid": "42196155",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Aminocaproic Acid->PLG",
+      "pmid": "16524486",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Aminoglutethimide->CYP11A1",
+      "pmid": "23870673",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Amivantamab->EGFR",
+      "pmid": "42048802",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Amivantamab->MET",
+      "pmid": "42048802",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Anagliptin->DPP4",
+      "pmid": "37115489",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Anakinra->IL1R1",
+      "pmid": "41344438",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Andexanet Alfa->TFPI",
+      "pmid": "41098965",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Anifrolumab->IFNAR1",
+      "pmid": "41756273",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Anisindione->GGCX",
+      "pmid": "41290650",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Apalutamide->AR",
+      "pmid": "40578932",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Aprotinin->PLG",
+      "pmid": "26614523",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Aripiprazole->HTR2A",
+      "pmid": "19387614",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Asciminib->ABL1",
+      "pmid": "42078354",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Atenolol->ADRB1",
+      "pmid": "41417111",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Atomoxetine->SLC6A2",
+      "pmid": "33944622",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Atorvastatin->HMGCR",
+      "pmid": "41866501",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Atosiban->OXTR",
+      "pmid": "41007660",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Atropine->CHRM3",
+      "pmid": "40624113",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Atropine->CHRM1",
+      "pmid": "40624113",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Atropine->CHRM2",
+      "pmid": "40624113",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Avacincaptad Pegol->C5",
+      "pmid": "39722646",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Avacopan->C5AR1",
+      "pmid": "41580904",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Avapritinib->KIT",
+      "pmid": "41961082",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Avapritinib->PDGFRA",
+      "pmid": "41517566",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Avatrombopag->MPL",
+      "pmid": "41875247",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Azelastine->HRH1",
+      "pmid": "41465279",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Baricitinib->JAK1",
+      "pmid": "42099987",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Baricitinib->JAK2",
+      "pmid": "42050116",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Belatacept->CD86",
+      "pmid": "40849621",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Belatacept->CD80",
+      "pmid": "41754737",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Belumosudil->ROCK2",
+      "pmid": "42198791",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Bempedoic Acid->ACLY",
+      "pmid": "41320340",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Benazepril->ACE",
+      "pmid": "42077598",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Benzbromarone->SLC22A12",
+      "pmid": "16135657",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Bisoprolol->ADRB1",
+      "pmid": "37753361",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Bosutinib->LYN",
+      "pmid": "34836491",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Bremelanotide->MC4R",
+      "pmid": "33455598",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Brinzolamide->CA2",
+      "pmid": "35008590",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Brolucizumab->VEGFA",
+      "pmid": "40223853",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Bumetanide->SLC12A1",
+      "pmid": "27447551",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Burosumab->FGF23",
+      "pmid": "41634723",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Buspirone->HTR1A",
+      "pmid": "21990073",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Cabergoline->DRD2",
+      "pmid": "38612419",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Calcitriol->VDR",
+      "pmid": "42031173",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Canakinumab->IL1B",
+      "pmid": "30670488",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Cangrelor->P2RY12",
+      "pmid": "28345287",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Capecitabine->TYMS",
+      "pmid": "39163685",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Caplacizumab->VWF",
+      "pmid": "41805640",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Carbachol->CHRM3",
+      "pmid": "27606721",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Carbidopa->DDC",
+      "pmid": "38974042",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Carglumic Acid->CPS1",
+      "pmid": "38637895",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "binds:Catumaxomab->EPCAM",
+      "pmid": "29269044",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Cedazuridine->CDA",
+      "pmid": "33904891",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Ceritinib->ALK",
+      "pmid": "42181273",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Certolizumab Pegol->TNF",
+      "pmid": "41809285",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Cetrorelix->GNRHR",
+      "pmid": "41458598",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'inhibits' (co-occurrence only)"
+    },
+    {
+      "edge_id": "activates:Cholecalciferol->VDR",
+      "pmid": "32663289",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Cilastatin->DPEP1",
+      "pmid": "41490187",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Cilostazol->PDE3A",
+      "pmid": "41373193",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Cimetidine->HRH2",
+      "pmid": "41048570",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Clascoterone->AR",
+      "pmid": "30811143",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Clemastine->HRH1",
+      "pmid": "35234502",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Clofibrate->PPARA",
+      "pmid": "26850476",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Clopidogrel->P2RY12",
+      "pmid": "34589424",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Clozapine->HTR2A",
+      "pmid": "39405910",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Clozapine->DRD2",
+      "pmid": "39405910",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Corticotropin->MC2R",
+      "pmid": "22248724",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Cortisone->NR3C1",
+      "pmid": "21806804",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Crovalimab->C5",
+      "pmid": "41526265",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Dacomitinib->ERBB4",
+      "pmid": "41741986",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Danazol->AR",
+      "pmid": "18061638",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Danicopan->CFD",
+      "pmid": "41308544",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'inhibits' (co-occurrence only)"
+    },
+    {
+      "edge_id": "inhibits:Dantrolene->RYR3",
+      "pmid": "39173065",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Dapagliflozin->SLC5A2",
+      "pmid": "41968633",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Daratumumab->CD38",
+      "pmid": "42078821",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'inhibits' (co-occurrence only)"
+    },
+    {
+      "edge_id": "inhibits:Darolutamide->AR",
+      "pmid": "41778397",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Degarelix->GNRHR",
+      "pmid": "33724574",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Demecarium->ACHE",
+      "pmid": "12641839",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Denosumab->TNFSF11",
+      "pmid": "39155739",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Deucravacitinib->TYK2",
+      "pmid": "42202148",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Deuruxolitinib->JAK3",
+      "pmid": "37219075",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Deuruxolitinib->JAK2",
+      "pmid": "39053611",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Deuruxolitinib->JAK1",
+      "pmid": "39053611",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Dicyclomine->CHRM1",
+      "pmid": "38262412",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Dipyridamole->SLC29A1",
+      "pmid": "32339528",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Disulfiram->ALDH2",
+      "pmid": "42168200",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Dobutamine->ADRB1",
+      "pmid": "23470310",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Dobutamine->ADRB2",
+      "pmid": "31867674",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Donepezil->ACHE",
+      "pmid": "42184581",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Dorzolamide->CA2",
+      "pmid": "34986321",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Doxorubicin->TOP2A",
+      "pmid": "42019355",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Doxycycline->MMP1",
+      "pmid": "38158115",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Dronabinol->CNR1",
+      "pmid": "22403795",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Dronedarone->HCN4",
+      "pmid": "21279331",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Dupilumab->IL4R",
+      "pmid": "39941924",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Echothiophate->ACHE",
+      "pmid": "10661498",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Echothiophate Iodide->ACHE",
+      "pmid": "3779439",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Eculizumab->C5",
+      "pmid": "42079607",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Edrophonium->ACHE",
+      "pmid": "27297626",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Eflornithine->ODC1",
+      "pmid": "33934471",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Elafibranor->PPARA",
+      "pmid": "35269515",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Elagolix->GNRHR",
+      "pmid": "37175271",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Elexacaftor->CFTR",
+      "pmid": "41869727",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Eliglustat->UGCG",
+      "pmid": "40166071",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Empagliflozin->SLC5A2",
+      "pmid": "39385699",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Enalapril->ACE",
+      "pmid": "42077598",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Enalaprilat->ACE",
+      "pmid": "40518035",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Enasidenib->IDH2",
+      "pmid": "41075807",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Ensartinib->ALK",
+      "pmid": "42137140",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Entacapone->COMT",
+      "pmid": "42172775",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Enzalutamide->AR",
+      "pmid": "42203314",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Epalrestat->AKR1B1",
+      "pmid": "42193464",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Estradiol->ESR1",
+      "pmid": "41103586",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Estradiol Valerate->ESR1",
+      "pmid": "41103586",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Etanercept->TNF",
+      "pmid": "42146074",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Etelcalcetide->CASR",
+      "pmid": "34372813",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Etoposide->TOP2A",
+      "pmid": "38957610",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Etoricoxib->PTGS2",
+      "pmid": "40257651",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Etrasimod->S1PR1",
+      "pmid": "40342995",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Evinacumab->ANGPTL3",
+      "pmid": "41679946",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Evogliptin->DPP4",
+      "pmid": "41096775",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Evolocumab->PCSK9",
+      "pmid": "42205681",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Exemestane->CYP19A1",
+      "pmid": "34404424",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Exenatide->GLP1R",
+      "pmid": "41206637",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Ezetimibe->NPC1L1",
+      "pmid": "42008961",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Febuxostat->XDH",
+      "pmid": "39882602",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Fedratinib->JAK2",
+      "pmid": "41984049",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Fenofibrate->PPARA",
+      "pmid": "36796223",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Fenoldopam->DRD1",
+      "pmid": "41915656",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Filgotinib->JAK1",
+      "pmid": "41922262",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Filgotinib->JAK2",
+      "pmid": "37763071",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Finasteride->SRD5A2",
+      "pmid": "37984619",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Flecainide->SCN5A",
+      "pmid": "41877019",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Fluoxetine->SLC6A4",
+      "pmid": "41372259",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'inhibits' (co-occurrence only)"
+    },
+    {
+      "edge_id": "activates:Fluoxymesterone->AR",
+      "pmid": "40108635",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Fluphenazine->DRD2",
+      "pmid": "31955999",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Flutamide->AR",
+      "pmid": "41582478",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Fluvastatin->HMGCR",
+      "pmid": "24976507",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Follitropin->FSHR",
+      "pmid": "23351732",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Forodesine->PNP",
+      "pmid": "42167122",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Fosinopril->ACE",
+      "pmid": "42077598",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Fostamatinib->SYK",
+      "pmid": "42061221",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Fostamatinib Disodium->SYK",
+      "pmid": "21438742",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Fulvestrant->ESR1",
+      "pmid": "42038286",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Furosemide->SLC12A1",
+      "pmid": "28402032",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Galantamine Hydrobromide->ACHE",
+      "pmid": "38878700",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Ganirelix->GNRHR",
+      "pmid": "39948193",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Gemfibrozil->PPARA",
+      "pmid": "30898012",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "binds:Gemtuzumab Ozogamicin->CD33",
+      "pmid": "40848224",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Gilteritinib->FLT3",
+      "pmid": "42139346",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Gilteritinib->AXL",
+      "pmid": "40578406",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Glasdegib->SMO",
+      "pmid": "41090792",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Glucagon->GCGR",
+      "pmid": "41785010",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Golimumab->TNF",
+      "pmid": "41841636",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Histamine->HRH1",
+      "pmid": "40885833",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Hydroxychloroquine->TLR9",
+      "pmid": "40545150",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Ibalizumab->CD4",
+      "pmid": "41964438",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Ibudilast->PDE3A",
+      "pmid": "16674936",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Idelalisib->PIK3CD",
+      "pmid": "38705383",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Iloprost->PTGIR",
+      "pmid": "39929746",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Imatinib->ABL1",
+      "pmid": "41987522",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Imiquimod->TLR7",
+      "pmid": "42093980",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Inavolisib->PIK3CA",
+      "pmid": "42024964",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Indacaterol->ADRB2",
+      "pmid": "25134539",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Infliximab->TNF",
+      "pmid": "42101763",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Isatuximab->CD38",
+      "pmid": "40552130",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Istradefylline->ADORA2A",
+      "pmid": "39373701",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Ivabradine->HCN4",
+      "pmid": "39988103",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Ivacaftor->CFTR",
+      "pmid": "41869727",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Ivosidenib->IDH1",
+      "pmid": "41842958",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Lanreotide->SSTR5",
+      "pmid": "12920656",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Laropiprant->PTGDR",
+      "pmid": "19748656",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Lasmiditan->HTR1F",
+      "pmid": "41060776",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Leflunomide->DHODH",
+      "pmid": "41869756",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Lesinurad->SLC22A12",
+      "pmid": "30315176",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "inhibits:Letrozole->CYP19A1",
+      "pmid": "40454501",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Leuprolide->GNRHR",
+      "pmid": "36799164",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Levodopa->DRD3",
+      "pmid": "27325396",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "activates:Linaclotide->GUCY2C",
+      "pmid": "36548082",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ERBB2->HCC",
+      "pmid": "41476705",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:VEGFR2->CLL",
+      "pmid": "21519633",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:VEGFR2->GIST",
+      "pmid": "27995483",
+      "verdict": "REJECT",
+      "reason": "entities (VEGFR2, GIST) match failed (substring or missing)"
+    },
+    {
+      "edge_id": "associated_with:VEGFR2->NSCLC",
+      "pmid": "39612105",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:TP53->Prostate_Cancer",
+      "pmid": "42138020",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:TP53->CLL",
+      "pmid": "41814015",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:TP53->RCC",
+      "pmid": "41644424",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:TP53->AML",
+      "pmid": "42204603",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:TP53->GIST",
+      "pmid": "33186588",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:TP53->HCC",
+      "pmid": "42184606",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PTEN->Breast_Cancer",
+      "pmid": "42201356",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:RB1->Glioblastoma",
+      "pmid": "41231102",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:RB1->CML",
+      "pmid": "32507070",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:RB1->Prostate_Cancer",
+      "pmid": "42138020",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:RB1->AML",
+      "pmid": "32917124",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:RB1->GIST",
+      "pmid": "40108758",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:RB1->NSCLC",
+      "pmid": "40514658",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:RB1->Melanoma",
+      "pmid": "41936939",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:RB1->HCC",
+      "pmid": "38948469",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:NRAS->Melanoma",
+      "pmid": "42193039",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:NRAS->AML",
+      "pmid": "42118855",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:MYC->Pancreatic_Cancer",
+      "pmid": "42097492",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MYC->CML",
+      "pmid": "41065956",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MYC->RCC",
+      "pmid": "41889506",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MYC->GIST",
+      "pmid": "31570771",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:AKT1->Pancreatic_Cancer",
+      "pmid": "42094816",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:AKT1->Ovarian_Cancer",
+      "pmid": "41930148",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:AKT1->Colorectal_Cancer",
+      "pmid": "42094816",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:AKT1->GIST",
+      "pmid": "16707477",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:AKT1->HCC",
+      "pmid": "42094816",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:MTOR->Myelofibrosis",
+      "pmid": "38785062",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:MTOR->Glioblastoma",
+      "pmid": "42132406",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MTOR->CML",
+      "pmid": "42132406",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MTOR->CLL",
+      "pmid": "40694421",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MTOR->GIST",
+      "pmid": "42132406",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MTOR->Melanoma",
+      "pmid": "42022563",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MTOR->Multiple_Myeloma",
+      "pmid": "41046532",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ERK1->Pancreatic_Cancer",
+      "pmid": "41045302",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:ERK1->Ovarian_Cancer",
+      "pmid": "41590709",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ERK1->Myelofibrosis",
+      "pmid": "35356507",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ERK1->Glioblastoma",
+      "pmid": "41759882",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:ERK1->RCC",
+      "pmid": "37454877",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ERK1->AML",
+      "pmid": "41474263",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:ERK1->GIST",
+      "pmid": "37274797",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:ERK1->NSCLC",
+      "pmid": "41709211",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:ERK1->Melanoma",
+      "pmid": "41873352",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ERK1->HCC",
+      "pmid": "42089079",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:ERK2->CLL",
+      "pmid": "32954947",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ERK2->AML",
+      "pmid": "18931459",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:ERK2->NSCLC",
+      "pmid": "40383937",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ERK2->Melanoma",
+      "pmid": "41873352",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ERK2->HCC",
+      "pmid": "31612032",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:MEK1->CLL",
+      "pmid": "22160382",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MEK1->Colorectal_Cancer",
+      "pmid": "39731938",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MEK1->GIST",
+      "pmid": "23376254",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:MEK1->NSCLC",
+      "pmid": "36499305",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MEK1->HCC",
+      "pmid": "41078702",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:RAF1->Ovarian_Cancer",
+      "pmid": "33995588",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:RAF1->CLL",
+      "pmid": "9593470",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:RAF1->AML",
+      "pmid": "40727567",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:RAF1->GIST",
+      "pmid": "37274797",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:RAF1->NSCLC",
+      "pmid": "40227502",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:RAF1->Melanoma",
+      "pmid": "39574163",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:RAF1->HCC",
+      "pmid": "42074524",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:STAT3->Ovarian_Cancer",
+      "pmid": "42186004",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT3->CML",
+      "pmid": "40353923",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:STAT3->Prostate_Cancer",
+      "pmid": "41908237",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT3->CLL",
+      "pmid": "40427031",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:STAT3->Melanoma",
+      "pmid": "42142674",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT3->HCC",
+      "pmid": "42148118",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5->AML",
+      "pmid": "42035942",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CDK4->Ovarian_Cancer",
+      "pmid": "41883369",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CDK4->Glioblastoma",
+      "pmid": "42011292",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CDK4->Prostate_Cancer",
+      "pmid": "40304827",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CDK4->CLL",
+      "pmid": "36573331",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CDK4->AML",
+      "pmid": "41551728",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CDK4->NSCLC",
+      "pmid": "41442003",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CDK4->Melanoma",
+      "pmid": "42201696",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CDK6->Glioblastoma",
+      "pmid": "41659205",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CDK6->CML",
+      "pmid": "31761618",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CDK6->CLL",
+      "pmid": "36573331",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CDK6->RCC",
+      "pmid": "32277426",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CDK6->AML",
+      "pmid": "40883610",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CDK6->NSCLC",
+      "pmid": "42155168",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CDK6->Melanoma",
+      "pmid": "39495991",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CDK6->HCC",
+      "pmid": "42034462",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:E2F1->Glioblastoma",
+      "pmid": "41231102",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:E2F1->CLL",
+      "pmid": "12036888",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:E2F1->RCC",
+      "pmid": "40067251",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:E2F1->AML",
+      "pmid": "37665348",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:E2F1->GIST",
+      "pmid": "29451912",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:E2F1->Melanoma",
+      "pmid": "39544930",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BAX->Pancreatic_Cancer",
+      "pmid": "41387974",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BAX->Ovarian_Cancer",
+      "pmid": "41480643",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BAX->CLL",
+      "pmid": "40848636",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BAX->RCC",
+      "pmid": "40358820",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:BAX->AML",
+      "pmid": "41815913",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:BAX->GIST",
+      "pmid": "16830365",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:BAX->Breast_Cancer",
+      "pmid": "42196148",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CASP3->Pancreatic_Cancer",
+      "pmid": "39237260",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CASP3->Ovarian_Cancer",
+      "pmid": "40517225",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CASP3->CML",
+      "pmid": "32507070",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CASP3->Prostate_Cancer",
+      "pmid": "41885368",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CASP3->CLL",
+      "pmid": "31463762",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CASP3->AML",
+      "pmid": "40954399",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CASP3->Melanoma",
+      "pmid": "41053010",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CASP3->Multiple_Myeloma",
+      "pmid": "31242129",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CASP9->Prostate_Cancer",
+      "pmid": "40344485",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CASP9->RCC",
+      "pmid": "23645041",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CASP9->AML",
+      "pmid": "40954399",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CASP9->Multiple_Myeloma",
+      "pmid": "19362737",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ATM->Pancreatic_Cancer",
+      "pmid": "41899580",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ATM->CML",
+      "pmid": "32272770",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ATM->Prostate_Cancer",
+      "pmid": "42092965",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:ATM->CLL",
+      "pmid": "40693823",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:ATM->RCC",
+      "pmid": "40119186",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ATM->AML",
+      "pmid": "38164802",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ATM->GIST",
+      "pmid": "39453756",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ATM->NSCLC",
+      "pmid": "41933854",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ATM->Breast_Cancer",
+      "pmid": "42201356",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ATR->Ovarian_Cancer",
+      "pmid": "41735312",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ATR->CML",
+      "pmid": "32272770",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ATR->Colorectal_Cancer",
+      "pmid": "41238403",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ATR->RCC",
+      "pmid": "37527013",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ATR->AML",
+      "pmid": "41936174",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ATR->GIST",
+      "pmid": "39453756",
+      "verdict": "REJECT",
+      "reason": "entities (ATR, GIST) match failed (substring or missing)"
+    },
+    {
+      "edge_id": "associated_with:ATR->HCC",
+      "pmid": "40896397",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ATR->Multiple_Myeloma",
+      "pmid": "34301753",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CHEK2->Breast_Cancer",
+      "pmid": "42201356",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MDM2->Ovarian_Cancer",
+      "pmid": "41681824",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MDM2->CML",
+      "pmid": "40708521",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MDM2->CLL",
+      "pmid": "39061962",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MDM2->RCC",
+      "pmid": "39857959",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MDM2->AML",
+      "pmid": "40708521",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MDM2->Melanoma",
+      "pmid": "41565392",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MDM2->HCC",
+      "pmid": "42094059",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MDM2->Multiple_Myeloma",
+      "pmid": "41608334",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:RAD51->Glioblastoma",
+      "pmid": "40211735",
+      "verdict": "REJECT",
+      "reason": "entities (RAD51, Glioblastoma) match failed (substring or missing)"
+    },
+    {
+      "edge_id": "associated_with:RAD51->Prostate_Cancer",
+      "pmid": "39914385",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:RAD51->CLL",
+      "pmid": "18203022",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:RAD51->Colorectal_Cancer",
+      "pmid": "42178953",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:RAD51->NSCLC",
+      "pmid": "41764215",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:RAD51->Ewing_Sarcoma",
+      "pmid": "36042341",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:RAD51->HCC",
+      "pmid": "42037569",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:RAD51->Breast_Cancer",
+      "pmid": "42092176",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5A->AML",
+      "pmid": "34462525",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->AML",
+      "pmid": "37981812",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:NPM1->AML",
+      "pmid": "42145737",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:ARF->AML",
+      "pmid": "39756487",
+      "verdict": "REJECT",
+      "reason": "entities (ARF, AML) match failed (substring or missing)"
+    },
+    {
+      "edge_id": "associated_with:DNMT3A->AML",
+      "pmid": "42173285",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:TET2->AML",
+      "pmid": "42173285",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:IDH1->AML",
+      "pmid": "42101375",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:IDH2->AML",
+      "pmid": "42142041",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KRAS->AML",
+      "pmid": "42118855",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:PTEN->AML",
+      "pmid": "42166356",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:BAK->AML",
+      "pmid": "36652560",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:RUNX1->AML",
+      "pmid": "42173285",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CEBPA->AML",
+      "pmid": "41838954",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:SF3B1->AML",
+      "pmid": "42062555",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:SRSF2->AML",
+      "pmid": "42101375",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:U2AF1->AML",
+      "pmid": "42110104",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAG2->AML",
+      "pmid": "41938529",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:SMC1A->AML",
+      "pmid": "38054248",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MAP2K1->AML",
+      "pmid": "38431286",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:ERBB2->NSCLC",
+      "pmid": "41982617",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KIT->CML",
+      "pmid": "42188055",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PDGFRA->CML",
+      "pmid": "24813417",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRAF->RCC",
+      "pmid": "41562159",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:FLT3->GIST",
+      "pmid": "16785193",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:FLT3->RCC",
+      "pmid": "29662541",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:RET->HCC",
+      "pmid": "41514495",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:BAK->CLL",
+      "pmid": "31249651",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MCL1->Breast_Cancer",
+      "pmid": "41895619",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PI3KCA->Colorectal_Cancer",
+      "pmid": "31934127",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:PI3KCA->NSCLC",
+      "pmid": "41221490",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:KRAS->HCC",
+      "pmid": "42180053",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:PI3KCA->HCC",
+      "pmid": "23167739",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KRAS->Glioblastoma",
+      "pmid": "39805854",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:PI3KCA->Glioblastoma",
+      "pmid": "29110584",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CCND1->Ewing_Sarcoma",
+      "pmid": "35326688",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CCND1->Ovarian_Cancer",
+      "pmid": "41815138",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:PIK3CA->Glioblastoma",
+      "pmid": "41944918",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:ERBB2->AML",
+      "pmid": "33514658",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA2->CLL",
+      "pmid": "29371889",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CCND1->AML",
+      "pmid": "38698063",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CCND1->CLL",
+      "pmid": "39691246",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:EGFR->CLL",
+      "pmid": "39273283",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MAPK1->AML",
+      "pmid": "38879648",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MAPK1->CLL",
+      "pmid": "32954947",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:SRC->AML",
+      "pmid": "42123320",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CHEK2->AML",
+      "pmid": "29902706",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:NFKB1->CLL",
+      "pmid": "39596634",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->CLL",
+      "pmid": "31974418",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KDR->AML",
+      "pmid": "17577783",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->AML",
+      "pmid": "40853433",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->CLL",
+      "pmid": "29371889",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PIK3CA->CLL",
+      "pmid": "22623730",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5->CLL",
+      "pmid": "40427031",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:PDGFRA->AML",
+      "pmid": "42145737",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PTEN->CLL",
+      "pmid": "34750354",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:JAK2->CLL",
+      "pmid": "34105916",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:BRAF->AML",
+      "pmid": "41958931",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRAF->CLL",
+      "pmid": "37955424",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KRAS->Myelofibrosis",
+      "pmid": "33666653",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ERBB2->Soft_Tissue_Sarcoma",
+      "pmid": "24715245",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ERBB2->CML",
+      "pmid": "24386251",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA2->Soft_Tissue_Sarcoma",
+      "pmid": "30041945",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA2->RCC",
+      "pmid": "42151595",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA2->GIST",
+      "pmid": "34805171",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CCND1->RCC",
+      "pmid": "36741922",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:EGFR->CML",
+      "pmid": "42121049",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BCL2->RCC",
+      "pmid": "41612594",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BCL2->GIST",
+      "pmid": "40108758",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:SRC->RCC",
+      "pmid": "41706624",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:SRC->GIST",
+      "pmid": "24391050",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CHEK2->RCC",
+      "pmid": "39088769",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:NFKB1->RCC",
+      "pmid": "23295440",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:NFKB1->CML",
+      "pmid": "27898405",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:FLT3->CML",
+      "pmid": "40688985",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:KDR->RCC",
+      "pmid": "10208873",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Soft_Tissue_Sarcoma",
+      "pmid": "27643881",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->RCC",
+      "pmid": "40644643",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->CML",
+      "pmid": "30153072",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->GIST",
+      "pmid": "34805171",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:PIK3CA->RCC",
+      "pmid": "42155824",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PIK3CA->GIST",
+      "pmid": "27427238",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PTEN->Soft_Tissue_Sarcoma",
+      "pmid": "39516677",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PTEN->RCC",
+      "pmid": "42155824",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PTEN->CML",
+      "pmid": "35993473",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:PTEN->GIST",
+      "pmid": "36001861",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:KRAS->Soft_Tissue_Sarcoma",
+      "pmid": "32520634",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KRAS->RCC",
+      "pmid": "41375035",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KRAS->GIST",
+      "pmid": "37663588",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:JAK2->CML",
+      "pmid": "39104388",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRAF->GIST",
+      "pmid": "42019486",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PDGFRB->CML",
+      "pmid": "20806817",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PDGFRB->GIST",
+      "pmid": "33524869",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Colorectal_Cancer",
+      "pmid": "41688208",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:ERBB2->Ovarian_Cancer",
+      "pmid": "41438580",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:ERBB2->Melanoma",
+      "pmid": "42155564",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KIT->Pancreatic_Cancer",
+      "pmid": "41914287",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KIT->NSCLC",
+      "pmid": "42057882",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:KIT->Melanoma",
+      "pmid": "42155564",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA2->Multiple_Myeloma",
+      "pmid": "39283233",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA2->Melanoma",
+      "pmid": "41899580",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5A->Breast_Cancer",
+      "pmid": "40495113",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5A->NSCLC",
+      "pmid": "33582208",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5A->RCC",
+      "pmid": "27347102",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5A->Ovarian_Cancer",
+      "pmid": "28536310",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5A->HCC",
+      "pmid": "37187255",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5A->CML",
+      "pmid": "31861239",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:STAT5A->Glioblastoma",
+      "pmid": "37369132",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CCND1->HCC",
+      "pmid": "41655866",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CCND1->Glioblastoma",
+      "pmid": "41898348",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:MAPK1->Multiple_Myeloma",
+      "pmid": "35203396",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:MAPK1->Prostate_Cancer",
+      "pmid": "39061044",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:MAPK1->Pancreatic_Cancer",
+      "pmid": "38943117",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:MAPK1->NSCLC",
+      "pmid": "40383937",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MAPK1->Melanoma",
+      "pmid": "34771574",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BCL2->Melanoma",
+      "pmid": "41987808",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:NRAS->Prostate_Cancer",
+      "pmid": "34484381",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:NRAS->Pancreatic_Cancer",
+      "pmid": "38463885",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:NRAS->HCC",
+      "pmid": "41476705",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:SRC->Breast_Cancer",
+      "pmid": "42065058",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:SRC->Multiple_Myeloma",
+      "pmid": "41386885",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:SRC->Pancreatic_Cancer",
+      "pmid": "41802536",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:SRC->Ewing_Sarcoma",
+      "pmid": "31521948",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:SRC->HCC",
+      "pmid": "42004536",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:SRC->Melanoma",
+      "pmid": "42067550",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:SRC->Glioblastoma",
+      "pmid": "42200036",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CHEK2->Prostate_Cancer",
+      "pmid": "41970070",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CHEK2->NSCLC",
+      "pmid": "36061833",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CHEK2->HCC",
+      "pmid": "38857680",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:CHEK2->Melanoma",
+      "pmid": "41936939",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:CHEK2->Glioblastoma",
+      "pmid": "39411129",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:NFKB1->NSCLC",
+      "pmid": "26221384",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:NFKB1->Ovarian_Cancer",
+      "pmid": "40689422",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:NFKB1->Melanoma",
+      "pmid": "27145040",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:FLT3->Ewing_Sarcoma",
+      "pmid": "37686475",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:FLT3->HCC",
+      "pmid": "41642855",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->Prostate_Cancer",
+      "pmid": "23668334",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->Colorectal_Cancer",
+      "pmid": "40100436",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->Pancreatic_Cancer",
+      "pmid": "27035235",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->NSCLC",
+      "pmid": "25137041",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->RCC",
+      "pmid": "32640276",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->Ovarian_Cancer",
+      "pmid": "28536310",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->HCC",
+      "pmid": "31564902",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->CML",
+      "pmid": "31861239",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:STAT5B->Glioblastoma",
+      "pmid": "24878107",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KDR->Breast_Cancer",
+      "pmid": "39611063",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KDR->Prostate_Cancer",
+      "pmid": "39349877",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:KDR->Pancreatic_Cancer",
+      "pmid": "34485332",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KDR->NSCLC",
+      "pmid": "35530271",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KDR->Ovarian_Cancer",
+      "pmid": "25667501",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:KDR->Melanoma",
+      "pmid": "41048474",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Multiple_Myeloma",
+      "pmid": "41940254",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Prostate_Cancer",
+      "pmid": "41970070",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Pancreatic_Cancer",
+      "pmid": "41899580",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->NSCLC",
+      "pmid": "41933854",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Ewing_Sarcoma",
+      "pmid": "36187937",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->HCC",
+      "pmid": "40215812",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Melanoma",
+      "pmid": "42199731",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Glioblastoma",
+      "pmid": "41168197",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5->Multiple_Myeloma",
+      "pmid": "38231476",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5->Prostate_Cancer",
+      "pmid": "31817042",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5->RCC",
+      "pmid": "20339477",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5->HCC",
+      "pmid": "36374927",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:STAT5->CML",
+      "pmid": "42033509",
+      "verdict": "REJECT",
+      "reason": "entities (STAT5, CML) match failed (substring or missing)"
+    },
+    {
+      "edge_id": "associated_with:MET->Melanoma",
+      "pmid": "42140948",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PDGFRA->Breast_Cancer",
+      "pmid": "41416224",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PDGFRA->Pancreatic_Cancer",
+      "pmid": "29157747",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:PDGFRA->Ovarian_Cancer",
+      "pmid": "41416224",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PDGFRA->HCC",
+      "pmid": "41408647",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PDGFRA->Melanoma",
+      "pmid": "41839173",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PTEN->NSCLC",
+      "pmid": "42201046",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:PTEN->Ewing_Sarcoma",
+      "pmid": "23628818",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PTEN->Ovarian_Cancer",
+      "pmid": "42095894",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:PTEN->HCC",
+      "pmid": "41898638",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PTEN->Type2_Diabetes",
+      "pmid": "42144710",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PTEN->Melanoma",
+      "pmid": "42144710",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:KRAS->Melanoma",
+      "pmid": "40990023",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:JAK2->Pancreatic_Cancer",
+      "pmid": "40740233",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:JAK2->HCC",
+      "pmid": "41924547",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:JAK2->Melanoma",
+      "pmid": "41995376",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRAF->Ewing_Sarcoma",
+      "pmid": "23974990",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRAF->Ovarian_Cancer",
+      "pmid": "41646943",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:BRAF->Glioblastoma",
+      "pmid": "41469702",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PDGFRB->Breast_Cancer",
+      "pmid": "39844194",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PDGFRB->Pancreatic_Cancer",
+      "pmid": "41968825",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:PDGFRB->Glioblastoma",
+      "pmid": "42148707",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": "associated_with:MMP9->NSCLC",
+      "pmid": "41794778",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": "associated_with:RET->NSCLC",
+      "pmid": "42161875",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": null,
+      "pmid": "39979023",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": null,
+      "pmid": "41656832",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": null,
+      "pmid": "35936748",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": null,
+      "pmid": "42128502",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": null,
+      "pmid": "42152360",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": null,
+      "pmid": "40456521",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": null,
+      "pmid": "33603851",
+      "verdict": "AGREE",
+      "reason": "verified"
+    },
+    {
+      "edge_id": null,
+      "pmid": "38246071",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    },
+    {
+      "edge_id": null,
+      "pmid": "31934127",
+      "verdict": "HOLLOW",
+      "reason": "no keyword for 'associated_with' (co-occurrence only)"
+    }
+  ]
+}
