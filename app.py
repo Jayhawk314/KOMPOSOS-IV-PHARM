@@ -949,7 +949,7 @@ Disease path, then returns the best score across those disease-linked targets.
 - It does not replace clinical judgment
 - It does not predict safety, toxicity, or pharmacokinetics
 - It does not account for patient-specific factors
-- AUROC of 0.9747 on the current strict 44-positive benchmark does not guarantee real-world
+- AUROC of 0.9705 on the current strict 44-positive benchmark does not guarantee real-world
   performance
 - The system bridges knowledge silos; it does not generate new knowledge
 """)
@@ -1020,36 +1020,39 @@ approved for.
         )
 
     st.markdown(f"""
-### Validation (strict remove_direct_labels protocol, 48 positives, full_typed view)
+### Validation (strict remove_direct_labels protocol, 44 positives, full_typed view)
 
 | Metric | Value |
 |--------|-------|
-| AUROC | 0.948640 [95% CI: 0.9134-0.9738] |
-| AUPRC | 0.513498 [95% CI: 0.3662-0.6579] |
+| AUROC | 0.970549 [95% CI: 0.9519-0.9844] |
+| AUPRC | 0.546427 [95% CI: 0.4025-0.6890] |
 | Hits@5 | 1.000 |
 | Hits@10 | 0.600 |
 | Hits@20 | 0.600 |
 | Strategy profile | 7 active modules; Yoneda distance excluded because no Drug->Disease comparators remain |
-| Positives | 48 FDA-approved oncology indications |
-| Strongest baseline (common_neighbor) | AUROC 0.6499 |
-| Margin over strongest baseline | +0.2987 |
+| Positives | 44 FDA-approved oncology indications |
+| Strongest baseline (common_neighbor) | AUROC 0.6219 |
+| Margin over strongest baseline | +0.3486 |
 | PMID identifiers in DB | {g['pmid_count']} |
 
-*Current audited strict run: 2026-05-28, rechecked after the strategy-profile
-cleanup. This protocol removes direct Drug->Disease edges and protein->disease
-bridge edges explicitly derived from known drug indications. Because all visible
-Drug->Disease comparators are removed, Yoneda distance is not active in this
-strict benchmark. The previous 0.9689 AUROC / 0.661 AUPRC display is retired
-because an earlier Yoneda cache could see held-out labels.*
+*Current audited strict run: 2026-06-02, after integrating 151 agent-adjudicated
+mechanistic links and fixing the positive-label filter (positives are now only
+`treats` edges, so 4 inferred `associated_with` HYPOTHESIS edges that were
+wrongly counted as approvals are excluded -- this is why the count is 44, not 48,
+and the AUROC rose). This protocol removes direct Drug->Disease edges and
+protein->disease bridge edges explicitly derived from known drug indications.
+Because all visible Drug->Disease comparators are removed, Yoneda distance is not
+active in this strict benchmark. The previous 0.9689 AUROC / 0.661 AUPRC display
+is retired because an earlier Yoneda cache could see held-out labels.*
 
-### Additional executable validations (2026-05-28)
+### Additional executable validations (2026-06-02)
 
 | Validation | Current result |
 |------------|----------------|
-| Corrected LOOCV | AUROC 0.9759, AUPRC 0.5537, Hits@10 0.600 |
-| Hetionet CtD external positives | AUROC 0.6345, AUPRC 0.0093, Hits@20 0.000 |
-| Temporal holdout, approvals > 2013 | AUROC 0.9780, AUPRC 0.2288, Hits@20 0.222 |
-| Disease holdout, diseases with >=2 labels | Mean AUROC 0.9504, mean AUPRC 0.6368 across 7 folds |
+| Corrected LOOCV | AUROC 0.9674, AUPRC 0.5165, Hits@10 0.600 |
+| Hetionet CtD external positives | AUROC 0.6436, AUPRC 0.0095, Hits@20 0.000 |
+| Temporal holdout, approvals > 2013 | AUROC 0.9706, AUPRC 0.1938, Hits@20 0.167 |
+| Disease holdout, diseases with >=2 labels | Mean AUROC 0.9378, mean AUPRC 0.6021 across 7 folds |
 
 ### Ranking calibration
 

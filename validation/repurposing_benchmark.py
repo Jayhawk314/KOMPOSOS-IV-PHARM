@@ -279,7 +279,11 @@ def drug_disease_pairs(category: Category) -> tuple[list[str], list[str], set[tu
     for mor in category.morphisms():
         src = category.get(mor.source)
         tgt = category.get(mor.target)
-        if src and tgt and src.type_name == "Drug" and tgt.type_name == "Disease":
+        # Only `treats` edges are FDA-indication labels. Other Drug->Disease
+        # relations (e.g. inferred `associated_with` HYPOTHESIS edges) are not
+        # approvals and must not be counted as positives.
+        if (src and tgt and src.type_name == "Drug" and tgt.type_name == "Disease"
+                and mor.name == "treats"):
             positives.add((mor.source, mor.target))
 
     return drugs, diseases, positives

@@ -31,9 +31,10 @@ def test_legacy_view_preserves_historical_auroc_hurdle():
     assert len(category.objects()) >= 195
     assert result.n_pairs >= 224
     # Legacy view is a historical non-regression hurdle, not a target. The value
-    # drifted 0.842 -> 0.8285 as the graph evolved (shrink to 2,178 edges);
-    # scoring is unchanged (provenance is metadata, not a scoring input).
-    assert result.auroc == pytest.approx(0.8285, abs=1e-2)
+    # drifted 0.842 -> 0.8285 -> 0.8442 as the graph evolved (2,178 -> 2,329 edges
+    # after the 151 agent-adjudicated discovery links, and the positive filter was
+    # tightened to `treats`-only). Scoring is unchanged (provenance is metadata).
+    assert result.auroc == pytest.approx(0.8442, abs=1e-2)
 
 
 def test_full_typed_view_uses_all_tier1_objects_and_labels():
