@@ -253,7 +253,7 @@ Before submitting PR:
 - [ ] Self-check: 44/44 FDA pairs recoverable
 - [ ] AUROC ≥ 0.96: (remove_direct_labels protocol)
 - [ ] Zero new orphaned morphisms: `audit_provenance.py`
-- [ ] source strings on all 5,382 morphisms remain populated; new edges have source/provenance strings
+- [ ] source strings on all 2,329 morphisms remain populated; new edges have source/provenance strings
 - [ ] Metrics reported correctly: Specify view, protocol, pair count
 - [ ] Documentation updated: Code comments, truedocs/ docs, or docstrings
 
@@ -264,12 +264,12 @@ Before submitting PR:
 When reporting AUROC or other metrics, always include:
 
 ```
-AUROC: 0.9747
+AUROC: 0.9705
   View: full_typed
   Protocol: remove_direct_labels
   Positives: 44
   Negatives/unlabeled pairs: 1516
-  95% CI: [0.9606, 0.9855]
+  95% CI: [0.9519, 0.9844]
   Label policy: Direct Drug→Disease edges removed during scoring
 ```
 
@@ -372,9 +372,9 @@ We value accuracy over optimism. Example:
 ❌ Bad: "Our system achieves 97.47% accuracy"
    (Misleading: AUROC ≠ accuracy, and on a 50% base rate)
 
-✓ Good: "AUROC 0.9747 (full_typed view, remove_direct_labels
+✓ Good: "AUROC 0.9705 (full_typed view, remove_direct_labels
    protocol, 44 FDA pairs, 1516 unlabeled comparison pairs, 95% CI
-   [0.9606, 0.9855]). Current strict profile uses 7 active modules."
+   [0.9519, 0.9844]). Current strict profile uses 7 active modules."
 ```
 
 ### Limitations

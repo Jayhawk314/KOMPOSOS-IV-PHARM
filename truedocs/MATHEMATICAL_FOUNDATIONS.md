@@ -107,8 +107,8 @@ These equivalence classes are discovered purely from morphism structure -- no dr
 
 | Metric | Current strict run |
 |--------|-------------------:|
-| AUROC | 0.9747 |
-| AUPRC | 0.552 |
+| AUROC | 0.9705 |
+| AUPRC | 0.546 |
 | Hits@5 / Hits@10 / Hits@20 | 1.00 / 0.60 / 0.60 |
 
 Yoneda distance is **not active** in the strict `remove_direct_labels` run because
@@ -435,7 +435,7 @@ In drug repurposing:
 
 ### Runtime Strategy Profiles
 
-The strict AUROC 0.9747 result is produced by 7 active modules. Live triage uses
+The strict AUROC 0.9705 result is produced by 7 active modules. Live triage uses
 8 modules because Yoneda distance is active when visible known-treatment
 comparators exist.
 
@@ -487,7 +487,7 @@ score = min(1.0, base + path_bonus + yoneda_bonus)
 
 ### What the math does NOT do
 
-- The categorical framework does not outperform graph baselines by a large margin (+0.3440 AUROC over degree_product). Most predictive signal comes from graph connectivity and curation quality.
+- The categorical framework does not outperform graph baselines by a large margin (+0.3486 AUROC over degree_product). Most predictive signal comes from graph connectivity and curation quality.
 
 - The more sophisticated structures (Gray coherence, ZFC dual engine, OPTIMUS) are implemented but not yet proven to improve drug repurposing metrics. They represent architectural investments for future capability.
 

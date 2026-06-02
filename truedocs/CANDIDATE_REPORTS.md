@@ -17,7 +17,7 @@ This report identifies cheap, FDA-approved generic drugs with mechanistic pathwa
 - **70 drug-disease entries** with mechanistic pathway support
 - Rankings based on the active PHARM strategy profile: composition, structural holes, Kan extension, Yoneda pattern, fibration lift, topos logic, binding evidence, and conditional Yoneda distance in live triage
 - Every prediction backed by source-linked evidence chains (PMIDs, ChEMBL IDs, FDA/KEGG/STRING/computational provenance as applicable)
-- System validation: AUROC 0.9747 [95% CI: 0.9606-0.9855] (remove_direct_labels, 44 FDA positives)
+- System validation: AUROC 0.9705 [95% CI: 0.9519-0.9844] (remove_direct_labels, 44 FDA positives)
 - ClinicalTrials.gov cross-check: 63% of top predictions already in human trials
 
 **Important**: NOT_APPROVED means the drug-disease pair is not in our 44 FDA-approved oncology indications. It does **not** mean the combination is unstudied. Many candidates are already in clinical trials or published literature.
@@ -316,7 +316,7 @@ python validation\triage.py <Disease> --top 20
 **2 cheap generics in top 20**. Strongest: Mebendazole (rank 11, score 0.825).
 
 **Mebendazole** (rank 11, score 0.825, 2 paths):
-- `Mebendazole -activator-> TP53 -driver_of-> Soft_Tissue_Sarcoma` (conf: 0.552)
+- `Mebendazole -activator-> TP53 -driver_of-> Soft_Tissue_Sarcoma` (conf: 0.546)
 - `Mebendazole -inhibits-> VEGFR2 -associated_with-> Soft_Tissue_Sarcoma` (conf: 0.533)
 
 ### Multiple Myeloma
@@ -324,7 +324,7 @@ python validation\triage.py <Disease> --top 20
 **6 cheap generics in top 20**. Strongest: Clarithromycin (rank 3, score 0.713).
 
 **Clarithromycin** (rank 3, score 0.713, 1 path):
-- `Clarithromycin -inhibits-> IL6 -driver_of-> Multiple_Myeloma` (conf: 0.552)
+- `Clarithromycin -inhibits-> IL6 -driver_of-> Multiple_Myeloma` (conf: 0.546)
 
 ### Other Diseases
 
@@ -396,7 +396,7 @@ score = min(1.0, base + path_bonus + yoneda_bonus)
 ### Graph
 
 - **464 objects**: 78 drugs, 20 diseases, 269 `Protein` rows plus typed protein/pathway classes
-- **5,382 morphisms**: source strings on all morphisms; 609 PMID identifiers plus ChEMBL/FDA/KEGG/STRING/computational sources
+- **2,329 morphisms**: source strings on all morphisms; 609 PMID identifiers plus ChEMBL/FDA/KEGG/STRING/computational sources
 - **204 edges** with quantitative evidence (IC50, mutation freq, HR, response rates)
 - **Evidence tiers**: MEASURED 1,073 | ESTABLISHED 282 | INFERRED 809 | SPECULATIVE 955 | HYPOTHESIS 159 | NOISE 2,104
 
@@ -404,10 +404,10 @@ score = min(1.0, base + path_bonus + yoneda_bonus)
 
 | Protocol | AUROC | 95% CI | AUPRC |
 |----------|------:|--------|------:|
-| remove_direct_labels | 0.9747 | [0.9606, 0.9855] | 0.552 |
+| remove_direct_labels | 0.9705 | [0.9519, 0.9844] | 0.546 |
 | loocv | 0.9759 | not bootstrapped in current rerun | 0.554 |
 
-Strongest baseline: degree_product AUROC 0.6307 (margin: +0.3440).
+Strongest baseline: degree_product AUROC 0.6219 (margin: +0.3486).
 
 ### Status Labels
 

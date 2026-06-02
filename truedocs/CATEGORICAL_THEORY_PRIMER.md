@@ -108,7 +108,7 @@ def compose(m1: Morphism, m2: Morphism) -> float:
 
 **KOMPOSOS-IV as a Category**:
 - **Objects**: Drugs, Proteins, Diseases (464 total)
-- **Morphisms**: Relationships (5,382 total)
+- **Morphisms**: Relationships (2,329 total)
 - **Composition**: Multiplicative confidence (path finding)
 - **Identity**: Self-loops (drug treats drug with confidence 1.0)
 

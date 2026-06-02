@@ -176,7 +176,7 @@ from data.store import KomposOSStore
 store = KomposOSStore('data/drugs/tier1.db')
 cat, diseases = load_full_typed_view(store, view="full_typed")
 
-# cat now has 1,146 objects and 2,178 morphisms
+# cat now has 1,146 objects and 2,329 morphisms
 print(len(cat.objects()), len(cat.morphisms()))
 ```
 
@@ -312,7 +312,7 @@ cog = CogReasoningPlugin()
 ```
 User input: triage.py Melanoma
          ↓
-Load database: tier1.db → Category (464 objects, 5382 morphisms)
+Load database: tier1.db → Category (464 objects, 2,329 morphisms)
          ↓
 For each drug in tier1.db:
   └─ Find all paths: Drug → ... → Melanoma (max 4 hops)
@@ -501,7 +501,7 @@ Before merging to main:
 - [ ] 44/44 self-check passes
 - [ ] AUROC ≥ 0.96 (remove_direct_labels protocol)
 - [ ] Zero new orphaned morphisms (audit_provenance.py)
-- [ ] source strings on all 5,382 morphisms remain populated after rebuild
+- [ ] source strings on all 2,329 morphisms remain populated after rebuild
 - [ ] Benchmark metrics reported with full protocol spec
 - [ ] Code reviewed by 1+ other developer
 

@@ -21,7 +21,7 @@ The current drug-repurposing runtime does not use the older fixed-count ensemble
 | `binding_evidence` | strict + live | IC50 + drug/target compatibility |
 | `yoneda_distance` | live only when direct labels are visible | Comparator similarity bonus |
 
-**Ablation note**: Historical development runs showed composition as the dominant signal. Current strict full-system run is AUROC 0.9747 with 7 active modules; per-strategy ablations should be rerun under the corrected loader before being quoted as current.
+**Ablation note**: Historical development runs showed composition as the dominant signal. Current strict full-system run is AUROC 0.9705 with 7 active modules; per-strategy ablations should be rerun under the corrected loader before being quoted as current.
 
 ---
 
@@ -468,7 +468,7 @@ Tuned via LOOCV grid search:
 ### Strategy Weights
 
 Tested uniform vs. composition-dominant weights during development:
-- Uniform/current combiner: strict AUROC 0.9747 in the current full run
+- Uniform/current combiner: strict AUROC 0.9705 in the current full run
 - Composition-heavy: historical AUROC 0.943 (slightly worse)
 - Result: keep the current combiner unless a fresh calibration run improves both ranking metrics and auditability
 
@@ -490,7 +490,7 @@ Game Theory:         -0.000 (none)
 Bayesian:            -0.000 (none)
 ```
 
-Sum of contributions: ~0.23 (less than full system 0.9747, due to non-additivity and baseline ~0.75 from random).
+Sum of contributions: ~0.23 (less than full system 0.9705, due to non-additivity and baseline ~0.75 from random).
 
 ---
 

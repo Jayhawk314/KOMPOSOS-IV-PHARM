@@ -12,14 +12,14 @@
 
 **Current stats** (2026-05-28 audit):
 - **Objects**: 1,146 total (including referenced types)
-- **Morphisms**: 2,178 (100% source-string coverage; ≠ citation validation)
+- **Morphisms**: 2,329 (100% source-string coverage; ≠ citation validation)
 - **FDA Labels**: 48 approved Drug->Disease pairs
 - **Quantitative edges**: 1,014 (IC50, mutation freq, response rate, HR)
-- **PMID-backed edges**: 884 carry a PMID (805 distinct); 594 RELATION-VERIFIED (agent-confirmed directed/signed), 215 LEXICAL-COOCCURRENCE (automated co-occurrence + polarity screen only)
-- **Evidence tiers**: MEASURED 1014, ESTABLISHED 377, INFERRED 767, HYPOTHESIS 20
+- **PMID-backed edges**: 1,035 carry a PMID (955 distinct); 745 RELATION-VERIFIED (agent-confirmed directed/signed), 215 LEXICAL-COOCCURRENCE (automated co-occurrence + polarity screen only)
+- **Evidence tiers**: MEASURED 1014, ESTABLISHED 377, INFERRED 918, HYPOTHESIS 20
 - **Strategic Transparency**: Yoneda Distance uses only MEASURED+ESTABLISHED (1,391 edges).
 
-Audit note: 100% source-string coverage (2,178/2,178 edges) achieved after restoring 302 'unknown' source strings. Source-string coverage is not the same as edge-level citation validation.
+Audit note: 100% source-string coverage (2,329/2,329 edges) achieved after restoring 302 'unknown' source strings. Source-string coverage is not the same as edge-level citation validation.
 
 ---
 
@@ -246,7 +246,7 @@ python data/drugs/build_tier1.py --manifest data/drugs/tier1_manifest.json
 8. Import ABPP IC50 entries
 9. Import NLP-extracted quantitative values
 10. Compute evidence tiers
-11. Validate (source strings on all 2,178 morphisms check)
+11. Validate (source strings on all 2,329 morphisms check)
 12. Output: `data/drugs/tier1.db`
 
 **Reproducibility**: Same manifest → same database (SHA256 hash).
@@ -384,14 +384,14 @@ import_string(store, string_file='data/external/9606.protein.links.v11.5.txt')
 | Metric | Value | Target |
 |--------|-------|--------|
 | **Objects with type_name** | 464/464 (100%) | 100% |
-| **Morphisms with provenance** | 2178/2178 (100%) | 100% |
-| **Morphisms with confidence** | 2178/2178 (100%) | 100% |
-| **Quantitative edges** | 1014/2178 (46.5%) | Target 50%+ |
+| **Morphisms with provenance** | 2329/2329 (100%) | 100% |
+| **Morphisms with confidence** | 2329/2329 (100%) | 100% |
+| **Quantitative edges** | 1014/2329 (43.5%) | Target 50%+ |
 | **FDA labels recovered** | 48/48 (100%) | 100% |
 
 ### Provenance
 
-PMID-backed edges: 884 carry a PMID (805 distinct). Tiered by how checked: 594 RELATION-VERIFIED
+PMID-backed edges: 1,035 carry a PMID (955 distinct). Tiered by how checked: 745 RELATION-VERIFIED
 (agent-confirmed the cited sentence asserts the directed, signed relation), 215 LEXICAL-COOCCURRENCE
 (automated co-occurrence + polarity screen only — not verified). Source-string coverage is not citation validation.
 - **ChEMBL IDs**: All 78 drugs + targets mapped

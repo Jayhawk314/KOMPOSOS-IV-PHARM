@@ -445,27 +445,27 @@ After NLP extraction: BRAF → Melanoma, confidence 0.85, tier MEASURED
 
 ## Interpreting AUROC
 
-### What AUROC 0.9747 Means
+### What AUROC 0.9705 Means
 
 ```
 Given a random approved Drug-Disease pair and a random unlabeled comparison pair:
   The strict benchmark usually ranks the approved pair higher.
 ```
 
-### What AUROC 0.9747 Does NOT Mean
+### What AUROC 0.9705 Does NOT Mean
 
 ```
 ✗ "97.47% of predictions are correct" (AUROC ≠ accuracy)
 ✗ "The model is clinically validated" (retrospective ranking ≠ clinical trial)
-✗ "All candidates will work" (AUPRC 0.552 is a ranking metric under open-world labels)
+✗ "All candidates will work" (AUPRC 0.546 is a ranking metric under open-world labels)
 ✗ "The model can't be fooled" (label leakage is possible without proper protocol)
 ```
 
 ### Protocol Matters
 
 ```
-remove_direct_labels: AUROC 0.9747, AUPRC 0.552 (current primary strict run)
-loocv:               AUROC 0.975916, AUPRC 0.553703 (leave-one-out)
+remove_direct_labels: AUROC 0.9705, AUPRC 0.546 (current primary strict run)
+loocv:               AUROC 0.967431, AUPRC 0.516478 (leave-one-out)
 as_loaded:           AUROC 0.738831, AUPRC 0.049407 (not primary claim)
 
 Always report: AUROC {value} ({view}/{protocol}, {positive_count} positives)

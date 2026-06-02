@@ -198,7 +198,7 @@ python validation/triage.py Melanoma --top 5 --all --brief
 
 When you run `python validation/triage.py Melanoma`, the system:
 
-1. **Loads the database** (`data/drugs/tier1.db`): 464 objects, 5382 morphisms
+1. **Loads the database** (`data/drugs/tier1.db`): 464 objects, 2,329 morphisms
 2. **Removes direct labels**: Melanoma → Drug edges temporarily removed (prevents leakage)
 3. **Finds all paths**: Drug → Protein → Disease paths for each drug
 4. **Scores each path**: Multiplies confidences along the path (e.g., 0.95 × 0.91 = 0.865)
@@ -371,7 +371,7 @@ For more Q&A, see [TROUBLESHOOTING_AND_FAQ.md](TROUBLESHOOTING_AND_FAQ.md).
 
 ## Next: Validate the System
 
-Want to confirm AUROC 0.9747? Run:
+Want to confirm AUROC 0.9705? Run:
 
 ```bash
 python validation/repurposing_benchmark.py --view full_typed --protocol remove_direct_labels
@@ -379,8 +379,8 @@ python validation/repurposing_benchmark.py --view full_typed --protocol remove_d
 
 Expected output:
 ```
-AUROC: 0.9747
-AUPRC: 0.552
+AUROC: 0.9705
+AUPRC: 0.546
 Hits@5: 1.00
 Hits@10: 0.60
 ...

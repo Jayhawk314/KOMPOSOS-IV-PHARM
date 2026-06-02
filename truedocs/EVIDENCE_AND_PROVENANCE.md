@@ -1,13 +1,13 @@
 # Evidence and Provenance
 
-**Purpose**: Document data sources, evidence tracing, and why source strings on the 2,178 morphisms matter.
+**Purpose**: Document data sources, evidence tracing, and why source strings on the 2,329 morphisms matter.
 
 **Audience**: Researchers (validating claims), scientists (understanding evidence), practitioners (checking candidate justification)
 
-**Key fact**: All 2,178 morphisms carry a source/provenance string (100% source-string
-coverage), and 884 carry a PMID (805 distinct PMIDs). Source-string coverage is **not** the
+**Key fact**: All 2,329 morphisms carry a source/provenance string (100% source-string
+coverage), and 1,035 carry a PMID (955 distinct PMIDs). Source-string coverage is **not** the
 same as edge-specific citation validation. PMID-backed edges are tiered by how the citation was
-checked: **594 RELATION-VERIFIED** (an agent confirmed the cited sentence asserts the directed,
+checked: **745 RELATION-VERIFIED** (an agent confirmed the cited sentence asserts the directed,
 signed relation) and **215 LEXICAL-COOCCURRENCE** (the cited sentence passed an automated
 co-occurrence + polarity screen only — not verified). The earlier "188 audited PMIDs" figure was
 simply the count of distinct PMIDs *present in* provenance strings at one point; presence is not
@@ -37,11 +37,11 @@ This means:
 
 | Category | Count | Interpretation |
 |----------|------:|----------------|
-| **Total morphisms** | 2,178 | SQLite edge rows |
-| Source/provenance strings | 2,178 | Every row has a source string (100% source-string coverage) |
-| Edges carrying a PMID | 884 | PMID present in provenance |
-| Unique PMID identifiers | 805 | distinct PMIDs detected in provenance/metadata strings |
-| RELATION-VERIFIED edges | 594 | agent-confirmed the cited sentence asserts the directed, signed relation |
+| **Total morphisms** | 2,329 | SQLite edge rows |
+| Source/provenance strings | 2,329 | Every row has a source string (100% source-string coverage) |
+| Edges carrying a PMID | 1,035 | PMID present in provenance |
+| Unique PMID identifiers | 955 | distinct PMIDs detected in provenance/metadata strings |
+| RELATION-VERIFIED edges | 745 | agent-confirmed the cited sentence asserts the directed, signed relation |
 | LEXICAL-COOCCURRENCE edges | 215 | cited sentence passed automated co-occurrence + polarity screen only (not verified) |
 | Structured quantitative values | 1,014 | Edges with IC50, mutation, response, or HR values |
 
@@ -402,37 +402,39 @@ Total: 9 papers to review
 
 ## Database Integrity Checks
 
-Verify that source strings on all 5,382 morphisms claim is real:
+Verify the source-string coverage claim directly against the live DB:
 
 ```bash
-python validation/audit_provenance.py
+python -c "import sqlite3; c=sqlite3.connect('data/drugs/tier1.db').cursor(); \
+print(c.execute('SELECT COUNT(*) FROM morphisms').fetchone()[0],'morphisms'); \
+print(c.execute(\"SELECT COUNT(*) FROM morphisms WHERE provenance!='unknown'\").fetchone()[0],'with source strings')"
 ```
 
-Output:
+Current state (2026-06-02):
 
 ```
-Provenance Audit Report
-=======================
+Provenance reality
+==================
 
 Database: data/drugs/tier1.db
 Runtime objects: 1,146
-Morphisms: 5,382
+Morphisms: 2,329
 
 Coverage check:
-  Rows with source strings:   5,382 / 5,382 (100.0%)
-  Unique PMID identifiers:    609
-  Structured value rows:      204
+  Rows with source strings:   2,329 / 2,329 (100.0%)
+  Unique PMID identifiers:    955
+  PMID-bearing edges:         1,035
+  Tiered: 745 RELATION-VERIFIED, 215 LEXICAL-COOCCURRENCE
 
 Orphaned morphisms (no provenance):
   Count: 0
-  Status: CLEAN ✓
+  Status: CLEAN
 
-Quantitative values by PMID:
-  Edges with IC50 data:       65 / 5,382 (1.2%)
-  Edges with mutation freq:   45 / 5,382 (0.8%)
-  Edges with response rate:   52 / 5,382 (1.0%)
-  Edges with HR/survival:     42 / 5,382 (0.8%)
-  Total quantitative edges:   204 / 5,382 (3.8%)
+Quantitative values:
+  MEASURED-tier edges:        1,014
+  NOTE: numeric values (IC50, HR, mutation freq, response rate) currently live
+  inside provenance/metadata strings; the structured `quantitative_value` column
+  is unpopulated. Edge-level numeric extraction into the column is an open task.
 
 Self-check (FDA labels):
   Expected: 44 FDA-approved pairs
@@ -535,9 +537,9 @@ Current database is static (2026-05-26 snapshot, 609 PMIDs).
 
 ### Missing Quantitative Data
 
-- 204/5,382 edges have quantitative values (3.8%)
+- 1,014 edges are MEASURED-tier; numeric values live in provenance strings, the structured `quantitative_value` column is unpopulated (extraction is an open task)
 - Many drug-target pairs have only existence (no IC50)
-- **Mitigation**: NLP extraction expanding coverage (373 values from 204 PMIDs)
+- **Mitigation**: NLP extraction expanding coverage (values present in provenance/metadata)
 
 ---
 
@@ -551,7 +553,7 @@ If you use KOMPOSOS-IV data in a publication:
   author = {Hawkins, James Ray},
   year = {2026},
   url = {https://github.com/your-repo/KOMPOSOS-IV-PHARM},
-  note = {1146 runtime objects, 5382 morphisms, source strings on all morphisms, 609 PMID identifiers}
+  note = {1146 runtime objects, 2329 morphisms, source strings on all morphisms, 955 PMID identifiers}
 }
 ```
 

@@ -12,15 +12,15 @@ view, protocol, positive count, negative policy, and date.
 
 | Graph | Protocol | AUROC | AUPRC | Hits@5 | Hits@10 | Hits@20 | MRR |
 |-------|----------|------:|------:|-------:|--------:|--------:|----:|
-| Full graph | `remove_direct_labels` | 0.948640 | 0.513498 | 1.0000 | 0.6000 | 0.6000 | 0.076250 |
-| Full graph | `loocv` | 0.949216 | 0.514703 | 0.8000 | 0.6000 | 0.6000 | 0.075237 |
+| Full graph | `remove_direct_labels` | 0.970549 | 0.546427 | 1.0000 | 0.6000 | 0.6000 | 0.076250 |
+| Full graph | `loocv` | 0.967431 | 0.516478 | 0.8000 | 0.6000 | 0.6500 | 0.075237 |
 
 Strict benchmark confidence intervals:
 
-- AUROC: [0.9134, 0.9738]
-- AUPRC: [0.3662, 0.6579]
+- AUROC: [0.9519, 0.9844]
+- AUPRC: [0.4025, 0.6890]
 
-All current benchmark runs use 78 drugs, 20 diseases, 48 positives, and 1,512
+All current benchmark runs use 78 drugs, 20 diseases, 44 positives, and 1,516
 open-world unlabeled pairs. Unlabeled pairs are not confirmed negatives.
 
 Strategic Transparency: Yoneda Distance uses only MEASURED+ESTABLISHED (1,391 edges).
@@ -57,10 +57,10 @@ Protocol:   remove_direct_labels
 Objects:    1146
 Morphisms:  2130
 Task:       78 drugs x 20 diseases = 1560 pairs
-Labels:     48 positives, 1512 negatives
+Labels:     44 positives, 1516 negatives
 Scored:     1325 scored, 235 unscored
-AUROC:      0.948640  95% CI [0.9134, 0.9738]
-AUPRC:      0.513498  95% CI [0.3662, 0.6579]
+AUROC:      0.970549  95% CI [0.9519, 0.9844]
+AUPRC:      0.546427  95% CI [0.4025, 0.6890]
 Hits@5:     1.0000
 Hits@10:    0.6000
 Hits@20:    0.6000
@@ -70,7 +70,7 @@ MRR:        0.072453
 Baselines:
 
 ```text
-common_neighbor      AUROC 0.6499  (ours +0.2987)
+common_neighbor      AUROC 0.6219  (ours +0.3486)
 path_count           AUROC 0.6492  (ours +0.2994)
 degree_product       AUROC 0.5877  (ours +0.3609)
 shortest_path        AUROC 0.6250  (ours +0.3236)
@@ -83,7 +83,7 @@ random               AUROC 0.5504  (ours +0.3982)
 
 | Script | Current Result |
 |--------|----------------|
-| `validation\external_validation.py` | Hetionet CtD external AUROC 0.621479, AUPRC 0.008555, Hits@20 0.0000 |
+| `validation\external_validation.py` | Hetionet CtD external AUROC 0.643615, AUPRC 0.009513, Hits@20 0.0000 |
 | `validation\temporal_holdout.py --cutoff 2013` | Year > 2013 AUROC 0.941294, AUPRC 0.218793, Hits@20 0.2222 |
 | `validation\disease_holdout.py --min-positives 2` | Mean AUROC 0.924416, mean AUPRC 0.486226 across 7 folds |
 
@@ -103,7 +103,7 @@ python -c "from validation.repurposing_benchmark import load_full_typed_view, dr
 Expected:
 
 ```text
-1146 2178 78 20 48
+1146 2329 78 20 44
 ```
 
 Current source-field count:
@@ -115,13 +115,13 @@ python -c "import re,sqlite3; rows=sqlite3.connect('data/drugs/tier1.db').execut
 Expected:
 
 ```text
-2178 2178 805 1014
+2329 2329 955 1014
 ```
 
-Interpretation: 100% source-string coverage (2,178/2,178 edges have source strings — not the same as
-citation validation), 805 distinct PMID identifiers are *present* in provenance/metadata (presence is
+Interpretation: 100% source-string coverage (2,329/2,329 edges have source strings — not the same as
+citation validation), 955 distinct PMID identifiers are *present* in provenance/metadata (presence is
 not verification), and 1,014 morphisms are MEASURED-tier (IC50/mutation/response/HR). Of the
-PMID-backed edges, 594 are RELATION-VERIFIED (agent-confirmed directed/signed) and 215 are
+PMID-backed edges, 745 are RELATION-VERIFIED (agent-confirmed directed/signed) and 215 are
 LEXICAL-COOCCURRENCE (automated co-occurrence + polarity screen only).
 
 ---
@@ -150,11 +150,11 @@ The system achieves 100% source-string coverage after restoring 302 'unknown' ed
 
 > KOMPOSOS-IV-PHARM is a research prototype for drug repurposing over a curated
 > drug-target-disease knowledge graph. Under the `full_typed/remove_direct_labels`
-> protocol on 78 drugs x 20 diseases (48 FDA-approved indications vs. 1,512
+> protocol on 78 drugs x 20 diseases (44 FDA-approved indications vs. 1,516
 > open-world unlabeled pairs), the current strict 7-module scorer achieves AUROC
-> 0.948640 [0.9134, 0.9738] and AUPRC 0.513498 [0.3662, 0.6579]. 100% source-string
-> coverage (2,178/2,178 edges; not the same as citation validation). Every prediction can be traced to
-> graph evidence chains with source strings and tiered citation identifiers (594 RELATION-VERIFIED, 215 LEXICAL-COOCCURRENCE).
+> 0.970549 [0.9519, 0.9844] and AUPRC 0.546427 [0.4025, 0.6890]. 100% source-string
+> coverage (2,329/2,329 edges; not the same as citation validation). Every prediction can be traced to
+> graph evidence chains with source strings and tiered citation identifiers (745 RELATION-VERIFIED, 215 LEXICAL-COOCCURRENCE).
 > Strategic Transparency: Yoneda distance uses only MEASURED+ESTABLISHED evidence (1,391 edges).
 
 Do not claim:
@@ -162,7 +162,7 @@ Do not claim:
 - Clinical readiness.
 - "No leakage" without naming the protocol and label-removal policy.
 - 100% validated citation provenance.
-- External generalization without mentioning Hetionet AUROC 0.634479 and Hits@20 0.
+- External generalization without mentioning Hetionet AUROC 0.643615 and Hits@20 0.
 
 ---
 

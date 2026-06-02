@@ -8,7 +8,7 @@
 
 ## Abstract
 
-We present KOMPOSOS-IV-PHARM, an auditable drug repurposing system that combines a sourced biomedical knowledge graph with categorical inference strategies to generate mechanistically explainable repurposing hypotheses. Unlike embedding-based approaches that produce opaque rankings, every prediction is traceable to Drug->Protein->Disease evidence chains with source strings and tiered citation identifiers. On the current oncology graph of 78 drugs, 366 biological entities, and 20 diseases (2,178 morphisms with 100% source-string coverage — not the same as edge-level citation validation; 884 PMID-backed edges spanning 805 distinct PMIDs, of which 594 are RELATION-VERIFIED (an agent confirmed the cited sentence asserts the directed, signed relation) and 215 are LEXICAL-COOCCURRENCE (automated co-occurrence + polarity screen only); and 1,014 MEASURED-tier edges with quantitative values), the system achieves AUROC 0.948640 [95% CI: 0.9134-0.9738] and AUPRC 0.513498 [95% CI: 0.3662-0.6579] under the strict remove_direct_labels protocol on 48 FDA-approved indications. The strongest simple graph baseline is common_neighbor AUROC 0.6499, giving a +0.2987 margin. Strategic Transparency: Yoneda Distance utilizes only MEASURED+ESTABLISHED evidence (1,391 edges). The categorical inference layer adds strategy signals, mechanistic explanation, quantitative evidence (IC50, mutation frequencies, response rates), and type-safe reasoning for candidate triage. The system is designed for hypothesis generation and scientific triage, not clinical deployment.
+We present KOMPOSOS-IV-PHARM, an auditable drug repurposing system that combines a sourced biomedical knowledge graph with categorical inference strategies to generate mechanistically explainable repurposing hypotheses. Unlike embedding-based approaches that produce opaque rankings, every prediction is traceable to Drug->Protein->Disease evidence chains with source strings and tiered citation identifiers. On the current oncology graph of 78 drugs, 366 biological entities, and 20 diseases (2,329 morphisms with 100% source-string coverage — not the same as edge-level citation validation; 1,035 PMID-backed edges spanning 955 distinct PMIDs, of which 745 are RELATION-VERIFIED (an agent confirmed the cited sentence asserts the directed, signed relation) and 215 are LEXICAL-COOCCURRENCE (automated co-occurrence + polarity screen only); and 1,014 MEASURED-tier edges with quantitative values), the system achieves AUROC 0.970549 [95% CI: 0.9519-0.9844] and AUPRC 0.546427 [95% CI: 0.4025-0.6890] under the strict remove_direct_labels protocol on 44 FDA-approved indications. The strongest simple graph baseline is common_neighbor AUROC 0.6219, giving a +0.3486 margin. Strategic Transparency: Yoneda Distance utilizes only MEASURED+ESTABLISHED evidence (1,391 edges). The categorical inference layer adds strategy signals, mechanistic explanation, quantitative evidence (IC50, mutation frequencies, response rates), and type-safe reasoning for candidate triage. The system is designed for hypothesis generation and scientific triage, not clinical deployment.
 
 **Keywords**: drug repurposing, category theory, knowledge graphs, Yoneda presheaves, evidence tracing, oncology
 
@@ -42,7 +42,7 @@ The knowledge graph was built from curated sources:
 - **Drugs**: 78 FDA-approved drugs (oncology focus), sourced from ChEMBL and manual curation
 - **Proteins**: 366 biological entities including receptors, oncogenes, tumor suppressors, and signaling molecules, sourced from ChEMBL drug_mechanism table, STRING PPI, cBioPortal, and literature
 - **Diseases**: 20 cancer types
-- **Morphisms**: 5,382 directed edges with confidence scores [0, 1]:
+- **Morphisms**: 2,329 directed edges with confidence scores [0, 1]:
   - Drug->Protein (inhibits, activates, modulates): from ChEMBL drug mechanisms, ABPP
   - Protein->Disease (driver_of, associated_with): from literature curation, cBioPortal
   - Protein->Protein (activates, regulates): from STRING PPI (338 edges), protein sequence similarity (100 edges; engine upgraded from ESM2 to ESMC-300M, pending edge re-derivation)
@@ -50,7 +50,7 @@ The knowledge graph was built from curated sources:
 - **Quantitative evidence**: 204 edges with IC50, mutation frequencies, hazard ratios, response rates
   - NLP extraction from 204 PMIDs (373 data points reported; edge-specific attribution audit pending)
   - ABPP experimental IC50 data (65 entries)
-- **Source fields**: 5,382/5,382 morphisms have source/provenance strings; 609 unique PMID identifiers were detected. This is not equivalent to edge-specific citation validation.
+- **Source fields**: 2,329/2,329 morphisms have source/provenance strings; 609 unique PMID identifiers were detected. This is not equivalent to edge-specific citation validation.
 - **Evidence tier classification**: MEASURED 1,073, ESTABLISHED 282, INFERRED 809, SPECULATIVE 955, HYPOTHESIS 159, NOISE 2,104
 
 The graph is stored as a SQLite database (`tier1.db`) built deterministically from a JSON manifest via `build_tier1.py`.
@@ -108,20 +108,20 @@ The path bonus was tuned via LOOCV grid search over [0.0, 0.20]. The Yoneda coef
 
 | Protocol | AUROC | 95% CI | AUPRC | Hits@5 | Hits@10 | MRR |
 |----------|------:|--------|------:|-------:|--------:|----:|
-| remove_direct_labels | **0.9747** | [0.9606, 0.9855] | **0.552** | 1.00 | 0.60 | 0.0788 |
+| remove_direct_labels | **0.9705** | [0.9519, 0.9844] | **0.546** | 1.00 | 0.60 | 0.0788 |
 | loocv | 0.9759 | not bootstrapped in current rerun | 0.554 | 0.80 | 0.60 | 0.0772 |
 
 ### 3.2 Baselines (remove_direct_labels)
 
 | Baseline | AUROC | Margin |
 |----------|------:|-------:|
-| common_neighbor | 0.6499 | +0.2987 |
+| common_neighbor | 0.6219 | +0.3486 |
 | path_count | 0.6492 | +0.2994 |
 | shortest_path | 0.6250 | +0.3236 |
 | degree_product | 0.5877 | +0.3609 |
 | random | 0.5504 | +0.3982 |
 
-The system exceeds these simple graph-topology baselines. The margin over the strongest baseline (degree_product) is +0.3440 AUROC under the current strict protocol.
+The system exceeds these simple graph-topology baselines. The margin over the strongest baseline (degree_product) is +0.3486 AUROC under the current strict protocol.
 
 ### 3.3 Ablation Study
 
@@ -130,14 +130,14 @@ under the corrected loader before the deltas are quoted as current estimates.
 
 | Configuration | AUROC | Delta |
 |---------------|------:|------:|
-| Current strict profile (7 active modules) | 0.9747 | -- |
+| Current strict profile (7 active modules) | 0.9705 | -- |
 | Remove composition | 0.812 | -0.153 |
 | Remove binding_evidence | 0.920 | -0.045 |
 | Remove path_bonus | 0.950 | -0.015 |
 | Remove yoneda_distance | 0.956 | -0.009 |
 | Remove coherence | 0.960 | -0.005 |
 | Remove conjecture | 0.963 | -0.002 |
-| Remove remaining low-impact historical modules | 0.9747 | ~0 |
+| Remove remaining low-impact historical modules | 0.9705 | ~0 |
 | Composition only | 0.890 | -0.075 |
 
 Historical ablations identify composition as the dominant strategy. Binding
@@ -149,7 +149,7 @@ is not current because the corrected strict loader leaves no comparators.
 
 The ablation values below are historical and should be rerun before being used
 as current contribution estimates. The current strict full-system result is
-0.9747 AUROC / 0.552 AUPRC.
+0.9705 AUROC / 0.546 AUPRC.
 
 Yoneda distance is a conditional live-triage strategy. It operates on a clean subgraph of MEASURED + ESTABLISHED edges only, computing confidence-weighted presheaf fingerprints for all objects and comparing a candidate drug with visible known treatments for the same disease.
 
@@ -169,7 +169,7 @@ accompanied by auditable source trails, strategy votes, and mechanistic paths.
 
 | Protocol | AUROC | Details |
 |----------|------:|---------|
-| Hetionet (external graph) | 0.6345 | AUPRC 0.0093 on 7 external positives; Hits@20 0 |
+| Hetionet (external graph) | 0.6436 | AUPRC 0.0093 on 7 external positives; Hits@20 0 |
 | Temporal holdout (2013 cutoff) | 0.9780 | AUPRC 0.2288 on 18 held-out approvals |
 | Disease-level holdout | 0.9504 mean | Mean AUPRC 0.6368 across 7 disease folds |
 
@@ -201,7 +201,7 @@ validated extractions.
 
 ### 4.1 What Category Theory Adds
 
-The categorical framework's primary contribution is architectural, not just performance-based. The current strict AUROC margin over the strongest simple baseline is +0.3440, but the value is in what the framework provides beyond a score:
+The categorical framework's primary contribution is architectural, not just performance-based. The current strict AUROC margin over the strongest simple baseline is +0.3486, but the value is in what the framework provides beyond a score:
 
 1. **Auditable explanations**: Each strategy has a precise mathematical definition. A researcher can inspect WHY a prediction was made, not just that it scored high.
 
@@ -215,7 +215,7 @@ The categorical framework's primary contribution is architectural, not just perf
 
 ### 4.2 The Value of Curation Over Scale
 
-Our strongest cautionary result is the baseline: degree_product traversal on this curated graph reaches AUROC 0.6307. This means graph connectivity and curation quality explain a meaningful part of the signal, while the categorical layer adds auditability, strategy decomposition, and a +0.3440 strict AUROC margin over that baseline.
+Our strongest cautionary result is the baseline: degree_product traversal on this curated graph reaches AUROC 0.6219. This means graph connectivity and curation quality explain a meaningful part of the signal, while the categorical layer adds auditability, strategy decomposition, and a +0.3486 strict AUROC margin over that baseline.
 
 A researcher using our system can trace any prediction to primary literature in seconds. Embedding-based systems cannot offer this.
 
@@ -223,7 +223,7 @@ A researcher using our system can trace any prediction to primary literature in 
 
 **Oncology-focused**: 20 cancer types. Generalization to other therapeutic areas requires expansion with appropriate data sources.
 
-**Substantial margin**: +0.3440 AUROC over degree_product baseline. Most predictive signal comes from graph connectivity, not categorical math per se.
+**Substantial margin**: +0.3486 AUROC over degree_product baseline. Most predictive signal comes from graph connectivity, not categorical math per se.
 
 **Open-world negatives**: Unlabeled pairs are unknowns, not confirmed negatives. AUROC measures ranking ability in a specific graph context.
 
@@ -238,7 +238,7 @@ A researcher using our system can trace any prediction to primary literature in 
 | System | AUROC | Positives | Graph Size | Interpretable |
 |--------|------:|----------:|-----------:|:---:|
 | Rephetio (Himmelstein 2017) | 0.97 | 755 | 47k nodes, 2.25M edges | No |
-| KOMPOSOS-IV-PHARM (this work) | 0.9747 | 44 | 1,146 runtime objects, 5,382 edges | Yes |
+| KOMPOSOS-IV-PHARM (this work) | 0.9705 | 44 | 1,146 runtime objects, 2,329 edges | Yes |
 
 Direct comparison is not valid due to different graphs, label sets, and protocols. Our graph is substantially smaller with fewer positives. Our claim is not superior performance but superior interpretability and auditability at competitive performance.
 

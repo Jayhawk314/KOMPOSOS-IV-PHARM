@@ -175,7 +175,7 @@ python validation/trace_prediction.py Melanoma CandidateDrug
 
 ## Benchmark Issues
 
-### "AUROC not 0.9747" or metrics diverge
+### "AUROC not 0.9705" or metrics diverge
 
 **Cause**: Different view/protocol; stale database; code changes
 
@@ -186,7 +186,7 @@ python validation/repurposing_benchmark.py \
   --view full_typed \
   --protocol remove_direct_labels
 
-# Expected: AUROC 0.9747, AUPRC 0.552
+# Expected: AUROC 0.9705, AUPRC 0.546
 ```
 
 **Check**:
@@ -275,20 +275,20 @@ with open('candidates.csv', 'w') as f:
 
 ---
 
-### Q: Why AUROC 0.9747? Is it overfit?
+### Q: Why AUROC 0.9705? Is it overfit?
 
 **A**: Treat it as strong retrospective ranking, not clinical validation. Evidence:
-- **LOOCV AUROC**: 0.975916, AUPRC 0.553703
-- **External (Hetionet CtD)**: AUROC 0.634479, AUPRC 0.009255; weak precision-at-top
-- **Temporal (post-2013)**: AUROC 0.977994, AUPRC 0.228793
-- **Disease-level holdout**: mean AUROC 0.950416 across 7 disease folds
+- **LOOCV AUROC**: 0.967431, AUPRC 0.516478
+- **External (Hetionet CtD)**: AUROC 0.643615, AUPRC 0.009513; weak precision-at-top
+- **Temporal (post-2013)**: AUROC 0.970646, AUPRC 0.193802
+- **Disease-level holdout**: mean AUROC 0.937795 across 7 disease folds
 
-The strict 0.9747 result is useful, but the external Hetionet result is a clear
+The strict 0.9705 result is useful, but the external Hetionet result is a clear
 caution against overclaiming.
 
 ---
 
-### Q: Can I reproduce AUROC 0.9747 exactly?
+### Q: Can I reproduce AUROC 0.9705 exactly?
 
 **A**: Yes, if you:
 1. Use exact same database (tier1.db)
@@ -461,7 +461,7 @@ Open a pull request at https://github.com/your-repo/KOMPOSOS-IV-PHARM/pulls
 
 - **Oncology-only**: 20 diseases, 78 drugs (not generalizable to other domains)
 - **Stale references**: Newest PMID from ~2015 (needs annual refresh)
-- **Limited quantitative data**: Only 204/5382 edges have IC50 (3.8%)
+- **Limited quantitative data**: Only 204/2,329 edges have IC50 (3.8%)
 
 ### Methods
 

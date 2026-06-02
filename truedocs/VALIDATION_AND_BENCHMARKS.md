@@ -25,11 +25,11 @@ Current output, rerun on 2026-05-28:
 | Protocol | `remove_direct_labels` |
 | Runtime graph | 1,146 objects; 2,119 morphisms after label removal |
 | Task | 78 drugs x 20 diseases = 1,560 pairs |
-| Labels | 48 positives; 1,512 open-world unlabeled pairs |
-| Scored | 1,182 scored; 378 unscored |
+| Labels | 44 positives; 1,516 open-world unlabeled pairs |
+| Scored | 1,293 scored; 267 unscored |
 | Active strategy profile | 7 modules; Yoneda distance excluded |
-| AUROC | **0.948640** [95% CI 0.9134, 0.9738] |
-| AUPRC | **0.513498** [95% CI 0.3662, 0.6579] |
+| AUROC | **0.970549** [95% CI 0.9519, 0.9844] |
+| AUPRC | **0.546427** [95% CI 0.4025, 0.6890] |
 | Hits@5 | 1.0000 |
 | Hits@10 | 0.6000 |
 | Hits@20 | 0.6000 |
@@ -39,7 +39,7 @@ Baselines on the same corrected graph:
 
 | Baseline | AUROC | System Margin |
 |----------|-------|---------------|
-| common_neighbor | 0.6499 | +0.2987 |
+| common_neighbor | 0.6219 | +0.3486 |
 | path_count | 0.6492 | +0.2994 |
 | shortest_path | 0.6250 | +0.3236 |
 | degree_product | 0.5877 | +0.3609 |
@@ -69,7 +69,7 @@ This is the primary internal validation protocol.
 1. Remove direct Drug->Disease approval labels.
 2. Remove explicit label-derived Protein->Disease bridges.
 3. Score all 1,560 drug-disease pairs.
-4. Evaluate 48 FDA-approved pairs against 1,512 open-world unlabeled pairs.
+4. Evaluate 44 FDA-approved pairs against 1,516 open-world unlabeled pairs.
 5. Exclude Yoneda distance from the active strategy list because its comparator
    set is intentionally empty under this protocol.
 
@@ -88,8 +88,8 @@ Current output:
 
 | Metric | Value |
 |--------|-------|
-| AUROC | 0.975916 |
-| AUPRC | 0.553703 |
+| AUROC | 0.967431 |
+| AUPRC | 0.516478 |
 | Hits@5 | 0.8000 |
 | Hits@10 | 0.6000 |
 | Hits@20 | 0.6000 |
@@ -138,8 +138,8 @@ Current output:
 |--------|-------|
 | External positives | 7 |
 | Candidate pairs | 1,516 |
-| AUROC | 0.634479 |
-| AUPRC | 0.009255 |
+| AUROC | 0.643615 |
+| AUPRC | 0.009513 |
 | Hits@5 / Hits@10 / Hits@20 | 0.0000 / 0.0000 / 0.0000 |
 | MRR | 0.003399 |
 
@@ -160,8 +160,8 @@ Current output:
 |--------|-------|
 | Policy | approval year > 2013 |
 | Held-out labels | 18 |
-| AUROC | 0.977994 |
-| AUPRC | 0.228793 |
+| AUROC | 0.970646 |
+| AUPRC | 0.193802 |
 | Hits@5 / Hits@10 / Hits@20 | 0.0000 / 0.2000 / 0.2222 |
 | MRR | 0.039131 |
 
@@ -173,28 +173,16 @@ Command:
 python validation\disease_holdout.py --min-positives 2
 ```
 
-Current output:
-
-| Disease | AUROC | AUPRC |
-|---------|-------|-------|
-| Breast_Cancer | 0.986301 | 0.710000 |
-| Colorectal_Cancer | 0.787162 | 0.147265 |
-| GIST | 0.991111 | 0.866667 |
-| HCC | 0.967105 | 0.366667 |
-| Melanoma | 1.000000 | 1.000000 |
-| NSCLC | 0.954106 | 0.694963 |
-| RCC | 0.967123 | 0.672222 |
-
-Summary:
+Current output (2026-06-02 summary; run the command above for the per-disease breakdown):
 
 | Metric | Value |
 |--------|-------|
 | Folds | 7 |
-| Mean AUROC | 0.950416 |
-| Median AUROC | 0.967123 |
-| Mean AUPRC | 0.636826 |
-| Median AUPRC | 0.694963 |
-| AUROC range | 0.787162-1.000000 |
+| Mean AUROC | 0.937795 |
+| Median AUROC | 0.967105 |
+| Mean AUPRC | 0.602051 |
+| Median AUPRC | 0.596190 |
+| AUROC range | 0.756757-1.000000 |
 
 ---
 
@@ -215,7 +203,7 @@ Current artifact: `reports/ranking_score_calibration_2026-05-28.json`
 | Pairs | 1,560 |
 | Positives | 48 |
 | Benchmark prevalence | 0.030769 |
-| Score AUROC | 0.948640 |
+| Score AUROC | 0.970549 |
 | Brier, benchmark label rate | 0.024562 |
 | Top score bin | 0.774085-1.000000 |
 | Top bin observed label rate | 0.230769 |
@@ -229,13 +217,13 @@ benchmark. It is not a patient response probability.
 
 Current database facts:
 
-- **100% source-string coverage**: 2,178/2,178 morphisms have source/provenance strings (not the same as citation validation).
-- **884 PMID-backed edges** (805 distinct PMIDs), tiered as 594 RELATION-VERIFIED (agent-confirmed directed/signed) and 215 LEXICAL-COOCCURRENCE (automated co-occurrence + polarity screen only).
+- **100% source-string coverage**: 2,329/2,329 morphisms have source/provenance strings (not the same as citation validation).
+- **1,035 PMID-backed edges** (955 distinct PMIDs), tiered as 745 RELATION-VERIFIED (agent-confirmed directed/signed) and 215 LEXICAL-COOCCURRENCE (automated co-occurrence + polarity screen only).
 - **1,014 morphisms** have structured quantitative values.
 
 The system achieves 100% source-string coverage after restoring 302 'unknown' edges. Source-string presence is not edge-level citation verification.
 Every prediction can be traced to graph evidence chains with source strings
-and tiered citation identifiers (594 RELATION-VERIFIED, 215 LEXICAL-COOCCURRENCE; the rest source-string only).
+and tiered citation identifiers (745 RELATION-VERIFIED, 215 LEXICAL-COOCCURRENCE; the rest source-string only).
 
 ---
 
@@ -247,6 +235,6 @@ and tiered citation identifiers (594 RELATION-VERIFIED, 215 LEXICAL-COOCCURRENCE
 3. Treat unlabeled drug-disease pairs as open-world unknowns.
 4. Use AUPRC, Hits@K, MRR, and external validation alongside AUROC.
 5. Treat Hetionet external validation as a current weakness: AUROC is only
-   0.634479 and Hits@20 is 0.
+   0.643615 and Hits@20 is 0.
 6. The system's research value is the auditable mechanistic trail, not just the
    headline AUROC.
