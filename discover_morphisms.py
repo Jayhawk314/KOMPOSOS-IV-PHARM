@@ -56,7 +56,11 @@ def graph_gaps(db_path: str, relation: str):
                 if t and ("isease" in t or "ancer" in t.lower())}
     cur.execute("SELECT source_name, target_name FROM morphisms")
     edges = cur.fetchall(); c.close()
-    targets = {t for s, t in edges if s in drugs and t in objs}
+    # A valid mechanistic target is a biological entity a drug acts on -- NOT a
+    # disease (drug 'treats' disease) and NOT another drug. Including diseases as
+    # targets produced spurious disease->disease gaps in the first run.
+    targets = {t for s, t in edges
+               if s in drugs and t in objs and t not in diseases and t not in drugs}
     existing = {(s, t) for s, t in edges}
     gaps = [(p, relation, d) for p in sorted(targets) for d in sorted(diseases)
             if (p, d) not in existing and (d, p) not in existing]
