@@ -1,0 +1,1690 @@
+[
+  {
+    "edge_id": "treats:Nivolumab->RCC",
+    "relation": "treats",
+    "gate": "HOLLOW",
+    "reason": "no 'treats' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "drug->disease clinical use/efficacy asserted in sentence"
+  },
+  {
+    "edge_id": "activates:Glucagon->GCGR",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'agonist')",
+    "adjudicated": "COOCCUR",
+    "note": "glucagon appears only inside receptor names; sentence is about retatrutide agonism"
+  },
+  {
+    "edge_id": "activates:KRAS->BRAF",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'promot')",
+    "adjudicated": "COOCCUR",
+    "note": "ddPCR mutation panel co-listing BRAF/KRAS; no activation asserted"
+  },
+  {
+    "edge_id": "activates:CXCL12->CXCR4",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'upregulat')",
+    "adjudicated": "COOCCUR",
+    "note": "CXCL12-CXCR4 listed among upregulated components; axis not asserted directionally"
+  },
+  {
+    "edge_id": "associated_with:CASP9->Prostate_Cancer",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "PubMed keyword/polymorphism list; relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BAX->Pancreatic_Cancer",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "BAX not asserted; sentence about PRP fibroblast effects"
+  },
+  {
+    "edge_id": "associated_with:CDK6->RCC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence"
+  },
+  {
+    "edge_id": "associated_with:PDGFRA->Melanoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "PDGFRA-melanoma not asserted; melanoma is a drug side-effect risk"
+  },
+  {
+    "edge_id": "associated_with:RB1->Glioblastoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "RB1 not asserted; sentence about CMA-IDH1-CCND1 cascade"
+  },
+  {
+    "edge_id": "associated_with:SRC->Glioblastoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "name ambiguity: 'SRC-1' (NCOA1) is not SRC"
+  },
+  {
+    "edge_id": "associated_with:BRCA2->CLL",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'mutation')",
+    "adjudicated": "COOCCUR",
+    "note": "BRCA2 merely tested in a case; weak co-mention"
+  },
+  {
+    "edge_id": "associated_with:RB1->AML",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "RB1 not asserted; autophagy-in-AML review"
+  },
+  {
+    "edge_id": "associated_with:E2F1->Glioblastoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "E2F1 not asserted in the CMA cascade sentence"
+  },
+  {
+    "edge_id": "associated_with:Fluorouracil->TOP2A",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'biomarker')",
+    "adjudicated": "COOCCUR",
+    "note": "fluorouracil not linked to TOP2A; TOP2A tied to anthracyclines"
+  },
+  {
+    "edge_id": "associated_with:MAPK1->Multiple_Myeloma",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence"
+  },
+  {
+    "edge_id": null,
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:BRCA1->Ewing_Sarcoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "BRCA1 appears inside 'BRCA1-associated RING domain' (BARD1)"
+  },
+  {
+    "edge_id": "associated_with:PIK3CA->Glioblastoma",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence"
+  },
+  {
+    "edge_id": "associated_with:CASP9->AML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence"
+  },
+  {
+    "edge_id": "inhibits:Atropine->CHRM1",
+    "relation": "inhibits",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'inhib')",
+    "adjudicated": "COOCCUR",
+    "note": "CHRM1 inhibition attributed to pirenzepine, not atropine, in this sentence"
+  },
+  {
+    "edge_id": "activates:CD8A->IFNG",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'induc')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "activates:Cholecalciferol->VDR",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'induc')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "activates:Corticotropin->MC2R",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'promot')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "activates:Cortisone->NR3C1",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'activat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "activates:Dobutamine->ADRB2",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'agonist')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "activates:Dronabinol->CNR1",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'agonist')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "activates:EGFR->STAT3",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'activat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "activates:Estradiol->ESR1",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'induc')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "activates:Estradiol Valerate->ESR1",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'induc')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "activates:FLT3->AKT1",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'activat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "activates:FLT3->NRAS",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'induc')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "activates:Follitropin->FSHR",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'stimulat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "activates:Lanreotide->SSTR5",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'agonist')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "activates:Levodopa->DRD3",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'agonist')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "activates:NRAS->BRAF",
+    "relation": "activates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'promot')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:AKT1->GIST",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:AKT1->Ovarian_Cancer",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'overexpress')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:ATM->CLL",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:ATM->GIST",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:ATM->Prostate_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:ATR->AML",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'overexpress')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:ATR->Colorectal_Cancer",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'linked')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:ATR->Multiple_Myeloma",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:ATR->Ovarian_Cancer",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BAK->CLL",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BAX->AML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:BAX->Breast_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:BAX->CLL",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BAX->GIST",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:BAX->Ovarian_Cancer",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BCL2->AML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:BCL2->GIST",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BCL2->Melanoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BCL2->RCC",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BRAF->AML",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'overexpress')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BRAF->Ewing_Sarcoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BRAF->Ovarian_Cancer",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BRCA1->CLL",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'mutation')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BRCA1->CML",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BRCA1->GIST",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:BRCA1->Melanoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BRCA1->Multiple_Myeloma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BRCA1->RCC",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BRCA2->GIST",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:BRCA2->Melanoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'mutation')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:BRCA2->Pancreatic_Cancer",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'mutation')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:CASP3->AML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:CASP3->CLL",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:CASP3->CML",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:CASP3->Melanoma",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:CASP3->Multiple_Myeloma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:CASP3->Ovarian_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:CASP3->Pancreatic_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:CASP3->Prostate_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:CCND1->AML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:CCND1->Ewing_Sarcoma",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:CCND1->Glioblastoma",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:CCND1->HCC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:CCND1->Ovarian_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:CDK4->AML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:CDK6->HCC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:CDK6->Melanoma",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:CHEK2->HCC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:CHEK2->Melanoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:CHEK2->NSCLC",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:E2F1->GIST",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:E2F1->RCC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:EGFR->CLL",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:EGFR->CML",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:ERBB2->CML",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'overexpress')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:ERBB2->Melanoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'mutation')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:ERBB2->Ovarian_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:ERK1->AML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:ERK1->GIST",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:ERK1->Glioblastoma",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:ERK1->HCC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:ERK1->NSCLC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:ERK2->AML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:ERK2->CLL",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:ERK2->HCC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:ERK2->NSCLC",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:FLT3->Ewing_Sarcoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:FLT3->RCC",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:JAK2->CLL",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:JAK2->CML",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:KDR->Breast_Cancer",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:KDR->Ovarian_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:KDR->Prostate_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:KDR->RCC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:KIT->CML",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'linked')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:KIT->Pancreatic_Cancer",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'correlat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:KRAS->AML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:KRAS->GIST",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:KRAS->Glioblastoma",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:KRAS->HCC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:MAPK1->CLL",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:MAPK1->NSCLC",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:MAPK1->Pancreatic_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:MAPK1->Prostate_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:MDM2->Multiple_Myeloma",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:MEK1->GIST",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:MEK1->HCC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:MET->Melanoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:MET->NSCLC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:MMP2->Melanoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:MTOR->GIST",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'linked')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:MTOR->Myelofibrosis",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:MTOR->RCC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:NFKB1->CLL",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:NFKB1->Ovarian_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:NPM1->AML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:NRAS->AML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:PDCD1->Melanoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:PDCD1->NSCLC",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:PDGFRA->CML",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:PDGFRA->Pancreatic_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:PDGFRA->Soft_Tissue_Sarcoma",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:PDGFRB->CML",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'overexpress')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:PDGFRB->GIST",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:PDGFRB->Glioblastoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:PI3KCA->Colorectal_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:PI3KCA->Glioblastoma",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:PI3KCA->NSCLC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:PTEN->AML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:PTEN->CML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:PTEN->GIST",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:PTEN->Melanoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'linked')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:PTEN->NSCLC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:PTEN->Ovarian_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:PTEN->Type2_Diabetes",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'linked')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:RAD51->CLL",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'mutation')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:RAD51->Colorectal_Cancer",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:RAD51->Ewing_Sarcoma",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:RAD51->HCC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:RAD51->NSCLC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:RAF1->AML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:RAF1->CLL",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:RAF1->GIST",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:RAF1->HCC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:RAF1->NSCLC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:RAF1->Ovarian_Cancer",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'mutation')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:RB1->CML",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:RB1->GIST",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:RB1->Melanoma",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:RET->HCC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:SF3B1->AML",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'mutation')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:SRC->RCC",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:STAT3->CLL",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:STAT3->CML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:STAT5->CLL",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:STAT5->CML",
+    "relation": "associated_with",
+    "gate": "REJECT",
+    "reason": "sentence does not mention both entities (STAT5, CML)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:STAT5A->CML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:STAT5B->CML",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:STAT5B->Colorectal_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:STAT5B->NSCLC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:STAT5B->Pancreatic_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:STAT5B->RCC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:TGFB1->Colorectal_Cancer",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:TP53->GIST",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'mutation')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:TP53->RCC",
+    "relation": "associated_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'associat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "associated_with:VEGFR2->CLL",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:VEGFR2->GIST",
+    "relation": "associated_with",
+    "gate": "REJECT",
+    "reason": "sentence does not mention both entities (VEGFR2, GIST)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "associated_with:VEGFR2->NSCLC",
+    "relation": "associated_with",
+    "gate": "HOLLOW",
+    "reason": "no 'associated_with' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "binds:STAG2->SMC1A",
+    "relation": "binds",
+    "gate": "HOLLOW",
+    "reason": "no 'binds' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "driver_of:BRAF->Melanoma",
+    "relation": "driver_of",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'promot')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "driver_of:FLT3->AML",
+    "relation": "driver_of",
+    "gate": "HOLLOW",
+    "reason": "no 'driver_of' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "driver_of:HIF1A->RCC",
+    "relation": "driver_of",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'promot')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "inhibits:ARF->MDM2",
+    "relation": "inhibits",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'inhib')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "inhibits:Alectinib->RET",
+    "relation": "inhibits",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'inhib')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "inhibits:Atropine->CHRM2",
+    "relation": "inhibits",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'inhib')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "inhibits:Atropine->CHRM3",
+    "relation": "inhibits",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'inhib')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "inhibits:Azelastine->HRH1",
+    "relation": "inhibits",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'downregulat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "inhibits:Bosutinib->LYN",
+    "relation": "inhibits",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'inhib')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "inhibits:Cisplatin->TOP2A",
+    "relation": "inhibits",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'knockdown')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "inhibits:Dabrafenib->BRAF",
+    "relation": "inhibits",
+    "gate": "REJECT",
+    "reason": "sentence does not mention both entities (Dabrafenib, BRAF)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "inhibits:Danicopan->CFD",
+    "relation": "inhibits",
+    "gate": "HOLLOW",
+    "reason": "no 'inhibits' keyword in sentence (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "inhibits:Deuruxolitinib->JAK3",
+    "relation": "inhibits",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'inhib')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "inhibits:Empagliflozin->SLC5A2",
+    "relation": "inhibits",
+    "gate": "HOLLOW",
+    "reason": "polarity conflict for 'inhibits' (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "inhibits:Imatinib->PDGFRA",
+    "relation": "inhibits",
+    "gate": "HOLLOW",
+    "reason": "polarity conflict for 'inhibits' (co-occurrence only)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "inhibits:Indomethacin->NFKB1",
+    "relation": "inhibits",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'inhib')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "inhibits:Itraconazole->MTOR",
+    "relation": "inhibits",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'inhib')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "inhibits:Mebendazole->BRAF",
+    "relation": "inhibits",
+    "gate": "REJECT",
+    "reason": "sentence does not mention both entities (Mebendazole, BRAF)",
+    "adjudicated": "VERIFIED",
+    "note": "directed, signed relation asserted in sentence (batch adjudication)"
+  },
+  {
+    "edge_id": "inhibits:PTEN->PIK3CA",
+    "relation": "inhibits",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'inhib')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "inhibits:Pirfenidone->TGFB1",
+    "relation": "inhibits",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'inhib')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "inhibits:TP53->CDK4",
+    "relation": "inhibits",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'inhib')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "inhibits:TP53->MYC",
+    "relation": "inhibits",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'suppress')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "phosphorylates:ATR->CHEK2",
+    "relation": "phosphorylates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'phosphorylat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "phosphorylates:ATR->TP53",
+    "relation": "phosphorylates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'phosphorylat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "phosphorylates:FLT3->RUNX1",
+    "relation": "phosphorylates",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'phosphorylat')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "synergizes_with:Everolimus->Erlotinib",
+    "relation": "synergizes_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'combin')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  },
+  {
+    "edge_id": "synergizes_with:Olaparib->Bevacizumab",
+    "relation": "synergizes_with",
+    "gate": "AGREE",
+    "reason": "relation-supported (keyword 'combin')",
+    "adjudicated": "COOCCUR",
+    "note": "co-occurrence/listing/ambiguity; directed relation not asserted"
+  }
+]
