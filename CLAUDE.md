@@ -279,6 +279,46 @@ Track B will need:
 - Patient/tissue context.
 - Design-specific validation metrics.
 
+## OPERADUM Decision Layer (2026-06-04)
+
+OPERADUM is vendored into this repo at `operadum/` (package resolves at
+`operadum/operadum/`). It is the constructive/decision dual of the KOMPOSOS
+scoring engine: where the oracle strategies *rank candidates on evidence*,
+OPERADUM ranks the **decision** — given a disease and a shortlist, which
+candidate to back, and what the best next action is — by folding evidence
+together with target engagement, structure binding, drug-likeness, and risk
+under a weighted resource algebra ("figure profile").
+
+What it is and is NOT:
+- It is a **prioritization/decision aid on top of Track A**, not a new evidence
+  source and not Track B drug-design capability. It does not change any AUROC.
+- The fold is the categorical content: across a candidate's applicable actions,
+  time/money **sum**, confidence **multiplies**, evidence strength is
+  **weakest-link**, risks **union**. Profiles (`DRUG_PORTFOLIO` default,
+  `EVIDENCE_FIRST`, `FASTEST_RECOVERY`) only reweight those figures.
+- Structure binding uses OPERADUM's **fallback** unless Boltz is installed;
+  graph / target-engagement (ABPP) / drug-likeness read this checkout's real
+  data via the same bridges Track A uses (`abpp_bridge.py`, `boltz2_bridge.py`,
+  `data/drugs/drug_properties.py`, `validation/repurposing_benchmark.py`).
+- "no feasible action" is a deliberate verdict (evidence below the 0.8 gate),
+  not a bug — i.e. not currently backable without gathering more evidence.
+
+Code:
+- `operadum/operadum/integrations/drug_batch_ranker.py` — `rank_candidates`,
+  `Candidate`, `RankedSlate` (cross-candidate ranking + best next action).
+- `operadum/operadum/integrations/komposos_drug_world.py` — evidence client +
+  one-step world model over this checkout's data.
+- `operadum/operadum/core/enrichment.py` — `DRUG_PORTFOLIO` figure profile.
+- Delivered in the Streamlit app (`app.py`) as the **"Decision ranking
+  (OPERADUM)"** sidebar mode; explained on the **How Scoring Works** page.
+- User guide: `docs/OPERADUM_DECISION_LAYER.md`.
+
+Run the app:
+
+```powershell
+streamlit run app.py    # from the repo root; pick "Decision ranking (OPERADUM)"
+```
+
 ## Architecture Summary
 
 Core layers:

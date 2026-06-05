@@ -29,6 +29,17 @@ not clinical, not prospective. (Track B, de-novo drug design, is a goal, not val
 DB: 2,329 morphisms · 78 drugs · 20 diseases · 366 biological entities · 44 FDA
 `treats` positives. DB SHA256 `09F849850C0E97051F9F2D0A2247FF24CDCC9D25A93BC0453C3C0B89DC32F6D3`.
 
+## Interactive app & decision ranking
+
+`streamlit run app.py` (from the repo root) opens the triage UI. Modes:
+**Disease-first** / **Drug-first** / **Pair detail** rank and explain candidates
+on graph evidence. **Decision ranking (OPERADUM)** takes a KOMPOSOS shortlist and
+re-ranks the *decision* — which candidate to back, plus its best next action —
+folding evidence with target engagement, structure binding, drug-likeness, and
+risk under a chosen profile. It is a prioritization aid on Track A, not a new
+evidence source; lower decision scores are better. See
+`docs/OPERADUM_DECISION_LAYER.md` and the in-app **How Scoring Works** page.
+
 ## Honest limits (read before citing)
 
 - **Not clinical / not prospective.** No safety, PK, toxicity, patient context.

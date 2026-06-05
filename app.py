@@ -19,6 +19,9 @@ from pathlib import Path
 import streamlit as st
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+# Vendored OPERADUM decision engine (PHARM/operadum/operadum). Adding the repo
+# root to the path lets `import operadum` resolve the inner package.
+sys.path.insert(0, str(Path(__file__).resolve().parent / "operadum"))
 
 from validation.repurposing_benchmark import (
     DB_PATH,
@@ -42,6 +45,23 @@ from validation.triage import (
     triage_disease,
     triage_drug,
 )
+
+# OPERADUM decision layer is optional: if the vendored copy is missing or fails
+# to import, the rest of the app still runs and the OPERADUM mode is hidden.
+try:
+    from operadum import DRUG_PORTFOLIO, EVIDENCE_FIRST, FASTEST_RECOVERY
+    from operadum.integrations.komposos_drug_world import KompososDrugEvidenceClient
+    from operadum.integrations.drug_batch_ranker import Candidate, rank_candidates
+
+    OPERADUM_AVAILABLE = True
+    OPERADUM_PROFILES = {
+        "Portfolio (evidence + safety + developability)": DRUG_PORTFOLIO,
+        "Evidence-first": EVIDENCE_FIRST,
+        "Fastest next step": FASTEST_RECOVERY,
+    }
+except Exception as _operadum_exc:  # pragma: no cover - environment dependent
+    OPERADUM_AVAILABLE = False
+    OPERADUM_IMPORT_ERROR = str(_operadum_exc)
 
 
 # ── Cache heavy loads ────────────────────────────────────────────────
@@ -131,10 +151,12 @@ st.set_page_config(
 st.sidebar.title("KOMPOSOS-IV-PHARM")
 st.sidebar.caption("Categorical Drug Repurposing")
 
-mode = st.sidebar.radio(
-    "Mode",
-    ["Disease-first", "Drug-first", "Pair detail", "How Scoring Works", "About"],
-)
+_modes = ["Disease-first", "Drug-first", "Pair detail"]
+if OPERADUM_AVAILABLE:
+    _modes.append("Decision ranking (OPERADUM)")
+_modes += ["How Scoring Works", "About"]
+
+mode = st.sidebar.radio("Mode", _modes)
 
 g = load_graph()
 
@@ -176,6 +198,31 @@ def _top_trace(chains: list) -> str:
 def _benchmark_label_rate(score: float) -> float | None:
     """Return benchmark-calibrated label rate for a ranking score."""
     return calibrate_score(score, g.get("ranking_calibration"))
+
+
+def _target_from_result(result) -> str | None:
+    """Pull the mechanistic target (the protein in a drug->protein->disease path).
+
+    The top compositional chain's first hop ends at the intermediate node, which
+    for a mechanistic path is the drug's target. Returns None when no such hop
+    exists, in which case OPERADUM just uses fewer applicable actions.
+    """
+    chains = result.get("chains", [])
+    if not chains:
+        return None
+    edges = chains[0].get("edges", [])
+    if len(edges) >= 2:
+        return edges[0].get("target")
+    return None
+
+
+if OPERADUM_AVAILABLE:
+
+    @st.cache_resource(show_spinner=False)
+    def operadum_client():
+        """OPERADUM evidence client pointed at THIS PHARM checkout's data."""
+        pharm_root = str(Path(__file__).resolve().parent)
+        return KompososDrugEvidenceClient(pharm_root, use_komposos=True)
 
 
 def render_results_table(results):
@@ -633,6 +680,88 @@ if mode == "Disease-first":
             st.markdown("---")
 
 
+# ── Decision ranking (OPERADUM) ──────────────────────────────────────
+
+elif mode == "Decision ranking (OPERADUM)":
+    st.title("Decision ranking (OPERADUM)")
+    st.caption(
+        "KOMPOSOS triage ranks candidates on graph evidence. OPERADUM re-ranks "
+        "that same shortlist under a decision profile — folding in target "
+        "engagement, structure binding, drug-likeness and risk — and names the "
+        "best next action for each."
+    )
+    with st.expander("How to read this (score direction, profiles, gating)"):
+        st.markdown("""
+- **Decision Score: lower is better, negative is good.** Strong candidates land
+  clearly negative; weak ones sit near zero. Scores are only comparable *within*
+  one ranking, not across diseases or profiles.
+- **Profile** reweights the figures: *Portfolio* balances evidence + safety +
+  developability (best default), *Evidence-first* lets evidence dominate,
+  *Fastest next step* favours the quickest move.
+- **"no feasible action"** = with the evidence requirement on, this candidate's
+  best next step can't clear the 0.8 bar yet -- not currently backable without
+  more evidence. Uncheck the box to see its unconstrained next step.
+
+Full details under **How Scoring Works -> Decision ranking (OPERADUM)**.
+""")
+
+    disease = st.selectbox("Select disease", g["diseases"])
+    shortlist_n = st.slider("Shortlist size (from KOMPOSOS triage)", 3, 25, 8)
+    profile_name = st.selectbox("Decision profile", list(OPERADUM_PROFILES))
+    require_evidence = st.checkbox(
+        "Require strong evidence (>= 0.8) for the next action", value=True
+    )
+
+    if st.button("Rank candidates", type="primary"):
+        with st.spinner("KOMPOSOS shortlist -> OPERADUM decision ranking..."):
+            triaged = triage_disease(
+                g["category"], g["strategies"], disease, g["positives"],
+                g["provenance_index"], top_n=shortlist_n,
+            )
+            candidates = [
+                Candidate(drug=r["drug"], target=_target_from_result(r))
+                for r in triaged
+            ]
+            requirements = {"evidence_strength": 0.8} if require_evidence else None
+            slate = rank_candidates(
+                disease,
+                candidates,
+                client=operadum_client(),
+                monoid=OPERADUM_PROFILES[profile_name],
+                requirements=requirements,
+            )
+
+        if slate.winner is not None:
+            st.success(
+                f"Back **{slate.winner.candidate.drug}** "
+                f"(score {slate.winner.score:+.2f}) — "
+                f"next: {slate.winner.best_action_name or 'no feasible action'}"
+            )
+
+        rows = []
+        for rank, a in enumerate(slate.assessments, start=1):
+            ev = a.evidence
+            rows.append({
+                "Rank": rank,
+                "Drug": a.candidate.drug,
+                "Target": a.candidate.target or "-",
+                "Decision Score": round(a.score, 2),
+                "Next Action": a.best_action_name or "no feasible action",
+                "Graph": round(ev["graph"].score, 2) if "graph" in ev else "-",
+                "Engagement": round(ev["engagement"].score, 2) if "engagement" in ev else "-",
+                "Binding": round(ev["binding"].score, 2) if "binding" in ev else "-",
+                "Drug-likeness": round(ev["druglike"].score, 2) if "druglike" in ev else "-",
+            })
+        st.caption(f"Profile: {slate.monoid_name} — lower decision score is better.")
+        st.dataframe(rows, use_container_width=True, hide_index=True)
+
+        st.markdown(
+            "*Note: structure binding uses OPERADUM's fallback unless Boltz is "
+            "installed. Graph / engagement / drug-likeness read this checkout's "
+            "real data.*"
+        )
+
+
 # ── Drug-first ───────────────────────────────────────────────────────
 
 elif mode == "Drug-first":
@@ -952,6 +1081,54 @@ Disease path, then returns the best score across those disease-linked targets.
 - AUROC of 0.9705 on the current strict 44-positive benchmark does not guarantee real-world
   performance
 - The system bridges knowledge silos; it does not generate new knowledge
+""")
+
+    if OPERADUM_AVAILABLE:
+        with st.expander("Decision ranking (OPERADUM): scores, profiles, gating"):
+            st.markdown("""
+The **Decision ranking (OPERADUM)** mode answers a different question from the
+rest of this app. KOMPOSOS triage ranks candidates on *graph evidence*. OPERADUM
+takes that same shortlist and ranks the **decision**: which candidate to back,
+folding evidence together with target engagement, structure binding,
+drug-likeness, and risk -- then it names the best **next action** for each.
+
+**Reading the Decision Score (lower is better, and negative is good):**
+
+- The score is a single weighted number rolled up from every applicable
+  evidence/action figure under the chosen profile. Figures you want to
+  *maximize* (evidence strength, confidence, drug-likeness) count *negatively*,
+  so a strong candidate lands at a clearly negative score (e.g. -75), while a
+  weak one sits near zero (e.g. -10). Sort is ascending: top row is the pick.
+- The numbers are only meaningful *relative to each other within one ranking* --
+  don't compare a score across diseases or profiles.
+
+**How the figures combine (not a simple average):**
+
+- Time and money **add up** across actions.
+- Confidence **multiplies** (you are only as sure as all independent checks
+  agree).
+- Evidence strength is **weakest-link** (the shakiest link caps the chain).
+- Risks **accumulate** like a probability union (more ways to fail = more risk).
+
+**The three profiles** just reweight those figures:
+
+- **Portfolio** -- balances evidence, safety, and developability, and nearly
+  cancels the fixed assay cost every candidate shares, so ranking turns on what
+  *distinguishes* candidates. Good default for "which one do we back?".
+- **Evidence-first** -- lets evidence strength and confidence dominate.
+- **Fastest next step** -- favours the quickest cheapest move.
+
+**"no feasible action"** is a verdict, not a bug. With *Require strong evidence*
+on, any candidate whose best next step can't clear the 0.8 evidence bar is shown
+as having no feasible action -- i.e. *not currently backable without gathering
+more evidence first*. Turn the checkbox off to see the unconstrained next step.
+
+**Honest limits:** structure binding uses OPERADUM's fallback unless Boltz is
+installed (graph / target-engagement / drug-likeness read this checkout's real
+data). The target column is inferred from the top mechanistic chain and may be
+blank when no such path exists -- OPERADUM then ranks on fewer actions. Same
+caveats as the rest of the app: this informs prioritization, it does not replace
+clinical judgment.
 """)
 
 
