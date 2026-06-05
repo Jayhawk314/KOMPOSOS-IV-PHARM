@@ -94,6 +94,20 @@ def load_graph():
     pmids = set()
     provenance_rows = 0
     quantitative_edges = 0  # rows with a populated structured quantitative_value column
+    tier_counts: dict[str, int] = {}
+    # Data-source signatures scanned from provenance/metadata text (edges overlap).
+    source_patterns = {
+        "ChEMBL": r"ChEMBL",
+        "PubMed": r"PMID|PubMed",
+        "ESMC": r"ESM",
+        "KEGG": r"KEGG",
+        "FDA": r"\bFDA\b",
+        "STRING": r"STRING|PPI",
+        "ABPP": r"ABPP",
+        "cBioPortal": r"cBioPortal|genomic",
+    }
+    source_counts = {name: 0 for name in source_patterns}
+    compiled_sources = {n: re.compile(p, re.IGNORECASE) for n, p in source_patterns.items()}
     with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute("PRAGMA table_info(morphisms)")
@@ -103,16 +117,26 @@ def load_graph():
             if "quantitative_value" in morphism_columns
             else "NULL AS quantitative_value"
         )
-        cursor.execute(
-            f"SELECT provenance, metadata, {quant_expr} FROM morphisms"
+        tier_expr = (
+            "evidence_tier"
+            if "evidence_tier" in morphism_columns
+            else "NULL AS evidence_tier"
         )
-        for provenance, metadata, quantitative_value in cursor.fetchall():
+        cursor.execute(
+            f"SELECT provenance, metadata, {quant_expr}, {tier_expr} FROM morphisms"
+        )
+        for provenance, metadata, quantitative_value, evidence_tier in cursor.fetchall():
             text = f"{provenance or ''} {metadata or ''}"
             pmids.update(re.findall(r"PMID:?\s*(\d+)", text))
             if provenance and provenance != "unknown":
                 provenance_rows += 1
             if quantitative_value is not None:
                 quantitative_edges += 1
+            if evidence_tier:
+                tier_counts[evidence_tier] = tier_counts.get(evidence_tier, 0) + 1
+            for name, pat in compiled_sources.items():
+                if pat.search(text):
+                    source_counts[name] += 1
 
     # Experimental potency values (IC50/engagement) are not stored on graph edges;
     # they live in the ABPP dataset and are injected by the binding strategy at
@@ -150,6 +174,8 @@ def load_graph():
         "provenance_rows": provenance_rows,
         "quantitative_edges": quantitative_edges,
         "abpp_measurements": abpp_measurements,
+        "tier_counts": tier_counts,
+        "source_counts": source_counts,
         "ranking_calibration": ranking_calibration,
     }
 
@@ -177,11 +203,25 @@ mode = st.sidebar.radio("Mode", _modes)
 
 g = load_graph()
 
+_tier_order = ["MEASURED", "ESTABLISHED", "INFERRED", "HYPOTHESIS"]
+_tiers = g.get("tier_counts", {})
+_tier_str = " · ".join(
+    f"{t.title()} {_tiers[t]}" for t in _tier_order if _tiers.get(t)
+) or "n/a"
+_sources = g.get("source_counts", {})
+_source_str = " · ".join(
+    f"{name} {n}" for name, n in sorted(
+        _sources.items(), key=lambda kv: kv[1], reverse=True
+    ) if n
+) or "n/a"
+
 st.sidebar.markdown("---")
 st.sidebar.markdown(
     f"**Graph**: {g['n_objects']} objects, {g['n_morphisms']} edges\n\n"
     f"**Positives**: {g['n_positives']} FDA-approved (48 verified)\n\n"
     f"**Self-check**: {g['check_recovered']}/{g['check_total']} recoverable\n\n"
+    f"**Evidence tiers**: {_tier_str}\n\n"
+    f"**Sources** (edges may cite several): {_source_str}\n\n"
     f"**Source fields**: {g['provenance_rows']}/{g['n_morphisms']} edges, "
     f"{g['pmid_count']} PMID IDs\n\n"
     f"**Quantitative evidence**: {g['abpp_measurements']} experimental ABPP "
