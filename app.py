@@ -93,7 +93,7 @@ def load_graph():
 
     pmids = set()
     provenance_rows = 0
-    quantitative_edges = 0
+    quantitative_edges = 0  # rows with a populated structured quantitative_value column
     with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute("PRAGMA table_info(morphisms)")
@@ -114,6 +114,22 @@ def load_graph():
             if quantitative_value is not None:
                 quantitative_edges += 1
 
+    # Experimental potency values (IC50/engagement) are not stored on graph edges;
+    # they live in the ABPP dataset and are injected by the binding strategy at
+    # scoring time. Report that real, defensible count rather than the empty
+    # structured column.
+    abpp_measurements = 0
+    abpp_path = Path(__file__).resolve().parent / "data" / "abpp_results.json"
+    try:
+        import json
+        abpp_data = json.loads(abpp_path.read_text())
+        records = abpp_data if isinstance(abpp_data, list) else abpp_data.get(
+            "results", abpp_data
+        )
+        abpp_measurements = len(records)
+    except Exception:
+        abpp_measurements = 0
+
     return {
         "category": category,
         "drugs": drugs,
@@ -133,6 +149,7 @@ def load_graph():
         "pmid_count": len(pmids),
         "provenance_rows": provenance_rows,
         "quantitative_edges": quantitative_edges,
+        "abpp_measurements": abpp_measurements,
         "ranking_calibration": ranking_calibration,
     }
 
@@ -167,7 +184,14 @@ st.sidebar.markdown(
     f"**Self-check**: {g['check_recovered']}/{g['check_total']} recoverable\n\n"
     f"**Source fields**: {g['provenance_rows']}/{g['n_morphisms']} edges, "
     f"{g['pmid_count']} PMID IDs\n\n"
-    f"**Quantitative fields**: {g['quantitative_edges']} edges with IC50/HR/mutation freq"
+    f"**Quantitative evidence**: {g['abpp_measurements']} experimental ABPP "
+    f"IC50/engagement measurements"
+)
+st.sidebar.caption(
+    "Experimental potency values are integrated by the binding strategy from the "
+    f"ABPP dataset, not stored on graph edges; the on-edge quantitative_value "
+    f"column is {g['quantitative_edges']}/{g['n_morphisms']} populated "
+    "(edge-level numeric extraction is an open task)."
 )
 st.sidebar.caption(
     f"Live strategy profile: {len(g['strategy_names'])} modules; "
