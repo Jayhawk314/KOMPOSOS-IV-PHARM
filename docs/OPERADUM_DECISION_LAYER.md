@@ -37,8 +37,12 @@ In the sidebar pick **Decision ranking (OPERADUM)**, then:
    must clear an evidence bar.
 
 Press **Rank candidates**. You get a winner banner, a ranked table (decision
-score, next action, and the raw per-source evidence scores), and notes on
-limits.
+score, next action, and the raw per-source evidence scores), a **Download
+Decision Report** button (a self-contained markdown record — recommendation,
+full ranked table, per-candidate evidence, and the honest-limits footer, dated
+and stamped with the profile and gate, suitable as an audit trail for a
+prioritization decision), and a **Candidate Details** section expanding the
+top candidates' evidence and next-action verdict.
 
 ## Reading the results
 
