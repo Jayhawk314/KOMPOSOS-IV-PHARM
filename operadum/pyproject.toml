@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "operadum"
 version = "0.1.0"
-description = "OPERADUM: A Categorical Design Engine (the constructive mirror of KOMPOSOS-IV)"
+description = "OPERADUM: A categorical design engine with PRONOIA prediction contracts"
 readme = "README.md"
 license = {text = "LicenseRef-Proprietary-Commercial"}
 requires-python = ">=3.10"
@@ -20,7 +20,7 @@ dev = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["operadum*"]
+include = ["domain_core*", "operadum*", "pronoia*"]
 
 [tool.pytest.ini_options]
-testpaths = ["operadum/tests"]
+testpaths = ["operadum/tests", "tests"]

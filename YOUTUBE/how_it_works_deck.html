@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOMPOSOS-IV-PHARM — How It Works</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/monokai.css">
+<style>
+  :root{--ink:#e6edf3;--muted:#9aa7b4;--accent:#34d399;--accent2:#38bdf8;--bad:#f87171;--warn:#fbbf24;--p:#c084fc;}
+  .reveal{font-family:Inter,Segoe UI,system-ui,sans-serif;color:var(--ink);text-align:left;}
+  .reveal h1,.reveal h2{color:#fff;font-weight:700;text-transform:none;}
+  .reveal h1{font-size:2.2em;line-height:1.07;} .reveal h2{font-size:1.6em;}
+  .reveal .kicker{color:var(--accent2);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:.5em;}
+  .reveal .accent{color:var(--accent);} .reveal .accent2{color:var(--accent2);} .reveal .bad{color:var(--bad);} .reveal .warn{color:var(--warn);} .reveal .p{color:var(--p);}
+  .reveal .muted{color:var(--muted);} .reveal .big{font-size:1.2em;line-height:1.4;} .reveal small{color:var(--muted);}
+  .reveal table{font-size:.6em;width:100%;border-collapse:collapse;}
+  .reveal th{color:var(--accent2);border-bottom:1px solid #243140;text-align:left;padding:.35em .5em;}
+  .reveal td{border-bottom:1px solid #161e2a;padding:.35em .5em;}
+  .reveal .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:.4em;}
+  .reveal .card{border-radius:14px;padding:16px 20px;}
+  .card.ok{background:rgba(52,211,153,.10);border:1px solid rgba(52,211,153,.4);}
+  .card.no{background:rgba(251,191,36,.10);border:1px solid rgba(251,191,36,.4);}
+  .reveal .card h3{margin:0 0 .3em;font-size:.78em;} .reveal .card ul{font-size:.6em;margin:0;line-height:1.5;}
+  .reveal pre{box-shadow:none;font-size:.55em;} .reveal pre code{background:#0d1420;border:1px solid #1f2a38;border-radius:12px;padding:14px 16px;}
+  .reveal .footer{position:fixed;bottom:10px;left:18px;color:#3a4756;font-size:14px;}
+  .nodeC{fill:#121a26;stroke-width:3;} .nlabel{fill:#fff;font-weight:800;font-size:18px;text-anchor:middle;font-family:Inter;}
+  .edge{stroke:#38bdf8;stroke-width:4;fill:none;stroke-dasharray:200;stroke-dashoffset:200;animation:draw 1s ease forwards;} .edge.e2{animation-delay:1s;}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .pulse{fill:#fff;filter:drop-shadow(0 0 7px #38bdf8);}
+</style>
+</head>
+<body><div class="reveal"><div class="slides">
+
+<section class="center" data-background-gradient="radial-gradient(circle at 50% 30%, #14203a, #0b0f17 70%)">
+  <div class="kicker">KOMPOSOS-IV-PHARM</div>
+  <h1>Drug repurposing that <span class="accent">shows its work</span></h1>
+  <p class="big muted">Which already-approved drug might also treat this disease — and through what mechanism. A categorical reasoning engine over a curated drug–target–disease graph.</p>
+</section>
+
+<section>
+  <div class="kicker">The one job</div>
+  <h2>Find a <span class="accent">new use</span> for an <span class="accent">existing</span> drug</h2>
+  <p class="big">Repurposing an approved drug skips years of safety work — if you can find the right match and explain <em>why</em> it should work.</p>
+  <ul class="big">
+    <li class="fragment">Rank existing drugs for a disease — with a mechanistic reason.</li>
+    <li class="fragment">Every candidate traces a path: <span class="accent2">Drug → Protein → Disease.</span></li>
+    <li class="fragment">Not a black box, not an LLM guess — a traceable chain.</li>
+  </ul>
+</section>
+
+<section>
+  <div class="kicker">The core idea</div>
+  <h2>Drugs, proteins, diseases as a <span class="accent">graph you can reason over</span></h2>
+  <svg viewBox="0 0 900 230" style="width:100%;height:220px">
+    <path class="edge"  d="M160,115 L390,115"/>
+    <path class="edge e2" d="M510,115 L740,115"/>
+    <circle class="pulse" r="8"><animateMotion dur="2.4s" repeatCount="indefinite" path="M120,115 L420,115 L780,115"/></circle>
+    <circle class="nodeC" style="stroke:#34d399" cx="120" cy="115" r="42"/><text class="nlabel" x="120" y="120">Drug</text>
+    <circle class="nodeC" style="stroke:#38bdf8" cx="450" cy="115" r="42"/><text class="nlabel" x="450" y="120">Protein</text>
+    <circle class="nodeC" style="stroke:#c084fc" cx="780" cy="115" r="42"/><text class="nlabel" x="780" y="120">Disease</text>
+  </svg>
+  <p class="big">Known facts are arrows: <em>drug inhibits protein</em>, <em>protein drives disease</em>. <span class="accent">Compose</span> them and you've derived a candidate — with the mechanism attached. Yoneda/Rezk also find drug "look-alikes" (e.g. the MEK or BRAF inhibitor classes).</p>
+</section>
+
+<section>
+  <div class="kicker">The data · a knowledge graph</div>
+  <h2>Not a table — a <span class="accent">web of facts</span> you can follow</h2>
+  <svg viewBox="0 0 900 280" style="height:260px;font-family:Inter">
+    <g stroke="#2f3e51" stroke-width="1.6">
+      <line x1="150" y1="70"  x2="440" y2="60"/><line x1="150" y1="70" x2="440" y2="130"/>
+      <line x1="150" y1="135" x2="440" y2="130"/><line x1="150" y1="200" x2="440" y2="190"/>
+      <line x1="150" y1="200" x2="440" y2="250"/>
+      <line x1="480" y1="60"  x2="760" y2="80"/><line x1="480" y1="130" x2="760" y2="80"/>
+      <line x1="480" y1="130" x2="760" y2="155"/><line x1="480" y1="190" x2="760" y2="155"/>
+      <line x1="480" y1="250" x2="760" y2="225"/>
+    </g>
+    <g><animate attributeName="opacity" values="0.65;1;0.65" dur="3s" repeatCount="indefinite"/>
+      <g fill="#34d399"><circle cx="150" cy="70" r="13"/><circle cx="150" cy="135" r="13"/><circle cx="150" cy="200" r="13"/></g>
+      <g fill="#38bdf8"><circle cx="460" cy="60" r="13"/><circle cx="460" cy="130" r="13"/><circle cx="460" cy="190" r="13"/><circle cx="460" cy="250" r="13"/></g>
+      <g fill="#c084fc"><circle cx="775" cy="80" r="13"/><circle cx="775" cy="155" r="13"/><circle cx="775" cy="225" r="13"/></g>
+    </g>
+    <text x="150" y="240" fill="#34d399" font-size="15" font-weight="800" text-anchor="middle">drugs</text>
+    <text x="460" y="285" fill="#38bdf8" font-size="15" font-weight="800" text-anchor="middle">proteins</text>
+    <text x="775" y="265" fill="#c084fc" font-size="15" font-weight="800" text-anchor="middle">diseases</text>
+  </svg>
+  <p class="big"><b class="accent">78 drugs</b> · <b class="accent2">366 proteins</b> · <b class="p">20 diseases</b> · 2,178 connections · 44 proven drug→disease links.</p>
+  <p class="muted">A knowledge graph = every node is a thing, every edge a verified fact — so the engine can <em>follow chains</em>, not just look things up.</p>
+</section>
+
+<section>
+  <div class="kicker">One way it reasons · Kan extension
+    <span style="font-size:.45em;color:#9aa7b4;border:1px solid #243140;border-radius:999px;padding:.1em .5em;margin-left:.3em">live &#183; &#8776;0.20 weight</span></div>
+  <h2>Best-supported guess from <span class="accent">everything around it</span></h2>
+  <svg viewBox="0 0 900 260" style="height:230px;font-family:Inter">
+    <g stroke="#38bdf8" stroke-width="3" fill="none" marker-end="url(#a)">
+      <line x1="150" y1="50"  x2="380" y2="115"/><line x1="150" y1="130" x2="380" y2="130"/><line x1="150" y1="210" x2="380" y2="145"/>
+    </g>
+    <line x1="520" y1="130" x2="740" y2="130" stroke="#34d399" stroke-width="4" marker-end="url(#ag)"/>
+    <circle class="pulse" r="7"><animateMotion dur="2.4s" repeatCount="indefinite" path="M520,130 L740,130"/></circle>
+    <g font-size="13" font-weight="700" text-anchor="middle">
+      <circle cx="150" cy="50" r="26" fill="#121a26" stroke="#2f3e51" stroke-width="2"/><text x="150" y="55" fill="#fff">target 1</text>
+      <circle cx="150" cy="130" r="26" fill="#121a26" stroke="#2f3e51" stroke-width="2"/><text x="150" y="135" fill="#fff">target 2</text>
+      <circle cx="150" cy="210" r="26" fill="#121a26" stroke="#2f3e51" stroke-width="2"/><text x="150" y="215" fill="#fff">target 3</text>
+      <circle cx="450" cy="130" r="40" fill="#121a26" stroke="#38bdf8" stroke-width="3"/><text x="450" y="135" fill="#fff" font-size="22" font-weight="800">?</text>
+      <circle cx="775" cy="130" r="34" fill="#121a26" stroke="#c084fc" stroke-width="3"/><text x="775" y="135" fill="#fff">disease</text>
+    </g>
+    <defs>
+      <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#38bdf8"/></marker>
+      <marker id="ag" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#34d399"/></marker>
+    </defs>
+  </svg>
+  <p class="big">Take everything the drug already connects to — its known targets — and combine them (a weighted colimit) into the <span class="accent">best-supported extension</span> to a new disease.</p>
+  <p class="muted">Like filling a gap in a map from all the points around it. PHARM really uses this. <span style="color:#38bdf8">pointwise Kan extension</span></p>
+</section>
+
+<section>
+  <div class="kicker">Does it work? — naming the protocol (always)</div>
+  <h2>Strict, leak-controlled benchmark</h2>
+  <table>
+    <tr><th>Test (view / protocol)</th><th>AUROC</th><th>Note</th></tr>
+    <tr><td>full_typed / remove_direct_labels</td><td><b class="accent">0.949</b> [0.91–0.97]</td><td>Hits@5 = 1.00</td></tr>
+    <tr><td>LOOCV</td><td>0.976</td><td>leave-one-out</td></tr>
+    <tr><td>temporal holdout (approvals &gt;2013)</td><td>0.978</td><td>future-date split</td></tr>
+    <tr><td>disease-level holdout</td><td>0.950</td><td>mean across 7 diseases</td></tr>
+    <tr><td>strongest baseline</td><td>~0.63</td><td>so +0.34 over baseline = real signal</td></tr>
+  </table>
+  <p class="fragment big" style="margin-top:.5em">Beating a 0.63 baseline by ~0.34 on the <em>same</em> graph is the point — not the absolute number.</p>
+</section>
+
+<section>
+  <div class="kicker">The honest part</div>
+  <h2>What's solid — and what <span class="warn">isn't</span></h2>
+  <div class="grid2">
+    <div class="card ok fragment"><h3 class="accent">✓ Solid</h3><ul>
+      <li>Caught &amp; <b>retired an inflated 0.969</b> — it had label leakage. The 0.949 is the corrected, isolated number.</li>
+      <li>Beats every classical baseline on the same graph.</li>
+      <li>Every positive has a mechanistic path; candidates come with evidence chains.</li>
+    </ul></div>
+    <div class="card no fragment"><h3 class="warn">~ Limits</h3><ul>
+      <li><b>Research prototype — NOT clinical</b> validation.</li>
+      <li>Small curated graph: 78 drugs, 20 diseases, 44 approved positives.</li>
+      <li>External set (Hetionet) is weaker: AUROC 0.63, low precision-at-top.</li>
+      <li>Provenance is tiered: 594 relation-verified vs 215 co-occurrence — <em>presence ≠ verification.</em></li>
+    </ul></div>
+  </div>
+  <p class="fragment muted" style="margin-top:.3em">Saying this is what makes the 0.949 believable.</p>
+</section>
+
+<section>
+  <div class="kicker">What you get</div>
+  <h2>Ranked candidates <span class="accent">with the receipts</span></h2>
+  <p class="big">For a disease, it ranks drugs and shows the <span class="accent2">Drug → Protein → Disease</span> path, the strategy votes, and source-linked evidence — then cross-checks ClinicalTrials.gov (≈63% of top candidates are already in trials, 7% genuinely novel).</p>
+  <p class="muted">A triage tool for "what's worth a closer look," with the reasoning exposed — not a treatment recommendation.</p>
+</section>
+
+<section>
+  <div class="kicker">Scope</div>
+  <h2>Two parts</h2>
+  <div class="grid2">
+    <div class="card ok"><h3 class="accent">Repurposing</h3><ul><li>New uses for already-approved drugs.</li><li>The validated part — the numbers above.</li><li>Graph-based: composition + Yoneda/Rezk + Kan.</li></ul></div>
+    <div class="card no"><h3 class="warn">Drug design</h3><ul><li>Designing and scoring new molecules from scratch.</li><li>In progress — early, not yet validated.</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <div class="kicker">Run it</div>
+  <h2>Reproduce the number yourself</h2>
+  <pre><code class="language-bash">python validation/repurposing_benchmark.py \
+  --view full_typed --protocol remove_direct_labels --baselines --ci
+
+python validation/triage.py Melanoma            # rank drugs for a disease
+python validation/triage.py --drug Sorafenib    # rank diseases for a drug</code></pre>
+  <p class="muted">Open it, run it, tell me where it's wrong.</p>
+</section>
+
+</div></div>
+<div class="footer">KOMPOSOS-IV-PHARM · drug repurposing</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+<script>Reveal.initialize({hash:true,transition:'slide',width:1280,height:720,margin:0.06,plugins:[RevealHighlight]});</script>
+</body>
+</html>

@@ -22,6 +22,21 @@ It is a **prioritization aid layered on Track A**. It is not a new evidence
 source, not a safety/PK model, and not de-novo drug design (Track B). It does
 not change any benchmark AUROC.
 
+## Relation to PRONOIA
+
+The UI now has a separate **Prediction audit (PRONOIA)** mode. Do not read it as
+another OPERADUM profile; it answers a different question.
+
+| Layer | UI mode | Question it answers |
+|---|---|---|
+| KOMPOSOS-IV-PHARM | Disease-first / Drug-first / Pair detail | What graph evidence and mechanistic paths support this pair? |
+| OPERADUM | Decision ranking (OPERADUM) | Given a shortlist, which candidate/action should we back next under a decision profile? |
+| PRONOIA | Prediction audit (PRONOIA) | Is the candidate treatment claim grounded by hidden-label evidence, and what is the auditable prediction trail? |
+
+PRONOIA uses the same KOMPOSOS PHARM graph and provenance, but it reports
+`BACK`/`ABSTAIN`, PHARM v2 score, grounding, raw MDL gain, and provenance-rich
+evidence packets. OPERADUM remains the action/prioritization layer.
+
 ## Running it
 
 ```powershell
@@ -43,6 +58,11 @@ full ranked table, per-candidate evidence, and the honest-limits footer, dated
 and stamped with the profile and gate, suitable as an audit trail for a
 prioritization decision), and a **Candidate Details** section expanding the
 top candidates' evidence and next-action verdict.
+
+For prediction audit reports, use **Prediction audit (PRONOIA)** instead. That
+mode exports a separate markdown report with PRONOIA score, grounding,
+`BACK`/`ABSTAIN`, top mechanism/path evidence, PMIDs/FDA provenance, and honest
+limits.
 
 ## Reading the results
 
@@ -107,6 +127,8 @@ candidate on fewer actions.
 
 ## For developers
 
+- Bundle/import architecture:
+  `docs/OPERADUM_PRONOIA_BUNDLE.md`.
 - Ranking API: `operadum/operadum/integrations/drug_batch_ranker.py`
   (`rank_candidates`, `Candidate`, `RankedSlate`).
 - Evidence client + world model:

@@ -22,6 +22,21 @@ from .komposos_drug_world import (
     initial_drug_state,
     build_drug_world_model,
 )
+from .komposos_pharm_evidence import (
+    DEFAULT_KOMPOSOS_PHARM_PATH,
+    KompososPharmEvidenceProvider,
+    PharmPair,
+    pair_from_candidate,
+    pharm_candidate,
+)
+from .pronoia_pharm_loop import (
+    PharmScoreConfig,
+    PharmPredictionLoop,
+    PharmPredictionSlate,
+    pharm_evidence_strength,
+    rank_pharm_candidates_with_pronoia,
+    score_pharm_report_v2,
+)
 from .drug_batch_ranker import (
     Candidate,
     CandidateAssessment,
@@ -51,4 +66,15 @@ __all__ = [
     "RankedSlate",
     "assess_candidate",
     "rank_candidates",
+    "DEFAULT_KOMPOSOS_PHARM_PATH",
+    "KompososPharmEvidenceProvider",
+    "PharmPair",
+    "pair_from_candidate",
+    "pharm_candidate",
+    "PharmPredictionLoop",
+    "PharmScoreConfig",
+    "PharmPredictionSlate",
+    "pharm_evidence_strength",
+    "rank_pharm_candidates_with_pronoia",
+    "score_pharm_report_v2",
 ]

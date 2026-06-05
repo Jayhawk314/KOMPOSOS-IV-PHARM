@@ -86,6 +86,21 @@ from .integrations.komposos_drug_world import (
     initial_drug_state,
     build_drug_world_model,
 )
+from .integrations.komposos_pharm_evidence import (
+    DEFAULT_KOMPOSOS_PHARM_PATH,
+    KompososPharmEvidenceProvider,
+    PharmPair,
+    pair_from_candidate,
+    pharm_candidate,
+)
+from .integrations.pronoia_pharm_loop import (
+    PharmScoreConfig,
+    PharmPredictionLoop,
+    PharmPredictionSlate,
+    pharm_evidence_strength,
+    rank_pharm_candidates_with_pronoia,
+    score_pharm_report_v2,
+)
 
 __version__ = "0.3.0"
 
@@ -126,4 +141,9 @@ __all__ = [
     # Drug world-model integration
     "DEFAULT_KOMPOSOS_CHEM_TB_PATH", "ScoreResult",
     "KompososDrugEvidenceClient", "initial_drug_state", "build_drug_world_model",
+    "DEFAULT_KOMPOSOS_PHARM_PATH", "KompososPharmEvidenceProvider",
+    "PharmPair", "pair_from_candidate", "pharm_candidate",
+    "PharmScoreConfig", "PharmPredictionLoop", "PharmPredictionSlate",
+    "pharm_evidence_strength", "rank_pharm_candidates_with_pronoia",
+    "score_pharm_report_v2",
 ]

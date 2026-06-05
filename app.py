@@ -18,10 +18,20 @@ from pathlib import Path
 
 import streamlit as st
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-# Vendored OPERADUM decision engine (PHARM/operadum/operadum). Adding the repo
-# root to the path lets `import operadum` resolve the inner package.
-sys.path.insert(0, str(Path(__file__).resolve().parent / "operadum"))
+APP_ROOT = Path(__file__).resolve().parent
+BUNDLED_OPERADUM_ROOT = APP_ROOT / "operadum"
+SIBLING_OPERADUM_ROOT = APP_ROOT.parent / "operadum"
+
+sys.path.insert(0, str(APP_ROOT))
+# Prefer the self-contained stack bundled inside this KOMPOSOS checkout. Fall
+# back to the standalone sibling copy used as the universal source/workbench.
+if (BUNDLED_OPERADUM_ROOT / "pronoia").is_dir():
+    OPERADUM_STACK_ROOT = BUNDLED_OPERADUM_ROOT
+elif (SIBLING_OPERADUM_ROOT / "pronoia").is_dir():
+    OPERADUM_STACK_ROOT = SIBLING_OPERADUM_ROOT
+else:
+    OPERADUM_STACK_ROOT = BUNDLED_OPERADUM_ROOT
+sys.path.insert(0, str(OPERADUM_STACK_ROOT))
 
 from validation.repurposing_benchmark import (
     DB_PATH,
@@ -62,6 +72,24 @@ try:
 except Exception as _operadum_exc:  # pragma: no cover - environment dependent
     OPERADUM_AVAILABLE = False
     OPERADUM_IMPORT_ERROR = str(_operadum_exc)
+
+
+# PRONOIA prediction audit is optional and requires the bundled stack or the
+# standalone sibling fallback. The app still runs if only KOMPOSOS is present.
+try:
+    from operadum.integrations.komposos_pharm_evidence import (
+        KompososPharmEvidenceProvider,
+        pharm_candidate,
+    )
+    from operadum.integrations.pronoia_pharm_loop import (
+        PharmScoreConfig,
+        rank_pharm_candidates_with_pronoia,
+    )
+
+    PRONOIA_AVAILABLE = True
+except Exception as _pronoia_exc:  # pragma: no cover - environment dependent
+    PRONOIA_AVAILABLE = False
+    PRONOIA_IMPORT_ERROR = str(_pronoia_exc)
 
 
 # ── Cache heavy loads ────────────────────────────────────────────────
@@ -197,9 +225,15 @@ st.sidebar.caption("Categorical Drug Repurposing")
 _modes = ["Disease-first", "Drug-first", "Pair detail"]
 if OPERADUM_AVAILABLE:
     _modes.append("Decision ranking (OPERADUM)")
+if PRONOIA_AVAILABLE:
+    _modes.append("Prediction audit (PRONOIA)")
 _modes += ["How Scoring Works", "About"]
 
 mode = st.sidebar.radio("Mode", _modes)
+if PRONOIA_AVAILABLE:
+    st.sidebar.caption(f"Audit stack: OPERADUM + PRONOIA from `{OPERADUM_STACK_ROOT}`")
+elif OPERADUM_AVAILABLE:
+    st.sidebar.caption(f"Decision stack: OPERADUM from `{OPERADUM_STACK_ROOT}`")
 
 g = load_graph()
 
@@ -218,7 +252,7 @@ _source_str = " · ".join(
 st.sidebar.markdown("---")
 st.sidebar.markdown(
     f"**Graph**: {g['n_objects']} objects, {g['n_morphisms']} edges\n\n"
-    f"**Positives**: {g['n_positives']} FDA-approved (48 verified)\n\n"
+    f"**Positives**: {g['n_positives']} FDA-approved drug-disease labels\n\n"
     f"**Self-check**: {g['check_recovered']}/{g['check_total']} recoverable\n\n"
     f"**Evidence tiers**: {_tier_str}\n\n"
     f"**Sources** (edges may cite several): {_source_str}\n\n"
@@ -382,6 +416,200 @@ if OPERADUM_AVAILABLE:
                 "No next action clears the evidence gate — not currently backable "
                 "without gathering more evidence first."
             )
+
+
+if PRONOIA_AVAILABLE:
+
+    @st.cache_resource(show_spinner=False)
+    def pronoia_evidence_provider(remove_direct_labels: bool, quality_tier: str):
+        """PRONOIA evidence provider pointed at THIS PHARM checkout."""
+        category, _ = load_full_typed_view(
+            str(APP_ROOT / DB_PATH),
+            remove_direct_labels=remove_direct_labels,
+            quality_tier=quality_tier,
+        )
+        return KompososPharmEvidenceProvider(
+            komposos_path=str(APP_ROOT),
+            quality_tier=quality_tier,
+            include_benchmark_score=False,
+            category=category,
+        )
+
+    def _collect_pmids(value) -> tuple[str, ...]:
+        pmids = []
+
+        def walk(obj):
+            if isinstance(obj, dict):
+                for pmid in obj.get("pmids", ()) or ():
+                    pmids.append(str(pmid))
+                for child in obj.values():
+                    walk(child)
+            elif isinstance(obj, (list, tuple)):
+                for child in obj:
+                    walk(child)
+            elif isinstance(obj, str):
+                pmids.extend(re.findall(r"PMID:?\s*(\d+)", obj))
+
+        walk(value)
+        seen = set()
+        out = []
+        for pmid in pmids:
+            if pmid and pmid not in seen:
+                seen.add(pmid)
+                out.append(pmid)
+        return tuple(out)
+
+    def _pmid_links(pmids: tuple[str, ...]) -> str:
+        if not pmids:
+            return "-"
+        return ", ".join(
+            f"[PMID:{pmid}](https://pubmed.ncbi.nlm.nih.gov/{pmid})"
+            for pmid in pmids
+        )
+
+    def _top_pronoia_evidence(report):
+        packet = report.evidence
+        items = tuple(getattr(packet, "items", ()) or ())
+        if not items:
+            return None
+        return sorted(items, key=lambda item: float(item.score or 0.0), reverse=True)[0]
+
+    def _pronoia_label(report) -> str:
+        drug = report.candidate.metadata.get("drug", report.candidate.name)
+        disease = report.candidate.metadata.get("disease", report.candidate.target)
+        return _label_for_pair((drug, disease), g["positives"])
+
+    def _evidence_tiers(item) -> tuple[str, ...]:
+        metadata = item.metadata or {}
+        tiers = metadata.get("evidence_tiers") or ()
+        if tiers:
+            return tuple(str(t) for t in tiers)
+        out = []
+        for key in ("evidence_tier",):
+            if metadata.get(key):
+                out.append(str(metadata[key]))
+        for key in ("first", "second"):
+            child = metadata.get(key)
+            if isinstance(child, dict) and child.get("evidence_tier"):
+                out.append(str(child["evidence_tier"]))
+        seen = set()
+        return tuple(t for t in out if not (t in seen or seen.add(t)))
+
+    def generate_pronoia_audit_report(slate, disease: str, settings: dict) -> str:
+        """Markdown audit report for one PRONOIA PHARM ranking."""
+        from datetime import date
+
+        label_mode = (
+            "direct Drug->Disease labels hidden"
+            if settings["remove_direct_labels"] else
+            "direct Drug->Disease labels visible"
+        )
+        out = [
+            f"# PRONOIA Prediction Audit - {disease}",
+            "",
+            f"- Date: {date.today().isoformat()}",
+            f"- KOMPOSOS checkout: `{APP_ROOT}`",
+            f"- OPERADUM/PRONOIA stack: `{OPERADUM_STACK_ROOT}`",
+            f"- Evidence protocol: {label_mode}",
+            f"- Evidence quality tier: {settings['quality_tier']}",
+            f"- Minimum grounding: {settings['min_grounding']:.2f}",
+            f"- Candidates ranked: {len(slate.reports)}",
+            "",
+            "## Layer Roles",
+            "",
+            "- KOMPOSOS-IV-PHARM supplies the graph evidence, paths, PMIDs, FDA strings, evidence tiers, and local benchmark labels.",
+            "- OPERADUM packages candidates and provides the decision/prioritization layer elsewhere in the UI.",
+            "- PRONOIA scores the candidate as a prediction audit: structured mechanism/path strength plus grounding, with raw MDL retained for transparency.",
+            "",
+            "This is not a clinical recommendation. It is a reproducible audit trail for expert review.",
+            "",
+            "## Ranked Prediction Audit",
+            "",
+            "| Rank | Candidate | Local label | Decision | PRONOIA score | Grounding | Base strength | Raw MDL gain | Evidence | PMIDs |",
+            "|---:|---|---|---|---:|---:|---:|---:|---|---|",
+        ]
+        for rank, report in enumerate(slate.reports, start=1):
+            top = _top_pronoia_evidence(report)
+            top_claim = top.claim if top is not None else "-"
+            top_pmids = _collect_pmids(top.metadata if top is not None else {})
+            out.append(
+                f"| {rank} | {report.candidate.name} -> {report.candidate.target} | "
+                f"{_pronoia_label(report)} | {report.decision} | "
+                f"{report.score:.2f} | {report.metrics.get('grounding', 0.0):.3f} | "
+                f"{report.metrics.get('pharm_base_strength', 0.0):.3f} | "
+                f"{report.metrics.get('raw_mdl_gain_bits', 0.0):.1f} | "
+                f"{top_claim} | {_pmid_links(top_pmids)} |"
+            )
+        out += ["", "## Per-Candidate Evidence", ""]
+        for report in slate.reports:
+            out += [
+                f"### {report.candidate.name} -> {report.candidate.target}",
+                "",
+                f"- Decision: {report.decision}",
+                f"- PRONOIA score: {report.score:.2f}",
+                f"- Grounding: {report.metrics.get('grounding', 0.0):.3f}",
+                f"- Base path/mechanism strength: {report.metrics.get('pharm_base_strength', 0.0):.3f}",
+                f"- Raw MDL gain: {report.metrics.get('raw_mdl_gain_bits', 0.0):.1f} bits",
+                "",
+            ]
+            packet = report.evidence
+            for item in sorted(
+                tuple(getattr(packet, "items", ()) or ()),
+                key=lambda ev: float(ev.score or 0.0),
+                reverse=True,
+            )[:8]:
+                pmids = _collect_pmids({"metadata": item.metadata, "provenance": item.provenance})
+                tiers = _evidence_tiers(item)
+                out.append(
+                    f"- **{item.source}** score={float(item.score or 0.0):.3f}; "
+                    f"tiers={', '.join(tiers) if tiers else '-'}; "
+                    f"pmids={', '.join(pmids) if pmids else '-'}; {item.claim}"
+                )
+            out.append("")
+        out += [
+            "## Honest Limits",
+            "",
+            "- PRONOIA v2 is a mechanism/path audit score, not a clinical probability.",
+            "- Raw MDL is retained for transparency but is not the primary PHARM ranker.",
+            "- The contradiction/residual penalty is not yet wired into v2.",
+            "- Local NOT_APPROVED labels are open-world: they may include missing labels, active trials, or off-label/unstudied cases.",
+            "",
+            "Generated by KOMPOSOS-IV-PHARM UI with the OPERADUM -> KOMPOSOS -> PRONOIA audit stack.",
+        ]
+        return "\n".join(out)
+
+    def render_pronoia_detail(report):
+        color = "green" if report.decision == "BACK" else "orange"
+        st.markdown(
+            f"### {report.candidate.name} -> {report.candidate.target} "
+            f"&nbsp; :{color}[{report.decision}]"
+        )
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("PRONOIA score", f"{report.score:.1f}")
+        c2.metric("Grounding", f"{report.metrics.get('grounding', 0.0):.3f}")
+        c3.metric("Base strength", f"{report.metrics.get('pharm_base_strength', 0.0):.3f}")
+        c4.metric("Raw MDL gain", f"{report.metrics.get('raw_mdl_gain_bits', 0.0):.1f}")
+        st.caption(report.explanation)
+
+        packet = report.evidence
+        rows = []
+        for item in sorted(
+            tuple(getattr(packet, "items", ()) or ()),
+            key=lambda ev: float(ev.score or 0.0),
+            reverse=True,
+        ):
+            pmids = _collect_pmids({"metadata": item.metadata, "provenance": item.provenance})
+            tiers = _evidence_tiers(item)
+            rows.append({
+                "Source": item.source,
+                "Score": round(float(item.score or 0.0), 3),
+                "Evidence": item.claim,
+                "Tiers": ", ".join(tiers) if tiers else "-",
+                "PMIDs": ", ".join(pmids) if pmids else "-",
+                "Provenance": item.provenance or "-",
+            })
+        if rows:
+            st.dataframe(rows, use_container_width=True, hide_index=True)
 
 
 def render_results_table(results):
@@ -847,7 +1075,8 @@ elif mode == "Decision ranking (OPERADUM)":
         "KOMPOSOS triage ranks candidates on graph evidence. OPERADUM re-ranks "
         "that same shortlist under a decision profile — folding in target "
         "engagement, structure binding, drug-likeness and risk — and names the "
-        "best next action for each."
+        "best next action for each. Use PRONOIA audit when you want the separate "
+        "prediction-grounding trail for a candidate."
     )
     with st.expander("How to read this (score direction, profiles, gating)"):
         st.markdown("""
@@ -862,6 +1091,9 @@ elif mode == "Decision ranking (OPERADUM)":
   more evidence. Uncheck the box to see its unconstrained next step.
 
 Full details under **How Scoring Works -> Decision ranking (OPERADUM)**.
+
+OPERADUM is the action/prioritization layer. PRONOIA is the prediction audit
+layer. They use the same KOMPOSOS evidence base but answer different questions.
 """)
 
     disease = st.selectbox("Select disease", g["diseases"])
@@ -936,6 +1168,101 @@ Full details under **How Scoring Works -> Decision ranking (OPERADUM)**.
 
 
 # ── Drug-first ───────────────────────────────────────────────────────
+
+elif mode == "Prediction audit (PRONOIA)" and PRONOIA_AVAILABLE:
+    st.title("Prediction audit (PRONOIA)")
+    st.caption(
+        "KOMPOSOS supplies graph evidence and provenance. OPERADUM supplies the "
+        "candidate/decision layer. PRONOIA adds a prediction audit: mechanism "
+        "strength, grounding, abstention, and raw MDL transparency."
+    )
+    with st.expander("How this differs from OPERADUM decision ranking"):
+        st.markdown("""
+- **KOMPOSOS triage** ranks graph evidence for drug-disease pairs.
+- **OPERADUM decision ranking** asks which candidate to back next, folding graph,
+  engagement, binding, drug-likeness, and risk into an action choice.
+- **PRONOIA prediction audit** asks whether the candidate's stated treatment
+  hypothesis is grounded by hidden-label mechanism/path evidence. It reports
+  `BACK` or `ABSTAIN`, a PHARM v2 score, grounding, raw MDL gain, and the exact
+  evidence trail with PMIDs/FDA provenance.
+
+This mode is for expert review and report generation. It is not a clinical
+recommendation.
+""")
+
+    disease = st.selectbox("Select disease", g["diseases"])
+    shortlist_n = st.slider("Shortlist size (from KOMPOSOS triage)", 3, 30, 12)
+    quality_tier = st.selectbox(
+        "PRONOIA evidence quality tier",
+        ["all", "high", "curated", "silver", "gold"],
+        index=0,
+    )
+    remove_direct_labels = st.checkbox(
+        "Hide direct Drug->Disease treatment labels from PRONOIA evidence",
+        value=True,
+    )
+    min_grounding = st.slider("Minimum grounding", 0.0, 1.0, 0.20, 0.05)
+
+    if st.button("Run PRONOIA audit", type="primary"):
+        with st.spinner("KOMPOSOS shortlist -> PRONOIA prediction audit..."):
+            triaged = triage_disease(
+                g["category"], g["strategies"], disease, g["positives"],
+                g["provenance_index"], top_n=shortlist_n,
+            )
+            candidates = [pharm_candidate(r["drug"], disease) for r in triaged]
+            provider = pronoia_evidence_provider(remove_direct_labels, quality_tier)
+            slate = rank_pharm_candidates_with_pronoia(
+                candidates,
+                evidence_provider=provider,
+                score_config=PharmScoreConfig(min_grounding=float(min_grounding)),
+                task="audit PHARM drug repurposing hypothesis from KOMPOSOS evidence",
+            )
+
+        if slate.winner is not None:
+            st.success(
+                f"Top PRONOIA-backed candidate: **{slate.winner.candidate.name}** "
+                f"(score {slate.winner.score:.1f}, "
+                f"grounding {slate.winner.metrics.get('grounding', 0.0):.3f})"
+            )
+
+        rows = []
+        for rank, report in enumerate(slate.reports, start=1):
+            top = _top_pronoia_evidence(report)
+            pmids = _collect_pmids(top.metadata if top is not None else {})
+            rows.append({
+                "Rank": rank,
+                "Drug": report.candidate.name,
+                "Disease": report.candidate.target,
+                "Local Label": _pronoia_label(report),
+                "Decision": report.decision,
+                "PRONOIA Score": round(float(report.score), 2),
+                "Grounding": round(float(report.metrics.get("grounding", 0.0)), 3),
+                "Base Strength": round(float(report.metrics.get("pharm_base_strength", 0.0)), 3),
+                "Raw MDL Gain": round(float(report.metrics.get("raw_mdl_gain_bits", 0.0)), 1),
+                "Top Evidence": top.claim if top is not None else "-",
+                "PMIDs": ", ".join(pmids) if pmids else "-",
+            })
+        st.dataframe(rows, use_container_width=True, hide_index=True)
+
+        settings = {
+            "remove_direct_labels": remove_direct_labels,
+            "quality_tier": quality_tier,
+            "min_grounding": float(min_grounding),
+        }
+        report_md = generate_pronoia_audit_report(slate, disease, settings)
+        st.download_button(
+            "Download PRONOIA Audit Report",
+            data=report_md,
+            file_name=f"pronoia_audit_{disease}_{quality_tier}.md",
+            mime="text/markdown",
+        )
+
+        st.markdown("---")
+        st.subheader("Candidate Audit Details")
+        for report in slate.reports[:5]:
+            render_pronoia_detail(report)
+            st.markdown("---")
+
 
 elif mode == "Drug-first":
     st.title("Rank diseases for a drug")
@@ -1243,8 +1570,9 @@ Disease path, then returns the best score across those disease-linked targets.
 3. **IC50 data**: If the binding_evidence strategy voted AND there are
    ABPP IC50 values, those are experimental measurements -- the strongest
    evidence type in this system.
-4. **Cited papers**: Every edge has a source string. Follow the PMIDs
-   to the original papers and verify that the paper supports the exact edge.
+4. **Cited papers**: Every edge has a provenance/source string, but not every
+   source is an edge-specific PMID. Follow PMID links where present and verify
+   that the paper supports the exact edge.
 
 **What this system does NOT do:**
 
@@ -1253,7 +1581,8 @@ Disease path, then returns the best score across those disease-linked targets.
 - It does not account for patient-specific factors
 - AUROC of 0.9705 on the current strict 44-positive benchmark does not guarantee real-world
   performance
-- The system bridges knowledge silos; it does not generate new knowledge
+- The system surfaces auditable hypotheses from existing graph evidence; it does
+  not by itself validate new clinical knowledge
 """)
 
     if OPERADUM_AVAILABLE:
@@ -1307,6 +1636,49 @@ clinical judgment.
 
 # ── About ────────────────────────────────────────────────────────────
 
+    if PRONOIA_AVAILABLE:
+        with st.expander("Prediction audit (PRONOIA): score, grounding, report trail"):
+            st.markdown("""
+The **Prediction audit (PRONOIA)** mode is separate from OPERADUM decision
+ranking.
+
+**Layer roles:**
+
+- **KOMPOSOS-IV-PHARM** supplies the graph, mechanistic paths, edge confidence,
+  PMIDs/FDA provenance, evidence tiers, and local benchmark labels.
+- **OPERADUM** supplies the candidate/decision layer: which candidate/action is
+  worth backing next under resource and evidence profiles.
+- **PRONOIA** supplies the prediction audit: whether a candidate's stated
+  treatment hypothesis is grounded by the available hidden-label evidence.
+
+**PHARM v2 score:**
+""")
+            st.code(
+                "score = 100 * max(mechanism_strength, path_strength)\n"
+                "score -= grounding_penalty\n"
+                "score -= contradiction_penalty  # placeholder in v2",
+                language="python",
+            )
+            st.markdown("""
+**Grounding** is the fraction of the candidate claim accounted for by the
+evidence packet. If grounding is below the selected gate, PRONOIA abstains even
+when the graph has some signal.
+
+**Raw MDL gain** is shown for transparency, but it is not the primary PHARM
+ranker. The benchmark showed raw zlib-MDL alone over-ranks broad/long evidence
+packets, so PRONOIA v2 uses structured mechanism/path strength as the main
+score.
+
+**Report output:** the PRONOIA audit report exports the candidate ranking,
+`BACK`/`ABSTAIN` decisions, grounding, raw MDL gain, top evidence paths, evidence
+tiers, and PMID/FDA provenance carried from the local PHARM database.
+
+**Honest limit:** PRONOIA v2 is an audit and expert-review tool. It is not a
+clinical probability, and v3 still needs contradiction/residual and indication
+context penalties.
+""")
+
+
 elif mode == "About":
     st.title("About KOMPOSOS-IV-PHARM")
 
@@ -1325,7 +1697,7 @@ approved for.
 ### How It Works
 
 1. **Knowledge Graph**: {n_drugs} drugs, {n_obj - n_drugs - n_diseases} proteins, \
-{n_diseases} diseases, {n_mor} edges ({g['provenance_rows']} source strings, {g['pmid_count']} PMID identifiers, {g['quantitative_edges']} edges with quantitative IC50/HR/mutation data)
+{n_diseases} diseases, {n_mor} edges ({g['provenance_rows']} provenance/source strings, {g['pmid_count']} PMID identifiers, {g['quantitative_edges']} graph edges with structured quantitative fields; ABPP measurements are loaded separately)
 2. **Live triage strategy profile**: 8 active strategy modules
    (composition, Kan extensions, Yoneda patterns, topos logic, structural holes,
    fibration lifts, binding evidence, Yoneda distance)
@@ -1336,8 +1708,11 @@ approved for.
 5. **Scoring**: Mean of active strategy signals + path bonus, plus a conditional
    Yoneda bonus when visible known-treatment comparators exist (see "How Scoring
    Works" page for the full formula)
-6. **Evidence**: Every prediction comes with traceable mechanistic paths,
-   literature citations, and IC50 data where available
+6. **Evidence**: Predictions include traceable mechanistic paths when available,
+   provenance/PMID links where present, and IC50 data where available
+7. **Integrated audit layers**: OPERADUM provides decision/prioritization
+   reports, while PRONOIA provides prediction-grounding audit reports when the
+   bundled stack is available at `{OPERADUM_STACK_ROOT}`
 """)
 
     st.markdown("### Live Graph Statistics")
@@ -1418,7 +1793,7 @@ clinical probability.
 - **Oncology only**: 20 cancer types currently
 - **Small graph**: {n_obj} objects vs 47k+ in published systems like Rephetio
 - **Open-world negatives**: Unlabeled pairs are unknowns, not confirmed negatives
-- **Citation attribution risk remains**: Source strings exist for every edge, but
+- **Citation attribution risk remains**: Provenance/source strings exist for every edge, but
   the audit found PMID-without-context, measured-tier mismatch, and quantitative
   support issues that need edge-level verification before wet-lab claims
 - **AUROC is sensitive to graph expansion**: Adding PubMed co-mention edges

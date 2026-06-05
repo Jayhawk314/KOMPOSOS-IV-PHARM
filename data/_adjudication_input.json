@@ -1,0 +1,852 @@
+{
+  "treats": [
+    {
+      "edge_id": "treats:Afatinib->NSCLC",
+      "source": "Afatinib",
+      "target": "NSCLC",
+      "relation": "treats",
+      "pmid": "42158804",
+      "proof_sentence": "Although both afatinib and osimertinib have demonstrated clinical activity in treatment-naive non-small cell lung cancer (NSCLC) harboring uncommon epidermal growth factor receptor (EGFR) mutations, the efficacy and safety of afatinib after progression on osimertinib remain unclear.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Alectinib->NSCLC",
+      "source": "Alectinib",
+      "target": "NSCLC",
+      "relation": "treats",
+      "pmid": "42158271",
+      "proof_sentence": "This case expands the spectrum of ALK fusion partners in NSCLC and contributes additional clinical evidence supporting the efficacy of alectinib therapy in rare ALK fusions.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Atezolizumab->NSCLC",
+      "source": "Atezolizumab",
+      "target": "NSCLC",
+      "relation": "treats",
+      "pmid": "42138243",
+      "proof_sentence": "We performed a patient-level cross-trial analysis of five randomized controlled studies (IMpower110, IMpower130, IMpower131, IMpower132, and IMpower150) that assessed the efficacy of first-line atezolizumab therapy in advanced non-small cell lung cancer (NSCLC).",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Binimetinib->Melanoma",
+      "source": "Binimetinib",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "41914670",
+      "proof_sentence": "Adding a third drug after people&#x2019;s cancer worsened did not have a meaningful effect.What were the main conclusions reported by the researchers?The results confirm that people with BRAF V600-mutant melanoma benefit from treatment with encorafenib plus binimetinib.Clinical trial number: NCT02159066.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Cetuximab->Colorectal_Cancer",
+      "source": "Cetuximab",
+      "target": "Colorectal_Cancer",
+      "relation": "treats",
+      "pmid": "42199488",
+      "proof_sentence": "Anti-epidermal growth factor receptor (EGFR) therapies including cetuximab are a key component of treatment for metastatic colorectal cancer (CRC) with Rat Sarcoma viral oncogene homolog (RAS) wild-type status.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Cobimetinib->Melanoma",
+      "source": "Cobimetinib",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "42091854",
+      "proof_sentence": "Moreover, pan-RAF inhibitors, such as belvarafenib, when combined with MEK inhibitors (cobimetinib), have promising but limited efficacy in non-BRAF-mutant melanomas.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Crizotinib->NSCLC",
+      "source": "Crizotinib",
+      "target": "NSCLC",
+      "relation": "treats",
+      "pmid": "42201505",
+      "proof_sentence": "While vebreltinib appears clinically advantageous over crizotinib for METex14-mutated NSCLC, the therapeutic benefits did not reach statistical significance in this study.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Dabrafenib->Melanoma",
+      "source": "Dabrafenib",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "42195328",
+      "proof_sentence": "Although dabrafenib/trametinib (D+T) target the BRAF/MAPK pathway and show efficacy in BRAFV600E mutant melanoma, their effectiveness against GBM remains unclear.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Erlotinib->Pancreatic_Cancer",
+      "source": "Erlotinib",
+      "target": "Pancreatic_Cancer",
+      "relation": "treats",
+      "pmid": "41799523",
+      "proof_sentence": "Although the responses observed with Fingolimod and DMF were similar to those of Gemcitabine and Erlotinib, these findings indicate a potential emerging interest in Fingolimod and DMF for the treatment of pancreatic cancer.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Gefitinib->NSCLC",
+      "source": "Gefitinib",
+      "target": "NSCLC",
+      "relation": "treats",
+      "pmid": "42189390",
+      "proof_sentence": "In EGFR-driven NSCLC models, the IVSA siRNA dramatically reduced tumour size and suppressed EGFR expression more effectively than traditional treatments such as gefitinib or osimertinib.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Imatinib->CML",
+      "source": "Imatinib",
+      "target": "CML",
+      "relation": "treats",
+      "pmid": "42154176",
+      "proof_sentence": "Imatinib (IMA) revolutionised the treatment of chronic myeloid leukaemia (CML).",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Imatinib->GIST",
+      "source": "Imatinib",
+      "target": "GIST",
+      "relation": "treats",
+      "pmid": "42136545",
+      "proof_sentence": "Treatments for metastatic, unresectable, or treatment-resistant gastrointestinal stromal tumors (GIST) include avapritinib, imatinib, regorafenib, ripretinib, and sunitinib.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Ipilimumab->Melanoma",
+      "source": "Ipilimumab",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "42200697",
+      "proof_sentence": "We present a case of bilateral granulomatous panuveitis in a 56-year-old female receiving combined nivolumab and ipilimumab therapy for metastatic melanoma of unknown primary origin, together with a review of the literature.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Metformin->Type2_Diabetes",
+      "source": "Metformin",
+      "target": "Type2_Diabetes",
+      "relation": "treats",
+      "pmid": "40466424",
+      "proof_sentence": "Metformin is a first-line drug in the treatment of type2 diabetes mellitus (T2DM) due to its efficacy, safety, and cost-effectiveness.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Nivolumab->Melanoma",
+      "source": "Nivolumab",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "42200697",
+      "proof_sentence": "We present a case of bilateral granulomatous panuveitis in a 56-year-old female receiving combined nivolumab and ipilimumab therapy for metastatic melanoma of unknown primary origin, together with a review of the literature.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Nivolumab->NSCLC",
+      "source": "Nivolumab",
+      "target": "NSCLC",
+      "relation": "treats",
+      "pmid": "42192342",
+      "proof_sentence": "This study evaluated PET/CT-derived psoas muscle parameters as host-related prognostic biomarkers in metastatic NSCLC patients treated with nivolumab.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Nivolumab->RCC",
+      "source": "Nivolumab",
+      "target": "RCC",
+      "relation": "treats",
+      "pmid": "42204034",
+      "proof_sentence": "Pembrolizumab plus lenvatinib (Pem-Len) and nivolumab plus cabozantinib (Nivo-Cabo) are effective first-line regimens for metastatic renal cell carcinoma (RCC); however, real-world data directly comparing these regimens are limited.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Olaparib->Breast_Cancer",
+      "source": "Olaparib",
+      "target": "Breast_Cancer",
+      "relation": "treats",
+      "pmid": "42183723",
+      "proof_sentence": "IntroductionSince 2023 olaparib has been commissioned in the United Kingdom for breast cancer for patients with breast cancer gene 1 and 2 (BRCA1 and 2) positive, human epidermal growth factor receptor 2 (HER2)-negative, high-risk early disease after chemotherapy.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Osimertinib->NSCLC",
+      "source": "Osimertinib",
+      "target": "NSCLC",
+      "relation": "treats",
+      "pmid": "42203350",
+      "proof_sentence": "This study aimed to evaluate the association between longitudinal changes in TRACP-5b and BM progression in a relatively homogeneous population of patients with epidermal growth factor receptor (EGFR)-mutated NSCLC treated with osimertinib.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Palbociclib->Breast_Cancer",
+      "source": "Palbociclib",
+      "target": "Breast_Cancer",
+      "relation": "treats",
+      "pmid": "42173733",
+      "proof_sentence": "The limited data available on palbociclib treatment outcomes in patients with HR+/HER2- advanced/metastatic breast cancer (ABC) and bone-only metastasis are dispersed across a myriad of publications reporting subgroup analyses from individual randomized clinical trials (RCTs) or real-world evidence (RWE) studies.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Pembrolizumab->Melanoma",
+      "source": "Pembrolizumab",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "42190314",
+      "proof_sentence": "Substudy 02C of the phase I-II KEYMAKER-U02 study was designed to evaluate neoadjuvant pembrolizumab as monotherapy and in combination with investigational agents, followed by surgery and adjuvant pembrolizumab in participants with resectable stage IIIB-D melanoma.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Pembrolizumab->NSCLC",
+      "source": "Pembrolizumab",
+      "target": "NSCLC",
+      "relation": "treats",
+      "pmid": "42192983",
+      "proof_sentence": "Patients/Methods: We prospectively measured several PBIMs in a PD-L1 high (TPS &#x2265; 50%) NSCLC cohort of patients treated with first-line pembrolizumab monotherapy.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Ramucirumab->Colorectal_Cancer",
+      "source": "Ramucirumab",
+      "target": "Colorectal_Cancer",
+      "relation": "treats",
+      "pmid": "42159904",
+      "proof_sentence": "Second-line FOLFIRI plus ramucirumab (RAM) is one of standard treatments for metastatic colorectal cancer (mCRC) following progression on anti-EGFR therapy in RAS wild-type tumors.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Regorafenib->Colorectal_Cancer",
+      "source": "Regorafenib",
+      "target": "Colorectal_Cancer",
+      "relation": "treats",
+      "pmid": "42163782",
+      "proof_sentence": "Trifluridine/tipiracil (TAS-102) and regorafenib are approved and widely utilized as later-line treatment options for patients with metastatic colorectal cancer (mCRC).",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Regorafenib->GIST",
+      "source": "Regorafenib",
+      "target": "GIST",
+      "relation": "treats",
+      "pmid": "42136545",
+      "proof_sentence": "Treatments for metastatic, unresectable, or treatment-resistant gastrointestinal stromal tumors (GIST) include avapritinib, imatinib, regorafenib, ripretinib, and sunitinib.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Regorafenib->HCC",
+      "source": "Regorafenib",
+      "target": "HCC",
+      "relation": "treats",
+      "pmid": "42199561",
+      "proof_sentence": "Regorafenib is a standard second-line therapy for advanced hepatocellular carcinoma (HCC), but its efficacy as a monotherapy is limited.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Ribociclib->Breast_Cancer",
+      "source": "Ribociclib",
+      "target": "Breast_Cancer",
+      "relation": "treats",
+      "pmid": "42192962",
+      "proof_sentence": "In this study, we aimed to evaluate the clinical manifestations and risk factors of dermatologic toxicities in patients with metastatic breast cancer treated with ribociclib.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Ruxolitinib->Myelofibrosis",
+      "source": "Ruxolitinib",
+      "target": "Myelofibrosis",
+      "relation": "treats",
+      "pmid": "42171355",
+      "proof_sentence": "In this study, researchers want to learn how doctors in Italy use ruxolitinib to treat people with myelofibrosis, a rare type of blood cancer.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Sorafenib->HCC",
+      "source": "Sorafenib",
+      "target": "HCC",
+      "relation": "treats",
+      "pmid": "42193056",
+      "proof_sentence": "While sorafenib serves as the first-line therapy for advanced HCC, its efficacy is frequently hampered by side effects and the development of drug resistance, necessitating the development of novel agents to enhance HCC sensitivity to sorafenib.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Sorafenib->RCC",
+      "source": "Sorafenib",
+      "target": "RCC",
+      "relation": "treats",
+      "pmid": "41303409",
+      "proof_sentence": "Tyrosine kinase inhibitors (TKIs), such as sunitinib and sorafenib, are standard treatments for renal cell carcinoma (RCC).",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Sunitinib->GIST",
+      "source": "Sunitinib",
+      "target": "GIST",
+      "relation": "treats",
+      "pmid": "42136545",
+      "proof_sentence": "Treatments for metastatic, unresectable, or treatment-resistant gastrointestinal stromal tumors (GIST) include avapritinib, imatinib, regorafenib, ripretinib, and sunitinib.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Temsirolimus->RCC",
+      "source": "Temsirolimus",
+      "target": "RCC",
+      "relation": "treats",
+      "pmid": "40978096",
+      "proof_sentence": "Temsirolimus and pazopanib serve as first-line therapies for renal cell carcinoma (RCC).",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "treats:Thalidomide->Multiple_Myeloma",
+      "source": "Thalidomide",
+      "target": "Multiple_Myeloma",
+      "relation": "treats",
+      "pmid": "41733524",
+      "proof_sentence": "A 58-year-old man with multiple myeloma (MC I, lambda light chain type) developed progressive dyspnea and edema after VTD (bortezomib, thalidomide, dexamethasone) therapy.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Trametinib->Melanoma",
+      "source": "Trametinib",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "42195328",
+      "proof_sentence": "Although dabrafenib/trametinib (D+T) target the BRAF/MAPK pathway and show efficacy in BRAFV600E mutant melanoma, their effectiveness against GBM remains unclear.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Trastuzumab->Breast_Cancer",
+      "source": "Trastuzumab",
+      "target": "Breast_Cancer",
+      "relation": "treats",
+      "pmid": "42204863",
+      "proof_sentence": "Trastuzumab deruxtecan (T-DXd) is approved as first-line therapy for HER2-low metastatic breast cancer after endocrine therapy failure and as later-line therapy, but economic evidence comparing these two settings to inform sequencing decisions is lacking.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Vemurafenib->Melanoma",
+      "source": "Vemurafenib",
+      "target": "Melanoma",
+      "relation": "treats",
+      "pmid": "42114556",
+      "proof_sentence": "Vemurafenib (Vem), a BRAF inhibitor (BRAFi), was evaluated for its efficacy on 2-D melanoma cells, spheroids, and 3-D scaffold-free melanoma models.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "treats:Venetoclax->CLL",
+      "source": "Venetoclax",
+      "target": "CLL",
+      "relation": "treats",
+      "pmid": "42156574",
+      "proof_sentence": "We report a case of pseudo-RT in a CLL patient treated with ibrutinib/venetoclax combination therapy, contrasting prior reports involving Bruton tyrosine kinase inhibitor (BTKi) monotherapy.",
+      "confidence_score": 1.0
+    }
+  ],
+  "sample": [
+    {
+      "edge_id": "activates:Glucagon->GCGR",
+      "source": "Glucagon",
+      "target": "GCGR",
+      "relation": "activates",
+      "pmid": "41785010",
+      "proof_sentence": "Retatrutide (LY3437943) is a novel triple agonist targeting glucagon receptor (GCGR), glucose-dependent insulinotropic polypeptide receptor (GIPR), and glucagon-like peptide-1 receptor (GLP-1&#x2009;R).",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "activates:KRAS->BRAF",
+      "source": "KRAS",
+      "target": "BRAF",
+      "relation": "activates",
+      "pmid": "41862948",
+      "proof_sentence": "A six-gene ddPCR panel was developed to detect BRAF p.V600E, TERT promoter mutations c.-124&#xa0;C&#x2009;&gt;&#x2009;T (C228T) and c.-146&#xa0;C&#x2009;&gt;&#x2009;T (C250T), PIK3CA p.H1047R/L, and all clinically relevant variants in NRAS, HRAS, and KRAS at codons 12, 13, and 61.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "activates:CXCL12->CXCR4",
+      "source": "CXCL12",
+      "target": "CXCR4",
+      "relation": "activates",
+      "pmid": "42188783",
+      "proof_sentence": "Notably, bath immunization enriched the intestinal immune network for IgA production pathway, which represents an orthology-based mapping of conserved mucosal immune components, alongside the upregulation of IL-6, CXCL12-CXCR4, integrins (&#x3b1;4&#x3b2;7), MHC class II, complement C3, and polymeric immunoglobulin receptor (pIgR).",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "activates:Lasmiditan->HTR1F",
+      "source": "Lasmiditan",
+      "target": "HTR1F",
+      "relation": "activates",
+      "pmid": "41060776",
+      "proof_sentence": "In addition, we reported that treatment with the HTR1F agonist lasmiditan, an FDA-approved therapeutic for acute migraines, expedites renal recovery following I/R-AKI in mice.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "associated_with:CASP9->Prostate_Cancer",
+      "source": "CASP9",
+      "target": "Prostate_Cancer",
+      "relation": "associated_with",
+      "pmid": "40344485",
+      "proof_sentence": "The PubMed, Web of Science, Google Scholar, Embase, Cochrane Library, and SinoMed (CNKI and Wanfang) databases were searched for relevant studies published through December 20, 2023, using the following keywords: \"polymorphism\" or \"variant\" and \"carcinoma\" or \"cancer\" or \"tumor\" and \"NKX3-1,\" \"CASP3\" or \"Caspase-3,\" \"CASP9\" or \"Caspase-9,\" \"BCL-2\" or \"B-cell lymphoma\" and \"prostate cancer\" or \"PCa\" or \"prostate adenocarcinoma.\" This approach led to the identification of 22 case-control studies related to the association between apoptosis-related gene polymorphisms and PCa susceptibility enrolling 9706 cases and 12&#x2009;567 controls.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:BAX->Pancreatic_Cancer",
+      "source": "BAX",
+      "target": "Pancreatic_Cancer",
+      "relation": "associated_with",
+      "pmid": "41387974",
+      "proof_sentence": "Our findings demonstrated PRP multifaceted effects, including: (i) inhibition of the acquisition of a pro-tumoral phenotype by normal fibroblasts; (ii) enhanced expression of E-cadherin and decreased expression of epithelial-mesenchymal transition (EMT)-associated genes; (iii) blockade of the crosstalk between CAFs and cancer cells, leading to a decrease in the proliferation and migration rate of the pancreatic cancer cells; (iv) modulation of CAFs-induced alteration on endothelial cells; (v) induction of Meflin expression, associated with a less pro-tumoral phenotype; (vi) inhibition of the TGF-&#x3b2; pathway, reducing the activation of Smad2/3 proteins involved in fibroblast phenotypic alteration; (vii) selective induction of apoptosis in CAFs by PRP, as evidenced by increased expression of the BAX biomarker; (viii) impaired fibrotic tissue formation, as tested in an in vivo model of PDAC, by reducing the population of CAFs within the TME.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:CDK6->RCC",
+      "source": "CDK6",
+      "target": "RCC",
+      "relation": "associated_with",
+      "pmid": "32277426",
+      "proof_sentence": "In conclusion, miR-206 suppresses proliferation and EMT of RCC by inhibiting CDK6 expression.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "associated_with:ERK1->Ovarian_Cancer",
+      "source": "ERK1",
+      "target": "Ovarian_Cancer",
+      "relation": "associated_with",
+      "pmid": "41590709",
+      "proof_sentence": "In SKOV3 ovarian cancer cells, phlorotannins suppressed migration and invasion by approximately 40 to 60%, accompanied by reduced MMP expression linked to IL-17RA-Act1 signaling attenuation and by increased TIMP1 expression in association with transient ERK1/2 activation.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:NRAS->Melanoma",
+      "source": "NRAS",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "42193039",
+      "proof_sentence": "This review explores the molecular mechanisms regulating signaling pathways that may be potentially involved in modulating apoptosis in melanoma tumor cells harboring mutations in BRAF, NRAS, and NF1 genes.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "associated_with:PDGFRA->Melanoma",
+      "source": "PDGFRA",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "41839173",
+      "proof_sentence": "Ripretinib, a switch control tyrosine kinase inhibitor that targets KIT and PDGFRA kinases, is associated with an increased risk of cutaneous neoplasms, including actinic keratosis, seborrheic keratosis, SCC, keratoacanthoma, and melanoma.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:STAT5A->NSCLC",
+      "source": "STAT5A",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "33582208",
+      "proof_sentence": "After gain-and loss-of-function of CXCR1 in NSCLC cells, qRT-PCR and Western blot were applied to measure the levels of proteins associated with the chemokine pathway (CCL3 and CXCL2) and the JAK/STAT pathway (IL9R, PIAS4 and STAT5A).",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:RB1->Glioblastoma",
+      "source": "RB1",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "41231102",
+      "proof_sentence": "Together, our findings suggest that dysfunction of the CMA-IDH1-CCND1 regulatory cascade drives progression of IDH1-wild-type glioblastoma and provide a mechanistic basis for repurposing CMA activators as potential therapeutic agents for these tumors.Abbreviations: &#x3b1;-KG: &#x3b1;-ketoglutarate; CCND1: cyclin D1; CMA: chaperone-mediated autophagy; E2F1: E2F transcription factor 1; GSC: glioblastoma stem cells; HSPA8/HSC70: heat shock protein family A (Hsp70) member 8; LAMP1: lysosomal associated membrane protein 1; LAMP2A: lysosomal associated membrane protein 2A; IDH1: isocitrate dehydrogenase (NADP(+)) 1; PI3K: phosphoinositide 3-kinase; RARA: retinoic acid receptor alpha; RB1: RB transcriptional corepressor 1; TMZ: temozolomide.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:SRC->Glioblastoma",
+      "source": "SRC",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "42200036",
+      "proof_sentence": "Aberrant SRC-1 expression is closely associated with neurodegenerative diseases, autism spectrum disorders, and glioblastoma.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:BRCA2->CLL",
+      "source": "BRCA2",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "29371889",
+      "proof_sentence": "The MM lesion carried a BRAFV600E and a TERT promoter mutation.As the family story was consistent with a genetic predisposition to cancer, we performed mutational analysis of genes involved in familial melanoma and CLL, and of BRCA1 and BRCA2.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:HDAC2->AML",
+      "source": "HDAC2",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "36849955",
+      "proof_sentence": "Also, RCC1 and HDAC2 high expression are associated with poor survival in AML patients.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "associated_with:HDAC1->Breast_Cancer",
+      "source": "HDAC1",
+      "target": "Breast_Cancer",
+      "relation": "associated_with",
+      "pmid": "40924735",
+      "proof_sentence": "Five hub breast cancer target genes associated with 4-NP exposure were screened, containing TP53, HDAC1, ESR1, CTNNB1 and MYC.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:RB1->AML",
+      "source": "RB1",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "32917124",
+      "proof_sentence": "Thus, we review studies on the role of autophagy in AML development and summarize the linkage between autophagy and several recurrent genetic abnormalities in AML, highlighting the potential of capitalizing on autophagy modulation in targeted therapy for AML.Abbreviations: AML: acute myeloid leukemia; AMPK: AMP-activated protein kinase; APL: acute promyelocytic leukemia; ATG: autophagy related; ATM: ATM serine/threonine kinase; ATO: arsenic trioxide; ATRA: all trans retinoic acid; BCL2: BCL2 apoptosis regulator; BECN1: beclin 1; BET proteins, bromodomain and extra-terminal domain family; CMA: chaperone-mediated autophagy; CQ: chloroquine; DNMT, DNA methyltransferase; DOT1L: DOT1 like histone lysine methyltransferase; FLT3: fms related receptor tyrosine kinase 3; FIS1: fission, mitochondrial 1; HCQ: hydroxychloroquine; HSC: hematopoietic stem cell; IDH: isocitrate dehydrogenase; ITD: internal tandem duplication; KMT2A/MLL: lysine methyltransferase 2A; LSC: leukemia stem cell; MDS: myelodysplastic syndromes; MTORC1: mechanistic target of rapamycin kinase complex 1; MAP1LC3/LC3: microtubule associated protein 1 light chain 3; NPM1: nucleophosmin 1; PIK3C3/VPS34: phosphatidylinositol 3-kinase catalytic subunit type 3; PML: PML nuclear body scaffold; ROS: reactive oxygen species; RB1CC1/FIP200: RB1 inducible coiled-coil 1; SAHA: vorinostat; SQSTM1: sequestosome 1; TET2: tet methylcytosine dioxygenase 2; TKD: tyrosine kinase domain; TKI: tyrosine kinase inhibitor; TP53/p53: tumor protein p53; ULK1: unc-51 like autophagy activating kinase 1; VPA: valproic acid; WDFY3/ALFY: WD repeat and FYVE domain containing 3.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:CDK6->Glioblastoma",
+      "source": "CDK6",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "41659205",
+      "proof_sentence": "Additionally, SAE1 correlates with glioblastoma grade and affects cell cycle regulators, while SUMOylation stabilizes CDK6, driving the G1/S transition.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:E2F1->Glioblastoma",
+      "source": "E2F1",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "41231102",
+      "proof_sentence": "Together, our findings suggest that dysfunction of the CMA-IDH1-CCND1 regulatory cascade drives progression of IDH1-wild-type glioblastoma and provide a mechanistic basis for repurposing CMA activators as potential therapeutic agents for these tumors.Abbreviations: &#x3b1;-KG: &#x3b1;-ketoglutarate; CCND1: cyclin D1; CMA: chaperone-mediated autophagy; E2F1: E2F transcription factor 1; GSC: glioblastoma stem cells; HSPA8/HSC70: heat shock protein family A (Hsp70) member 8; LAMP1: lysosomal associated membrane protein 1; LAMP2A: lysosomal associated membrane protein 2A; IDH1: isocitrate dehydrogenase (NADP(+)) 1; PI3K: phosphoinositide 3-kinase; RARA: retinoic acid receptor alpha; RB1: RB transcriptional corepressor 1; TMZ: temozolomide.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:PIK3CA->GIST",
+      "source": "PIK3CA",
+      "target": "GIST",
+      "relation": "associated_with",
+      "pmid": "27427238",
+      "proof_sentence": "The non-SDH-deficient group includes neurofibromatosis (NF) type 1 and GISTs with mutations of BRAF, KRAS, and PIK3CA and with the ETV6-NTRK3 fusion gene.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "associated_with:NFKB1->NSCLC",
+      "source": "NFKB1",
+      "target": "NSCLC",
+      "relation": "associated_with",
+      "pmid": "26221384",
+      "proof_sentence": "We genotyped the NFKB1 -94ins/del ATTG polymorphism by the polymerase chain reaction-restriction fragment length polymorphism (PCR-RFLP) method and assessed the association with NSCLC risk, clinicopathological parameters in a case-control study of 421 cases and 425 controls.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:Fluorouracil->TOP2A",
+      "source": "Fluorouracil",
+      "target": "TOP2A",
+      "relation": "associated_with",
+      "pmid": "31479512",
+      "proof_sentence": "Based on concurrent biomarker expression, combinations of immunotherapy with platinum (ERCC1 negativity) or with doxorubicin, epirubicin or etoposide (TOP2A positivity) have a higher probability of response, whereas combinations with irinotecan or topotecan (TOPO1 positivity), with gemcitabine (RRM1 negativity), and fluorouracil, pemetrexed or capecitabine (TS negativity) may be of less benefit.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:MAPK1->Multiple_Myeloma",
+      "source": "MAPK1",
+      "target": "Multiple_Myeloma",
+      "relation": "associated_with",
+      "pmid": "35203396",
+      "proof_sentence": "MiRNA-8074 is a molecule with the potential to regulate the expression of key genes related to the pathogenesis of multiple myeloma (MM), i.e., TP53, MYC, MAPK1, and KIAA.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:STAT3->Melanoma",
+      "source": "STAT3",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "42142674",
+      "proof_sentence": "The hyperphosphorylation of signal transducer and activator oftranscription3 (STAT3) is closely associated with the proliferation and metastasis of melanoma.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": null,
+      "source": "CD8A",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "41656832",
+      "proof_sentence": "&#x76ee;&#x7684;: &#x9ed1;&#x8272;&#x7d20;&#x7624;&#x7684;&#x53d1;&#x751f;&#x3001;&#x8f6c;&#x79fb;&#x53ca;&#x8010;&#x836f;&#x6027;&#x5bf9;&#x60a3;&#x8005;&#x9884;&#x540e;&#x6784;&#x6210;&#x91cd;&#x5927;&#x6311;&#x6218;&#xff0c;&#x76ee;&#x524d;&#x5c1a;&#x7f3a;&#x4e4f;&#x80fd;&#x591f;&#x51c6;&#x786e;&#x9884;&#x6d4b;&#x60a3;&#x8005;&#x7ed3;&#x5c40;&#x5e76;&#x6307;&#x5bfc;&#x6cbb;&#x7597;&#x7684;&#x9884;&#x6d4b;&#x6a21;&#x578b;&#x3002;&#x672c;&#x7814;&#x7a76;&#x65e8;&#x5728;&#x57fa;&#x4e8e;&#x7a0b;&#x5e8f;&#x6027;&#x7ec6;&#x80de;&#x6b7b;&#x4ea1;(programmed cell death&#xff0c;PCD)&#x673a;&#x5236;&#x5f00;&#x53d1;&#x9ed1;&#x8272;&#x7d20;&#x7624;&#x9884;&#x540e;&#x548c;&#x836f;&#x7269;&#x654f;&#x611f;&#x6027;&#x7684;&#x9884;&#x6d4b;&#x6a21;&#x578b;&#x3002;&#x65b9;&#x6cd5;: &#x4ece;&#x57fa;&#x56e0;&#x96c6;&#x5bcc;&#x96c6;&#x5206;&#x6790;(gene set enrichment analysis&#xff0c;GSEA)&#x3001;&#x4eac;&#x90fd;&#x57fa;&#x56e0;&#x548c;&#x57fa;&#x56e0;&#x7ec4;&#x6570;&#x636e;&#x5e93;(Kyoto Encyclopedia of Genes and Genomes&#xff0c;KEGG)&#x3001;&#x76f8;&#x5173;&#x7efc;&#x8ff0;&#x53ca;&#x5df2;&#x53d1;&#x8868;&#x7814;&#x7a76;&#x4e2d;&#x6536;&#x96c6;&#x5e76;&#x6574;&#x5408;19&#x79cd;PCD&#x6a21;&#x5f0f;&#x76f8;&#x5173;&#x57fa;&#x56e0;&#xff0c;&#x5efa;&#x7acb;&#x5168;&#x9762;&#x7684;PCD&#x7279;&#x5f81;&#x57fa;&#x56e0;&#x96c6;&#x3002;&#x83b7;&#x53d6;&#x764c;&#x75c7;&#x57fa;&#x56e0;&#x7ec4;&#x56fe;&#x8c31;(The Cancer Genome Atlas&#xff0c;TCGA)-&#x76ae;&#x80a4;&#x9ed1;&#x8272;&#x7d20;&#x7624;(skin cutaneous melanoma&#xff0c;SKCM)&#x961f;&#x5217;&#x7684;&#x8f6c;&#x5f55;&#x7ec4;&#x4e0e;&#x4e34;&#x5e8a;&#x6570;&#x636e;&#xff0c;&#x5e76;&#x7eb3;&#x5165;3&#x4e2a;&#x672a;&#x7ecf;&#x6cbb;&#x7597;&#x7684;&#x57fa;&#x56e0;&#x8868;&#x8fbe;&#x7efc;&#x5408;(Gene Expression Omnibus&#xff0c;GEO)&#x6570;&#x636e;&#x96c6;(GSE65904&#x3001;GSE19234&#x3001;GSE100797)&#x4f5c;&#x4e3a;&#x5916;&#x90e8;&#x9a8c;&#x8bc1;&#x961f;&#x5217;;&#x540c;&#x65f6;&#x6536;&#x96c6;&#x514d;&#x75ab;&#x6cbb;&#x7597;&#x961f;&#x5217;PRJEB23709&#x3001;GSE136961&#x4e0e;GSE215222&#x7528;&#x4e8e;&#x9a8c;&#x8bc1;&#x5176;&#x5bf9;&#x514d;&#x75ab;&#x6cbb;&#x7597;&#x7684;&#x9884;&#x6d4b;&#x4ef7;&#x503c;&#x3002;&#x5355;&#x7ec6;&#x80de;&#x8f6c;&#x5f55;&#x7ec4;&#x6570;&#x636e;(GSE115978&#x3001;GSE215120)&#x91c7;&#x7528;Seurat&#x8fdb;&#x884c;&#x8d28;&#x91cf;&#x63a7;&#x5236;&#x3001;&#x6807;&#x51c6;&#x5316;&#x3001;&#x964d;&#x7ef4;&#x805a;&#x7c7b;&#x4e0e;&#x7ec6;&#x80de;&#x6ce8;&#x91ca;&#xff0c;&#x7a7a;&#x95f4;&#x8f6c;&#x5f55;&#x7ec4;&#x6570;&#x636e;&#x6765;&#x6e90;&#x4e8e;10&#xd7;Genomics&#xff0c;&#x5e76;&#x7ed3;&#x5408;Cottrazm&#x8fdb;&#x884c;&#x7a7a;&#x95f4;&#x5206;&#x533a;&#x4e0e;SpaCET&#x89e3;&#x5377;&#x79ef;;&#x7ec6;&#x80de;&#x901a;&#x4fe1;&#x91c7;&#x7528;CellChat&#x8bc4;&#x4f30;&#x5206;&#x6ccc;&#x4fe1;&#x53f7;&#x3001;&#x7ec6;&#x80de;&#x5916;&#x57fa;&#x8d28;(extracellular matrix&#xff0c;ECM)-&#x53d7;&#x4f53;&#x4e92;&#x4f5c;&#x53ca;&#x7ec6;&#x80de;&#x63a5;&#x89e6;&#x7b49;&#x901a;&#x4fe1;&#x6a21;&#x5f0f;&#x3002;&#x57fa;&#x4e8e;TCGA&#x8bad;&#x7ec3;&#x96c6;&#xff0c;&#x91c7;&#x7528;&#x5305;&#x542b;10&#x79cd;&#x7b97;&#x6cd5;&#x53ca;101&#x79cd;&#x7ec4;&#x5408;&#x7684;&#x673a;&#x5668;&#x5b66;&#x4e60;&#x7b56;&#x7565;&#x6784;&#x5efa;PCD&#x76f8;&#x5173;&#x9884;&#x540e;&#x7279;&#x5f81;&#xff0c;&#x5e76;&#x4ee5;&#x591a;&#x961f;&#x5217;&#x5e73;&#x5747;&#x4e00;&#x81f4;&#x6027;&#x6307;&#x6570;(C-index)&#x7b5b;&#x9009;&#x6700;&#x4f18;&#x6a21;&#x578b;;&#x8fdb;&#x4e00;&#x6b65;&#x7ed3;&#x5408;&#x5dee;&#x5f02;&#x5206;&#x6790;&#x3001;GSEA&#x3001;CIBERSORT&#x4e0e;&#x57fa;&#x4e8e;&#x8868;&#x8fbe;&#x4f30;&#x8ba1;&#x6076;&#x6027;&#x80bf;&#x7624;&#x7ec4;&#x7ec7;&#x7684;&#x57fa;&#x8d28;&#x7ec6;&#x80de;&#x548c;&#x514d;&#x75ab;&#x7ec6;&#x80de;(Estimation of STromal and Immune cells in MAlignant Tumor tissues using Expression data&#xff0c;ESTIMATE)&#x8bc4;&#x4f30;&#x514d;&#x75ab;&#x6d78;&#x6da6;&#xff0c;&#x8ba1;&#x7b97;T&#x7ec6;&#x80de;&#x53d7;&#x4f53;(T-cell receptor&#xff0c;TCR)&#x514b;&#x9686;&#x591a;&#x6837;&#x6027;&#x3001;&#x7ec6;&#x80de;&#x6eb6;&#x89e3;&#x6d3b;&#x6027;&#x4e0e;T&#x7ec6;&#x80de;&#x6548;&#x5e94;&#x57fa;&#x56e0;&#x8868;&#x8fbe;&#x8c31;&#xff0c;&#x5e76;&#x63a2;&#x7d22;PCD&#x8bc4;&#x5206;(PCD score&#xff0c;PCDS)&#x4e0e;&#x836f;&#x7269;&#x654f;&#x611f;&#x6027;&#x7684;&#x5173;&#x8054;&#x3002;&#x7ed3;&#x679c;: 19&#x79cd;PCD&#x901a;&#x8def;&#x5728;&#x6b63;&#x5e38;&#x76ae;&#x80a4;&#x4e0e;SKCM&#x95f4;&#x7684;&#x6d3b;&#x6027;&#x663e;&#x8457;&#x4e0d;&#x540c;&#xff0c;&#x63d0;&#x793a;PCD&#x5f02;&#x5e38;&#x53c2;&#x4e0e;&#x9ed1;&#x8272;&#x7d20;&#x7624;&#x8fdb;&#x5c55;;&#x7a81;&#x53d8;&#x5206;&#x6790;&#x663e;&#x793a;&#x808c;&#x5de8;&#x86cb;&#x767d;(titin&#xff0c;TTN)&#x548c;&#x9ecf;&#x86cb;&#x767d;16(mucin 16&#xff0c;MUC16)&#x7a81;&#x53d8;&#x9891;&#x7387;&#x6700;&#x9ad8;&#x3002;&#x7ecf;&#x5171;&#x7ebf;&#x6027;&#x63a7;&#x5236;&#x4e0e;&#x76f8;&#x5173;&#x6027;&#x7b5b;&#x9009;&#x83b7;&#x5f97;314&#x4e2a;&#x5019;&#x9009;&#x57fa;&#x56e0;&#xff0c;&#x5728;101&#x79cd;&#x6a21;&#x578b;&#x7ec4;&#x5408;&#x4e2d;&#xff0c;StepCox(backward)+Ridge&#x8868;&#x73b0;&#x6700;&#x4f73;(4&#x4e2a;&#x961f;&#x5217;&#x5e73;&#x5747;C-index=0.677)&#x3002;&#x57fa;&#x4e8e;&#x8be5;&#x6a21;&#x578b;&#x6784;&#x5efa;&#x7684;PCDS&#x53ef;&#x7a33;&#x5b9a;&#x5206;&#x5c42;&#x9884;&#x540e;&#xff0c;&#x9ad8;PCDS&#x7ec4;&#x5728;TCGA&#x53ca;3&#x4e2a;&#x5916;&#x90e8;&#x9a8c;&#x8bc1;&#x961f;&#x5217;&#x4e2d;&#x751f;&#x5b58;&#x663e;&#x8457;&#x66f4;&#x5dee;&#xff0c;&#x4e14;&#x5728;&#x6821;&#x6b63;&#x5e74;&#x9f84;&#x3001;&#x6027;&#x522b;&#x3001;&#x5206;&#x671f;&#x3001;Breslow&#x539a;&#x5ea6;&#x3001;Clark&#x5206;&#x7ea7;&#x548c;&#x6e83;&#x75a1;&#x7b49;&#x56e0;&#x7d20;&#x540e;&#x4ecd;&#x4e3a;&#x72ec;&#x7acb;&#x9884;&#x540e;&#x6307;&#x6807;&#x3002;&#x514d;&#x75ab;&#x5206;&#x6790;&#x8868;&#x660e;&#xff0c;&#x9ad8;PCDS&#x4e0e;&#x514d;&#x75ab;&#x6291;&#x5236;&#x76f8;&#x5173;:&#x514d;&#x75ab;&#x8bc4;&#x5206;&#x964d;&#x4f4e;&#xff0c;CD8+ T&#x7ec6;&#x80de;&#x3001;&#x6d3b;&#x5316;&#x8bb0;&#x5fc6;CD4+ T&#x7ec6;&#x80de;&#x3001;&#x6d46;&#x7ec6;&#x80de;&#x3001;M1&#x578b;&#x5de8;&#x566c;&#x7ec6;&#x80de;&#x5747;&#x51cf;&#x5c11;&#x800c;M2&#x578b;&#x5de8;&#x566c;&#x7ec6;&#x80de;&#x589e;&#x52a0;;PCDS&#x4e0e;&#x514d;&#x75ab;&#x68c0;&#x67e5;&#x70b9;&#x5206;&#x5b50;&#x3001;TCR Shannon&#x6307;&#x6570;&#x3001;&#x7ec6;&#x80de;&#x6eb6;&#x89e3;&#x6d3b;&#x6027;&#x8bc4;&#x5206;(cytolytic activity score&#xff0c;CYT)&#x53ca;T&#x7ec6;&#x80de;&#x6548;&#x5e94;&#x57fa;&#x56e0;&#x8868;&#x8fbe;&#x8c31;(T-cell effector gene expression profile&#xff0c;T-GEP)&#x5747;&#x5448;&#x663e;&#x8457;&#x8d1f;&#x76f8;&#x5173;&#xff0c;&#x5e76;&#x5728;&#x514d;&#x75ab;&#x8352;&#x6f20;&#x578b;&#x4e2d;&#x6700;&#x9ad8;&#x3002;&#x7a7a;&#x95f4;&#x8f6c;&#x5f55;&#x7ec4;&#x4e0e;&#x5355;&#x7ec6;&#x80de;&#x7ed3;&#x679c;&#x63d0;&#x793a;PCDS&#x5b58;&#x5728;&#x7a7a;&#x95f4;/&#x7ec6;&#x80de;&#x5f02;&#x8d28;&#x6027;:&#x8fb9;&#x754c;&#x533a;PCDS&#x66f4;&#x4f4e;&#x4e14;&#x4e0e;&#x5de8;&#x566c;&#x7ec6;&#x80de;&#x6bd4;&#x4f8b;&#x5448;&#x8d1f;&#x76f8;&#x5173;;&#x9ad3;&#x7cfb;&#x7ec6;&#x80de;&#x603b;&#x4f53;PCDS&#x6700;&#x4f4e;&#xff0c;&#x5de8;&#x566c;&#x7ec6;&#x80de;&#x4e0e;T/&#x81ea;&#x7136;&#x6740;&#x4f24;(natural killer&#xff0c;NK)&#x7ec6;&#x80de;&#x901a;&#x4fe1;&#x6700;&#x5f3a;&#xff0c;&#x514d;&#x75ab;&#x6cbb;&#x7597;&#x540e;&#x5de8;&#x566c;&#x7ec6;&#x80de;&#x5bcc;&#x96c6;&#x5e76;&#x589e;&#x5f3a;&#x4eba;&#x7c7b;&#x767d;&#x7ec6;&#x80de;&#x6297;&#x539f;(human leukocyte antigen&#xff0c;HLA)-A/B/C-CD8a&#x76f8;&#x5173;&#x4e92;&#x4f5c;&#x3002;&#x4e34;&#x5e8a;&#x5e94;&#x7528;&#x4e0a;&#xff0c;PCDS&#x5728;&#x4e0e;&#x65e2;&#x5f80;100&#x4e2a;&#x9884;&#x540e;&#x7279;&#x5f81;&#x6bd4;&#x8f83;&#x4e2d;&#x8868;&#x73b0;&#x66f4;&#x7a33;&#x5065;&#xff0c;&#x5e76;&#x53ef;&#x8865;&#x5145;&#x201c;&#x70ed;-&#x51b7;&#x80bf;&#x7624;&#x201d;&#x5206;&#x578b;&#xff0c;&#x5728;&#x201c;&#x70ed;&#x80bf;&#x7624;&#x201d;&#x4e2d;&#x4ecd;&#x80fd;&#x8bc6;&#x522b;&#x9ad8;&#x98ce;&#x9669;&#x60a3;&#x8005;&#x3002;&#x514d;&#x75ab;&#x6cbb;&#x7597;&#x961f;&#x5217;&#x9a8c;&#x8bc1;&#x663e;&#x793a;PCDS&#x4e0e;&#x7597;&#x6548;&#x83b7;&#x76ca;&#x5448;&#x8d1f;&#x76f8;&#x5173;&#xff0c;&#x9ad8;PCDS&#x66f4;&#x53ef;&#x80fd;&#x65e0;&#x5e94;&#x7b54;&#x4e14;&#x9884;&#x540e;&#x66f4;&#x5dee;;&#x836f;&#x7269;&#x5206;&#x6790;&#x63d0;&#x793a;PCDS&#x4e0e;&#x591a;&#x79cd;&#x836f;&#x7269;&#x654f;&#x611f;&#x6027;&#x76f8;&#x5173;&#xff0c;&#x53ef;&#x7528;&#x4e8e;&#x6f5c;&#x5728;&#x6cbb;&#x7597;&#x5206;&#x5c42;&#x3002;&#x7ed3;&#x8bba;: PCDS&#x662f;&#x4e00;&#x4e2a;&#x8de8;&#x961f;&#x5217;&#x7a33;&#x5065;&#x7684;&#x9ed1;&#x8272;&#x7d20;&#x7624;&#x9884;&#x540e;&#x4e0e;&#x514d;&#x75ab;&#x6cbb;&#x7597;&#x83b7;&#x76ca;&#x9884;&#x6d4b;&#x5de5;&#x5177;&#xff0c;&#x53cd;&#x6620;&#x514d;&#x75ab;&#x5fae;&#x73af;&#x5883;&#x6291;&#x5236;&#x7a0b;&#x5ea6;&#x53ca;&#x9ad3;&#x7cfb;/&#x5de8;&#x566c;&#x7ec6;&#x80de;&#x76f8;&#x5173;&#x514d;&#x75ab;&#x8c03;&#x63a7;&#x7279;&#x5f81;&#xff0c;&#x5e76;&#x4e3a;&#x4e2a;&#x4f53;&#x5316;&#x98ce;&#x9669;&#x5206;&#x5c42;&#x4e0e;&#x6f5c;&#x5728;&#x7528;&#x836f;&#x9009;&#x62e9;&#x63d0;&#x4f9b;&#x4f9d;&#x636e;&#x3002;&#x6df1;&#x5165;&#x89e3;&#x6790;PCD&#x5728;&#x80bf;&#x7624;&#x514d;&#x75ab;&#x5fae;&#x73af;&#x5883;&#x4e2d;&#x7684;&#x8c03;&#x63a7;&#x673a;&#x5236;&#xff0c;&#x53ef;&#x4e3a;&#x9ed1;&#x8272;&#x7d20;&#x7624;&#x60a3;&#x8005;&#x4e2a;&#x6027;&#x5316;&#x6cbb;&#x7597;&#x51b3;&#x7b56;&#x63d0;&#x4f9b;&#x91cd;&#x8981;&#x7406;&#x8bba;&#x57fa;&#x7840;&#x3002;.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:BRCA1->Ewing_Sarcoma",
+      "source": "BRCA1",
+      "target": "Ewing_Sarcoma",
+      "relation": "associated_with",
+      "pmid": "36187937",
+      "proof_sentence": "We recently reported our discovery of a germline mutation in the DNA damage repair protein BARD1 (BRCA1-associated RING domain-1) in a patient with Ewing sarcoma.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "associated_with:BRAF->Glioblastoma",
+      "source": "BRAF",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "41469702",
+      "proof_sentence": "Epithelioid glioblastoma (GBM) is characterized by its highly aggressive behavior and the presence of the BRAF V600E mutation.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:PIK3CA->Glioblastoma",
+      "source": "PIK3CA",
+      "target": "Glioblastoma",
+      "relation": "associated_with",
+      "pmid": "41944918",
+      "proof_sentence": "The causal roles of PIK3CA and NF1 expression in glioblastoma multiforme (GBM) pathogenesis and their immune-regulatory functions remain poorly understood.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "associated_with:CDK6->CML",
+      "source": "CDK6",
+      "target": "CML",
+      "relation": "associated_with",
+      "pmid": "31761618",
+      "proof_sentence": "Palbociclib, a more specific CDK4/CDK6-inhibitor, was also found to suppress proliferation in primary CML cells and to synergize with ponatinib in producing growth inhibition in BCR-ABL1T315I+ cells, suggesting that suppression of CDK4/CDK6 may be a promising concept to overcome BCR-ABL1T315I-associated TKI resistance.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:PIK3CA->CLL",
+      "source": "PIK3CA",
+      "target": "CLL",
+      "relation": "associated_with",
+      "pmid": "22623730",
+      "proof_sentence": "Our findings implicate amplifications of 3q26 focused on PIK3CA and 8q24 focused on MYC in CLL.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:SRC->Melanoma",
+      "source": "SRC",
+      "target": "Melanoma",
+      "relation": "associated_with",
+      "pmid": "42067550",
+      "proof_sentence": "Analysis of datasets from The Cancer Genome Atlas (TCGA) and Genotype-Tissue Expression (GTEx) revealed that B lymphocyte tyrosine kinase (BLK), a member of the Src family kinases, is significantly downregulated in melanoma samples.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "associated_with:CASP9->AML",
+      "source": "CASP9",
+      "target": "AML",
+      "relation": "associated_with",
+      "pmid": "40954399",
+      "proof_sentence": "Findings demonstrated a significant decrease in piR-33195, as well as increased CASP3 and CASP9 expression, in bone marrow samples from AML patients and the KG1 cell line, 24, 48, and 72 hours after transfection with antisense LNA Gamers.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "associated_with:BRAF->Colorectal_Cancer",
+      "source": "BRAF",
+      "target": "Colorectal_Cancer",
+      "relation": "associated_with",
+      "pmid": "42200009",
+      "proof_sentence": "The serrated neoplasia pathway is a major molecular route to colorectal carcinogenesis, accounting for approximately 15%-30% of sporadic colorectal cancers and characterized by early BRAF V600E mutation, CpG island methylator phenotype, and distinct histopathologic features.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "binds:Gemtuzumab Ozogamicin->CD33",
+      "source": "Gemtuzumab Ozogamicin",
+      "target": "CD33",
+      "relation": "binds",
+      "pmid": "40848224",
+      "proof_sentence": "In our practice, we continue to use 7&#x2009;+&#x2009;3 induction for fit patients, adding midostaurin or quizartinib for&#xa0;FLT3-mutated AML, or gemtuzumab ozogamicin for core binding factor (CBF) AML expressing CD33.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "driver_of:ROS1->NSCLC",
+      "source": "ROS1",
+      "target": "NSCLC",
+      "relation": "driver_of",
+      "pmid": "42075590",
+      "proof_sentence": "Materials and Methods: This retrospective multicenter study included 332 patients with metastatic NSCLC harboring oncogenic alterations (EGFR, ALK, ROS1, KRAS, and others) from eight oncology centers in T&#xfc;rkiye.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "indirect_inhibitor:Bevacizumab->VEGFR2",
+      "source": "Bevacizumab",
+      "target": "VEGFR2",
+      "relation": "indirect_inhibitor",
+      "pmid": "41868199",
+      "proof_sentence": "NGS yielded actionable alterations targeted after conventional surgery/chemoradiation therapy: imatinib (for KIT and PDGRA amplification) and bevacizumab (for KDR [VEGFR2] amplification); everolimus (mTOR inhibitor for TSC2 and PTEN loss-of-function alterations); and ivosidenib (IDH1 inhibitor for IDH1 mutations in two cases, including the oligosarcoma).",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "inhibits:Enalaprilat->ACE",
+      "source": "Enalaprilat",
+      "target": "ACE",
+      "relation": "inhibits",
+      "pmid": "40518035",
+      "proof_sentence": "We here assessed whether and to what extent the exposure to Enalaprilat, the main metabolite of the Angiotensin Converting Enzyme (ACE) inhibitor Enalapril, induces morpho-functional alterations in the mussel Mytilus galloprovincialis.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "inhibits:Atropine->CHRM1",
+      "source": "Atropine",
+      "target": "CHRM1",
+      "relation": "inhibits",
+      "pmid": "40624113",
+      "proof_sentence": "ACh-induced responses were also recorded in the presence of atropine (an inhibitor of muscarinic receptors,10-6 mol/L), pirenzepine (an inhibitor of CHRM1, 10-5 mol/L) AF-DX 116 (an inhibitor of CHRM2, 10-6 mol/L), P-F-HHSiD (an inhibitor of CHRM3, 10-6 mol/L), tropicamide (an inhibitor of CHRM4, 10-6 mol/L), nifedipine (specific CACNA1C antagonist, 10-6 mol/L) or removal of endothelium.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "inhibits:Aliskiren->REN",
+      "source": "Aliskiren",
+      "target": "REN",
+      "relation": "inhibits",
+      "pmid": "40566708",
+      "proof_sentence": "This study aims to investigate the effects of renin inhibitor aliskiren on kidney injury in human angiotensinogen-renin (AGT-REN) double transgenic hypertensive (dTH) mice and explore its possible mechanism.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "inhibits:Vemurafenib->BRAF",
+      "source": "Vemurafenib",
+      "target": "BRAF",
+      "relation": "inhibits",
+      "pmid": "42179788",
+      "proof_sentence": "Vemurafenib, a clinically approved inhibitor of mutant BRAF kinase, has shown robust antitumor activity across multiple malignancies.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "inhibits:Larotrectinib->NTRK3",
+      "source": "Larotrectinib",
+      "target": "NTRK3",
+      "relation": "inhibits",
+      "pmid": "41744839",
+      "proof_sentence": "Inhibitors such as larotrectinib, entrectinib and repotrectinib are used when cancer cells harbor NTRK1, NTRK2 or NTRK3 fusion.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "inhibits:Ribociclib->CDK6",
+      "source": "Ribociclib",
+      "target": "CDK6",
+      "relation": "inhibits",
+      "pmid": "40722732",
+      "proof_sentence": "Results: The docking results revealed that Isocorydine (-7.4 kcal/mol for CDK4 and -7.2 kcal/mol for CDK6) and Thunbergol (-6.5 kcal/mol for CDK4 and -7.0 kcal/mol for CDK6) exhibited promising binding affinities comparable to standard CDK inhibitors, Palbociclib (-7.2, -8.3 kcal/mol) and Ribociclib (-7.1, -8.1 kcal/mol).",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "inhibits:Filgotinib->JAK2",
+      "source": "Filgotinib",
+      "target": "JAK2",
+      "relation": "inhibits",
+      "pmid": "37763071",
+      "proof_sentence": "Filgotinib (FIL) is a selective JAK1 inhibitor with an affinity 30-fold higher than JAK2, approved to treat moderate to severe active rheumatoid arthritis (RA), in adults with inadequate response or intolerance to one or more disease-modifying antirheumatic drugs (DMARDs).",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "inhibits:Alirocumab->PCSK9",
+      "source": "Alirocumab",
+      "target": "PCSK9",
+      "relation": "inhibits",
+      "pmid": "42002510",
+      "proof_sentence": "Out of 52 outpatients with atherosclerotic cardiovascular disease (ASCVD) with an indication for PCSK9 inhibitor alirocumab, 37 patients (mean age 68.1&#xa0;&#xb1;&#xa0;5.6 years, 62% males) were included in the study and retrospectively divided into two groups according to the presence of DM (DM+/DM-).",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "inhibits:Fluorouracil->TYMS",
+      "source": "Fluorouracil",
+      "target": "TYMS",
+      "relation": "inhibits",
+      "pmid": "39949800",
+      "proof_sentence": "5-Fluorouracil (5-FU) is a TYMS inhibitor, we also evaluate the effects of the combined treatment of Huachansu with 5-FU, the results show that interactions between Huachansu and 5-FU are synergistic or antagonistic.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "inhibits:Entrectinib->ROS1",
+      "source": "Entrectinib",
+      "target": "ROS1",
+      "relation": "inhibits",
+      "pmid": "41837926",
+      "proof_sentence": "Entrectinib, a multikinase inhibitor, showed efficacy in ROS1 fusion-positive NSCLC, including intracranial metastases.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "inhibits:Anifrolumab->IFNAR1",
+      "source": "Anifrolumab",
+      "target": "IFNAR1",
+      "relation": "inhibits",
+      "pmid": "41756273",
+      "proof_sentence": "While anifrolumab inhibits the type I interferon receptor 1 (IFNAR1) and is approved for the treatment of moderate-to-severe SLE, randomized controlled trials have not evaluated its efficacy in NPSLE.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "inhibits:Erlotinib->EGFR",
+      "source": "Erlotinib",
+      "target": "EGFR",
+      "relation": "inhibits",
+      "pmid": "42156718",
+      "proof_sentence": "The screen revealed that loss of the redox-regulating enzyme Thioredoxin Reductase 3 (TXNRD3) sensitized TNBC cells to the EGFR inhibitor erlotinib.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "inhibits:Aminoglutethimide->CYP11A1",
+      "source": "Aminoglutethimide",
+      "target": "CYP11A1",
+      "relation": "inhibits",
+      "pmid": "23870673",
+      "proof_sentence": "A Cyp11a1 inhibitor, aminoglutethimide (AMG), was administered to peanut-sensitized and challenged mice.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "inhibits:Ibudilast->PDE3A",
+      "source": "Ibudilast",
+      "target": "PDE3A",
+      "relation": "inhibits",
+      "pmid": "16674936",
+      "proof_sentence": "Ibudilast preferentially inhibits PDE3A, PDE4, PDE10 and PDE11 with lesser inhibition of a number of other families.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "inhibits:Allopurinol->XDH",
+      "source": "Allopurinol",
+      "target": "XDH",
+      "relation": "inhibits",
+      "pmid": "36575190",
+      "proof_sentence": "Sterculic acid is as effective as allopurinol in inhibition of xanthine oxidase (XDH), and this may play a role in reducing the potential role of XDH in fenretinide-induced ROS generation.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "inhibits:Demecarium->ACHE",
+      "source": "Demecarium",
+      "target": "ACHE",
+      "relation": "inhibits",
+      "pmid": "12641839",
+      "proof_sentence": "Demecarium bromide eye drops generally do not cause AChE toxicity, but dogs receiving such therapy should be monitored for signs of AChE toxicity, and concomitant use of other AChE inhibitors should be avoided.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "inhibits:Trametinib->MEK1",
+      "source": "Trametinib",
+      "target": "MEK1",
+      "relation": "inhibits",
+      "pmid": "42152474",
+      "proof_sentence": "Conclusions: The single cases found in the literature and our small case series suggest that MEK1-inhibitors, such as trametinib, are an option for treating AVM Schobinger stage III - IV.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "inhibits:Fulvestrant->ESR1",
+      "source": "Fulvestrant",
+      "target": "ESR1",
+      "relation": "inhibits",
+      "pmid": "42038286",
+      "proof_sentence": "Notably, this cardioprotection was abolished upon treatment with the ESR1 antagonist Fulvestrant or the PI3K inhibitor LY294002, validating that 4-MC exerts its protective effect specifically through the ESR1-PI3K-AKT signaling axis.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "interacts:BRCA1->BRCA2",
+      "source": "BRCA1",
+      "target": "BRCA2",
+      "relation": "interacts",
+      "pmid": "35779338",
+      "proof_sentence": "PALB2 (BRCA2 partner and localizer) is a BRCA2-interacting protein that is required for BRCA2 genome caretaker tasks and interacts with BRCA1.",
+      "confidence_score": 0.9
+    },
+    {
+      "edge_id": "phosphorylates:MEK1->ERK1",
+      "source": "MEK1",
+      "target": "ERK1",
+      "relation": "phosphorylates",
+      "pmid": "42121888",
+      "proof_sentence": "ER-&#x3b1;36 regulated Raf/MEK1/2/Erk1/2 phosphorylation in an SGK1-dependent manner.",
+      "confidence_score": 1.0
+    },
+    {
+      "edge_id": "synergizes_with:Venetoclax->Ruxolitinib",
+      "source": "Venetoclax",
+      "target": "Ruxolitinib",
+      "relation": "synergizes_with",
+      "pmid": "42007254",
+      "proof_sentence": "Functional small-molecule screening of primary acute myeloid leukemia (AML) samples identified ex vivo synergy between the JAK1/2 inhibitor, ruxolitinib (Rux), and venetoclax (Ven) in newly diagnosed and relapsed/refractory (R/R) AML.",
+      "confidence_score": 0.9
+    }
+  ]
+}
