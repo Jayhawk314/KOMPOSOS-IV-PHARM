@@ -12,8 +12,10 @@ This document uses the system's own audit trail:
   `C:\Users\JAMES\github\KOMPOSOS-IV-PHARM\data\drugs\tier1.db`.
 
 No outside web search is used for the audit trail below. The local PHARM database
-contains PMID/FDA/mechanism provenance on the raw morphism rows. It did not
-contain figure-level metadata for the morphism rows inspected here.
+contains PMID/FDA/mechanism provenance on the raw morphism rows. The current
+adapter carries the available enriched morphism metadata forward into the
+PRONOIA evidence packet, but not every edge has edge-specific figure/table-level
+annotations.
 
 ## How To Read The Trail
 
@@ -50,7 +52,7 @@ not the primary PHARM score.
 ### 1. Devalingam Mahalingam / NCI-Hoosier Trial
 
 The relevant PRONOIA candidate is `Sotorasib -> Pancreatic_Cancer`. PRONOIA
-scored it `97.0` with grounding `0.783`, raw MDL gain `64.0` bits, and `9`
+scored it `97.0` with grounding `0.783`, raw MDL gain `80.0` bits, and `9`
 evidence items. The score came from a top mechanism item:
 `Sotorasib -[inhibits]-> KRAS; KRAS -[driver_of]-> Pancreatic_Cancer`.
 The mechanism strength is `sqrt(0.97 * 0.97) = 0.970`, and the matching path
@@ -66,7 +68,7 @@ a high-confidence KRAS pancreatic cancer driver edge.
 ### 2. John H. Strickler / David S. Hong / CodeBreaK Pancreatic Work
 
 The same system audit trail applies to `Sotorasib -> Pancreatic_Cancer`: score
-`97.0`, grounding `0.783`, raw MDL gain `64.0` bits, and `9` evidence items.
+`97.0`, grounding `0.783`, raw MDL gain `80.0` bits, and `9` evidence items.
 The strongest evidence is the two-edge mechanism
 `Sotorasib inhibits KRAS; KRAS driver_of Pancreatic_Cancer`, with mechanism
 strength `0.970` and direct path-search strength `0.9409`. The local PHARM
@@ -93,7 +95,7 @@ sotorasib, with equally strong local graph confidence.
 ### 4. Rona Yaeger / Tanios Bekaii-Saab / KRYSTAL CRC Work
 
 The relevant PRONOIA candidate is `Adagrasib -> Colorectal_Cancer`. PRONOIA
-scored it `93.4345` with grounding `0.741`, raw MDL gain `88.0` bits, and `9`
+scored it `93.4345` with grounding `0.741`, raw MDL gain `80.0` bits, and `9`
 evidence items. The top mechanism item is
 `Adagrasib -[inhibits]-> KRAS; KRAS -[driver_of]-> Colorectal_Cancer`.
 The mechanism strength is `sqrt(0.97 * 0.90) = 0.9343446901`, and the matching
@@ -127,7 +129,7 @@ slightly lower disease-driver confidence than pancreatic cancer.
 ### 6. Christine Parseghian / MD Anderson CRC Trial
 
 The relevant PRONOIA candidate is again `Adagrasib -> Colorectal_Cancer`. The
-audit trail is score `93.4345`, grounding `0.741`, raw MDL gain `88.0` bits, and
+audit trail is score `93.4345`, grounding `0.741`, raw MDL gain `80.0` bits, and
 `9` evidence items. The score is dominated by the two-edge path
 `Adagrasib inhibits KRAS; KRAS driver_of Colorectal_Cancer`, with mechanism
 strength `0.9343446901` and path strength `0.873`. PHARM provenance is
@@ -141,7 +143,7 @@ for a colorectal KRAS G12C trial context.
 
 The relevant PRONOIA candidate is
 `Trastuzumab_deruxtecan -> Breast_Cancer`. PRONOIA scored it `96.4883` with
-grounding `0.794`, raw MDL gain `128.0` bits, and `7` evidence items. The top
+grounding `0.794`, raw MDL gain `136.0` bits, and `7` evidence items. The top
 mechanism item is `Trastuzumab_deruxtecan -[inhibits]-> ERBB2; ERBB2
 -[driver_of]-> Breast_Cancer`. The mechanism strength is
 `sqrt(0.98 * 0.95) = 0.9648834126`, and the matching path score is `0.931`.
@@ -157,7 +159,7 @@ driver trail that makes it a strong curation-review candidate.
 
 The relevant PRONOIA candidate is also
 `Trastuzumab_deruxtecan -> Breast_Cancer`. The audit trail is score `96.4883`,
-grounding `0.794`, raw MDL gain `128.0` bits, and `7` evidence items. The score
+grounding `0.794`, raw MDL gain `136.0` bits, and `7` evidence items. The score
 comes from the ERBB2 mechanism:
 `Trastuzumab_deruxtecan inhibits ERBB2; ERBB2 driver_of Breast_Cancer`, with
 mechanism strength `0.9648834126` and path strength `0.931`. The PHARM database
@@ -186,7 +188,7 @@ two convergent ALK/ROS1 NSCLC routes.
 ### 10. D. Ross Camidge / Scott Gettinger / Brigatinib ALK NSCLC Work
 
 The relevant PRONOIA candidate is `Brigatinib -> NSCLC`. PRONOIA scored it
-`94.9526` with grounding `0.562`, raw MDL gain `32.0` bits, and `10` evidence
+`94.9526` with grounding `0.562`, raw MDL gain `24.0` bits, and `10` evidence
 items. The primary mechanism is `Brigatinib -[inhibits]-> ALK; ALK
 -[driver_of]-> NSCLC`, with strength `sqrt(0.98 * 0.92) = 0.9495261976` and
 path score `0.9016`. A secondary route is `Brigatinib -[inhibits]-> EGFR; EGFR
@@ -238,7 +240,7 @@ prediction.
 ### Javier Cortes / Ian Krop / Additional T-DXd Breast Validation Leads
 
 The relevant candidate is `Trastuzumab_deruxtecan -> Breast_Cancer`, with score
-`96.4883`, grounding `0.794`, raw MDL gain `128.0` bits, and `7` evidence
+`96.4883`, grounding `0.794`, raw MDL gain `136.0` bits, and `7` evidence
 items. The audit trail is the high-confidence HER2/ERBB2 route:
 `Trastuzumab_deruxtecan inhibits ERBB2; ERBB2 driver_of Breast_Cancer`.
 The mechanism score is `0.9648834126`; the path score is `0.931`. PHARM
@@ -250,7 +252,7 @@ pair as label-negative while the mechanism trail is direct.
 ### Afatinib -> Breast_Cancer Calibration Lead
 
 PRONOIA scored `Afatinib -> Breast_Cancer` at `95.0` with grounding `0.700`,
-raw MDL gain `56.0` bits, and `10` evidence items. The strongest mechanism is
+raw MDL gain `64.0` bits, and `10` evidence items. The strongest mechanism is
 `Afatinib -[inhibits]-> ERBB2; ERBB2 -[driver_of]-> Breast_Cancer`, with score
 `sqrt(0.95 * 0.95) = 0.950` and path score `0.9025`. A secondary route is
 `Afatinib -[inhibits]-> EGFR; EGFR -[associated_with]-> Breast_Cancer`, with
@@ -266,7 +268,7 @@ make it a false positive or weak repurposing claim.
 ### Cetuximab -> NSCLC Calibration Lead
 
 PRONOIA scored `Cetuximab -> NSCLC` at `95.0` with grounding `0.533`, raw MDL
-gain `32.0` bits, and `9` evidence items. The top mechanism is
+gain `40.0` bits, and `9` evidence items. The top mechanism is
 `Cetuximab -[inhibits]-> EGFR; EGFR -[driver_of]-> NSCLC`, with mechanism
 strength `sqrt(0.95 * 0.95) = 0.950` and path strength `0.9025`. Additional
 paths route through `EGFR -> KRAS -> NSCLC` at `0.7942` and
