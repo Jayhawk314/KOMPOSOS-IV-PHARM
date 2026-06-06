@@ -474,9 +474,41 @@ if PRONOIA_AVAILABLE:
             return None
         return sorted(items, key=lambda item: float(item.score or 0.0), reverse=True)[0]
 
-    def _pronoia_label(report) -> str:
+    _RESEARCH_SUPPORTED_PAIRS = {
+        ("Sotorasib", "Pancreatic_Cancer"):
+            "External check found pancreatic KRAS G12C publication/trial context; use as research-review evidence, not a general treatment claim.",
+        ("Adagrasib", "Pancreatic_Cancer"):
+            "External check found pancreatic KRAS G12C trial context; use as research-review evidence, not a general treatment claim.",
+        ("Adagrasib", "Colorectal_Cancer"):
+            "External check found KRAS G12C colorectal approval/trial support; likely local label-table gap or underrepresented combination context.",
+        ("Sotorasib", "Colorectal_Cancer"):
+            "External check found KRAS G12C colorectal approval/trial support; likely local label-table gap or underrepresented combination context.",
+        ("Trastuzumab_deruxtecan", "Breast_Cancer"):
+            "External check found strong T-DXd breast cancer support; likely local label-table curation issue.",
+        ("Lorlatinib", "NSCLC"):
+            "External check found ALK/ROS1 NSCLC support; likely local label-table curation issue or underrepresented indication context.",
+        ("Brigatinib", "NSCLC"):
+            "External check found ALK-positive NSCLC support; likely local label-table curation issue or underrepresented indication context.",
+    }
+
+    _CALIBRATION_PAIRS = {
+        ("Afatinib", "Breast_Cancer"):
+            "Mechanism-rich ERBB2/EGFR trail, but external check was clinically mixed; useful for v3 indication-context penalties.",
+        ("Cetuximab", "NSCLC"):
+            "Mechanism-rich EGFR/NSCLC trail, but not enough as a standalone broad treatment claim; useful for v3 calibration.",
+        ("Lapatinib", "NSCLC"):
+            "Mechanism-rich EGFR/ERBB2 trail with weak/older clinical signal; useful for v3 calibration.",
+    }
+
+    _HIGH_EVIDENCE_TIERS = {"MEASURED", "ESTABLISHED"}
+
+    def _pronoia_pair(report) -> tuple[str, str]:
         drug = report.candidate.metadata.get("drug", report.candidate.name)
         disease = report.candidate.metadata.get("disease", report.candidate.target)
+        return str(drug), str(disease)
+
+    def _pronoia_label(report) -> str:
+        drug, disease = _pronoia_pair(report)
         return _label_for_pair((drug, disease), g["positives"])
 
     def _evidence_tiers(item) -> tuple[str, ...]:
@@ -494,6 +526,37 @@ if PRONOIA_AVAILABLE:
                 out.append(str(child["evidence_tier"]))
         seen = set()
         return tuple(t for t in out if not (t in seen or seen.add(t)))
+
+    def _has_established_inference(report) -> bool:
+        for item in tuple(getattr(report.evidence, "items", ()) or ()):
+            if item.source not in {"komposos_mechanism", "komposos_path"}:
+                continue
+            tiers = tuple(t.upper() for t in _evidence_tiers(item))
+            if tiers and all(tier in _HIGH_EVIDENCE_TIERS for tier in tiers):
+                return True
+        return False
+
+    def _relationship_status(report) -> tuple[str, str]:
+        pair = _pronoia_pair(report)
+        local_label = _pronoia_label(report)
+        if local_label == "APPROVED":
+            return (
+                "Known label",
+                "This drug-disease pair is already positive in the local FDA-label benchmark. PRONOIA may still be using hidden-label mechanism evidence to recover it.",
+            )
+        if pair in _CALIBRATION_PAIRS:
+            return "Needs calibration / possible overreach", _CALIBRATION_PAIRS[pair]
+        if pair in _RESEARCH_SUPPORTED_PAIRS:
+            return "Research/trial-supported", _RESEARCH_SUPPORTED_PAIRS[pair]
+        if _has_established_inference(report):
+            return (
+                "Inferred from established path",
+                "No local positive label was visible, but the strongest mechanism/path evidence is built from measured or established graph edges.",
+            )
+        return (
+            "Needs calibration / possible overreach",
+            "No local positive label and no current external-review tag; treat as an inferred graph lead needing expert review.",
+        )
 
     def generate_pronoia_audit_report(slate, disease: str, settings: dict) -> str:
         """Markdown audit report for one PRONOIA PHARM ranking."""
@@ -523,18 +586,26 @@ if PRONOIA_AVAILABLE:
             "",
             "This is not a clinical recommendation. It is a reproducible audit trail for expert review.",
             "",
+            "## Relationship Status Legend",
+            "",
+            "- Known label: positive in the local PHARM FDA-label benchmark.",
+            "- Inferred from established path: not locally labeled positive, but supported by measured/established mechanism-path edges.",
+            "- Research/trial-supported: externally checked lead with public research, trial, approval, or curation support.",
+            "- Needs calibration / possible overreach: mechanism-rich signal that needs indication context, resistance context, or expert rejection.",
+            "",
             "## Ranked Prediction Audit",
             "",
-            "| Rank | Candidate | Local label | Decision | PRONOIA score | Grounding | Base strength | Raw MDL gain | Evidence | PMIDs |",
-            "|---:|---|---|---|---:|---:|---:|---:|---|---|",
+            "| Rank | Candidate | Local label | Relationship status | Decision | PRONOIA score | Grounding | Base strength | Raw MDL gain | Evidence | PMIDs |",
+            "|---:|---|---|---|---|---:|---:|---:|---:|---|---|",
         ]
         for rank, report in enumerate(slate.reports, start=1):
             top = _top_pronoia_evidence(report)
             top_claim = top.claim if top is not None else "-"
             top_pmids = _collect_pmids(top.metadata if top is not None else {})
+            status, _reason = _relationship_status(report)
             out.append(
                 f"| {rank} | {report.candidate.name} -> {report.candidate.target} | "
-                f"{_pronoia_label(report)} | {report.decision} | "
+                f"{_pronoia_label(report)} | {status} | {report.decision} | "
                 f"{report.score:.2f} | {report.metrics.get('grounding', 0.0):.3f} | "
                 f"{report.metrics.get('pharm_base_strength', 0.0):.3f} | "
                 f"{report.metrics.get('raw_mdl_gain_bits', 0.0):.1f} | "
@@ -542,9 +613,12 @@ if PRONOIA_AVAILABLE:
             )
         out += ["", "## Per-Candidate Evidence", ""]
         for report in slate.reports:
+            status, reason = _relationship_status(report)
             out += [
                 f"### {report.candidate.name} -> {report.candidate.target}",
                 "",
+                f"- Relationship status: {status}",
+                f"- Status rationale: {reason}",
                 f"- Decision: {report.decision}",
                 f"- PRONOIA score: {report.score:.2f}",
                 f"- Grounding: {report.metrics.get('grounding', 0.0):.3f}",
@@ -584,6 +658,8 @@ if PRONOIA_AVAILABLE:
             f"### {report.candidate.name} -> {report.candidate.target} "
             f"&nbsp; :{color}[{report.decision}]"
         )
+        status, reason = _relationship_status(report)
+        st.info(f"**Relationship status:** {status}. {reason}")
         c1, c2, c3, c4 = st.columns(4)
         c1.metric("PRONOIA score", f"{report.score:.1f}")
         c2.metric("Grounding", f"{report.metrics.get('grounding', 0.0):.3f}")
@@ -1189,6 +1265,13 @@ elif mode == "Prediction audit (PRONOIA)" and PRONOIA_AVAILABLE:
 This mode is for expert review and report generation. It is not a clinical
 recommendation.
 """)
+    with st.expander("Relationship status legend"):
+        st.markdown("""
+- **Known label**: the pair is already positive in the local PHARM FDA-label benchmark.
+- **Inferred from established path**: the pair is not locally labeled positive, but PRONOIA found measured/established mechanism-path evidence.
+- **Research/trial-supported**: the pair matched the external validation leads already checked against public research, trials, approvals, or curation context.
+- **Needs calibration / possible overreach**: the graph mechanism is real enough to review, but the treatment interpretation needs indication/resistance context or expert rejection.
+""")
 
     disease = st.selectbox("Select disease", g["diseases"])
     shortlist_n = st.slider("Shortlist size (from KOMPOSOS triage)", 3, 30, 12)
@@ -1229,17 +1312,20 @@ recommendation.
         for rank, report in enumerate(slate.reports, start=1):
             top = _top_pronoia_evidence(report)
             pmids = _collect_pmids(top.metadata if top is not None else {})
+            status, reason = _relationship_status(report)
             rows.append({
                 "Rank": rank,
                 "Drug": report.candidate.name,
                 "Disease": report.candidate.target,
                 "Local Label": _pronoia_label(report),
+                "Relationship Status": status,
                 "Decision": report.decision,
                 "PRONOIA Score": round(float(report.score), 2),
                 "Grounding": round(float(report.metrics.get("grounding", 0.0)), 3),
                 "Base Strength": round(float(report.metrics.get("pharm_base_strength", 0.0)), 3),
                 "Raw MDL Gain": round(float(report.metrics.get("raw_mdl_gain_bits", 0.0)), 1),
                 "Top Evidence": top.claim if top is not None else "-",
+                "Status Rationale": reason,
                 "PMIDs": ", ".join(pmids) if pmids else "-",
             })
         st.dataframe(rows, use_container_width=True, hide_index=True)
@@ -1672,6 +1758,13 @@ score.
 **Report output:** the PRONOIA audit report exports the candidate ranking,
 `BACK`/`ABSTAIN` decisions, grounding, raw MDL gain, top evidence paths, evidence
 tiers, and PMID/FDA provenance carried from the local PHARM database.
+
+**Relationship status** separates the final pair from the evidence trail:
+`Known label` means the pair is already positive in the local benchmark;
+`Inferred from established path` means trusted graph edges imply a locally
+unlabeled pair; `Research/trial-supported` means the lead matched the external
+validation packet; and `Needs calibration / possible overreach` marks mechanism
+signals that need more indication context.
 
 **Honest limit:** PRONOIA v2 is an audit and expert-review tool. It is not a
 clinical probability, and v3 still needs contradiction/residual and indication
