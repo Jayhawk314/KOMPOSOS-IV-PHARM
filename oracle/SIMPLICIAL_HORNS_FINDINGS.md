@@ -107,3 +107,40 @@ Rezk = outer/Kan), and it gives real **structure and confidence** signals. It do
 **not** improve ranking on this benchmark, because composition/max is already near the
 ceiling. Stop tuning the ranking; spend effort on causal-sign data or on the
 structure/confidence layer where horns genuinely add value.
+
+---
+
+## Independent confirmation via leave-one-edge-out (Session 2026-06-07)
+
+`oracle/horns_retrodiction.py` re-tests the two key claims under a **stricter
+protocol** than the earlier `remove_direct_labels` global removal: it holds out **each
+`treats` edge individually** (`load_full_typed_view(skip_pair=...)`, which also strips
+that pair's label-derived bridges), rebuilds the nerve per fold, scores the held pair
+against all negatives, and averages. Corroboration is noisy-OR over **distinct
+intermediates** B (parallel edges through the same B collapsed by `max` first), and the
+specificity variant discounts each B by an IDF weight `s(B)=clamp₀(log(N/(1+deg B))/log N)`.
+
+Result (44 held-out FDA `treats` edges, 78×20 candidate pairs):
+
+| scorer | AUROC | AUPRC | Hits@10 | MRR |
+|---|---|---|---|---|
+| **horn-max** (single best spine) | **0.9804** | **0.5837** | 0.700 | 0.0755 |
+| horn-noisy_or (corroboration) | 0.9380 | 0.3661 | 0.700 | 0.0689 |
+| horn-noisy_or-spec (IDF hub penalty) | 0.8938 | 0.2716 | 0.600 | 0.0586 |
+| best graph baseline (common-neighbor) | 0.6219 | — | — | — |
+
+Independently reproduces the settled conclusion:
+
+1. **Horn-max crushes naive baselines** (0.98 vs 0.62) on recovering *deleted* truth —
+   the strongest validation of the mechanism-spine signal, under per-edge hold-out.
+2. **Corroboration still loses** (noisy_or 0.938 < max 0.980), matching the earlier
+   coherence-noisy-OR result (0.9337). Avg only **2.0 distinct intermediates per true
+   edge** — too sparse to corroborate, and noisy-OR inflates hub-routed negatives.
+3. **Specificity weighting makes it WORSE, not better** (0.894), confirming line 49's
+   finding from the IDF direction: real drug mechanisms route through **well-studied,
+   high-degree** target proteins, so penalizing degree penalizes the true drivers. The
+   *sign* of the effect rules out specificity-weighted corroboration on this graph — no
+   knob setting beats `max`. This is a clean negative, recorded rather than tuned away.
+
+Reusable artifact: the per-edge leave-one-out harness in `horns_retrodiction.py` will
+honestly vet any future scoring change against deleted-truth recovery.
