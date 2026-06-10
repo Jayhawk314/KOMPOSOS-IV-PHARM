@@ -510,7 +510,7 @@ def format_terminal(results: list[dict], query_label: str,
     lines.append("=" * 60)
     lines.append(f"Graph: {n_objects} objects, {n_morphisms} morphisms, {n_positives} approved indications")
     lines.append(f"Self-check: {check_recovered}/{check_total} approved indications mechanistically recoverable")
-    lines.append("Labels: APPROVED = in our 48 FDA oncology indications; NOT_APPROVED = not in our list (may still be in trials/literature)")
+    lines.append(f"Labels: APPROVED = in our {n_positives} FDA oncology indications; NOT_APPROVED = not in our list (may still be in trials/literature)")
     lines.append("")
 
     # Table header

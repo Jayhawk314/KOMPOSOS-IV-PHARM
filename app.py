@@ -46,6 +46,7 @@ from validation.ranking_calibration import (
     calibrate_score,
     load_calibration,
 )
+from validation.enrichment_funnel import build_funnel
 from validation.trace_prediction import _build_provenance_index, trace_pair
 from validation.triage import (
     _label_for_pair,
@@ -93,6 +94,12 @@ except Exception as _pronoia_exc:  # pragma: no cover - environment dependent
 
 
 # ── Cache heavy loads ────────────────────────────────────────────────
+
+@st.cache_resource(show_spinner="Scoring all pairs for the enrichment funnel...")
+def load_funnel():
+    """Strict-protocol enrichment funnel (scores all Drug x Disease pairs)."""
+    return build_funnel(DB_PATH)
+
 
 @st.cache_resource(show_spinner="Loading knowledge graph...")
 def load_graph():
@@ -222,7 +229,7 @@ st.set_page_config(
 st.sidebar.title("KOMPOSOS-IV-PHARM")
 st.sidebar.caption("Categorical Drug Repurposing")
 
-_modes = ["Disease-first", "Drug-first", "Pair detail"]
+_modes = ["Disease-first", "Drug-first", "Pair detail", "Search speedup"]
 if OPERADUM_AVAILABLE:
     _modes.append("Decision ranking (OPERADUM)")
 if PRONOIA_AVAILABLE:
@@ -1416,6 +1423,51 @@ elif mode == "Pair detail":
             file_name=f"report_{drug}_{disease}.md",
             mime="text/markdown",
         )
+
+
+# ── Search speedup (enrichment funnel) ───────────────────────────────
+
+elif mode == "Search speedup":
+    st.title("Search speedup")
+    st.caption(
+        "How much of the candidate search the ranker lets you skip. Strict "
+        "protocol: each drug-disease label is removed from the graph before "
+        "scoring, so the ranker cannot read the answer it is graded on."
+    )
+
+    funnel = load_funnel()
+
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Search space", f"{funnel.n_pairs} pairs")
+    c2.metric("Known positives", f"{funnel.n_positives}")
+    c3.metric("Base hit rate", f"{funnel.base_rate * 100:.2f}%")
+
+    st.subheader("Screen the top X%, catch how many real hits")
+    st.table({
+        "Screen top": [f"{r.fraction * 100:.0f}%" for r in funnel.rows],
+        "Pairs": [r.n_screened for r in funnel.rows],
+        "Hits caught": [
+            f"{r.captured}/{funnel.n_positives} ({r.capture_rate * 100:.0f}%)"
+            for r in funnel.rows
+        ],
+        "Enrichment vs random": [f"{r.enrichment:.1f}x" for r in funnel.rows],
+    })
+
+    st.subheader("Or: how little you must screen to catch K% of hits")
+    for t in funnel.capture_targets:
+        st.markdown(
+            f"- Catch **{t.target_rate * 100:.0f}%** of known hits by screening "
+            f"**{t.fraction_screened * 100:.0f}%** of the list "
+            f"(**skip {t.skip_fraction * 100:.0f}%** of the search)."
+        )
+
+    st.info(
+        "Measured on **known** positives (recovery), so it quantifies search "
+        "acceleration on the curated graph — not a novel-discovery hit rate. "
+        "For genuinely novel pairs, top-of-list precision is lower (see the "
+        "Hetionet external check); the temporal holdout shows the lift does not "
+        "fully collapse on unseen approvals."
+    )
 
 
 # ── How Scoring Works ────────────────────────────────────────────────
