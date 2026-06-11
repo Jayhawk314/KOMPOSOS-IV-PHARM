@@ -46,6 +46,7 @@ from validation.ranking_calibration import (
     calibrate_score,
     load_calibration,
 )
+from validation.disease_specificity import build_score_matrix, specificity_ranking, hub_summary
 from validation.enrichment_funnel import build_funnel
 from validation.trace_prediction import _build_provenance_index, trace_pair
 from validation.triage import (
@@ -99,6 +100,12 @@ except Exception as _pronoia_exc:  # pragma: no cover - environment dependent
 def load_funnel():
     """Strict-protocol enrichment funnel (scores all Drug x Disease pairs)."""
     return build_funnel(DB_PATH)
+
+
+@st.cache_resource(show_spinner="Scoring all Drug x Disease pairs for specificity...")
+def load_score_matrix():
+    """Full score matrix for the disease-specificity (hub-demotion) view."""
+    return build_score_matrix(DB_PATH)
 
 
 @st.cache_resource(show_spinner="Loading knowledge graph...")
@@ -229,7 +236,7 @@ st.set_page_config(
 st.sidebar.title("KOMPOSOS-IV-PHARM")
 st.sidebar.caption("Categorical Drug Repurposing")
 
-_modes = ["Disease-first", "Drug-first", "Pair detail", "Search speedup"]
+_modes = ["Disease-first", "Disease-specific", "Drug-first", "Pair detail", "Search speedup"]
 if OPERADUM_AVAILABLE:
     _modes.append("Decision ranking (OPERADUM)")
 if PRONOIA_AVAILABLE:
@@ -693,6 +700,12 @@ if PRONOIA_AVAILABLE:
             })
         if rows:
             st.dataframe(rows, use_container_width=True, hide_index=True)
+            st.caption(
+                "Rows are sorted strongest-first. A `-` in Tiers / PMIDs / "
+                "Provenance means that evidence item has no recorded citation at "
+                "that level yet (commonly the weaker disease-association items) -- "
+                "it is thin provenance, not a truncated trail."
+            )
 
 
 def render_results_table(results):
@@ -792,6 +805,33 @@ def _confidence_color(conf: float) -> str:
     if conf >= 0.40:
         return "orange"
     return "red"
+
+
+def _honest_status(status: str) -> str:
+    """Turn bare placeholder validation_status values into honest phrases.
+
+    The raw defaults (`unclassified`, empty) read like a truncated/missing field;
+    they actually mean 'this edge has no edge-level citation audit yet', which is
+    a known open task — say so explicitly instead of showing a cryptic token.
+    """
+    s = (status or "").strip().lower()
+    return {
+        "": "no edge-level validation yet (open audit task)",
+        "unclassified": "no edge-level validation yet (open audit task)",
+        "citation_unverified": "citation present, relation not yet verified",
+        "established_source": "established source",
+        "database_record": "database record",
+        "citation_verified": "citation-verified relation",
+    }.get(s, status)
+
+
+def _honest_source_type(source_type: str) -> str:
+    """Turn the `unknown_or_internal` placeholder into an honest phrase."""
+    s = (source_type or "").strip().lower()
+    return {
+        "": "internal / derived (no external source tag)",
+        "unknown_or_internal": "internal / derived (no external source tag)",
+    }.get(s, source_type)
 
 
 def _strategy_label(name: str) -> str:
@@ -1066,6 +1106,12 @@ def render_detail(entry):
             f"**Compositional Trace** (Drug \u2192 Protein \u2192 Disease) "
             f"-- {len(entry['chains'])} chains ({', '.join(parts)})"
         )
+        st.caption(
+            "Reading note: the final Protein \u2192 **Disease** hop is the "
+            "least-verified layer in the graph -- those links are often "
+            "literature co-mentions rather than edge-verified relations, so a "
+            "sparse label on the *last* hop is expected, not a missing value."
+        )
 
         for i, chain in enumerate(entry["chains"], 1):
             parts_p = [chain["edges"][0]["source"]]
@@ -1074,11 +1120,16 @@ def render_detail(entry):
             path_str = " ".join(parts_p)
 
             with st.expander(f"Path {i}: {path_str}"):
-                for edge in chain["edges"]:
+                n_edges = len(chain["edges"])
+                for edge_idx, edge in enumerate(chain["edges"]):
                     conf = edge["confidence"]
                     prov = edge.get("provenance", "unknown")
                     src_type = _provenance_source_type(prov)
                     color = _confidence_color(conf)
+                    is_terminal = (
+                        edge_idx == n_edges - 1
+                        or edge.get("target") == entry["disease"]
+                    )
                     if prov == "PubMed co-mention (unverified)":
                         prov_display = "co-mention (unverified)"
                     elif prov == "unknown":
@@ -1096,12 +1147,15 @@ def render_detail(entry):
                             prov_display = prov
                     else:
                         prov_display = prov
+                    terminal_tag = " &nbsp;:gray[(disease link — weakest layer)]" if is_terminal else ""
+                    status_txt = _honest_status(edge.get("validation_status", ""))
+                    src_type_txt = _honest_source_type(edge.get("source_type", ""))
                     st.markdown(
                         f"- **{edge['source']}** -{edge['relation']}-> "
-                        f"**{edge['target']}** "
+                        f"**{edge['target']}**{terminal_tag} "
                         f"(:{color}[conf: {conf:.2f}], {src_type} | {prov_display})"
-                        f"  \n  source_type: `{edge.get('source_type', 'unknown_or_internal')}`; "
-                        f"status: `{edge.get('validation_status', 'unclassified')}`"
+                        f"  \n  source: {src_type_txt}; "
+                        f"status: {status_txt}"
                     )
 
     cited = entry["cited_edges"]
@@ -1148,6 +1202,68 @@ if mode == "Disease-first":
         for entry in not_approved[:5]:
             render_detail(entry)
             st.markdown("---")
+
+
+# ── Disease-specific (hub-demotion) ──────────────────────────────────
+
+elif mode == "Disease-specific":
+    st.title("Disease-specific candidates")
+    st.caption(
+        "Promiscuous multi-kinase inhibitors (Imatinib, Sunitinib, ...) top "
+        "almost every disease, so the raw ranking keeps surfacing the same "
+        "pan-cancer hubs you already know. This view re-ranks by LIFT = raw "
+        "score minus the drug's mean across all diseases, demoting the hubs so "
+        "the genuinely disease-specific candidates surface."
+    )
+
+    disease = st.selectbox("Select disease", g["diseases"])
+    top_n = st.slider("Top N", 5, 30, 12)
+
+    if st.button("Rank by specificity", type="primary"):
+        matrix = load_score_matrix()
+        rows = specificity_ranking(matrix, disease, top_n=top_n)
+
+        st.subheader(f"Disease-specific lift ranking — {disease}")
+        st.caption(
+            "Lift is the disease-specific signal: how much more this drug prefers "
+            "this disease than its own average. 'Hub' shows how many of the "
+            f"{len(matrix.diseases)} diseases the drug tops (high = generic). "
+            "Raw score is the unadjusted model score, shown for comparison."
+        )
+        st.dataframe(
+            [{
+                "Rank": i,
+                "Drug": r.drug,
+                "Lift": round(r.lift, 3),
+                "Raw score": round(r.raw_score, 3),
+                "Drug avg (all diseases)": round(r.drug_mean, 3),
+                "Hub (tops N diseases)": f"{r.hub_count}/{len(matrix.diseases)}",
+                "FDA label": "TREATS" if r.is_positive else "-",
+            } for i, r in enumerate(rows, start=1)],
+            use_container_width=True,
+            hide_index=True,
+        )
+
+        st.subheader("Pan-cancer hubs being demoted")
+        st.caption(
+            "These drugs top the most disease lists; the specificity view pushes "
+            "them down so they no longer crowd out disease-specific signal."
+        )
+        st.dataframe(
+            [{
+                "Drug": drug,
+                "Tops N diseases": f"{count}/{len(matrix.diseases)}",
+            } for drug, count in hub_summary(matrix)],
+            use_container_width=True,
+            hide_index=True,
+        )
+
+        st.info(
+            "This is a presentation/triage lens — it does NOT change the scoring "
+            "model or any AUROC. A positive lift means 'more specific to this "
+            "disease than the drug's baseline', not 'more likely to work'. Use it "
+            "to find candidates the raw ranking buries under generic hubs."
+        )
 
 
 # ── Decision ranking (OPERADUM) ──────────────────────────────────────

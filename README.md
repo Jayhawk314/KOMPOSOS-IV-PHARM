@@ -14,6 +14,9 @@ Author: James Ray Hawkins · License: Apache 2.0 / Commercial dual license · Py
 > **Status:** working research prototype, **not** clinical or translational
 > validation. Every AUROC below names its graph view, protocol, pair count,
 > positive count, and label policy — see `CLAUDE.md` for the full audit trail.
+>
+> **Read [`HONEST_VALUE.md`](HONEST_VALUE.md) first** for a deliberately
+> conservative, self-critical account of what this system is and is not worth.
 
 ---
 
@@ -77,6 +80,9 @@ python -m validation.enrichment_funnel --json       # structured output
 ```powershell
 # Rank all drugs for a disease (evidence chains, provenance, labels)
 python validation\triage.py Melanoma
+
+# Disease-specific candidates (demote the pan-cancer hub drugs)
+python -m validation.disease_specificity Melanoma
 
 # Rank all diseases for a drug
 python validation\triage.py --drug Sorafenib
