@@ -1950,7 +1950,10 @@ signals that need more indication context.
 
 **Honest limit:** PRONOIA v2 is an audit and expert-review tool. It is not a
 clinical probability, and v3 still needs contradiction/residual and indication
-context penalties.
+context penalties. Any PRONOIA v2 AUROC (e.g. ~0.98 in the presentation packet)
+is an **in-graph hidden-label** benchmark on the same 44 positives as KOMPOSOS,
+not an external test -- it is not evidence of better generalization to novel
+pairs. External generalization is weak for both (Hetionet AUROC ~0.64).
 """)
 
 

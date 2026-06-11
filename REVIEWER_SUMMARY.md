@@ -96,6 +96,11 @@ PRONOIA PHARM v2 hidden-label benchmark:
 | PRONOIA v2 AUPRC | 0.577 |
 | Hits@5 / @10 / @20 | 0.600 / 0.700 / 0.650 |
 
+Like the KOMPOSOS AUROC above, this 0.981 is an **in-graph hidden-label**
+benchmark on the same 44 positives, not an external test. It is not evidence
+that PRONOIA generalizes better than KOMPOSOS to novel pairs; read both as
+in-graph recovery, and weigh external generalization by the Hetionet result.
+
 Raw zlib-MDL is retained as a transparency metric, but it is not the primary
 PHARM ranker.
 
