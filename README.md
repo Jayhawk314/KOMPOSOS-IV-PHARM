@@ -75,6 +75,25 @@ python -m validation.enrichment_funnel --json       # structured output
 
 ---
 
+## Disease-specific candidates (demote the hubs)
+
+Promiscuous multi-kinase inhibitors top almost every disease — Imatinib lands in
+17 of 20 disease top-5 lists — so the raw ranking keeps surfacing pan-cancer
+hubs you already know. The **Disease-specific** view re-ranks by
+`lift = raw score − the drug's mean across all diseases`, demoting the hubs so
+the genuinely disease-specific candidates surface. On Melanoma this promotes the
+actual approved MEK/checkpoint drugs (Binimetinib, Cobimetinib, Nivolumab,
+Pembrolizumab) that the raw ranking buries. It is a presentation lens — it does
+**not** change the scoring model or any AUROC.
+
+![Disease-specific view for Melanoma](reports/disease_specific_melanoma.png)
+
+```powershell
+python -m validation.disease_specificity Melanoma   # or open the "Disease-specific" UI mode
+```
+
+---
+
 ## Quickstart
 
 ```powershell
