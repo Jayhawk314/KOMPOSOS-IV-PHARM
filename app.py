@@ -1821,22 +1821,36 @@ Disease path, then returns the best score across those disease-linked targets.
    agreement = more robust prediction.
 2. **Path quality**: Are the mechanistic chains built on high-confidence
    edges (ChEMBL, FDA) or speculative ones (PubMed co-mention)?
-3. **IC50 data**: If the binding_evidence strategy voted AND there are
+3. **The terminal hop is the weakest**: The final Protein -> Disease link of a
+   chain is the least-verified layer (often a literature co-mention, not an
+   edge-verified relation). A sparse label there is expected -- scrutinize it.
+4. **IC50 data**: If the binding_evidence strategy voted AND there are
    ABPP IC50 values, those are experimental measurements -- the strongest
    evidence type in this system.
-4. **Cited papers**: Every edge has a provenance/source string, but not every
+5. **Cited papers**: Every edge has a provenance/source string, but not every
    source is an edge-specific PMID. Follow PMID links where present and verify
    that the paper supports the exact edge.
+
+**Watch for the hub-drug bias:** promiscuous multi-kinase inhibitors (Imatinib
+tops 17/20 diseases, Sunitinib 14/20) float to the top of *most* disease lists,
+so a high rank for one of them is weak disease-specific evidence -- it's partly
+real pan-cancer biology, partly a promiscuity bias. Use the **Disease-specific**
+view to demote the hubs and surface candidates particular to your disease.
 
 **What this system does NOT do:**
 
 - It does not replace clinical judgment
 - It does not predict safety, toxicity, or pharmacokinetics
 - It does not account for patient-specific factors
+- It does not discover novel targets; it accelerates and explains a search over
+  pharmacology already in the graph. Top-of-list precision on genuinely novel
+  pairs is lower than the in-graph AUROC suggests (see the Hetionet check).
 - AUROC of 0.9705 on the current strict 44-positive benchmark does not guarantee real-world
   performance
 - The system surfaces auditable hypotheses from existing graph evidence; it does
   not by itself validate new clinical knowledge
+
+_See **HONEST_VALUE.md** in the repo root for the full conservative assessment._
 """)
 
     if OPERADUM_AVAILABLE:
@@ -1949,11 +1963,20 @@ elif mode == "About":
     n_mor = g["n_morphisms"]
     n_pos = g["n_positives"]
 
+    st.info(
+        "For a deliberately conservative, self-critical account of what this "
+        "system is and is not worth, read **HONEST_VALUE.md** in the repo root."
+    )
+
     st.markdown(f"""
-KOMPOSOS-IV-PHARM is a **categorical AI runtime** for drug repurposing. It uses
-category theory (Kan extensions, Yoneda lemma, topos logic, fibrations) to
-predict which existing drugs might treat diseases they weren't originally
-approved for.
+KOMPOSOS-IV-PHARM is a **categorical AI runtime** for drug repurposing. In
+practice the ranking is driven mostly by **confidence-weighted mechanistic path
+composition** (Drug -> Protein -> Disease) plus a structural-similarity bonus;
+the category-theoretic layer (Kan extensions, Yoneda lemma, topos logic,
+fibrations) is the organizing framework around that core, not the main source of
+the measured performance. It **prioritizes and explains** existing drugs as
+auditable hypotheses for diseases they weren't approved for -- it does not
+predict that a drug will actually work.
 
 ### How It Works
 
@@ -2054,6 +2077,13 @@ clinical probability.
 - **Oncology only**: 20 cancer types currently
 - **Small graph**: {n_obj} objects vs 47k+ in published systems like Rephetio
 - **Open-world negatives**: Unlabeled pairs are unknowns, not confirmed negatives
+- **Hub-drug bias**: Promiscuous multi-kinase inhibitors (Imatinib tops 17/20
+  diseases) crowd the top of most disease rankings -- partly real pan-cancer
+  biology, partly a promiscuity bias, and the main reason AUPRC (0.55) trails
+  AUROC (0.97). Use the **Disease-specific** view to demote the hubs.
+- **Weakest at the disease link**: The terminal Protein->Disease hop of an
+  evidence chain is the least-verified layer (often a literature co-mention).
+  Treat the last hop with extra scrutiny; edge-level citation audit is ongoing.
 - **Citation attribution risk remains**: Provenance/source strings exist for every edge, but
   the audit found PMID-without-context, measured-tier mismatch, and quantitative
   support issues that need edge-level verification before wet-lab claims
