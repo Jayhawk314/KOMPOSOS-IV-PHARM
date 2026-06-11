@@ -27,6 +27,13 @@ The `remove_direct_labels` protocol hides direct Drug->Disease treatment labels
 and label-derived bridges from PRONOIA evidence, while still scoring against the
 full positive label set. This is the useful prediction protocol.
 
+**Caveat for every AUROC/AUPRC below:** these are all **in-graph hidden-label**
+metrics on the same 44 positives — the direct edge is hidden but the full
+curated graph is still visible. A score family edging the KOMPOSOS baseline here
+reflects in-graph recovery, not better generalization. External generalization
+is weak for both engines (Hetionet CtD AUROC ~0.64, AUPRC ~0.01); read these
+tables as search/recovery on the curated graph, not a novel-discovery hit rate.
+
 ## Raw-MDL Baseline Result
 
 This was the first full run before PHARM score v2 was promoted. It is kept here

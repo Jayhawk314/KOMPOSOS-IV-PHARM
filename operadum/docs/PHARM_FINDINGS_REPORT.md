@@ -45,6 +45,13 @@ Current benchmark:
 | KOMPOSOS baseline AUROC | 0.971 |
 | KOMPOSOS baseline AUPRC | 0.546 |
 
+These are **in-graph hidden-label** metrics on the same 44 positives: the direct
+treatment edge is hidden, but PRONOIA and KOMPOSOS still see the same curated
+graph. PRONOIA v2 edging KOMPOSOS here is in-graph recovery, not evidence of
+better generalization. External generalization is weak for both (Hetionet CtD
+AUROC ~0.64, AUPRC ~0.01); read these as search/recovery on the curated graph,
+not a novel-discovery hit rate.
+
 ## Main Finding
 
 PRONOIA can recover many hidden benchmark-positive treatment links from
