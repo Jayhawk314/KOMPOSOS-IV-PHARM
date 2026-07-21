@@ -1,0 +1,1972 @@
+{
+  "relation": "driver_of",
+  "gaps_total": 5793,
+  "probed": 250,
+  "counts": {
+    "relation_screened": 13,
+    "quarantined_cooccurrence": 78,
+    "ungrounded": 159
+  },
+  "note": "RELATION-SCREENED = grounded lexical screen (~0.82 precision); a CANDIDATE for adjudication, NOT a verified fact. tier1.db unchanged.",
+  "relation_screened": [
+    {
+      "edge_id": "driver_of:NR3C1->AML",
+      "source": "NR3C1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "32032633",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'pathogenesis'); COG=REJECT",
+      "proof_sentence": "The present study reveals a possible role for NR3C1 in the pathogenesis of AML."
+    },
+    {
+      "edge_id": "driver_of:ESR1->AML",
+      "source": "ESR1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "29789325",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'driver'); COG=REJECT",
+      "proof_sentence": "Because different types of tumors are characterized by unique sets of cancer driver genes, we also argue that the fraction of driver genes regulated by E2-ESR1 is lower in malignancies not associated with estrogens, e.g., acute myeloid leukemia (AML).Methods: We performed a literature search of each driver gene to determine its E2-ESR1 regulation.Results: Fifty-three of the 82 driver genes (64.6%) identified in breast cancers showed evidence of E2-ESR1 regulation."
+    },
+    {
+      "edge_id": "driver_of:BMPR2->AML",
+      "source": "BMPR2",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "29715457",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'pathogenesis'); COG=REJECT",
+      "proof_sentence": "Notably, the SPG6 deficiency resulted in higher BMPR2 expression indicating that BMPR2 signaling contributes to AML pathogenesis."
+    },
+    {
+      "edge_id": "driver_of:KEAP1->AML",
+      "source": "KEAP1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "25464887",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'oncogen'); COG=REJECT",
+      "proof_sentence": "Preliminary mechanistic investigations show that AML cells made from addition of two oncogenes (NrasG12D and MLL-AF9) increase the ROS-status, is initially an anti-oxidant as hydrogen peroxide is consumed to activate the pro-drug, and cells respond by upregulating electrophilic defense as visualized by Western blotting of KEAP1."
+    },
+    {
+      "edge_id": "driver_of:SCN5A->AML",
+      "source": "SCN5A",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "38230679",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'promot'); COG=REJECT",
+      "proof_sentence": "This study aimed to explore the effect and mechanism of SCN5A overcoming ATP-binding cassette (ABC) transporter-mediated multidrug resistance (MDR) in acute myeloid leukemia (AML) through promoting apoptosis."
+    },
+    {
+      "edge_id": "driver_of:TFPI->AML",
+      "source": "TFPI",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "22052167",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'promot'); COG=REJECT",
+      "proof_sentence": "Aberrant methylation of TFPI-2 promoter was detected in 71.6% (48/67) of the Chinese pediatric AML patients."
+    },
+    {
+      "edge_id": "driver_of:ADAMTS13->AML",
+      "source": "ADAMTS13",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "25543464",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'pathogenesis'); COG=REJECT",
+      "proof_sentence": "The ADAMTS13 and vWF antigen may play a role in the pathogenesis of AML and the formation of infection and DIC."
+    },
+    {
+      "edge_id": "driver_of:ANGPT2->AML",
+      "source": "ANGPT2",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "25338607",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'pathogenesis'); COG=REJECT",
+      "proof_sentence": "In this review, the role of ANGPT2 in the pathogenesis of acute myelogenous leukemia (AML), including its effects on proliferation of leukemia cells, bone marrow angiopoiesis, tumor invasion and metastasis are briefly summarised in order to provide the basis for targeted ANGPT2 in treatment of AML."
+    },
+    {
+      "edge_id": "driver_of:BCL11A->AML",
+      "source": "BCL11A",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "34714913",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'promot'); COG=REJECT",
+      "proof_sentence": "Bcl11a promotes the proliferation and engraftment of Trib1-expressing AML cells in&#xa0;vitro and in&#xa0;vivo."
+    },
+    {
+      "edge_id": "driver_of:CD33->AML",
+      "source": "CD33",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "40769005",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'pathogenesis'); COG=REJECT",
+      "proof_sentence": "Advances in understanding the pathogenesis of AML have fueled the development of precision medicine approaches, with notable successes in targeting specific mutant proteins (e.g., FLT3, IDH1, IDH2), apoptotic regulators (e.g., BCL-2, MCL1), and cell-surface antigens (e.g., CD33, CD123, CD47)."
+    },
+    {
+      "edge_id": "driver_of:EPCAM->AML",
+      "source": "EPCAM",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "27697766",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'oncogen'); COG=REJECT",
+      "proof_sentence": "In this study, we compared gene expression patterns of acute myeloid leukemia (AML) and normal bone marrow samples and found that epithelial cell adhesion molecule (EpCAM) is frequently overexpressed in patients with AML, with EpCAM+ leukemic cells exhibiting enhanced chemoresistance and oncogenesis."
+    },
+    {
+      "edge_id": "driver_of:HCK->AML",
+      "source": "HCK",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "35039904",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'oncogen'); COG=REJECT",
+      "proof_sentence": "Hematopoietic cell kinase (HCK), an Src kinase family member, is overexpressed on hematopoietic stem cells of MDS and de novo AML patients and involved in the oncogenic process."
+    },
+    {
+      "edge_id": "driver_of:ROCK2->AML",
+      "source": "ROCK2",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "39126734",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'caus'); COG=REJECT",
+      "proof_sentence": "The cause of ROCK2's impact on acute myeloid leukemia (AML) is still unknown."
+    }
+  ],
+  "quarantined": [
+    {
+      "edge_id": "driver_of:HRH1->AML",
+      "source": "HRH1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "33080103",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Although the histamine receptor type 1 was widely expressed in healthy and malignant haematopoiesis, especially along the myeloid lineage, HRH1 lacked a relevant role in survival/proliferation and chemoresistance of AML cells, as analysed by HRH1 knockdown (KD) and pharmacological modulation."
+    },
+    {
+      "edge_id": "driver_of:INSR->AML",
+      "source": "INSR",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "38731097",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Methods: Quantitative TaqMan reverse transcriptase polymerase chain reaction (RT-qPCR) was utilized to quantify the mRNA levels of LMNA/C (LMNA, LMNC, LMNA&#x394;10, and LMNA&#x394;50) as well as INSR (IR-A and IR-B) variants in PBMCs obtained from healthy individuals (n = 32) and patients diagnosed with primary leukemias (acute myeloid leukemia (AML): n = 17; acute lymphoblastic leukemia (ALL): n = 8; chronic myeloid leukemia (CML): n = 5; and chronic lymphocytic leukemia (CLL): n = 15)."
+    },
+    {
+      "edge_id": "driver_of:OPRM1->AML",
+      "source": "OPRM1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "35081358",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Our results reveal the OPRM1-TET2 regulatory axis in AML and suggest that opioid agonists, particularly OPA1, a US Food and Drug Administration (FDA)-approved antidiarrheal drug, have therapeutic potential in AML, especially in TET2-mutated and chemotherapy-resistant AMLs, which have a poor prognosis."
+    },
+    {
+      "edge_id": "driver_of:ACHE->AML",
+      "source": "ACHE",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "8637218",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "The genes for acetylcholinesterase (ACHE) and butyrylcholinesterase (BCHE) are located within regions subject to non-random chromosomal abnormalities in the myelodysplastic syndromes (MDS) and acute myeloid leukaemia (AML)."
+    },
+    {
+      "edge_id": "driver_of:AR->AML",
+      "source": "AR",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "35349331",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "High allelic ratio (HAR) FLT3/ITD (AR &gt; 0.4) mutations confer poor prognosis in pediatric acute myeloid leukemia (AML)."
+    },
+    {
+      "edge_id": "driver_of:PGR->AML",
+      "source": "PGR",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "18523155",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "We performed genomewide screening for methylated CpG islands and identified 8 genes frequently methylated in leukemia cell lines and in patients with acute myeloid leukemia (AML): NOR1, CDH13, p15, NPM2, OLIG2, PGR, HIN1, and SLC26A4."
+    },
+    {
+      "edge_id": "driver_of:NR3C2->AML",
+      "source": "NR3C2",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "32338183",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "In conclusion, we firstly uncovered that LINC01128 resisted acute myeloid leukemia through regulating miR-4260/NR3C2, providing novel clues for the treatment improvement of AML."
+    },
+    {
+      "edge_id": "driver_of:ACE->AML",
+      "source": "ACE",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "39865982",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "By examining the co-existence patterns among these cell states, we highlighted a unique AML cellular ecosystem (ACE) that signifies aberrant tumor milieu and poor survival, which is confirmed by public RNA-seq cohorts."
+    },
+    {
+      "edge_id": "driver_of:F2->AML",
+      "source": "F2",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "35259424",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "This study explores the roles of miRNA-301b-3p in AML, with the aim of ascertaining its regulatory action on Wnt/&#x3b2;-catenin axis by targeting Forkhead box F2 (FOXF2)."
+    },
+    {
+      "edge_id": "driver_of:F8->AML",
+      "source": "F8",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "2415779",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "However, in contrast to normal haemopoietic cells, some myeloid leukaemias carry both 'framework' and 'restricted' epitopes (30% AML and AMML samples are F10.89.4+, F8.11.13+), and it is within this group that all TdT+ AML and AMML cases lie."
+    },
+    {
+      "edge_id": "driver_of:SLC18A2->AML",
+      "source": "SLC18A2",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "31681584",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "We also report that SLC18A2, PLXNC1, and MRPL33 gene expression is associated with TrkA or KIT expression levels in both AML and NB, and these genes have a prognostic value for both cancers."
+    },
+    {
+      "edge_id": "driver_of:VDR->AML",
+      "source": "VDR",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "35889808",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Recent results have shown that AML types with certain mutations, such as isocitrate dehydrogenase (IDH) mutations, may be the right targets for differentiation therapy using 1,25D, due to upregulation of vitamin D receptor (VDR) pathway."
+    },
+    {
+      "edge_id": "driver_of:AGTR1->AML",
+      "source": "AGTR1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "38896605",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Patient sequence data revealed that angiotensin II receptor type 1 (AGTR1) is a shared target between AML and cardiovascular disease (CVD)."
+    },
+    {
+      "edge_id": "driver_of:DPP4->AML",
+      "source": "DPP4",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "39638778",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Survival analysis revealed that NCOA4, ACSL4, DPP4, and ATL1 significantly affected the survival of patients with AML."
+    },
+    {
+      "edge_id": "driver_of:F10->AML",
+      "source": "F10",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "28186123",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "JP8 treatment had a stronger effect on apoptosis in B16-F10 melanoma cells than that in normal AML-12 hepatocytes."
+    },
+    {
+      "edge_id": "driver_of:TNF->AML",
+      "source": "TNF",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "39198650",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "However, an impairment in the respiratory burst was observed in granulocyte-macrophage colony-stimulating factor (GM-CSF)-matured MDMs and alveolar macrophage-like (AML) cells2 from both patients with TNF deficiency, TNF- or TNFR1-deficient induced pluripotent stem (iPS)-cell-derived GM-CSF-matured macrophages, and healthy control MDMs and AML cells differentiated with TNF blockers in vitro, and in lung macrophages treated with TNF blockers ex vivo."
+    },
+    {
+      "edge_id": "driver_of:CA2->AML",
+      "source": "CA2",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "37802982",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "CaSR interacts with filamin A, a crosslinker of actin filaments, affects stemness-associated factors and modulates pERK, &#x3b2;-catenin and c-MYC signaling and intracellular levels of [Ca2+] in MLL-AF9+ AML cells."
+    },
+    {
+      "edge_id": "driver_of:CFTR->AML",
+      "source": "CFTR",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "31631611",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "The expression of CFTR protein was not detected in peripheral blood mononuclear cells of normal control, while it was positive in more than half of acute leukemias including acute myeloid leukemia (AML) and acute lymphoblastic leukemia (ALL), but negative in the patients with acute promyelocytic leukemia (M3)."
+    },
+    {
+      "edge_id": "driver_of:CSF3R->AML",
+      "source": "CSF3R",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "39907800",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "A CSF3R gene mutation was present in 13/179 AML cases (7.3%), in 2/27 (7.4%) CMML cases, in 1/94 (1.1%) MDS cases and in 4/60 (6.7%) other myeloid neoplasms."
+    },
+    {
+      "edge_id": "driver_of:CYP19A1->AML",
+      "source": "CYP19A1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "20617168",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Gene-based AML analysis suggested CYP19A1 and UGT2B4 to be the major players within the sub-pathway."
+    },
+    {
+      "edge_id": "driver_of:HTR1B->AML",
+      "source": "HTR1B",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "35046097",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "AML progression requires the presence of serotonin receptor 1B (HTR1B) in osteoblasts and is driven by AML-secreted kynurenine, which acts as an oncometabolite and HTR1B ligand."
+    },
+    {
+      "edge_id": "driver_of:PDE3A->AML",
+      "source": "PDE3A",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "39406931",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "In this study, we identified phosphodiesterase 3&#x2009;A (PDE3A) as a potential new target for drug repositioning in AML."
+    },
+    {
+      "edge_id": "driver_of:APP->AML",
+      "source": "APP",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "35981366",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "To analyze the predictive value of acute phase proteins (APPs) on the prognosis of patients with acute myeloid leukemia (AML)."
+    },
+    {
+      "edge_id": "driver_of:C5->AML",
+      "source": "C5",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "36982537",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "T-ALL predominated in C1 and AML in C5, but both occurred in all four acute-dominated clusters."
+    },
+    {
+      "edge_id": "driver_of:F7->AML",
+      "source": "F7",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "22484554",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "To examine whether this fractionation was applicable to the study of in vivo gene expression profiles during granulopoiesis, we analyzed messenger RNA levels of AML-1 and CCAAT/enhancer binding protein (EBP)-&#x3b5; and two target genes of C/EBP-&#x3b5;, granulocyte-macrophage colony-stimulating factor receptor common &#x3b2; subunit and lactoferrin, in the six fractions and peripheral blood-derived neutrophils (F7)."
+    },
+    {
+      "edge_id": "driver_of:ACVR1->AML",
+      "source": "ACVR1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "38007585",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "We identified activin A receptor type I (ACVR1), a member of the TGF-&#x3b2; superfamily, as a factor favoring acute myeloid leukemia (AML) growth and a new potential therapeutic target."
+    },
+    {
+      "edge_id": "driver_of:BTK->AML",
+      "source": "BTK",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "26624983",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Given the reported expression and constitutive activation of BTK in acute myeloid leukemia (AML) cells, there has been recent interest in investigating the anti-AML activity of ibrutinib."
+    },
+    {
+      "edge_id": "driver_of:CALCRL->AML",
+      "source": "CALCRL",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "34655717",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "The calcitonin receptor-like receptor (CALCRL) is a novel promising therapeutic target of AML and has been indicated to be strongly correlated with chemotherapy resistance and relapse driven by leukemic stem cells."
+    },
+    {
+      "edge_id": "driver_of:CASR->AML",
+      "source": "CASR",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "37802982",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "CaSR influences the location of MLL-AF9+ acute myeloid leukaemia (AML) cells within this niche and differentially impacts MLL-AF9+ AML versus BCR-ABL1+ leukaemias."
+    },
+    {
+      "edge_id": "driver_of:CD38->AML",
+      "source": "CD38",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "9212098",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "The SL-ICs from all subtypes of AML analyzed, regardless of the heterogeneity in maturation characteristics of the leukemic blasts, were exclusively CD34++ CD38-, similar to the cell-surface phenotype of normal SCID-repopulating cells, suggesting that normal primitive cells, rather than committed progenitor cells, are the target for leukemic transformation."
+    },
+    {
+      "edge_id": "driver_of:CD80->AML",
+      "source": "CD80",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "30911134",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "In two independent patient cohorts we confirmed the deregulation of multiple costimulatory ligands on AML blasts at post-transplantation relapse (PD-L1, B7-H3, CD80, PVRL2), mirrored by concomitant changes in circulating donor T cells."
+    },
+    {
+      "edge_id": "driver_of:CD86->AML",
+      "source": "CD86",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "34699595",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Among them, overexpression of PD-L1 and CD86 correlated with upregulation of AP-1 transcription factors (TFs) in NA-AML cells."
+    },
+    {
+      "edge_id": "driver_of:CYP17A1->AML",
+      "source": "CYP17A1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "30614301",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "For the first time, we report a 17-OHD case accompanied by SCFE, AML, and a novel mutation site in the CYP17A1 gene."
+    },
+    {
+      "edge_id": "driver_of:DDC->AML",
+      "source": "DDC",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "28283480",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "ddC was preferentially activated in AML cells compared with normal hematopoietic progenitor cells."
+    },
+    {
+      "edge_id": "driver_of:DNMT1->AML",
+      "source": "DNMT1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "36289338",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Treatment of AML cells with a DNA hypomethylating agent and triple knockdown of DNMT1, DNMT3A and DNMT3B enabled the manipulation of DNA methylation to revert 3D genome organization and gene expression."
+    },
+    {
+      "edge_id": "driver_of:F12->AML",
+      "source": "F12",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "40790216",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "MMP7 and F12 are highlighted as potential biomarkers that could aid in optimizing the diagnosis and treatment strategies for AML."
+    },
+    {
+      "edge_id": "driver_of:MS4A1->AML",
+      "source": "MS4A1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "41036204",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "By mapping ROC curves, three hub genes were verified: CCR7, SLC16A6, and MS4A1, which have high diagnostic value for AML."
+    },
+    {
+      "edge_id": "driver_of:S1PR1->AML",
+      "source": "S1PR1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "39111385",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "These findings implicate S1PR1 as a functional biomarker of LSCs and suggest its potential as a therapeutic target in AML treatment."
+    },
+    {
+      "edge_id": "driver_of:TLR7->AML",
+      "source": "TLR7",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "35943291",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "miR-196b-TLR7/8 Signaling Axis Regulates Innate Immune Signaling and Myeloid Maturation in DNMT3A-Mutant AML."
+    },
+    {
+      "edge_id": "driver_of:TRPV4->AML",
+      "source": "TRPV4",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "33131246",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "In addition, an AML mouse model exhibited smaller BM adipocytes, whereas the TRPV4 activator 4&#x3b1;-phorbol 12,13-didecanoate (4&#x3b1;PDD) partly rescued this process and increased survival."
+    },
+    {
+      "edge_id": "driver_of:ACLY->AML",
+      "source": "ACLY",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "31077215",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "However, no systematic study was conducted to explore the prognostic impact of ACLY on acute myeloid leukemia (AML)."
+    },
+    {
+      "edge_id": "driver_of:ALOX12->AML",
+      "source": "ALOX12",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "22924777",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "To determine the role of DNA methylation in the progression of acute myeloid leukaemia (AML), we analysed the methylation status of ALOX12, GSTM1, HS3ST2 and FZD9 in 127 AML patients."
+    },
+    {
+      "edge_id": "driver_of:ALOX5->AML",
+      "source": "ALOX5",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "41219678",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "BRD9 and ALOX5 expressions are negatively correlated, and the presence of SF3B1 mutations is associated with ALOX5 upregulation in AML datasets."
+    },
+    {
+      "edge_id": "driver_of:ANGPTL3->AML",
+      "source": "ANGPTL3",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "39300580",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Through a series of regression analyses, HGF, ANGPTL3, MB, F2, CALR, EIF4EBP1, EPHX1, and PDHA1 were identified as potential prognostic biomarkers of AML."
+    },
+    {
+      "edge_id": "driver_of:CD2->AML",
+      "source": "CD2",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "35716019",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "In addition, APL-D cases were more likely to be positive for CD2 and/or CD34 than NPM1-mutated AML (p&#x2009;&lt;&#xa0;0.0001 and p&#xa0;=&#xa0;0.0007, respectively)."
+    },
+    {
+      "edge_id": "driver_of:CD22->AML",
+      "source": "CD22",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "33957373",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "In cases with AML relapse, CD36, CD4, CD7, and CD22 were the most expressed markers."
+    },
+    {
+      "edge_id": "driver_of:CD52->AML",
+      "source": "CD52",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "36543880",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "By performing longitudinal scRNA-seq analyses, we demonstrated that PSPs were reprogrammed to obtain a QSC-like expression pattern during chemotherapy in refractory AML patients, characterized by the upregulation of CD52 and LGALS1 expression."
+    },
+    {
+      "edge_id": "driver_of:CDA->AML",
+      "source": "CDA",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "31752577",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Response rates for combination regimens including CdA in relapsed/refractory (R/R) adults are approximately 50% and approximately 70% in de novo AML."
+    },
+    {
+      "edge_id": "driver_of:CEACAM5->AML",
+      "source": "CEACAM5",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "33592582",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Finally, survival analysis revealed that one of the hub genes, CEACAM5, was significantly associated with AML prognosis and could serve as a potential target for AML treatment."
+    },
+    {
+      "edge_id": "driver_of:CFB->AML",
+      "source": "CFB",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "31896808",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Twelve patients (19%) had pathogenic KIT mutations other than p.D816V, all in the setting of AML (CFB-AML, n&#x2009;=&#x2009;7; AML, not otherwise specified, n&#x2009;=&#x2009;2; AML-MRC, n&#x2009;=&#x2009;1; acute promyelocytic leukemia, n&#x2009;=&#x2009;1); only two of these patients (17%), both with CBF-AML, exhibited concurrent SM."
+    },
+    {
+      "edge_id": "driver_of:CFD->AML",
+      "source": "CFD",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "39506790",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Moreover, we identified 10 genes associated with AML prognosis, including CCL5, CD52, CFD, FABP5, LGALS1, NUCB2, PSAP, S100A4, SPINK2, and VCAN."
+    },
+    {
+      "edge_id": "driver_of:CSF1R->AML",
+      "source": "CSF1R",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "38641704",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "CSF1R is a receptor tyrosine kinase responsible for the growth/survival/polarization of macrophages and overexpressed in some AML patients."
+    },
+    {
+      "edge_id": "driver_of:ELANE->AML",
+      "source": "ELANE",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "25427142",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "The ELANE mutations were diverse; there were 65 single amino acid substitutions; 61 of these mutations (94%) were 'probably' or 'possibly damaging' by PolyPhen-2 analysis, and one of the 'benign' mutations was associated with two cases of acute myeloid leukemia (AML)."
+    },
+    {
+      "edge_id": "driver_of:EPAS1->AML",
+      "source": "EPAS1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "37124944",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "However, the prognostic and diagnostic values of EPAS1 in acute myeloid leukemia (AML) remain unknown."
+    },
+    {
+      "edge_id": "driver_of:HBB->AML",
+      "source": "HBB",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "36117408",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Quantitative real-time PCR (RT-qPCR) was performed to detect the expression levels of HBA1 and HBB in acute myeloid leukemia patients and AML cell lines."
+    },
+    {
+      "edge_id": "driver_of:IFNAR1->AML",
+      "source": "IFNAR1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "39012516",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "MR analysis demonstrated that genetically predicted protein levels of CD82, REC8, ZMIZ1, and TPM2 were significantly associated with increased odds of AML, while IFNAR1 and TMCO3 showed a protective effect."
+    },
+    {
+      "edge_id": "driver_of:IFNG->AML",
+      "source": "IFNG",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "38941612",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "In accordance with our findings, high IL9 expression in LSCs and high IL9R, TNF, and IFNG expression in BM-infiltrating CD4+ T cells correlated with worse overall survival in AML."
+    },
+    {
+      "edge_id": "driver_of:IL13->AML",
+      "source": "IL13",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "11161436",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "T cell cytokine release was also observed for all patients when nonirradiated AML accessory cells were used, and for most patients a broad cytokine response (interleukin (IL) 2, IL4, IL10, IL13, and interferon-gamma) was detected."
+    },
+    {
+      "edge_id": "driver_of:IL17RA->AML",
+      "source": "IL17RA",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "32098966",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Whole exome sequencing in a further 37 uncharacterized families (43%) allowed us to rationalize 65 new candidate loci, including genes mutated in rare hematological syndromes (ADA, GP6, IL17RA, PRF1 and SEC23B), reported in prior MDS/AML or inherited bone marrow failure series (DNAH9, NAPRT1 and&#xa0;SH2B3) or variants at novel loci (DHX34) that appear specific to inherited forms of myeloid malignancies."
+    },
+    {
+      "edge_id": "driver_of:IL1B->AML",
+      "source": "IL1B",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "38903927",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "These data might provide novel predictors for AML outcome and direction for further investigation of the possibility of using TXNIP/NLRP3/IL1B genes in novel targeted therapies for AML."
+    },
+    {
+      "edge_id": "driver_of:IL4R->AML",
+      "source": "IL4R",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "41849252",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Our results suggested that \"activation of CD40 and CD40LG\" and \"mutual activation between HLA-DPB1 and IL4R\" are potential markers to uncover AML-related mechanisms."
+    },
+    {
+      "edge_id": "driver_of:LYN->AML",
+      "source": "LYN",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "38843841",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "We show that, separately from its established role in lipid oxidation, CD36 on AML cells senses oxidized low-density lipoprotein (OxLDL) to prime the TLR4-LYN-MYD88-nuclear factor &#x3ba;B (NF-&#x3ba;B) pathway, and exogenous palmitate transfer via CD36 further potentiates this innate immune pathway by supporting ZDHHC6-mediated MYD88 palmitoylation."
+    },
+    {
+      "edge_id": "driver_of:MUC16->AML",
+      "source": "MUC16",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "36799265",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Differential analysis of genetic mutations showed FLT3, TP53, MUC16, SRSF2, and KDM5A mutated more frequently (p&#x2009;&lt;&#x2009;0.050) in secondary acute myeloid leukemia (s-AML) than in MDS and MPN."
+    },
+    {
+      "edge_id": "driver_of:P2RY2->AML",
+      "source": "P2RY2",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "35668193",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "We discover that selinexor activates PI3K&#x3b3;-dependent AKT signaling in AML by upregulating the purinergic receptor P2RY2."
+    },
+    {
+      "edge_id": "driver_of:PGF->AML",
+      "source": "PGF",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "24621554",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "According to multiplex PCR, all 135 screened samples were negative for the most frequent PGF of B-lineage acute lymphoblastic leukemia (ALL) and acute myeloid leukemia (AML)."
+    },
+    {
+      "edge_id": "driver_of:PIK3CG->AML",
+      "source": "PIK3CG",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "38816660",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Furthermore, silencing the genes encoding PIK3CG/p110&#x3b3; or PIK3R5/p101 sensitizes AML cells to established AML therapies."
+    },
+    {
+      "edge_id": "driver_of:PNP->AML",
+      "source": "PNP",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "27352260",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "We describe a previously unreported case of PNP associated with acute myeloid leukemia (AML) where the patient presented with a nonhealing ulcer and hemorrhagic crusting on the face that did not respond to antimicrobials and steroids."
+    },
+    {
+      "edge_id": "driver_of:PPARD->AML",
+      "source": "PPARD",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "41284982",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "This study highlights the functional diversity of T cells in AML and identifies BSG, PPARD, and SLC16A8 as promising biomarkers for prognostic stratification."
+    },
+    {
+      "edge_id": "driver_of:PPARG->AML",
+      "source": "PPARG",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "34549887",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Alteration of PPAR-GAMMA (PPARG; PPAR&#x3b3;) and PTEN gene expression in acute myeloid leukemia patients and the promising anticancer effects of PPAR&#x3b3; stimulation using pioglitazone on AML cells."
+    },
+    {
+      "edge_id": "driver_of:REN->AML",
+      "source": "REN",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "17304969",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "The medians of expression ratios of AML patient samples have been found 0.736 (IQR 1.359), 0.540 (IQR 0.725), and 0.075 (IQR 0.002) for ACE, ANG and REN genes, respectively."
+    },
+    {
+      "edge_id": "driver_of:RXRA->AML",
+      "source": "RXRA",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "24723466",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Using Affymetrix expression arrays, we found that in diverse AML blasts RXRA was expressed at higher levels than RARA and that mouse Ctsg-PML-RARA leukemia responded to bexarotene, a ligand for RXRA."
+    },
+    {
+      "edge_id": "driver_of:SLC29A1->AML",
+      "source": "SLC29A1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "27422302",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "The solute carrier family 29 (equilibrative nucleoside transporter), member 1 (SLC29A1) is known to be involved in the transportation and resistance of the nucleoside analog cytosine arabinoside (AraC), one of the most effective drugs in the treatment of acute myeloid leukemia (AML)."
+    },
+    {
+      "edge_id": "driver_of:SMO->AML",
+      "source": "SMO",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "34661144",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Targeting Hedgehog (Hh) pathway components, such as Smoothened (SMO), is a developing strategy for the treatment of acute myeloid leukemia (AML) and for overcoming relapsed/refractory forms of this disease."
+    },
+    {
+      "edge_id": "driver_of:SSTR2->AML",
+      "source": "SSTR2",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "11920268",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "We have recently established that human CD34/c-kit expressing hematopoietic progenitors and acute myeloid leukemia (AML) cells exclusively express SSTR2."
+    },
+    {
+      "edge_id": "driver_of:TERT->AML",
+      "source": "TERT",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "39582863",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "AML T-cell-based immunotherapy target antigens, including CLEC12A, Folate receptor &#x3b2;, IL1RAP and TIM3, showed higher expression levels in G1, while CD117, CD244, CD96, WT and TERT exhibited higher expression levels in G2."
+    },
+    {
+      "edge_id": "driver_of:TLR9->AML",
+      "source": "TLR9",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "39171954",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Here it is found that systemic multifunctional nanovaccines consisting of nucleotide-binding oligomerization domain-containing protein 2 (NOD2) and Toll-like receptor 9 (TLR9) agonists - muramyl dipeptide (MDP) and CpG, and tumor cell lysate (TCL) as Ags (MCA-NV) induce potent and broad immunity against AML."
+    },
+    {
+      "edge_id": "driver_of:TSPO->AML",
+      "source": "TSPO",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "36765475",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "To observe the clinical significance of translocator proteins (TSPO) gene in the treatment of FLT3-ITD/DNMT3A R882 double-mutated acute myeloid leukemia (AML)."
+    },
+    {
+      "edge_id": "driver_of:TTR->AML",
+      "source": "TTR",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "9185755",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "AML-tTR cells proliferated faster than parental cells, both in the presence and absence of EGF, but at a slower rate than that of AML-tAR cells."
+    }
+  ],
+  "ungrounded": [
+    {
+      "source": "SLC6A2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CHRM3",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "DRD2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CHRM1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HTR2A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SLC6A4",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "ADRB2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "ADRB1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "GNRHR",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SLC6A3",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SLC12A3",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SLC5A2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PPARA",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "EPOR",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "F9",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HTR1A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HTR1D",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "OPRK1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "P2RY12",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SERPINC1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "FSHR",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HTR2C",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KCNK3",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KCNK9",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KLKB1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PTGFR",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SNAP25",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CD19",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CHRM2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "DRD3",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "JAK1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KCNK10",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KCNK18",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KCNK2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PIK3CD",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SIGMAR1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SLC12A1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "TNFRSF17",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CALCR",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "GLP1R",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HTR1F",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HTR3A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KCNH2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "LHCGR",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "MC2R",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "MPL",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PLG",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PTGIR",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "TACR1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "TYK2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "XDH",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "BMPR1A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "BMPR1B",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CA1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CA12",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CA4",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CNR1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CYP11A1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "ESR2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "FDPS",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "GCGR",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "GRIN2A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HCN4",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HCRTR1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HCRTR2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "IL17A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "JAK3",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PCSK9",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PDE5A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PLAT",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SCN4A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SLC22A12",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SV2A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SYK",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "TRPA1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "TRPV1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "ACVR2A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "ACVR2B",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "ADORA2A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "ADRA1A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "AKR1B1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "ALDH5A1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "AMY2A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "ANO1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "AVPR1A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "AVPR2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "AXL",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "BDKRB2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "C1S",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "C5AR1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CACNA1B",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CALM1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CCKAR",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "COL7A1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "COMT",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CPS1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CRHR1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CYP11B1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CYP11B2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "DMD",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "DPEP1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "DRD1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "EEF2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "EPHA2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "F11",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "F13A1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "F5",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "FAAH",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "FCGRT",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "FGF23",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "GGCX",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "GSR",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "GUCY2C",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HTR4",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "IL17F",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "IL1R1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "IL5RA",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KCNJ11",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KCNJ2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KCNJ8",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KCNN4",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "MAGEA4",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "MC1R",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "MC4R",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "MGAM",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "NECTIN4",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "NPC1L1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "NR1H4",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "ODC1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "OXTR",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "P2RX3",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "P2RY1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "P2RY4",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "P2RY6",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PDE10A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PPAT",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PPIA",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PTGDR",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PTGDS",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PTGER1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PTGER2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PTGS1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PTH1R",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "RYR1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "RYR3",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "S1PR4",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "S1PR5",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SCN10A",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SELP",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SERPING1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SLAMF7",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SLC10A1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SOAT1",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SRD5A2",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SSTR5",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "TACR3",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "TNFRSF8",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "TNFSF11",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "TNFSF13B",
+      "relation": "driver_of",
+      "target": "AML",
+      "reason": "no abstract mentions both entities"
+    }
+  ]
+}

@@ -1,0 +1,942 @@
+{
+  "relation": "driver_of",
+  "gaps_total": 283,
+  "probed": 120,
+  "counts": {
+    "relation_screened": 15,
+    "quarantined_cooccurrence": 26,
+    "ungrounded": 79
+  },
+  "note": "RELATION-SCREENED = grounded lexical screen (~0.82 precision); a CANDIDATE for adjudication, NOT a verified fact. tier1.db unchanged.",
+  "relation_screened": [
+    {
+      "edge_id": "driver_of:MMP7->Glioblastoma",
+      "source": "MMP7",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "29556339",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'promot'); COG=REJECT",
+      "proof_sentence": "PRL-3 is a potential glioblastoma prognostic marker and promotes glioblastoma progression by enhancing MMP7 through the ERK and JNK pathways."
+    },
+    {
+      "edge_id": "driver_of:ABL1->Glioblastoma",
+      "source": "ABL1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "36912819",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'oncogen'); COG=REJECT",
+      "proof_sentence": "We implemented SHERLOCK for the detection of BCR::ABL1 mRNA, a hallmark of chronic myeloid leukemia (CML), and EGFR DNA oncogenic alleles, frequently detected in glioblastoma and non-small cell lung cancer (NSCLC)."
+    },
+    {
+      "edge_id": "driver_of:DHODH->Glioblastoma",
+      "source": "DHODH",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "38838551",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'drives'); COG=REJECT",
+      "proof_sentence": "A targetable PRR11-DHODH axis drives ferroptosis- and temozolomide-resistance in glioblastoma."
+    },
+    {
+      "edge_id": "driver_of:HMGCR->Glioblastoma",
+      "source": "HMGCR",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "26432005",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'oncogen'); COG=REJECT",
+      "proof_sentence": "Taken together, our study demonstrated the oncogenic roles of HMGCR in glioblastoma cells and HMGCR might be a promising therapeutic target."
+    },
+    {
+      "edge_id": "driver_of:DNMT3A->Glioblastoma",
+      "source": "DNMT3A",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "29251856",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'promot'); COG=REJECT",
+      "proof_sentence": "Abnormal promoter methylation and histone modifications were associated with differential expression of miRNAs in glioblastoma: miR-185 reversed global DNA methylation and the methylation level of the hypermethylation genes by targeting DNMT; and miR-101 regulated histone methylation of hypomethylation genes by targeting EED, EZH2, and DNMT3A."
+    },
+    {
+      "edge_id": "driver_of:HRH1->Glioblastoma",
+      "source": "HRH1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "36688618",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'drives'); COG=REJECT",
+      "proof_sentence": "Integrative analysis of small non-coding RNAs predicts a piRNA/miRNA-CCND1/BRAF/HRH1/ATXN3 regulatory circuit that drives oncogenesis in glioblastoma."
+    },
+    {
+      "edge_id": "driver_of:INSR->Glioblastoma",
+      "source": "INSR",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "26136493",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'oncogen'); COG=REJECT",
+      "proof_sentence": "We further determined whether genetic or pharmacological targeting of InsR affected oncogenic functions of glioblastoma in vitro and in vivo."
+    },
+    {
+      "edge_id": "driver_of:DRD2->Glioblastoma",
+      "source": "DRD2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "36972629",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'promot'); COG=REJECT",
+      "proof_sentence": "DRD2 signaling promotes glioblastoma (GBM) stem-like cells and GBM growth by activating MET."
+    },
+    {
+      "edge_id": "driver_of:ADRB1->Glioblastoma",
+      "source": "ADRB1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "38450887",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'caus'); COG=REJECT",
+      "proof_sentence": "In summary, our study provides preliminary evidence of some causal relationship between ADRB1-targeted BBs and glioblastoma development."
+    },
+    {
+      "edge_id": "driver_of:PGR->Glioblastoma",
+      "source": "PGR",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "20947696",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'oncogen'); COG=REJECT",
+      "proof_sentence": "Half of the eluate was DNase I digested for mRNA expression analysis performed by using reverse-transcription quantitative PCR for the genes estrogen receptor 1 (ESR1), progesterone receptor (PGR), v-erb-b2 erythroblastic leukemia viral oncogene homolog 2, neuro/glioblastoma derived oncogene homolog (avian) (ERBB2), epoxide hydrolase 1 (EPHX1), baculoviral IAP repeat-containing 5 (BIRC5), matrix metallopeptidase 7 (MMP7), vascular endothelial growth factor A (VEGFA), and topoisomerase (DNA) II alpha 170kDa (TOP2A)."
+    },
+    {
+      "edge_id": "driver_of:NR3C2->Glioblastoma",
+      "source": "NR3C2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "32280303",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'promot'); COG=REJECT",
+      "proof_sentence": "CREB1-induced miR-1204 promoted malignant phenotype of glioblastoma through targeting NR3C2."
+    },
+    {
+      "edge_id": "driver_of:ACE->Glioblastoma",
+      "source": "ACE",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "42049397",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'pathogenesis'); COG=REJECT",
+      "proof_sentence": "The Role of ACE I/D Polymorphism in Glioblastoma Pathogenesis: A Study on the Turkish Population."
+    },
+    {
+      "edge_id": "driver_of:VDR->Glioblastoma",
+      "source": "VDR",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "35091793",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'oncogen'); COG=REJECT",
+      "proof_sentence": "MED12 is overexpressed in glioblastoma patients and serves as an oncogene by targeting the VDR/BCL6/p53 axis."
+    },
+    {
+      "edge_id": "driver_of:PIK3CD->Glioblastoma",
+      "source": "PIK3CD",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "35851857",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'oncogen'); COG=REJECT",
+      "proof_sentence": "Oncogenic potential of PIK3CD in glioblastoma is exerted through cytoskeletal proteins PAK3 and PLEK2."
+    },
+    {
+      "edge_id": "driver_of:CD38->Glioblastoma",
+      "source": "CD38",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "41946147",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'drives'); COG=REJECT",
+      "proof_sentence": "CD38 overexpression drives glioblastoma progression via L1CAM/ICAM1/JAK-STAT-Driven tumor microenvironment rewiring."
+    }
+  ],
+  "quarantined": [
+    {
+      "edge_id": "driver_of:CD4->Glioblastoma",
+      "source": "CD4",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "30568305",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Patients who did not receive dexamethasone-a highly potent corticosteroid that is frequently prescribed to treat cerebral oedema in patients with glioblastoma-generated circulating polyfunctional neoantigen-specific CD4+ and CD8+ T cell responses that were enriched in a memory phenotype and showed an increase in the number of tumour-infiltrating T cells."
+    },
+    {
+      "edge_id": "driver_of:MAP2K1->Glioblastoma",
+      "source": "MAP2K1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "32186433",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Therefore, PAK1 and its regulator in the autophagy pathway might represent potential therapeutic targets for GBM treatment.Abbreviations: 3-MA: 3-methyladenine; Ac-CoA: acetyl coenzyme A; ATG5: autophagy related 5; ATG16L1, autophagy related 16 like 1; BafA1: bafilomycin A1; CDC42: cell division cycle 42; CGGA: Chinese Glioma Genome Atlas; CHX, cycloheximide; ELP3: elongator acetyltransferase complex subunit 3; GBM, glioblastoma; HBSS: Hanks balanced salts solution; MAP1LC3B/LC3: microtubule associated protein 1 light chain 3 beta; MAP2K1: mitogen-activated protein kinase kinase 1; MAPK14, mitogen-activated protein kinase 14; PAK1: p21 (RAC1) activated kinase 1; PDK1: pyruvate dehydrogenase kinase 1; PGK1, phosphoglycerate kinase 1; PTMs: post-translational modifications; RAC1: Rac family small GTPase 1; SQSTM1: sequestosome 1; TCGA, The Cancer Genome Atlas."
+    },
+    {
+      "edge_id": "driver_of:CD8A->Glioblastoma",
+      "source": "CD8A",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "28912897",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "We found that PD-L1/CD8A/CYT subgroups could not distinguish different mutation and neoantigen numbers in certain tumor types such as glioblastoma multiforme, prostate adenocarcinoma, and head and neck and lung squamous cell carcinoma."
+    },
+    {
+      "edge_id": "driver_of:IDH1->Glioblastoma",
+      "source": "IDH1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "23209033",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Decisive genetic signposts of secondary glioblastoma are IDH1 mutations, which are absent in primary glioblastomas and which are associated with a hypermethylation phenotype."
+    },
+    {
+      "edge_id": "driver_of:ACHE->Glioblastoma",
+      "source": "ACHE",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "40651751",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "However, the alterations in cancer tissue ACHE expression were different depending on the cancer type, e.g., higher ACHE expression was found in pancreatic adenocarcinoma, and lower ACHE expression was found in glioblastoma multiforme (GBM)."
+    },
+    {
+      "edge_id": "driver_of:AR->Glioblastoma",
+      "source": "AR",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "33523674",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Androgen receptor (AR) contributes to the progression of glioblastoma (GBM), and antiandrogen agents have the potential to be used for the treatment of GBM."
+    },
+    {
+      "edge_id": "driver_of:PPARA->Glioblastoma",
+      "source": "PPARA",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "27926792",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "PPARA gene expression was found to be enriched in the classical glioblastoma subtype within The Cancer Genome Atlas (TCGA) dataset."
+    },
+    {
+      "edge_id": "driver_of:F9->Glioblastoma",
+      "source": "F9",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "1360433",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "The expression of the genes in the human HOX2 locus has been studied during differentiation of two human neuroblastoma (SH-SY5Y and Kelly), a human glioblastoma (251-MG), and the murine F9 embryonal carcinoma cell lines."
+    },
+    {
+      "edge_id": "driver_of:HTR1D->Glioblastoma",
+      "source": "HTR1D",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "40972861",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "HTR1D regulates the PI3K/Akt signaling pathway to impact glioblastoma development and resistance to temozolomide."
+    },
+    {
+      "edge_id": "driver_of:AGTR1->Glioblastoma",
+      "source": "AGTR1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "38607073",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "We studied the expression of RAS-related genes (ATP6AP2, AGTR1, AGTR2, ACE, AGT, and REN) in The Cancer Genome Atlas (TCGA) glioblastoma cohort, their relationship to patient survival, and association with tumour microenvironment pathways."
+    },
+    {
+      "edge_id": "driver_of:F10->Glioblastoma",
+      "source": "F10",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "38561051",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "This is a prospective serial magnetic resonance imaging study in 129 patients with glioblastoma who had magnetic resonance imaging obtained at radiation therapy (RT) planning (F0), fraction 10 (F10), fraction 20 (F20), and 1-month post-RT."
+    },
+    {
+      "edge_id": "driver_of:SNAP25->Glioblastoma",
+      "source": "SNAP25",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "32412599",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Association between SNAP25 and human glioblastoma multiform: a comprehensive bioinformatic analysis."
+    },
+    {
+      "edge_id": "driver_of:TNF->Glioblastoma",
+      "source": "TNF",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "36647288",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Of clinical importance, our study suggests that the PRMT1-PTX3 ferritinophagy regulatory circuit could be exploited for therapeutic gains.Abbreviations: 2-HG: D-2-hydroxyglutarate; BafA1: bafilomycin A1; ChIP: chromatin immunoprecipitation; FTH1: ferritin heavy chain 1; FTL: ferritin light chain; GBM: glioblastoma; HMOX1/HO-1: heme oxygenase 1; IHC: immunohistochemistry; IDH1: isocitrate dehydrogenase(NADP(+))1; MDC: monodansylcadaverine; NCOA4: nuclear receptor coactivator 4; NFE2L2/Nrf2: NFE2 like bZIP transcription factor 2; PTX3/TSG-14: pentraxin 3; PRMT: protein arginine methyltransferase; SLC40A1: solute carrier family 40 member 1; Tan IIA: tanshinone IIA; TCA: trichloroacetic acid; TEM: transmission electron microscopy; TNF: tumor necrosis factor."
+    },
+    {
+      "edge_id": "driver_of:CA2->Glioblastoma",
+      "source": "CA2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "36517594",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Here we describe how glioblastoma cell networks include a small, plastic population of highly active glioblastoma cells that display rhythmic Ca2+ oscillations and are particularly connected to others."
+    },
+    {
+      "edge_id": "driver_of:CD19->Glioblastoma",
+      "source": "CD19",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "38508081",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "CD19 CAR-expressing iPSC-derived NK cells effectively enhance migration and cytotoxicity into glioblastoma by targeting to the pericytes in tumor microenvironment."
+    },
+    {
+      "edge_id": "driver_of:CFTR->Glioblastoma",
+      "source": "CFTR",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "30573361",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "The aim of this study was to investigate the function of Cystic fibrosis transmembrane conductance regulator (CFTR) in human glioblastoma (GBM) cells."
+    },
+    {
+      "edge_id": "driver_of:DRD3->Glioblastoma",
+      "source": "DRD3",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "41768124",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Dopamine receptors, particularly DRD2 and DRD3, are emerging as regulators of glioblastoma stem cell maintenance and therapy resistance."
+    },
+    {
+      "edge_id": "driver_of:APP->Glioblastoma",
+      "source": "APP",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "37469132",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Advances in the functions of the three LAMP2 isoforms will uncover new links between lysosomal dysfunction, autophagy and human diseases.Abbreviation: ACSL4: acyl-CoA synthetase long-chain family member 4; AD: Alzheimer disease; Ag: antigens; APP: amyloid beta precursor protein; ATG14: autophagy related 14; AVSF: autophagic vacuoles with unique sarcolemmal features; BBC3/PUMA: BCL2 binding component 3; CCD: C-terminal coiled coil domain; CMA: chaperone-mediated autophagy; CVDs: cardiovascular diseases; DDIT4/REDD1: DNA damage inducible transcript 4; ECs: endothelial cells; ER: endoplasmic reticulum; ESCs: embryonic stem cells; GAPDH: glyceraldehyde-3-phosphate dehydrogenase; GBA/&#x3b2;-glucocerebrosidase: glucosylceramidase beta; GSCs: glioblastoma stem cells; HCC: hepatocellular carcinoma; HD: Huntington disease; HSCs: hematopoietic stem cells; HSPA8/HSC70: heat shock protein family A (Hsp70) member 8; IL3: interleukin 3; IR: ischemia-reperfusion; LAMP2: lysosomal associated membrane protein 2; LDs: lipid droplets; LRRK2: leucine rich repeat kinase 2; MA: macroautophagy; MHC: major histocompatibility complex; MST1: macrophage stimulating 1; NAFLD: nonalcoholic fatty liver disease; NFE2L2/NRF2: NFE2 like bZIP transcription factor 2; NLRP3: NLR family pyrin domain containing 3; PARK7: Parkinsonism associated deglycase; PD: Parkinson disease; PEA15/PED: proliferation and apoptosis adaptor protein 15; PKM/PKM2: pyruvate kinase M1/2; RA: rheumatoid arthritis; RARA: retinoic acid receptor alpha; RCAN1: regulator of calcineurin 1; RCC: renal cell carcinoma; RDA: RNautophagy and DNautophagy; RNAi: RNA interference; RND3: Rho Family GTPase 3; SG-NOS3/eNOS: deleterious glutathionylated NOS3; SLE: systemic lupus erythematosus; TAMs: tumor-associated macrophages; TME: tumor microenvironment; UCHL1: ubiquitin C-terminal hydrolase L1; VAMP8: vesicle associated membrane protein 8."
+    },
+    {
+      "edge_id": "driver_of:CALCR->Glioblastoma",
+      "source": "CALCR",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "29263181",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Loss-of-Function Mutations in Calcitonin Receptor (CALCR) Identify Highly Aggressive Glioblastoma with Poor Outcome."
+    },
+    {
+      "edge_id": "driver_of:GLP1R->Glioblastoma",
+      "source": "GLP1R",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "40207977",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "High GLP1R gene copy numbers associated with microsatellite instability for multiple cancers and with better survival probabilities for glioblastoma."
+    },
+    {
+      "edge_id": "driver_of:KCNH2->Glioblastoma",
+      "source": "KCNH2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "36792990",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Survival analysis showed that high expression of KCNH2 was associated with a poor prognosis in glioblastoma multiforme&#xa0;(GBM) and hepatocellular carcinoma (LIHC)."
+    },
+    {
+      "edge_id": "driver_of:PLG->Glioblastoma",
+      "source": "PLG",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "17570828",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "We investigated the effect of plasminogen (Plg) on the internalization of recombinant soluble melanotransferrin (sMTf) using U87 human glioblastoma cells and murine embryonic fibroblasts (MEF) deficient in the low-density lipoprotein receptor-related protein (LRP)."
+    },
+    {
+      "edge_id": "driver_of:BMPR1B->Glioblastoma",
+      "source": "BMPR1B",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "18167341",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "We now demonstrate that both bone morphogenetic protein (BMP)-mediated and ciliary neurotrophic factor (CNTF)-mediated Jak/STAT-dependent astroglial differentiation is impaired due to EZH2-dependent epigenetic silencing of BMP receptor 1B (BMPR1B) in a subset of glioblastoma TICs."
+    },
+    {
+      "edge_id": "driver_of:BTK->Glioblastoma",
+      "source": "BTK",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "35482146",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Following intravenous administration of [18F]BTK-1 (3.63&#x2009;&#xb1;&#x2009;0.59&#xa0;MBq, 0.084&#x2009;&#xb1;&#x2009;0.05&#xa0;&#xb5;g), 60-min dynamic images were acquired in two xenograft models: REC-1, an efficacious mantle cell lymphoma model, and U87MG, a non-efficacious glioblastoma model."
+    },
+    {
+      "edge_id": "driver_of:CD80->Glioblastoma",
+      "source": "CD80",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "35022089",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Expression and Prognostic Value of CD80 and CD86 in the Tumor Microenvironment of Newly Diagnosed Glioblastoma."
+    },
+    {
+      "edge_id": "driver_of:CD86->Glioblastoma",
+      "source": "CD86",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "pmid": "35022089",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Expression and Prognostic Value of CD80 and CD86 in the Tumor Microenvironment of Newly Diagnosed Glioblastoma."
+    }
+  ],
+  "ungrounded": [
+    {
+      "source": "COX2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "RET",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "IL6",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "MMP1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "MMP9",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "TOP2A",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "MMP13",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "ALDH2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "BCR_ABL",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CTLA4",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CD274",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HRH2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "ERBB4",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "MAP2K2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "NTRK3",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "TOP1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "TXNRD1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CRBN",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "IDH2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "NR3C1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SLC6A2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CHRM3",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CHRM1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HTR2A",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "OPRM1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SLC6A4",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "ADRB2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "ESR1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "GNRHR",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SLC6A3",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SLC12A3",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SLC5A2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "EPOR",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "F2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "F8",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HTR1A",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "OPRK1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "P2RY12",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SERPINC1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SLC18A2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "DPP4",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "FSHR",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HTR2C",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KCNK3",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KCNK9",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KLKB1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PTGFR",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CHRM2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CSF3R",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CYP19A1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HTR1B",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "JAK1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KCNK10",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KCNK18",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "KCNK2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PDE3A",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SIGMAR1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "SLC12A1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "TNFRSF17",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "C5",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "F7",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HTR1F",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "HTR3A",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "LHCGR",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "MC2R",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "MPL",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "PTGIR",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "TACR1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "TYK2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "XDH",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "ACVR1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "BMPR1A",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "BMPR2",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CA1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CA12",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CA4",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CALCRL",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CASR",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    },
+    {
+      "source": "CNR1",
+      "relation": "driver_of",
+      "target": "Glioblastoma",
+      "reason": "no abstract mentions both entities"
+    }
+  ]
+}

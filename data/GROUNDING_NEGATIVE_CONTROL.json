@@ -1,0 +1,437 @@
+{
+  "design": "permutation control - same proteins, randomly reassigned diseases",
+  "relation": "driver_of",
+  "seed": 20260720,
+  "real_run": {
+    "file": "data/DISCOVERED_DRIVER_GBM.json",
+    "disease": "Glioblastoma",
+    "probed": 120,
+    "agree": 15,
+    "agree_pct": 12.5
+  },
+  "control_run": {
+    "probed": 120,
+    "agree": 9,
+    "agree_pct": 7.5,
+    "quarantined": 27,
+    "ungrounded": 84
+  },
+  "interpretation": "If the two AGREE rates are comparable, post-hoc PubMed grounding is measuring corpus density rather than the proposed relationship.",
+  "control_screened": [
+    {
+      "source": "AR",
+      "relation": "driver_of",
+      "target": "Colorectal_Cancer",
+      "pmid": "37151872",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'promot'); COG=REJECT",
+      "proof_sentence": "Chronic stress promotes colorectal cancer progression by enhancing glycolysis through &#x3b2;2-AR/CREB1 signal pathway."
+    },
+    {
+      "source": "CFTR",
+      "relation": "driver_of",
+      "target": "HCC",
+      "pmid": "15526362",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'promot'); COG=REJECT",
+      "proof_sentence": "Hypermethylation of promoter CpG islands of both CFTR and GSTpi genes occurs prevalently in HCC, which may correlate with the low expression of these two genes at the mRNA level and has the profound etiological and clinical implications."
+    },
+    {
+      "source": "MMP1",
+      "relation": "driver_of",
+      "target": "Pancreatic_Cancer",
+      "pmid": "37484321",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'promot'); COG=REJECT",
+      "proof_sentence": "PRKRA promotes pancreatic cancer progression by upregulating MMP1 transcription via the NF-&#x3ba;B pathway."
+    },
+    {
+      "source": "ERBB4",
+      "relation": "driver_of",
+      "target": "HCC",
+      "pmid": "34435526",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'promot'); COG=REJECT",
+      "proof_sentence": "ERBB4 promoter DNA methylation level was enhanced in HCC samples and cell lines, and ERBB4 abundance was increased via TETs (TET1, TET2 and TET3)."
+    },
+    {
+      "source": "MAP2K2",
+      "relation": "driver_of",
+      "target": "Multiple_Myeloma",
+      "pmid": "35075244",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'promot'); COG=REJECT",
+      "proof_sentence": "YTHDF2 promotes multiple myeloma cell proliferation via STAT5A/MAP2K2/p-ERK axis."
+    },
+    {
+      "source": "EPOR",
+      "relation": "driver_of",
+      "target": "Breast_Cancer",
+      "pmid": "28418910",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'drives'); COG=REJECT",
+      "proof_sentence": "Erythropoietin drives breast cancer progression by activation of its receptor EPOR."
+    },
+    {
+      "source": "OPRK1",
+      "relation": "driver_of",
+      "target": "Prostate_Cancer",
+      "pmid": "41353213",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'drives'); COG=REJECT",
+      "proof_sentence": "OPRK1 drives SLC9A3R1 progression to neuroendocrine prostate cancer."
+    },
+    {
+      "source": "TACR1",
+      "relation": "driver_of",
+      "target": "HCC",
+      "pmid": "33061603",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'pathogenesis'); COG=REJECT",
+      "proof_sentence": "Knockdown of circ_0091579 repressed HCC development by mediating miR-940/TACR1 axis, indicating a new pathogenesis of HCC."
+    },
+    {
+      "source": "TYK2",
+      "relation": "driver_of",
+      "target": "NSCLC",
+      "pmid": "38521810",
+      "verdict": "AGREE",
+      "tier": "RELATION-SCREENED",
+      "reason": "relation-supported (keyword 'promot'); COG=REJECT",
+      "proof_sentence": "Then IFN&#x3b1; activates TYK2/STAT/HSPA5 signaling to promote NSCLC cell proliferation and metastasis."
+    }
+  ],
+  "control_quarantined": [
+    {
+      "source": "HMGCR",
+      "relation": "driver_of",
+      "target": "Melanoma",
+      "pmid": "40509568",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Ultimately, the HMGCR-MTOR-LAMP1 axis that connects cholesterol, lysosome and tumor immunology, predicts poor response to immunotherapy and worse prognosis of patients with melanoma."
+    },
+    {
+      "source": "DNMT3A",
+      "relation": "driver_of",
+      "target": "Melanoma",
+      "pmid": "36450978",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Longitudinal and Mendelian randomization analyses revealed that CHIP is associated with solid cancers, including non-melanoma skin cancer and lung cancer, and that CHIP linked to DNMT3A is associated with the subsequent development of myeloid but not lymphoid leukaemias."
+    },
+    {
+      "source": "ACE",
+      "relation": "driver_of",
+      "target": "CML",
+      "pmid": "19761684",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "This study aimed to assess expressions of the RAS components, renin, angiotensinogen and angiotensin-converting enzyme (ACE), during imatinib mesylate treatment of patients with chronic myeloid leukaemia (CML)."
+    },
+    {
+      "source": "VDR",
+      "relation": "driver_of",
+      "target": "Colorectal_Cancer",
+      "pmid": "39272040",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Discovery of vitexin as a novel VDR agonist that mitigates the transition from chronic intestinal inflammation to colorectal cancer."
+    },
+    {
+      "source": "CD38",
+      "relation": "driver_of",
+      "target": "Multiple_Myeloma",
+      "pmid": "29118010",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "CD38 antibodies in multiple myeloma: back to the future."
+    },
+    {
+      "source": "CD4",
+      "relation": "driver_of",
+      "target": "Melanoma",
+      "pmid": "37001503",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "As expected, early on-target recognition of melanoma antigens by tumor-specific CD4+ T&#xa0;cells was required."
+    },
+    {
+      "source": "MAP2K1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "38431286",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Meanwhile, the treatment of miR-99b mimic repressed the luciferase activity of MAP2K1 in AML-12 cells."
+    },
+    {
+      "source": "AGTR1",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "38896605",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Patient sequence data revealed that angiotensin II receptor type 1 (AGTR1) is a shared target between AML and cardiovascular disease (CVD)."
+    },
+    {
+      "source": "TNF",
+      "relation": "driver_of",
+      "target": "CML",
+      "pmid": "35894381",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "The aim of this study was to evaluate the impact of N6-carboxymethyllysine (CML) on NF-&#x3ba;B gene expression and tumor necrosis factor (TNF) production in diabetic nephropathy."
+    },
+    {
+      "source": "APP",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "35981366",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "To analyze the predictive value of acute phase proteins (APPs) on the prognosis of patients with acute myeloid leukemia (AML)."
+    },
+    {
+      "source": "RET",
+      "relation": "driver_of",
+      "target": "Myelofibrosis",
+      "pmid": "39007945",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "PMDA regulatory update on approval and revision of the precautions for use of anticancer drugs: approval selpercatinib for solid tumor with RET fusion, gumarontinib for non-small cell lung cancer with MET gene exon 14 skipping mutation, momelotinib for myelofibrosis, bexarotene for adult T-cell leukemia/lymphoma, valemetostat for peripheral T-cell lymphoma, and pirtobrutinib for mantle cell lymphoma in Japan."
+    },
+    {
+      "source": "IL6",
+      "relation": "driver_of",
+      "target": "AML",
+      "pmid": "38902349",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "In PRMT2-depleted AML cell lines, aberrant inflammatory signaling has been linked to overproduction of IL6, resulting from a deregulation of the NF-&#x3ba;B signaling pathway, therefore leading to hyperactivation of STAT3."
+    },
+    {
+      "source": "TOP2A",
+      "relation": "driver_of",
+      "target": "HCC",
+      "pmid": "38008711",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Bioinformatics analyses suggested that EZH2 and DNA topoisomerase II alpha (TOP2A) are coexpressed in tumors, including HCC."
+    },
+    {
+      "source": "HRH2",
+      "relation": "driver_of",
+      "target": "Breast_Cancer",
+      "pmid": "40425926",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Subtype-specific dysregulation of biogenic amine-related genes and miRNAs in breast cancer: identification of DRD2, HRH2, and HRH4 as potential therapeutic targets in TNBC and HER2+&#x2009;subtypes."
+    },
+    {
+      "source": "TXNRD1",
+      "relation": "driver_of",
+      "target": "NSCLC",
+      "pmid": "26657290",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Moreover, the susceptibility of NSCLC cells to auranofin was inversely correlated with TXNRD1 expression in the cells."
+    },
+    {
+      "source": "OPRM1",
+      "relation": "driver_of",
+      "target": "Ovarian_Cancer",
+      "pmid": "36988399",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Toxicity and therapy outcome associations in LIG3, SLCO1B3, ABCB1, OPRM1 and GSTP1 in high-grade serous ovarian cancer."
+    },
+    {
+      "source": "ADRB2",
+      "relation": "driver_of",
+      "target": "NSCLC",
+      "pmid": "38057344",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "In addition, a six-gene signature (ADRB2, DPYSL2, IL7R, LIMCH1, PIK3R1, and SOX2) was subsequently established to predict NSCLC metastasis based on differentially expressed genes, three of which (DPYSL2, PIK3R1, LIMCH1) along with the transcriptional factors RB1 and TP63, were ultimately validated by experiments."
+    },
+    {
+      "source": "SLC6A3",
+      "relation": "driver_of",
+      "target": "NSCLC",
+      "pmid": "17175058",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "We demonstrate that DRD2 polymorphisms -141Cdel, 3208G&gt;T, TaqIB; DRD4 -521C&gt;T and DAT1/SLC6A3 -1476T&gt;G are associated with a two- to five-fold increased NSCLC risk."
+    },
+    {
+      "source": "KCNK9",
+      "relation": "driver_of",
+      "target": "HCC",
+      "pmid": "31581133",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Moreover, ROC curves indicated that KCNK2, KCNK9, KCNK15, and KCNK17 levels could be used as a diagnostic biomarker for HCC."
+    },
+    {
+      "source": "CYP19A1",
+      "relation": "driver_of",
+      "target": "Prostate_Cancer",
+      "pmid": "34036824",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "The CYP19A1 (TTTA)n Repeat Polymorphism May Affect the Prostate Cancer Risk: Evidence from a Meta-Analysis."
+    },
+    {
+      "source": "HTR1B",
+      "relation": "driver_of",
+      "target": "Colorectal_Cancer",
+      "pmid": "42111626",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "The role of hypoxia in the regulation of serotonergic signaling: an investigation of HTR1B and TPH-1 expression in colorectal cancer and C."
+    },
+    {
+      "source": "PDE3A",
+      "relation": "driver_of",
+      "target": "Melanoma",
+      "pmid": "35664780",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Importantly, multivariate Cox regression and survival curve analysis revealed that PDE3A and EPPK1 were negatively correlated with melanoma patient survival; however, FCGR2A was positively correlated with patient survival."
+    },
+    {
+      "source": "C5",
+      "relation": "driver_of",
+      "target": "NSCLC",
+      "pmid": "39162688",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "3-Phenyllactic acid, carnitine-C5, carnitine-C12, and serotonin showed a positive linear correlation with fasting blood glucose levels in NSCLC patients."
+    },
+    {
+      "source": "F7",
+      "relation": "driver_of",
+      "target": "Breast_Cancer",
+      "pmid": "40140843",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Protein EpiScores for RARRES2, IGFBP4, and CCL21 were positively associated with invasive breast cancer risk (hazard ratios from 1.17 to 1.24), while those for F7, SELL, CXCL9, CD48, and IL19 were inversely associated (hazard ratios from 0.82 to 0.86) (all FDR&#x2009;&lt;&#x2009;0.10)."
+    },
+    {
+      "source": "LHCGR",
+      "relation": "driver_of",
+      "target": "Breast_Cancer",
+      "pmid": "26458823",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "The most significantly associated genes were GHRH, CALM2, CETP, and AKR1C1 for overall breast cancer (gene-based nominal p&#xa0;&#x2264;&#xa0;0.01); NR0B1, IGF2R, CALM2, CYP1B1, and GRB2 for ER+ breast cancer (p&#xa0;&#x2264;&#xa0;0.02); and PGR, MAPK3, MAP3K1, and LHCGR for ER- disease (p&#xa0;&#x2264;&#xa0;0.02)."
+    },
+    {
+      "source": "MPL",
+      "relation": "driver_of",
+      "target": "CLL",
+      "pmid": "26402369",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "We retrospectively examined the clinical and biological characteristics of 13 patients with concomitant CLL and MPN--eight primary myelofibrosis (PMF), three essential thrombocytosis (ET), and two polycythemia vera (PV)--who presented to our institution between 1998 and 2014, and tested all patients for MPN-specific aberrations, such as JAK2, MPL and CALR mutations."
+    },
+    {
+      "source": "CA12",
+      "relation": "driver_of",
+      "target": "Ovarian_Cancer",
+      "pmid": "27765277",
+      "verdict": "HOLLOW",
+      "tier": "LEXICAL-COOCCURRENCE",
+      "reason": "no 'driver_of' keyword in sentence (co-occurrence only); COG=REJECT",
+      "proof_sentence": "Specific immunohistochemical methods such as GCDFP-15, CA12-5, WT-1, and PAX-8 supported evidence of metastasis from ovarian cancer to axillary lymph nodes."
+    }
+  ],
+  "statistics": {
+    "fisher_exact_two_sided_p": 0.282,
+    "difference_pp": 5.0,
+    "difference_95pct_CI_pp": [
+      -2.6,
+      12.6
+    ],
+    "verdict": "NOT SIGNIFICANT - the confidence interval includes zero."
+  },
+  "adjudication_of_control_screened": {
+    "note": "Hand-read all 9. Roughly 3-4 are genuinely valid directed claims - about the SAME ~1/3 survival rate as the real run's 5/15.",
+    "valid": [
+      {
+        "edge": "EPOR -> Breast_Cancer",
+        "why": "'Erythropoietin drives breast cancer progression by activation of its receptor EPOR' - a clean, valid driver claim, from a RANDOM pairing."
+      },
+      {
+        "edge": "OPRK1 -> Prostate_Cancer",
+        "why": "'OPRK1 drives ... neuroendocrine prostate cancer' - directed and asserted."
+      },
+      {
+        "edge": "TYK2 -> NSCLC",
+        "why": "'IFNa activates TYK2/STAT/HSPA5 signaling to promote NSCLC proliferation and metastasis'."
+      }
+    ],
+    "weak_or_false": [
+      {
+        "edge": "AR -> Colorectal_Cancer",
+        "why": "ENTITY COLLISION. Sentence is about beta-2 adrenergic receptor (b2-AR); graph 'AR' is the ANDROGEN receptor. Distinct bug."
+      },
+      {
+        "edge": "CFTR -> HCC",
+        "why": "'promoter CpG island' methylation - the 'promoter' pattern again, no driver predicate."
+      },
+      {
+        "edge": "ERBB4 -> HCC",
+        "why": "'ERBB4 promoter DNA methylation' - same promoter artifact."
+      },
+      {
+        "edge": "MMP1 -> Pancreatic_Cancer",
+        "why": "MMP1 is downstream of PRKRA, not the asserted subject."
+      },
+      {
+        "edge": "MAP2K2 -> Multiple_Myeloma",
+        "why": "MAP2K2 is a mid-axis member; subject is YTHDF2."
+      },
+      {
+        "edge": "TACR1 -> HCC",
+        "why": "Part of a circRNA/miRNA axis; indirect."
+      }
+    ]
+  },
+  "conclusion": "Post-hoc PubMed grounding carries essentially NO information about whether the graph's proposal was correct. Randomly scrambled protein-disease pairs ground at a statistically indistinguishable rate (7.5% vs 12.5%, p=0.28) AND at comparable adjudicated quality (~1/3 valid in both arms). This does NOT mean the discovered edges are false - EPOR really does drive breast cancer. It means the PROPOSAL step added no measurable signal: you would find about as many true edges by picking pairs at random. The pipeline is literature mining, not prediction validation, and must not be described as the latter."
+}

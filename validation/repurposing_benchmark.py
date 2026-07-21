@@ -38,6 +38,11 @@ from oracle.yoneda_strategy import YonedaDistanceStrategy
 
 
 DB_PATH = "data/drugs/tier1.db"
+
+# Provenance stamped by scripts/materialize_orphan_drugs.py. Distinguishes the 679
+# ChEMBL drugs recovered from edge endpoints from the original 78 curated drugs.
+MATERIALIZED_DRUG_PROVENANCE = "ChEMBL:materialized_orphan"
+
 REPURPOSING_STRATEGY_NAMES = (
     "kan_extension",
     "structural_hole",
@@ -174,6 +179,7 @@ def load_full_typed_view(
     skip_pairs: Optional[set[tuple[str, str]]] = None,
     remove_direct_labels: bool = False,
     quality_tier: str = "all",
+    cohort: str = "all",
 ) -> tuple[Category, list[str]]:
     """Load all object rows before all morphisms so endpoint types are preserved.
 
@@ -182,11 +188,31 @@ def load_full_typed_view(
       - silver: Gold + curated (cancer_proteins, ABPP)
       - bronze: Everything except 'unknown' provenance
       - all: Everything (default)
+
+    cohort controls the DRUG universe:
+      - core: the original 78 curated oncology drugs only
+      - all:  those plus the 679 ChEMBL drugs materialized from edge endpoints
+
+    Use `core` for any number you intend to compare against a historical result.
+    The two cohorts are NOT comparable: `all` adds ~13,500 mostly-unscoreable pairs
+    while the positive count stays at 44, which inflates AUROC and deflates AUPRC.
     """
     tier_filter = QUALITY_TIERS.get(quality_tier, QUALITY_TIERS["all"])
     store = KomposOSStore(db_path)
     objects = store.list_objects(limit=100000)
     morphisms = store.list_morphisms(limit=100000)
+
+    if cohort == "core":
+        excluded = {
+            obj.name for obj in objects
+            if obj.type_name == "Drug" and obj.provenance == MATERIALIZED_DRUG_PROVENANCE
+        }
+        objects = [obj for obj in objects if obj.name not in excluded]
+        # Drop their edges too, or the excluded drugs reappear as dangling endpoints.
+        morphisms = [
+            mor for mor in morphisms
+            if mor.source_name not in excluded and mor.target_name not in excluded
+        ]
     type_by_name = {obj.name: obj.type_name for obj in objects}
     heldout_pairs = set(skip_pairs or set())
     if skip_pair:
@@ -862,6 +888,14 @@ def main() -> int:
         default="all",
         help="Edge quality tier. Provenance: gold/silver/bronze/all. Confidence: curated(original graph)/high(>=0.70)/medium(>=0.40)/low(all).",
     )
+    parser.add_argument(
+        "--cohort",
+        choices=["core", "all"],
+        default="all",
+        help="Drug universe: core = original 78 curated drugs (use this to compare "
+             "against historical numbers); all = plus 679 materialized ChEMBL drugs. "
+             "The two are NOT comparable - `all` inflates AUROC via easy negatives.",
+    )
     parser.add_argument("--json", action="store_true", help="Print machine-readable JSON.")
     parser.add_argument("--ci", action="store_true", help="Compute bootstrap 95%% confidence intervals.")
     parser.add_argument("--baselines", action="store_true", help="Compute baseline comparisons.")
@@ -885,6 +919,7 @@ def main() -> int:
             args.db,
             remove_direct_labels=remove_direct,
             quality_tier=args.quality,
+            cohort=args.cohort,
         )
 
         positives_override = None

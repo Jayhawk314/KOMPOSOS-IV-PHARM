@@ -152,3 +152,6 @@ TRANSFORMATIVE_POSSIBILITIES.md
 MASTER_MANUAL.md
 kid-fun-adventure-math-book.md
 the-story-that-is-a-category.md
+
+# Timestamped tier1 snapshots: "*.db" does NOT match "tier1.db.BACKUP_*"
+data/drugs/tier1.db.BACKUP_*

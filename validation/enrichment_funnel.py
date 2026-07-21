@@ -79,7 +79,7 @@ class EnrichmentFunnel:
         return asdict(self)
 
 
-def score_all_pairs(db_path: str = DB_PATH) -> tuple[list[float], list[int]]:
+def score_all_pairs(db_path: str = DB_PATH, cohort: str = "core") -> tuple[list[float], list[int]]:
     """
     Score every Drug x Disease pair under the strict protocol.
 
@@ -87,8 +87,8 @@ def score_all_pairs(db_path: str = DB_PATH) -> tuple[list[float], list[int]]:
     FDA-approved `treats` indication. Positives are read from the full graph;
     scoring runs on the label-removed graph so the direct edge is invisible.
     """
-    category, _ = load_full_typed_view(db_path, remove_direct_labels=True)
-    base_category, _ = load_full_typed_view(db_path)
+    category, _ = load_full_typed_view(db_path, remove_direct_labels=True, cohort=cohort)
+    base_category, _ = load_full_typed_view(db_path, cohort=cohort)
     _, _, positives = drug_disease_pairs(base_category)
 
     drugs, diseases, _ = drug_disease_pairs(category)
@@ -169,9 +169,15 @@ def build_funnel(
     *,
     fractions: tuple[float, ...] = DEFAULT_FRACTIONS,
     capture_targets: tuple[float, ...] = DEFAULT_CAPTURE_TARGETS,
+    cohort: str = "core",
 ) -> EnrichmentFunnel:
-    """Score the graph and compute the funnel in one call (the UI entry point)."""
-    scores, labels = score_all_pairs(db_path)
+    """Score the graph and compute the funnel in one call (the UI entry point).
+
+    Defaults to the `core` 78-drug cohort so the funnel stays comparable to the
+    historical published numbers. Pass cohort="all" for the full 757-drug surface,
+    but note the two are not comparable - see load_full_typed_view.
+    """
+    scores, labels = score_all_pairs(db_path, cohort=cohort)
     return compute_funnel(
         scores, labels, fractions=fractions, capture_targets=capture_targets
     )
@@ -248,9 +254,14 @@ def main() -> None:
     parser.add_argument("--db", default=DB_PATH, help="path to tier1.db")
     parser.add_argument("--json", action="store_true", help="emit JSON")
     parser.add_argument("--markdown", action="store_true", help="emit Markdown (for README)")
+    parser.add_argument(
+        "--cohort", choices=["core", "all"], default="core",
+        help="core = original 78 curated drugs (default, comparable to published "
+             "numbers); all = plus the 679 materialized ChEMBL drugs.",
+    )
     args = parser.parse_args()
 
-    funnel = build_funnel(args.db)
+    funnel = build_funnel(args.db, cohort=args.cohort)
 
     if args.json:
         print(json.dumps(funnel.to_dict(), indent=2))

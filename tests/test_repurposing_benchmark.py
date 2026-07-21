@@ -41,12 +41,15 @@ def test_full_typed_view_uses_all_tier1_objects_and_labels():
     category, missing_endpoints = load_full_typed_view(DB_PATH)
     drugs, diseases, positives = drug_disease_pairs(category)
 
-    assert len(drugs) >= 78
+    assert len(drugs) >= 757
     assert len(diseases) >= 20
     assert len(positives) >= 44
     assert len(category.objects()) >= 195
     assert len(category.morphisms()) >= 388
-    assert len(missing_endpoints) >= 0 # endpoints can be missing due to expansion
+    # Referential integrity: every morphism endpoint must have an `objects` row.
+    # This previously read `>= 0`, which no length can violate, so 679 ChEMBL drug
+    # endpoints stayed unmaterialized (and therefore unscoreable) without failing.
+    assert missing_endpoints == [], f"unmaterialized endpoints: {sorted(missing_endpoints)[:10]}"
 
 
 def test_bio_domain_loader_no_longer_truncates_objects():

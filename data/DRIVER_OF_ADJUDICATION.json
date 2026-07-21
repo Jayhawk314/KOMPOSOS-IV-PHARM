@@ -1,0 +1,79 @@
+{
+  "relation": "driver_of",
+  "run": "discover_morphisms.py --relation driver_of --limit 250 --per-pmid 3",
+  "date": "2026-07-20",
+  "probed": 250,
+  "gaps_total": 5793,
+  "disease_coverage": "AML only - 250 probes across 302 targets exhausted only the first disease in the round-robin",
+  "gate_counts": {"AGREE": 13, "HOLLOW": 78, "UNGROUNDED": 159},
+  "adjudicated": {"verified": 4, "hedged": 3, "rejected": 6},
+  "note": "In-session adjudication of the 13 gate-AGREE candidates. Only 4 assert a directed causal role for the named protein in AML. tier1.db was NOT modified. Note every candidate carried COG=REJECT from the structural half of the composite gate.",
+  "headline_finding": "The lexical gate does not transfer from `associated_with` to `driver_of`. Adjudicated precision is 4/13 = 0.31, versus the ~0.82 measured for associated_with. The gate checks that both entities and a relation keyword appear in the same sentence, but never that the keyword ATTACHES to those entities.",
+  "verdicts": [
+    {
+      "edge": "BCL11A -driver_of-> AML", "pmid": "34714913", "verdict": "VERIFIED",
+      "reason": "Directed experimental claim, in vitro and in vivo, predicate binds the subject.",
+      "proof": "Bcl11a promotes the proliferation and engraftment of Trib1-expressing AML cells in vitro and in vivo."
+    },
+    {
+      "edge": "BMPR2 -driver_of-> AML", "pmid": "29715457", "verdict": "VERIFIED",
+      "reason": "Explicit contribution-to-pathogenesis claim attached to the subject.",
+      "proof": "the SPG6 deficiency resulted in higher BMPR2 expression indicating that BMPR2 signaling contributes to AML pathogenesis."
+    },
+    {
+      "edge": "ANGPT2 -driver_of-> AML", "pmid": "25338607", "verdict": "VERIFIED",
+      "reason": "Review asserting a pathogenic role with named downstream effects; review-grade, not primary.",
+      "proof": "the role of ANGPT2 in the pathogenesis of acute myelogenous leukemia (AML), including its effects on proliferation of leukemia cells, bone marrow angiopoiesis, tumor invasion and metastasis"
+    },
+    {
+      "edge": "HCK -driver_of-> AML", "pmid": "35039904", "verdict": "VERIFIED",
+      "reason": "'involved in the oncogenic process' is driver-adjacent and bound to the subject; weaker than BCL11A.",
+      "proof": "HCK, an Src kinase family member, is overexpressed on hematopoietic stem cells of MDS and de novo AML patients and involved in the oncogenic process."
+    },
+    {
+      "edge": "NR3C1 -driver_of-> AML", "pmid": "32032633", "verdict": "HEDGED",
+      "reason": "'a possible role' - author hedges; insufficient for a causal edge.",
+      "proof": "The present study reveals a possible role for NR3C1 in the pathogenesis of AML."
+    },
+    {
+      "edge": "ADAMTS13 -driver_of-> AML", "pmid": "25543464", "verdict": "HEDGED",
+      "reason": "'may play a role' - hedged, and co-attributed to vWF antigen.",
+      "proof": "The ADAMTS13 and vWF antigen may play a role in the pathogenesis of AML and the formation of infection and DIC."
+    },
+    {
+      "edge": "EPCAM -driver_of-> AML", "pmid": "27697766", "verdict": "HEDGED",
+      "reason": "Overexpression is an association, not a causal driver claim.",
+      "proof": "epithelial cell adhesion molecule (EpCAM) is frequently overexpressed in patients with AML"
+    },
+    {
+      "edge": "ESR1 -driver_of-> AML", "pmid": "29789325", "verdict": "REJECTED",
+      "reason": "SEMANTIC INVERSION. The sentence says the driver-gene fraction regulated by E2-ESR1 is LOWER in malignancies not associated with estrogens, naming AML as such a malignancy. It argues ESR1 is LESS relevant to AML.",
+      "proof": "the fraction of driver genes regulated by E2-ESR1 is lower in malignancies not associated with estrogens, e.g., acute myeloid leukemia"
+    },
+    {
+      "edge": "TFPI -driver_of-> AML", "pmid": "22052167", "verdict": "REJECTED",
+      "reason": "LEXICAL FALSE POSITIVE. Keyword 'promot' matched 'promoter', the DNA element, not the verb 'promotes'. Subject is also TFPI-2, not TFPI.",
+      "proof": "Aberrant methylation of TFPI-2 promoter was detected in 71.6% (48/67) of the Chinese pediatric AML patients."
+    },
+    {
+      "edge": "ROCK2 -driver_of-> AML", "pmid": "39126734", "verdict": "REJECTED",
+      "reason": "NEGATED. Keyword 'caus' matched 'cause', but the sentence states the mechanism is unknown.",
+      "proof": "The cause of ROCK2's impact on acute myeloid leukemia (AML) is still unknown."
+    },
+    {
+      "edge": "SCN5A -driver_of-> AML", "pmid": "38230679", "verdict": "REJECTED",
+      "reason": "POLARITY INVERSION. SCN5A promotes apoptosis and overcomes drug resistance - a suppressor direction, the opposite of driver_of. The polarity guard missed it because 'promoting' is a positive cue.",
+      "proof": "SCN5A overcoming ATP-binding cassette (ABC) transporter-mediated multidrug resistance in acute myeloid leukemia (AML) through promoting apoptosis."
+    },
+    {
+      "edge": "KEAP1 -driver_of-> AML", "pmid": "25464887", "verdict": "REJECTED",
+      "reason": "WRONG ENTITY. Keyword 'oncogen' attaches to NrasG12D and MLL-AF9, not to KEAP1.",
+      "proof": "AML cells made from addition of two oncogenes (NrasG12D and MLL-AF9) increase the ROS-status"
+    },
+    {
+      "edge": "CD33 -driver_of-> AML", "pmid": "40769005", "verdict": "REJECTED",
+      "reason": "WRONG ENTITY. 'pathogenesis' attaches to AML generally; the drivers named are FLT3, IDH1, IDH2. CD33 is a surface marker and drug target, not a driver.",
+      "proof": "Advances in understanding the pathogenesis of AML have fueled the development of precision medicine approaches, with notable successes in targeting specific mutant proteins (e.g., FLT3, IDH1, IDH2)"
+    }
+  ]
+}

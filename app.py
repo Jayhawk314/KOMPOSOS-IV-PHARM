@@ -47,6 +47,14 @@ from validation.ranking_calibration import (
     load_calibration,
 )
 from validation.disease_specificity import build_score_matrix, specificity_ranking, hub_summary
+from validation.nonobvious import (
+    FAMILIARITY_CAP,
+    _load_cache as _load_comention_cache,
+    _save_cache as _save_comention_cache,
+    find_candidates as find_nonobvious_candidates,
+    normalize_drug_name,
+    rank_nonobvious,
+)
 from validation.enrichment_funnel import build_funnel
 from validation.trace_prediction import _build_provenance_index, trace_pair
 from validation.triage import (
@@ -98,8 +106,14 @@ except Exception as _pronoia_exc:  # pragma: no cover - environment dependent
 
 @st.cache_resource(show_spinner="Scoring all pairs for the enrichment funnel...")
 def load_funnel():
-    """Strict-protocol enrichment funnel (scores all Drug x Disease pairs)."""
-    return build_funnel(DB_PATH)
+    """Strict-protocol enrichment funnel, on the CORE 78-drug cohort.
+
+    Deliberately pinned to `core` so the funnel stays comparable to the published
+    numbers. The rest of the app (graph stats, Non-obvious candidates) ranks over
+    all 757 drugs, so this page states its cohort explicitly - otherwise a reader
+    sees "757 drugs" in the sidebar and a 1,560-pair funnel and cannot reconcile them.
+    """
+    return build_funnel(DB_PATH, cohort="core")
 
 
 @st.cache_resource(show_spinner="Scoring all Drug x Disease pairs for specificity...")
@@ -236,7 +250,8 @@ st.set_page_config(
 st.sidebar.title("KOMPOSOS-IV-PHARM")
 st.sidebar.caption("Categorical Drug Repurposing")
 
-_modes = ["Disease-first", "Disease-specific", "Drug-first", "Pair detail", "Search speedup"]
+_modes = ["Disease-first", "Disease-specific", "Non-obvious candidates",
+          "Drug-first", "Pair detail", "Search speedup"]
 if OPERADUM_AVAILABLE:
     _modes.append("Decision ranking (OPERADUM)")
 if PRONOIA_AVAILABLE:
@@ -1551,6 +1566,14 @@ elif mode == "Search speedup":
         "scoring, so the ranker cannot read the answer it is graded on."
     )
 
+    st.info(
+        "**Cohort: the original 78 curated oncology drugs** (1,560 pairs), not the "
+        "full 757-drug graph shown in the sidebar. The funnel is pinned to this "
+        "cohort so it stays comparable to the published numbers. Expanding to 757 "
+        "adds ~13,500 mostly-unscoreable pairs while the positive count stays at 44, "
+        "which inflates enrichment without meaning anything. See HONEST_VALUE.md."
+    )
+
     funnel = load_funnel()
 
     c1, c2, c3 = st.columns(3)
@@ -1957,6 +1980,143 @@ pairs. External generalization is weak for both (Hetionet AUROC ~0.64).
 """)
 
 
+elif mode == "Non-obvious candidates":
+    st.title("Non-obvious candidates")
+    st.caption(
+        "Ranking by score alone surfaces what everyone already knows — the top of "
+        "that list is pan-cancer kinase hubs whose evidence trail is short, famous, "
+        "and adds nothing to your argument. This view ranks on two axes instead: "
+        "**support** (strength of a real Drug→Protein→Disease chain) × **novelty** "
+        "(how little PubMed already co-mentions the pair). The interesting quadrant "
+        "is a chain you can defend edge-by-edge about a pair nobody has written up."
+    )
+
+    st.warning(
+        "**Novelty is measured outside the graph.** Co-mention counts come from live "
+        "PubMed queries, because deriving novelty from the same graph that produced "
+        "the ranking would be circular. First run for a disease is slow (NCBI allows "
+        "3 requests/sec); results are cached afterwards."
+    )
+
+    nb_disease = st.selectbox("Select disease", g["diseases"], key="nb_disease")
+    nb_c1, nb_c2, nb_c3 = st.columns(3)
+    nb_top = nb_c1.slider("Show top", 5, 30, 12, key="nb_top")
+    nb_shortlist = nb_c2.slider(
+        "PubMed lookups", 10, 60, 30, key="nb_shortlist",
+        help="Pairs sent to PubMed per run. Higher = slower first run, wider search.",
+    )
+    nb_min_support = nb_c3.slider(
+        "Min support", 0.0, 1.0, 0.5, 0.05, key="nb_min_support",
+        help="Discard chains weaker than this before spending a PubMed lookup.",
+    )
+    nb_mech_only = st.checkbox(
+        "Mechanistic terminal hop only (exclude `associated_with`)",
+        value=False, key="nb_mech_only",
+        help="`associated_with` is co-occurrence, not a mechanism. Tick this to see "
+             "only chains that reach the disease through a directed relation.",
+    )
+
+    if st.button("Find non-obvious candidates", type="primary"):
+        with st.spinner(f"Scoring chains and querying PubMed for {nb_disease}..."):
+            nb_cache = _load_comention_cache()
+            try:
+                nb_rows = find_nonobvious_candidates(
+                    nb_disease, g["category"], g["strategies"], g["positives"],
+                    g["provenance_index"], sorted(g["drugs"]),
+                    nb_min_support, nb_shortlist,
+                )
+                nb_rows = rank_nonobvious(nb_rows, nb_cache, offline=False)
+            finally:
+                _save_comention_cache(nb_cache)
+
+        if nb_mech_only:
+            nb_rows = [r for r in nb_rows if r["terminal_is_directed"]]
+
+        if not nb_rows:
+            st.info(
+                "No candidates cleared the filters. Lower **Min support**, or untick "
+                "the mechanistic-only box — for most diseases the terminal "
+                "Protein→Disease hop is `associated_with`."
+            )
+        else:
+            st.subheader(f"Ranked by support × novelty — {nb_disease}")
+            st.dataframe(
+                [{
+                    "Rank": i,
+                    "Drug": r["drug"],
+                    "Support": r["support"],
+                    "PubMed co-mentions": r["comentions"],
+                    "Novelty": r["novelty"],
+                    "Non-obvious score": r["nonobvious"],
+                    "Terminal hop": "mechanistic" if r["terminal_is_directed"] else "association",
+                    "Weakest hop": r["weakest_hop"],
+                    "Cited edges": r["cited_edges"],
+                } for i, r in enumerate(nb_rows[:nb_top], start=1)],
+                use_container_width=True,
+                hide_index=True,
+            )
+            st.caption(
+                f"Novelty = 1 − log(co-mentions)/log({FAMILIARITY_CAP}), so a textbook "
+                "pair scores ~0 and an unwritten one scores ~1."
+            )
+
+            st.subheader("Audit trail")
+            st.caption(
+                "The score IS the evidence — every hop below is an edge you can reject "
+                "by hand. Check the terminal Protein→Disease hop first; it is the "
+                "weakest layer in this graph."
+            )
+            st.warning(
+                "**A PMID on the terminal Protein→Disease hop is not validation.** Those "
+                "citations were found *after* the edge was proposed, and a permutation "
+                "control shows randomly-paired proteins and diseases ground at a "
+                "statistically indistinguishable rate (7.5% vs 12.5%, p=0.28). Read them "
+                "as *\"this is not absurd, start reading here\"* — not as confirmation. "
+                "The Drug→Protein hops (ChEMBL, FDA) are independently derived and do not "
+                "carry this caveat."
+            )
+            for r in nb_rows[:nb_top]:
+                flag = "" if r["terminal_is_directed"] else "  ⚠ association-only terminal hop"
+                with st.expander(
+                    f"{r['drug']} → {r['disease']}  ·  non-obvious {r['nonobvious']}  "
+                    f"·  {r['comentions']} PubMed co-mentions{flag}"
+                ):
+                    if normalize_drug_name(r["drug"]) != r["drug"]:
+                        st.caption(
+                            f"PubMed queried as **{normalize_drug_name(r['drug'])}** "
+                            "(salt/hydrate form stripped)."
+                        )
+                    for i, edge in enumerate(r["chain"]["edges"], start=1):
+                        prov = edge.get("provenance") or "unknown"
+                        prov_md = re.sub(
+                            r"PMID:?\s*(\d+)",
+                            lambda m: f"[PMID:{m.group(1)}](https://pubmed.ncbi.nlm.nih.gov/{m.group(1)})",
+                            prov,
+                        )
+                        quant = ""
+                        if edge.get("quantitative_value") is not None:
+                            quant = f" · **{edge['quantitative_value']} {edge.get('value_unit') or ''}**"
+                        st.markdown(
+                            f"{i}. `{edge['source']}` —**{edge['relation']}**→ "
+                            f"`{edge['target']}` ({edge.get('target_type','?')})  \n"
+                            f"    confidence {edge.get('confidence')} · tier "
+                            f"{edge.get('evidence_tier')} · {prov_md}{quant}"
+                        )
+                    st.markdown(
+                        f"[Search PubMed for this pair]"
+                        f"(https://pubmed.ncbi.nlm.nih.gov/?term="
+                        f"%22{normalize_drug_name(r['drug']).replace(' ', '+')}%22"
+                        f"+AND+%22{r['disease'].replace('_', '+')}%22)"
+                    )
+
+            st.error(
+                "**Absence of literature is not evidence of efficacy.** A low "
+                "co-mention count can mean genuinely unexplored, tried-and-never-"
+                "published, or an ambiguous drug name. This is a triage queue for a "
+                "human to work through, not a prediction that anything will work."
+            )
+
+
 elif mode == "About":
     st.title("About KOMPOSOS-IV-PHARM")
 
@@ -2036,18 +2196,26 @@ predict that a drug will actually work.
 
 | Metric | Value |
 |--------|-------|
-| AUROC | 0.970549 [95% CI: 0.9519-0.9844] |
-| AUPRC | 0.546427 [95% CI: 0.4025-0.6890] |
+| AUROC | 0.969065 [95% CI: 0.9472-0.9848] |
+| AUPRC | 0.566059 [95% CI: 0.4229-0.7094] |
 | Hits@5 | 1.000 |
-| Hits@10 | 0.600 |
-| Hits@20 | 0.600 |
+| Hits@10 | 0.700 |
+| Hits@20 | 0.650 |
 | Strategy profile | 7 active modules; Yoneda distance excluded because no Drug->Disease comparators remain |
 | Positives | 44 FDA-approved oncology indications |
-| Strongest baseline (common_neighbor) | AUROC 0.6219 |
-| Margin over strongest baseline | +0.3486 |
+| Strongest baseline (common_neighbor) | AUROC 0.6132 |
+| Margin over strongest baseline | +0.3558 |
 | PMID identifiers in DB | {g['pmid_count']} |
 
-*Current audited strict run: 2026-06-02, after integrating 151 agent-adjudicated
+**Cohort: `core` (78 curated drugs, 1,560 pairs).** Quote this number, not the
+757-drug figure. On the full cohort AUROC reads 0.9941, but that is an artifact of
+~13,500 added easy negatives: AUPRC *falls* to 0.414 and the margin over
+common-neighbor collapses from +0.36 to +0.05. The two cohorts are not comparable.
+
+*Current audited strict run: 2026-07-20, re-measured after materializing 679 ChEMBL
+drug endpoints and merging 110 adjudicated protein->disease edges. Values drifted
+slightly from the 2026-06-02 audit (AUROC 0.9705 -> 0.9691, AUPRC 0.5464 -> 0.5661).
+Historical note from that audit follows: integrated 151 agent-adjudicated
 mechanistic links and fixing the positive-label filter (positives are now only
 `treats` edges, so 4 inferred `associated_with` HYPOTHESIS edges that were
 wrongly counted as approvals are excluded -- this is why the count is 44, not 48,
@@ -2080,13 +2248,23 @@ clinical probability.
 - **Oncology only**: 20 cancer types currently
 - **Small graph**: {n_obj} objects vs 47k+ in published systems like Rephetio
 - **Open-world negatives**: Unlabeled pairs are unknowns, not confirmed negatives
-- **Hub-drug bias**: Promiscuous multi-kinase inhibitors (Imatinib tops 17/20
+- **Hub-drug bias**: Promiscuous multi-kinase inhibitors (Imatinib tops 14/20
   diseases) crowd the top of most disease rankings -- partly real pan-cancer
-  biology, partly a promiscuity bias, and the main reason AUPRC (0.55) trails
+  biology, partly a promiscuity bias, and the main reason AUPRC (0.57) trails
   AUROC (0.97). Use the **Disease-specific** view to demote the hubs.
+- **A PMID on a Protein->Disease edge is NOT validation** (measured 2026-07-20):
+  those citations were gathered *after* the edge was proposed. A permutation
+  negative control -- same proteins, randomly reassigned diseases -- grounded at
+  7.5% versus 12.5% for the real pairings (Fisher exact p=0.28, 95% CI on the
+  difference includes zero), at comparable adjudicated quality. So the proposal
+  step adds no measurable signal; this layer is **literature mining, not
+  prediction validation**. Read such a PMID as *"this is not absurd, start
+  reading here"*. Drug->Protein citations (ChEMBL, FDA) are independently derived
+  and unaffected. See HONEST_VALUE.md and `data/GROUNDING_NEGATIVE_CONTROL.json`.
 - **Weakest at the disease link**: The terminal Protein->Disease hop of an
   evidence chain is the least-verified layer (often a literature co-mention).
-  Treat the last hop with extra scrutiny; edge-level citation audit is ongoing.
+  Only 158 proteins carry any disease edge, which strands 629 of 757 drugs with
+  target pharmacology but no route to a disease.
 - **Citation attribution risk remains**: Provenance/source strings exist for every edge, but
   the audit found PMID-without-context, measured-tier mismatch, and quantitative
   support issues that need edge-level verification before wet-lab claims
