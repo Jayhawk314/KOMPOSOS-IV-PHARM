@@ -76,10 +76,10 @@ KOMPOSOS strict hidden-label benchmark:
 | Metric | Value |
 |---|---:|
 | Objects | 1,143 |
-| Typed edges | 2,329 |
+| Typed edges | 2,439 (2,015 scored; 424 ESMC excluded) |
 | FDA-positive drug-disease labels | 44 |
-| KOMPOSOS AUROC | 0.9705 |
-| KOMPOSOS AUPRC | 0.5464 |
+| KOMPOSOS AUROC | 0.9784 (core cohort, ESMC-excluded) |
+| KOMPOSOS AUPRC | 0.6128 |
 
 The strong AUROC is in-graph recovery. External generalization is weaker
 (Hetionet CtD AUROC 0.6436, AUPRC 0.0095); present this as a search accelerator
@@ -170,7 +170,7 @@ docs/OPERADUM_PRONOIA_BUNDLE.md
 - Do not claim every PMID is an edge-specific figure/table proof.
 - Do not claim PRONOIA v2 already handles resistance or indication mismatch.
 - Do not over-read a drug that tops many diseases: promiscuous multi-kinase
-  inhibitors (Imatinib tops 17/20 diseases) crowd the top of most rankings, so a
+  inhibitors (Imatinib tops 14/20 diseases) crowd the top of most rankings, so a
   high rank for one is weak disease-specific evidence. Use the app's
   **Disease-specific** view, which demotes these hubs.
 

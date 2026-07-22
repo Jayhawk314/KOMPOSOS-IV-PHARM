@@ -1,0 +1,18 @@
+{
+  "experiment": "ESMC similarity-transfer ablation",
+  "date": "2026-07-21",
+  "question": "Are the 422 ESMC protein-embedding similarity-transfer edges (all Protein->Disease) load-bearing for the repurposing ranker?",
+  "protocol": "strict remove_direct_labels, core 78-drug cohort, positives held fixed at 44",
+  "reproduce": "python -m validation.esmc_ablation --cohort core",
+  "results": {
+    "full_graph":   {"morphisms": 1523, "auroc": 0.9691, "auprc": 0.5661, "hits20": 0.65, "best_baseline_auroc": 0.6132, "margin": 0.3558},
+    "esmc_removed": {"morphisms": 1101, "auroc": 0.9784, "auprc": 0.6128, "hits20": 0.70, "best_baseline_auroc": 0.7429, "margin": 0.2355}
+  },
+  "findings": [
+    "Removing all 422 ESMC edges IMPROVES the model's own metrics: AUROC 0.9691->0.9784, AUPRC 0.5661->0.6128, Hits@20 0.65->0.70. The similarity-transfer layer is not merely decorative - it slightly HARMS the ranker.",
+    "The common-neighbor baseline improves much more (0.6132->0.7429), so the model's margin over baseline FALLS from +0.3558 to +0.2355. The ESMC edges were graph noise that trivial baselines handled worse than the model, which inflated the apparent margin.",
+    "The honest margin over a trivial baseline is ~+0.24, not +0.36."
+  ],
+  "conclusion": "The ESMC similarity-transfer edges are NOT load-bearing and are slightly detrimental. They can be dropped or quarantined with no loss to prioritization. This also settles the novelty question: the similarity-inferred edges - the ones most likely to be 'connections not in PubMed' - are exactly the ones the ranker does better without. Novelty from that source is noise, not signal.",
+  "recommended_action": "Retag ESMC Protein->Disease edges to a clearly-inferred tier and exclude them from the default scored graph; keep them visible in the UI only if explicitly labeled 'embedding-inferred, not observed'."
+}

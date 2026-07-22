@@ -34,21 +34,32 @@ comparable. Quoting the wrong one is the easiest way to get caught overstating.
 | Pairs | 1,560 | 15,140 |
 | Positives | 44 | 44 |
 | Base rate | 2.82% | 0.29% |
-| Strict AUROC | **0.9691** [0.9472–0.9848] | 0.9941 [0.9902–0.9967] |
-| Strict AUPRC | **0.5661** [0.4229–0.7094] | 0.4140 [0.2784–0.5456] |
-| Hits@20 | **0.65** | 0.40 |
-| Best baseline | common-neighbor 0.6132 | common-neighbor 0.9484 |
-| **Margin over baseline** | **+0.3558** | **+0.0457** |
+All numbers below are on the **ESMC-excluded default graph** (see the ablation
+section). Similarity-transfer edges are out of the scored graph because removing
+them improves the ranker.
 
-**The 0.994 is an artifact — do not report it as an improvement.** Expanding the
-universe added ~13,500 mostly-unscoreable pairs while the positive count stayed at
-44. Adding easy negatives inflates AUROC mechanically. The honest tells sit in the
-same run: AUPRC *fell*, Hits@20 *fell*, and the margin over a trivial
-common-neighbor baseline collapsed from +0.36 to +0.05.
+| | `--cohort core` | `--cohort all` |
+|---|---|---|
+| Drugs | 78 curated oncology | 757 (core + 679 ChEMBL) |
+| Pairs | 1,560 | 15,140 |
+| Positives | 44 | 44 |
+| Base rate | 2.82% | 0.29% |
+| Strict AUROC | **0.9784** [0.9667–0.9883] | ~0.99 (inflated) |
+| Strict AUPRC | **0.6128** [0.4728–0.7480] | ~0.41 |
+| Hits@20 | **0.70** | 0.40 |
+| Best baseline | common-neighbor 0.7429 | common-neighbor ~0.95 |
+| **Margin over baseline** | **+0.2355** | **~+0.05** |
 
-**Quote the `core` number (0.9691, +0.3558 over baseline).** That is the
-defensible one and it is what the published history compares against. Treat the
-`all` cohort as a *discovery surface* for finding candidates, never as a benchmark.
+**The full-cohort ~0.99 is an artifact — do not report it as an improvement.**
+Expanding the universe added ~13,500 mostly-unscoreable pairs while the positive
+count stayed at 44. Adding easy negatives inflates AUROC mechanically. The honest
+tells sit in the same run: AUPRC *fell* and the margin over a trivial
+common-neighbor baseline collapsed to ~+0.05.
+
+**Quote the `core` number (0.9784, +0.24 over baseline).** That is the defensible
+one. Treat the `all` cohort as a *discovery surface* for finding candidates, never
+as a benchmark. Reproduce:
+`python validation/repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --cohort core --baselines --ci`
 
 ---
 
@@ -59,10 +70,10 @@ The repurposing ranker concentrates real hits at the top of the list. Under the
 strict protocol (`remove_direct_labels`, so the direct Drug→Disease label is
 removed before scoring), on the `core` cohort:
 
-- Screening the **top 5%** of 1,560 pairs catches **70%** of known hits — a
-  **14.1× enrichment** over screening blindly.
+- Screening the **top 5%** of 1,560 pairs catches **73%** of known hits — a
+  **14.5× enrichment** over screening blindly.
 - Catch **80%** of known hits by screening **6%** of the list (skip 94%).
-- Catch **89%** by screening the top 10%.
+- Catch **95%** by screening the top 10%.
 
 Reproduce: `python -m validation.enrichment_funnel --cohort core`.
 
@@ -109,7 +120,7 @@ scaffolding around a fairly classical graph-reasoning core. Judge the system on
 the core, not the superstructure.
 
 ### Generalization to genuinely novel pairs is the real open question
-- In-graph strict (`core`) AUROC **0.9691**, AUPRC **0.5661**.
+- In-graph strict (`core`, ESMC-excluded) AUROC **0.9784**, AUPRC **0.6128**.
 - External (Hetionet) AUROC **0.644**, AUPRC **~0.010**. *(carried forward from
   2026-06-10; not re-measured 2026-07-20)*
 - Temporal holdout (approvals after 2013): AUROC **0.971**, AUPRC **0.194**.
@@ -152,6 +163,33 @@ least-verified layer and is now the main thing limiting the system:
 
 Getting *directed* protein→disease edges (`driver_of` and similar) is the highest-value
 next step for this repo. More `associated_with` edges add coverage, not credibility.
+
+### The similarity-transfer layer was measured and removed (2026-07-21)
+
+422 Protein→Disease edges were derived by ESMC protein-embedding similarity, not
+observed: "ERBB2 ≈ BCL2 (0.88), BCL2 is linked to AML, therefore ERBB2 is linked
+to AML." These were the natural candidates for "connections the literature hasn't
+made yet." An ablation (`python -m validation.esmc_ablation --cohort core`) tested
+whether they help:
+
+| | Full graph | ESMC removed |
+|---|---|---|
+| AUROC | 0.9691 | **0.9784** |
+| AUPRC | 0.5661 | **0.6128** |
+| Hits@20 | 0.65 | **0.70** |
+
+Removing them **improves** every metric — the layer is mild noise, not signal.
+(It also inflated the apparent margin over baselines: on the cleaner graph the
+common-neighbor baseline jumps to 0.743, so the honest margin is +0.24, not +0.36.
+The noise was hurting trivial baselines more than the model.)
+
+Consequence, and it answers the novelty question directly: the similarity-inferred
+edges — the ones most likely to be "not in PubMed" — are exactly the ones the
+ranker does **better without**. Novelty from that source is noise. So ESMC edges
+are now **excluded from the default scored graph** (kept in the DB, tagged
+`[EMBEDDING-INFERRED]`, restorable with `--include-inferred`). The honest
+non-obvious signal is under-*discussed* real mechanism, not un-*evidenced*
+inference. See `data/ESMC_ABLATION_RESULT.json`.
 
 ### What a PMID actually means here (measured, 2026-07-20)
 

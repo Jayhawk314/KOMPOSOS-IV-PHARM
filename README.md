@@ -27,12 +27,14 @@ direct Drug→Disease label is removed before scoring, so the ranker cannot read
 the answer it is graded on):
 
 ```powershell
-python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --baselines --ci
+python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --cohort core --baselines --ci
 ```
 
-- **AUROC 0.9705** [0.9519, 0.9844], AUPRC 0.5464 [0.4025, 0.6890]
-- Hits@5 1.00, Hits@10 0.60 · 44 FDA `treats` positives over 1,560 pairs
-- **+0.35** over the strongest graph baseline (common_neighbor 0.6219)
+- **AUROC 0.9784** [0.9667, 0.9883], AUPRC 0.6128 [0.4728, 0.7480]
+- Hits@5 1.00, Hits@10 0.70 · 44 FDA `treats` positives over 1,560 pairs (core cohort)
+- **+0.24** over the strongest graph baseline (common_neighbor 0.7429)
+- Measured on the ESMC-excluded default graph; see HONEST_VALUE.md for why the
+  similarity-transfer layer is excluded and why +0.24 is the honest margin.
 
 Reality checks (also executable): external Hetionet AUROC 0.644 / AUPRC 0.010;
 temporal holdout (approvals after 2013) AUROC 0.971 / AUPRC 0.194; disease-level

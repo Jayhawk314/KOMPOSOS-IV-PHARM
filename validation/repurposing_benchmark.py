@@ -43,6 +43,14 @@ DB_PATH = "data/drugs/tier1.db"
 # ChEMBL drugs recovered from edge endpoints from the original 78 curated drugs.
 MATERIALIZED_DRUG_PROVENANCE = "ChEMBL:materialized_orphan"
 
+# ESMC protein-embedding similarity-transfer edges (422, all Protein->Disease) are
+# EXCLUDED from the default scored graph. Ablation (validation/esmc_ablation.py,
+# 2026-07-21) showed removing them IMPROVES the ranker: AUROC 0.9691->0.9784,
+# AUPRC 0.5661->0.6128, while the honest margin over a trivial baseline is +0.24.
+# They are inferred, not observed, and were the least verifiable edges in the graph.
+# Pass exclude_provenance=None to restore the pre-ablation behaviour.
+DEFAULT_EXCLUDE_PROVENANCE = "ESMC"
+
 REPURPOSING_STRATEGY_NAMES = (
     "kan_extension",
     "structural_hole",
@@ -180,6 +188,7 @@ def load_full_typed_view(
     remove_direct_labels: bool = False,
     quality_tier: str = "all",
     cohort: str = "all",
+    exclude_provenance: Optional[str] = DEFAULT_EXCLUDE_PROVENANCE,
 ) -> tuple[Category, list[str]]:
     """Load all object rows before all morphisms so endpoint types are preserved.
 
@@ -239,6 +248,12 @@ def load_full_typed_view(
             type_by_name.get(mor.source_name) == "Drug"
             and type_by_name.get(mor.target_name) == "Disease"
         )
+        # Ablation hook: drop edges whose provenance contains this marker (e.g.
+        # "ESMC" to remove protein-embedding similarity-transfer edges). Never
+        # drops a Drug->Disease label, so the positive set is unchanged.
+        if (exclude_provenance and not is_drug_disease
+                and exclude_provenance in (mor.provenance or "")):
+            continue
         if remove_direct_labels and is_drug_disease:
             continue
         if is_drug_disease and (mor.source_name, mor.target_name) in heldout_pairs:
@@ -896,6 +911,11 @@ def main() -> int:
              "against historical numbers); all = plus 679 materialized ChEMBL drugs. "
              "The two are NOT comparable - `all` inflates AUROC via easy negatives.",
     )
+    parser.add_argument(
+        "--include-inferred", action="store_true",
+        help="Include ESMC similarity-transfer edges (excluded by default; ablation "
+             "showed they slightly hurt the ranker). Use only to reproduce pre-2026-07-21 numbers.",
+    )
     parser.add_argument("--json", action="store_true", help="Print machine-readable JSON.")
     parser.add_argument("--ci", action="store_true", help="Compute bootstrap 95%% confidence intervals.")
     parser.add_argument("--baselines", action="store_true", help="Compute baseline comparisons.")
@@ -915,16 +935,19 @@ def main() -> int:
         )
     else:
         remove_direct = args.protocol == "remove_direct_labels"
+        exclude = None if args.include_inferred else DEFAULT_EXCLUDE_PROVENANCE
         category, missing_endpoints = load_full_typed_view(
             args.db,
             remove_direct_labels=remove_direct,
             quality_tier=args.quality,
             cohort=args.cohort,
+            exclude_provenance=exclude,
         )
 
         positives_override = None
         if remove_direct:
-            base_category, _ = load_full_typed_view(args.db, quality_tier=args.quality)
+            base_category, _ = load_full_typed_view(
+                args.db, quality_tier=args.quality, exclude_provenance=exclude)
             _, _, positives_override = drug_disease_pairs(base_category)
 
         result = evaluate_category(

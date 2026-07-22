@@ -280,7 +280,7 @@ _source_str = " · ".join(
 
 st.sidebar.markdown("---")
 st.sidebar.markdown(
-    f"**Graph**: {g['n_objects']} objects, {g['n_morphisms']} edges\n\n"
+    f"**Graph (scored)**: {g['n_objects']} objects, {g['n_morphisms']} edges\n\n"
     f"**Positives**: {g['n_positives']} FDA-approved drug-disease labels\n\n"
     f"**Self-check**: {g['check_recovered']}/{g['check_total']} recoverable\n\n"
     f"**Evidence tiers**: {_tier_str}\n\n"
@@ -289,6 +289,13 @@ st.sidebar.markdown(
     f"{g['pmid_count']} PMID IDs\n\n"
     f"**Quantitative evidence**: {g['abpp_measurements']} experimental ABPP "
     f"IC50/engagement measurements"
+)
+st.sidebar.caption(
+    "The edge count is the SCORED graph. 424 ESMC protein-embedding "
+    "similarity-transfer edges are retained in the database (tagged "
+    "EMBEDDING-INFERRED) but excluded from scoring — an ablation showed they "
+    "slightly hurt the ranker. That is why they appear under Sources but not in "
+    "the edge total."
 )
 st.sidebar.caption(
     "Experimental potency values are integrated by the binding strategy from the "
@@ -1015,7 +1022,8 @@ def render_detail(entry):
         cols[1].metric("✅ Established", tier_counts.get("ESTABLISHED", 0),
                        help="FDA approved, KEGG canonical pathways")
         cols[2].metric("💡 Inferred", tier_counts.get("INFERRED", 0),
-                       help="ESM2 similarity, STRING PPI (computed)")
+                       help="STRING PPI, embedding-inferred edges (computed; "
+                            "ESMC similarity-transfer edges are excluded from scoring)")
         cols[3].metric("❓ Hypothesis", tier_counts.get("HYPOTHESIS", 0),
                        help="PubMed citations, not quantified")
         cols[4].metric("🔸 Speculative", tier_counts.get("SPECULATIVE", 0),
@@ -1630,7 +1638,7 @@ the relationship.
 |-----------|------------|---------|-------------------|
 | 0.90 - 1.00 | FDA labels, ChEMBL measured | Drug-disease indication confirmed by regulatory body or direct assay | **Trust** -- follow the cited PMID |
 | 0.70 - 0.89 | ChEMBL binding, KEGG pathways, curated interactions | Strong database evidence for this relationship | **Trust** -- standard literature-backed edge |
-| 0.50 - 0.69 | ESM2 protein similarity, STRING PPI, established mechanisms | Computational or curated evidence, not direct measurement | **Investigate** -- check the cited paper |
+| 0.50 - 0.69 | STRING PPI, established mechanisms (ESM2/ESMC similarity-transfer edges are now EXCLUDED from scoring -- see note) | Computational or curated evidence, not direct measurement | **Investigate** -- check the cited paper |
 | 0.40 - 0.54 | PubMed co-mention (PARTIAL/AGREE after categorical verification) | Co-mentioned in literature AND supported by at least one categorical layer | **Consider** -- has some mechanistic support |
 | 0.35 | PubMed co-mention (ORPHAN after categorical verification) | Co-mentioned in literature but isolated -- no mechanistic support found | **Verify independently** -- may be text-mining noise |
 | 0.20 | PubMed co-mention (REJECT after categorical verification) | Co-mentioned in literature but failed categorical verification | **Hypothesis only** -- treat as noise unless you have independent evidence |
@@ -1855,7 +1863,7 @@ Disease path, then returns the best score across those disease-linked targets.
    that the paper supports the exact edge.
 
 **Watch for the hub-drug bias:** promiscuous multi-kinase inhibitors (Imatinib
-tops 17/20 diseases, Sunitinib 14/20) float to the top of *most* disease lists,
+tops 14/20 diseases, Sunitinib 10/20) float to the top of *most* disease lists,
 so a high rank for one of them is weak disease-specific evidence -- it's partly
 real pan-cancer biology, partly a promiscuity bias. Use the **Disease-specific**
 view to demote the hubs and surface candidates particular to your disease.
@@ -1868,7 +1876,7 @@ view to demote the hubs and surface candidates particular to your disease.
 - It does not discover novel targets; it accelerates and explains a search over
   pharmacology already in the graph. Top-of-list precision on genuinely novel
   pairs is lower than the in-graph AUROC suggests (see the Hetionet check).
-- AUROC of 0.9705 on the current strict 44-positive benchmark does not guarantee real-world
+- AUROC of 0.9784 on the current strict 44-positive benchmark does not guarantee real-world
   performance
 - The system surfaces auditable hypotheses from existing graph evidence; it does
   not by itself validate new clinical knowledge
@@ -2196,38 +2204,40 @@ predict that a drug will actually work.
 
 | Metric | Value |
 |--------|-------|
-| AUROC | 0.969065 [95% CI: 0.9472-0.9848] |
-| AUPRC | 0.566059 [95% CI: 0.4229-0.7094] |
+| AUROC | 0.9784 [95% CI: 0.9667-0.9883] |
+| AUPRC | 0.6128 [95% CI: 0.4728-0.7480] |
 | Hits@5 | 1.000 |
 | Hits@10 | 0.700 |
-| Hits@20 | 0.650 |
+| Hits@20 | 0.700 |
 | Strategy profile | 7 active modules; Yoneda distance excluded because no Drug->Disease comparators remain |
 | Positives | 44 FDA-approved oncology indications |
-| Strongest baseline (common_neighbor) | AUROC 0.6132 |
-| Margin over strongest baseline | +0.3558 |
+| Strongest baseline (common_neighbor) | AUROC 0.7429 |
+| Margin over strongest baseline | +0.2355 |
 | PMID identifiers in DB | {g['pmid_count']} |
 
 **Cohort: `core` (78 curated drugs, 1,560 pairs).** Quote this number, not the
-757-drug figure. On the full cohort AUROC reads 0.9941, but that is an artifact of
-~13,500 added easy negatives: AUPRC *falls* to 0.414 and the margin over
-common-neighbor collapses from +0.36 to +0.05. The two cohorts are not comparable.
+757-drug figure. On the full cohort AUROC reads ~0.99, but that is an artifact of
+~13,500 added easy negatives: AUPRC *falls* and the margin over common-neighbor
+collapses to ~+0.05. The two cohorts are not comparable.
 
-*Current audited strict run: 2026-07-20, re-measured after materializing 679 ChEMBL
-drug endpoints and merging 110 adjudicated protein->disease edges. Values drifted
-slightly from the 2026-06-02 audit (AUROC 0.9705 -> 0.9691, AUPRC 0.5464 -> 0.5661).
-Historical note from that audit follows: integrated 151 agent-adjudicated
-mechanistic links and fixing the positive-label filter (positives are now only
-`treats` edges, so 4 inferred `associated_with` HYPOTHESIS edges that were
-wrongly counted as approvals are excluded -- this is why the count is 44, not 48,
-and the AUROC rose). This protocol removes direct Drug->Disease edges and
-protein->disease bridge edges explicitly derived from known drug indications.
-Because all visible Drug->Disease comparators are removed, Yoneda distance is not
-active in this strict benchmark. The previous 0.9689 AUROC / 0.661 AUPRC display
-is retired because an earlier Yoneda cache could see held-out labels.*
+*Current audited strict run: 2026-07-21, on the ESMC-excluded default graph. An
+ablation ([validation/esmc_ablation.py](.)) showed the 422 protein-embedding
+similarity-transfer edges slightly HURT the ranker, so they are excluded from
+scoring: AUROC rose 0.9691 -> 0.9784 and AUPRC 0.5661 -> 0.6128 on removal. The
+honest margin over a trivial baseline is +0.24, not the +0.36 the noisy graph
+showed (removing ESMC noise helps the common-neighbor baseline more than it helps
+the model). The protocol removes direct Drug->Disease edges and protein->disease
+bridge edges derived from known indications; with all visible Drug->Disease
+comparators removed, Yoneda distance is inactive here.*
 
-### Additional executable validations (2026-06-02)
+### Additional executable validations
 
-| Validation | Current result |
+*Measured 2026-06-02 on the pre-ablation full graph (with ESMC edges and the older
+78-drug graph). Directionally valid — external generalization is weak, in-graph is
+strong — but the exact figures predate the ESMC exclusion and the 757-drug
+expansion. Re-run before quoting precisely.*
+
+| Validation | Result (pre-ablation) |
 |------------|----------------|
 | Corrected LOOCV | AUROC 0.9674, AUPRC 0.5165, Hits@10 0.600 |
 | Hetionet CtD external positives | AUROC 0.6436, AUPRC 0.0095, Hits@20 0.000 |
