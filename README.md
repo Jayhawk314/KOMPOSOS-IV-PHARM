@@ -55,7 +55,7 @@ catches most of them. Measured under the strict protocol above:
 | Screen top | Pairs | Capture | Enrichment vs random |
 |---|---|---|---|
 | 5% | 78 | 32/44 (73%) | **14.5x** |
-| 10% | 156 | 41/44 (93%) | **9.3x** |
+| 10% | 156 | 42/44 (95%) | **9.5x** |
 | 20% | 312 | 43/44 (98%) | **4.9x** |
 
 - Capture **50%** of known hits by screening **2%** of the list (skip 98%).
@@ -80,7 +80,7 @@ python -m validation.enrichment_funnel --json       # structured output
 ## Disease-specific candidates (demote the hubs)
 
 Promiscuous multi-kinase inhibitors top almost every disease — Imatinib lands in
-17 of 20 disease top-5 lists — so the raw ranking keeps surfacing pan-cancer
+14 of 20 disease top-5 lists — so the raw ranking keeps surfacing pan-cancer
 hubs you already know. The **Disease-specific** view re-ranks by
 `lift = raw score − the drug's mean across all diseases`, demoting the hubs so
 the genuinely disease-specific candidates surface. On Melanoma this promotes the
@@ -108,8 +108,8 @@ python -m validation.disease_specificity Melanoma
 # Rank all diseases for a drug
 python validation\triage.py --drug Sorafenib
 
-# Reproduce the strict benchmark
-python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --baselines --ci
+# Reproduce the strict benchmark (core cohort = the headline 0.9784; omit --cohort for the inflated all-cohort number)
+python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --cohort core --baselines --ci
 
 # Interactive web app (Disease-first / Drug-first / Pair detail / Search speedup / ...)
 streamlit run app.py
