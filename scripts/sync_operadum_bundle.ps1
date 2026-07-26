@@ -12,7 +12,7 @@ if (-not $SourceRoot) {
 }
 
 $SourceRoot = (Resolve-Path $SourceRoot).Path
-$DestRoot = Join-Path $RepoRoot "operadum"
+$DestRoot = Join-Path $RepoRoot "vendor\operadum"
 
 if (-not (Test-Path (Join-Path $SourceRoot "pronoia"))) {
     throw "SourceRoot does not look like the consolidated OPERADUM/PRONOIA stack: $SourceRoot"
@@ -20,7 +20,7 @@ if (-not (Test-Path (Join-Path $SourceRoot "pronoia"))) {
 
 if ((Test-Path $DestRoot) -and (-not $NoBackup)) {
     $stamp = Get-Date -Format "yyyyMMdd_HHmmss"
-    $backup = Join-Path $RepoRoot "operadum.BACKUP_$stamp"
+    $backup = Join-Path $RepoRoot "vendor\operadum.BACKUP_$stamp"
     Copy-Item -LiteralPath $DestRoot -Destination $backup -Recurse -Force
     Write-Host "Backed up existing bundle to $backup"
 }

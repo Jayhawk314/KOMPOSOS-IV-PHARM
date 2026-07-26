@@ -12,7 +12,7 @@ PHARM is presentation-ready as a research prototype.
 That means:
 
 - The app runs from the KOMPOSOS-IV-PHARM repo.
-- The bundled `operadum/` folder contains OPERADUM, PRONOIA, and `domain_core`.
+- The bundled `vendor/operadum/` folder contains OPERADUM, PRONOIA, and `domain_core`.
 - The UI can generate PRONOIA audit reports with relationship status, grounding,
   raw MDL transparency, evidence paths, PMIDs, and provenance.
 - The strongest findings have been checked against public sources and separated

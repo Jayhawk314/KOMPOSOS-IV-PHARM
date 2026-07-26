@@ -155,3 +155,9 @@ the-story-that-is-a-category.md
 
 # Timestamped tier1 snapshots: "*.db" does NOT match "tier1.db.BACKUP_*"
 data/drugs/tier1.db.BACKUP_*
+
+# repo-cleanup audit tool artifacts (see careerz/github-clean tooling)
+_reachability_report.csv
+_baseline_test_results.txt
+_after_quarantine_test_results.txt
+_quarantine/

@@ -19,7 +19,7 @@ from pathlib import Path
 import streamlit as st
 
 APP_ROOT = Path(__file__).resolve().parent
-BUNDLED_OPERADUM_ROOT = APP_ROOT / "operadum"
+BUNDLED_OPERADUM_ROOT = APP_ROOT / "vendor" / "operadum"
 SIBLING_OPERADUM_ROOT = APP_ROOT.parent / "operadum"
 
 sys.path.insert(0, str(APP_ROOT))

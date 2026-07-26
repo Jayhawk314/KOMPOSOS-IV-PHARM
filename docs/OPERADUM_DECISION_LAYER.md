@@ -129,9 +129,9 @@ candidate on fewer actions.
 
 - Bundle/import architecture:
   `docs/OPERADUM_PRONOIA_BUNDLE.md`.
-- Ranking API: `operadum/operadum/integrations/drug_batch_ranker.py`
+- Ranking API: `vendor/operadum/operadum/integrations/drug_batch_ranker.py`
   (`rank_candidates`, `Candidate`, `RankedSlate`).
 - Evidence client + world model:
-  `operadum/operadum/integrations/komposos_drug_world.py`.
-- `DRUG_PORTFOLIO` and the other profiles: `operadum/operadum/core/enrichment.py`.
+  `vendor/operadum/operadum/integrations/komposos_drug_world.py`.
+- `DRUG_PORTFOLIO` and the other profiles: `vendor/operadum/operadum/core/enrichment.py`.
 - App wiring: the `Decision ranking (OPERADUM)` block in `app.py`.

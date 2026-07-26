@@ -3,7 +3,7 @@
 KOMPOSOS-IV-PHARM now carries a bundled copy of the OPERADUM/PRONOIA stack at:
 
 ```text
-KOMPOSOS-IV-PHARM/operadum/
+KOMPOSOS-IV-PHARM/vendor/operadum/
 ```
 
 This makes the PHARM app self-contained for delivery and GitHub pushes. The
@@ -21,7 +21,7 @@ reports, and audit stack travel together.
 
 `app.py` loads stacks in this order:
 
-1. `KOMPOSOS-IV-PHARM/operadum` if it contains `pronoia/`
+1. `KOMPOSOS-IV-PHARM/vendor/operadum` if it contains `pronoia/`
 2. `../operadum` as the standalone sibling fallback
 3. the older bundled OPERADUM-only folder if PRONOIA is not present
 
@@ -58,7 +58,7 @@ powershell -ExecutionPolicy Bypass -File scripts/sync_operadum_bundle.ps1
 ```
 
 The sync script backs up the current bundled folder, copies the standalone stack
-into `KOMPOSOS-IV-PHARM/operadum`, and excludes caches/compiled files. It does
+into `KOMPOSOS-IV-PHARM/vendor/operadum`, and excludes caches/compiled files. It does
 not delete extra files from the bundle.
 
 ## Verification
@@ -67,12 +67,12 @@ After sync, run:
 
 ```powershell
 python -c "compile(open('app.py','rb').read(), 'app.py', 'exec'); print('compile ok')"
-python -c "import sys; sys.path.insert(0, 'operadum'); import domain_core, operadum, pronoia; print('bundle imports ok')"
+python -c "import sys; sys.path.insert(0, 'vendor/operadum'); import domain_core, operadum, pronoia; print('bundle imports ok')"
 ```
 
 For the deeper PRONOIA/PHARM audit, run the bundled tests from inside
-`KOMPOSOS-IV-PHARM/operadum`:
+`KOMPOSOS-IV-PHARM/vendor/operadum`:
 
 ```powershell
-python -m pytest operadum/tests tests -q -p no:cacheprovider
+python -m pytest vendor/operadum/tests tests -q -p no:cacheprovider
 ```

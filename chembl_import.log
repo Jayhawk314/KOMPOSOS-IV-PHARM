@@ -1,4 +1,0 @@
-  File "C:\Users\JAMES\github\KOMPOSOS-IV-PHARM\data\drugs\importers\import_chembl.py", line 150
-    if not target.get('organism', '').lower().startswith('homo sapiens'):
-    ^^
-SyntaxError: expected 'except' or 'finally' block
