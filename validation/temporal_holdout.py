@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """Temporal holdout validation for approved Drug->Disease labels.
 
 Default approval years are a versioned local table for the current 44-label

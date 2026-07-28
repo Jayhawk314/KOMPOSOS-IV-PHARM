@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 Full end-to-end diagnostic for AUROC verification audit.
 Captures every intermediate value for external reproducibility.

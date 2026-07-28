@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """reaudit_rerun.py — genuine in-session re-adjudication of the synonym-rescued set.
 
 rerun_discovery_misses.py rescued 67 candidates (gate RELATION-SCREENED via disease

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """Read-only audit that splits evidence tier from source/status classification."""
 
 from __future__ import annotations

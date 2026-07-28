@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """Calibrate ranking scores against an explicit benchmark protocol.
 
 This does not change strategy signals or ranking scores.  It creates a separate

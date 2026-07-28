@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 Re-run the signed-structure coverage gate on a REAL signed causal network
 (OmniPath 'omnipath' literature-curated dataset).

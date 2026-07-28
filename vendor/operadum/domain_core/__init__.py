@@ -1,4 +1,7 @@
-﻿"""
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
+"""
 Shared domain contracts for the OPERADUM -> KOMPOSOS -> PRONOIA stack.
 
 This package deliberately contains no engine logic. It defines the small objects

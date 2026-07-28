@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 Scrape PubMed PMIDs using (Object A + Relation + Object B) triplets.
 This implements the "fitted" search idea to find higher-precision provenance.

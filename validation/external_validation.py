@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """External drug-disease validation against local Hetionet files.
 
 This script is intentionally executable and versioned. It derives external

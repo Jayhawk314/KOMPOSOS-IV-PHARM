@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """KGMemory — verified knowledge-graph memory with honesty gates.
 
 The graph is common; the value is the two gates around it:

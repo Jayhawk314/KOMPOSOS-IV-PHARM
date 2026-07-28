@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 Clean AUROC confirmation test.
 Uses only the 6 working strategies, properly handles missing predictions.

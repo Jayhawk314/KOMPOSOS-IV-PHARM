@@ -514,6 +514,6 @@ If you use this validation framework, please cite:
 
 ## License
 
-SPDX-License-Identifier: Apache-2.0 OR KOMPOSOS-III-Commercial
+SPDX-License-Identifier: Apache-2.0
 
 Copyright (c) 2024-2026 James Ray Hawkins

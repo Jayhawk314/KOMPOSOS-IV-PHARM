@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """apply_replacements.py — Apply the 81 verified REPLACE_OK PMID swaps to tier1.db.
 
 Precise per-edge_id swap: replaces PMID:<original> with PMID:<final> in the

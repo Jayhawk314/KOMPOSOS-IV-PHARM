@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 explain(perturbation, fate) -- a DISCIPLINED mechanism interpreter, not a predictor.
 

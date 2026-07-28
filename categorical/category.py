@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright (c) 2024-2026 James Ray Hawkins
-#
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
 # Compatibility shim: re-exports from KOMPOSOS-IV core.
 # In IV, Category IS the fused runtime (core/category.py).
 # This module exists so that `from categorical.category import Category`

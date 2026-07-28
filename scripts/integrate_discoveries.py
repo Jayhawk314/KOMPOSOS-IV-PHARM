@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """Integrate the GENUINELY re-adjudicated grounded discoveries into tier1.db.
 
 Source: data/DISCOVERY_REAUDIT.json (verdicts with agent_verdict == "VERIFIED").

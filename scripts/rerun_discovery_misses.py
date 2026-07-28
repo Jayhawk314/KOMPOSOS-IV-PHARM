@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """rerun_discovery_misses.py — second-pass grounding for discovery misses.
 
 The first discovery pass (discover_morphisms.py) left two buckets unrescued:

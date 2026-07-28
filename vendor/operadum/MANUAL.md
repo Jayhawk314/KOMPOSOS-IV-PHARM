@@ -1059,4 +1059,4 @@ given what composes with what, and what it costs?" and answers with a thing you 
 Keep them sharing a substrate and they compose into one loop: **synthesize, then
 verify.***
 
-© 2026 James Hawkins · `LicenseRef-Proprietary-Commercial`
+© 2026 James Hawkins · Apache-2.0

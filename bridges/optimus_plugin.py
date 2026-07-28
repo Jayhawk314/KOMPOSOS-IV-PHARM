@@ -1,7 +1,5 @@
-# SPDX-License-Identifier: Apache-2.0 OR LicenseRef-KOMPOSOS-IV-Commercial
-# Copyright (c) 2024-2026 James Ray Hawkins
-#
-# This bridge plugin is dual-licensed (Apache-2.0 OR KOMPOSOS-IV-Commercial).
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
 # It integrates with Orion Core, which is separately licensed under MIT.
 # Orion Core (c) Borkwork (https://github.com/borkwork/orion-framework)
 

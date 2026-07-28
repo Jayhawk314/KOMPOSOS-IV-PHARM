@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """pharm_verifier.py — a CONTENT verifier for the KGMemory write gate.
 
 This is the piece the stock `CogVerifier` skips. CogVerifier accepts any fact

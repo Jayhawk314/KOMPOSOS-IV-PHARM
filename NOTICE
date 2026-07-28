@@ -1,0 +1,49 @@
+KOMPOSOS-IV-PHARM
+Copyright (c) 2024-2026 James Ray Hawkins
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+================================================================================
+SCOPE OF THIS LICENSE
+================================================================================
+
+The Apache 2.0 license in the LICENSE file covers the ORIGINAL SOURCE CODE of
+this repository and nothing else.
+
+It does NOT cover, and no copyright or other proprietary right is claimed in:
+
+  1. THE UNDERLYING DRUG PROPERTY DATA in `data/drugs/drug_properties.py`.
+     Values are sourced from three places with different terms:
+       - PubChem (NIH/NLM) — a work of the U.S. Government, not subject to
+         copyright in the United States (17 U.S.C. Sec. 105).
+       - FDA drug labels — likewise a U.S. Government work, public domain.
+       - DrugBank — a curated third-party database that is NOT public domain.
+         DrugBank's terms (CC BY-NC 4.0 for the free tier) permit
+         academic/non-commercial reuse but restrict commercial use without a
+         separate DrugBank license. **This project's own use and intent is
+         non-commercial** — the author's stated purpose for this repository is
+         to help people with cancer and other diseases, not to sell it — which
+         is squarely inside what DrugBank's free tier allows. The Apache-2.0
+         grant on this repository's CODE does not, and is not intended to,
+         extend a commercial right to the DrugBank-sourced values themselves:
+         anyone (including the author) wanting to use this specifically for a
+         commercial/for-profit product should go to DrugBank directly for their
+         current commercial terms rather than relying on this repository's
+         license for that piece.
+     Factual figures (molecular weight, logP, PubChem CID, etc.) are offered
+     freely for verification and reuse; this project claims no ownership of the
+     underlying scientific facts.
+
+================================================================================
+INDEPENDENCE AND DISCLAIMER
+================================================================================
+
+This is an independent, unfunded project by a private individual. It is not
+affiliated with, sponsored by, reviewed by, or endorsed by PubChem, the FDA, the
+National Library of Medicine, or DrugBank.
+
+THE SOFTWARE AND ANALYSIS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.

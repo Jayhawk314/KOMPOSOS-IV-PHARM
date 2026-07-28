@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 Run the PRONOIA sheaf contradiction probe on the REAL KOMPOSOS-IV-PHARM graph.
 

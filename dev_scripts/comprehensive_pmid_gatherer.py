@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 comprehensive_pmid_gatherer.py — Gather relevant PMIDs for all edges that currently have them.
 Follows the protocol: Audit -> Identify -> Search -> List.

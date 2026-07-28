@@ -731,4 +731,4 @@ From the Ruliad vision: each user's system is a model of the ∞-cosmos. The sha
 
 **Author:** James Ray Hawkins (brainstormed with Qwen Code)  
 **Date:** 2026-04-06  
-**License:** Apache-2.0 OR KOMPOSOS-IV-Commercial
+**License:** Apache-2.0

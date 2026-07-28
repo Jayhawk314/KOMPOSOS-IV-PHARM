@@ -340,6 +340,6 @@ op = MyDomain().build_operad()                        # substrate does the rest
 
 ## License
 
-Proprietary / commercial â€” `LicenseRef-Proprietary-Commercial`.
-Â© 2026 James Hawkins.
+Apache License 2.0 â€” see `LICENSE`.
+Â© 2026 James Ray Hawkins.
 

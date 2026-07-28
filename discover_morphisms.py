@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """discover_morphisms.py — grounded morphism discovery, built on the COG gate.
 
 Discovery = propose a missing edge, find REAL literature for it, and let the

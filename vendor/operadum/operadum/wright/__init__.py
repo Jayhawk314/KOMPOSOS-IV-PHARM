@@ -1,5 +1,5 @@
-# SPDX-License-Identifier: LicenseRef-Proprietary-Commercial
-# SPDX-FileCopyrightText: 2026 James Hawkins <jhawk314@gmail.com>
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
 
 """OPERADUM WRIGHT: the synthesis co-processor (Layer 3, the write path)."""
 

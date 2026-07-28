@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 auto_fix_exploration.py — Attempt to find better proof sentences in full abstracts for HOLLOW claims.
 """

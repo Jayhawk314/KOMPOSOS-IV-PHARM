@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 PRONOIA L4 — Tsetlin Machine (interpretable rule learning, no gradients).
 

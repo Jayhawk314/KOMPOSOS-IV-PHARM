@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 Injects Gold Standard (Action-Verified) PMIDs into the live database and manifest.
 Appends an [ACTION-VERIFIED] tag to the provenance string.

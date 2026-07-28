@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """Regression tests for the komposos_kg pharm write gate + honesty wiring."""
 from komposos_kg import Edge, KGMemory
 from komposos_kg.pharm_verifier import PharmCitationVerifier, VERDICT_TO_TIER

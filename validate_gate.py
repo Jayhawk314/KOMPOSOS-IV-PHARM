@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """validate_gate.py — measure the automated PharmCitationVerifier gate against
 the in-session agent adjudication (data/relation_extraction_verdicts.json).
 

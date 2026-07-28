@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 Query OpenTargets + PubMed for all missing protein-disease pairs.
 Target: ~6000 edges to reach full coverage.

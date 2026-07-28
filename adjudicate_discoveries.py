@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """adjudicate_discoveries.py — in-session adjudication of discovered candidates.
 
 The discovery gate screened 340 candidates (RELATION-SCREENED tier). This script

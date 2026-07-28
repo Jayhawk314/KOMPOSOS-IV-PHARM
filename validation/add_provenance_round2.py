@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """Add PMIDs for remaining 86 uncited protein-protein pathway edges."""
 
 import sqlite3

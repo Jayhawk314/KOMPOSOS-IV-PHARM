@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright (c) 2024-2026 James Ray Hawkins
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
 
 """
 Validate 36-protein predictions against real-world experimental data.

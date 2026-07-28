@@ -7,7 +7,7 @@ name = "komposos-iv"
 version = "0.1.0"
 description = "KOMPOSOS-IV: The Fused Categorical Runtime"
 readme = "README.md"
-license = {text = "Apache-2.0 OR LicenseRef-Proprietary-Commercial"}
+license = {text = "Apache-2.0"}
 requires-python = ">=3.10"
 authors = [
     {name = "James Ray Hawkins", email = "jhawk314@gmail.com"}

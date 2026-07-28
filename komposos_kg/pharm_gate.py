@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """pharm_gate.py — wire the pharm CONTENT verifier into KGMemory's write gate.
 
 `build_pharm_memory()` returns a KGMemory whose `remember()` gate:

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 Directed-relation extractor: decide whether a sentence really asserts
 `subject --relation--> object`, for relations where DIRECTION is the claim.

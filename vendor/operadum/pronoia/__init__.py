@@ -1,4 +1,7 @@
-﻿"""PRONOIA: interpretable, non-LLM prediction stack."""
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
+"""PRONOIA: interpretable, non-LLM prediction stack."""
 
 from .honesty_mdl import (
     ReasoningStep,

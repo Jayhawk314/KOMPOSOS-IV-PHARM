@@ -378,4 +378,4 @@ The plan is not "add more features." It's **wire what already exists** so the sy
 
 ---
 
-**License:** Apache-2.0 OR KOMPOSOS-IV-Commercial
+**License:** Apache-2.0

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
 
 """
 Add provenance (PMIDs/DOIs) for uncited morphisms in tier1.db.

@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 new_pmid_search_exploration.py — Search for a replacement PMID for a known HOLLOW edge.
 """

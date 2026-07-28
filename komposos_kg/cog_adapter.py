@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """Wires a repo's REAL COG (dual ZFC/CAT engine) and OPTIMUS into KGMemory.
 
 Graceful: if the host repo has no COG/OPTIMUS importable, build_memory falls

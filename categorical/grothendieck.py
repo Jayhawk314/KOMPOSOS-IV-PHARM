@@ -1,5 +1,6 @@
-# SPDX-License-Identifier: LicenseRef-Proprietary-Commercial
-# SPDX-FileCopyrightText: 2026 James Hawkins <jhawk314@gmail.com>
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 Grothendieck Construction: Total Category from Fibration
 

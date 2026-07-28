@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 Reading Agent: Verifies triplet scrape candidates by reading abstracts.
 Extracts "Proof Sentences" where Source + Action + Target are linked.

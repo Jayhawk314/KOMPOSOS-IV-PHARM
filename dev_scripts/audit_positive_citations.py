@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 from validation.repurposing_benchmark import load_full_typed_view, drug_disease_pairs
 from data.store import KomposOSStore
 

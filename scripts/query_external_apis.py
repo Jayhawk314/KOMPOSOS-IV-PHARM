@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """
 Query OpenTargets and PubMed for ALL protein-disease pairs.
 Goal: Get 7000+ edges with PMID provenance.

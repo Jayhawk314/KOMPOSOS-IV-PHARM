@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """Tests for grounded morphism discovery (pure logic; no network)."""
 from discover_morphisms import best_proof_sentence
 

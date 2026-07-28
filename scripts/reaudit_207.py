@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 James Ray Hawkins
+
 """reaudit_207.py — genuine in-session re-adjudication of the discovery 207.
 
 Background: adjudicate_discoveries.py claimed "in-session agent reading" but is a
