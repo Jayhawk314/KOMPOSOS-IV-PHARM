@@ -159,13 +159,34 @@ def _evidence_standing(chains, score, disease):
         e["target_type"] != "Disease" and e["evidence_tier"] in ("MEASURED", "ESTABLISHED")
         for e in edges
     )
+    # The TERMINAL hop's own tier is the thing that matters most, and an earlier
+    # version of this function ignored it. After the 2026-08-01 re-tier that
+    # produced a self-contradicting card: Sorafenib -> Melanoma read
+    # SUPPORTED_FOR_REVIEW while displaying a SPECULATIVE badge on its own
+    # BRAF -> Melanoma terminal edge, because a strong ChEMBL drug->protein edge
+    # elsewhere in the chain satisfied the check. Meanwhile Aspirin ->
+    # Colorectal_Cancer - one of the best-supported cheap-drug findings in
+    # oncology - read WEAK. Backwards in both directions.
+    strong_terminal = [
+        e for e in directed
+        if e["evidence_tier"] in ("MEASURED", "ESTABLISHED")
+    ]
 
-    if directed and has_strong_drug_target:
+    if strong_terminal and has_strong_drug_target:
+        e = strong_terminal[0]
         return "SUPPORTED_FOR_REVIEW", (
-            f"A directed terminal hop ({directed[0]['source']} "
-            f"-{directed[0]['relation']}-> {directed[0]['target']}) sits on top of a "
-            "measured or established drug-target edge. Worth a reviewer's time. "
-            "This is not evidence of efficacy."
+            f"A directed terminal hop ({e['source']} -{e['relation']}-> "
+            f"{e['target']}, tier {e['evidence_tier']}) sits on top of a measured "
+            "or established drug-target edge. Worth a reviewer's time. This is "
+            "not evidence of efficacy."
+        )
+    if directed and not strong_terminal:
+        e = directed[0]
+        return "WEAK", (
+            f"The terminal hop {e['source']} -{e['relation']}-> {e['target']} is "
+            f"directed but only tier {e['evidence_tier']}. The relation may well "
+            "be true - several such edges are textbook biology - but the citation "
+            "attached does not establish it. Check that edge first."
         )
     if directed:
         return "WEAK", (
@@ -419,7 +440,10 @@ elif OPERADUM_AVAILABLE:
 
 g = load_graph()
 
-_tier_order = ["MEASURED", "ESTABLISHED", "INFERRED", "HYPOTHESIS"]
+# SPECULATIVE was missing here, so after the 2026-08-01 re-tier the sidebar
+# silently dropped 167 edges from its own count. The weakest tier is exactly the
+# one a reader most needs to see.
+_tier_order = ["MEASURED", "ESTABLISHED", "INFERRED", "HYPOTHESIS", "SPECULATIVE"]
 _tiers = g.get("tier_counts", {})
 _tier_str = " · ".join(
     f"{t.title()} {_tiers[t]}" for t in _tier_order if _tiers.get(t)
