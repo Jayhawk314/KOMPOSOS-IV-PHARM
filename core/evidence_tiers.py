@@ -144,8 +144,16 @@ def classify_tier_from_provenance(provenance: str, metadata: dict, confidence: f
     if any(keyword in prov_upper for keyword in ["CHEMBL", "IC50", "KI", "KD", "ABPP"]):
         return EvidenceTier.MEASURED
 
-    # ESTABLISHED: Regulatory/canonical databases
-    if any(keyword in prov_upper for keyword in ["FDA", "KEGG PATHWAY", "NDA", "BLA"]):
+    # ESTABLISHED: Regulatory/canonical databases and authoritative curation.
+    # WHO tumour classification and the COSMIC Cancer Gene Census are expert
+    # consensus references of the same standing as an FDA label -- for several
+    # entities the WHO classification IS the definition of the disease (e.g.
+    # "AML with mutated NPM1"), so a driver claim citing it is about as
+    # established as a biological claim gets.
+    if any(keyword in prov_upper for keyword in [
+        "FDA", "KEGG PATHWAY", "NDA", "BLA",
+        "WHO CLASSIFICATION", "CANCER GENE CENSUS", "COSMIC",
+    ]):
         return EvidenceTier.ESTABLISHED
 
     # INFERRED: Computational/similarity-based

@@ -30,13 +30,13 @@ the answer it is graded on):
 python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --cohort core --baselines --ci
 ```
 
-- **AUROC 0.9784** [0.9667, 0.9883], AUPRC 0.6128 [0.4728, 0.7480]
+- **AUROC 0.9763**, AUPRC 0.5920 (2026-08-01)
 - **precision@5 1.00, precision@10 0.70** · 44 FDA `treats` positives over 1,560
   pairs (core cohort). The tool prints these as "Hits@k" but computes
   `hits / min(positives, k)`, which is precision@k — hence the fall from k=5 to k=10.
-- **Scored-only AUROC 0.9642**: 603 of the 1,560 pairs are abstentions scored 0.0
+- **Scored-only AUROC 0.9609**: 598 of the 1,560 pairs are abstentions scored 0.0
   and sit inside the headline AUROC. AUPRC is unchanged.
-- **+0.24** over the strongest graph baseline (common_neighbor 0.7429)
+- **+0.23** over the strongest graph baseline (common_neighbor 0.7483)
 - Measured on the ESMC-excluded default graph; see HONEST_VALUE.md for why the
   similarity-transfer layer is excluded and why +0.24 is the honest margin.
 
@@ -123,7 +123,7 @@ python -m validation.disease_specificity Melanoma
 # Rank all diseases for a drug
 python validation\triage.py --drug Sorafenib
 
-# Reproduce the strict benchmark (core cohort = the headline 0.9784; omit --cohort for the inflated all-cohort number)
+# Reproduce the strict benchmark (core cohort = the headline 0.9763; omit --cohort for the inflated all-cohort number)
 python validation\repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --cohort core --baselines --ci
 
 # Interactive web app (Disease-first / Drug-first / Pair detail / Search speedup / ...)

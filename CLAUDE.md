@@ -22,14 +22,14 @@ as a fast, transparent hypothesis-triage tool that knows its own limits — neve
 Strict `remove_direct_labels`, **`core` cohort (78 curated drugs)**, **ESMC-excluded
 default graph**:
 
-- **AUROC 0.9784** [0.9667–0.9883], **AUPRC 0.6128** [0.4728–0.7480]
+- **AUROC 0.9763**, **AUPRC 0.5920** (2026-08-01, after the driver-edge batch)
 - **precision@5 1.00, precision@10 0.70, precision@20 0.70.** The code prints these
   as "Hits@k" but computes `hits / min(total_positives, k)` — that is precision@k,
   which is why the value *falls* from k=5 to k=10. Say precision@k.
-- **Scored-only AUROC 0.9642.** 603 of 1,560 pairs are abstentions scored 0.0 and
+- **Scored-only AUROC 0.9609.** 598 of 1,560 pairs are abstentions scored 0.0 and
   are included in the headline AUROC; all are negatives. AUPRC is unaffected.
   Quote both numbers.
-- **Margin over best trivial baseline: +0.24** (common-neighbor 0.7429). This is the
+- **Margin over best trivial baseline: +0.23** (common-neighbor 0.7483). This is the
   honest advantage; do not quote the older +0.36.
 - Funnel: top 5% of pairs catches 73% of known hits (~14.5× enrichment).
 - **External precision is undetermined, not weak.** The Hetionet inputs are missing
@@ -55,7 +55,7 @@ artifact of ~13,500 easy negatives — AUPRC falls and the baseline margin colla
   44 FDA `treats` positives, one of which is `Metformin → Type2_Diabetes`.
 - **AML has no `treats` label at all**, and only FLT3 and TOP2A reach it through a
   directed edge. Any AML work must bring its own external labels.
-- **2,439 edges in the DB; 2,015 scored.** The 424 ESMC protein-embedding
+- **2,462 edges in the DB.** The 424 ESMC protein-embedding
   similarity-transfer edges are tagged `[EMBEDDING-INFERRED]` and **excluded from
   scoring** — see below.
 - Sources: ChEMBL (881, the strong Drug→Protein layer), PMID literature, curated
@@ -77,12 +77,13 @@ artifact of ~13,500 easy negatives — AUPRC falls and the baseline margin colla
    unaffected. See `data/GROUNDING_NEGATIVE_CONTROL.json`.
 
 3. **The terminal Protein→Disease hop is the binding constraint.** Re-measured
-   2026-07-31 (the earlier "158 proteins" was wrong): only **107** non-drug/
-   non-disease nodes carry a disease edge on the default graph, over **783**
-   terminal edges — **746 `associated_with`** versus **37 directed `driver_of`
-   across 28 sources**. Through a directed terminal hop only **76 drugs and 138
-   pairs** are reachable. **138 is the true size of the mechanistically grounded
-   surface.** This is why 629 drugs are stranded and why novelty is limited.
+   2026-08-01 after the driver-edge batch: **111** non-drug/non-disease nodes
+   carry a disease edge, over **806** terminal edges — **746 `associated_with`**
+   versus **60 directed `driver_of` across 45 sources**. Through a directed
+   terminal hop, **191 pairs** are reachable (was 138 that morning). **153 of
+   757 drugs** reach any disease; **604 remain stranded**. Every candidate this
+   system produces traces back to one of those 60 directed edges, so their
+   quality is the ceiling on everything.
 
 ## Honest limitations (full version: `HONEST_VALUE.md`)
 

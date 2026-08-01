@@ -117,8 +117,17 @@ def main() -> int:
             continue                        # collapse salt/hydrate forms
         seen.add(key)
         comention = None
+        drug_cancer = None
         if not args.offline:
             comention = pubmed_comentions(h.a, h.c, cache)
+            # SECOND ATTENTION AXIS, added 2026-08-01 after the first version
+            # misled. "0 papers on mebendazole + kidney cancer" looked like an
+            # untouched idea; mebendazole actually has hundreds of cancer papers
+            # and active glioblastoma trials. Counting only the drug-disease
+            # pair cannot tell "nobody has thought about this drug" apart from
+            # "well-known candidate, this particular cancer untested". Those are
+            # completely different products and were mixed together.
+            drug_cancer = pubmed_comentions(h.a, "cancer", cache)
             if i % 60 == 0:
                 _save_cache(cache)
                 print(f"  ...{i}/{len(unfilled)} queried", flush=True)
@@ -131,6 +140,8 @@ def main() -> int:
             "mechanism_strength": "DIRECTED" if h.g_name != "associated_with" else "co-occurrence",
             "composite_confidence": round(h.composite, 4),
             "pubmed_comentions": "" if comention is None else comention,
+            "pubmed_drug_in_cancer": "" if drug_cancer is None else drug_cancer,
+            "novelty_class": "",
             "known_cheap_generic": "YES" if inn.lower() in CHEAP else "",
             "any_trial_or_paper_found": "",
             "verdict_WORTH_READING_TRIED_WRONG": "",
@@ -140,6 +151,19 @@ def main() -> int:
         _save_cache(cache)
 
     # The target zone: real mechanism, nobody looking.
+    # Two attention axes give three genuinely different kinds of candidate.
+    for r in rows:
+        pair, drug = r["pubmed_comentions"], r["pubmed_drug_in_cancer"]
+        if pair == "" or drug == "":
+            r["novelty_class"] = ""
+        elif int(drug) <= 50:
+            # Nobody has looked at this drug in cancer AT ALL.
+            r["novelty_class"] = "UNEXPLORED_DRUG"
+        elif int(pair) <= 25:
+            # Known cancer-repurposing candidate; this cancer untested.
+            r["novelty_class"] = "KNOWN_DRUG_NEW_CANCER"
+        else:
+            r["novelty_class"] = "WELL_STUDIED_PAIR"
     def zone(r):
         c = r["pubmed_comentions"]
         if r["mechanism_strength"] != "DIRECTED" or c == "":
@@ -157,6 +181,8 @@ def main() -> int:
     directed = [r for r in rows if r["mechanism_strength"] == "DIRECTED"]
     cheap = [r for r in rows if r["known_cheap_generic"]]
     tz = [r for r in rows if r.get("target_zone")]
+    import collections as _c
+    print("  novelty classes:", dict(_c.Counter(r["novelty_class"] for r in rows if r["novelty_class"])))
     print(f"\nwrote {len(rows)} candidate pairs -> {out}")
     print(f"  with a DIRECTED mechanism        : {len(directed)}")
     print(f"  known cheap generic drug         : {len(cheap)}")

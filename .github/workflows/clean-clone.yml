@@ -71,11 +71,11 @@ jobs:
           raw = open("benchmark.raw", encoding="utf-8").read()
           r = json.loads(raw[raw.index("{"):])
           expected = {
-              "auroc":        (0.9784, 0.0005),
-              "auprc":        (0.6128, 0.0005),
+              "auroc":        (0.9763, 0.0005),
+              "auprc":        (0.5920, 0.0005),
               "n_positives":  (44,     0),
               "n_pairs":      (1560,   0),
-              "n_scored_pairs": (957,  0),
+              "n_scored_pairs": (962,  0),
           }
           failures = []
           for key, (want, tol) in expected.items():

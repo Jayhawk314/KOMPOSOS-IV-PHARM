@@ -51,11 +51,11 @@ them improves the ranker.
 | Pairs | 1,560 | 15,140 |
 | Positives | 44 | 44 |
 | Base rate | 2.82% | 0.29% |
-| Strict AUROC | **0.9784** [0.9667–0.9883] | ~0.99 (inflated) |
-| Strict AUPRC | **0.6128** [0.4728–0.7480] | ~0.41 |
+| Strict AUROC | **0.9763** | ~0.99 (inflated) |
+| Strict AUPRC | **0.5920** | ~0.41 |
 | Hits@20 | **0.70** | 0.40 |
-| Best baseline | common-neighbor 0.7429 | common-neighbor ~0.95 |
-| **Margin over baseline** | **+0.2355** | **~+0.05** |
+| Best baseline | common-neighbor 0.7483 | common-neighbor ~0.95 |
+| **Margin over baseline** | **+0.2280** | **~+0.05** |
 
 **The full-cohort ~0.99 is an artifact — do not report it as an improvement.**
 Expanding the universe added ~13,500 mostly-unscoreable pairs while the positive
@@ -63,7 +63,7 @@ count stayed at 44. Adding easy negatives inflates AUROC mechanically. The hones
 tells sit in the same run: AUPRC *fell* and the margin over a trivial
 common-neighbor baseline collapsed to ~+0.05.
 
-**Quote the `core` number (0.9784, +0.24 over baseline).** That is the defensible
+**Quote the `core` number (0.9763, +0.23 over baseline).** That is the defensible
 one. Treat the `all` cohort as a *discovery surface* for finding candidates, never
 as a benchmark. Reproduce:
 `python validation/repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --cohort core --baselines --ci`
@@ -76,9 +76,9 @@ Two caveats belong beside that number every time it is quoted (both added
   That is why the run prints Hits@5 **1.00** and Hits@10 **0.70** — a true Hits@k
   cannot fall as k grows. Say "precision@k" out loud; a reviewer will spot the
   non-monotonicity in seconds.
-- **603 of the 1,560 pairs are abstentions scored 0.0, and they are inside the
-  AUROC.** All 603 are negatives. Restricted to the 957 actually-scored pairs the
-  AUROC is **0.9642**; AUPRC is unchanged at **0.6128**. So about 0.014 of the
+- **598 of the 1,560 pairs are abstentions scored 0.0, and they are inside the
+  AUROC.** All are negatives. Restricted to the 962 actually-scored pairs the
+  AUROC is **0.9609**; AUPRC is unchanged at **0.5920**. So about 0.015 of the
   headline is coverage rather than ranking skill. Small, but report it rather
   than be asked for it.
 
@@ -144,8 +144,8 @@ the core, not the superstructure.
 **Corrected 2026-07-31. The honest statement is now that external precision is
 *undetermined*, not weak.** Both carried-forward numbers below failed audit.
 
-- In-graph strict (`core`, ESMC-excluded) AUROC **0.9784**, AUPRC **0.6128**.
-  Reproduces exactly.
+- In-graph strict (`core`, ESMC-excluded) AUROC **0.9763**, AUPRC **0.5920**
+  (2026-08-01). Reproduces exactly.
 - External (Hetionet) AUROC 0.644 / AUPRC ~0.010 — **RETIRED, not reproducible.**
   `data/external/` does not exist and is gitignored, so
   `validation/external_validation.py` raises `FileNotFoundError` on a clean
@@ -178,7 +178,7 @@ Measured on the 757-drug cohort: **Imatinib is top-5 for 14 of 20 diseases;
 Sunitinib 10/20; Afatinib 7/20.** Promiscuous multi-kinase inhibitors hit hub
 proteins on many cancer pathways, so they float to the top of most diseases. This
 is *partly real pan-cancer biology and partly a promiscuity/degree bias.* It is
-also why AUPRC (0.6128) is far below AUROC (0.9784): the hubs cluster as false
+also why AUPRC (0.5920) is far below AUROC (0.9763): the hubs cluster as false
 positives at the top. (The 0.57 previously quoted here was the pre-ESMC-removal
 figure and is retired.)
 
@@ -196,23 +196,25 @@ A trail is Drug→Protein→Disease. The Drug→Protein hops are well-cited (FDA
 ChEMBL, RELATION-VERIFIED PMIDs). The terminal **Protein→Disease** hop is the
 least-verified layer and is now the main thing limiting the system:
 
-Re-measured 2026-07-31 directly against `data/drugs/tier1.db`. The previous
-figures in this section (158 proteins, 1,842 reachable pairs) were wrong and are
-corrected here. On the **default ESMC-excluded scored graph**:
+Re-measured **2026-08-01**, after 23 textbook driver edges were added (2 hormone
+receptors, 21 Cancer Gene Census / WHO-classification drivers). The figures from
+2026-07-31 are superseded; the ones before that (158 proteins, 1,842 pairs) were
+simply wrong. On the **default ESMC-excluded scored graph**:
 
-- Only **107 non-drug/non-disease nodes** carry any disease edge at all (110 if
-  the excluded ESMC edges are counted).
-- Those nodes carry **783 terminal edges**, of which **746 are `associated_with`**
-  — a co-occurrence relation, **not** a mechanistic claim — and only **37 are
-  directed (`driver_of`), spanning 28 distinct sources**. That is 4.7% directed.
-- **128 of 757 drugs** can complete a Drug→Protein→Disease path, over **1,206
-  reachable pairs**. (The old 1,842 was measured before ESMC exclusion; the
-  ESMC-included figure is 1,820.) The other 629 drugs are stranded with target
-  pharmacology but no route to a disease.
-- Through a **directed** terminal hop, only **76 drugs and 138 pairs** are
-  reachable. **That 138 is the true size of the mechanistically grounded surface**
-  — the number to quote when someone asks how much of this graph is mechanism
-  rather than co-occurrence.
+- **111 non-drug/non-disease nodes** carry any disease edge at all.
+- Those nodes carry **806 terminal edges**, of which **746 are `associated_with`**
+  — a co-occurrence relation, **not** a mechanistic claim — and **60 are
+  directed (`driver_of`), spanning 45 distinct sources**. That is 7.4% directed,
+  up from 4.7% that morning.
+- **153 of 757 drugs** can complete a Drug→Protein→Disease path (was 128). The
+  other **604 remain stranded** with target pharmacology but no route to a
+  disease.
+- Through a **directed** terminal hop, **191 pairs** are reachable (was 138).
+  That is the size of the mechanistically grounded surface, and every candidate
+  the system produces traces back to one of the 60 directed edges — so their
+  citation quality is the ceiling on everything it can claim. Of the original 37,
+  only 10 carried a `[RELATION-VERIFIED]` citation; the 23 added on 2026-08-01
+  cite the WHO classification or the COSMIC Cancer Gene Census.
 
 Getting *directed* protein→disease edges (`driver_of` and similar) is the highest-value
 next step for this repo. More `associated_with` edges add coverage, not credibility.
@@ -230,6 +232,10 @@ whether they help:
 | AUROC | 0.9691 | **0.9784** |
 | AUPRC | 0.5661 | **0.6128** |
 | Hits@20 | 0.65 | **0.70** |
+
+*Those are the figures as measured on 2026-07-21. The graph has since gained 23
+driver edges, so the current headline is 0.9763/0.5920; the ablation's CONCLUSION
+— that the similarity-transfer layer is not load-bearing — is unaffected.*
 
 Removing them **improves** every metric — the layer is mild noise, not signal.
 (It also inflated the apparent margin over baselines: on the cleaner graph the

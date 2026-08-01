@@ -2221,7 +2221,7 @@ view to demote the hubs and surface candidates particular to your disease.
   pharmacology already in the graph. Top-of-list precision on genuinely novel
   pairs is **not currently measurable** — the external check is not reproducible
   and the temporal holdout counts approved drugs as negatives (see **About**).
-- AUROC of 0.9784 on the current strict 44-positive benchmark does not guarantee real-world
+- AUROC of 0.9763 on the current strict 44-positive benchmark does not guarantee real-world
   performance
 - The system surfaces auditable hypotheses from existing graph evidence; it does
   not by itself validate new clinical knowledge
@@ -2551,17 +2551,17 @@ predict that a drug will actually work.
 
 | Metric | Value |
 |--------|-------|
-| AUROC | 0.9784 [95% CI: 0.9667-0.9883] |
-| AUROC, scored pairs only | **0.9642** |
-| AUPRC | 0.6128 [95% CI: 0.4728-0.7480] |
+| AUROC | 0.9763 |
+| AUROC, scored pairs only | **0.9609** |
+| AUPRC | 0.5920 |
 | precision@5 | 1.000 |
 | precision@10 | 0.700 |
 | precision@20 | 0.700 |
-| Coverage | 957 of 1,560 pairs scored; 603 abstentions |
+| Coverage | 962 of 1,560 pairs scored; 598 abstentions |
 | Strategy profile | 7 active modules; Yoneda distance excluded because no Drug->Disease comparators remain |
 | Positives | 44 `treats` labels (43 oncology + 1 Metformin/Type2_Diabetes) |
-| Strongest baseline (common_neighbor) | AUROC 0.7429 |
-| Margin over strongest baseline | +0.2355 |
+| Strongest baseline (common_neighbor) | AUROC 0.7483 |
+| Margin over strongest baseline | +0.2280 |
 | PMID identifiers in DB | {g['pmid_count']} |
 
 **Two things this table used to get wrong, corrected 2026-07-31.**
@@ -2648,15 +2648,14 @@ clinical probability.
   reading here"*. Drug->Protein citations (ChEMBL, FDA) are independently derived
   and unaffected. See HONEST_VALUE.md and `data/GROUNDING_NEGATIVE_CONTROL.json`.
 - **Weakest at the disease link -- and this is the binding constraint.**
-  Re-measured 2026-07-31 against the database (the previous "158 proteins" figure
-  on this page was wrong). On the default ESMC-excluded graph, only **107**
-  non-drug/non-disease nodes carry a disease edge, across **783** terminal edges:
-  **746 are `associated_with`** (co-occurrence, not mechanism) and only **37 are
-  directed `driver_of`**, spanning 28 sources. 128 of 757 drugs complete any
-  Drug->Protein->Disease path, over **1,206** reachable pairs -- but through a
-  **directed** terminal hop, only **76 drugs and 138 pairs**.
-  **138 is the true size of the mechanistically grounded surface**, and it is the
-  honest headline for what this system actually stands on.
+  Re-measured 2026-08-01. On the default ESMC-excluded graph, **111**
+  non-drug/non-disease nodes carry a disease edge, across **806** terminal edges:
+  **746 are `associated_with`** (co-occurrence, not mechanism) and **60 are
+  directed `driver_of`**, spanning 45 sources. **153 of 757 drugs** complete any
+  Drug->Protein->Disease path; through a **directed** terminal hop, **191 pairs**
+  are reachable. Every candidate this system produces traces back to one of those
+  60 directed edges, so their citation quality is the ceiling on everything it
+  can claim.
 - **Citation attribution risk remains**: Provenance/source strings exist for every edge, but
   the audit found PMID-without-context, measured-tier mismatch, and quantitative
   support issues that need edge-level verification before wet-lab claims
