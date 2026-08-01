@@ -73,6 +73,9 @@ from validation.nonobvious import (                       # noqa: E402
     normalize_drug_name, pubmed_comentions, _load_cache, _save_cache,
 )
 from oracle.horns import inner_horns, best_fillers        # noqa: E402
+from validation.direction_filter import (                 # noqa: E402
+    load_edges, check as direction_check, REJECT as DIR_REJECT,
+)
 
 # Drugs that are off-patent and cheap. Hand-marked because no field in the graph
 # records it and it materially changes how a row should be read. Absence of a
@@ -108,14 +111,25 @@ def main() -> int:
     unfilled = [h for h in best_fillers(horns).values() if not h.filled_treats]
     unfilled.sort(key=lambda h: (h.g_name == "associated_with", -h.composite))
 
+    # Direction check. A drug that ACTIVATES a protein driving the cancer would
+    # be expected to worsen it -- estrogens for ER-driven breast cancer, androgens
+    # for AR-driven prostate cancer. Sign errors are excluded outright, not
+    # down-weighted.
+    _types, _drug_rel, _term_rel = load_edges(args.db)
+
     cache = _load_cache()
     seen, rows = set(), []
+    n_sign_rejected = 0
     for i, h in enumerate(unfilled, 1):
         inn = normalize_drug_name(h.a)
         key = (inn.lower(), h.c)
         if key in seen:
             continue                        # collapse salt/hydrate forms
         seen.add(key)
+        _v, _why = direction_check(h.a, h.b, h.c, _drug_rel, _term_rel, _types)
+        if _v == DIR_REJECT:
+            n_sign_rejected += 1
+            continue
         comention = None
         drug_cancer = None
         if not args.offline:
@@ -145,6 +159,7 @@ def main() -> int:
             "known_cheap_generic": "YES" if inn.lower() in CHEAP else "",
             "any_trial_or_paper_found": "",
             "verdict_WORTH_READING_TRIED_WRONG": "",
+            "direction": _v,
             "checker_note": "",
         })
     if not args.offline:
