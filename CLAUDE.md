@@ -17,16 +17,26 @@ literature, and it cannot certify which of its novel compositions are real. Pitc
 as a fast, transparent hypothesis-triage tool that knows its own limits — never as
 "AI that finds new cures."
 
-## Canonical current numbers (2026-07-21)
+## Canonical current numbers (2026-07-21, re-verified 2026-07-31)
 
 Strict `remove_direct_labels`, **`core` cohort (78 curated drugs)**, **ESMC-excluded
 default graph**:
 
 - **AUROC 0.9784** [0.9667–0.9883], **AUPRC 0.6128** [0.4728–0.7480]
-- Hits@5 1.00, Hits@10 0.70, Hits@20 0.70
+- **precision@5 1.00, precision@10 0.70, precision@20 0.70.** The code prints these
+  as "Hits@k" but computes `hits / min(total_positives, k)` — that is precision@k,
+  which is why the value *falls* from k=5 to k=10. Say precision@k.
+- **Scored-only AUROC 0.9642.** 603 of 1,560 pairs are abstentions scored 0.0 and
+  are included in the headline AUROC; all are negatives. AUPRC is unaffected.
+  Quote both numbers.
 - **Margin over best trivial baseline: +0.24** (common-neighbor 0.7429). This is the
   honest advantage; do not quote the older +0.36.
 - Funnel: top 5% of pairs catches 73% of known hits (~14.5× enrichment).
+- **External precision is undetermined, not weak.** The Hetionet inputs are missing
+  from the repo and the temporal holdout leaks and runs on the wrong cohort; its
+  negative set contains approved indications (Dacomitinib→NSCLC, approved
+  2018-09-27, ranks first among its "negatives"). Make no precision claim in
+  either direction until a complete label set exists. See `HONEST_VALUE.md`.
 
 Reproduce: `python validation/repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --cohort core --baselines --ci`
 
@@ -37,9 +47,14 @@ artifact of ~13,500 easy negatives — AUPRC falls and the baseline margin colla
 
 ## The graph
 
-- 757 drug nodes; **128 have a complete Drug→Protein→Disease path** (the rest are
-  stranded — see terminal-hop limitation). 20 oncology diseases. 44 FDA `treats`
-  positives.
+- 757 drug nodes; **128 have a complete Drug→Protein→Disease path** over **1,206
+  reachable pairs** on the default graph (the rest are stranded — see terminal-hop
+  limitation). 20 diseases — **not all oncology**: the set includes `Type2_Diabetes`
+  and `Li_Fraumeni_Syndrome`, and 6 of the 20 carry **zero positives** (AML,
+  Glioblastoma, Ewing_Sarcoma, Prostate_Cancer, Soft_Tissue_Sarcoma, Li_Fraumeni).
+  44 FDA `treats` positives, one of which is `Metformin → Type2_Diabetes`.
+- **AML has no `treats` label at all**, and only FLT3 and TOP2A reach it through a
+  directed edge. Any AML work must bring its own external labels.
 - **2,439 edges in the DB; 2,015 scored.** The 424 ESMC protein-embedding
   similarity-transfer edges are tagged `[EMBEDDING-INFERRED]` and **excluded from
   scoring** — see below.
@@ -61,14 +76,26 @@ artifact of ~13,500 easy negatives — AUPRC falls and the baseline margin colla
    "validated." Drug→Protein citations (ChEMBL/FDA) are independently derived and
    unaffected. See `data/GROUNDING_NEGATIVE_CONTROL.json`.
 
-3. **The terminal Protein→Disease hop is the binding constraint.** Only 158 proteins
-   carry a disease edge, and most such edges are `associated_with` (co-occurrence,
-   not mechanism). This is why 629 drugs are stranded and why novelty is limited.
+3. **The terminal Protein→Disease hop is the binding constraint.** Re-measured
+   2026-07-31 (the earlier "158 proteins" was wrong): only **107** non-drug/
+   non-disease nodes carry a disease edge on the default graph, over **783**
+   terminal edges — **746 `associated_with`** versus **37 directed `driver_of`
+   across 28 sources**. Through a directed terminal hop only **76 drugs and 138
+   pairs** are reachable. **138 is the true size of the mechanistically grounded
+   surface.** This is why 629 drugs are stranded and why novelty is limited.
 
 ## Honest limitations (full version: `HONEST_VALUE.md`)
 
-- Oncology only, 20 diseases, curated graph. External generalization is weak
-  (Hetionet AUPRC ~0.01).
+- 20 diseases, curated graph, oncology-dominated but not oncology-only. **External
+  generalization is unmeasured, not weak** — the Hetionet number is retired
+  (inputs absent from the repo) and the temporal holdout is leaky and mis-cohorted.
+- **The repository does not `pip install`.** `pyproject.toml` names a build backend
+  that does not exist, and `packages.find` ships only `core*`. The benchmark runs
+  fine from a checkout; packaging is what is broken.
+- **No conflict representation exists.** `oracle/evidence_combination.py` cannot
+  produce non-zero Dempster conflict by construction. Not in the scored path.
+- **The combination layer runs on a different graph** (OmniPath) and its one
+  labelled external test scores AUROC 0.36. It inherits none of the numbers above.
 - Hub-drug bias: Imatinib tops 14/20 diseases. Use the **Disease-specific** view.
 - Empty `quantitative_value` columns (schema implies data that reads NULL).
 - Research prototype. Not clinical, translational, or regulatory validation.
@@ -88,11 +115,53 @@ artifact of ~13,500 easy negatives — AUPRC falls and the baseline margin colla
   `HONEST_VALUE.md`, this file, and the JSON result files above are the current
   source of truth. When in doubt, run the reproduce commands.
 
+## Quarantined — non-product, excluded from validation
+
+These files remain in the tree for dependency and historical review. **None may
+support a claim, appear on a public surface, or enter the scored path.** Do not
+delete them without a dependency and historical-value review.
+
+- `validation/spatial_biology_metrics.py` — hardcoded placeholder L-R metrics
+  (0.65/0.45/0.30) and baselines (0.62/0.68); imported by nothing.
+- `spatial_biology/generate_validation_data.py` — synthetic data seeded with the
+  pattern the method is meant to discover ("better than public datasets because we
+  KNOW the answer"). **Circular by construction**; its output is not a result.
+- `scripts/mutation_impact.py` — reconstructs 3D coordinates by MDS over a
+  fabricated distance matrix, then prints `kcal/mol`. Pseudo-coordinates cannot
+  support physical-energy claims.
+- `oracle/evidence_combination.py` — conflict is structurally zero; see above.
+- `oracle/score_combination.py` — hand-set coefficients, blend weights, and
+  variance-to-agreement map. Not learned calibration.
+
+Also do-not-resurrect, in the sibling LAMBDA prototype:
+`oracle/patient_stratification.py` (invented defaults for missing data),
+`oracle/toxicity_assessment.py` (**emits dosing instructions** from an
+uncalibrated heuristic), `oracle/clinical_validation_pipeline.py`.
+
+**Hard rule: no PHARM output may contain dosing language**, in any module, at any
+phase.
+
+## Current work in flight
+
+`WORKING_SESSION_2026-07-31.md` is the live log. The approved sequence is:
+correct documents (done) -> **50-pair reviewer exercise (packet built, awaiting a
+reviewer)** -> judge whether the bundles are useful -> packaging (done) -> complete
+the label set (seeded only) -> only then design the Beat AML experiment.
+
+- `reports/reviewer_audit_2026-07-31/` — the packet. **`MANIFEST.json` is the
+  answer key; never send it to a reviewer.** Send the two `.md` files and the two
+  blank `.csv` files only.
+- `data/labels/evaluation_labels_v1.csv` — the Phase 0.5 label set. **A seed**:
+  50 of 15,140 pairs, 44 of them inherited without any citation. Do not compute
+  AUPRC or precision against it and present the result as a measurement.
+
 ## Run it
 
 ```powershell
 streamlit run app.py                     # the UI; modes in the left sidebar
 python -m pytest tests/ -q               # 166 pass, 1 skip
+python -m validation.check_label_set     # label-set structure + how incomplete it is
+python -m validation.build_reviewer_packet   # regenerate the 50-pair packet
 python validation/triage.py Melanoma --drug Sorafenib   # one audited candidate
 python -m validation.nonobvious --disease Melanoma      # under-discussed real compositions
 ```

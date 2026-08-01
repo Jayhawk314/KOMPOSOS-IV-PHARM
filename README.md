@@ -31,15 +31,30 @@ python validation\repurposing_benchmark.py --view full_typed --protocol remove_d
 ```
 
 - **AUROC 0.9784** [0.9667, 0.9883], AUPRC 0.6128 [0.4728, 0.7480]
-- Hits@5 1.00, Hits@10 0.70 · 44 FDA `treats` positives over 1,560 pairs (core cohort)
+- **precision@5 1.00, precision@10 0.70** · 44 FDA `treats` positives over 1,560
+  pairs (core cohort). The tool prints these as "Hits@k" but computes
+  `hits / min(positives, k)`, which is precision@k — hence the fall from k=5 to k=10.
+- **Scored-only AUROC 0.9642**: 603 of the 1,560 pairs are abstentions scored 0.0
+  and sit inside the headline AUROC. AUPRC is unchanged.
 - **+0.24** over the strongest graph baseline (common_neighbor 0.7429)
 - Measured on the ESMC-excluded default graph; see HONEST_VALUE.md for why the
   similarity-transfer layer is excluded and why +0.24 is the honest margin.
 
-Reality checks (also executable): external Hetionet AUROC 0.644 / AUPRC 0.010;
-temporal holdout (approvals after 2013) AUROC 0.971 / AUPRC 0.194; disease-level
-holdout mean AUROC 0.938. In-graph recovery is strong; novel-pair precision at
-the very top of the list is the open question.
+**External performance is currently undetermined, not weak** (revised 2026-07-31).
+The previously listed Hetionet result (AUROC 0.644 / AUPRC 0.010) is **retired and
+not executable** — `data/external/` is absent from this repository, so
+`validation/external_validation.py` fails on a clean clone. The temporal holdout
+still runs but is **stale and mis-cohorted**: rerun 2026-07-31 it gives AUROC
+0.996 / AUPRC 0.156 on the `all` cohort, it leaves post-cutoff literature in the
+graph, and its negative set contains approved indications — Dacomitinib→NSCLC,
+approved 2018-09-27, currently ranks first among its "negatives." In-graph
+recovery is strong; **what happens on novel pairs is unmeasured**, and no claim
+should be made in either direction until the evaluation label set is complete.
+See `HONEST_VALUE.md`.
+
+**Packaging note:** `pip install` does not currently work (`pyproject.toml` names a
+non-existent build backend). Run from a checkout; the benchmark command above is
+unaffected.
 
 ---
 

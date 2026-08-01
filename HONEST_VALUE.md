@@ -6,9 +6,16 @@ deliberately conservative. Where it disagrees with the more enthusiastic framing
 elsewhere in the repo, believe this file — every claim here is backed by an
 executable check named in the text.
 
-Last reviewed: 2026-07-20. Every metric below was re-measured on that date against
-the current database, except the two external-generalization numbers, which are
-explicitly marked as carried forward.
+Last reviewed: **2026-07-31**, in an independent technical audit that reproduced
+the benchmark and queried the database directly. Every metric below is measured
+against the current database. The two carried-forward external-generalization
+numbers did **not** survive that audit — one is not reproducible and one is stale
+— and are retired in place below rather than quietly refreshed.
+
+Corrected on 2026-07-31: terminal-hop counts, reachable-pair counts, the stale
+AUPRC 0.57, the "all oncology" scope claim, the external and temporal results,
+and the meaning of the printed Hits@k. Three new defects were added to the known-
+defects list, including that the repository does not currently `pip install`.
 
 ---
 
@@ -60,6 +67,20 @@ common-neighbor baseline collapsed to ~+0.05.
 one. Treat the `all` cohort as a *discovery surface* for finding candidates, never
 as a benchmark. Reproduce:
 `python validation/repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --cohort core --baselines --ci`
+
+Two caveats belong beside that number every time it is quoted (both added
+2026-07-31):
+
+- **The printed "Hits@k" is precision@k.** `compute_hits_at_k` in
+  `validation/repurposing_benchmark.py` returns `hits / min(total_positives, k)`.
+  That is why the run prints Hits@5 **1.00** and Hits@10 **0.70** — a true Hits@k
+  cannot fall as k grows. Say "precision@k" out loud; a reviewer will spot the
+  non-monotonicity in seconds.
+- **603 of the 1,560 pairs are abstentions scored 0.0, and they are inside the
+  AUROC.** All 603 are negatives. Restricted to the 957 actually-scored pairs the
+  AUROC is **0.9642**; AUPRC is unchanged at **0.6128**. So about 0.014 of the
+  headline is coverage rather than ranking skill. Small, but report it rather
+  than be asked for it.
 
 ---
 
@@ -120,25 +141,46 @@ scaffolding around a fairly classical graph-reasoning core. Judge the system on
 the core, not the superstructure.
 
 ### Generalization to genuinely novel pairs is the real open question
-- In-graph strict (`core`, ESMC-excluded) AUROC **0.9784**, AUPRC **0.6128**.
-- External (Hetionet) AUROC **0.644**, AUPRC **~0.010**. *(carried forward from
-  2026-06-10; not re-measured 2026-07-20)*
-- Temporal holdout (approvals after 2013): AUROC **0.971**, AUPRC **0.194**.
-  *(carried forward; not re-measured)*
+**Corrected 2026-07-31. The honest statement is now that external precision is
+*undetermined*, not weak.** Both carried-forward numbers below failed audit.
 
-The model knows *this curated graph* very well. Top-of-list precision on truly
-novel pairs is low (the Hetionet AUPRC). The temporal holdout shows the lift
-does not fully collapse on unseen approvals — so the search acceleration is real
-— but treat the funnel numbers as "acceleration on the curated graph," not a
-novel-discovery hit rate.
+- In-graph strict (`core`, ESMC-excluded) AUROC **0.9784**, AUPRC **0.6128**.
+  Reproduces exactly.
+- External (Hetionet) AUROC 0.644 / AUPRC ~0.010 — **RETIRED, not reproducible.**
+  `data/external/` does not exist and is gitignored, so
+  `validation/external_validation.py` raises `FileNotFoundError` on a clean
+  clone. The script also never passes `cohort`, so it defaulted to the `all`
+  cohort — the one this file forbids quoting. Do not cite this number again
+  until the inputs are restored and it is rerun on `core`.
+- Temporal holdout (approvals after 2013) AUROC 0.971 / AUPRC 0.194 — **STALE.**
+  Rerun 2026-07-31 it gives AUROC **0.996095**, AUPRC **0.155975**, Hits@5
+  **0.0000** over 15,114 `all`-cohort pairs. Two design faults make even the new
+  number uninterpretable: it removes only the *label*, leaving 2026-derived
+  Protein→Disease edges in the graph, so post-cutoff literature leaks into every
+  "held-out" prediction; and it runs on the forbidden cohort.
+- **The negative set is contaminated with true positives.** The top-ranked
+  "negative" in that run is Dacomitinib→NSCLC, FDA-approved 2018-09-27. Also in
+  the top 20: Lorlatinib, Brigatinib and Amivantamab in NSCLC, Avapritinib in
+  GIST — all approved, all scored as false positives. The 44-label gold set
+  covers only the 78 curated drugs, while the cohort contains 679 ChEMBL drugs
+  with real approvals that were never labelled.
+
+The model knows *this curated graph* very well. What happens on genuinely novel
+pairs **is currently unmeasured**, because the evaluation cannot tell a false
+positive from an unlabelled true one. That is not evidence that precision is
+good; it is a statement that the question is open. Treat the funnel numbers as
+"acceleration on the curated graph," never as a novel-discovery hit rate, and
+make no precision claim in either direction until a complete, versioned label
+set exists.
 
 ### The same drugs top almost every disease (hub-drug bias)
 Measured on the 757-drug cohort: **Imatinib is top-5 for 14 of 20 diseases;
 Sunitinib 10/20; Afatinib 7/20.** Promiscuous multi-kinase inhibitors hit hub
 proteins on many cancer pathways, so they float to the top of most diseases. This
 is *partly real pan-cancer biology and partly a promiscuity/degree bias.* It is
-also why AUPRC (0.57) is far below AUROC (0.97): the hubs cluster as false
-positives at the top.
+also why AUPRC (0.6128) is far below AUROC (0.9784): the hubs cluster as false
+positives at the top. (The 0.57 previously quoted here was the pre-ESMC-removal
+figure and is retired.)
 
 Hub dominance fell slightly from the previous review (Imatinib was 17/20) only
 because the expanded cohort gives it more competition — the bias itself is unchanged.
@@ -154,12 +196,23 @@ A trail is Drug→Protein→Disease. The Drug→Protein hops are well-cited (FDA
 ChEMBL, RELATION-VERIFIED PMIDs). The terminal **Protein→Disease** hop is the
 least-verified layer and is now the main thing limiting the system:
 
-- Only **158 proteins** carry any disease edge at all.
-- So only **128 of 757 drugs** can complete a Drug→Protein→Disease path
-  (1,842 reachable pairs). The other 629 drugs are stranded with target
+Re-measured 2026-07-31 directly against `data/drugs/tier1.db`. The previous
+figures in this section (158 proteins, 1,842 reachable pairs) were wrong and are
+corrected here. On the **default ESMC-excluded scored graph**:
+
+- Only **107 non-drug/non-disease nodes** carry any disease edge at all (110 if
+  the excluded ESMC edges are counted).
+- Those nodes carry **783 terminal edges**, of which **746 are `associated_with`**
+  — a co-occurrence relation, **not** a mechanistic claim — and only **37 are
+  directed (`driver_of`), spanning 28 distinct sources**. That is 4.7% directed.
+- **128 of 757 drugs** can complete a Drug→Protein→Disease path, over **1,206
+  reachable pairs**. (The old 1,842 was measured before ESMC exclusion; the
+  ESMC-included figure is 1,820.) The other 629 drugs are stranded with target
   pharmacology but no route to a disease.
-- Most surviving terminal hops are `associated_with`, a co-occurrence relation,
-  **not** a mechanistic claim.
+- Through a **directed** terminal hop, only **76 drugs and 138 pairs** are
+  reachable. **That 138 is the true size of the mechanistically grounded surface**
+  — the number to quote when someone asks how much of this graph is mechanism
+  rather than co-occurrence.
 
 Getting *directed* protein→disease edges (`driver_of` and similar) is the highest-value
 next step for this repo. More `associated_with` edges add coverage, not credibility.
@@ -271,7 +324,15 @@ per-case failure analysis.
 ### Scope
 - Track A (repurposing) only. Track B (de-novo design) is a long-term goal, **not
   validated in this repo**. Do not read Track A metrics as Track B readiness.
-- 757 drugs, 20 diseases, all oncology. Conclusions do not extend beyond this.
+- 757 drugs and 20 diseases. **"All oncology" is not accurate**: the disease set
+  contains `Type2_Diabetes` and `Li_Fraumeni_Syndrome` (a cancer-predisposition
+  syndrome, not a tumour type), and `Metformin → Type2_Diabetes` is one of the 44
+  positives. Conclusions do not extend beyond this set.
+- **6 of the 20 diseases carry zero positives** — AML, Glioblastoma,
+  Ewing_Sarcoma, Prostate_Cancer, Soft_Tissue_Sarcoma, Li_Fraumeni_Syndrome — so
+  disease-specific performance is undefined for 30% of the graph. AML in
+  particular has **no `treats` label at all** and only two proteins (FLT3, TOP2A)
+  reaching it through a directed edge.
 - Research prototype. **Not** clinical, translational, or regulatory validation.
 
 ### Known defects, unfixed
@@ -292,6 +353,29 @@ per-case failure analysis.
   **β2-adrenergic receptor**. Symbol matching is word-boundary but not
   sense-disambiguated, so short overloaded symbols (AR, MET, PC, ACE) can ground
   on the wrong protein entirely.
+- **The repository does not install.** `pyproject.toml` declares
+  `build-backend = "setuptools.backends._legacy:_Backend"`, a module that exists
+  in no version of setuptools, so any build fails with `ModuleNotFoundError`. And
+  `[tool.setuptools.packages.find]` sets `include = ["core*"]`, so a successful
+  build would ship only `core/`. `requirements.txt` omits `scipy`,
+  `scikit-learn`, and `pytest`; there is no CI. The benchmark runs fine from a
+  checkout — it is *packaging*, not the science, that is broken — but a stranger
+  cannot `pip install` this. (Found 2026-07-31.)
+- **Dempster-Shafer conflict is structurally always zero.**
+  `oracle/evidence_combination.py` encodes each strategy as
+  `m({exists}) = c, m(Θ) = 1 − c` and never assigns mass to `not_exists`, so
+  Dempster conflict cannot be non-zero. Strategies at 0.9 and 0.1 combine to
+  conflict `K = 0.0` and a pignistic score of **0.955** — higher than either.
+  The module docstring claims it "detects the conflict explicitly"; it does not.
+  `combine_predictions()` in the same file is dead and raises `TypeError` twice.
+  Not wired into `make_strategies()`, so **no benchmark number is affected**.
+- **The combination layer is a separate, unvalidated system.** It runs on
+  `data/omnipath_signed.tsv` (OmniPath), not on `tier1.db`, so it inherits none
+  of the measured performance above. Its "8/8 direction" control is eight
+  author-chosen perturbations with author-written expected signs in the same
+  file, and its one labelled external test — CEGv2/NEGv1 essentiality — scores
+  **AUROC 0.36**, below chance. `oracle/CELL_FATE_INTERPRETER.md` says so; read
+  it before quoting anything from that layer.
 - **`promot` matched `promoter`.** Fixed in the new directed extractor, still
   present in the legacy `RELATION_KEYWORDS` used for `activates` and `driver_of`.
   It has not contaminated the shipped graph (0 of 110 edges with proof sentences
