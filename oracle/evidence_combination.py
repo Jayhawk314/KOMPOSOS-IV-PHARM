@@ -2,6 +2,37 @@
 # SPDX-FileCopyrightText: 2026 James Ray Hawkins
 
 """
+QUARANTINED 2026-07-31 — NON-PRODUCT, EXCLUDED FROM VALIDATION.
+
+Not registered in `validation.repurposing_benchmark.make_strategies()`, so no
+published metric depends on it. Retained for dependency and historical review
+only; do not delete without that review.
+
+THE CONFLICT CLAIM BELOW IS FALSE AS IMPLEMENTED. Every prediction is encoded as
+a simple support function — `m({exists}) = c`, `m(Theta) = 1 - c` — and mass is
+NEVER assigned to `{not_exists}`. Under Dempster's rule the intersection of any
+two focal sets in that encoding is non-empty, so the conflict term K is
+identically zero for all inputs, and combination degenerates to a noisy-OR.
+Measured 2026-07-31:
+
+    m1(exists)=0.9, m2(exists)=0.1  ->  K = 0.0, pignistic = 0.955
+
+Two maximally disagreeing strategies produce zero conflict and a combined score
+HIGHER than either input. The docstring line "Simple averaging hides conflict /
+Dempster-Shafer detects the conflict explicitly" is exactly backwards for this
+encoding.
+
+`combine_predictions()` is additionally dead code: it passes a `frame=` kwarg
+that `MassFunction` does not accept, and formats `combined.uncertainty` — a
+method, not a property — with `:.2f`. Both raise TypeError.
+
+Representing disagreement requires mass on `{not_exists}`, which in turn requires
+a source of evidence AGAINST a claim. PHARM has none: nothing in the graph records
+a negative or failed result. That is Phase 2 work (CIViC "does not support"
+evidence, or terminated/negative trials), not a caption on this file.
+
+--- original docstring follows ---
+
 Evidence Combination Strategy for KOMPOSOS-IV Oracle
 
 Uses Dempster-Shafer theory of evidence to combine uncertain predictions

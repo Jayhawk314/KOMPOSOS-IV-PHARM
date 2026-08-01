@@ -2,6 +2,29 @@
 # SPDX-FileCopyrightText: 2026 James Ray Hawkins
 
 """
+QUARANTINED 2026-07-31 — NON-PRODUCT, EXCLUDED FROM VALIDATION.
+
+Output from this module MUST NOT be used as a validation result, cited, or shown
+on any public surface. Retained for dependency and historical review only; do not
+delete without that review.
+
+Reason: this generator is CIRCULAR BY CONSTRUCTION. It synthesises tissue in
+which tumour cores are seeded with the high curvature that the curvature method
+is supposed to discover, and invasive fronts with the low curvature it is
+supposed to discover. Any "validation" against it confirms the generator's own
+assumptions, not the biology. The original docstring below — "better than public
+datasets for validation because we KNOW the answer" — states the flaw as if it
+were a feature: knowing the answer because you wrote it in is exactly what makes
+the result meaningless.
+
+Legitimate uses that remain: smoke-testing the pipeline, shape/dtype checks,
+performance profiling. Not evidence.
+
+Per the roadmap, spatial work restarts by reproducing one published PUBLIC
+spatial or proteogenomic task against classical baselines.
+
+--- original docstring follows ---
+
 Generate HIGH-QUALITY synthetic spatial transcriptomics data with KNOWN ground truth.
 
 This is better than public datasets for validation because we KNOW the answer:

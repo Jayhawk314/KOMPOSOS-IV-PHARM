@@ -2,6 +2,24 @@
 # SPDX-FileCopyrightText: 2026 James Ray Hawkins
 
 """
+QUARANTINED 2026-07-31 — NON-PRODUCT, EXCLUDED FROM VALIDATION.
+
+This module must not support any claim, appear on a public surface, or enter the
+scored path. Retained for dependency and historical review only; do not delete
+without that review.
+
+Reason: `validate_spatial_predictions` returns HARDCODED PLACEHOLDER metrics, not
+measurements. `lr_metrics` is literally {0.65, 0.45, 0.30}; `distance_only_auroc`
+and `expression_only_auroc` are the constants 0.62 and 0.68; `komposos_auroc` is
+`max()` over those constants, so `improvement_over_baseline` is arithmetic on
+invented numbers. `compute_tda_overlap` does not compute overlap at all — it
+returns 1.0 if any loop was detected. Nothing in the repository imports this
+module.
+
+`compute_ricci_correlation` and `compute_lr_prediction_metrics` are real
+functions and would be usable if given real predictions and real labels. The
+placeholder wrapper is the defect.
+
 Validation metrics for spatial biology predictions.
 
 Compares KOMPOSOS predictions against known biology:

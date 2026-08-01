@@ -3,6 +3,36 @@
 #!/usr/bin/env python3
 
 """
+QUARANTINED 2026-07-31 — NON-PRODUCT, EXCLUDED FROM VALIDATION.
+
+No output of this module may support a claim, appear on a public surface, or
+enter the scored path. Retained for dependency and historical review only; do not
+delete without that review.
+
+Two independent reasons.
+
+1. THE ENERGIES ARE NOT PHYSICAL. Stage 4 prints values in `kcal/mol`, but the
+   3D coordinates they are computed from are not measured or predicted
+   structures. `_contacts_to_coords` builds a distance matrix by ASSIGNING 7.0 A
+   to any contact and 15.0 A to any non-contact, runs classical MDS over that
+   fabricated matrix, falls back to `np.random.randn` on eigendecomposition
+   failure, then pushes atoms apart until no pair is under 3.5 A. Coordinates
+   constructed this way cannot support a folding free-energy, a stability call,
+   or any quantity in kcal/mol. Treat every `delta_energy` here as an
+   uncalibrated contact-map difference statistic wearing physical units.
+
+2. THE FRAMING IS CLINICAL OVERREACH. The original docstring below describes the
+   pipeline as producing "drug recommendations" for a patient's tumour and says
+   oncologists "face this exact problem daily." PHARM does not recommend
+   treatment, and no PHARM output may be framed as doing so.
+
+The roadmap's structural-biology track is explicit that this pipeline is not to
+be reused, and that structural evidence must enter as evidence objects with model
+source, per-residue confidence, PAE, ligand state and unresolved residues — not
+as reconstructed pseudo-coordinates.
+
+--- original docstring follows ---
+
 Mutation Impact Analysis Pipeline
 ===================================
 From a protein sequence and mutation -> drug recommendations.

@@ -2,6 +2,32 @@
 # SPDX-FileCopyrightText: 2026 James Ray Hawkins
 
 """
+QUARANTINED 2026-07-31 — NON-PRODUCT, EXCLUDED FROM VALIDATION.
+
+Not used by `validation.repurposing_benchmark`, which computes its ranking score
+in `score_pair()`. No published metric depends on this module. Retained for
+dependency and historical review only; do not delete without that review.
+
+NOTHING HERE IS CALIBRATED. Every constant is hand-set, and the docstrings
+suggesting otherwise ("learned from data", "after training") describe an
+intention, not a state:
+
+  - `self.coef` — the logistic intercept and all six coefficients are author-set
+    "reasonable defaults". No fit was performed. `set_coefficients()` exists but
+    is never called with fitted values anywhere in the repository.
+  - The blend in `combine()` — 0.3/0.7 when path features exist, 0.7/0.3 when
+    they do not — is also hand-set, and is the choice that actually determines
+    the output.
+  - `_compute_agreement()` maps variance to agreement via `1 - 4*variance`, an
+    arbitrary linear rescaling of a [0, 0.25] range.
+
+The output of `combine()` is therefore an unvalidated heuristic score in [0, 1].
+It is NOT a probability, and the sigmoid in `_logistic_combine()` must not be
+read as one. Calibration would require a held-out fit against the evaluation
+label set, which does not yet exist (roadmap Phase 0.5).
+
+--- original docstring follows ---
+
 Improved score combination using logistic model + path features.
 
 Replaces simple averaging with feature-based combination.
