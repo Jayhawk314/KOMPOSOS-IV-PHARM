@@ -1,0 +1,1696 @@
+{
+ "Avapritinib|GIST": {
+  "drug": "Avapritinib",
+  "disease": "GIST",
+  "horn_rank": 1,
+  "curated_status": "APPROVED",
+  "n_trials": 11,
+  "status_counts": {
+   "RECRUITING": 2,
+   "COMPLETED": 6,
+   "APPROVED_FOR_MARKETING": 1,
+   "NO_LONGER_AVAILABLE": 1,
+   "UNKNOWN": 1
+  },
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Dasatinib|GIST": {
+  "drug": "Dasatinib",
+  "disease": "GIST",
+  "horn_rank": 2,
+  "curated_status": "NONE",
+  "n_trials": 7,
+  "status_counts": {
+   "COMPLETED": 4,
+   "RECRUITING": 1,
+   "UNKNOWN": 1,
+   "TERMINATED": 1
+  },
+  "n_stopped_with_reason": 1,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT00688766",
+    "why": "Based on Independent Data Monitoring Committee (IDMC) recommendation.",
+    "class": "UNCLEAR",
+    "title": "Study Evaluating IPI-504 in Patients With Gastrointestinal Stromal Tumors (GIST) Following"
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Baricitinib|Myelofibrosis": {
+  "drug": "Baricitinib",
+  "disease": "Myelofibrosis",
+  "horn_rank": 3,
+  "curated_status": "NONE",
+  "n_trials": 0,
+  "status_counts": {},
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_TRIALS_FOUND"
+ },
+ "Deuruxolitinib|Myelofibrosis": {
+  "drug": "Deuruxolitinib",
+  "disease": "Myelofibrosis",
+  "horn_rank": 4,
+  "curated_status": "NONE",
+  "n_trials": 0,
+  "status_counts": {},
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_TRIALS_FOUND"
+ },
+ "Fedratinib|Myelofibrosis": {
+  "drug": "Fedratinib",
+  "disease": "Myelofibrosis",
+  "horn_rank": 5,
+  "curated_status": "APPROVED",
+  "n_trials": 20,
+  "status_counts": {
+   "COMPLETED": 9,
+   "RECRUITING": 3,
+   "AVAILABLE": 1,
+   "ACTIVE_NOT_RECRUITING": 3,
+   "NOT_YET_RECRUITING": 1,
+   "TERMINATED": 2,
+   "UNKNOWN": 1
+  },
+  "n_stopped_with_reason": 1,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT03755518",
+    "why": "Slow accrual.",
+    "class": "OPERATIONAL",
+    "title": "A Trial of Fedratinib in Subjects With DIPSS, Intermediate or High-Risk Primary Myelofibro"
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Filgotinib|Myelofibrosis": {
+  "drug": "Filgotinib",
+  "disease": "Myelofibrosis",
+  "horn_rank": 6,
+  "curated_status": "NONE",
+  "n_trials": 0,
+  "status_counts": {},
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_TRIALS_FOUND"
+ },
+ "Amivantamab|NSCLC": {
+  "drug": "Amivantamab",
+  "disease": "NSCLC",
+  "horn_rank": 7,
+  "curated_status": "APPROVED",
+  "n_trials": 35,
+  "status_counts": {
+   "ACTIVE_NOT_RECRUITING": 14,
+   "RECRUITING": 12,
+   "COMPLETED": 2,
+   "NOT_YET_RECRUITING": 3,
+   "TERMINATED": 2,
+   "APPROVED_FOR_MARKETING": 1,
+   "AVAILABLE": 1
+  },
+  "n_stopped_with_reason": 2,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 1,
+  "stops": [
+   {
+    "nct": "NCT05241873",
+    "why": "Sponsor decision, not related to safety concerns",
+    "class": "MIXED_NEEDS_HUMAN",
+    "title": "(Concerto) Study of BLU-451 in Advanced Cancers With EGFR Exon 20 Insertion Mutations"
+   },
+   {
+    "nct": "NCT05395052",
+    "why": "This study was terminated by the Sponsor.",
+    "class": "UNCLEAR",
+    "title": "FT536 Monotherapy and in Combination With Monoclonal Antibodies in Advanced Solid Tumors"
+   }
+  ],
+  "verdict": "NEEDS_HUMAN"
+ },
+ "Dacomitinib|NSCLC": {
+  "drug": "Dacomitinib",
+  "disease": "NSCLC",
+  "horn_rank": 8,
+  "curated_status": "APPROVED",
+  "n_trials": 35,
+  "status_counts": {
+   "UNKNOWN": 6,
+   "COMPLETED": 20,
+   "RECRUITING": 2,
+   "TERMINATED": 3,
+   "ACTIVE_NOT_RECRUITING": 3,
+   "WITHDRAWN": 1
+  },
+  "n_stopped_with_reason": 3,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT00971191",
+    "why": "See termination reason in detailed description.",
+    "class": "UNCLEAR",
+    "title": "A Study In Patients Who Will Undergo Surgical Removal Of Non-Small Cell Lung Cancer To Eva"
+   },
+   {
+    "nct": "NCT01918761",
+    "why": "poor accrual",
+    "class": "OPERATIONAL",
+    "title": "Dacomitinib + Pemetrexed for Patients With Advanced Non-squamous Non-small Cell Lung Cance"
+   },
+   {
+    "nct": "NCT06075615",
+    "why": "Sponsor Decision",
+    "class": "OPERATIONAL",
+    "title": "A Study to Learn About Dacomitnib in Patients With Non-small Cell Lung Cancer Which Has Sp"
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Dacomitinib|Breast_Cancer": {
+  "drug": "Dacomitinib",
+  "disease": "Breast_Cancer",
+  "horn_rank": 9,
+  "curated_status": "NONE",
+  "n_trials": 2,
+  "status_counts": {
+   "COMPLETED": 1,
+   "TERMINATED": 1
+  },
+  "n_stopped_with_reason": 1,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT03878524",
+    "why": "Low accrual",
+    "class": "OPERATIONAL",
+    "title": "Serial Measurements of Molecular and Architectural Responses to Therapy (SMMART) PRIME Tri"
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Lazertinib|NSCLC": {
+  "drug": "Lazertinib",
+  "disease": "NSCLC",
+  "horn_rank": 10,
+  "curated_status": "APPROVED",
+  "n_trials": 37,
+  "status_counts": {
+   "ACTIVE_NOT_RECRUITING": 11,
+   "RECRUITING": 9,
+   "UNKNOWN": 9,
+   "APPROVED_FOR_MARKETING": 1,
+   "COMPLETED": 5,
+   "NOT_YET_RECRUITING": 2
+  },
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Adagrasib|Pancreatic_Cancer": {
+  "drug": "Adagrasib",
+  "disease": "Pancreatic_Cancer",
+  "horn_rank": 11,
+  "curated_status": "TRIAL",
+  "n_trials": 7,
+  "status_counts": {
+   "TERMINATED": 3,
+   "COMPLETED": 1,
+   "RECRUITING": 1,
+   "ACTIVE_NOT_RECRUITING": 1,
+   "WITHDRAWN": 1
+  },
+  "n_stopped_with_reason": 4,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT06024174",
+    "why": "Business objectives have changed",
+    "class": "OPERATIONAL",
+    "title": "A Study of BMS-986466 With Adagrasib With or Without Cetuximab in Participants With Kirste"
+   },
+   {
+    "nct": "NCT06130254",
+    "why": "Sponsor discontinued the trial",
+    "class": "UNCLEAR",
+    "title": "Phase Ib Trial of the KRAS G12C Inhibitor Adagrasib (MRTX849) in Combination With the PARP"
+   },
+   {
+    "nct": "NCT04975256",
+    "why": "The decision was made to terminate this study to further enrollment, as of 08 March 2022. The decision was made primarily due to a change in development strategy.",
+    "class": "OPERATIONAL",
+    "title": "Adagrasib in Combination With BI 1701963 in Patients With Cancer (KRYSTAL 14)"
+   },
+   {
+    "nct": "NCT05634525",
+    "why": "No participants enrolled",
+    "class": "UNCLEAR",
+    "title": "Phase Ib Trial of the KRASG12C Inhibitor Adagrasib (MRTX849) in KRAS G12C Mutant Metastati"
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Sotorasib|Pancreatic_Cancer": {
+  "drug": "Sotorasib",
+  "disease": "Pancreatic_Cancer",
+  "horn_rank": 12,
+  "curated_status": "TRIAL",
+  "n_trials": 2,
+  "status_counts": {
+   "RECRUITING": 1,
+   "WITHDRAWN": 1
+  },
+  "n_stopped_with_reason": 1,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT05251038",
+    "why": "Funder Decision",
+    "class": "UNCLEAR",
+    "title": "Study of Sotorasib Combined With Chemotherapy for Second Line Treatment of Pancreas Cancer"
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Trastuzumab_deruxtecan|Breast_Cancer": {
+  "drug": "Trastuzumab_deruxtecan",
+  "disease": "Breast_Cancer",
+  "horn_rank": 13,
+  "curated_status": "APPROVED",
+  "n_trials": 0,
+  "status_counts": {},
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_TRIALS_FOUND"
+ },
+ "Ceritinib|NSCLC": {
+  "drug": "Ceritinib",
+  "disease": "NSCLC",
+  "horn_rank": 14,
+  "curated_status": "APPROVED",
+  "n_trials": 32,
+  "status_counts": {
+   "COMPLETED": 18,
+   "TERMINATED": 5,
+   "RECRUITING": 2,
+   "ACTIVE_NOT_RECRUITING": 3,
+   "UNKNOWN": 2,
+   "NO_LONGER_AVAILABLE": 2
+  },
+  "n_stopped_with_reason": 5,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT02554591",
+    "why": "Changes in treatment plans affecting drug therapy choices",
+    "class": "UNCLEAR",
+    "title": "Genomic Landscape of Ceritinib"
+   },
+   {
+    "nct": "NCT02513667",
+    "why": "The study was terminated after UTSW was informed by Novartis that further support for the study would not be provided",
+    "class": "UNCLEAR",
+    "title": "Ceritinib in Combination With Stereotactic Ablative Radiation Metastatic Lung Adenocarcino"
+   },
+   {
+    "nct": "NCT02186821",
+    "why": "Study was terminated due to low enrollment",
+    "class": "OPERATIONAL",
+    "title": "Ceritinib (LDK378) for Patients Whose Tumors Have Aberrations in ALK or ROS1 (SIGNATURE)"
+   },
+   {
+    "nct": "NCT03737994",
+    "why": "Inadequate accrual rate",
+    "class": "OPERATIONAL",
+    "title": "Targeted Treatment for ALK Positive Patients Who Have Previously Been Treated for Non-squa"
+   },
+   {
+    "nct": "NCT03087448",
+    "why": "Low Accrual",
+    "class": "OPERATIONAL",
+    "title": "Ceritinib + Trametinib in Patients With Advanced ALK-Positive Non-Small Cell Lung Cancer ("
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Ensartinib|NSCLC": {
+  "drug": "Ensartinib",
+  "disease": "NSCLC",
+  "horn_rank": 15,
+  "curated_status": "NEEDS_CHECK",
+  "n_trials": 31,
+  "status_counts": {
+   "NOT_YET_RECRUITING": 9,
+   "UNKNOWN": 7,
+   "COMPLETED": 4,
+   "AVAILABLE": 1,
+   "RECRUITING": 5,
+   "TERMINATED": 1,
+   "ACTIVE_NOT_RECRUITING": 4
+  },
+  "n_stopped_with_reason": 1,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT03737994",
+    "why": "Inadequate accrual rate",
+    "class": "OPERATIONAL",
+    "title": "Targeted Treatment for ALK Positive Patients Who Have Previously Been Treated for Non-squa"
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Lorlatinib|NSCLC": {
+  "drug": "Lorlatinib",
+  "disease": "NSCLC",
+  "horn_rank": 16,
+  "curated_status": "APPROVED",
+  "n_trials": 50,
+  "status_counts": {
+   "NO_LONGER_AVAILABLE": 1,
+   "NOT_YET_RECRUITING": 11,
+   "UNKNOWN": 3,
+   "ENROLLING_BY_INVITATION": 1,
+   "COMPLETED": 13,
+   "RECRUITING": 11,
+   "WITHDRAWN": 1,
+   "ACTIVE_NOT_RECRUITING": 8,
+   "TERMINATED": 1
+  },
+  "n_stopped_with_reason": 2,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT05948462",
+    "why": "Study withdrawn by pharmaceutical funding partner",
+    "class": "OPERATIONAL",
+    "title": "Lorlatinib in Combination With Chemotherapy in Participants With Metastatic Anaplastic Lym"
+   },
+   {
+    "nct": "NCT03737994",
+    "why": "Inadequate accrual rate",
+    "class": "OPERATIONAL",
+    "title": "Targeted Treatment for ALK Positive Patients Who Have Previously Been Treated for Non-squa"
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Afatinib|Breast_Cancer": {
+  "drug": "Afatinib",
+  "disease": "Breast_Cancer",
+  "horn_rank": 17,
+  "curated_status": "NONE",
+  "n_trials": 18,
+  "status_counts": {
+   "TERMINATED": 4,
+   "COMPLETED": 11,
+   "UNKNOWN": 2,
+   "ACTIVE_NOT_RECRUITING": 1
+  },
+  "n_stopped_with_reason": 4,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT02768337",
+    "why": "Slow recruitment",
+    "class": "OPERATIONAL",
+    "title": "Cambridge Brain Mets Trial 1"
+   },
+   {
+    "nct": "NCT03878524",
+    "why": "Low accrual",
+    "class": "OPERATIONAL",
+    "title": "Serial Measurements of Molecular and Architectural Responses to Therapy (SMMART) PRIME Tri"
+   },
+   {
+    "nct": "NCT01531764",
+    "why": "The recruitment was discontinued because of failure to meet expected enrolment goals",
+    "class": "OPERATIONAL",
+    "title": "BIBW 2992 (Afatinib) and Vinorelbine"
+   },
+   {
+    "nct": "NCT02115048",
+    "why": "Study was completed as per amended protocol. Protocol was amended to close enrollment earlier than initially planned (study continued as per plan).",
+    "class": "OPERATIONAL",
+    "title": "Clinical Study for the Treatment of Breast Cancer: the Patient Will Receive Afatinib Plus "
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Cetuximab|NSCLC": {
+  "drug": "Cetuximab",
+  "disease": "NSCLC",
+  "horn_rank": 18,
+  "curated_status": "NONE",
+  "n_trials": 50,
+  "status_counts": {
+   "COMPLETED": 24,
+   "UNKNOWN": 3,
+   "RECRUITING": 10,
+   "TERMINATED": 5,
+   "ACTIVE_NOT_RECRUITING": 4,
+   "NOT_YET_RECRUITING": 1,
+   "WITHDRAWN": 3
+  },
+  "n_stopped_with_reason": 8,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT00519831",
+    "why": "Drug unavailable",
+    "class": "UNCLEAR",
+    "title": "Ph II of Vinflunine and Cetuximab in Second Line Treatment of NSCLC"
+   },
+   {
+    "nct": "NCT06024174",
+    "why": "Business objectives have changed",
+    "class": "OPERATIONAL",
+    "title": "A Study of BMS-986466 With Adagrasib With or Without Cetuximab in Participants With Kirste"
+   },
+   {
+    "nct": "NCT00288054",
+    "why": "Study closed early due to poor accrual.",
+    "class": "OPERATIONAL",
+    "title": "S0429: Docetaxel, Cetuximab, and Radiation Therapy in Treating Patients With Stage III Non"
+   },
+   {
+    "nct": "NCT04648189",
+    "why": "One of the participating specialties has decided to no longer cooperate in this research",
+    "class": "UNCLEAR",
+    "title": "Cetuxibab to Reduce Circulating Tumor Cells in Early Stage NSCLC"
+   },
+   {
+    "nct": "NCT00694603",
+    "why": "Slow accrual",
+    "class": "OPERATIONAL",
+    "title": "Cetuximab as Therapy for Recurrent Non-Small Cell Lung Cancer Patients Who Have Received P"
+   },
+   {
+    "nct": "NCT01212627",
+    "why": "Determination to stop enrollment made due to funding",
+    "class": "OPERATIONAL",
+    "title": "Ridaforolimus With Cetuximab: Adv Non-Small Cell Lung, Colorectal, Head & Neck Cancer"
+   },
+   {
+    "nct": "NCT00998101",
+    "why": "Study was withdrawn due issuses related to the science",
+    "class": "UNCLEAR",
+    "title": "Carboplatin, Ixabepilone, and Cetuximab in Patients With Stage III or Stage IV Non-Small C"
+   },
+   {
+    "nct": "NCT04464967",
+    "why": "Trial not initiated",
+    "class": "UNCLEAR",
+    "title": "Safety and Preliminary Efficacy of SNK01 in Combination With Trastuzumab or Cetuximab in S"
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Brigatinib|NSCLC": {
+  "drug": "Brigatinib",
+  "disease": "NSCLC",
+  "horn_rank": 19,
+  "curated_status": "APPROVED",
+  "n_trials": 34,
+  "status_counts": {
+   "ACTIVE_NOT_RECRUITING": 7,
+   "RECRUITING": 7,
+   "COMPLETED": 11,
+   "TERMINATED": 3,
+   "UNKNOWN": 3,
+   "WITHDRAWN": 2,
+   "NO_LONGER_AVAILABLE": 1
+  },
+  "n_stopped_with_reason": 5,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 1,
+  "stops": [
+   {
+    "nct": "NCT03737994",
+    "why": "Inadequate accrual rate",
+    "class": "OPERATIONAL",
+    "title": "Targeted Treatment for ALK Positive Patients Who Have Previously Been Treated for Non-squa"
+   },
+   {
+    "nct": "NCT02706626",
+    "why": "Did not meet enrollment objectives.",
+    "class": "MIXED_NEEDS_HUMAN",
+    "title": "Trial of Brigatinib After Treatment With Next-Generation ALK Inhibitors"
+   },
+   {
+    "nct": "NCT05718297",
+    "why": "Despite our efforts, the trial faced challenges like a longer activation period and slower accrual. We proposed a redesign, but TAKEDA withdrew. As a non-profit organisation, we can't continue without TAKEDA's support and must discontinue the trial.",
+    "class": "OPERATIONAL",
+    "title": "Brigatinib Post Definitive Chemo-radiotherapy in Patients with ALK-fusion Non-small Cell L"
+   },
+   {
+    "nct": "NCT04005144",
+    "why": "Low Accrual",
+    "class": "OPERATIONAL",
+    "title": "Brigatinib and Binimetinib in Treating Patients With Stage IIIB-IV ALK or ROS1-Rearranged "
+   },
+   {
+    "nct": "NCT06522360",
+    "why": "0 participants enrolled",
+    "class": "UNCLEAR",
+    "title": "Brigatinib Plus Chemotherapy or Local Consolidation Therapy in ALK Positive Advanced Non-s"
+   }
+  ],
+  "verdict": "NEEDS_HUMAN"
+ },
+ "Daunorubicin|Breast_Cancer": {
+  "drug": "Daunorubicin",
+  "disease": "Breast_Cancer",
+  "horn_rank": 20,
+  "curated_status": "NONE",
+  "n_trials": 50,
+  "status_counts": {
+   "COMPLETED": 30,
+   "ACTIVE_NOT_RECRUITING": 3,
+   "UNKNOWN": 11,
+   "TERMINATED": 2,
+   "RECRUITING": 4
+  },
+  "n_stopped_with_reason": 2,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT01697293",
+    "why": "criteria for continuing enrollment in Phase 2 portion was not met",
+    "class": "OPERATIONAL",
+    "title": "PTX-200, Paclitaxel, Doxorubicin Hydrochloride, and Cyclophosphamide in Treating Patients "
+   },
+   {
+    "nct": "NCT01985841",
+    "why": "Due to poor accrual",
+    "class": "OPERATIONAL",
+    "title": "Bevacizumab in Combination With Chemotherapy in the Neo-adjuvant Setting for HER2 (-) Brea"
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Doxorubicin|Breast_Cancer": {
+  "drug": "Doxorubicin",
+  "disease": "Breast_Cancer",
+  "horn_rank": 21,
+  "curated_status": "APPROVED",
+  "n_trials": 50,
+  "status_counts": {
+   "COMPLETED": 26,
+   "ACTIVE_NOT_RECRUITING": 4,
+   "UNKNOWN": 14,
+   "RECRUITING": 4,
+   "TERMINATED": 2
+  },
+  "n_stopped_with_reason": 2,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT00082095",
+    "why": "The study was terminated due to poor recruitment (after enrolling 62 of planned 300 patients in 20 months",
+    "class": "OPERATIONAL",
+    "title": "To Compare Treatment With Doxorubicin or Capecitabine for Metastatic Breast Cancer in Wome"
+   },
+   {
+    "nct": "NCT01697293",
+    "why": "criteria for continuing enrollment in Phase 2 portion was not met",
+    "class": "OPERATIONAL",
+    "title": "PTX-200, Paclitaxel, Doxorubicin Hydrochloride, and Cyclophosphamide in Treating Patients "
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Etoposide|Breast_Cancer": {
+  "drug": "Etoposide",
+  "disease": "Breast_Cancer",
+  "horn_rank": 22,
+  "curated_status": "NONE",
+  "n_trials": 32,
+  "status_counts": {
+   "UNKNOWN": 8,
+   "COMPLETED": 17,
+   "TERMINATED": 3,
+   "RECRUITING": 3,
+   "WITHDRAWN": 1
+  },
+  "n_stopped_with_reason": 4,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT00810017",
+    "why": "Terminated due to difficulty in accruing patients",
+    "class": "UNCLEAR",
+    "title": "Phase 2 Study of Trastuzumab and Etoposide for Her2 Positive Breast Cancer"
+   },
+   {
+    "nct": "NCT00006032",
+    "why": "low accrual",
+    "class": "OPERATIONAL",
+    "title": "Combination Chemotherapy Followed by Peripheral Stem Cell Transplantation in Treating Wome"
+   },
+   {
+    "nct": "NCT00020722",
+    "why": "Lack of funding to continue study.",
+    "class": "OPERATIONAL",
+    "title": "Chemotherapy Followed by Peripheral Stem Cell Transplantation Plus Biological Therapy in T"
+   },
+   {
+    "nct": "NCT00006126",
+    "why": "Unable to accrue subjects.",
+    "class": "UNCLEAR",
+    "title": "Peripheral Stem Cell Transplantation in Treating Patients With Melanoma or Small Cell Lung"
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Idarubicin|Breast_Cancer": {
+  "drug": "Idarubicin",
+  "disease": "Breast_Cancer",
+  "horn_rank": 23,
+  "curated_status": "NONE",
+  "n_trials": 0,
+  "status_counts": {},
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_TRIALS_FOUND"
+ },
+ "Fedratinib|AML": {
+  "drug": "Fedratinib",
+  "disease": "AML",
+  "horn_rank": 24,
+  "curated_status": "NONE",
+  "n_trials": 1,
+  "status_counts": {
+   "RECRUITING": 1
+  },
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Gilteritinib|AML": {
+  "drug": "Gilteritinib",
+  "disease": "AML",
+  "horn_rank": 25,
+  "curated_status": "APPROVED",
+  "n_trials": 50,
+  "status_counts": {
+   "NOT_YET_RECRUITING": 4,
+   "ACTIVE_NOT_RECRUITING": 4,
+   "RECRUITING": 19,
+   "TERMINATED": 4,
+   "COMPLETED": 10,
+   "WITHDRAWN": 3,
+   "SUSPENDED": 1,
+   "UNKNOWN": 3,
+   "NO_LONGER_AVAILABLE": 2
+  },
+  "n_stopped_with_reason": 8,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 1,
+  "stops": [
+   {
+    "nct": "NCT03922100",
+    "why": "Study stopped due to strategic reasons. The decision is not based on specific safety findings as the safety observed in the phase II part of the study is in line with what was reported in the phase I part.",
+    "class": "MIXED_NEEDS_HUMAN",
+    "title": "Study of NMS-03592088 in Patients With Relapsed or Refractory AML or CMML"
+   },
+   {
+    "nct": "NCT05279859",
+    "why": "Sponsor decision.",
+    "class": "OPERATIONAL",
+    "title": "A Study of Anti-Cancer Therapies Targeting the MAPK Pathway in Patients With Hematologic M"
+   },
+   {
+    "nct": "NCT05330377",
+    "why": "Sponsor withdrew funding",
+    "class": "OPERATIONAL",
+    "title": "GM-CLAG in Relapsed/Refractory FLT3-mutated AML"
+   },
+   {
+    "nct": "NCT05955261",
+    "why": "PI requests voluntary hold",
+    "class": "UNCLEAR",
+    "title": "A Study of Venetoclax in Combination With Conventional Chemotherapy in Pediatric Patients "
+   },
+   {
+    "nct": "NCT04655391",
+    "why": "Drug availability",
+    "class": "UNCLEAR",
+    "title": "Glasdegib-Based Treatment Combinations for the Treatment of Patients With Relapsed Acute M"
+   },
+   {
+    "nct": "NCT04336982",
+    "why": "Business objectives have changed.",
+    "class": "OPERATIONAL",
+    "title": "A Safety and Efficacy Study of CC-90009 Combinations in Subjects With Acute Myeloid Leukem"
+   },
+   {
+    "nct": "NCT05028751",
+    "why": "Sponsor decision",
+    "class": "OPERATIONAL",
+    "title": "A Study to Evaluate Lanraplenib (LANRA) in Combination With Gilteritinib in Participants W"
+   },
+   {
+    "nct": "NCT04477291",
+    "why": "Change in corporate strategy",
+    "class": "UNCLEAR",
+    "title": "A Study of CG-806 in Patients With Relapsed or Refractory AML or Higher-Risk MDS"
+   }
+  ],
+  "verdict": "NEEDS_HUMAN"
+ },
+ "Lapatinib|NSCLC": {
+  "drug": "Lapatinib",
+  "disease": "NSCLC",
+  "horn_rank": 26,
+  "curated_status": "NONE",
+  "n_trials": 6,
+  "status_counts": {
+   "COMPLETED": 4,
+   "TERMINATED": 1,
+   "UNKNOWN": 1
+  },
+  "n_stopped_with_reason": 1,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 1,
+  "stops": [
+   {
+    "nct": "NCT00073008",
+    "why": "Based on interim analysis at the end of Stage 1, and predefined stopping rules for futility, further enrollment was stopped due to lack of efficacy",
+    "class": "MIXED_NEEDS_HUMAN",
+    "title": "A Study Of Oral GW572016 In Advanced Or Metastatic Non-Small Cell Lung Cancer"
+   }
+  ],
+  "verdict": "NEEDS_HUMAN"
+ },
+ "Alpelisib|Breast_Cancer": {
+  "drug": "Alpelisib",
+  "disease": "Breast_Cancer",
+  "horn_rank": 27,
+  "curated_status": "APPROVED",
+  "n_trials": 50,
+  "status_counts": {
+   "COMPLETED": 21,
+   "ACTIVE_NOT_RECRUITING": 9,
+   "RECRUITING": 6,
+   "NO_LONGER_AVAILABLE": 1,
+   "TERMINATED": 7,
+   "WITHDRAWN": 2,
+   "UNKNOWN": 3,
+   "NOT_YET_RECRUITING": 1
+  },
+  "n_stopped_with_reason": 9,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 2,
+  "stops": [
+   {
+    "nct": "NCT02734615",
+    "why": "Sponsor's decision",
+    "class": "UNCLEAR",
+    "title": "Phase I/Ib Trial of LSZ102 Single Agent or LSZ102 + LEE011 or LSZ102 + BYL719 in ER+ Breas"
+   },
+   {
+    "nct": "NCT03386162",
+    "why": "Study was halted Prematurely for low recruitment.",
+    "class": "OPERATIONAL",
+    "title": "SAFIR-PI3K A Phase II Randomized Maintenance Trial Comparing Alpelisib and Fulvestrant Ver"
+   },
+   {
+    "nct": "NCT03439046",
+    "why": "Novartis terminated the trial early because the collected data were sufficient to perform the analysis stated for the primary endpoint.",
+    "class": "UNCLEAR",
+    "title": "Study of the Molecular Features of Postmenopausal Women With HR+ HER2-negative aBC on Firs"
+   },
+   {
+    "nct": "NCT05967286",
+    "why": "Other - Protocol moved to Withdrawn",
+    "class": "UNCLEAR",
+    "title": "Olaparib and Alpelisib for Treatment of Metastatic Breast Cancer, A ComboMATCH Treatment T"
+   },
+   {
+    "nct": "NCT03284957",
+    "why": "Sponsor decision to prematurely stop the study, not linked to any safety concern.",
+    "class": "MIXED_NEEDS_HUMAN",
+    "title": "Phase 1/2 Study of Amcenestrant (SAR439859) Single Agent and in Combination With Other Ant"
+   },
+   {
+    "nct": "NCT04216472",
+    "why": "\\<75% participation",
+    "class": "UNCLEAR",
+    "title": "Nab-paclitaxel and Alpelisib for the Treatment of Anthracycline Refractory Triple Negative"
+   },
+   {
+    "nct": "NCT05238831",
+    "why": "Withdrawn due to a change in therapeutic interventions.",
+    "class": "UNCLEAR",
+    "title": "SMMART Adaptive Clinical Treatment (ACT) Trial"
+   },
+   {
+    "nct": "NCT04967248",
+    "why": "Low recruitment",
+    "class": "OPERATIONAL",
+    "title": "A NIS of Alpelisib in Combination With Fulvestrant in Postmenopausal Women, and Men, With "
+   },
+   {
+    "nct": "NCT04899349",
+    "why": "Study was early terminated due to slow recruitment and emerging data showing that prophylactic use of metformin may prevent or reduce the incidence of all-grades alpelisib-related hyperglycemia. The decision was not driven by safety concerns",
+    "class": "MIXED_NEEDS_HUMAN",
+    "title": "Study of Safety and Efficacy of Dapagliflozin + Metformin XR Versus Metformin XR in Partic"
+   }
+  ],
+  "verdict": "NEEDS_HUMAN"
+ },
+ "Copanlisib|Breast_Cancer": {
+  "drug": "Copanlisib",
+  "disease": "Breast_Cancer",
+  "horn_rank": 28,
+  "curated_status": "NONE",
+  "n_trials": 11,
+  "status_counts": {
+   "TERMINATED": 5,
+   "WITHDRAWN": 2,
+   "COMPLETED": 1,
+   "ACTIVE_NOT_RECRUITING": 3
+  },
+  "n_stopped_with_reason": 7,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT03432741",
+    "why": "funding - sponsor filing Chapter 11 bankruptcy",
+    "class": "OPERATIONAL",
+    "title": "Direct Tumor Microinjection and FDG-PET in Testing Drug Sensitivity in Patients With Relap"
+   },
+   {
+    "nct": "NCT03377101",
+    "why": "change in study design.",
+    "class": "UNCLEAR",
+    "title": "Fulvestrant and Palbociclib With or Without Copanlisib in Treating Patients With Hormone R"
+   },
+   {
+    "nct": "NCT03128619",
+    "why": "Insufficient accrual",
+    "class": "OPERATIONAL",
+    "title": "Copanlisib, Letrozole, and Palbociclib in Treating Patients With Hormone Receptor Positive"
+   },
+   {
+    "nct": "NCT04108858",
+    "why": "Inadequate accrual rate",
+    "class": "OPERATIONAL",
+    "title": "Testing the Addition of an Anti-cancer Drug, Copanlisib, to the Usual Maintenance Treatmen"
+   },
+   {
+    "nct": "NCT03878524",
+    "why": "Low accrual",
+    "class": "OPERATIONAL",
+    "title": "Serial Measurements of Molecular and Architectural Responses to Therapy (SMMART) PRIME Tri"
+   },
+   {
+    "nct": "NCT04042051",
+    "why": "Accrual rate to date was too low to finish the trial in a reasonable timeframe",
+    "class": "OPERATIONAL",
+    "title": "Copanlisib in Combination With T-DM1 in Pretreated Unresectable Locally Advanced or Metast"
+   },
+   {
+    "nct": "NCT03803761",
+    "why": "Inadequate accrual rate",
+    "class": "OPERATIONAL",
+    "title": "A Study of a New Drug Combination, Copanlisib and Fulvestrant, in Advanced Breast Cancer"
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Inavolisib|Breast_Cancer": {
+  "drug": "Inavolisib",
+  "disease": "Breast_Cancer",
+  "horn_rank": 29,
+  "curated_status": "APPROVED",
+  "n_trials": 20,
+  "status_counts": {
+   "NOT_YET_RECRUITING": 4,
+   "RECRUITING": 12,
+   "ACTIVE_NOT_RECRUITING": 3,
+   "TERMINATED": 1
+  },
+  "n_stopped_with_reason": 1,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT04849364",
+    "why": "Funder Decision",
+    "class": "UNCLEAR",
+    "title": "Circulating Tumor DNA Enriched, Genomically Directed Post-neoadjuvant Trial for Patients W"
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Adagrasib|Colorectal_Cancer": {
+  "drug": "Adagrasib",
+  "disease": "Colorectal_Cancer",
+  "horn_rank": 30,
+  "curated_status": "APPROVED",
+  "n_trials": 12,
+  "status_counts": {
+   "TERMINATED": 4,
+   "ACTIVE_NOT_RECRUITING": 3,
+   "COMPLETED": 1,
+   "RECRUITING": 3,
+   "NOT_YET_RECRUITING": 1
+  },
+  "n_stopped_with_reason": 4,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 1,
+  "stops": [
+   {
+    "nct": "NCT06024174",
+    "why": "Business objectives have changed",
+    "class": "OPERATIONAL",
+    "title": "A Study of BMS-986466 With Adagrasib With or Without Cetuximab in Participants With Kirste"
+   },
+   {
+    "nct": "NCT06039384",
+    "why": "This was a strategic business decision. There were no safety concerns contributing to this decision.",
+    "class": "MIXED_NEEDS_HUMAN",
+    "title": "A Study of INCB099280 in Combination With Adagrasib in Adults With Advanced Solid Tumors H"
+   },
+   {
+    "nct": "NCT04975256",
+    "why": "The decision was made to terminate this study to further enrollment, as of 08 March 2022. The decision was made primarily due to a change in development strategy.",
+    "class": "OPERATIONAL",
+    "title": "Adagrasib in Combination With BI 1701963 in Patients With Cancer (KRYSTAL 14)"
+   },
+   {
+    "nct": "NCT05578092",
+    "why": "business objectives have changed",
+    "class": "OPERATIONAL",
+    "title": "A Phase 1 Study of MRTX0902 in Solid Tumors With Mutations in the KRAS MAPK Pathway"
+   }
+  ],
+  "verdict": "NEEDS_HUMAN"
+ },
+ "Sotorasib|Colorectal_Cancer": {
+  "drug": "Sotorasib",
+  "disease": "Colorectal_Cancer",
+  "horn_rank": 31,
+  "curated_status": "APPROVED",
+  "n_trials": 6,
+  "status_counts": {
+   "NOT_YET_RECRUITING": 2,
+   "COMPLETED": 1,
+   "RECRUITING": 3
+  },
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Adagrasib|NSCLC": {
+  "drug": "Adagrasib",
+  "disease": "NSCLC",
+  "horn_rank": 32,
+  "curated_status": "APPROVED",
+  "n_trials": 23,
+  "status_counts": {
+   "ACTIVE_NOT_RECRUITING": 6,
+   "TERMINATED": 5,
+   "COMPLETED": 2,
+   "RECRUITING": 7,
+   "WITHDRAWN": 1,
+   "NOT_YET_RECRUITING": 2
+  },
+  "n_stopped_with_reason": 6,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 1,
+  "stops": [
+   {
+    "nct": "NCT06024174",
+    "why": "Business objectives have changed",
+    "class": "OPERATIONAL",
+    "title": "A Study of BMS-986466 With Adagrasib With or Without Cetuximab in Participants With Kirste"
+   },
+   {
+    "nct": "NCT06039384",
+    "why": "This was a strategic business decision. There were no safety concerns contributing to this decision.",
+    "class": "MIXED_NEEDS_HUMAN",
+    "title": "A Study of INCB099280 in Combination With Adagrasib in Adults With Advanced Solid Tumors H"
+   },
+   {
+    "nct": "NCT04975256",
+    "why": "The decision was made to terminate this study to further enrollment, as of 08 March 2022. The decision was made primarily due to a change in development strategy.",
+    "class": "OPERATIONAL",
+    "title": "Adagrasib in Combination With BI 1701963 in Patients With Cancer (KRYSTAL 14)"
+   },
+   {
+    "nct": "NCT05578092",
+    "why": "business objectives have changed",
+    "class": "OPERATIONAL",
+    "title": "A Phase 1 Study of MRTX0902 in Solid Tumors With Mutations in the KRAS MAPK Pathway"
+   },
+   {
+    "nct": "NCT05472623",
+    "why": "no participants enrolled across sites",
+    "class": "UNCLEAR",
+    "title": "Neoadjuvant KRAS G12C Directed Therapy With Adagrasib (MRTX849) With or Without Nivolumab"
+   },
+   {
+    "nct": "NCT05840510",
+    "why": "Business objectives have changed",
+    "class": "OPERATIONAL",
+    "title": "Adagrasib in Combination With Nab-Sirolimus in Patients With Advanced Solid Tumors and Non"
+   }
+  ],
+  "verdict": "NEEDS_HUMAN"
+ },
+ "Sotorasib|NSCLC": {
+  "drug": "Sotorasib",
+  "disease": "NSCLC",
+  "horn_rank": 33,
+  "curated_status": "APPROVED",
+  "n_trials": 37,
+  "status_counts": {
+   "ACTIVE_NOT_RECRUITING": 5,
+   "UNKNOWN": 4,
+   "RECRUITING": 9,
+   "WITHDRAWN": 4,
+   "TERMINATED": 5,
+   "COMPLETED": 8,
+   "NO_LONGER_AVAILABLE": 1,
+   "NOT_YET_RECRUITING": 1
+  },
+  "n_stopped_with_reason": 9,
+  "n_scientific_stop": 1,
+  "n_mixed_stop": 1,
+  "stops": [
+   {
+    "nct": "NCT05180422",
+    "why": "Lack of enrollment",
+    "class": "OPERATIONAL",
+    "title": "A Phase I/II Study of AMG 510 in Combination With MVASI in Patients With Advanced, Unresec"
+   },
+   {
+    "nct": "NCT04892017",
+    "why": "Trial terminated due to business decision, not based on any safety or efficacy concerns.",
+    "class": "MIXED_NEEDS_HUMAN",
+    "title": "Study of Inlexisertib (DCC-3116) in Participants With RAS/MAPK Pathway Mutant Solid Tumors"
+   },
+   {
+    "nct": "NCT06068153",
+    "why": "In view of the recent developments in the field (the increasing number of trials with new KRAS inhibitors), the window of opportunity to answer the question raised in the AMBER trial was missed.",
+    "class": "UNCLEAR",
+    "title": "AMG510 (sotorasib) Plus Lenvatinib As Second-line Treatment in Patients with KRASG12C Muta"
+   },
+   {
+    "nct": "NCT05400577",
+    "why": "Grantor withdrew support due to slow accrual",
+    "class": "OPERATIONAL",
+    "title": "Sotorasib in KRAS G12C Mutated, Resectable, Stage Ib-IIIA NSCLC"
+   },
+   {
+    "nct": "NCT05313009",
+    "why": "Study drug was discontinued by manufacturer for business reasons.",
+    "class": "OPERATIONAL",
+    "title": "Tarlox and Sotorasib in Patients With KRAS G12C Mutations"
+   },
+   {
+    "nct": "NCT04933695",
+    "why": "Futility",
+    "class": "SCIENTIFIC",
+    "title": "A Study of Sotorasib (AMG 510) in Participants With Stage IV NSCLC Whose Tumors Harbor a K"
+   },
+   {
+    "nct": "NCT05815186",
+    "why": "Study record has been combined with NCT05815173 (Phase I/II study).",
+    "class": "UNCLEAR",
+    "title": "Ladarixin With Sotorasib in Advanced NSCLC - Phase II"
+   },
+   {
+    "nct": "NCT05480865",
+    "why": "Business Reasons",
+    "class": "OPERATIONAL",
+    "title": "SHP2 Inhibitor BBP-398 in Combination With Sotorasib in Patients With Advanced Solid Tumor"
+   },
+   {
+    "nct": "NCT05374538",
+    "why": "Sponsor decision",
+    "class": "OPERATIONAL",
+    "title": "VIC-1911 Monotherapy in Combination With Sotorasib for the Treatment of KRAS G12C-Mutant N"
+   }
+  ],
+  "verdict": "NEGATIVE_EVIDENCE"
+ },
+ "Avelumab|NSCLC": {
+  "drug": "Avelumab",
+  "disease": "NSCLC",
+  "horn_rank": 34,
+  "curated_status": "NONE",
+  "n_trials": 37,
+  "status_counts": {
+   "WITHDRAWN": 2,
+   "COMPLETED": 12,
+   "ACTIVE_NOT_RECRUITING": 5,
+   "TERMINATED": 13,
+   "RECRUITING": 2,
+   "UNKNOWN": 3
+  },
+  "n_stopped_with_reason": 15,
+  "n_scientific_stop": 5,
+  "n_mixed_stop": 1,
+  "stops": [
+   {
+    "nct": "NCT03169738",
+    "why": "Trial not initiated",
+    "class": "UNCLEAR",
+    "title": "QUILT-3.044: NANT Non-small Cell Lung Cancer (NSCLC) Vaccine: Combination Immunotherapy in"
+   },
+   {
+    "nct": "NCT02349633",
+    "why": "The study was ended for strategic reasons and changes in the external environment.\n\nThe safety profile and risk benefit ratio for PF-0674775 remained unchanged.",
+    "class": "MIXED_NEEDS_HUMAN",
+    "title": "Study For Patients With NSCLC EGFR Mutations (Del 19 or L858R +/- T790M)"
+   },
+   {
+    "nct": "NCT04260802",
+    "why": "Business Decision",
+    "class": "OPERATIONAL",
+    "title": "A Study to Evaluate the Safety and Pharmacokinetics of OC-001 in Patients With Locally Adv"
+   },
+   {
+    "nct": "NCT04902040",
+    "why": "PI requested.",
+    "class": "UNCLEAR",
+    "title": "Plinabulin in Combination With Radiation/Immunotherapy in Patients With Select Advanced Ca"
+   },
+   {
+    "nct": "NCT03317496",
+    "why": "The study was terminated since there was no need for further safety or efficacy data to be collected. The participants having benefit from the investigational treatments have been moved to a continuation study (NCT05059522).",
+    "class": "SCIENTIFIC",
+    "title": "Safety And Efficacy Study Of Avelumab Plus Chemotherapy With Or Without Other Anti-Cancer "
+   },
+   {
+    "nct": "NCT03386929",
+    "why": "The SPRING trial had to be early terminated at the end of the Phase 1 portion of the study due to the absence of funding necessary for the performance of the Phase 2.",
+    "class": "OPERATIONAL",
+    "title": "Survival Prolongation by Rationale Innovative Genomics"
+   },
+   {
+    "nct": "NCT04551885",
+    "why": "This study was terminated by the Sponsor.",
+    "class": "UNCLEAR",
+    "title": "FT516 in Combination With Monoclonal Antibodies in Advanced Solid Tumors"
+   },
+   {
+    "nct": "NCT05069935",
+    "why": "This study was terminated by the Sponsor.",
+    "class": "UNCLEAR",
+    "title": "FT538 in Combination With Monoclonal Antibodies in Advanced Solid Tumors"
+   },
+   {
+    "nct": "NCT05395052",
+    "why": "This study was terminated by the Sponsor.",
+    "class": "UNCLEAR",
+    "title": "FT536 Monotherapy and in Combination With Monoclonal Antibodies in Advanced Solid Tumors"
+   },
+   {
+    "nct": "NCT02584634",
+    "why": "The study was terminated since there was no need for further safety or efficacy data to be collected. The participants having benefit from the Investigational treatments have been moved to a continuation study (NCT05059522)",
+    "class": "SCIENTIFIC",
+    "title": "Study to Evaluate Safety, Efficacy, Pharmacokinetics And Pharmacodynamics Of Avelumab In C"
+   },
+   {
+    "nct": "NCT02554812",
+    "why": "The study was terminated since there was no need for further safety or efficacy data to be collected. The participants having benefit from the Investigational treatments have been moved to a continuation study (NCT05059522)",
+    "class": "SCIENTIFIC",
+    "title": "A Study Of Avelumab In Combination With Other Cancer Immunotherapies In Advanced Malignanc"
+   },
+   {
+    "nct": "NCT03574649",
+    "why": "Trial not initiated",
+    "class": "UNCLEAR",
+    "title": "QUILT-2.024: Phase 2 Neoadjuvant, Consolidation, and Adjuvant Combination NANT Immunothera"
+   },
+   {
+    "nct": "NCT03050554",
+    "why": "Funding",
+    "class": "OPERATIONAL",
+    "title": "SBRT Combined With Avelumab (Anti-PD-L1) for Management of Early Stage Non-Small Cell Lung"
+   },
+   {
+    "nct": "NCT03472560",
+    "why": "The study was terminated since there was no need for further safety or efficacy data to be collected. The participants having benefit from the Investigational treatments have been moved to a continuation study (NCT05059522)",
+    "class": "SCIENTIFIC",
+    "title": "A Study of Avelumab in Combination With Axitinib In Non-Small Cell Lung Cancer (NSCLC) or "
+   },
+   {
+    "nct": "NCT03330405",
+    "why": "The study was terminated since there was no need for further safety or efficacy data to be collected. The participants having benefit from the investigational treatments have been moved to a continuation study (NCT05059522).",
+    "class": "SCIENTIFIC",
+    "title": "Javelin Parp Medley: Avelumab Plus Talazoparib In Locally Advanced Or Metastatic Solid Tum"
+   }
+  ],
+  "verdict": "NEGATIVE_EVIDENCE"
+ },
+ "Cosibelimab|NSCLC": {
+  "drug": "Cosibelimab",
+  "disease": "NSCLC",
+  "horn_rank": 35,
+  "curated_status": "NONE",
+  "n_trials": 2,
+  "status_counts": {
+   "TERMINATED": 1,
+   "ACTIVE_NOT_RECRUITING": 1
+  },
+  "n_stopped_with_reason": 1,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT04786964",
+    "why": "Regional political conflict",
+    "class": "UNCLEAR",
+    "title": "Study of Pemetrexed+Platinum Chemotherapy With or Without Cosibelimab in First Line Metast"
+   }
+  ],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Amivantamab|Glioblastoma": {
+  "drug": "Amivantamab",
+  "disease": "Glioblastoma",
+  "horn_rank": 36,
+  "curated_status": "FAILED_CLASS",
+  "n_trials": 1,
+  "status_counts": {
+   "RECRUITING": 1
+  },
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Dacomitinib|Glioblastoma": {
+  "drug": "Dacomitinib",
+  "disease": "Glioblastoma",
+  "horn_rank": 37,
+  "curated_status": "FAILED",
+  "n_trials": 2,
+  "status_counts": {
+   "COMPLETED": 2
+  },
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Lazertinib|Glioblastoma": {
+  "drug": "Lazertinib",
+  "disease": "Glioblastoma",
+  "horn_rank": 38,
+  "curated_status": "FAILED_CLASS",
+  "n_trials": 0,
+  "status_counts": {},
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_TRIALS_FOUND"
+ },
+ "Cemiplimab|Melanoma": {
+  "drug": "Cemiplimab",
+  "disease": "Melanoma",
+  "horn_rank": 39,
+  "curated_status": "NONE",
+  "n_trials": 29,
+  "status_counts": {
+   "ACTIVE_NOT_RECRUITING": 7,
+   "RECRUITING": 9,
+   "NOT_YET_RECRUITING": 2,
+   "UNKNOWN": 2,
+   "COMPLETED": 5,
+   "TERMINATED": 3,
+   "ENROLLING_BY_INVITATION": 1
+  },
+  "n_stopped_with_reason": 3,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 1,
+  "stops": [
+   {
+    "nct": "NCT06052852",
+    "why": "Sponsor decision",
+    "class": "OPERATIONAL",
+    "title": "Study of BDC-3042 as Single Agent and in Combination With Cemiplimab in Patients With Adva"
+   },
+   {
+    "nct": "NCT04913220",
+    "why": "Early discontinuation based on strategic sponsor decision not driven by any safety concerns",
+    "class": "MIXED_NEEDS_HUMAN",
+    "title": "A Study of SAR444245 Combined With Cemiplimab for the Treatment of Participants With Vario"
+   },
+   {
+    "nct": "NCT03684785",
+    "why": "The study was canceled for administrative reasons.",
+    "class": "OPERATIONAL",
+    "title": "Intratumoral Cavrotolimod Combined With Pembrolizumab or Cemiplimab in Patients With Merke"
+   }
+  ],
+  "verdict": "NEEDS_HUMAN"
+ },
+ "Cemiplimab|NSCLC": {
+  "drug": "Cemiplimab",
+  "disease": "NSCLC",
+  "horn_rank": 40,
+  "curated_status": "APPROVED",
+  "n_trials": 50,
+  "status_counts": {
+   "WITHDRAWN": 1,
+   "ACTIVE_NOT_RECRUITING": 11,
+   "NOT_YET_RECRUITING": 6,
+   "COMPLETED": 3,
+   "TERMINATED": 4,
+   "RECRUITING": 22,
+   "UNKNOWN": 2,
+   "SUSPENDED": 1
+  },
+  "n_stopped_with_reason": 6,
+  "n_scientific_stop": 1,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT05840770",
+    "why": "no accrual",
+    "class": "OPERATIONAL",
+    "title": "Cemiplimab for the Treatment of Untreated Brain Metastases From PD-L1 >= 50% Non-Small Cel"
+   },
+   {
+    "nct": "NCT03515629",
+    "why": "Business decision",
+    "class": "OPERATIONAL",
+    "title": "REGN2810 (Anti-PD-1 Antibody), Platinum-based Doublet Chemotherapy, and Ipilimumab (Anti-C"
+   },
+   {
+    "nct": "NCT06385262",
+    "why": "Protocol is currently undergoing study design revisions and will re-open after amendment is IRB approved",
+    "class": "UNCLEAR",
+    "title": "TOP 2301: Neoadjuvant Chemo for NSCLC"
+   },
+   {
+    "nct": "NCT06052852",
+    "why": "Sponsor decision",
+    "class": "OPERATIONAL",
+    "title": "Study of BDC-3042 as Single Agent and in Combination With Cemiplimab in Patients With Adva"
+   },
+   {
+    "nct": "NCT04916002",
+    "why": "Sponsor Decision related to study drug supply",
+    "class": "OPERATIONAL",
+    "title": "A Trial To Find Out If Vidutolimod Together With Cemiplimab Is Safe And If It Works In Adu"
+   },
+   {
+    "nct": "NCT03367819",
+    "why": "The study was stopped after interim analysis indicated that overall result was not sufficient to satisfy per-protocol criteria to move forward in metastatic, castration-resistant prostate cancer (mCRPC) and non-small cell lung cancer (NSCLC) cohorts.",
+    "class": "SCIENTIFIC",
+    "title": "Isatuximab in Combination With REGN2810 (Cemiplimab) in Patients With Advanced Malignancie"
+   }
+  ],
+  "verdict": "NEGATIVE_EVIDENCE"
+ },
+ "Dostarlimab|Melanoma": {
+  "drug": "Dostarlimab",
+  "disease": "Melanoma",
+  "horn_rank": 41,
+  "curated_status": "NONE",
+  "n_trials": 4,
+  "status_counts": {
+   "ACTIVE_NOT_RECRUITING": 3,
+   "UNKNOWN": 1
+  },
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Dostarlimab|NSCLC": {
+  "drug": "Dostarlimab",
+  "disease": "NSCLC",
+  "horn_rank": 42,
+  "curated_status": "NONE",
+  "n_trials": 15,
+  "status_counts": {
+   "ACTIVE_NOT_RECRUITING": 7,
+   "RECRUITING": 2,
+   "TERMINATED": 1,
+   "COMPLETED": 4,
+   "UNKNOWN": 1
+  },
+  "n_stopped_with_reason": 1,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 1,
+  "stops": [
+   {
+    "nct": "NCT04581824",
+    "why": "Trial terminated by GSK for strategic reasons, after all participants completed treatment. This decision was not based on a safety concern",
+    "class": "MIXED_NEEDS_HUMAN",
+    "title": "Efficacy Comparison of Dostarlimab Plus Chemotherapy Versus Pembrolizumab Plus Chemotherap"
+   }
+  ],
+  "verdict": "NEEDS_HUMAN"
+ },
+ "Cisplatin|Li_Fraumeni_Syndrome": {
+  "drug": "Cisplatin",
+  "disease": "Li_Fraumeni_Syndrome",
+  "horn_rank": 43,
+  "curated_status": "CATEGORY_ERROR",
+  "n_trials": 1,
+  "status_counts": {
+   "RECRUITING": 1
+  },
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Durvalumab|NSCLC": {
+  "drug": "Durvalumab",
+  "disease": "NSCLC",
+  "horn_rank": 44,
+  "curated_status": "APPROVED",
+  "n_trials": 50,
+  "status_counts": {
+   "RECRUITING": 10,
+   "COMPLETED": 14,
+   "ACTIVE_NOT_RECRUITING": 8,
+   "NOT_YET_RECRUITING": 2,
+   "TERMINATED": 4,
+   "WITHDRAWN": 4,
+   "UNKNOWN": 8
+  },
+  "n_stopped_with_reason": 7,
+  "n_scientific_stop": 1,
+  "n_mixed_stop": 0,
+  "stops": [
+   {
+    "nct": "NCT02805660",
+    "why": "The study was discontinued early because the Sponsor de-prioritized development of mocetinostat. The decision to stop was not due to any patient safety issues.",
+    "class": "SCIENTIFIC",
+    "title": "Phase 1/2 Study of Mocetinostat and Durvalumab in Patients With Advanced Solid Tumors and "
+   },
+   {
+    "nct": "NCT03130764",
+    "why": "PI Transferred",
+    "class": "UNCLEAR",
+    "title": "Durvalumab and Tremelimumab for Adjuvant Therapy of Resected NSCLC"
+   },
+   {
+    "nct": "NCT04748419",
+    "why": "Poor accrual",
+    "class": "OPERATIONAL",
+    "title": "Safety & Efficacy of Consolidative Hypofractionated Radiation Therapy for Boosting Residua"
+   },
+   {
+    "nct": "NCT03148327",
+    "why": "Low accrual",
+    "class": "OPERATIONAL",
+    "title": "Astra Zeneca (Immuno Stereotactic Ablative Body Radiotherapy) ISABR Study: Randomized Phas"
+   },
+   {
+    "nct": "NCT04470674",
+    "why": "Lack of Accrual",
+    "class": "OPERATIONAL",
+    "title": "Study of Durvalumab or Durvalumab Plus Chemotherapy in Kras Mutation Positive and PD-L1 Hi"
+   },
+   {
+    "nct": "NCT04538378",
+    "why": "Closed due to slow accrual.",
+    "class": "OPERATIONAL",
+    "title": "Olaparib (LYNPARZA) Plus Durvalumab (IMFINZI) in EGFR-Mutated Adenocarcinomas That Transfo"
+   },
+   {
+    "nct": "NCT04262388",
+    "why": "Overall clinical activity (ORR) for oleclumab + durvalumab is minimal across tumor types and does not support further evaluation of this doublet.",
+    "class": "UNCLEAR",
+    "title": "A Multi-Cancer, Multi-State, Platform Study of Durvalumab (MEDI4736) and Oleclumab (MEDI94"
+   }
+  ],
+  "verdict": "NEGATIVE_EVIDENCE"
+ },
+ "Osimertinib|Glioblastoma": {
+  "drug": "Osimertinib",
+  "disease": "Glioblastoma",
+  "horn_rank": 45,
+  "curated_status": "FAILED_CLASS",
+  "n_trials": 3,
+  "status_counts": {
+   "COMPLETED": 1,
+   "ACTIVE_NOT_RECRUITING": 1,
+   "RECRUITING": 1
+  },
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Oxaliplatin|Li_Fraumeni_Syndrome": {
+  "drug": "Oxaliplatin",
+  "disease": "Li_Fraumeni_Syndrome",
+  "horn_rank": 46,
+  "curated_status": "CATEGORY_ERROR",
+  "n_trials": 0,
+  "status_counts": {},
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_TRIALS_FOUND"
+ },
+ "Entrectinib|NSCLC": {
+  "drug": "Entrectinib",
+  "disease": "NSCLC",
+  "horn_rank": 47,
+  "curated_status": "APPROVED_WRONG_MECHANISM",
+  "n_trials": 11,
+  "status_counts": {
+   "ACTIVE_NOT_RECRUITING": 4,
+   "NOT_YET_RECRUITING": 2,
+   "RECRUITING": 3,
+   "UNKNOWN": 1,
+   "COMPLETED": 1
+  },
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Erlotinib|Glioblastoma": {
+  "drug": "Erlotinib",
+  "disease": "Glioblastoma",
+  "horn_rank": 48,
+  "curated_status": "FAILED",
+  "n_trials": 24,
+  "status_counts": {
+   "UNKNOWN": 1,
+   "COMPLETED": 19,
+   "TERMINATED": 4
+  },
+  "n_stopped_with_reason": 4,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 1,
+  "stops": [
+   {
+    "nct": "NCT01103375",
+    "why": "Slow accrual",
+    "class": "OPERATIONAL",
+    "title": "Erlotinib Hydrochloride and Isotretinoin in Treating Patients With Recurrent Malignant Gli"
+   },
+   {
+    "nct": "NCT00387894",
+    "why": "Insufficient accrual of population likely to benefit; progression in 6 patients",
+    "class": "MIXED_NEEDS_HUMAN",
+    "title": "Erlotinib in Treating Patients With Recurrent Glioblastoma Multiforme or Gliosarcoma"
+   },
+   {
+    "nct": "NCT00227032",
+    "why": "Loss of funding",
+    "class": "OPERATIONAL",
+    "title": "Erlotinib in Treating Patients With Progressive Glioblastoma Multiforme"
+   },
+   {
+    "nct": "NCT01110876",
+    "why": "Unanticipated Toxicities",
+    "class": "UNCLEAR",
+    "title": "Phase I / II Vorinostat, Erlotinib and Temozolomide for Recurrent Glioblastoma Multiforme "
+   }
+  ],
+  "verdict": "NEEDS_HUMAN"
+ },
+ "Afatinib|Glioblastoma": {
+  "drug": "Afatinib",
+  "disease": "Glioblastoma",
+  "horn_rank": 49,
+  "curated_status": "FAILED",
+  "n_trials": 5,
+  "status_counts": {
+   "COMPLETED": 4,
+   "RECRUITING": 1
+  },
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_NEGATIVE_SIGNAL"
+ },
+ "Carboplatin|Li_Fraumeni_Syndrome": {
+  "drug": "Carboplatin",
+  "disease": "Li_Fraumeni_Syndrome",
+  "horn_rank": 50,
+  "curated_status": "CATEGORY_ERROR",
+  "n_trials": 0,
+  "status_counts": {},
+  "n_stopped_with_reason": 0,
+  "n_scientific_stop": 0,
+  "n_mixed_stop": 0,
+  "stops": [],
+  "verdict": "NO_TRIALS_FOUND"
+ }
+}

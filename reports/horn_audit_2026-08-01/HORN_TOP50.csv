@@ -1,0 +1,51 @@
+rank,drug,drug_inn,disease,composite,via,hop1,hop2,terminal,already_verified_real,status_APPROVED_TRIAL_PRECLIN_FAILED_NONE,source_url,checker_note
+1,Avapritinib,Avapritinib,GIST,0.98,KIT,inhibits,driver_of,DIRECTED,YES,APPROVED,,confirmed in 2026-07-31 curation
+2,Dasatinib Anhydrous,Dasatinib,GIST,0.98,KIT,inhibits,driver_of,DIRECTED,,NONE,,no approval found for this indication
+3,Baricitinib,Baricitinib,Myelofibrosis,0.97,JAK2,inhibits,driver_of,DIRECTED,,NONE,,no approval found for this indication
+4,Deuruxolitinib,Deuruxolitinib,Myelofibrosis,0.97,JAK2,inhibits,driver_of,DIRECTED,,NONE,,no approval found for this indication
+5,Fedratinib,Fedratinib,Myelofibrosis,0.97,JAK2,inhibits,driver_of,DIRECTED,YES,APPROVED,,confirmed in 2026-07-31 curation
+6,Filgotinib,Filgotinib,Myelofibrosis,0.97,JAK2,inhibits,driver_of,DIRECTED,,NONE,,no approval found for this indication
+7,Amivantamab,Amivantamab,NSCLC,0.95,EGFR,inhibits,driver_of,DIRECTED,YES,APPROVED,,confirmed in 2026-07-31 curation
+8,Dacomitinib,Dacomitinib,NSCLC,0.95,EGFR,inhibits,driver_of,DIRECTED,YES,APPROVED,,confirmed in 2026-07-31 curation
+9,Dacomitinib,Dacomitinib,Breast_Cancer,0.95,ERBB2,inhibits,driver_of,DIRECTED,,NONE,,no approval found for this indication
+10,Lazertinib,Lazertinib,NSCLC,0.95,EGFR,inhibits,driver_of,DIRECTED,,APPROVED,https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-lazertinib-amivantamab-vmjw-non-small-lung-cancer,Approved WITH amivantamab. Combination-only. Missed label.
+11,Adagrasib,Adagrasib,Pancreatic_Cancer,0.9409,KRAS,inhibits,driver_of,DIRECTED,,TRIAL,,KRAS G12C pancreatic under active investigation; no approval.
+12,Sotorasib,Sotorasib,Pancreatic_Cancer,0.9409,KRAS,inhibits,driver_of,DIRECTED,,TRIAL,,KRAS G12C pancreatic under active investigation; no approval.
+13,Trastuzumab_deruxtecan,Trastuzumab_deruxtecan,Breast_Cancer,0.931,ERBB2,inhibits,driver_of,DIRECTED,YES,APPROVED,,confirmed in 2026-07-31 curation
+14,Ceritinib,Ceritinib,NSCLC,0.92,ALK,inhibits,driver_of,DIRECTED,,APPROVED,https://www.fda.gov/drugs/resources-information-approved-drugs/,"ALK+ NSCLC after crizotinib. ORR 44%, ASCEND. Missed label."
+15,Ensartinib,Ensartinib,NSCLC,0.92,ALK,inhibits,driver_of,DIRECTED,,NEEDS_CHECK,,ALK inhibitor; a US approval is plausible but I did not confirm it. Check before counting.
+16,Lorlatinib,Lorlatinib,NSCLC,0.9108,ALK,inhibits,driver_of,DIRECTED,YES,APPROVED,,confirmed in 2026-07-31 curation
+17,Afatinib,Afatinib,Breast_Cancer,0.9025,ERBB2,inhibits,driver_of,DIRECTED,,NONE,,no approval found for this indication
+18,Cetuximab,Cetuximab,NSCLC,0.9025,EGFR,inhibits,driver_of,DIRECTED,,NONE,,no approval found for this indication
+19,Brigatinib,Brigatinib,NSCLC,0.9016,ALK,inhibits,driver_of,DIRECTED,YES,APPROVED,,confirmed in 2026-07-31 curation
+20,Daunorubicin,Daunorubicin,Breast_Cancer,0.9,TOP2A,inhibits,driver_of,DIRECTED,,NONE,,no approval found for this indication
+21,Doxorubicin,Doxorubicin,Breast_Cancer,0.9,TOP2A,inhibits,driver_of,DIRECTED,,APPROVED,https://www.accessdata.fda.gov/drugsatfda_docs/label/2012/062921s022lbl.pdf,Adriamycin label includes breast carcinoma. Long-standing. Missed label.
+22,Etoposide,Etoposide,Breast_Cancer,0.9,TOP2A,inhibits,driver_of,DIRECTED,,NONE,,no approval found for this indication
+23,Idarubicin,Idarubicin,Breast_Cancer,0.9,TOP2A,inhibits,driver_of,DIRECTED,,NONE,,no approval found for this indication
+24,Fedratinib,Fedratinib,AML,0.9,FLT3,inhibits,driver_of,DIRECTED,,NONE,,no approval found for this indication
+25,Gilteritinib,Gilteritinib,AML,0.9,FLT3,inhibits,driver_of,DIRECTED,YES,APPROVED,,confirmed in 2026-07-31 curation
+26,Lapatinib,Lapatinib,NSCLC,0.893,EGFR,inhibits,driver_of,DIRECTED,,NONE,,no approval found for this indication
+27,Alpelisib,Alpelisib,Breast_Cancer,0.88,PIK3CA,inhibits,driver_of,DIRECTED,,APPROVED,https://www.fda.gov/drugs/resources-information-approved-drugs/,"2019-05, PIK3CA-mutated HR+/HER2- with fulvestrant. Missed label."
+28,Copanlisib,Copanlisib,Breast_Cancer,0.88,PIK3CA,inhibits,driver_of,DIRECTED,,NONE,,no approval found for this indication
+29,Inavolisib,Inavolisib,Breast_Cancer,0.88,PIK3CA,inhibits,driver_of,DIRECTED,,APPROVED,https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-inavolisib-palbociclib-and-fulvestrant-endocrine-resistant-pik3ca-mutated-hr-positive,"2024-10-10, PIK3CA-mutated, with palbociclib+fulvestrant. Missed label."
+30,Adagrasib,Adagrasib,Colorectal_Cancer,0.873,KRAS,inhibits,driver_of,DIRECTED,YES,APPROVED,,confirmed in 2026-07-31 curation
+31,Sotorasib,Sotorasib,Colorectal_Cancer,0.873,KRAS,inhibits,driver_of,DIRECTED,YES,APPROVED,,confirmed in 2026-07-31 curation
+32,Adagrasib,Adagrasib,NSCLC,0.8536,KRAS,inhibits,driver_of,DIRECTED,,APPROVED,https://www.fda.gov/drugs/resources-information-approved-drugs/,"2022-12-12 accelerated, KRAS G12C, >=1 prior therapy. Missed label."
+33,Sotorasib,Sotorasib,NSCLC,0.8536,KRAS,inhibits,driver_of,DIRECTED,,APPROVED,https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-sotorasib-kras-g12c-mutated-nsclc,"2021-05-28 accelerated, KRAS G12C. Missed label."
+34,Avelumab,Avelumab,NSCLC,0.85,CD274,targets,associated_with,co-occurrence,,NONE,,no approval found for this indication
+35,Cosibelimab,Cosibelimab,NSCLC,0.85,CD274,inhibits,associated_with,co-occurrence,,NONE,,no approval found for this indication
+36,Amivantamab,Amivantamab,Glioblastoma,0.85,EGFR,inhibits,driver_of,DIRECTED,,FAILED_CLASS,https://www.mdpi.com/1422-0067/25/4/2316,EGFR-directed class has failed in GBM.
+37,Dacomitinib,Dacomitinib,Glioblastoma,0.85,EGFR,inhibits,driver_of,DIRECTED,,FAILED,https://www.mdpi.com/1422-0067/25/4/2316,EGFR TKI class failed in GBM.
+38,Lazertinib,Lazertinib,Glioblastoma,0.85,EGFR,inhibits,driver_of,DIRECTED,,FAILED_CLASS,https://www.mdpi.com/1422-0067/25/4/2316,EGFR TKI class negative in GBM.
+39,Cemiplimab,Cemiplimab,Melanoma,0.85,PDCD1,inhibits,associated_with,co-occurrence,,NONE,,no approval found for this indication
+40,Cemiplimab,Cemiplimab,NSCLC,0.85,PDCD1,inhibits,associated_with,co-occurrence,,APPROVED,https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-cemiplimab-rwlc-combination-platinum-based-chemotherapy-non-small-cell-lung-cancer,"2022-11-08 with platinum chemo, no EGFR/ALK/ROS1. Missed label."
+41,Dostarlimab,Dostarlimab,Melanoma,0.85,PDCD1,inhibits,associated_with,co-occurrence,,NONE,,no approval found for this indication
+42,Dostarlimab,Dostarlimab,NSCLC,0.85,PDCD1,inhibits,associated_with,co-occurrence,,NONE,,no approval found for this indication
+43,Cisplatin,Cisplatin,Li_Fraumeni_Syndrome,0.8415,TP53,activator,driver_of,DIRECTED,,CATEGORY_ERROR,,"Li-Fraumeni is a germline predisposition syndrome, not a tumour type. Not a valid target node."
+44,Durvalumab,Durvalumab,NSCLC,0.833,CD274,inhibits,associated_with,co-occurrence,,APPROVED,https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-durvalumab-after-chemoradiation-unresectable-stage-iii-nsclc,2018-02-16 unresectable stage III after chemoradiation. Missed label.
+45,Osimertinib,Osimertinib,Glioblastoma,0.833,EGFR,inhibits,driver_of,DIRECTED,,FAILED_CLASS,https://www.mdpi.com/1422-0067/25/4/2316,EGFR TKI class negative in GBM; BBB penetration better but no approval.
+46,Oxaliplatin,Oxaliplatin,Li_Fraumeni_Syndrome,0.8316,TP53,activator,driver_of,DIRECTED,,CATEGORY_ERROR,,"Same: predisposition syndrome, not a tumour."
+47,Entrectinib,Entrectinib,NSCLC,0.828,ALK,inhibits,driver_of,DIRECTED,,APPROVED_WRONG_MECHANISM,https://www.fda.gov/drugs/resources-information-approved-drugs/,"Approved for ROS1+ NSCLC and NTRK solid tumours. Horn routed via ALK, which is NOT its approved target. Right indication, wrong reason."
+48,Erlotinib,Erlotinib,Glioblastoma,0.8245,EGFR,inhibits,driver_of,DIRECTED,,FAILED,https://pmc.ncbi.nlm.nih.gov/articles/PMC5573763/,"Phase II recurrent GBM: PFS-6 3%, median PFS 2 months. No efficacy."
+49,Afatinib,Afatinib,Glioblastoma,0.8245,EGFR,inhibits,driver_of,DIRECTED,,FAILED,https://www.mdpi.com/1422-0067/25/4/2316,"2nd-gen EGFR TKI trials negative in GBM, alone or combined."
+50,Carboplatin,Carboplatin,Li_Fraumeni_Syndrome,0.8217,TP53,activator,driver_of,DIRECTED,,CATEGORY_ERROR,,"Same: predisposition syndrome, not a tumour."

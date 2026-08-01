@@ -1,4 +1,18 @@
+# Runtime dependencies for the benchmark, triage CLI, and Streamlit app.
+# Keep in sync with [project].dependencies and [project.optional-dependencies]
+# in pyproject.toml. The strict benchmark needs only numpy; the rest are used by
+# the app, the validators, and the quarantined spatial modules.
 streamlit>=1.30
 numpy>=1.24
 pandas>=1.5
-esm>=3.0.0
+scipy>=1.10
+scikit-learn>=1.2
+
+# Test runner (also available as: pip install -e ".[dev]")
+pytest>=7.0
+
+# Optional, large, and NOT required to reproduce any published number.
+# Previously pinned here as a hard requirement, which made a clean install fail
+# for anyone who only wanted the benchmark. Install explicitly if you need
+# protein embeddings:
+#   pip install "esm>=3.0.0"

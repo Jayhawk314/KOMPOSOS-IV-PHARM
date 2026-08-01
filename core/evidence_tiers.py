@@ -95,6 +95,51 @@ def classify_tier_from_provenance(provenance: str, metadata: dict, confidence: f
     """
     prov_upper = provenance.upper()
 
+    # ------------------------------------------------------------------
+    # CEILING FIRST.  The honesty pipeline stamps its own verdict onto the
+    # provenance string, and that verdict must be able to CAP the tier --
+    # otherwise the tag that says "this is our weakest evidence" is invisible
+    # to the function deciding how strong the evidence is.
+    #
+    # This was a real defect, measured 2026-08-01: all 37 `driver_of`
+    # Protein->Disease edges carried tier ESTABLISHED, while 10 of them had
+    # provenance [LEXICAL-COOCCURRENCE] or "literature (unverified)". None of
+    # those tags appeared in any keyword list below, so every one fell through
+    # to the confidence fallback, and a hand-set confidence of 0.88 became
+    # "ESTABLISHED". BRAF->Melanoma and VEGFR2->RCC were among them, and
+    # VEGFR2->RCC sits underneath several published candidate leads.
+    #
+    # The biology in those edges is correct. The problem is that the label
+    # claimed a grade of evidence the citation could not support, which breaks
+    # the one promise this system makes: click the receipt and it holds up.
+    # ------------------------------------------------------------------
+    if "[EMBEDDING-INFERRED]" in prov_upper:
+        return EvidenceTier.INFERRED
+    if "[LEXICAL-COOCCURRENCE]" in prov_upper:
+        # Word co-occurrence in an abstract. The permutation control
+        # (data/GROUNDING_NEGATIVE_CONTROL.json) found this carries no
+        # measurable signal about whether the relation is real.
+        return EvidenceTier.SPECULATIVE
+    if "[RELATION-SCREENED]" in prov_upper:
+        # A lexical gate agreed a relation word was present. ~0.82 precision
+        # against human adjudication -- a screen, not a verification.
+        return EvidenceTier.HYPOTHESIS
+    if "UNVERIFIED" in prov_upper:
+        # Checked BEFORE [RELATION-VERIFIED] on purpose. Several edges carry
+        # both, e.g. "literature (unverified); PMID:...; [RELATION-VERIFIED]".
+        # Contradictory tags must resolve DOWNWARD, never upward.
+        return EvidenceTier.HYPOTHESIS
+    if "[RELATION-VERIFIED]" in prov_upper:
+        # Survived the relation-extraction gate: the cited sentence was read and
+        # judged to assert this relation, not merely to mention both endpoints.
+        # That is a real quality signal and the distinction the whole honesty
+        # layer is built on, so it can reach ESTABLISHED.
+        #
+        # It is NOT human adjudication. HONEST_VALUE.md records the gate at
+        # roughly 0.82 precision against in-session adjudication, so treat this
+        # as "an automated reader agreed", not "an expert signed it off".
+        return EvidenceTier.ESTABLISHED
+
     # MEASURED: Direct experimental measurements
     if any(keyword in prov_upper for keyword in ["CHEMBL", "IC50", "KI", "KD", "ABPP"]):
         return EvidenceTier.MEASURED
@@ -119,13 +164,28 @@ def classify_tier_from_provenance(provenance: str, metadata: dict, confidence: f
     elif categorical_delta in ["AGREE", "PARTIAL"]:
         return EvidenceTier.HYPOTHESIS
 
-    # Fallback based on confidence
-    if confidence >= 0.70:
-        return EvidenceTier.ESTABLISHED
-    elif confidence >= 0.40:
-        return EvidenceTier.INFERRED
-    else:
-        return EvidenceTier.HYPOTHESIS
+    # ------------------------------------------------------------------
+    # NO CONFIDENCE FALLBACK.
+    #
+    # This previously read:
+    #     if confidence >= 0.70: return ESTABLISHED
+    #     elif confidence >= 0.40: return INFERRED
+    #     else: return HYPOTHESIS
+    #
+    # That made the tier a re-encoding of the confidence number rather than an
+    # independent statement about evidence quality. Somebody set BRAF->Melanoma
+    # to 0.95 because it is obviously true; the classifier read 0.95 and
+    # stamped ESTABLISHED; and the UI then displayed two columns that looked
+    # like corroborating signals while being the same signal twice.
+    #
+    # A tier that echoes confidence cannot contradict it, so it can never warn
+    # anyone that a high-confidence edge rests on a weak citation -- which is
+    # the only job it has.
+    #
+    # An edge whose provenance matches nothing recognised is UNCLASSIFIED
+    # evidence, regardless of how confident someone was. Say so.
+    # ------------------------------------------------------------------
+    return EvidenceTier.HYPOTHESIS
 
 
 def tier_priority(tier: EvidenceTier) -> int:

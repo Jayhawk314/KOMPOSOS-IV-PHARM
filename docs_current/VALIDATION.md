@@ -1,7 +1,30 @@
-# Validation — Current Results (2026-06-02)
+# Validation — SUPERSEDED historical snapshot (2026-06-02)
+
+> **⚠ SUPERSEDED. Do not quote any number on this page.**
+>
+> This file is a dated snapshot of the graph as it stood on **2026-06-02**, before
+> the July integrity work. It is retained for history only. Every headline figure
+> below has since been retired or replaced:
+>
+> - The primary AUROC **0.970549** predates the ESMC similarity-transfer exclusion.
+>   The current strict `core` result is **AUROC 0.9784 / AUPRC 0.6128**
+>   (scored-only AUROC **0.9642**), with a **+0.24** margin over common-neighbor
+>   **0.7429** — not the +0.35 shown below.
+> - "Hits@5 / @10 / @20" on this page is **precision@k**, not Hits@k.
+> - The **Hetionet external row is retired and is not reproducible**:
+>   `data/external/` is absent from the repository and gitignored, so
+>   `validation/external_validation.py` raises `FileNotFoundError`.
+> - The **temporal holdout row is stale and was run on the wrong (`all`) cohort**;
+>   it also leaves post-cutoff literature in the graph, and its negative set
+>   contains approved indications.
+> - The **LOOCV and disease-holdout rows have not been re-measured** since the ESMC
+>   exclusion and should be treated as unverified.
+>
+> **Current source of truth: `HONEST_VALUE.md`, then `CLAUDE.md`, then the
+> executable reproduce commands.** External precision is *undetermined*, not weak.
 
 All numbers below are from runs on `data/drugs/tier1.db` (2,329 morphisms) on
-2026-06-02. Reproduce with the commands in `REPRODUCE.md`.
+2026-06-02 and are preserved unedited as a historical record.
 
 ## Primary strict benchmark
 

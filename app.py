@@ -59,6 +59,14 @@ from validation.nonobvious import (
 )
 from validation.enrichment_funnel import build_funnel
 from validation.trace_prediction import _build_provenance_index, trace_pair
+# Shared with the reviewer packet on purpose: the Evidence card and the packet
+# sent to an external reviewer must never be able to disagree about which paths
+# are strongest or what a candidate is missing.
+from validation.build_reviewer_packet import (
+    best_chains as _packet_best_chains,
+    missing_evidence_line as _packet_missing_line,
+    pmids_from_edge as _packet_pmids,
+)
 from validation.triage import (
     _label_for_pair,
     _provenance_fraction,
@@ -104,7 +112,171 @@ except Exception as _pronoia_exc:  # pragma: no cover - environment dependent
     PRONOIA_IMPORT_ERROR = str(_pronoia_exc)
 
 
+# ── Evidence standing ────────────────────────────────────────────────
+
+def _evidence_standing(chains, score, disease):
+    """Classify what the evidence actually supports. Never a clinical statement.
+
+    The roadmap asks every result to declare its standing rather than hand over a
+    bare number, because a score without a standing invites the reader to supply
+    their own interpretation - which is usually more confident than the evidence.
+
+    Deliberately conservative: the ceiling is SUPPORTED_FOR_REVIEW, meaning
+    "worth a human's time", and reaching it requires a DIRECTED terminal hop.
+    Only 37 edges in the entire graph qualify, so most candidates land on WEAK,
+    and that is the honest answer rather than a failure of the classifier.
+
+    A qualifying terminal hop must:
+      - land on THE TARGET DISEASE, not some intermediate disease the chain
+        happened to pass through;
+      - originate from a protein, not a drug;
+      - not be a `treats` edge.
+
+    The first draft of this function enforced none of those, and graded
+    Nivolumab -> Melanoma as SUPPORTED_FOR_REVIEW on the strength of
+    `Nivolumab -treats-> RCC`. That is a different disease's FDA label being read
+    as mechanistic support - exactly the label leakage the strict benchmark
+    protocol exists to prevent. The Evidence card now also runs on a
+    label-removed view, so those edges are not present at all; these checks are
+    the belt to that view's braces.
+    """
+    if not chains:
+        return "NOT_ASSESSED", (
+            "No composed Drug->Protein->Disease chain exists. Any ranking for "
+            "this pair rests on analogy, not on mechanism in this graph."
+        )
+
+    edges = [e for c in chains for e in c["edges"]]
+    terminal = [
+        e for e in edges
+        if e["target"] == disease and e["target_type"] == "Disease"
+    ]
+    directed = [
+        e for e in terminal
+        if e["relation"] not in ("associated_with", "treats")
+    ]
+    has_strong_drug_target = any(
+        e["target_type"] != "Disease" and e["evidence_tier"] in ("MEASURED", "ESTABLISHED")
+        for e in edges
+    )
+    # The TERMINAL hop's own tier is the thing that matters most, and an earlier
+    # version of this function ignored it. After the 2026-08-01 re-tier that
+    # produced a self-contradicting card: Sorafenib -> Melanoma read
+    # SUPPORTED_FOR_REVIEW while displaying a SPECULATIVE badge on its own
+    # BRAF -> Melanoma terminal edge, because a strong ChEMBL drug->protein edge
+    # elsewhere in the chain satisfied the check. Meanwhile Aspirin ->
+    # Colorectal_Cancer - one of the best-supported cheap-drug findings in
+    # oncology - read WEAK. Backwards in both directions.
+    strong_terminal = [
+        e for e in directed
+        if e["evidence_tier"] in ("MEASURED", "ESTABLISHED")
+    ]
+
+    if strong_terminal and has_strong_drug_target:
+        e = strong_terminal[0]
+        return "SUPPORTED_FOR_REVIEW", (
+            f"A directed terminal hop ({e['source']} -{e['relation']}-> "
+            f"{e['target']}, tier {e['evidence_tier']}) sits on top of a measured "
+            "or established drug-target edge. Worth a reviewer's time. This is "
+            "not evidence of efficacy."
+        )
+    if directed and not strong_terminal:
+        e = directed[0]
+        return "WEAK", (
+            f"The terminal hop {e['source']} -{e['relation']}-> {e['target']} is "
+            f"directed but only tier {e['evidence_tier']}. The relation may well "
+            "be true - several such edges are textbook biology - but the citation "
+            "attached does not establish it. Check that edge first."
+        )
+    if directed:
+        return "WEAK", (
+            "There is a directed terminal hop, but no MEASURED or ESTABLISHED "
+            "drug-target edge underneath it. The mechanism is asserted at only "
+            "one end of the chain."
+        )
+    if not terminal:
+        return "NOT_ASSESSED", (
+            f"No chain here terminates at {disease.replace('_', ' ')} through a "
+            "protein. The paths shown reach it only by hopping through other "
+            "diseases, which is co-occurrence between diseases, not mechanism."
+        )
+    return "WEAK", (
+        "Every terminal Protein->Disease hop here is `associated_with` - "
+        "co-occurrence in the literature, not a mechanistic claim. This is the "
+        "graph's weakest layer and its binding constraint."
+    )
+
+
 # ── Cache heavy loads ────────────────────────────────────────────────
+
+@st.cache_resource(show_spinner="Enumerating unfilled horns (discovery surface)...")
+def load_horn_candidates():
+    """Unfilled inner horns per disease - the discovery surface.
+
+    An unfilled horn is Drug -mech-> X -> Disease with NO `treats` edge. It is a
+    repurposing hypothesis the graph has not been told the answer to.
+
+    This exists because OPERADUM and PRONOIA both take a CANDIDATE LIST as input
+    and both were fed `triage_disease` output, which ranks pairs the system has
+    already ranked. Neither could surface anything the base triage missed. Giving
+    them the horn list points the same machinery at the unanswered cases.
+
+    Measured 2026-08-01: of the top 50 unfilled horns, 10 are FDA approvals the
+    label set never recorded, at ranks 1/5/7/8/13/16/19/25/30/31 - scattered, so
+    the unchecked rows sit in the same confidence band as the confirmed ones.
+
+    Uses the label-visible graph deliberately: `filled_treats` is exactly what
+    decides whether a horn is unfilled, so the labels must be present to exclude
+    the known indications. The candidate itself is by definition unlabelled.
+    """
+    from oracle.horns import inner_horns, best_fillers
+    category, _ = load_full_typed_view(DB_PATH)
+    horns = inner_horns(category, a_type="Drug", c_type="Disease")
+    unfilled = sorted((h for h in best_fillers(horns).values() if not h.filled_treats),
+                      key=lambda h: -h.composite)
+    by_disease = {}
+    for h in unfilled:
+        by_disease.setdefault(h.c, []).append(h)
+    return by_disease
+
+
+def _horn_shortlist(disease, top_n):
+    """(drug, target, composite, terminal_relation) for the top unfilled horns."""
+    horns = load_horn_candidates().get(disease, [])
+    seen, out = set(), []
+    for h in horns:
+        base = _nonobvious_normalize(h.a) if _nonobvious_normalize else h.a
+        if base in seen:
+            continue                      # collapse salt/hydrate duplicates
+        seen.add(base)
+        out.append((h.a, h.b, h.composite, h.g_name))
+        if len(out) == top_n:
+            break
+    return out
+
+
+try:
+    from validation.nonobvious import normalize_drug_name as _nonobvious_normalize
+except Exception:                                    # pragma: no cover
+    _nonobvious_normalize = None
+
+
+@st.cache_resource(show_spinner="Loading the strict (label-removed) graph...")
+def load_strict_graph():
+    """The graph with direct Drug->Disease labels removed.
+
+    The Evidence card runs on this rather than on the default view, so the card
+    shows what the system composes WITHOUT already being told the answer - the
+    same protocol as the published benchmark and the reviewer packet.
+
+    On the default (labelled) view a drug's approval for a *different* disease
+    appears as a Drug->Disease edge inside composed chains, which reads as
+    evidence and is not. Removing the labels also removes the indication-derived
+    bridge edges, which is what `remove_direct_labels` is for.
+    """
+    category, _ = load_full_typed_view(DB_PATH, remove_direct_labels=True)
+    return {"category": category, "strategies": make_strategies(category)}
+
 
 @st.cache_resource(show_spinner="Scoring all pairs for the enrichment funnel...")
 def load_funnel():
@@ -252,8 +424,8 @@ st.set_page_config(
 st.sidebar.title("KOMPOSOS-IV-PHARM")
 st.sidebar.caption("Categorical Drug Repurposing")
 
-_modes = ["Disease-first", "Disease-specific", "Non-obvious candidates",
-          "Drug-first", "Pair detail", "Search speedup"]
+_modes = ["Evidence card", "Disease-first", "Disease-specific",
+          "Non-obvious candidates", "Drug-first", "Pair detail", "Search speedup"]
 if OPERADUM_AVAILABLE:
     _modes.append("Decision ranking (OPERADUM)")
 if PRONOIA_AVAILABLE:
@@ -268,7 +440,10 @@ elif OPERADUM_AVAILABLE:
 
 g = load_graph()
 
-_tier_order = ["MEASURED", "ESTABLISHED", "INFERRED", "HYPOTHESIS"]
+# SPECULATIVE was missing here, so after the 2026-08-01 re-tier the sidebar
+# silently dropped 167 edges from its own count. The weakest tier is exactly the
+# one a reader most needs to see.
+_tier_order = ["MEASURED", "ESTABLISHED", "INFERRED", "HYPOTHESIS", "SPECULATIVE"]
 _tiers = g.get("tier_counts", {})
 _tier_str = " · ".join(
     f"{t.title()} {_tiers[t]}" for t in _tier_order if _tiers.get(t)
@@ -1321,22 +1496,52 @@ layer. They use the same KOMPOSOS evidence base but answer different questions.
 """)
 
     disease = st.selectbox("Select disease", g["diseases"])
-    shortlist_n = st.slider("Shortlist size (from KOMPOSOS triage)", 3, 25, 8)
+    source = st.radio(
+        "Candidate source",
+        ["KOMPOSOS triage (re-rank known ranking)",
+         "Unfilled horns (discovery surface)"],
+        help=("Triage re-ranks pairs the system already ranked. Unfilled horns are "
+              "Drug->target->Disease mechanisms with NO approval on record - the "
+              "hypotheses the graph has not been given the answer to."),
+    )
+    shortlist_n = st.slider("Shortlist size", 3, 25, 8)
     profile_name = st.selectbox("Decision profile", list(OPERADUM_PROFILES))
     require_evidence = st.checkbox(
         "Require strong evidence (>= 0.8) for the next action", value=True
     )
 
     if st.button("Rank candidates", type="primary"):
-        with st.spinner("KOMPOSOS shortlist -> OPERADUM decision ranking..."):
-            triaged = triage_disease(
-                g["category"], g["strategies"], disease, g["positives"],
-                g["provenance_index"], top_n=shortlist_n,
+        use_horns = source.startswith("Unfilled")
+        with st.spinner("Building shortlist -> OPERADUM decision ranking..."):
+            if use_horns:
+                horn_rows = _horn_shortlist(disease, shortlist_n)
+                candidates = [Candidate(drug=d, target=t) for d, t, _, _ in horn_rows]
+            else:
+                triaged = triage_disease(
+                    g["category"], g["strategies"], disease, g["positives"],
+                    g["provenance_index"], top_n=shortlist_n,
+                )
+                candidates = [
+                    Candidate(drug=r["drug"], target=_target_from_result(r))
+                    for r in triaged
+                ]
+        if use_horns:
+            if not candidates:
+                st.warning(f"No unfilled horns for {disease.replace('_',' ')}.")
+                st.stop()
+            st.info(
+                f"Ranking **{len(candidates)} unfilled horns** — mechanisms with no "
+                "approval on record for this disease. Each is a hypothesis, not a "
+                "finding. Note the known failure mode: the graph records no failed "
+                "trials, so it will keep proposing things that were tried and did "
+                "not work (EGFR inhibitors in glioblastoma are the clearest case)."
             )
-            candidates = [
-                Candidate(drug=r["drug"], target=_target_from_result(r))
-                for r in triaged
-            ]
+            st.dataframe(
+                [{"Drug": d, "via target": t, "Composite": round(c, 3),
+                  "Terminal hop": "directed" if rel != "associated_with" else "co-occurrence"}
+                 for d, t, c, rel in horn_rows],
+                use_container_width=True, hide_index=True,
+            )
             requirements = {"evidence_strength": 0.8} if require_evidence else None
             slate = rank_candidates(
                 disease,
@@ -1422,7 +1627,16 @@ recommendation.
 """)
 
     disease = st.selectbox("Select disease", g["diseases"])
-    shortlist_n = st.slider("Shortlist size (from KOMPOSOS triage)", 3, 30, 12)
+    pronoia_source = st.radio(
+        "Candidate source",
+        ["KOMPOSOS triage (re-rank known ranking)",
+         "Unfilled horns (discovery surface)"],
+        help=("Auditing unfilled horns asks the question PRONOIA is actually for: "
+              "is this UNANSWERED hypothesis grounded, or does its rank ride on "
+              "ungrounded claims?"),
+        key="pronoia_source",
+    )
+    shortlist_n = st.slider("Shortlist size", 3, 30, 12)
     quality_tier = st.selectbox(
         "PRONOIA evidence quality tier",
         ["all", "high", "curated", "silver", "gold"],
@@ -1435,12 +1649,38 @@ recommendation.
     min_grounding = st.slider("Minimum grounding", 0.0, 1.0, 0.20, 0.05)
 
     if st.button("Run PRONOIA audit", type="primary"):
-        with st.spinner("KOMPOSOS shortlist -> PRONOIA prediction audit..."):
-            triaged = triage_disease(
-                g["category"], g["strategies"], disease, g["positives"],
-                g["provenance_index"], top_n=shortlist_n,
+        use_horns = pronoia_source.startswith("Unfilled")
+        with st.spinner("Building shortlist -> PRONOIA prediction audit..."):
+            if use_horns:
+                horn_rows = _horn_shortlist(disease, shortlist_n)
+                candidates = [pharm_candidate(d, disease) for d, _, _, _ in horn_rows]
+            else:
+                triaged = triage_disease(
+                    g["category"], g["strategies"], disease, g["positives"],
+                    g["provenance_index"], top_n=shortlist_n,
+                )
+                candidates = [pharm_candidate(r["drug"], disease) for r in triaged]
+        if use_horns and not candidates:
+            st.warning(f"No unfilled horns for {disease.replace('_',' ')}.")
+            st.stop()
+        if use_horns:
+            st.info(
+                f"Auditing **{len(candidates)} unfilled horns** — hypotheses with no "
+                "approval on record. Note that when the source is triage, the "
+                "shortlist is chosen on the label-visible graph even with the "
+                "hide-labels box ticked; that box only affects PRONOIA's evidence, "
+                "not which candidates were selected. Horn candidates are unlabelled "
+                "by construction, so that asymmetry does not apply here."
             )
-            candidates = [pharm_candidate(r["drug"], disease) for r in triaged]
+        st.caption(
+            "PRONOIA's `grounding` is a compression statistic. Measured 2026-08-01 "
+            "on this graph's proof sentences, it separates real from scrambled "
+            "pairings only because the target name literally appears in the "
+            "sentence (120/120 real vs 4/120 scrambled); with that overlap removed "
+            "there were zero comparable cases left. Read grounding as lexical "
+            "overlap, not as biological support."
+        )
+        with st.spinner("PRONOIA prediction audit..."):
             provider = pronoia_evidence_provider(remove_direct_labels, quality_tier)
             slate = rank_pharm_candidates_with_pronoia(
                 candidates,
@@ -1526,6 +1766,107 @@ elif mode == "Drug-first":
 
 
 # ── Pair detail ──────────────────────────────────────────────────────
+
+elif mode == "Evidence card":
+    st.title("Evidence card")
+    st.caption(
+        "One candidate, its three strongest paths, and what it does not have. "
+        "Runs on the **strict label-removed graph**, so the card cannot see the "
+        "FDA label it is being asked to justify — the same protocol as the "
+        "published benchmark. **Pair detail** shows every chain on the full graph."
+    )
+
+    col1, col2 = st.columns(2)
+    _ec_drug = col1.selectbox("Drug", g["drugs"], key="ec_drug")
+    _ec_disease = col2.selectbox("Disease", g["diseases"], key="ec_disease")
+
+    if st.button("Build card", type="primary"):
+        with st.spinner("Composing evidence..."):
+            # Strict, label-removed view: the card must not be able to see the
+            # answer it is being asked to justify.
+            _strict = load_strict_graph()
+            _ec_detail = score_pair_detailed(
+                _strict["strategies"], _ec_drug, _ec_disease)
+            _ec_trace = trace_pair(
+                _strict["category"], _ec_drug, _ec_disease,
+                _strict["strategies"], g["provenance_index"],
+            )
+            # Same functions the reviewer packet uses, so the screen and the
+            # packet cannot drift apart.
+            _ec_chains = _packet_best_chains(_ec_trace, k=3)
+            _ec_missing = _packet_missing_line(_ec_chains)
+            _ec_standing, _ec_why = _evidence_standing(
+                _ec_chains, _ec_detail["score"], _ec_disease)
+
+        _ec_label = _label_for_pair((_ec_drug, _ec_disease), g["positives"])
+
+        st.markdown(f"## {_ec_drug} → {_ec_disease.replace('_', ' ')}")
+
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Ranking score", f"{_ec_detail['score']:.3f}")
+        c2.metric("Composed chains", _ec_trace["n_chains"])
+        c3.metric("Known FDA label", "yes" if _ec_label == "POSITIVE" else "no")
+
+        _standing_render = {
+            "SUPPORTED_FOR_REVIEW": st.success,
+            "WEAK": st.warning,
+            "NOT_ASSESSED": st.error,
+        }[_ec_standing]
+        _standing_render(f"**{_ec_standing}** — {_ec_why}")
+
+        st.caption(
+            "The score is a ranking signal on a curated graph. It is **not** a "
+            "probability, not an efficacy estimate, and not a clinical "
+            "recommendation."
+        )
+
+        if not _ec_chains:
+            st.info(
+                "No composed Drug→Protein→Disease chain exists for this pair. "
+                "Anything shown elsewhere for it rests on analogy, not mechanism."
+            )
+        for _i, _chain in enumerate(_ec_chains, 1):
+            _edges = _chain["edges"]
+            _arrow = " → ".join(
+                [_edges[0]["source"]] + [e["target"] for e in _edges]
+            )
+            _via_disease = any(
+                e["target_type"] == "Disease" and e is not _edges[-1] for e in _edges
+            )
+            st.markdown(f"**Path {_i}** · `{_arrow}`")
+            if _via_disease:
+                st.caption(
+                    "⚠ Routes through another disease — that is co-occurrence, "
+                    "not a mechanistic claim."
+                )
+            st.table([
+                {
+                    "edge": f"{e['source']} → {e['target']}",
+                    "relation": e["relation"],
+                    "tier": e["evidence_tier"],
+                    "PMID": ", ".join(_packet_pmids(e)[:2]) or "—",
+                    "conf": f"{e['confidence']:.2f}",
+                }
+                for e in _edges
+            ])
+
+        st.markdown("#### What this candidate does not have")
+        st.warning(_ec_missing)
+
+        st.markdown("#### How to read this")
+        st.markdown(
+            "- A **PMID on a terminal Protein→Disease edge is not validation.** "
+            "Those citations were gathered *after* the edge was proposed, and a "
+            "permutation control found the step carries no measurable signal "
+            "(12.5% vs 7.5% on scrambled pairs, p=0.28). Read it as *\"not "
+            "absurd, start here\"*.\n"
+            "- **Drug→Protein citations are unaffected** — ChEMBL and FDA labels "
+            "are independently derived.\n"
+            "- An **`associated_with`** terminal hop is co-occurrence. Only 37 "
+            "edges in the whole graph are directed `driver_of`.\n"
+            "- Absence of a label is **not** a negative. See **About**."
+        )
+
 
 elif mode == "Pair detail":
     st.title("Inspect a specific drug-disease pair")
@@ -1613,9 +1954,10 @@ elif mode == "Search speedup":
     st.info(
         "Measured on **known** positives (recovery), so it quantifies search "
         "acceleration on the curated graph — not a novel-discovery hit rate. "
-        "For genuinely novel pairs, top-of-list precision is lower (see the "
-        "Hetionet external check); the temporal holdout shows the lift does not "
-        "fully collapse on unseen approvals."
+        "What happens on genuinely novel pairs is **currently unmeasured**: the "
+        "external check is not reproducible and the temporal holdout is leaky "
+        "and counts approved drugs as negatives. See **About** for why no "
+        "precision claim is made in either direction."
     )
 
 
@@ -1877,7 +2219,8 @@ view to demote the hubs and surface candidates particular to your disease.
 - It does not account for patient-specific factors
 - It does not discover novel targets; it accelerates and explains a search over
   pharmacology already in the graph. Top-of-list precision on genuinely novel
-  pairs is lower than the in-graph AUROC suggests (see the Hetionet check).
+  pairs is **not currently measurable** — the external check is not reproducible
+  and the temporal holdout counts approved drugs as negatives (see **About**).
 - AUROC of 0.9784 on the current strict 44-positive benchmark does not guarantee real-world
   performance
 - The system surfaces auditable hypotheses from existing graph evidence; it does
@@ -1986,7 +2329,9 @@ clinical probability, and v3 still needs contradiction/residual and indication
 context penalties. Any PRONOIA v2 AUROC (e.g. ~0.98 in the presentation packet)
 is an **in-graph hidden-label** benchmark on the same 44 positives as KOMPOSOS,
 not an external test -- it is not evidence of better generalization to novel
-pairs. External generalization is weak for both (Hetionet AUROC ~0.64).
+pairs. External generalization is **unmeasured for both**: the Hetionet check is
+not reproducible (its inputs are absent from the repository) and the temporal
+holdout is leaky. The old ~0.64 figure has been retired, not refreshed.
 """)
 
 
@@ -2207,15 +2552,25 @@ predict that a drug will actually work.
 | Metric | Value |
 |--------|-------|
 | AUROC | 0.9784 [95% CI: 0.9667-0.9883] |
+| AUROC, scored pairs only | **0.9642** |
 | AUPRC | 0.6128 [95% CI: 0.4728-0.7480] |
-| Hits@5 | 1.000 |
-| Hits@10 | 0.700 |
-| Hits@20 | 0.700 |
+| precision@5 | 1.000 |
+| precision@10 | 0.700 |
+| precision@20 | 0.700 |
+| Coverage | 957 of 1,560 pairs scored; 603 abstentions |
 | Strategy profile | 7 active modules; Yoneda distance excluded because no Drug->Disease comparators remain |
-| Positives | 44 FDA-approved oncology indications |
+| Positives | 44 `treats` labels (43 oncology + 1 Metformin/Type2_Diabetes) |
 | Strongest baseline (common_neighbor) | AUROC 0.7429 |
 | Margin over strongest baseline | +0.2355 |
 | PMID identifiers in DB | {g['pmid_count']} |
+
+**Two things this table used to get wrong, corrected 2026-07-31.**
+*(1) The metric the code calls "Hits@k" is `hits / min(positives, k)` — that is
+**precision@k**, which is why it falls from k=5 to k=10; a real Hits@k cannot.
+(2) The 603 abstentions are scored 0.0 and sit inside the headline AUROC. All of
+them are negatives, so restricting to the 957 actually-scored pairs gives AUROC
+**0.9642**. AUPRC is unaffected. Roughly 0.014 of the headline is coverage rather
+than ranking skill.*
 
 **Cohort: `core` (78 curated drugs, 1,560 pairs).** Quote this number, not the
 757-drug figure. On the full cohort AUROC reads ~0.99, but that is an artifact of
@@ -2232,19 +2587,31 @@ the model). The protocol removes direct Drug->Disease edges and protein->disease
 bridge edges derived from known indications; with all visible Drug->Disease
 comparators removed, Yoneda distance is inactive here.*
 
-### Additional executable validations
+### External performance: undetermined, not weak
 
-*Measured 2026-06-02 on the pre-ablation full graph (with ESMC edges and the older
-78-drug graph). Directionally valid — external generalization is weak, in-graph is
-strong — but the exact figures predate the ESMC exclusion and the 757-drug
-expansion. Re-run before quoting precisely.*
+*Revised 2026-07-31 after an independent audit. This section previously reported
+an external and a temporal number as if both were current. Neither survived.*
 
-| Validation | Result (pre-ablation) |
-|------------|----------------|
-| Corrected LOOCV | AUROC 0.9674, AUPRC 0.5165, Hits@10 0.600 |
-| Hetionet CtD external positives | AUROC 0.6436, AUPRC 0.0095, Hits@20 0.000 |
-| Temporal holdout, approvals > 2013 | AUROC 0.9706, AUPRC 0.1938, Hits@20 0.167 |
-| Disease holdout, diseases with >=2 labels | Mean AUROC 0.9378, mean AUPRC 0.6021 across 7 folds |
+> **PHARM performs strong internal recovery on its curated graph. Its external
+> precision is currently undetermined, because external data, temporal
+> provenance, and label completeness are all inadequate.**
+
+| Validation | Status |
+|------------|--------|
+| Hetionet CtD external | **RETIRED — not reproducible.** `data/external/` is absent from the repository and gitignored, so the script raises `FileNotFoundError` on a clean clone. The old 0.6436 / 0.0095 was also computed on the forbidden `all` cohort. |
+| Temporal holdout, approvals > 2013 | **STALE and leaky.** Rerun 2026-07-31 it gives AUROC 0.996 / AUPRC 0.156 on 15,114 `all`-cohort pairs. It removes only the *label*, leaving 2026-derived Protein->Disease edges in the graph, so post-cutoff literature leaks into every "held-out" prediction. |
+| Corrected LOOCV | Not re-measured since the ESMC exclusion. Unverified. |
+| Disease holdout | Not re-measured since the ESMC exclusion. Unverified. |
+
+**Why "undetermined" rather than "weak".** The temporal holdout's top-ranked
+*negative* is **Dacomitinib -> NSCLC**, an FDA-approved indication since
+2018-09-27. Lorlatinib, Brigatinib and Amivantamab in NSCLC and Avapritinib in
+GIST sit in the same top 20 — all approved, all counted as false positives. The
+44-label gold set covers only the 78 curated drugs, while the graph carries 679
+more from ChEMBL. **The evaluation cannot currently tell a false positive from a
+true positive it never labelled.** That is not evidence performance is good; it
+means the question is open, and no precision claim in either direction is made
+here until a complete label set exists.
 
 ### Ranking calibration
 
@@ -2257,13 +2624,20 @@ clinical probability.
 ### Limitations
 
 - **Research prototype**: Not a clinical decision support system
-- **Oncology only**: 20 cancer types currently
+- **20 diseases, oncology-dominated but not oncology-only**: the set includes
+  `Type2_Diabetes` and `Li_Fraumeni_Syndrome` (a predisposition syndrome, not a
+  tumour type). **6 of the 20 carry zero positives** -- AML, Glioblastoma,
+  Ewing_Sarcoma, Prostate_Cancer, Soft_Tissue_Sarcoma, Li_Fraumeni -- so
+  disease-specific performance is undefined for 30% of the graph. AML has no
+  `treats` label at all.
 - **Small graph**: {n_obj} objects vs 47k+ in published systems like Rephetio
-- **Open-world negatives**: Unlabeled pairs are unknowns, not confirmed negatives
+- **Open-world negatives**: Unlabeled pairs are unknowns, not confirmed negatives.
+  This is not a formality -- see the external section above, where treating
+  absence as a negative counted five approved drugs as false positives.
 - **Hub-drug bias**: Promiscuous multi-kinase inhibitors (Imatinib tops 14/20
   diseases) crowd the top of most disease rankings -- partly real pan-cancer
-  biology, partly a promiscuity bias, and the main reason AUPRC (0.57) trails
-  AUROC (0.97). Use the **Disease-specific** view to demote the hubs.
+  biology, partly a promiscuity bias, and the main reason AUPRC (0.6128) trails
+  AUROC (0.9784). Use the **Disease-specific** view to demote the hubs.
 - **A PMID on a Protein->Disease edge is NOT validation** (measured 2026-07-20):
   those citations were gathered *after* the edge was proposed. A permutation
   negative control -- same proteins, randomly reassigned diseases -- grounded at
@@ -2273,17 +2647,29 @@ clinical probability.
   prediction validation**. Read such a PMID as *"this is not absurd, start
   reading here"*. Drug->Protein citations (ChEMBL, FDA) are independently derived
   and unaffected. See HONEST_VALUE.md and `data/GROUNDING_NEGATIVE_CONTROL.json`.
-- **Weakest at the disease link**: The terminal Protein->Disease hop of an
-  evidence chain is the least-verified layer (often a literature co-mention).
-  Only 158 proteins carry any disease edge, which strands 629 of 757 drugs with
-  target pharmacology but no route to a disease.
+- **Weakest at the disease link -- and this is the binding constraint.**
+  Re-measured 2026-07-31 against the database (the previous "158 proteins" figure
+  on this page was wrong). On the default ESMC-excluded graph, only **107**
+  non-drug/non-disease nodes carry a disease edge, across **783** terminal edges:
+  **746 are `associated_with`** (co-occurrence, not mechanism) and only **37 are
+  directed `driver_of`**, spanning 28 sources. 128 of 757 drugs complete any
+  Drug->Protein->Disease path, over **1,206** reachable pairs -- but through a
+  **directed** terminal hop, only **76 drugs and 138 pairs**.
+  **138 is the true size of the mechanistically grounded surface**, and it is the
+  honest headline for what this system actually stands on.
 - **Citation attribution risk remains**: Provenance/source strings exist for every edge, but
   the audit found PMID-without-context, measured-tier mismatch, and quantitative
   support issues that need edge-level verification before wet-lab claims
 - **AUROC is sensitive to graph expansion**: Adding PubMed co-mention edges
   (low confidence) changes AUROC depending on protocol and quality tier filter
-- **External generalization is weak**: The Hetionet CtD check is much harder than
-  internal holdouts and currently has low precision-at-top
+- **External generalization is UNMEASURED**: not weak, not strong. See the
+  external section above. Making either claim would outrun the evidence.
+- **The repository does not `pip install` cleanly on older checkouts**: fixed
+  2026-07-31 (`pyproject.toml` named a build backend that exists in no version of
+  setuptools). The benchmark always ran fine from a checkout; packaging was what
+  was broken, and nothing detected it because there was no CI.
+- **Quantitative columns are empty**: `quantitative_value` and `sample_size` read
+  NULL for all 2,439 edges, while the schema and this UI imply the data is there.
 - **Core value**: AUROC is useful, but the research value is the auditable
   mechanistic trail, source typing, validation status, and citation provenance
 

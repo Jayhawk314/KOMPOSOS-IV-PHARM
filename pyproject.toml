@@ -1,11 +1,11 @@
 [build-system]
 requires = ["setuptools>=68.0"]
-build-backend = "setuptools.backends._legacy:_Backend"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "komposos-iv"
 version = "0.1.0"
-description = "KOMPOSOS-IV: The Fused Categorical Runtime"
+description = "KOMPOSOS-IV-PHARM: an evidence-bounded oncology drug-repurposing triage prototype"
 readme = "README.md"
 license = {text = "Apache-2.0"}
 requires-python = ">=3.10"
@@ -14,6 +14,9 @@ authors = [
 ]
 dependencies = [
     "numpy>=1.24",
+    "pandas>=1.5",
+    "scipy>=1.10",
+    "scikit-learn>=1.2",
 ]
 
 [project.optional-dependencies]
@@ -28,4 +31,32 @@ bio = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["core*"]
+include = [
+    "core*",
+    "oracle*",
+    "validation*",
+    "komposos_kg*",
+    "data*",
+    "categorical*",
+    "chemistry*",
+    "geometry*",
+    "topology*",
+    "spatial_biology*",
+]
+exclude = [
+    "tests*",
+    "docs*",
+    "truedocs*",
+    "docs_current*",
+    "archive*",
+    "dev_scripts*",
+    "examples*",
+    "reports*",
+    "YOUTUBE*",
+]
+
+[tool.setuptools.package-data]
+"data" = ["drugs/tier1.db", "*.json", "*.tsv", "*.txt"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
