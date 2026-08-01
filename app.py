@@ -188,6 +188,58 @@ def _evidence_standing(chains, score, disease):
 
 # ── Cache heavy loads ────────────────────────────────────────────────
 
+@st.cache_resource(show_spinner="Enumerating unfilled horns (discovery surface)...")
+def load_horn_candidates():
+    """Unfilled inner horns per disease - the discovery surface.
+
+    An unfilled horn is Drug -mech-> X -> Disease with NO `treats` edge. It is a
+    repurposing hypothesis the graph has not been told the answer to.
+
+    This exists because OPERADUM and PRONOIA both take a CANDIDATE LIST as input
+    and both were fed `triage_disease` output, which ranks pairs the system has
+    already ranked. Neither could surface anything the base triage missed. Giving
+    them the horn list points the same machinery at the unanswered cases.
+
+    Measured 2026-08-01: of the top 50 unfilled horns, 10 are FDA approvals the
+    label set never recorded, at ranks 1/5/7/8/13/16/19/25/30/31 - scattered, so
+    the unchecked rows sit in the same confidence band as the confirmed ones.
+
+    Uses the label-visible graph deliberately: `filled_treats` is exactly what
+    decides whether a horn is unfilled, so the labels must be present to exclude
+    the known indications. The candidate itself is by definition unlabelled.
+    """
+    from oracle.horns import inner_horns, best_fillers
+    category, _ = load_full_typed_view(DB_PATH)
+    horns = inner_horns(category, a_type="Drug", c_type="Disease")
+    unfilled = sorted((h for h in best_fillers(horns).values() if not h.filled_treats),
+                      key=lambda h: -h.composite)
+    by_disease = {}
+    for h in unfilled:
+        by_disease.setdefault(h.c, []).append(h)
+    return by_disease
+
+
+def _horn_shortlist(disease, top_n):
+    """(drug, target, composite, terminal_relation) for the top unfilled horns."""
+    horns = load_horn_candidates().get(disease, [])
+    seen, out = set(), []
+    for h in horns:
+        base = _nonobvious_normalize(h.a) if _nonobvious_normalize else h.a
+        if base in seen:
+            continue                      # collapse salt/hydrate duplicates
+        seen.add(base)
+        out.append((h.a, h.b, h.composite, h.g_name))
+        if len(out) == top_n:
+            break
+    return out
+
+
+try:
+    from validation.nonobvious import normalize_drug_name as _nonobvious_normalize
+except Exception:                                    # pragma: no cover
+    _nonobvious_normalize = None
+
+
 @st.cache_resource(show_spinner="Loading the strict (label-removed) graph...")
 def load_strict_graph():
     """The graph with direct Drug->Disease labels removed.
@@ -1420,22 +1472,52 @@ layer. They use the same KOMPOSOS evidence base but answer different questions.
 """)
 
     disease = st.selectbox("Select disease", g["diseases"])
-    shortlist_n = st.slider("Shortlist size (from KOMPOSOS triage)", 3, 25, 8)
+    source = st.radio(
+        "Candidate source",
+        ["KOMPOSOS triage (re-rank known ranking)",
+         "Unfilled horns (discovery surface)"],
+        help=("Triage re-ranks pairs the system already ranked. Unfilled horns are "
+              "Drug->target->Disease mechanisms with NO approval on record - the "
+              "hypotheses the graph has not been given the answer to."),
+    )
+    shortlist_n = st.slider("Shortlist size", 3, 25, 8)
     profile_name = st.selectbox("Decision profile", list(OPERADUM_PROFILES))
     require_evidence = st.checkbox(
         "Require strong evidence (>= 0.8) for the next action", value=True
     )
 
     if st.button("Rank candidates", type="primary"):
-        with st.spinner("KOMPOSOS shortlist -> OPERADUM decision ranking..."):
-            triaged = triage_disease(
-                g["category"], g["strategies"], disease, g["positives"],
-                g["provenance_index"], top_n=shortlist_n,
+        use_horns = source.startswith("Unfilled")
+        with st.spinner("Building shortlist -> OPERADUM decision ranking..."):
+            if use_horns:
+                horn_rows = _horn_shortlist(disease, shortlist_n)
+                candidates = [Candidate(drug=d, target=t) for d, t, _, _ in horn_rows]
+            else:
+                triaged = triage_disease(
+                    g["category"], g["strategies"], disease, g["positives"],
+                    g["provenance_index"], top_n=shortlist_n,
+                )
+                candidates = [
+                    Candidate(drug=r["drug"], target=_target_from_result(r))
+                    for r in triaged
+                ]
+        if use_horns:
+            if not candidates:
+                st.warning(f"No unfilled horns for {disease.replace('_',' ')}.")
+                st.stop()
+            st.info(
+                f"Ranking **{len(candidates)} unfilled horns** — mechanisms with no "
+                "approval on record for this disease. Each is a hypothesis, not a "
+                "finding. Note the known failure mode: the graph records no failed "
+                "trials, so it will keep proposing things that were tried and did "
+                "not work (EGFR inhibitors in glioblastoma are the clearest case)."
             )
-            candidates = [
-                Candidate(drug=r["drug"], target=_target_from_result(r))
-                for r in triaged
-            ]
+            st.dataframe(
+                [{"Drug": d, "via target": t, "Composite": round(c, 3),
+                  "Terminal hop": "directed" if rel != "associated_with" else "co-occurrence"}
+                 for d, t, c, rel in horn_rows],
+                use_container_width=True, hide_index=True,
+            )
             requirements = {"evidence_strength": 0.8} if require_evidence else None
             slate = rank_candidates(
                 disease,
@@ -1521,7 +1603,16 @@ recommendation.
 """)
 
     disease = st.selectbox("Select disease", g["diseases"])
-    shortlist_n = st.slider("Shortlist size (from KOMPOSOS triage)", 3, 30, 12)
+    pronoia_source = st.radio(
+        "Candidate source",
+        ["KOMPOSOS triage (re-rank known ranking)",
+         "Unfilled horns (discovery surface)"],
+        help=("Auditing unfilled horns asks the question PRONOIA is actually for: "
+              "is this UNANSWERED hypothesis grounded, or does its rank ride on "
+              "ungrounded claims?"),
+        key="pronoia_source",
+    )
+    shortlist_n = st.slider("Shortlist size", 3, 30, 12)
     quality_tier = st.selectbox(
         "PRONOIA evidence quality tier",
         ["all", "high", "curated", "silver", "gold"],
@@ -1534,12 +1625,38 @@ recommendation.
     min_grounding = st.slider("Minimum grounding", 0.0, 1.0, 0.20, 0.05)
 
     if st.button("Run PRONOIA audit", type="primary"):
-        with st.spinner("KOMPOSOS shortlist -> PRONOIA prediction audit..."):
-            triaged = triage_disease(
-                g["category"], g["strategies"], disease, g["positives"],
-                g["provenance_index"], top_n=shortlist_n,
+        use_horns = pronoia_source.startswith("Unfilled")
+        with st.spinner("Building shortlist -> PRONOIA prediction audit..."):
+            if use_horns:
+                horn_rows = _horn_shortlist(disease, shortlist_n)
+                candidates = [pharm_candidate(d, disease) for d, _, _, _ in horn_rows]
+            else:
+                triaged = triage_disease(
+                    g["category"], g["strategies"], disease, g["positives"],
+                    g["provenance_index"], top_n=shortlist_n,
+                )
+                candidates = [pharm_candidate(r["drug"], disease) for r in triaged]
+        if use_horns and not candidates:
+            st.warning(f"No unfilled horns for {disease.replace('_',' ')}.")
+            st.stop()
+        if use_horns:
+            st.info(
+                f"Auditing **{len(candidates)} unfilled horns** — hypotheses with no "
+                "approval on record. Note that when the source is triage, the "
+                "shortlist is chosen on the label-visible graph even with the "
+                "hide-labels box ticked; that box only affects PRONOIA's evidence, "
+                "not which candidates were selected. Horn candidates are unlabelled "
+                "by construction, so that asymmetry does not apply here."
             )
-            candidates = [pharm_candidate(r["drug"], disease) for r in triaged]
+        st.caption(
+            "PRONOIA's `grounding` is a compression statistic. Measured 2026-08-01 "
+            "on this graph's proof sentences, it separates real from scrambled "
+            "pairings only because the target name literally appears in the "
+            "sentence (120/120 real vs 4/120 scrambled); with that overlap removed "
+            "there were zero comparable cases left. Read grounding as lexical "
+            "overlap, not as biological support."
+        )
+        with st.spinner("PRONOIA prediction audit..."):
             provider = pronoia_evidence_provider(remove_direct_labels, quality_tier)
             slate = rank_pharm_candidates_with_pronoia(
                 candidates,
