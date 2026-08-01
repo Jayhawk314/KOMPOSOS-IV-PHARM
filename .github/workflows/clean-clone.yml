@@ -1,0 +1,96 @@
+name: clean-clone
+
+# Guards the Phase 0 exit gate: a technically skeptical stranger must be able to
+# clone this repository, install it, and reproduce the bounded result.
+#
+# Before 2026-07-31 none of this was checked, and the package could not be built
+# at all: pyproject.toml named a build backend that does not exist in any version
+# of setuptools, and packages.find shipped only `core*`.
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  install-and-reproduce:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Build a wheel from a clean tree
+        run: |
+          python -m pip install --upgrade pip build
+          python -m build --wheel --outdir dist/
+
+      - name: Install the built wheel into a fresh venv
+        run: |
+          python -m venv /tmp/fresh
+          /tmp/fresh/bin/python -m pip install --upgrade pip
+          /tmp/fresh/bin/python -m pip install dist/*.whl
+          /tmp/fresh/bin/python -c "import core, oracle, validation, komposos_kg; print('import OK')"
+
+      - name: Install for development, with test extras
+        run: python -m pip install -e ".[dev]"
+
+      - name: Run the test suite
+        run: python -m pytest tests/ -q
+
+      - name: Reproduce the canonical strict benchmark
+        run: |
+          python validation/repurposing_benchmark.py \
+            --view full_typed \
+            --protocol remove_direct_labels \
+            --cohort core \
+            --baselines \
+            --json > benchmark.raw
+          cat benchmark.raw
+
+      - name: Assert the published numbers still hold
+        # Fails the build if the headline result drifts. Update the expected
+        # values here ONLY together with CLAUDE.md and HONEST_VALUE.md, in the
+        # same commit, so a number can never move silently.
+        run: |
+          python - <<'PY'
+          import json, sys
+
+          # `--json` is not cleanly machine-parseable: import-time bridge banners
+          # ("[ABPPBridge] ...", "[Boltz2Bridge] ...") are printed to stdout ahead
+          # of the payload. Slice from the first brace rather than patching the
+          # benchmark, which is out of scope for a packaging change.
+          raw = open("benchmark.raw", encoding="utf-8").read()
+          r = json.loads(raw[raw.index("{"):])
+          expected = {
+              "auroc":        (0.9784, 0.0005),
+              "auprc":        (0.6128, 0.0005),
+              "n_positives":  (44,     0),
+              "n_pairs":      (1560,   0),
+              "n_scored_pairs": (957,  0),
+          }
+          failures = []
+          for key, (want, tol) in expected.items():
+              got = r[key]
+              if abs(got - want) > tol:
+                  failures.append(f"{key}: expected {want} +/- {tol}, got {got}")
+          if failures:
+              print("PUBLISHED NUMBERS HAVE DRIFTED:")
+              for f in failures:
+                  print("  " + f)
+              print("\nIf this change is intended, update CLAUDE.md, HONEST_VALUE.md,")
+              print("README.md and this workflow in the SAME commit.")
+              sys.exit(1)
+          print("benchmark matches the published numbers")
+          PY
+
+      - name: Reproduce the enrichment funnel
+        run: python -m validation.enrichment_funnel --cohort core
