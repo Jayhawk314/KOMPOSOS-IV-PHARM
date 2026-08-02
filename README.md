@@ -152,7 +152,10 @@ Current materialization: 60 reviewed claims, 77 registry studies, 148 receipts,
 search over the reviewed local corpus. A failed local search renders as unknown,
 not as evidence of absence. Vector retrieval is deliberately deferred until it
 can beat this lexical baseline on a frozen retrieval task. See
-[`docs/EVIDENCE_HYPERGRAPH_PLAN.md`](docs/EVIDENCE_HYPERGRAPH_PLAN.md).
+[`docs/EVIDENCE_GRAPH_ARCHITECTURE.md`](docs/EVIDENCE_GRAPH_ARCHITECTURE.md)
+for the before/after architecture and expected behavior, and
+[`docs/EVIDENCE_HYPERGRAPH_PLAN.md`](docs/EVIDENCE_HYPERGRAPH_PLAN.md) for
+delivery gates.
 
 ---
 

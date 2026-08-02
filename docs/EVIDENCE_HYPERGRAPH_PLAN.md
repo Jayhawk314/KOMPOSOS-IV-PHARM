@@ -3,6 +3,9 @@
 Status: phases 1-5 implemented 2026-08-01; vector evaluation and external
 researcher workflow testing remain gated work.
 
+Detailed before/after architecture and runtime expectations:
+`docs/EVIDENCE_GRAPH_ARCHITECTURE.md`.
+
 ## Researcher question
 
 The evidence layer exists to answer one question the scored graph cannot:
