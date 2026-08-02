@@ -41,9 +41,9 @@ default graph**:
 Reproduce: `python validation/repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --cohort core --baselines --ci`
 
 **Two cohorts, not comparable.** `core` = 78 curated drugs (quote this). `all` = 757
-drugs (core + 679 materialized ChEMBL); its AUROC reads ~0.99 but that is an
-artifact of ~13,500 easy negatives — AUPRC falls and the baseline margin collapses to
-~+0.05. Use `all` only as a discovery surface, never as a benchmark.
+drugs (core + 679 materialized ChEMBL); its 2026-08-01 strict rerun gives AUROC
+0.9944 and AUPRC 0.4042, but the margin over common-neighbor is only +0.0251.
+Use `all` only as a discovery surface, never as the headline benchmark.
 
 ## The graph
 
@@ -148,6 +148,9 @@ phase.
   direction, trial, literature, and terminal-PMID review packet. The verdict
   taxonomy separates supported signals, contradictions, quarantine, and category
   or direction errors; absence of evidence never renders as a pass.
+- `data/evidence/evidence.db` is the rebuildable contextual evidence hypergraph:
+  60 reviewed claims, 77 studies, 148 receipts, 141 outcomes, and 3,237 typed
+  study roles. It is read-only in the UI and does not affect graph scoring.
 - `data/labels/evaluation_labels_v1.csv` — the Phase 0.5 label set. **A seed**:
   64 of 15,140 pairs, 44 of them inherited without any citation. Do not compute
   AUPRC or precision against it and present the result as a measurement.
@@ -156,9 +159,10 @@ phase.
 
 ```powershell
 streamlit run app.py                     # the UI; modes in the left sidebar
-python -m pytest tests/ -q               # expect 182 pass, 1 skip
+python -m pytest tests/ -q               # expect 194 pass, 1 skip
 python -m validation.check_label_set     # label-set structure + how incomplete it is
 python -m validation.enrich_candidate_review --out reports/candidate_review_2026-08-01/CANDIDATE_REVIEW_60.csv
+python -m evidence.build                   # rebuild contextual evidence + FTS5
 python validation/triage.py Melanoma --drug Sorafenib   # one audited candidate
 python -m validation.nonobvious --disease Melanoma      # under-discussed real compositions
 ```

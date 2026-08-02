@@ -108,6 +108,7 @@ test_*.py
 !tests/test_candidate_review.py
 !tests/test_fetch_negative_trials.py
 !tests/test_public_facts.py
+!tests/test_evidence_hypergraph.py
 verify_*.py
 measure_*.py
 calibrate_*.py
@@ -120,6 +121,7 @@ data/drugs/*manifest*.json
 data/drugs/*_ot*.json
 data/drugs/*.db
 !data/drugs/tier1.db
+!data/evidence/evidence.db
 
 # Old databases and sessions
 example_knowledge.db

@@ -3,7 +3,7 @@
 
 **Author**: James Ray Hawkins
 **Date**: 2026-05-13
-**License**: Apache 2.0 / Commercial dual license
+**License**: Apache-2.0 for software code; third-party data retain their own terms (see root NOTICE)
 **Python**: 3.10+
 
 ---

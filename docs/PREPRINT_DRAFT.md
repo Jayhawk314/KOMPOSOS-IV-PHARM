@@ -319,7 +319,8 @@ protocols. Our graph is ~40x smaller with ~17x fewer positives.
 
 ## 5. Availability
 
-The system is open-source (Apache 2.0 / Commercial dual license):
+The software source code is available under Apache-2.0. Bundled third-party
+data retain their own terms; see the repository NOTICE.
 
 - **Triage CLI**: `python validation/triage.py <Disease>`
 - **Web demo**: `streamlit run app.py`

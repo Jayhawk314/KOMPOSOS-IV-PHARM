@@ -119,3 +119,10 @@ and confirmed useful. That is a useful boundary, not a failed experiment.
   detect efficacy failure.
 
 Rows remain in their original interleaved order so the review sample is auditable.
+
+## Application materialization
+
+The reviewed CSV/JSON artifacts remain the source records. `python -m
+evidence.build` materializes them into `data/evidence/evidence.db` for read-only
+Pair-detail queries and local FTS5 search. The evidence database is separate
+from `tier1.db`; building it cannot alter graph scoring or benchmark results.

@@ -3,7 +3,7 @@
 
 **Date**: 2026-05-13 (updated: 8 strategies, PubChem-verified drug properties)
 **Author**: James Ray Hawkins
-**License**: Apache 2.0 / Commercial dual license
+**License**: Apache-2.0 for software code; third-party data retain their own terms (see root NOTICE)
 
 ---
 
@@ -575,4 +575,4 @@ KOMPOSOS-IV-PHARM is a rigorously engineered categorical system for pharmaceutic
 **Document Generated**: 2026-05-06 (updated 2026-05-13)
 **Status**: Complete technical reference
 **Audience**: Developers, researchers, auditors, collaborators
-**License**: Apache 2.0 / Commercial dual license
+**License**: Apache-2.0 for software code; third-party data retain their own terms (see root NOTICE)

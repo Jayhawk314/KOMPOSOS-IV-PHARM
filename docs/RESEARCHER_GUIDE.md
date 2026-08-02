@@ -342,4 +342,4 @@ always verify with the evidence chains and mechanistic paths.
 ## Contact
 
 Author: James Ray Hawkins
-License: Apache 2.0 / Commercial dual license
+License: Apache-2.0 for software code; third-party data retain their own terms (see root NOTICE)

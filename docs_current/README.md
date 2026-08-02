@@ -49,5 +49,6 @@ evidence source; lower decision scores are better. See
 - **Literature edges** are single-PMID agent-adjudicated, not wet-lab confirmed.
 - **Categorical framing is unproven as a value-add** over standard KG link prediction.
 
-Author: James Ray Hawkins · Apache 2.0 / Commercial dual license ·
+Author: James Ray Hawkins · Apache-2.0 software license; third-party data retain
+their own terms (see the root NOTICE) ·
 <https://github.com/Jayhawk314/KOMPOSOS-IV-PHARM>

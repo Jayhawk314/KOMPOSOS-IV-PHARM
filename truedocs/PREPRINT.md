@@ -246,7 +246,8 @@ Direct comparison is not valid due to different graphs, label sets, and protocol
 
 ## 5. Availability
 
-The system is open-source (Apache 2.0 / Commercial dual license):
+The software source code is available under Apache-2.0. Bundled third-party
+data retain their own terms; see the repository NOTICE.
 
 - **Triage CLI**: `python validation/triage.py <Disease>`
 - **Benchmark**: `python validation/repurposing_benchmark.py --view full_typed --protocol remove_direct_labels --ci --baselines`

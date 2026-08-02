@@ -52,17 +52,17 @@ them improves the ranker.
 | Pairs | 1,560 | 15,140 |
 | Positives | 44 | 44 |
 | Base rate | 2.82% | 0.29% |
-| Strict AUROC | **0.9763** | ~0.99 (inflated) |
-| Strict AUPRC | **0.5920** | ~0.41 |
-| Hits@20 | **0.70** | 0.40 |
-| Best baseline | common-neighbor 0.7483 | common-neighbor ~0.95 |
-| **Margin over baseline** | **+0.2280** | **~+0.05** |
+| Strict AUROC | **0.9763** | 0.9944 (inflated) |
+| Strict AUPRC | **0.5920** | 0.4042 |
+| Hits@20 | **0.70** | 0.50 |
+| Best baseline | common-neighbor 0.7483 | common-neighbor 0.9692 |
+| **Margin over baseline** | **+0.2280** | **+0.0251** |
 
-**The full-cohort ~0.99 is an artifact — do not report it as an improvement.**
+**The full-cohort 0.9944 is an artifact — do not report it as an improvement.**
 Expanding the universe added ~13,500 mostly-unscoreable pairs while the positive
 count stayed at 44. Adding easy negatives inflates AUROC mechanically. The honest
 tells sit in the same run: AUPRC *fell* and the margin over a trivial
-common-neighbor baseline collapsed to ~+0.05.
+common-neighbor baseline collapsed to +0.0251.
 
 **Quote the `core` number (0.9763, +0.23 over baseline).** That is the defensible
 one. Treat the `all` cohort as a *discovery surface* for finding candidates, never

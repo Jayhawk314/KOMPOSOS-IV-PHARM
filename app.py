@@ -20,6 +20,8 @@ from pathlib import Path
 
 import streamlit as st
 
+from evidence import EvidenceStore
+
 APP_ROOT = Path(__file__).resolve().parent
 BUNDLED_OPERADUM_ROOT = APP_ROOT / "vendor" / "operadum"
 SIBLING_OPERADUM_ROOT = APP_ROOT.parent / "operadum"
@@ -355,7 +357,8 @@ def load_graph():
         cursor.execute(
             f"SELECT provenance, metadata, {quant_expr}, {tier_expr} FROM morphisms"
         )
-        for provenance, metadata, quantitative_value, evidence_tier in cursor.fetchall():
+        database_rows = cursor.fetchall()
+        for provenance, metadata, quantitative_value, evidence_tier in database_rows:
             text = f"{provenance or ''} {metadata or ''}"
             pmids.update(re.findall(r"PMID:?\s*(\d+)", text))
             if provenance and provenance != "unknown":
@@ -395,6 +398,7 @@ def load_graph():
         "n_objects": n_objects,
         "n_morphisms": n_morphisms,
         "n_positives": len(positives),
+        "database_morphisms": len(database_rows),
         "check_recovered": check_recovered,
         "check_total": check_total,
         "high_conf": high_conf,
@@ -408,6 +412,12 @@ def load_graph():
         "source_counts": source_counts,
         "ranking_calibration": ranking_calibration,
     }
+
+
+@st.cache_resource(show_spinner=False)
+def load_evidence_store():
+    """Read-only contextual evidence; deliberately separate from graph scoring."""
+    return EvidenceStore()
 
 
 # ── Page config ──────────────────────────────────────────────────────
@@ -1369,6 +1379,127 @@ def render_detail(entry):
         st.progress(cited / total, text=f"Provenance: {cited}/{total} edges cited")
 
 
+def render_contextual_evidence(drug: str, disease: str) -> None:
+    """Render reviewed n-ary evidence without feeding it into graph scoring."""
+    st.markdown("### Contextual clinical evidence")
+    st.caption(
+        "Contextual evidence does not change the ranking score. It records what "
+        "was tested, in which setting, what was reported, and which receipts "
+        "were reviewed."
+    )
+    store = load_evidence_store()
+    evidence = store.get_pair_evidence(drug, disease)
+    if not evidence.reviewed:
+        st.info(
+            "This pair is not in the completed 60-candidate evidence review. "
+            "That means **standing unknown**, not untested, unsupported, or negative."
+        )
+        return
+
+    for review in evidence.reviews:
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("Evidence state", review["evidence_state"])
+        c2.metric("Human testing", review["human_testing_status"])
+        c3.metric("Result signal", review["result_signal"])
+        c4.metric("Pipeline assessment", review["candidate_assessment"])
+        st.markdown(f"**Human review:** {review['review_note']}")
+        negative_label = review["negative_evidence_found"]
+        negative_note = review["negative_evidence_note"]
+        if negative_label == "YES":
+            st.warning(f"**Negative evidence found:** {negative_note}")
+        elif negative_label == "NO":
+            st.info(
+                "**No pair-level negative evidence recorded in this review.** "
+                f"This is not support. {negative_note}"
+            )
+        else:
+            st.warning(f"**Negative-evidence standing:** {negative_label}. {negative_note}")
+
+    if evidence.studies:
+        st.markdown("#### Registry studies")
+        study_rows = []
+        for study in evidence.studies:
+            study_rows.append({
+                "Study": study["study_id"],
+                "Title": study["title"],
+                "Status": study["recruitment_status"],
+                "Phase": ", ".join(study["phase_json"]) or "-",
+                "Completion": study["completion_date"] or "-",
+                "Posted results": "yes" if study["has_posted_results"] else "no",
+                "Pair linkage": study["pair_linkage"],
+            })
+        st.dataframe(study_rows, width="stretch", hide_index=True)
+        if evidence.active_studies:
+            st.info(
+                f"{len(evidence.active_studies)} active study record(s). Active "
+                "recruitment is not an efficacy result."
+            )
+    else:
+        st.caption("No pair-linked registry study was stored for this reviewed pair.")
+
+    st.markdown("#### Opened/source receipts")
+    if evidence.unresolved_receipts:
+        unresolved = ", ".join(
+            f"{receipt['source_type']}:{receipt['external_id']}"
+            for receipt in evidence.unresolved_receipts
+        )
+        st.error(
+            f"Unresolved receipt(s): {unresolved}. A plausible candidate does not "
+            "repair an invalid graph citation."
+        )
+    if not evidence.receipts:
+        st.warning("No source receipt is attached to this reviewed pair.")
+    for receipt in evidence.receipts:
+        if receipt["resolves"] == 1:
+            resolution = "resolves"
+        elif receipt["resolves"] == 0:
+            resolution = "UNRESOLVED"
+        else:
+            resolution = "existence not batch-checked"
+        label = receipt["title"] or f"{receipt['source_type']}:{receipt['external_id']}"
+        if receipt["url"]:
+            source = f"[{label}]({receipt['url']})"
+        else:
+            source = label
+        context = receipt["relevance_assessment"] or "relevance not separately classified"
+        st.markdown(f"- {source} — **{resolution}**; {context}")
+        if receipt["review_note"]:
+            st.caption(receipt["review_note"])
+
+
+def render_evidence_search() -> None:
+    """Search only the locally reviewed evidence corpus; no web inference."""
+    with st.expander("Search the completed evidence review", expanded=False):
+        st.caption(
+            "Lexical FTS5 baseline over 60 candidate reviews, registry studies, "
+            "and receipts. Search results retrieve records; they do not change "
+            "candidate standing."
+        )
+        query = st.text_input(
+            "Evidence search",
+            placeholder="e.g. suramin RCC inactive or amivantamab glioblastoma recruiting",
+            key="contextual_evidence_search",
+        )
+        if query:
+            results = load_evidence_store().search(query)
+            if results:
+                st.dataframe(
+                    [{
+                        "Type": row["record_type"],
+                        "Record": row["record_id"],
+                        "Title": row["title"],
+                        "Matched context": row["excerpt"],
+                    } for row in results],
+                    width="stretch",
+                    hide_index=True,
+                )
+            else:
+                st.info(
+                    "No reviewed local record matched. This is a corpus-search "
+                    "result, not evidence that no literature exists."
+                )
+
+
 def generate_report(results: list[dict], query_label: str) -> str:
     """Generate downloadable markdown report from current results."""
     return format_markdown(
@@ -1878,6 +2009,7 @@ elif mode == "Evidence card":
 
 elif mode == "Pair detail":
     st.title("Inspect a specific drug-disease pair")
+    render_evidence_search()
     col1, col2 = st.columns(2)
     drug = col1.selectbox("Drug", g["drugs"])
     disease = col2.selectbox("Disease", g["diseases"])
@@ -1905,6 +2037,7 @@ elif mode == "Pair detail":
                 "breakdown": detailed,
             }
         render_detail(entry)
+        render_contextual_evidence(drug, disease)
 
         report_md = generate_report([entry], f"Pair: {drug} -> {disease}")
         st.download_button(
@@ -2488,6 +2621,7 @@ elif mode == "About":
     n_obj = g["n_objects"]
     n_mor = g["n_morphisms"]
     n_pos = g["n_positives"]
+    evidence_counts = load_evidence_store().counts()
 
     st.info(
         "For a deliberately conservative, self-critical account of what this "
@@ -2495,8 +2629,9 @@ elif mode == "About":
     )
 
     st.markdown(f"""
-KOMPOSOS-IV-PHARM is a **categorical AI runtime** for drug repurposing. In
-practice the ranking is driven mostly by **confidence-weighted mechanistic path
+KOMPOSOS-IV-PHARM is an **evidence-bounded drug-repurposing research
+prototype**. It uses categorical methods, but in practice the ranking is driven
+mostly by **confidence-weighted mechanistic path
 composition** (Drug -> Protein -> Disease) plus a structural-similarity bonus;
 the category-theoretic layer (Kan extensions, Yoneda lemma, topos logic,
 fibrations) is the organizing framework around that core, not the main source of
@@ -2506,13 +2641,19 @@ predict that a drug will actually work.
 
 ### How It Works
 
-1. **Knowledge Graph**: {n_drugs} drugs, {n_obj - n_drugs - n_diseases} proteins, \
-{n_diseases} diseases, {n_mor} edges ({g['provenance_rows']} provenance/source strings, {g['pmid_count']} PMID identifiers, {g['quantitative_edges']} graph edges with structured quantitative fields; ABPP measurements are loaded separately)
-2. **Live triage strategy profile**: 8 configured strategy modules
+1. **Scored knowledge graph**: {n_drugs:,} drugs,
+{n_obj - n_drugs - n_diseases:,} protein/biological nodes, {n_diseases:,} diseases,
+and {n_mor:,} scored edges. The raw database has {g['database_morphisms']:,} edge
+rows, {g['provenance_rows']:,} populated provenance/source fields,
+{g['pmid_count']:,} distinct PMID identifiers, and {g['quantitative_edges']:,} rows
+with structured quantitative values; the 424 ESMC transfer edges remain stored
+but are excluded from scoring.
+2. **Live triage strategy profile**: {len(g['strategy_names'])} configured modules
    (composition, Kan extensions, Yoneda patterns, topos logic, structural holes,
    fibration lifts, binding evidence, Yoneda distance)
-3. **Binding Evidence**: IC50/engagement data from ABPP experiments, Boltz2
-   heuristic binding, drug-likeness (Lipinski), drug-target molecular compatibility
+3. **Binding Evidence**: curated IC50/engagement records, drug-likeness
+   (Lipinski), drug-target molecular compatibility, and the Boltz2 bridge in
+   fallback mode when Boltz itself is not installed
 4. **Yoneda Distance**: Structural similarity via presheaf fingerprints on clean
    evidence subgraph (MEASURED + ESTABLISHED edges only)
 5. **Scoring**: Mean of active strategy signals + path bonus, plus a conditional
@@ -2520,7 +2661,13 @@ predict that a drug will actually work.
    Works" page for the full formula)
 6. **Evidence**: Predictions include traceable mechanistic paths when available,
    provenance/PMID links where present, and IC50 data where available
-7. **Integrated audit layers**: OPERADUM provides decision/prioritization
+7. **Contextual clinical evidence**: a separate, read-only evidence database
+   currently stores {evidence_counts.get('candidate_reviews', 0):,} reviewed
+   candidate records, {evidence_counts.get('studies', 0):,} registry studies,
+   {evidence_counts.get('outcomes', 0):,} outcomes, and
+   {evidence_counts.get('receipts', 0):,} source receipts. These records are shown
+   in Pair detail and do not change the ranking score.
+8. **Integrated audit layers**: OPERADUM provides decision/prioritization
    reports, while PRONOIA provides prediction-grounding audit reports when the
    bundled stack is available at `{OPERADUM_STACK_ROOT}`
 """)
@@ -2581,9 +2728,9 @@ them are negatives, so restricting to the 962 actually-scored pairs gives AUROC
 than ranking skill.*
 
 **Cohort: `core` (78 curated drugs, 1,560 pairs).** Quote this number, not the
-757-drug figure. On the full cohort AUROC reads ~0.99, but that is an artifact of
-~13,500 added easy negatives: AUPRC *falls* and the margin over common-neighbor
-collapses to ~+0.05. The two cohorts are not comparable.
+757-drug figure. The 2026-08-01 full-cohort rerun gives AUROC 0.9944 and AUPRC
+0.4042, but adds thousands of easy negatives; the margin over common-neighbor
+collapses to +0.0251. The two cohorts are not comparable.
 
 *Current audited strict run: 2026-08-01, on the ESMC-excluded default graph:
 AUROC 0.9763, AUPRC 0.5920, with a +0.2280 margin over common-neighbor. Separately,
@@ -2659,10 +2806,11 @@ clinical probability.
   non-drug/non-disease nodes carry a disease edge, across **806** terminal edges:
   **746 are `associated_with`** (co-occurrence, not mechanism) and **60 are
   directed `driver_of`**, spanning 45 sources. **153 of 757 drugs** complete any
-  Drug->Protein->Disease path; through a **directed** terminal hop, **191 pairs**
-  are reachable. Every candidate this system produces traces back to one of those
-  60 directed edges, so their citation quality is the ceiling on everything it
-  can claim.
+  Drug->Protein->Disease path; through a **directed** terminal hop, only **191
+  pairs** are reachable. Candidates ending in `associated_with` cannot be
+  direction-checked from that terminal edge. The 60 directed edges are therefore
+  the ceiling for direction-aware candidate generation, not the source of every
+  candidate the system displays.
 - **Citation attribution risk remains**: Provenance/source strings exist for every edge, but
   the audit found PMID-without-context, measured-tier mismatch, and quantitative
   support issues that need edge-level verification before wet-lab claims
@@ -2681,5 +2829,8 @@ clinical probability.
 ### Citation
 
 Hawkins, J.R. (2026). KOMPOSOS-IV-PHARM: Categorical Drug Repurposing.
-Apache 2.0 / Commercial dual license.
+
+**Software source code:** Apache License 2.0. No separate KOMPOSOS commercial
+license is included in this repository. Bundled third-party data retain their
+own terms; see the repository `LICENSE` and `NOTICE`.
 """)

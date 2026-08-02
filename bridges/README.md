@@ -6,8 +6,8 @@ Integration layer for the three-layer architecture.
 
 These bridge plugins connect:
 - **Orion Core** (MIT licensed by Borkwork) - Plugin framework
-- **KOMPOSOS-IV** (Apache-2.0/Commercial) - Category runtime
-- **COG** (Apache-2.0/Commercial) - Cognitive co-processor
+- **KOMPOSOS-IV** (Apache-2.0) - Category runtime
+- **COG** - Cognitive co-processor
 
 ## Plugins
 
@@ -81,9 +81,7 @@ alice_session = await session.get_or_create_session("alice")
 
 ## License
 
-These bridge plugins are dual-licensed:
-- Apache License 2.0, OR
-- KOMPOSOS-IV Commercial License
+These bridge plugins are licensed under Apache License 2.0.
 
 They integrate with Orion Core (MIT licensed by Borkwork).
 

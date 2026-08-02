@@ -56,6 +56,20 @@ def test_ui_does_not_turn_missing_local_labels_into_regulatory_facts():
         assert stale not in app
 
 
+def test_about_page_matches_repository_license_and_graph_scopes():
+    app = _text("app.py")
+    readme = _text("README.md")
+
+    assert "Software source code:** Apache License 2.0" in app
+    assert "No separate KOMPOSOS commercial" in app
+    assert "Bundled third-party data retain their" in app
+    assert "protein/biological nodes" in app
+    assert "The raw database has {g['database_morphisms']:,}" in app
+    assert "the source of every" in app
+    assert "Commercial dual license" not in app
+    assert "Commercial dual license" not in readme
+
+
 def test_current_docs_match_reproducible_funnel_and_packaging_state():
     readme = _text("README.md")
     honest = _text("HONEST_VALUE.md")
@@ -71,6 +85,8 @@ def test_current_docs_match_reproducible_funnel_and_packaging_state():
     assert "64 of 15,140" in claude
 
     combined = "\n".join((readme, honest, claude))
+    assert "+0.0251" in honest
+    assert "+0.0251" in claude
     for stale in (
         "32/44 (73%)",
         "14.5× enrichment",
@@ -80,6 +96,7 @@ def test_current_docs_match_reproducible_funnel_and_packaging_state():
         "128 have a complete",
         "1,206 reachable",
         "50 of 15,140",
+        "~+0.05",
     ):
         assert stale not in combined
 

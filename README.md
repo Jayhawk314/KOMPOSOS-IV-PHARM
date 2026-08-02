@@ -9,7 +9,8 @@ A categorical AI runtime applied to pharmaceutical discovery.
   binding/efficacy/safety, ADMET). Not scientifically validated in this repo —
   do not read Track A metrics as Track B readiness.
 
-Author: James Ray Hawkins · License: Apache 2.0 / Commercial dual license · Python 3.10+
+Author: James Ray Hawkins · Code license: [Apache-2.0](LICENSE) · Third-party
+data retain their own terms: [NOTICE](NOTICE) · Python 3.10+
 
 > **Status:** working research prototype, **not** clinical or translational
 > validation. Every AUROC below names its graph view, protocol, pair count,
@@ -129,6 +130,29 @@ python validation\repurposing_benchmark.py --view full_typed --protocol remove_d
 # Interactive web app (Disease-first / Drug-first / Pair detail / Search speedup / ...)
 streamlit run app.py
 ```
+
+---
+
+## Contextual evidence hypergraph
+
+`Pair detail` now joins the scored Drug→Protein→Disease graph to a separate,
+read-only contextual evidence database. The evidence layer preserves n-ary
+study context—interventions, conditions, recruitment state, reviewed result
+signal, contradictions, and source receipts—without changing the ranking score
+or adding external terms to the scored graph.
+
+The bundled database is rebuilt deterministically from the 60-candidate review:
+
+```powershell
+python -m evidence.build
+```
+
+Current materialization: 60 reviewed claims, 77 registry studies, 148 receipts,
+141 outcomes, and 3,237 typed study roles. Pair detail also provides an FTS5
+search over the reviewed local corpus. A failed local search renders as unknown,
+not as evidence of absence. Vector retrieval is deliberately deferred until it
+can beat this lexical baseline on a frozen retrieval task. See
+[`docs/EVIDENCE_HYPERGRAPH_PLAN.md`](docs/EVIDENCE_HYPERGRAPH_PLAN.md).
 
 ---
 

@@ -231,7 +231,8 @@ If you use KOMPOSOS-IV-PHARM in research, please cite:
 
 ## License
 
-Apache 2.0 (open source) / Commercial (dual license available)
+Software source code: Apache-2.0. Bundled third-party data retain their own
+terms; see the repository NOTICE.
 
 ---
 
