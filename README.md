@@ -31,14 +31,14 @@ python validation\repurposing_benchmark.py --view full_typed --protocol remove_d
 ```
 
 - **AUROC 0.9763**, AUPRC 0.5920 (2026-08-01)
-- **precision@5 1.00, precision@10 0.70** · 44 FDA `treats` positives over 1,560
+- **precision@5 1.00, precision@10 0.70** · 44 local curated `treats` positives over 1,560
   pairs (core cohort). The tool prints these as "Hits@k" but computes
   `hits / min(positives, k)`, which is precision@k — hence the fall from k=5 to k=10.
 - **Scored-only AUROC 0.9609**: 598 of the 1,560 pairs are abstentions scored 0.0
   and sit inside the headline AUROC. AUPRC is unchanged.
 - **+0.23** over the strongest graph baseline (common_neighbor 0.7483)
 - Measured on the ESMC-excluded default graph; see HONEST_VALUE.md for why the
-  similarity-transfer layer is excluded and why +0.24 is the honest margin.
+  similarity-transfer layer is excluded. The current margin is +0.2280.
 
 **External performance is currently undetermined, not weak** (revised 2026-07-31).
 The previously listed Hetionet result (AUROC 0.644 / AUPRC 0.010) is **retired and
@@ -52,9 +52,9 @@ recovery is strong; **what happens on novel pairs is unmeasured**, and no claim
 should be made in either direction until the evaluation label set is complete.
 See `HONEST_VALUE.md`.
 
-**Packaging note:** `pip install` does not currently work (`pyproject.toml` names a
-non-existent build backend). Run from a checkout; the benchmark command above is
-unaffected.
+**Installation:** the current package uses `setuptools.build_meta`. From a clone,
+run `python -m pip install -e .`; use `python -m pip install -e ".[demo]"` for
+the Streamlit UI.
 
 ---
 
@@ -69,18 +69,18 @@ catches most of them. Measured under the strict protocol above:
 
 | Screen top | Pairs | Capture | Enrichment vs random |
 |---|---|---|---|
-| 5% | 78 | 32/44 (73%) | **14.5x** |
+| 5% | 78 | 31/44 (70%) | **14.1x** |
 | 10% | 156 | 42/44 (95%) | **9.5x** |
 | 20% | 312 | 43/44 (98%) | **4.9x** |
 
-- Capture **50%** of known hits by screening **2%** of the list (skip 98%).
-- Capture **80%** of known hits by screening **7%** of the list (skip 93%).
-- Capture **100%** of known hits by screening **37%** of the list (skip 63%).
+- Capture **50%** of known hits by screening **3%** of the list (41 pairs; skip 97%).
+- Capture **80%** of known hits by screening **6%** of the list (91 pairs; skip 94%).
+- Capture **100%** of known hits by screening **24%** of the list (375 pairs; skip 76%).
 
 _Measured on **known** positives (recovery), so this quantifies search
-acceleration on the curated graph — not a novel-discovery hit rate. For
-genuinely novel pairs, top-of-list precision is lower (Hetionet check); the
-temporal holdout shows the lift does not fully collapse on unseen approvals._
+acceleration on the curated graph — not a novel-discovery hit rate. Performance
+on genuinely novel pairs is unmeasured; the previous external and temporal
+checks are retired or invalid._
 
 Regenerate any time the graph changes:
 
@@ -134,10 +134,12 @@ streamlit run app.py
 
 ## How it works (briefly)
 
-Scoring combines nine oracle strategies — dominated by confidence-weighted
+Live triage configures eight strategy modules — dominated by confidence-weighted
 **mechanistic path composition** (Drug→Protein→Disease) plus a structural
 **Yoneda similarity** bonus and a **binding-evidence** strategy (ABPP IC50s,
-drug-likeness). Provenance is tiered honestly: `RELATION-VERIFIED` (agent-
+drug-likeness). Seven modules are active in the strict label-removed benchmark,
+because Yoneda distance has no visible treatment comparators. Provenance is
+tiered honestly: `RELATION-VERIFIED` (agent-
 confirmed directed/signed relation) vs `LEXICAL-COOCCURRENCE` (automated screen
 only). The `OPERADUM` decision layer ranks *which candidate to back next* on top
 of Track A scores. See `CLAUDE.md` and `TECHNICAL_OVERVIEW.md` for architecture,

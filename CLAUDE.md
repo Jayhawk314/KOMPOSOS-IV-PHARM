@@ -8,16 +8,16 @@
 ## What this is, in one paragraph
 
 An honest, glass-box **triage accelerator** over *known* oncology pharmacology. It
-ranks drug→disease repurposing candidates, and each ranking IS its evidence: a set
-of Drug→Protein→Disease paths, every edge carrying its provenance, citations, and an
-evidence tier you can click through to PubMed. Its value is auditability and speed,
-**not** novelty. It recombines *published* drug-target and target-disease facts into
-a cited shortlist of hypotheses; it does **not** discover biology absent from the
+ranks drug→disease repurposing candidates, and each ranking is a set of
+Drug→Protein→Disease paths. Edge records carry provenance and evidence tiers;
+source identifiers are shown where present, but must be checked. Its value is
+auditability and speed, **not** novelty. It recombines recorded drug-target and
+target-disease facts into a source-linked shortlist of hypotheses; it does **not** discover biology absent from the
 literature, and it cannot certify which of its novel compositions are real. Pitch it
 as a fast, transparent hypothesis-triage tool that knows its own limits — never as
 "AI that finds new cures."
 
-## Canonical current numbers (2026-07-21, re-verified 2026-07-31)
+## Canonical current numbers (re-verified 2026-08-01)
 
 Strict `remove_direct_labels`, **`core` cohort (78 curated drugs)**, **ESMC-excluded
 default graph**:
@@ -31,7 +31,7 @@ default graph**:
   Quote both numbers.
 - **Margin over best trivial baseline: +0.23** (common-neighbor 0.7483). This is the
   honest advantage; do not quote the older +0.36.
-- Funnel: top 5% of pairs catches 73% of known hits (~14.5× enrichment).
+- Funnel: top 5% of pairs catches 31/44 known hits (70%, ~14.1× enrichment).
 - **External precision is undetermined, not weak.** The Hetionet inputs are missing
   from the repo and the temporal holdout leaks and runs on the wrong cohort; its
   negative set contains approved indications (Dacomitinib→NSCLC, approved
@@ -47,12 +47,12 @@ artifact of ~13,500 easy negatives — AUPRC falls and the baseline margin colla
 
 ## The graph
 
-- 757 drug nodes; **128 have a complete Drug→Protein→Disease path** over **1,206
-  reachable pairs** on the default graph (the rest are stranded — see terminal-hop
+- 757 drug nodes; **153 have a complete Drug→Protein→Disease path** over **1,337
+  reachable pairs** on the default graph (604 are stranded — see terminal-hop
   limitation). 20 diseases — **not all oncology**: the set includes `Type2_Diabetes`
   and `Li_Fraumeni_Syndrome`, and 6 of the 20 carry **zero positives** (AML,
   Glioblastoma, Ewing_Sarcoma, Prostate_Cancer, Soft_Tissue_Sarcoma, Li_Fraumeni).
-  44 FDA `treats` positives, one of which is `Metformin → Type2_Diabetes`.
+  44 local curated `treats` positives, one of which is `Metformin → Type2_Diabetes`.
 - **AML has no `treats` label at all**, and only FLT3 and TOP2A reach it through a
   directed edge. Any AML work must bring its own external labels.
 - **2,462 edges in the DB.** The 424 ESMC protein-embedding
@@ -63,9 +63,10 @@ artifact of ~13,500 easy negatives — AUPRC falls and the baseline margin colla
 
 ## Three measured findings that define what to believe
 
-1. **ESMC similarity-transfer edges are noise.** Ablation
-   (`python -m validation.esmc_ablation --cohort core`) showed removing all 422
-   *improves* the ranker (AUROC 0.9691→0.9784). They are excluded from the default
+1. **ESMC similarity-transfer edges are noise.** The 2026-07-21 ablation
+   (`python -m validation.esmc_ablation --cohort core`) showed removing the
+   then-current 422-edge layer *improved* the ranker (AUROC 0.9691→0.9784).
+   The database now contains 424 ESMC edges; all are excluded from the default
    scored graph (`load_full_typed_view` defaults to `exclude_provenance="ESMC"`;
    restore with `--include-inferred`). See `data/ESMC_ABLATION_RESULT.json`.
 
@@ -90,9 +91,9 @@ artifact of ~13,500 easy negatives — AUPRC falls and the baseline margin colla
 - 20 diseases, curated graph, oncology-dominated but not oncology-only. **External
   generalization is unmeasured, not weak** — the Hetionet number is retired
   (inputs absent from the repo) and the temporal holdout is leaky and mis-cohorted.
-- **The repository does not `pip install`.** `pyproject.toml` names a build backend
-  that does not exist, and `packages.find` ships only `core*`. The benchmark runs
-  fine from a checkout; packaging is what is broken.
+- **Packaging was repaired on 2026-07-31.** The current `pyproject.toml` uses
+  `setuptools.build_meta`, declares runtime dependencies, and includes the
+  production packages. A wheel build remains part of the release check.
 - **No conflict representation exists.** `oracle/evidence_combination.py` cannot
   produce non-zero Dempster conflict by construction. Not in the scored path.
 - **The combination layer runs on a different graph** (OmniPath) and its one
@@ -104,14 +105,13 @@ artifact of ~13,500 easy negatives — AUPRC falls and the baseline margin colla
   lexical gate on held-out data (`komposos_kg/directed_extractor.py`, marked
   EXPERIMENTAL). Fixing directed extraction needs a model, not more rules.
 
-## Where the real code and data live (disk hazards)
+## Where the real code and data live
 
-- **Canonical tree: this folder, `KOMPOSOS-IV-PHARM-master`.** It is now a proper git
-  working copy tracking `origin/master` at github.com/Jayhawk314/KOMPOSOS-IV-PHARM.
-- The default cwd `komposos-iv-pharm` is an **empty shell** (`.claude/` + a stray
-  `nul`). The sibling `... - Copy (4)/(5)/(16)` folders are **pre-integrity-audit**
-  and carry a *worse* database (half unverified co-mention noise). **Never analyze or
-  share from a Copy folder.**
+- **Canonical tree:** the git checkout containing this file, currently
+  `C:\Users\JAMES\github-clean\KOMPOSOS-IV-PHARM`, branch `master`, tracking
+  `origin/master` at github.com/Jayhawk314/KOMPOSOS-IV-PHARM.
+- Do not infer the active checkout from similarly named copy folders. Confirm it
+  with `git rev-parse --show-toplevel` and use executable checks as source of truth.
 - Docs are sprawled (133 .md files; `docs/` and `truedocs/` hold aged material).
   `HONEST_VALUE.md`, this file, and the JSON result files above are the current
   source of truth. When in doubt, run the reproduce commands.
@@ -144,25 +144,21 @@ phase.
 
 ## Current work in flight
 
-`WORKING_SESSION_2026-07-31.md` is the live log. The approved sequence is:
-correct documents (done) -> **50-pair reviewer exercise (packet built, awaiting a
-reviewer)** -> judge whether the bundles are useful -> packaging (done) -> complete
-the label set (seeded only) -> only then design the Beat AML experiment.
-
-- `reports/reviewer_audit_2026-07-31/` — the packet. **`MANIFEST.json` is the
-  answer key; never send it to a reviewer.** Send the two `.md` files and the two
-  blank `.csv` files only.
+- `reports/candidate_review_2026-08-01/` contains the 60-candidate mechanism,
+  direction, trial, literature, and terminal-PMID review packet. The verdict
+  taxonomy separates supported signals, contradictions, quarantine, and category
+  or direction errors; absence of evidence never renders as a pass.
 - `data/labels/evaluation_labels_v1.csv` — the Phase 0.5 label set. **A seed**:
-  50 of 15,140 pairs, 44 of them inherited without any citation. Do not compute
+  64 of 15,140 pairs, 44 of them inherited without any citation. Do not compute
   AUPRC or precision against it and present the result as a measurement.
 
 ## Run it
 
 ```powershell
 streamlit run app.py                     # the UI; modes in the left sidebar
-python -m pytest tests/ -q               # 166 pass, 1 skip
+python -m pytest tests/ -q               # expect 182 pass, 1 skip
 python -m validation.check_label_set     # label-set structure + how incomplete it is
-python -m validation.build_reviewer_packet   # regenerate the 50-pair packet
+python -m validation.enrich_candidate_review --out reports/candidate_review_2026-08-01/CANDIDATE_REVIEW_60.csv
 python validation/triage.py Melanoma --drug Sorafenib   # one audited candidate
 python -m validation.nonobvious --disease Melanoma      # under-discussed real compositions
 ```

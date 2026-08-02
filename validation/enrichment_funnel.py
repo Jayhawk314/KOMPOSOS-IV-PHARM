@@ -20,10 +20,10 @@ Two views of the same curve:
   * search saving — how little of the list you must screen to capture K% of hits.
 
 Caveat carried in every report: enrichment is measured on *known* positives
-(recovery). For genuinely novel pairs, top-of-list precision is lower (see the
-Hetionet external check). The temporal holdout shows the lift does not fully
-collapse on unseen approvals, but treat these numbers as "search acceleration on
-the curated graph," not a novel-discovery hit rate.
+(recovery). Performance on genuinely novel pairs is unmeasured because the old
+Hetionet check is not reproducible and the temporal holdout is invalid. Treat
+these numbers as "search acceleration on the curated graph," not a
+novel-discovery hit rate.
 
 Importable: `build_funnel()` returns a structured `EnrichmentFunnel` that the
 Streamlit app and the README generator both consume. CLI mirrors the benchmark.
@@ -211,9 +211,9 @@ def format_terminal(f: EnrichmentFunnel) -> str:
         )
     lines.append("")
     lines.append(
-        "Note: measured on KNOWN positives (recovery). Novel-pair precision is "
-        "lower (Hetionet AUPRC check); treat as search acceleration on the "
-        "curated graph, not a novel-discovery hit rate."
+        "Note: measured on KNOWN positives (recovery). Novel-pair performance is "
+        "unmeasured; treat this as search acceleration on the curated graph, "
+        "not a novel-discovery hit rate."
     )
     return "\n".join(lines)
 
@@ -243,8 +243,8 @@ def format_markdown(f: EnrichmentFunnel) -> str:
         )
     lines.append("")
     lines.append(
-        "_Measured on known positives (recovery). Novel-pair precision is lower; "
-        "treat as search acceleration on the curated graph._"
+        "_Measured on known positives (recovery). Novel-pair performance is "
+        "unmeasured; treat this as search acceleration on the curated graph._"
     )
     return "\n".join(lines)
 

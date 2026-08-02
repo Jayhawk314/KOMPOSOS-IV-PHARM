@@ -2,227 +2,392 @@
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: 2026 James Ray Hawkins
 
-"""Look up clinical-trial history for drug-disease pairs, and flag failures.
+"""Build a reviewable ClinicalTrials.gov evidence inventory for drug-disease pairs.
 
-*** THE VERDICT THIS SCRIPT PRODUCES IS UNRELIABLE. DO NOT USE IT. ***
+This command does not decide whether a drug works. It records facts needed by a
+reviewer and keeps states that the former ``whyStopped`` proxy collapsed:
+active trials; completed trials with results or linked publications; completed
+trials without located results; scientific, operational, mixed, or unclear
+stops; query errors; and non-matching search hits.
 
-Measured 2026-08-01 against the known answers, it scored 0 for 4 on precision
-and missed every true positive:
-
-  FLAGGED, ALL WRONG
-    Sotorasib -> NSCLC     "Futility" in one trial. Sotorasib IS APPROVED
-                           for NSCLC. One arm failing is not a failed drug.
-    Avelumab -> NSCLC      "terminated since there was no need for further
-                           safety or efficacy data" -- that means they had
-                           ENOUGH data. The keyword 'efficacy' matched a
-                           success-adjacent closure.
-    Cemiplimab -> NSCLC    approved; one trial missed its endpoint.
-    Durvalumab -> NSCLC    stopped because the sponsor dropped a DIFFERENT
-                           drug in the combination. A business decision.
-
-  MISSED, ALL REAL FAILURES
-    Erlotinib/Afatinib/Dacomitinib -> Glioblastoma. 19 of 24 erlotinib GBM
-    trials COMPLETED. They were never terminated -- they ran to the end and
-    the answer was no.
-
-WHY THE APPROACH IS WRONG
--------------------------
-A failed trial is not a failed drug-disease pair, and `whyStopped` is the wrong
-field. Drugs fail in one setting and succeed in another; and the failures that
-matter here are trials that FINISHED and were followed by silence, which leaves
-no stop reason at all.
-
-The right question is "did the field try this, complete late-phase work, and
-then never seek approval?" -- completed phase 2/3 plus years elapsed plus no
-approval. That is a rewrite of the classifier, not a new data source; the
-downloaded trial history in reports/ is still good input for it.
-
-Kept in the tree because the negative result is worth more than the code, and
-because the CT.gov query layer below is correct and reusable.
-
-WHY IT WAS BUILT
-----------------
-The graph has no way to record "this was tried and it did not work." So it keeps
-proposing dead ends with full confidence. Measured 2026-08-01: six of the top 50
-unfilled-horn predictions are EGFR-directed agents proposed for glioblastoma, a
-combination the field tried repeatedly and abandoned. Erlotinib's phase II in
-recurrent GBM reported PFS-6 of 3%.
-
-That is not a scoring problem. It is missing data, and the data is free.
-
-WHAT COUNTS AS A FAILURE - AND WHAT DOES NOT
---------------------------------------------
-A terminated trial is NOT automatically a scientific failure. Trials stop for
-money, staffing and recruitment all the time, and those say nothing about whether
-the drug works. Treating them alike would replace one kind of wrong confidence
-with another.
-
-So `whyStopped` is classified into:
-
-  SCIENTIFIC   futility, lack of efficacy, disease progression, toxicity, safety
-               -> genuine negative evidence about the hypothesis
-  OPERATIONAL  accrual, enrolment, funding, sponsor/business decisions
-               -> says nothing about the biology; must NOT be read as a failure
-  UNCLEAR      stopped, but the reason does not classify -> needs a human
-
-The keyword classifier is a SCREEN, not a judgment. It is the same class of tool
-as the lexical relation gate, which this project already measured and found to be
-roughly 0.82 precision against human adjudication. Anything it flags SCIENTIFIC
-should be read by a person before it is used to suppress a candidate.
-
-WHAT THIS DELIBERATELY DOES NOT DO
-----------------------------------
-It does not write to tier1.db, and it does not change any score. Suppressing a
-candidate because a trial failed is a real design decision with a real cost --
-plenty of drugs failed in one setting and succeeded in another, at a different
-dose, line of therapy, or biomarker-selected population. That decision needs to
-be made deliberately, not as a side effect of an import script.
-
-Run:
-    python -m validation.fetch_negative_trials --worklist reports/horn_audit_2026-08-01/HORN_TOP50.csv
+``not approved`` and ``completed without results`` are not failure labels.
+Result polarity is always left for human review.
 """
 from __future__ import annotations
 
 import argparse
 import csv
 import json
+import re
 import sys
 import time
 import urllib.parse
 import urllib.request
 from collections import Counter
+from datetime import date, datetime
 from pathlib import Path
+from typing import Iterable
 
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
 
 API = "https://clinicaltrials.gov/api/v2/studies"
+FIELDS = ",".join((
+    "NCTId", "BriefTitle", "OverallStatus", "WhyStopped", "Phase",
+    "StartDate", "CompletionDate", "Condition", "InterventionName",
+    "InterventionOtherName", "HasResults", "ReferencePMID", "ReferenceType",
+))
 
 SCIENTIFIC = (
-    "futility", "lack of efficacy", "no efficacy", "did not meet", "efficacy",
-    "progression", "toxicity", "safety", "adverse", "did not demonstrate",
-    "insufficient activity", "no benefit", "interim analysis", "lack of benefit",
+    "futility", "lack of efficacy", "no efficacy", "did not meet",
+    "progression", "toxicity", "safety", "adverse", "insufficient activity",
+    "no benefit", "interim analysis", "lack of benefit",
 )
 OPERATIONAL = (
-    "accrual", "enrollment", "enrolment", "recruitment", "funding", "financial",
-    "business", "sponsor decision", "strategic", "administrative", "pi left",
-    "investigator", "supply", "covid", "slow",
+    "accrual", "enrollment", "enrolment", "recruitment", "funding",
+    "financial", "business", "sponsor decision", "strategic",
+    "administrative", "pi left", "investigator", "supply", "covid", "slow",
 )
+ACTIVE_STATUSES = {
+    "RECRUITING", "NOT_YET_RECRUITING", "ENROLLING_BY_INVITATION",
+    "ACTIVE_NOT_RECRUITING",
+}
+STOPPED_STATUSES = {"TERMINATED", "WITHDRAWN", "SUSPENDED"}
+SALT_TOKENS = {
+    "anhydrous", "citrate", "fumarate", "hydrate", "hydrochloride", "malate",
+    "mesilate", "mesylate", "phosphate", "potassium", "s", "sodium", "sulfate",
+}
+DRUG_ALIASES = {
+    "abemaciclib": ("LY2835219", "Verzenio"),
+    "adagrasib": ("MRTX849", "Krazati"),
+    "amivantamab": ("JNJ-61186372",),
+    "beperminogene perplasmid": ("AMG0001", "Collategene"),
+    "brigatinib": ("AP26113", "Alunbrig"),
+    "cabozantinib": ("XL184", "Cabometyx", "Cometriq"),
+    "capmatinib": ("INC280", "INCB28060", "Tabrecta"),
+    "clascoterone": ("CB-03-01", "Winlevi"),
+    "copanlisib": ("BAY 80-6946", "Aliqopa"),
+    "crizotinib": ("PF-02341066", "Xalkori"),
+    "dacomitinib": ("PF-00299804", "PF-299804", "Vizimpro"),
+    "deuruxolitinib": ("CTP-543", "Leqselvi"),
+    "fedratinib": ("TG101348", "Inrebic"),
+    "filgotinib": ("GLPG0634", "Jyseleca"),
+    "imetelstat": ("GRN163L", "Rytelo"),
+    "lazertinib": ("YH25448", "Leclaza"),
+    "palbociclib": ("PD-0332991", "Ibrance"),
+    "ribociclib": ("LEE011", "Kisqali"),
+    "sotorasib": ("AMG510", "Lumakras", "Lumykras"),
+    "tepotinib": ("MSC2156119J", "Tepmetko"),
+}
+DISEASE_ALIASES = {
+    "AML": ("acute myeloid leukemia", "acute myelogenous leukemia", "aml"),
+    "Breast_Cancer": ("breast cancer", "breast carcinoma", "breast neoplasm"),
+    "CLL": ("chronic lymphocytic leukemia", "chronic lymphocytic leukaemia", "cll", "small lymphocytic lymphoma"),
+    "Colorectal_Cancer": ("colorectal cancer", "colon cancer", "rectal cancer", "colorectal carcinoma"),
+    "GIST": ("gastrointestinal stromal tumor", "gastrointestinal stromal tumour", "gist"),
+    "Glioblastoma": ("glioblastoma", "glioblastoma multiforme", "malignant glioma"),
+    "HCC": ("hepatocellular carcinoma", "hcc", "liver cancer"),
+    "Li_Fraumeni_Syndrome": ("li-fraumeni syndrome", "li fraumeni syndrome"),
+    "Melanoma": ("melanoma",),
+    "Multiple_Myeloma": ("multiple myeloma", "plasma cell myeloma"),
+    "Myelofibrosis": ("myelofibrosis", "primary myelofibrosis"),
+    "NSCLC": ("non-small cell lung cancer", "non-small-cell lung cancer", "nsclc"),
+    "Pancreatic_Cancer": ("pancreatic cancer", "pancreatic adenocarcinoma", "pancreatic ductal adenocarcinoma"),
+    "Prostate_Cancer": ("prostate cancer", "prostatic cancer", "prostate carcinoma"),
+    "RCC": ("renal cell carcinoma", "kidney cancer", "renal cancer", "papillary renal cell carcinoma"),
+    "Soft_Tissue_Sarcoma": ("soft tissue sarcoma", "soft-tissue sarcoma", "sarcoma", "sarcomas"),
+}
 
 
 def classify(why: str) -> str:
-    """Classify a whyStopped string. OPERATIONAL wins ties on purpose.
-
-    'Insufficient accrual of population likely to benefit; progression in 6
-    patients' contains both. Calling that SCIENTIFIC would overstate: the trial
-    stopped because it could not recruit. A human should read it.
-    """
+    """Classify a stop reason for triage; never interpret it as pair failure."""
     if not why:
-        return "NO_REASON_GIVEN"
-    w = why.lower()
-    op = any(k in w for k in OPERATIONAL)
-    sci = any(k in w for k in SCIENTIFIC)
-    if op and sci:
+        return "STOPPED_NO_REASON_NEEDS_HUMAN"
+    lowered = why.lower()
+    operational = any(term in lowered for term in OPERATIONAL)
+    scientific = any(term in lowered for term in SCIENTIFIC)
+    if operational and scientific:
         return "MIXED_NEEDS_HUMAN"
-    if op:
+    if operational:
         return "OPERATIONAL"
-    if sci:
-        return "SCIENTIFIC"
-    return "UNCLEAR"
+    if scientific:
+        return "SCIENTIFIC_NEEDS_HUMAN"
+    return "UNCLEAR_NEEDS_HUMAN"
 
 
-def query(drug: str, disease: str, page_size: int = 50) -> list[dict]:
-    cond = disease.replace("_", " ")
+def _normalise(value: str) -> str:
+    return " ".join(re.findall(r"[a-z0-9]+", value.lower()))
+
+
+def _strip_salt(value: str) -> str:
+    return " ".join(token for token in _normalise(value).split() if token not in SALT_TOKENS)
+
+
+def _contains_token_phrase(container: str, phrase: str) -> bool:
+    container_tokens = _normalise(container).split()
+    phrase_tokens = _normalise(phrase).split()
+    width = len(phrase_tokens)
+    if not width:
+        return False
+    return any(
+        container_tokens[index:index + width] == phrase_tokens
+        for index in range(len(container_tokens) - width + 1)
+    )
+
+
+def intervention_names(study: dict) -> list[str]:
+    module = study.get("protocolSection", {}).get("armsInterventionsModule", {})
+    names: list[str] = []
+    for intervention in module.get("interventions", []):
+        if intervention.get("name"):
+            names.append(intervention["name"])
+        names.extend(intervention.get("otherNames", []))
+    return sorted(set(names))
+
+
+def intervention_matches(drug: str, names: Iterable[str]) -> bool:
+    wanted = _strip_salt(drug)
+    aliases = (drug, *DRUG_ALIASES.get(wanted, ()))
+    return bool(wanted) and any(
+        _strip_salt(name) == _strip_salt(alias)
+        or _contains_token_phrase(name, alias)
+        for name in names
+        for alias in aliases
+    )
+
+
+def condition_names(study: dict) -> list[str]:
+    module = study.get("protocolSection", {}).get("conditionsModule", {})
+    return list(module.get("conditions", []))
+
+
+def condition_matches(disease: str, names: Iterable[str]) -> bool:
+    aliases = DISEASE_ALIASES.get(disease, (disease.replace("_", " "),))
+    return any(
+        _contains_token_phrase(name, alias)
+        for name in names
+        for alias in aliases
+    )
+
+
+def query(drug: str, disease: str, page_size: int = 100) -> tuple[list[dict], str]:
+    """Return search hits and an explicit query status."""
     params = {
-        "query.intr": drug, "query.cond": cond,
-        "fields": "NCTId,BriefTitle,OverallStatus,WhyStopped,Phase,StartDate",
+        "query.intr": drug,
+        "query.cond": disease.replace("_", " "),
+        "fields": FIELDS,
         "pageSize": str(page_size),
     }
-    url = f"{API}?{urllib.parse.urlencode(params)}"
+    studies: list[dict] = []
     try:
-        with urllib.request.urlopen(url, timeout=45) as r:
-            return json.loads(r.read().decode()).get("studies", [])
-    except Exception as exc:                                  # pragma: no cover
-        print(f"    ! query failed for {drug}/{disease}: {type(exc).__name__}")
-        return []
+        while True:
+            url = f"{API}?{urllib.parse.urlencode(params)}"
+            request = urllib.request.Request(
+                url, headers={"User-Agent": "KOMPOSOS-IV-PHARM/1.0"}
+            )
+            with urllib.request.urlopen(request, timeout=45) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+            studies.extend(payload.get("studies", []))
+            token = payload.get("nextPageToken")
+            if not token:
+                break
+            params["pageToken"] = token
+            time.sleep(0.35)
+        return studies, "OK"
+    except Exception as exc:  # pragma: no cover - external service
+        return studies, f"ERROR:{type(exc).__name__}:{exc}"
     finally:
-        time.sleep(0.4)                     # be polite to a public API
+        time.sleep(0.35)
 
 
-def summarise(studies: list[dict]) -> dict:
-    status = Counter()
-    stops = []
-    for s in studies:
-        p = s.get("protocolSection", {})
-        st = p.get("statusModule", {})
-        status[st.get("overallStatus", "?")] += 1
-        why = st.get("whyStopped", "")
-        if why:
-            stops.append({
-                "nct": p.get("identificationModule", {}).get("nctId", ""),
-                "why": why,
-                "class": classify(why),
-                "title": p.get("identificationModule", {}).get("briefTitle", "")[:90],
-            })
-    sci = [s for s in stops if s["class"] == "SCIENTIFIC"]
-    mixed = [s for s in stops if s["class"] == "MIXED_NEEDS_HUMAN"]
+def _date_value(struct: dict) -> str:
+    return (struct or {}).get("date", "")
+
+
+def _years_since(value: str, today: date) -> float | None:
+    if not value:
+        return None
+    for fmt in ("%Y-%m-%d", "%Y-%m", "%Y"):
+        try:
+            parsed = datetime.strptime(value, fmt).date()
+            return round((today - parsed).days / 365.25, 2)
+        except ValueError:
+            continue
+    return None
+
+
+def pair_linkage(study: dict, drug: str, disease: str) -> str:
+    protocol = study.get("protocolSection", {})
+    title = protocol.get("identificationModule", {}).get("briefTitle", "")
+    if intervention_matches(drug, [title]) and condition_matches(disease, [title]):
+        return "TITLE_EXPLICIT"
+    module = protocol.get("armsInterventionsModule", {})
+    intervention_count = len(module.get("interventions", []))
+    if intervention_count == 1:
+        return "SINGLE_INTERVENTION_CONDITION_MATCHED"
+    return "MULTI_ARM_PAIR_LINKAGE_UNCONFIRMED"
+
+
+def trial_record(
+    study: dict, drug: str, disease: str, today: date | None = None,
+) -> dict:
+    today = today or date.today()
+    protocol = study.get("protocolSection", {})
+    identification = protocol.get("identificationModule", {})
+    status_module = protocol.get("statusModule", {})
+    design = protocol.get("designModule", {})
+    references = protocol.get("referencesModule", {}).get("references", [])
+    result_pmids = sorted({
+        reference.get("pmid", "")
+        for reference in references
+        if reference.get("pmid") and reference.get("type") == "RESULT"
+    })
+    completion = _date_value(status_module.get("completionDateStruct", {}))
+    status = status_module.get("overallStatus", "UNKNOWN")
+    why = status_module.get("whyStopped", "")
+    has_results = bool(study.get("hasResults") or study.get("resultsSection"))
     return {
-        "n_trials": len(studies),
-        "status_counts": dict(status),
-        "n_stopped_with_reason": len(stops),
-        "n_scientific_stop": len(sci),
-        "n_mixed_stop": len(mixed),
-        "stops": stops,
-        "verdict": ("NEGATIVE_EVIDENCE" if sci else
-                    "NEEDS_HUMAN" if mixed else
-                    "NO_NEGATIVE_SIGNAL" if studies else "NO_TRIALS_FOUND"),
+        "nct": identification.get("nctId", ""),
+        "title": identification.get("briefTitle", ""),
+        "status": status,
+        "phases": design.get("phases", []),
+        "completion_date": completion,
+        "years_since_completion": _years_since(completion, today),
+        "has_posted_results": has_results,
+        "result_pmids": result_pmids,
+        "why_stopped": why,
+        "stop_class": classify(why) if status in STOPPED_STATUSES else "NOT_STOPPED",
+        "interventions": intervention_names(study),
+        "conditions": condition_names(study),
+        "pair_linkage": pair_linkage(study, drug, disease),
+        "result_polarity": "NOT_ASSESSED_BY_AUTOMATION",
     }
+
+
+def evidence_flags(records: list[dict], aged_years: float = 2.0) -> list[str]:
+    flags: set[str] = set()
+    if not records:
+        return ["NO_EXACT_TRIALS"]
+    for record in records:
+        if record["pair_linkage"] == "MULTI_ARM_PAIR_LINKAGE_UNCONFIRMED":
+            flags.add("MULTI_ARM_PAIR_LINKAGE_UNCONFIRMED")
+            continue
+        status = record["status"]
+        if status in ACTIVE_STATUSES:
+            flags.add("ACTIVE_TRIAL_NO_RESULT_YET")
+        elif status == "COMPLETED":
+            if record["has_posted_results"]:
+                flags.add("COMPLETED_RESULTS_POSTED_NEEDS_REVIEW")
+            if record["result_pmids"]:
+                flags.add("RESULT_PUBLICATION_LINKED_NEEDS_REVIEW")
+            if not record["has_posted_results"] and not record["result_pmids"]:
+                age = record["years_since_completion"]
+                if age is not None and age >= aged_years:
+                    flags.add("COMPLETED_NO_RESULTS_AGED_NOT_A_FAILURE_LABEL")
+                else:
+                    flags.add("COMPLETED_NO_RESULTS_RECENT_OR_UNDATED")
+        elif status in STOPPED_STATUSES:
+            flags.add(record["stop_class"])
+        else:
+            flags.add(f"STATUS_{status}_NEEDS_REVIEW")
+    return sorted(flags)
+
+
+def summarise(
+    studies: list[dict], drug: str, disease: str, *, query_status: str = "OK",
+    today: date | None = None,
+) -> dict:
+    exact: list[dict] = []
+    excluded: list[dict] = []
+    for study in studies:
+        names = intervention_names(study)
+        conditions = condition_names(study)
+        drug_match = intervention_matches(drug, names)
+        disease_match = condition_matches(disease, conditions)
+        if drug_match and disease_match:
+            exact.append(trial_record(study, drug, disease, today=today))
+        else:
+            protocol = study.get("protocolSection", {})
+            identification = protocol.get("identificationModule", {})
+            excluded.append({
+                "nct": identification.get("nctId", ""),
+                "title": identification.get("briefTitle", ""),
+                "drug_match": drug_match,
+                "disease_match": disease_match,
+                "interventions": names,
+                "conditions": conditions,
+            })
+    flags = ["QUERY_ERROR"] if query_status != "OK" else evidence_flags(exact)
+    linked = [
+        record for record in exact
+        if record["pair_linkage"] != "MULTI_ARM_PAIR_LINKAGE_UNCONFIRMED"
+    ]
+    return {
+        "query_status": query_status,
+        "n_query_hits": len(studies),
+        "n_exact_trials": len(exact),
+        "n_pair_linked_trials": len(linked),
+        "n_pair_linkage_unconfirmed": len(exact) - len(linked),
+        "n_excluded_query_hits": len(excluded),
+        "status_counts": dict(Counter(record["status"] for record in linked)),
+        "evidence_flags": flags,
+        "trials": exact,
+        "excluded_query_hits": excluded,
+        "pair_result_polarity": "NOT_ASSESSED_BY_AUTOMATION",
+    }
+
+
+def _row_value(row: dict[str, str], *names: str) -> str:
+    for name in names:
+        if row.get(name):
+            return row[name]
+    return ""
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--worklist", default="reports/horn_audit_2026-08-01/HORN_TOP50.csv")
-    ap.add_argument("--out", default=None)
-    ap.add_argument("--limit", type=int, default=0)
-    args = ap.parse_args()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--worklist", default="reports/horn_audit_2026-08-01/HORN_TOP50.csv")
+    parser.add_argument("--out", default=None)
+    parser.add_argument("--limit", type=int, default=0)
+    args = parser.parse_args()
 
-    rows = list(csv.DictReader(open(REPO / args.worklist, encoding="utf-8-sig")))
+    worklist = REPO / args.worklist
+    rows = list(csv.DictReader(worklist.open(encoding="utf-8-sig")))
     if args.limit:
-        rows = rows[: args.limit]
-    out_path = REPO / (args.out or
-                       str(Path(args.worklist).parent / "TRIAL_HISTORY.json"))
+        rows = rows[:args.limit]
+    out_path = REPO / (args.out or str(worklist.parent / "TRIAL_HISTORY.json"))
 
     results = {}
     print(f"querying ClinicalTrials.gov for {len(rows)} pairs\n")
-    for i, r in enumerate(rows, 1):
-        drug, dis = r["drug_inn"], r["disease"]
-        info = summarise(query(drug, dis))
-        results[f"{drug}|{dis}"] = {
-            "drug": drug, "disease": dis,
-            "horn_rank": int(r["rank"]),
-            "curated_status": r.get("status_APPROVED_TRIAL_PRECLIN_FAILED_NONE", ""),
+    for index, row in enumerate(rows, 1):
+        drug = _row_value(row, "drug_inn", "drug")
+        disease = row["disease"]
+        studies, query_status = query(drug, disease)
+        info = summarise(studies, drug, disease, query_status=query_status)
+        key = f"{drug}|{disease}"
+        results[key] = {
+            "drug": drug,
+            "disease": disease,
+            "review_id": _row_value(row, "review_id", "rank"),
             **info,
         }
-        flag = {"NEGATIVE_EVIDENCE": "FAILED", "NEEDS_HUMAN": "mixed",
-                "NO_NEGATIVE_SIGNAL": "", "NO_TRIALS_FOUND": "no trials"}[info["verdict"]]
-        print(f"{i:>3}. {drug[:22]:<23}{dis:<22}{info['n_trials']:>4} trials  {flag}")
+        flags = ";".join(info["evidence_flags"])
+        print(
+            f"{index:>3}. {drug[:22]:<23}{disease:<22}"
+            f"{info['n_pair_linked_trials']:>2}/{info['n_exact_trials']:>2}/{info['n_query_hits']:<3}"
+            f" linked/module/query  {flags}"
+        )
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps(results, indent=1), encoding="utf-8")
-
-    v = Counter(r["verdict"] for r in results.values())
+    temporary = out_path.with_suffix(out_path.suffix + ".tmp")
+    with temporary.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(json.dumps(results, indent=1))
+    temporary.replace(out_path)
+    counts = Counter(flag for result in results.values() for flag in result["evidence_flags"])
     print(f"\nwrote {out_path}")
-    print("\n=== SUMMARY ===")
-    for k, n in v.most_common():
-        print(f"  {k:<22}{n}")
-    print("\nCross-check against the curated verdicts:")
-    for r in results.values():
-        if r["verdict"] == "NEGATIVE_EVIDENCE":
-            print(f"  rank {r['horn_rank']:>2}  {r['drug']} -> {r['disease']}"
-                  f"   (curated: {r['curated_status'] or 'unset'})")
-            for s in r["stops"]:
-                if s["class"] == "SCIENTIFIC":
-                    print(f"        {s['nct']}: {s['why'][:88]}")
+    print("\n=== EVIDENCE FLAGS (not verdicts) ===")
+    for flag, count in counts.most_common():
+        print(f"  {flag:<52}{count}")
     return 0
 
 

@@ -20,11 +20,10 @@ computation (Spearman 1.0000, identical AUROC 0.9952 -- see
 capability. What it DOES add is a clean way to enumerate the unfilled cases,
 which is the discovery surface.
 
-Of the first 50 rows, 10 were already confirmed as real FDA approvals during the
-2026-07-31 label curation -- and they sit at ranks 1, 5, 7, 8, 13, 16, 19, 25,
-30, 31, i.e. scattered through the list rather than clustered at the top. That is
-what makes the UNCHECKED remainder worth checking: those rows sit in the same
-confidence band as the confirmed ones.
+The completed 2026-08-01 audit of the first 50 rows records 19 `APPROVED` pairs
+plus one `APPROVED_WRONG_MECHANISM` pair. Ten of those had already been confirmed
+during the 2026-07-31 label curation. This demonstrates substantial local-label
+incompleteness; it is not a precision estimate or a novel-discovery result.
 
 READING THE OUTPUT
 ------------------

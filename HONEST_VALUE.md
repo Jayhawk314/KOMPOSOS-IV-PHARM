@@ -6,16 +6,17 @@ deliberately conservative. Where it disagrees with the more enthusiastic framing
 elsewhere in the repo, believe this file — every claim here is backed by an
 executable check named in the text.
 
-Last reviewed: **2026-07-31**, in an independent technical audit that reproduced
+Last reviewed: **2026-08-01**, with the benchmark, graph counts, enrichment
+funnel, direction filter, candidate evidence packet, and packaging rechecked.
+The earlier independent technical audit reproduced
 the benchmark and queried the database directly. Every metric below is measured
 against the current database. The two carried-forward external-generalization
 numbers did **not** survive that audit — one is not reproducible and one is stale
 — and are retired in place below rather than quietly refreshed.
 
-Corrected on 2026-07-31: terminal-hop counts, reachable-pair counts, the stale
+Corrected through 2026-08-01: terminal-hop counts, reachable-pair counts, the stale
 AUPRC 0.57, the "all oncology" scope claim, the external and temporal results,
-and the meaning of the printed Hits@k. Three new defects were added to the known-
-defects list, including that the repository does not currently `pip install`.
+the meaning of the printed Hits@k, the enrichment funnel, and packaging status.
 
 ---
 
@@ -91,8 +92,8 @@ The repurposing ranker concentrates real hits at the top of the list. Under the
 strict protocol (`remove_direct_labels`, so the direct Drug→Disease label is
 removed before scoring), on the `core` cohort:
 
-- Screening the **top 5%** of 1,560 pairs catches **73%** of known hits — a
-  **14.5× enrichment** over screening blindly.
+- Screening the **top 5%** of 1,560 pairs catches **70%** of known hits (31/44) — a
+  **14.1× enrichment** over screening blindly.
 - Catch **80%** of known hits by screening **6%** of the list (skip 94%).
 - Catch **95%** by screening the top 10%.
 
@@ -104,8 +105,8 @@ the ~100 worth an afternoon, with the receipts."*
 ### 2. Explanation / auditability (real, and the point)
 The score is not a black box with an explanation bolted on — **the score IS the
 evidence**. A ranking is literally the set of Drug→Protein→Disease paths, each
-carrying its own confidence, PMIDs, FDA labels, and evidence tier. A reviewer
-can click each edge through to PubMed and reject it by hand. That glass-box
+carrying confidence, evidence tier, and provenance strings where present. A
+reviewer can open the linked source records and reject it by hand. That glass-box
 property is rare and is the main reason to use this over a plain ML ranker.
 
 Reproduce: `python validation\triage.py Melanoma --drug Sorafenib`.
@@ -359,14 +360,10 @@ per-case failure analysis.
   **β2-adrenergic receptor**. Symbol matching is word-boundary but not
   sense-disambiguated, so short overloaded symbols (AR, MET, PC, ACE) can ground
   on the wrong protein entirely.
-- **The repository does not install.** `pyproject.toml` declares
-  `build-backend = "setuptools.backends._legacy:_Backend"`, a module that exists
-  in no version of setuptools, so any build fails with `ModuleNotFoundError`. And
-  `[tool.setuptools.packages.find]` sets `include = ["core*"]`, so a successful
-  build would ship only `core/`. `requirements.txt` omits `scipy`,
-  `scikit-learn`, and `pytest`; there is no CI. The benchmark runs fine from a
-  checkout — it is *packaging*, not the science, that is broken — but a stranger
-  cannot `pip install` this. (Found 2026-07-31.)
+- **Packaging was repaired.** The defect found on 2026-07-31 was real in that
+  checkout, but the current `pyproject.toml` uses `setuptools.build_meta`, lists
+  the benchmark's runtime dependencies, and includes the production packages.
+  The wheel build is part of the release check; there is still no CI.
 - **Dempster-Shafer conflict is structurally always zero.**
   `oracle/evidence_combination.py` encodes each strategy as
   `m({exists}) = c, m(Θ) = 1 − c` and never assigns mass to `not_exists`, so

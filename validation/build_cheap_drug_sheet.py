@@ -25,7 +25,7 @@ scored on two axes that are independent of each other:
 
   MECHANISM   does the chain end in a directed `driver_of` edge, or only in
               `associated_with` literature co-occurrence? Directed is far
-              stronger. Only 37 directed terminal edges exist in the whole graph.
+              stronger. The current graph has 60 directed terminal edges.
 
   ATTENTION   how many PubMed papers mention this drug and this disease
               together. Queried live, NOT derived from the graph, because

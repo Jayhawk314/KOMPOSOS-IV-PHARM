@@ -123,7 +123,7 @@ def _evidence_standing(chains, score, disease):
 
     Deliberately conservative: the ceiling is SUPPORTED_FOR_REVIEW, meaning
     "worth a human's time", and reaching it requires a DIRECTED terminal hop.
-    Only 37 edges in the entire graph qualify, so most candidates land on WEAK,
+    Only 60 edges in the current graph qualify, so most candidates land on WEAK,
     and that is the honest answer rather than a failure of the classifier.
 
     A qualifying terminal hop must:
@@ -221,9 +221,9 @@ def load_horn_candidates():
     already ranked. Neither could surface anything the base triage missed. Giving
     them the horn list points the same machinery at the unanswered cases.
 
-    Measured 2026-08-01: of the top 50 unfilled horns, 10 are FDA approvals the
-    label set never recorded, at ranks 1/5/7/8/13/16/19/25/30/31 - scattered, so
-    the unchecked rows sit in the same confidence band as the confirmed ones.
+    Audited 2026-08-01: the saved top-50 worklist records 19 APPROVED rows plus
+    one APPROVED_WRONG_MECHANISM row. Ten had been verified before the completed
+    audit. These are missing local labels, not evidence of novel discovery.
 
     Uses the label-visible graph deliberately: `filled_treats` is exactly what
     decides whether a horn is unfilled, so the labels must be present to exclude
@@ -267,7 +267,7 @@ def load_strict_graph():
 
     The Evidence card runs on this rather than on the default view, so the card
     shows what the system composes WITHOUT already being told the answer - the
-    same protocol as the published benchmark and the reviewer packet.
+    same protocol as the audited benchmark and the reviewer packet.
 
     On the default (labelled) view a drug's approval for a *different* disease
     appears as a Drug->Disease edge inside composed chains, which reads as
@@ -282,7 +282,7 @@ def load_strict_graph():
 def load_funnel():
     """Strict-protocol enrichment funnel, on the CORE 78-drug cohort.
 
-    Deliberately pinned to `core` so the funnel stays comparable to the published
+    Deliberately pinned to `core` so the funnel stays comparable to the audited
     numbers. The rest of the app (graph stats, Non-obvious candidates) ranks over
     all 757 drugs, so this page states its cohort explicitly - otherwise a reader
     sees "757 drugs" in the sidebar and a 1,560-pair funnel and cannot reconcile them.
@@ -458,7 +458,7 @@ _source_str = " · ".join(
 st.sidebar.markdown("---")
 st.sidebar.markdown(
     f"**Graph (scored)**: {g['n_objects']} objects, {g['n_morphisms']} edges\n\n"
-    f"**Positives**: {g['n_positives']} FDA-approved drug-disease labels\n\n"
+    f"**Local benchmark positives**: {g['n_positives']} curated `treats` labels\n\n"
     f"**Self-check**: {g['check_recovered']}/{g['check_total']} recoverable\n\n"
     f"**Evidence tiers**: {_tier_str}\n\n"
     f"**Sources** (edges may cite several): {_source_str}\n\n"
@@ -468,10 +468,11 @@ st.sidebar.markdown(
     f"IC50/engagement measurements"
 )
 st.sidebar.caption(
-    "The edge count is the SCORED graph. 424 ESMC protein-embedding "
-    "similarity-transfer edges are retained in the database (tagged "
-    "EMBEDDING-INFERRED) but excluded from scoring — an ablation showed they "
-    "slightly hurt the ranker. That is why they appear under Sources but not in "
+    "The edge count is the SCORED graph. The database currently retains 424 "
+    "ESMC protein-embedding similarity-transfer edges (tagged "
+    "EMBEDDING-INFERRED), but scoring excludes them. A 2026-07-21 ablation of "
+    "the then-current 422-edge layer found that removing it improved ranking. "
+    "That is why these edges appear under Sources but not in "
     "the edge total."
 )
 st.sidebar.caption(
@@ -552,7 +553,7 @@ if OPERADUM_AVAILABLE:
             f"- Next-action gate: {gate}",
             f"- Candidates ranked: {len(slate.assessments)}",
             f"- Graph: {g['n_objects']} objects, {g['n_morphisms']} morphisms; "
-            f"self-check {g['check_recovered']}/{g['check_total']} approved indications recoverable",
+            f"self-check {g['check_recovered']}/{g['check_total']} local positive labels recoverable",
             "",
             "Lower decision score is better (negative is good). Scores are relative "
             "within this ranking only — do not compare across diseases or profiles.",
@@ -755,7 +756,7 @@ if PRONOIA_AVAILABLE:
         if local_label == "APPROVED":
             return (
                 "Known label",
-                "This drug-disease pair is already positive in the local FDA-label benchmark. PRONOIA may still be using hidden-label mechanism evidence to recover it.",
+                "This drug-disease pair is positive in the local `treats` benchmark. PRONOIA may still be using hidden-label mechanism evidence to recover it.",
             )
         if pair in _CALIBRATION_PAIRS:
             return "Needs calibration / possible overreach", _CALIBRATION_PAIRS[pair]
@@ -801,7 +802,7 @@ if PRONOIA_AVAILABLE:
             "",
             "## Relationship Status Legend",
             "",
-            "- Known label: positive in the local PHARM FDA-label benchmark.",
+            "- Known label: positive in the local PHARM `treats` benchmark.",
             "- Inferred from established path: not locally labeled positive, but supported by measured/established mechanism-path edges.",
             "- Research/trial-supported: externally checked lead with public research, trial, approval, or curation support.",
             "- Needs calibration / possible overreach: mechanism-rich signal that needs indication context, resistance context, or expert rejection.",
@@ -917,7 +918,7 @@ def render_results_table(results):
             "Drug": r["drug"],
             "Disease": r["disease"],
             "Score": round(r["score"], 3),
-            "Label": r["label"],
+            "Local label": r["label"],
             "Top Trace": _top_trace(r.get("chains", [])),
             "Paths": r["n_chains"],
             "Cited": f"{r['cited_edges']}/{r['total_edges']}"
@@ -1147,7 +1148,11 @@ def render_detail(entry):
     label_color = "green" if entry["label"] == "APPROVED" else "orange"
     st.markdown(
         f"### {entry['drug']} \u2192 {entry['disease']}  "
-        f"&nbsp; :{label_color}[{entry['label']}]"
+        f"&nbsp; :{label_color}[local label: {entry['label']}]"
+    )
+    st.caption(
+        "Local NOT_APPROVED means absent from this repository's 44 curated "
+        "treats labels. It does not establish regulatory, trial, or scientific status."
     )
 
     # ── Score breakdown ──────────────────────────────────────────────
@@ -1195,9 +1200,9 @@ def render_detail(entry):
     if total_edges > 0:
         cols = st.columns(6)
         cols[0].metric("🔬 Measured", tier_counts.get("MEASURED", 0),
-                       help="IC50 data, clinical outcomes, mutation frequencies")
+                       help="Edges classified as experimental or quantitative; inspect the source record")
         cols[1].metric("✅ Established", tier_counts.get("ESTABLISHED", 0),
-                       help="FDA approved, KEGG canonical pathways")
+                       help="Edges classified from regulatory or curated sources; inspect the exact record")
         cols[2].metric("💡 Inferred", tier_counts.get("INFERRED", 0),
                        help="STRING PPI, embedding-inferred edges (computed; "
                             "ESMC similarity-transfer edges are excluded from scoring)")
@@ -1217,8 +1222,8 @@ def render_detail(entry):
 
         if best_tier:
             tier_descriptions = {
-                "MEASURED": "Experimental IC50/clinical data - highest quality evidence",
-                "ESTABLISHED": "FDA/KEGG approved - regulatory authority",
+                "MEASURED": "Classified as experimental or quantitative; inspect the source record",
+                "ESTABLISHED": "Classified from regulatory or curated sources; inspect the exact record",
                 "INFERRED": "Computational similarity - requires validation",
                 "HYPOTHESIS": "Literature citations - graph coherence only, not quantified",
                 "SPECULATIVE": "Weak literature support - isolated edges",
@@ -1438,7 +1443,7 @@ elif mode == "Disease-specific":
                 "Raw score": round(r.raw_score, 3),
                 "Drug avg (all diseases)": round(r.drug_mean, 3),
                 "Hub (tops N diseases)": f"{r.hub_count}/{len(matrix.diseases)}",
-                "FDA label": "TREATS" if r.is_positive else "-",
+                "Local treats label": "TREATS" if r.is_positive else "-",
             } for i, r in enumerate(rows, start=1)],
             use_container_width=True,
             hide_index=True,
@@ -1501,8 +1506,8 @@ layer. They use the same KOMPOSOS evidence base but answer different questions.
         ["KOMPOSOS triage (re-rank known ranking)",
          "Unfilled horns (discovery surface)"],
         help=("Triage re-ranks pairs the system already ranked. Unfilled horns are "
-              "Drug->target->Disease mechanisms with NO approval on record - the "
-              "hypotheses the graph has not been given the answer to."),
+              "Drug->target->Disease mechanisms with no local treats label - the "
+              "hypotheses for which this graph has not been given a positive label."),
     )
     shortlist_n = st.slider("Shortlist size", 3, 25, 8)
     profile_name = st.selectbox("Decision profile", list(OPERADUM_PROFILES))
@@ -1531,10 +1536,10 @@ layer. They use the same KOMPOSOS evidence base but answer different questions.
                 st.stop()
             st.info(
                 f"Ranking **{len(candidates)} unfilled horns** — mechanisms with no "
-                "approval on record for this disease. Each is a hypothesis, not a "
+                "local treats label for this disease. Each is a hypothesis, not a "
                 "finding. Note the known failure mode: the graph records no failed "
                 "trials, so it will keep proposing things that were tried and did "
-                "not work (EGFR inhibitors in glioblastoma are the clearest case)."
+                "not work (several EGFR inhibitors in glioblastoma are clear examples)."
             )
             st.dataframe(
                 [{"Drug": d, "via target": t, "Composite": round(c, 3),
@@ -1620,7 +1625,7 @@ recommendation.
 """)
     with st.expander("Relationship status legend"):
         st.markdown("""
-- **Known label**: the pair is already positive in the local PHARM FDA-label benchmark.
+- **Known label**: the pair is positive in the local PHARM `treats` benchmark.
 - **Inferred from established path**: the pair is not locally labeled positive, but PRONOIA found measured/established mechanism-path evidence.
 - **Research/trial-supported**: the pair matched the external validation leads already checked against public research, trials, approvals, or curation context.
 - **Needs calibration / possible overreach**: the graph mechanism is real enough to review, but the treatment interpretation needs indication/resistance context or expert rejection.
@@ -1666,7 +1671,7 @@ recommendation.
         if use_horns:
             st.info(
                 f"Auditing **{len(candidates)} unfilled horns** — hypotheses with no "
-                "approval on record. Note that when the source is triage, the "
+                "local treats label. Note that when the source is triage, the "
                 "shortlist is chosen on the label-visible graph even with the "
                 "hide-labels box ticked; that box only affects PRONOIA's evidence, "
                 "not which candidates were selected. Horn candidates are unlabelled "
@@ -1772,8 +1777,8 @@ elif mode == "Evidence card":
     st.caption(
         "One candidate, its three strongest paths, and what it does not have. "
         "Runs on the **strict label-removed graph**, so the card cannot see the "
-        "FDA label it is being asked to justify — the same protocol as the "
-        "published benchmark. **Pair detail** shows every chain on the full graph."
+        "local `treats` label it is being asked to recover — the same protocol as the "
+        "audited benchmark. **Pair detail** shows every chain on the full graph."
     )
 
     col1, col2 = st.columns(2)
@@ -1805,7 +1810,10 @@ elif mode == "Evidence card":
         c1, c2, c3 = st.columns(3)
         c1.metric("Ranking score", f"{_ec_detail['score']:.3f}")
         c2.metric("Composed chains", _ec_trace["n_chains"])
-        c3.metric("Known FDA label", "yes" if _ec_label == "POSITIVE" else "no")
+        c3.metric(
+            "Local benchmark label",
+            "recorded" if _ec_label == "APPROVED" else "not recorded",
+        )
 
         _standing_render = {
             "SUPPORTED_FOR_REVIEW": st.success,
@@ -1862,7 +1870,7 @@ elif mode == "Evidence card":
             "absurd, start here\"*.\n"
             "- **Drug→Protein citations are unaffected** — ChEMBL and FDA labels "
             "are independently derived.\n"
-            "- An **`associated_with`** terminal hop is co-occurrence. Only 37 "
+            "- An **`associated_with`** terminal hop is co-occurrence. Only 60 "
             "edges in the whole graph are directed `driver_of`.\n"
             "- Absence of a label is **not** a negative. See **About**."
         )
@@ -1918,9 +1926,9 @@ elif mode == "Search speedup":
     )
 
     st.info(
-        "**Cohort: the original 78 curated oncology drugs** (1,560 pairs), not the "
+        "**Cohort: the 78 curated core drugs** (1,560 pairs), not the "
         "full 757-drug graph shown in the sidebar. The funnel is pinned to this "
-        "cohort so it stays comparable to the published numbers. Expanding to 757 "
+        "cohort so it stays comparable to the audited numbers. Expanding to 757 "
         "adds ~13,500 mostly-unscoreable pairs while the positive count stays at 44, "
         "which inflates enrichment without meaning anything. See HONEST_VALUE.md."
     )
@@ -1980,8 +1988,8 @@ the relationship.
 
 | Confidence | Source Type | Meaning | Researcher Action |
 |-----------|------------|---------|-------------------|
-| 0.90 - 1.00 | FDA labels, ChEMBL measured | Drug-disease indication confirmed by regulatory body or direct assay | **Trust** -- follow the cited PMID |
-| 0.70 - 0.89 | ChEMBL binding, KEGG pathways, curated interactions | Strong database evidence for this relationship | **Trust** -- standard literature-backed edge |
+| 0.90 - 1.00 | Regulatory records, ChEMBL records | High-priority source class; confidence is not a probability | **Inspect** the exact record and indication context |
+| 0.70 - 0.89 | ChEMBL binding, KEGG pathways, curated interactions | Curated or database evidence for this relationship | **Inspect** the exact evidence and direction |
 | 0.50 - 0.69 | STRING PPI, established mechanisms (ESM2/ESMC similarity-transfer edges are now EXCLUDED from scoring -- see note) | Computational or curated evidence, not direct measurement | **Investigate** -- check the cited paper |
 | 0.40 - 0.54 | PubMed co-mention (PARTIAL/AGREE after categorical verification) | Co-mentioned in literature AND supported by at least one categorical layer | **Consider** -- has some mechanistic support |
 | 0.35 | PubMed co-mention (ORPHAN after categorical verification) | Co-mentioned in literature but isolated -- no mechanistic support found | **Verify independently** -- may be text-mining noise |
@@ -2051,7 +2059,7 @@ high-quality mechanistic paths:
             language="python",
         )
         st.markdown("""
-**Why confidence-weighted?** A single FDA-confirmed path (confidence 0.90)
+**Why confidence-weighted?** A single high-confidence path (confidence 0.90)
 contributes 0.036 to the bonus. A PubMed REJECT path (confidence 0.20)
 contributes only 0.008 -- roughly 4.5x less. This prevents score inflation
 from many weak co-mention paths.
@@ -2072,7 +2080,7 @@ excluded from fingerprints. Yoneda is included only when visible treatment
 comparators exist; in the strict `remove_direct_labels` benchmark it is not an
 active strategy because all Drug -> Disease comparator labels are removed.
 
-If the drug looks structurally similar to an approved treatment for this
+If the drug looks structurally similar to a locally labelled treatment for this
 disease in the live triage graph, it gets a small additive bonus (capped at
 0.10).
 
@@ -2114,7 +2122,7 @@ Current method:
 1. Run the corrected `remove_direct_labels` benchmark.
 2. Sort all drug-disease pairs by ranking score.
 3. Split scores into quantile bins.
-4. Report the observed FDA-label rate in each bin, with monotone bin smoothing.
+4. Report the observed local `treats`-label rate in each bin, with monotone bin smoothing.
 
 The displayed benchmark label rate is useful for auditing score scale, but it is
 not a clinical probability and not a probability that a drug will work.
@@ -2493,14 +2501,14 @@ composition** (Drug -> Protein -> Disease) plus a structural-similarity bonus;
 the category-theoretic layer (Kan extensions, Yoneda lemma, topos logic,
 fibrations) is the organizing framework around that core, not the main source of
 the measured performance. It **prioritizes and explains** existing drugs as
-auditable hypotheses for diseases they weren't approved for -- it does not
+auditable hypotheses for disease pairs absent from its local label set -- it does not
 predict that a drug will actually work.
 
 ### How It Works
 
 1. **Knowledge Graph**: {n_drugs} drugs, {n_obj - n_drugs - n_diseases} proteins, \
 {n_diseases} diseases, {n_mor} edges ({g['provenance_rows']} provenance/source strings, {g['pmid_count']} PMID identifiers, {g['quantitative_edges']} graph edges with structured quantitative fields; ABPP measurements are loaded separately)
-2. **Live triage strategy profile**: 8 active strategy modules
+2. **Live triage strategy profile**: 8 configured strategy modules
    (composition, Kan extensions, Yoneda patterns, topos logic, structural holes,
    fibration lifts, binding evidence, Yoneda distance)
 3. **Binding Evidence**: IC50/engagement data from ABPP experiments, Boltz2
@@ -2567,9 +2575,9 @@ predict that a drug will actually work.
 **Two things this table used to get wrong, corrected 2026-07-31.**
 *(1) The metric the code calls "Hits@k" is `hits / min(positives, k)` — that is
 **precision@k**, which is why it falls from k=5 to k=10; a real Hits@k cannot.
-(2) The 603 abstentions are scored 0.0 and sit inside the headline AUROC. All of
-them are negatives, so restricting to the 957 actually-scored pairs gives AUROC
-**0.9642**. AUPRC is unaffected. Roughly 0.014 of the headline is coverage rather
+(2) The 598 abstentions are scored 0.0 and sit inside the headline AUROC. All of
+them are negatives, so restricting to the 962 actually-scored pairs gives AUROC
+**0.9609**. AUPRC is unaffected. Roughly 0.015 of the headline is coverage rather
 than ranking skill.*
 
 **Cohort: `core` (78 curated drugs, 1,560 pairs).** Quote this number, not the
@@ -2577,13 +2585,12 @@ than ranking skill.*
 ~13,500 added easy negatives: AUPRC *falls* and the margin over common-neighbor
 collapses to ~+0.05. The two cohorts are not comparable.
 
-*Current audited strict run: 2026-07-21, on the ESMC-excluded default graph. An
-ablation ([validation/esmc_ablation.py](.)) showed the 422 protein-embedding
-similarity-transfer edges slightly HURT the ranker, so they are excluded from
-scoring: AUROC rose 0.9691 -> 0.9784 and AUPRC 0.5661 -> 0.6128 on removal. The
-honest margin over a trivial baseline is +0.24, not the +0.36 the noisy graph
-showed (removing ESMC noise helps the common-neighbor baseline more than it helps
-the model). The protocol removes direct Drug->Disease edges and protein->disease
+*Current audited strict run: 2026-08-01, on the ESMC-excluded default graph:
+AUROC 0.9763, AUPRC 0.5920, with a +0.2280 margin over common-neighbor. Separately,
+a 2026-07-21 ablation ([validation/esmc_ablation.py](.)) removed the then-current
+422 protein-embedding similarity-transfer edges and improved AUROC
+0.9691 -> 0.9784 and AUPRC 0.5661 -> 0.6128. The database now contains 424 such
+edges; all remain excluded from scoring. The protocol removes direct Drug->Disease edges and protein->disease
 bridge edges derived from known indications; with all visible Drug->Disease
 comparators removed, Yoneda distance is inactive here.*
 
@@ -2617,7 +2624,7 @@ here until a complete label set exists.
 
 {calibration_note}
 
-The calibrated value shown in candidate details is a benchmark FDA-label rate
+The calibrated value shown in candidate details is a local benchmark-label rate
 for the score bin. It is separate from strategy signal scores and is not a
 clinical probability.
 
@@ -2636,8 +2643,8 @@ clinical probability.
   absence as a negative counted five approved drugs as false positives.
 - **Hub-drug bias**: Promiscuous multi-kinase inhibitors (Imatinib tops 14/20
   diseases) crowd the top of most disease rankings -- partly real pan-cancer
-  biology, partly a promiscuity bias, and the main reason AUPRC (0.6128) trails
-  AUROC (0.9784). Use the **Disease-specific** view to demote the hubs.
+  biology and partly a promiscuity bias. Current strict metrics are AUPRC 0.5920
+  and AUROC 0.9763. Use the **Disease-specific** view to demote the hubs.
 - **A PMID on a Protein->Disease edge is NOT validation** (measured 2026-07-20):
   those citations were gathered *after* the edge was proposed. A permutation
   negative control -- same proteins, randomly reassigned diseases -- grounded at
@@ -2663,12 +2670,11 @@ clinical probability.
   (low confidence) changes AUROC depending on protocol and quality tier filter
 - **External generalization is UNMEASURED**: not weak, not strong. See the
   external section above. Making either claim would outrun the evidence.
-- **The repository does not `pip install` cleanly on older checkouts**: fixed
-  2026-07-31 (`pyproject.toml` named a build backend that exists in no version of
-  setuptools). The benchmark always ran fine from a checkout; packaging was what
-  was broken, and nothing detected it because there was no CI.
+- **Packaging was repaired on 2026-07-31**: the current checkout uses
+  `setuptools.build_meta`, declares its runtime dependencies, and includes the
+  packages used by the benchmark. Older checkouts did not build.
 - **Quantitative columns are empty**: `quantitative_value` and `sample_size` read
-  NULL for all 2,439 edges, while the schema and this UI imply the data is there.
+  NULL for all 2,462 database edges; ABPP measurements are loaded separately.
 - **Core value**: AUROC is useful, but the research value is the auditable
   mechanistic trail, source typing, validation status, and citation provenance
 

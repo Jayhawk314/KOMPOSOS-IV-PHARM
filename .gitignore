@@ -105,6 +105,9 @@ tests/test_infinity_cosmos.py
 tests/test_higher_order_yoneda.py
 tests/stress_test_full_stack.py
 test_*.py
+!tests/test_candidate_review.py
+!tests/test_fetch_negative_trials.py
+!tests/test_public_facts.py
 verify_*.py
 measure_*.py
 calibrate_*.py
