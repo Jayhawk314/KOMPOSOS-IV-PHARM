@@ -1,0 +1,35 @@
+accession,status,interpro_domains,distinct_pdb_entries,domain_1,domain_1_name,domain_1_start,domain_1_end,domain_1_mean_plddt,domain_2,domain_2_name,domain_2_start,domain_2_end,domain_2_mean_plddt,cross_domain_pae,af_pair_preassessable,experimental_models,pdb_ids,oracle_standing,interpretation,af_checks,af_inconsistent,af_quarantine,experimental_checks,experimental_consistent,experimental_inconsistent,experimental_quarantine,ranked_findings,reason
+O60674,COMPLETE,4,171,IPR000299_37_380,FERM domain,37,380,88.7149,IPR000980_397_501,SH2 domain,397,501,92.225,6.0,True,3,6E2Q;6E2P;4Z32,CONSISTENT,NO_AF_CONFLICT,3,0,0,3,3,0,0,0,
+O96017,COMPLETE,2,38,IPR000253_112_191,Forkhead-associated (FHA) domain,112,191,92.0486,IPR000719_220_486,Protein kinase domain,220,486,85.1812,26.0,False,2,3I6U;3I6W,QUARANTINE,AF_QUARANTINE,2,0,2,1,1,0,0,2,
+P00533,COMPLETE,6,386,IPR000494_57_167,Receptor L-domain,57,167,94.95,IPR006211_185_338,Furin-like cysteine-rich domain,185,338,89.5284,5.0,True,3,4UV7;9Z9E;1MOX,INCONSISTENT,CONFORMATIONAL_OR_MAPPING_CONFLICT,3,1,0,3,1,2,0,3,
+P01106,SKIPPED,3,22,,,,,,,,,,,,,,,,,,,,,,,,,no domain pair covered by two experimental structures
+P01111,SKIPPED,1,,,,,,,,,,,,,,,,,,,,,,,,,,fewer than two non-overlapping domain annotations
+P01116,SKIPPED,1,,,,,,,,,,,,,,,,,,,,,,,,,,fewer than two non-overlapping domain annotations
+P04049,COMPLETE,3,69,IPR003116_56_131,Raf-like Ras-binding,56,131,80.9679,IPR002219_138_185,"Protein kinase C-like, phorbol ester/diacylglycerol-binding domain",138,185,84.5198,22.0,False,3,6XI7;6XGV;6XHB,QUARANTINE,AF_QUARANTINE,3,0,3,3,3,0,0,3,
+P04626,COMPLETE,6,57,IPR000494_52_172,Receptor L-domain,52,172,89.9192,IPR000494_366_484,Receptor L-domain,366,484,94.1441,7.0,True,3,5MY6;2A91;1N8Z,CONSISTENT,NO_AF_CONFLICT,3,0,0,3,3,0,0,0,
+P04637,COMPLETE,4,287,IPR011615_100_288,"p53, DNA-binding domain",100,288,95.5996,IPR010991_319_357,"p53, tetramerisation domain",319,357,84.2651,21.0,False,3,3Q01;3Q05;3TS8,QUARANTINE,AF_QUARANTINE,3,0,3,3,1,2,0,5,
+P06400,COMPLETE,4,19,IPR002720_373_573,"Retinoblastoma-associated protein, A-box",373,573,92.5436,IPR002719_646_765,"Retinoblastoma-associated protein, B-box",646,765,95.2276,4.0,True,3,2R7G;4ELL;9DHU,CONSISTENT,NO_AF_CONFLICT,3,0,0,3,3,0,0,0,
+P08581,COMPLETE,7,129,IPR001627_27_515,Sema domain,27,515,86.4985,IPR016201_519_562,PSI domain,519,562,86.3627,11.0,True,3,4K3J;2UZX;4O3T,INCONSISTENT,CONFORMATIONAL_OR_MAPPING_CONFLICT,3,1,0,3,1,2,0,3,
+P10415,COMPLETE,2,56,IPR003093_7_33,"Apoptosis regulator, Bcl-2 protein, BH4",7,33,89.6822,IPR046371_97_195,"Bcl-2, Bcl-2 homology region 1-3",97,195,88.8538,3.0,True,3,8HTS;6GL8;6QGG,CONSISTENT,NO_AF_CONFLICT,3,0,0,3,3,0,0,0,
+P11802,SKIPPED,1,,,,,,,,,,,,,,,,,,,,,,,,,,fewer than two non-overlapping domain annotations
+P15056,COMPLETE,3,131,IPR002219_234_281,"Protein kinase C-like, phorbol ester/diacylglycerol-binding domain",234,281,87.3202,IPR000719_457_717,Protein kinase domain,457,717,86.948,28.0,False,3,8VYS;7MFD;8VYO,QUARANTINE,AF_QUARANTINE,3,0,3,3,3,0,0,3,
+P24385,COMPLETE,2,11,IPR006671_27_152,"Cyclin, N-terminal",27,152,96.3688,IPR004367_155_287,"Cyclin, C-terminal domain",155,287,83.7522,4.0,True,3,9CSK;2W96;6P8E,CONSISTENT,NO_AF_CONFLICT,3,0,0,3,3,0,0,0,
+P27361,SKIPPED,1,,,,,,,,,,,,,,,,,,,,,,,,,,fewer than two non-overlapping domain annotations
+P28482,SKIPPED,1,,,,,,,,,,,,,,,,,,,,,,,,,,fewer than two non-overlapping domain annotations
+P31749,COMPLETE,2,44,IPR039026_4_111,"Protein Kinase B, pleckstrin homology domain",4,111,82.2264,IPR034676_124_479,"Protein kinase B alpha, catalytic domain",124,479,84.4754,24.0,False,3,7NH5;8UW9;8UW7,QUARANTINE,AF_QUARANTINE,3,0,3,3,3,0,0,3,
+P35968,COMPLETE,9,51,IPR003599_135_218,Immunoglobulin domain subtype,135,218,88.065,IPR007110_224_320,Immunoglobulin-like domain,224,320,86.037,13.0,True,3,2X1W;2X1X;3V2A,INCONSISTENT,EXPERIMENTAL_CONFORMATIONAL_VARIATION,3,0,0,3,1,2,0,2,
+P38398,COMPLETE,4,31,IPR001357_1642_1736,BRCT domain,1642,1736,90.5464,IPR001357_1756_1855,BRCT domain,1756,1855,89.6433,5.0,True,3,8RS8;4IGK;1T15,CONSISTENT,NO_AF_CONFLICT,3,0,0,3,3,0,0,0,
+P40763,COMPLETE,5,5,IPR013801_326_464,"STAT transcription factor, DNA-binding",326,464,87.4497,IPR048988_488_565,"Signal transducer and activator of transcription, linker domain",488,565,93.3219,5.0,True,3,6NJS;6QHD;6TLC,CONSISTENT,NO_AF_CONFLICT,3,0,0,3,3,0,0,0,
+P42229,COMPLETE,5,5,IPR048988_492_574,"Signal transducer and activator of transcription, linker domain",492,574,94.1735,IPR000980_587_700,SH2 domain,587,700,89.089,4.0,True,3,7UBT;7TVB;7TVA,CONSISTENT,NO_AF_CONFLICT,3,0,0,3,3,0,0,0,
+P42336,COMPLETE,5,134,IPR002420_322_487,C2 phosphatidylinositol 3-kinase-type domain,322,487,94.4969,IPR001263_517_704,"Phosphoinositide 3-kinase, accessory (PIK) domain",517,704,96.3176,3.0,True,3,8EXL;7JIU;6PYS,CONSISTENT,NO_AF_CONFLICT,3,0,0,3,3,0,0,0,
+P42345,COMPLETE,6,69,IPR000403_2156_2484,"Phosphatidylinositol 3-/4-kinase, catalytic domain",2156,2484,77.8535,IPR003152_2517_2549,FATC domain,2517,2549,89.8788,6.0,True,3,9ZBK;9T94;8ERA,CONSISTENT,NO_AF_CONFLICT,3,0,0,3,3,0,0,0,
+P42574,SKIPPED,1,,,,,,,,,,,,,,,,,,,,,,,,,,fewer than two non-overlapping domain annotations
+P55211,SKIPPED,2,13,,,,,,,,,,,,,,,,,,,,,,,,,no domain pair covered by two experimental structures
+P60484,COMPLETE,2,10,IPR029023_14_185,Tensin-type phosphatase domain,14,185,95.1995,IPR014020_188_350,"Tensin phosphatase, C2 domain",188,350,85.8409,4.0,True,3,1D5R;5BZZ;5BUG,CONSISTENT,NO_AF_CONFLICT,3,0,0,3,3,0,0,0,
+Q00534,SKIPPED,1,,,,,,,,,,,,,,,,,,,,,,,,,,fewer than two non-overlapping domain annotations
+Q00987,SKIPPED,3,138,,,,,,,,,,,,,,,,,,,,,,,,,no domain pair covered by two experimental structures
+Q01094,SKIPPED,2,8,,,,,,,,,,,,,,,,,,,,,,,,,no domain pair covered by two experimental structures
+Q02750,SKIPPED,1,,,,,,,,,,,,,,,,,,,,,,,,,,fewer than two non-overlapping domain annotations
+Q06609,COMPLETE,2,51,IPR060101_32_79,SAM-like helix-hairpin-helix tandem,32,79,95.9935,IPR013632_95_337,"Rad51-like, C-terminal",95,337,95.1898,4.0,True,3,9TRM;9SVY;8PBC,INCONSISTENT,CONFORMATIONAL_OR_MAPPING_CONFLICT,3,1,0,3,1,2,0,3,
+Q07812,SKIPPED,1,,,,,,,,,,,,,,,,,,,,,,,,,,fewer than two non-overlapping domain annotations
+Q13535,COMPLETE,7,15,IPR057564_2121_2219,"Serine/threonine-protein kinase ATR-like, HEAT repeats",2121,2219,89.0152,IPR000403_2296_2633,"Phosphatidylinositol 3-/4-kinase, catalytic domain",2296,2633,82.7978,9.0,True,3,9ZCY;23FC;9L40,CONSISTENT,NO_AF_CONFLICT,3,0,0,3,3,0,0,0,

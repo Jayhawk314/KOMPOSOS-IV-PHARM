@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-08-12T23:04:23.509610+00:00",
+  "accessions_requested": 34,
+  "complete": 21,
+  "skipped": 13,
+  "errors": 0,
+  "data_dir": "C:\\Users\\JAMES\\github-clean\\KOMPOSOS-IV-PHARM\\data\\external\\alphafold_coherence_2026-08-12",
+  "arguments": {
+    "max_experimental": 3,
+    "refresh": false,
+    "skip_oracle": false
+  }
+}

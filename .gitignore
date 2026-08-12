@@ -70,6 +70,9 @@ data/external/
 # boltz2_bridge.py is also included for consistency.
 chemistry/
 geometry/
+!geometry/
+geometry/*
+!geometry/alphafold_coherence.py
 spatial_biology/
 scripts/predict_structure.py
 scripts/predict_structure_categorical.py
@@ -109,6 +112,9 @@ test_*.py
 !tests/test_fetch_negative_trials.py
 !tests/test_public_facts.py
 !tests/test_evidence_hypergraph.py
+!tests/test_alphafold_coherence.py
+!tests/test_structural_oracle.py
+!tests/test_build_alphafold_coherence_cohort.py
 verify_*.py
 measure_*.py
 calibrate_*.py
