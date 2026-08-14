@@ -1,0 +1,164 @@
+{
+ "_about": "Written correspondence between PHARM disease labels and PRISM Repurposing 19Q4 cell-line lineages. This file IS the pushout span, made reviewable. A disease absent from this file is REFUSED; no disease may acquire a lineage by string similarity at runtime. Hand-written on 2026-08-14, before any viability data was read.",
+ "_default": "coproduct - PHARM:<disease> and PRISM:<lineage> stay distinct objects and a candidate is annotated, not identified. A pushout is asserted only where correspondence_type is DIRECT, NEAR or SUPERSET below, and every verdict then names the PRISM lineage rather than the clinical entity.",
+ "_correspondence_types": {
+  "DIRECT": "PRISM's subtype label denotes the same clinical entity.",
+  "NEAR": "Closely aligned but not identical; the difference is stated and carried into the verdict.",
+  "SUPERSET": "The PRISM lineage strictly contains the clinical entity. A selectivity result is a statement about the lineage, not the entity.",
+  "REFUSED": "No adjudication surface exists. Never scored, in either direction."
+ },
+ "_power_tiers": {
+  "A": "At least 15 cell lines in the target lineage. Eligible for the headline result.",
+  "B": "Fewer than 15. Effect size reported with an explicit UNDERPOWERED label, excluded from the headline.",
+  "none": "Refused; power is not the reason."
+ },
+ "decided_on": "2026-08-14",
+ "prism_release": "PRISM Repurposing 19Q4",
+ "prism_doi": "10.6084/m9.figshare.9393293.v4",
+ "diseases": [
+  {
+   "pharm_disease": "Melanoma",
+   "prism_lineage": {"primary_tissue": "skin", "secondary_tissue": "melanoma"},
+   "n_cell_lines": 43,
+   "correspondence_type": "DIRECT",
+   "power_tier": "A",
+   "justification": "Every skin line in PRISM 19Q4 carries secondary_tissue 'melanoma'. The lineage and the clinical entity denote the same disease.",
+   "known_discrepancy": "Cutaneous, acral and uveal melanoma are not distinguished by this label."
+  },
+  {
+   "pharm_disease": "NSCLC",
+   "prism_lineage": {"primary_tissue": "lung", "secondary_tissue": "lung_NSC"},
+   "n_cell_lines": 90,
+   "correspondence_type": "NEAR",
+   "power_tier": "A",
+   "justification": "PRISM's own 'lung_NSC' annotation is a direct non-small-cell label, so this is not the TCGA LUAD+LUSC string join the boundary rules forbid. Small-cell lines (n=11) are excluded by the same column.",
+   "known_discrepancy": "A clinical NSCLC indication is not a panel of 90 adherent lines. Adenocarcinoma, squamous and large-cell histologies are pooled and their driver distributions differ, so a pooled selectivity result can be driven by one histology."
+  },
+  {
+   "pharm_disease": "Glioblastoma",
+   "prism_lineage": {"primary_tissue": "central_nervous_system", "secondary_tissue": "glioma"},
+   "n_cell_lines": 39,
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "justification": "PRISM labels CNS lines 'glioma' without grade. Glioblastoma lines are contained in this set.",
+   "known_discrepancy": "Grade II-III gliomas are included and are a different clinical disease with different prognosis and drivers. Medulloblastoma lines (n=2) are excluded by the secondary_tissue filter."
+  },
+  {
+   "pharm_disease": "Pancreatic_Cancer",
+   "prism_lineage": {"primary_tissue": "pancreas", "secondary_tissue": null},
+   "n_cell_lines": 37,
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "justification": "The pancreas lineage is unsubtyped in 19Q4 and is dominated by ductal adenocarcinoma lines.",
+   "known_discrepancy": "Neuroendocrine and acinar pancreatic tumours cannot be separated out; they are biologically distinct from PDAC."
+  },
+  {
+   "pharm_disease": "Colorectal_Cancer",
+   "prism_lineage": {"primary_tissue": "colorectal", "secondary_tissue": null},
+   "n_cell_lines": 35,
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "justification": "Direct lineage match; 14 of 35 additionally carry an MSI annotation.",
+   "known_discrepancy": "MSI and MSS tumours respond differently to several drug classes and are pooled here."
+  },
+  {
+   "pharm_disease": "Breast_Cancer",
+   "prism_lineage": {"primary_tissue": "breast", "secondary_tissue": null},
+   "n_cell_lines": 26,
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "justification": "Direct lineage match with receptor subtypes annotated (TNBC 12, ERpos 7, HER2Amp 4, TPBC 2).",
+   "known_discrepancy": "Receptor subtype governs treatment choice clinically and is pooled here. A pooled result may be driven entirely by the TNBC lines."
+  },
+  {
+   "pharm_disease": "HCC",
+   "prism_lineage": {"primary_tissue": "liver", "secondary_tissue": null},
+   "n_cell_lines": 21,
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "justification": "The liver lineage is predominantly hepatocellular. Cholangiocarcinoma sits in a separate 'bile_duct' lineage and is therefore already excluded.",
+   "known_discrepancy": "One hepatoblastoma line is present and is excluded by secondary_tissue. Remaining lines are not individually confirmed as HCC."
+  },
+  {
+   "pharm_disease": "RCC",
+   "prism_lineage": {"primary_tissue": "kidney", "secondary_tissue": null},
+   "n_cell_lines": 19,
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "justification": "PRISM's kidney lineage is essentially unsubtyped (only one line carries a 'renal' secondary label) and contains renal cell carcinoma lines.",
+   "known_discrepancy": "Non-RCC kidney tumours such as Wilms may be present, and clear-cell versus papillary RCC cannot be separated. A result here is about 'kidney', not 'RCC'."
+  },
+  {
+   "pharm_disease": "Soft_Tissue_Sarcoma",
+   "prism_lineage": {"primary_tissue": "soft_tissue", "secondary_tissue": null},
+   "n_cell_lines": 5,
+   "correspondence_type": "SUPERSET",
+   "power_tier": "B",
+   "justification": "Lineage exists and matches, but with 5 lines (leiomyosarcoma 2, fibrosarcoma 1, pleomorphic 1, undifferentiated 1) a rank-based lineage contrast is underpowered.",
+   "known_discrepancy": "Soft-tissue sarcoma is dozens of distinct diseases. The 60-candidate review already found that a broad STS label hid opposite subtype results for ribociclib (R02). Five lines cannot represent that heterogeneity. Reported as UNDERPOWERED_REPORTED, never in the headline."
+  },
+  {
+   "pharm_disease": "Prostate_Cancer",
+   "prism_lineage": {"primary_tissue": "prostate", "secondary_tissue": null},
+   "n_cell_lines": 4,
+   "correspondence_type": "SUPERSET",
+   "power_tier": "B",
+   "justification": "Lineage exists; 4 lines is below any threshold at which a lineage contrast is meaningful.",
+   "known_discrepancy": "No candidate pair currently reaches this lineage, since the one prostate candidate (R20, clascoterone) was never screened. Recorded for completeness so a future session cannot quietly add it."
+  },
+  {
+   "pharm_disease": "GIST",
+   "prism_lineage": null,
+   "n_cell_lines": 0,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "justification": "No GIST lineage exists in PRISM 19Q4.",
+   "known_discrepancy": "PRISM's 'gastric' lineage is 18 adenocarcinoma lines plus 3 others. GIST is a KIT/PDGFRA-driven mesenchymal tumour of the gut wall - a different cell of origin with different drivers. Identifying GIST with 'gastric' on the shared word 'stomach' is exactly the silent string join that corrupts every edge crossing the seam. Refused."
+  },
+  {
+   "pharm_disease": "CLL",
+   "prism_lineage": null,
+   "n_cell_lines": 0,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "justification": "PRISM 19Q4 contains no haematological cell lines in either the primary or the secondary screen.",
+   "known_discrepancy": "Not repairable by threshold choice. Would require a screen including suspension lines, such as GDSC or CTRP, and its own correspondence document."
+  },
+  {
+   "pharm_disease": "AML",
+   "prism_lineage": null,
+   "n_cell_lines": 0,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "justification": "No haematological lineage in PRISM 19Q4.",
+   "known_discrepancy": "AML also has no 'treats' label anywhere in the local graph, so it was already the weakest disease in the candidate set."
+  },
+  {
+   "pharm_disease": "Myelofibrosis",
+   "prism_lineage": null,
+   "n_cell_lines": 0,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "justification": "No haematological lineage in PRISM 19Q4.",
+   "known_discrepancy": "Myelofibrosis is a bone-marrow stromal and clonal myeloid disease; a viability screen on adherent tumour lines would not be the right assay even if lines existed."
+  },
+  {
+   "pharm_disease": "Multiple_Myeloma",
+   "prism_lineage": null,
+   "n_cell_lines": 0,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "justification": "No haematological or plasma-cell lineage in PRISM 19Q4.",
+   "known_discrepancy": "Myeloma lines are standard in other screens; their absence here is a property of this release, not of the disease."
+  },
+  {
+   "pharm_disease": "Li_Fraumeni_Syndrome",
+   "prism_lineage": null,
+   "n_cell_lines": 0,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "justification": "A germline cancer-predisposition syndrome, not a tumour indication. There is no lineage to correspond to because there is no tumour type named.",
+   "known_discrepancy": "The 60-candidate review already classified all six of these rows EXCLUDE_CATEGORY_ERROR. This refusal is consistent with that verdict and adds nothing new; it is recorded so the refusal is explicit rather than incidental."
+  }
+ ]
+}

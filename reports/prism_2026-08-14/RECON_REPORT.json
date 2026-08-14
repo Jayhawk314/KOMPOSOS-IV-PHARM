@@ -1,0 +1,576 @@
+{
+ "generated_on": "2026-08-14",
+ "purpose": "Feasibility only. Reads screened-compound names and cell-line lineages; never reads viability or dose-response data.",
+ "source": {
+  "dataset": "PRISM Repurposing 19Q4",
+  "doi": "10.6084/m9.figshare.9393293.v4",
+  "figshare_api": "https://api.figshare.com/v2/articles/9393293",
+  "citation": "Corsello et al., Nature Cancer 2020",
+  "note": "Newer PRISM Repurposing Public releases are distributed only through the DepMap portal, which serves a Cloudflare human-verification interstitial to automated clients. The DepMap 24Q2 figshare deposit carries CRISPR and omics files but no Repurposing matrices. 19Q4 is the automatable release."
+ },
+ "screen_scale": {
+  "primary_compounds": 4518,
+  "secondary_compounds": 1448,
+  "cell_lines": 568,
+  "lineages": 24
+ },
+ "lineage_sizes": {
+  "lung": 101,
+  "skin": 43,
+  "central_nervous_system": 42,
+  "ovary": 38,
+  "pancreas": 37,
+  "colorectal": 35,
+  "upper_aerodigestive": 27,
+  "breast": 26,
+  "esophagus": 24,
+  "urinary_tract": 24,
+  "uterus": 23,
+  "bone": 23,
+  "liver": 21,
+  "gastric": 21,
+  "kidney": 19,
+  "rhabdoid": 12,
+  "peripheral_nervous_system": 12,
+  "thyroid": 11,
+  "mesothelioma": 9,
+  "bile_duct": 7,
+  "soft_tissue": 5,
+  "prostate": 4,
+  "rhabdomyosarcoma": 3,
+  "fibroblast": 1
+ },
+ "tier_a_min_lines": 15,
+ "haematological_lineages_present": [],
+ "candidate_drugs": {
+  "total": 40,
+  "in_secondary_screen": [
+   "Abemaciclib",
+   "Artesunate",
+   "Atorvastatin",
+   "Baricitinib",
+   "Brigatinib",
+   "Cabozantinib",
+   "Carboplatin",
+   "Cimetidine",
+   "Cisplatin",
+   "Crizotinib",
+   "Dacomitinib",
+   "Disulfiram",
+   "Filgotinib",
+   "Itraconazole",
+   "Mebendazole",
+   "Oxaliplatin",
+   "Palbociclib",
+   "Propranolol",
+   "Regorafenib",
+   "Ribociclib",
+   "Venetoclax"
+  ],
+  "primary_screen_only": [
+   "Bazedoxifene",
+   "Chloroquine",
+   "Copanlisib",
+   "Diclofenac",
+   "Leflunomide",
+   "Suramin"
+  ],
+  "not_screened": [
+   "Adagrasib",
+   "Amivantamab",
+   "Beperminogene Perplasmid",
+   "Capmatinib",
+   "Clascoterone",
+   "Deuruxolitinib",
+   "Fedratinib",
+   "Imetelstat",
+   "Lazertinib",
+   "Nitroglycerin",
+   "Ramucirumab",
+   "Sotorasib",
+   "Tepotinib"
+  ]
+ },
+ "pairs": [
+  {
+   "review_id": "R01",
+   "drug": "Carboplatin",
+   "disease": "CLL",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R02",
+   "drug": "Ribociclib",
+   "disease": "Soft_Tissue_Sarcoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R03",
+   "drug": "Cisplatin",
+   "disease": "Li_Fraumeni_Syndrome",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R04",
+   "drug": "Mebendazole",
+   "disease": "HCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R05",
+   "drug": "Venetoclax",
+   "disease": "Myelofibrosis",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R06",
+   "drug": "Disulfiram",
+   "disease": "Li_Fraumeni_Syndrome",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R07",
+   "drug": "Mebendazole",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R08",
+   "drug": "Sotorasib",
+   "disease": "Melanoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": false
+  },
+  {
+   "review_id": "R09",
+   "drug": "Chloroquine",
+   "disease": "Li_Fraumeni_Syndrome",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R10",
+   "drug": "Cimetidine",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R11",
+   "drug": "Beperminogene Perplasmid",
+   "disease": "NSCLC",
+   "novelty_class": "UNEXPLORED_DRUG",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": false
+  },
+  {
+   "review_id": "R12",
+   "drug": "Carboplatin",
+   "disease": "Li_Fraumeni_Syndrome",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R13",
+   "drug": "Itraconazole",
+   "disease": "HCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R14",
+   "drug": "Diclofenac",
+   "disease": "Multiple_Myeloma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R15",
+   "drug": "Mebendazole",
+   "disease": "Li_Fraumeni_Syndrome",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R16",
+   "drug": "Oxaliplatin",
+   "disease": "CLL",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R17",
+   "drug": "Leflunomide",
+   "disease": "GIST",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R18",
+   "drug": "Amivantamab",
+   "disease": "Glioblastoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": false
+  },
+  {
+   "review_id": "R19",
+   "drug": "Chloroquine",
+   "disease": "CLL",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R20",
+   "drug": "Clascoterone",
+   "disease": "Prostate_Cancer",
+   "novelty_class": "UNEXPLORED_DRUG",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": false
+  },
+  {
+   "review_id": "R21",
+   "drug": "Brigatinib",
+   "disease": "Glioblastoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R22",
+   "drug": "Itraconazole",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R23",
+   "drug": "Dacomitinib",
+   "disease": "Breast_Cancer",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R24",
+   "drug": "Lazertinib",
+   "disease": "Glioblastoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": false
+  },
+  {
+   "review_id": "R25",
+   "drug": "Mebendazole",
+   "disease": "Melanoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R26",
+   "drug": "Imetelstat",
+   "disease": "HCC",
+   "novelty_class": "UNEXPLORED_DRUG",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": false
+  },
+  {
+   "review_id": "R27",
+   "drug": "Dacomitinib",
+   "disease": "Glioblastoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R28",
+   "drug": "Propranolol",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R29",
+   "drug": "Suramin",
+   "disease": "GIST",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R30",
+   "drug": "Oxaliplatin",
+   "disease": "Li_Fraumeni_Syndrome",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R31",
+   "drug": "Atorvastatin",
+   "disease": "Pancreatic_Cancer",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R32",
+   "drug": "Fedratinib",
+   "disease": "AML",
+   "novelty_class": "UNEXPLORED_DRUG",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": false
+  },
+  {
+   "review_id": "R33",
+   "drug": "Chloroquine",
+   "disease": "Soft_Tissue_Sarcoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R34",
+   "drug": "Capmatinib",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": false
+  },
+  {
+   "review_id": "R35",
+   "drug": "Mebendazole",
+   "disease": "Soft_Tissue_Sarcoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R36",
+   "drug": "Baricitinib",
+   "disease": "Myelofibrosis",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R37",
+   "drug": "Mebendazole",
+   "disease": "CLL",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R38",
+   "drug": "Filgotinib",
+   "disease": "Myelofibrosis",
+   "novelty_class": "UNEXPLORED_DRUG",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R39",
+   "drug": "Oxaliplatin",
+   "disease": "Soft_Tissue_Sarcoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R40",
+   "drug": "Adagrasib",
+   "disease": "Pancreatic_Cancer",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": false
+  },
+  {
+   "review_id": "R41",
+   "drug": "Propranolol",
+   "disease": "HCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R42",
+   "drug": "Ramucirumab",
+   "disease": "GIST",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": false
+  },
+  {
+   "review_id": "R43",
+   "drug": "Disulfiram",
+   "disease": "Soft_Tissue_Sarcoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R44",
+   "drug": "Cabozantinib",
+   "disease": "GIST",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R45",
+   "drug": "Disulfiram",
+   "disease": "CLL",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R46",
+   "drug": "Suramin",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R47",
+   "drug": "Cimetidine",
+   "disease": "HCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R48",
+   "drug": "Regorafenib",
+   "disease": "NSCLC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R49",
+   "drug": "Nitroglycerin",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": false
+  },
+  {
+   "review_id": "R50",
+   "drug": "Copanlisib",
+   "disease": "Breast_Cancer",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R51",
+   "drug": "Crizotinib",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R52",
+   "drug": "Bazedoxifene",
+   "disease": "Multiple_Myeloma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R53",
+   "drug": "Palbociclib",
+   "disease": "Soft_Tissue_Sarcoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R54",
+   "drug": "Deuruxolitinib",
+   "disease": "Myelofibrosis",
+   "novelty_class": "UNEXPLORED_DRUG",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": false
+  },
+  {
+   "review_id": "R55",
+   "drug": "Tepotinib",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": false
+  },
+  {
+   "review_id": "R56",
+   "drug": "Diclofenac",
+   "disease": "Colorectal_Cancer",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R57",
+   "drug": "Amivantamab",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": false
+  },
+  {
+   "review_id": "R58",
+   "drug": "Suramin",
+   "disease": "HCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": false,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R59",
+   "drug": "Artesunate",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  },
+  {
+   "review_id": "R60",
+   "drug": "Abemaciclib",
+   "disease": "Soft_Tissue_Sarcoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "drug_in_secondary_screen": true,
+   "drug_in_primary_screen": true
+  }
+ ]
+}

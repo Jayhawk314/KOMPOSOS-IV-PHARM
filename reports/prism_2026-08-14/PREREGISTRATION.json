@@ -1,0 +1,1500 @@
+{
+ "_about": "Pre-registration for the PRISM adjudication. Frozen before any viability or dose-response data was read. Nothing here may be edited after the commit that introduces it.",
+ "frozen_on": "2026-08-14",
+ "plan": "docs/PLAN_PRISM_ADJUDICATION_2026-08-14.md",
+ "correspondence_file": "reports/prism_2026-08-14/DISEASE_CORRESPONDENCE.json",
+ "correspondence_sha256": "1650e89e97a7fa1e283452466c4c1658d1639119082750343bc8998807be29f8",
+ "review_file": "reports/candidate_review_2026-08-01/CANDIDATE_REVIEW_60.csv",
+ "review_sha256": "6c974f31951ab930769aea0cd39e129378cdc2dab76d1d7623bdd23d29539fe0",
+ "prism_release": "PRISM Repurposing 19Q4",
+ "prism_doi": "10.6084/m9.figshare.9393293.v4",
+ "thresholds": {
+  "tier_a_min_cell_lines": 15,
+  "curve_r2_floor": 0.5,
+  "require_curve_convergence": true,
+  "require_passed_str_profiling": true,
+  "min_target_lines_after_qc": 8,
+  "pan_lineage_cytotoxic_max_median_auc": 0.8,
+  "selectivity_delta_min_auc": 0.05,
+  "bh_q_max": 0.1,
+  "single_dose_pan_cytotoxic_max_median_logfold": -1.0,
+  "single_dose_selectivity_delta_min_logfold": 0.25
+ },
+ "statistic": {
+  "primary_endpoint": "dose_response_auc",
+  "primary_source": "secondary-screen-dose-response-curve-parameters.csv",
+  "screen_preference": [
+   "MTS010",
+   "MTS006",
+   "MTS005"
+  ],
+  "screen_preference_rationale": "The dataset readme recommends MTS010 where available; it post-dates the Corsello analysis and includes technical redos of 147 oncology compounds. The screen actually used is recorded on every row.",
+  "selectivity_delta": "median(AUC outside target lineage) - median(AUC in target lineage)",
+  "delta_sign_convention": "positive means the target lineage is MORE sensitive",
+  "test": "two-sided Mann-Whitney U, target lineage versus all other lineages",
+  "test_rationale": "AUC is bounded and non-normal; a rank test makes no distributional assumption.",
+  "multiplicity_correction": "Benjamini-Hochberg across the TIER_A_HEADLINE pairs only",
+  "secondary_endpoint": "primary_screen_replicate_collapsed_logfold_change",
+  "secondary_source": "primary-screen-replicate-collapsed-logfold-change.csv",
+  "secondary_note": "Single-dose only. Reported separately and never pooled with dose-response AUC results."
+ },
+ "control_panel": {
+  "expected_pan_lineage_cytotoxic": [
+   "cisplatin",
+   "carboplatin",
+   "oxaliplatin"
+  ],
+  "expected_not_pan_lineage_cytotoxic": [
+   "cimetidine",
+   "propranolol"
+  ],
+  "rule": "If none of the expected cytotoxics trips pan_lineage_cytotoxic, or if every expected non-cytotoxic trips it, the run is reported INVALID and the thresholds are reported as mis-chosen. Thresholds are not retuned."
+ },
+ "verdict_vocabulary": {
+  "LINEAGE_SELECTIVE_ACTIVITY": "Target lineage more sensitive, BH q below threshold, and not pan-lineage cytotoxic.",
+  "PAN_LINEAGE_CYTOTOXIC": "Broadly active across lineages. The built-in negative control fired; this disconfirms selectivity.",
+  "NO_LINEAGE_SELECTIVITY": "Screened and fit, but no target-lineage preference.",
+  "SCREENED_INCONCLUSIVE": "Too few target-lineage lines survived quality control.",
+  "NOT_SCREENED_BIOLOGIC": "A small-molecule viability screen cannot test this agent.",
+  "NOT_SCREENED_POST_DATING_RELEASE": "Approved after the 19Q4 release; absent for vintage reasons.",
+  "NOT_SCREENED_UNKNOWN_REASON": "Absent from the library for reasons not established.",
+  "NO_LINEAGE_CORRESPONDENCE": "No adjudication surface exists for this disease.",
+  "UNDERPOWERED_REPORTED": "Tier B lineage; effect size reported, excluded from the headline.",
+  "AMBIGUOUS_MATCH": "Name matched but structure disagreed; excluded rather than guessed."
+ },
+ "strata_counts": {
+  "TIER_A_HEADLINE": 16,
+  "TIER_B_UNDERPOWERED": 6,
+  "SECONDARY_SINGLE_DOSE_ONLY": 5,
+  "REFUSED_DRUG_NOT_SCREENED": 11,
+  "REFUSED_NO_CORRESPONDENCE": 22
+ },
+ "boundaries": [
+  "Labels, not features. app.py is the only module that may import this.",
+  "Absence is never scored as a negative.",
+  "Cell lines are not patients; no result here supports an efficacy claim.",
+  "Do not compute AUROC, AUPRC or a precision estimate against these labels.",
+  "human_reviewed = 0 on every row; automated extraction is not review."
+ ],
+ "pairs": [
+  {
+   "review_id": "R01",
+   "drug": "Carboplatin",
+   "disease": "CLL",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "carboplatin",
+    "broad_ids": [
+     "BRD-K90947825-001-02-7"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "N[Pt]1(N)OC(=O)C2(CCC2)C(=O)O1, N[Pt]1(N)OC(=O)C2(CCC2)C(=O)O1, N[Pt]1(N)OC(=O)C2(CCC2)C(=O)O1, N[Pt]1(N)OC(=O)C2(CCC2)C(=O)O1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R02",
+   "drug": "Ribociclib",
+   "disease": "Soft_Tissue_Sarcoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_B_UNDERPOWERED",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "soft_tissue",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "B",
+   "n_cell_lines": 5,
+   "compound": {
+    "prism_name": "ribociclib",
+    "broad_ids": [
+     "BRD-K36788280-001-01-2"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CN(C)C(=O)c1cc2cnc(Nc3ccc(cn3)N3CCNCC3)nc2n1C1CCCC1, CN(C)C(=O)c1cc2cnc(Nc3ccc(cn3)N3CCNCC3)nc2n1C1CCCC1, CN(C)C(=O)c1cc2cnc(Nc3ccc(cn3)N3CCNCC3)nc2n1C1CCCC1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R03",
+   "drug": "Cisplatin",
+   "disease": "Li_Fraumeni_Syndrome",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "cisplatin",
+    "broad_ids": [
+     "BRD-K69172251-001-08-9"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "N[Pt](N)(Cl)Cl, N[Pt](N)(Cl)Cl, N[Pt](N)(Cl)Cl, N[Pt](N)(Cl)Cl"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R04",
+   "drug": "Mebendazole",
+   "disease": "HCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "liver",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 21,
+   "compound": {
+    "prism_name": "mebendazole",
+    "broad_ids": [
+     "BRD-K77987382-001-13-2"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "COC(=O)Nc1nc2ccc(cc2[nH]1)C(=O)c1ccccc1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R05",
+   "drug": "Venetoclax",
+   "disease": "Myelofibrosis",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "venetoclax",
+    "broad_ids": [
+     "BRD-K62391742-001-03-0",
+     "BRD-K62391742-001-09-7"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CC1(C)CCC(CN2CCN(CC2)c2ccc(C(=O)NS(=O)(=O)c3ccc(NCC4CCOCC4)c(c3)[N+]([O-])=O)c(Oc3cnc4[nH]ccc4c3)c2)=C(C1)c1ccc(Cl)cc1, CC1(C)CCC(CN2CCN(CC2)c2ccc(C(=O)NS(=O)(=O)c3ccc(NCC4CCOCC4)c(c3)[N+]([O-])=O)c(Oc3cnc4[nH]ccc4c3)c2)=C(C1)c1ccc(Cl)cc1, CC1(C)CCC(CN2CCN(CC2)c2ccc(C(=O)NS(=O)(=O)c3ccc(NCC4CCOCC4)c(c3)[N+]([O-])=O)c(Oc3cnc4[nH]ccc4c3)c2)=C(C1)c1ccc(Cl)cc1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R06",
+   "drug": "Disulfiram",
+   "disease": "Li_Fraumeni_Syndrome",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "disulfiram",
+    "broad_ids": [
+     "BRD-K32744045-001-31-2"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CCN(CC)C(=S)SSC(=S)N(CC)CC, CCN(CC)C(=S)SSC(=S)N(CC)CC, CCN(CC)C(=S)SSC(=S)N(CC)CC"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R07",
+   "drug": "Mebendazole",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "kidney",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 19,
+   "compound": {
+    "prism_name": "mebendazole",
+    "broad_ids": [
+     "BRD-K77987382-001-13-2"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "COC(=O)Nc1nc2ccc(cc2[nH]1)C(=O)c1ccccc1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R08",
+   "drug": "Sotorasib",
+   "disease": "Melanoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_DRUG_NOT_SCREENED",
+   "predetermined_verdict": "NOT_SCREENED_UNKNOWN_REASON",
+   "prism_lineage": {
+    "primary_tissue": "skin",
+    "secondary_tissue": "melanoma"
+   },
+   "correspondence_type": "DIRECT",
+   "power_tier": "A",
+   "n_cell_lines": 43,
+   "compound": null,
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R09",
+   "drug": "Chloroquine",
+   "disease": "Li_Fraumeni_Syndrome",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "chloroquine",
+    "broad_ids": [
+     "BRD-A91699651-316-10-9"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CCN(CC)CCCC(C)Nc1ccnc2cc(Cl)ccc12, CCN(CC)CCCC(C)Nc1ccnc2cc(Cl)ccc12, CCN(CC)CCCC(C)Nc1ccnc2cc(Cl)ccc12"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R10",
+   "drug": "Cimetidine",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "kidney",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 19,
+   "compound": {
+    "prism_name": "cimetidine",
+    "broad_ids": [
+     "BRD-K34157611-001-16-0"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CN\\C(NCCSCc1nc[nH]c1C)=N/C#N, CN\\C(NCCSCc1nc[nH]c1C)=N/C#N, CN\\C(NCCSCc1nc[nH]c1C)=N/C#N, CN\\C(NCCSCc1nc[nH]c1C)=N/C#N"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R11",
+   "drug": "Beperminogene Perplasmid",
+   "disease": "NSCLC",
+   "novelty_class": "UNEXPLORED_DRUG",
+   "stratum": "REFUSED_DRUG_NOT_SCREENED",
+   "predetermined_verdict": "NOT_SCREENED_BIOLOGIC",
+   "prism_lineage": {
+    "primary_tissue": "lung",
+    "secondary_tissue": "lung_NSC"
+   },
+   "correspondence_type": "NEAR",
+   "power_tier": "A",
+   "n_cell_lines": 90,
+   "compound": null,
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R12",
+   "drug": "Carboplatin",
+   "disease": "Li_Fraumeni_Syndrome",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "carboplatin",
+    "broad_ids": [
+     "BRD-K90947825-001-02-7"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "N[Pt]1(N)OC(=O)C2(CCC2)C(=O)O1, N[Pt]1(N)OC(=O)C2(CCC2)C(=O)O1, N[Pt]1(N)OC(=O)C2(CCC2)C(=O)O1, N[Pt]1(N)OC(=O)C2(CCC2)C(=O)O1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R13",
+   "drug": "Itraconazole",
+   "disease": "HCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "liver",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 21,
+   "compound": {
+    "prism_name": "itraconazole",
+    "broad_ids": [
+     "BRD-A23067620-300-01-3"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CCC(C)n1ncn(-c2ccc(cc2)N2CCN(CC2)c2ccc(OC[C@H]3CO[C@@](Cn4cncn4)(O3)c3ccc(Cl)cc3Cl)cc2)c1=O, CCC(C)n1ncn(-c2ccc(cc2)N2CCN(CC2)c2ccc(OC[C@H]3CO[C@@](Cn4cncn4)(O3)c3ccc(Cl)cc3Cl)cc2)c1=O, CCC(C)n1ncn(-c2ccc(cc2)N2CCN(CC2)c2ccc(OC[C@H]3CO[C@@](Cn4cncn4)(O3)c3ccc(Cl)cc3Cl)cc2)c1=O"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R14",
+   "drug": "Diclofenac",
+   "disease": "Multiple_Myeloma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "diclofenac",
+    "broad_ids": [
+     "BRD-K08252256-236-33-8"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "OC(=O)Cc1ccccc1Nc1c(Cl)cccc1Cl, OC(=O)Cc1ccccc1Nc1c(Cl)cccc1Cl, OC(=O)Cc1ccccc1Nc1c(Cl)cccc1Cl, OC(=O)Cc1ccccc1Nc1c(Cl)cccc1Cl"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R15",
+   "drug": "Mebendazole",
+   "disease": "Li_Fraumeni_Syndrome",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "mebendazole",
+    "broad_ids": [
+     "BRD-K77987382-001-13-2"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "COC(=O)Nc1nc2ccc(cc2[nH]1)C(=O)c1ccccc1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R16",
+   "drug": "Oxaliplatin",
+   "disease": "CLL",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "oxaliplatin",
+    "broad_ids": [
+     "BRD-K78960041-001-05-7"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "O=C1O[Pt]2(N[C@@H]3CCCC[C@H]3N2)OC1=O, O=C1O[Pt]2(N[C@@H]3CCCC[C@H]3N2)OC1=O, O=C1O[Pt]2(N[C@@H]3CCCC[C@H]3N2)OC1=O, O=C1O[Pt]2(N[C@@H]3CCCC[C@H]3N2)OC1=O"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R17",
+   "drug": "Leflunomide",
+   "disease": "GIST",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "leflunomide",
+    "broad_ids": [
+     "BRD-K78692225-001-24-5"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "Cc1oncc1C(=O)Nc1ccc(cc1)C(F)(F)F, Cc1oncc1C(=O)Nc1ccc(cc1)C(F)(F)F, Cc1oncc1C(=O)Nc1ccc(cc1)C(F)(F)F"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R18",
+   "drug": "Amivantamab",
+   "disease": "Glioblastoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_DRUG_NOT_SCREENED",
+   "predetermined_verdict": "NOT_SCREENED_BIOLOGIC",
+   "prism_lineage": {
+    "primary_tissue": "central_nervous_system",
+    "secondary_tissue": "glioma"
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 39,
+   "compound": null,
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R19",
+   "drug": "Chloroquine",
+   "disease": "CLL",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "chloroquine",
+    "broad_ids": [
+     "BRD-A91699651-316-10-9"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CCN(CC)CCCC(C)Nc1ccnc2cc(Cl)ccc12, CCN(CC)CCCC(C)Nc1ccnc2cc(Cl)ccc12, CCN(CC)CCCC(C)Nc1ccnc2cc(Cl)ccc12"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R20",
+   "drug": "Clascoterone",
+   "disease": "Prostate_Cancer",
+   "novelty_class": "UNEXPLORED_DRUG",
+   "stratum": "REFUSED_DRUG_NOT_SCREENED",
+   "predetermined_verdict": "NOT_SCREENED_UNKNOWN_REASON",
+   "prism_lineage": {
+    "primary_tissue": "prostate",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "B",
+   "n_cell_lines": 4,
+   "compound": null,
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R21",
+   "drug": "Brigatinib",
+   "disease": "Glioblastoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "central_nervous_system",
+    "secondary_tissue": "glioma"
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 39,
+   "compound": {
+    "prism_name": "brigatinib",
+    "broad_ids": [
+     "BRD-K56981171-001-01-0",
+     "BRD-K56981171-001-02-8"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "COc1cc(ccc1Nc1ncc(Cl)c(Nc2ccccc2P(C)(C)=O)n1)N1CCC(CC1)N1CCN(C)CC1, COc1cc(ccc1Nc1ncc(Cl)c(Nc2ccccc2P(C)(C)=O)n1)N1CCC(CC1)N1CCN(C)CC1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R22",
+   "drug": "Itraconazole",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "kidney",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 19,
+   "compound": {
+    "prism_name": "itraconazole",
+    "broad_ids": [
+     "BRD-A23067620-300-01-3"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CCC(C)n1ncn(-c2ccc(cc2)N2CCN(CC2)c2ccc(OC[C@H]3CO[C@@](Cn4cncn4)(O3)c3ccc(Cl)cc3Cl)cc2)c1=O, CCC(C)n1ncn(-c2ccc(cc2)N2CCN(CC2)c2ccc(OC[C@H]3CO[C@@](Cn4cncn4)(O3)c3ccc(Cl)cc3Cl)cc2)c1=O, CCC(C)n1ncn(-c2ccc(cc2)N2CCN(CC2)c2ccc(OC[C@H]3CO[C@@](Cn4cncn4)(O3)c3ccc(Cl)cc3Cl)cc2)c1=O"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R23",
+   "drug": "Dacomitinib",
+   "disease": "Breast_Cancer",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "breast",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 26,
+   "compound": {
+    "prism_name": "dacomitinib",
+    "broad_ids": [
+     "BRD-K57169635-001-04-5"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "COc1cc2ncnc(Nc3ccc(F)c(Cl)c3)c2cc1NC(=O)\\C=C\\CN1CCCCC1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R24",
+   "drug": "Lazertinib",
+   "disease": "Glioblastoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_DRUG_NOT_SCREENED",
+   "predetermined_verdict": "NOT_SCREENED_UNKNOWN_REASON",
+   "prism_lineage": {
+    "primary_tissue": "central_nervous_system",
+    "secondary_tissue": "glioma"
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 39,
+   "compound": null,
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R25",
+   "drug": "Mebendazole",
+   "disease": "Melanoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "skin",
+    "secondary_tissue": "melanoma"
+   },
+   "correspondence_type": "DIRECT",
+   "power_tier": "A",
+   "n_cell_lines": 43,
+   "compound": {
+    "prism_name": "mebendazole",
+    "broad_ids": [
+     "BRD-K77987382-001-13-2"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "COC(=O)Nc1nc2ccc(cc2[nH]1)C(=O)c1ccccc1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R26",
+   "drug": "Imetelstat",
+   "disease": "HCC",
+   "novelty_class": "UNEXPLORED_DRUG",
+   "stratum": "REFUSED_DRUG_NOT_SCREENED",
+   "predetermined_verdict": "NOT_SCREENED_UNKNOWN_REASON",
+   "prism_lineage": {
+    "primary_tissue": "liver",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 21,
+   "compound": null,
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R27",
+   "drug": "Dacomitinib",
+   "disease": "Glioblastoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "central_nervous_system",
+    "secondary_tissue": "glioma"
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 39,
+   "compound": {
+    "prism_name": "dacomitinib",
+    "broad_ids": [
+     "BRD-K57169635-001-04-5"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "COc1cc2ncnc(Nc3ccc(F)c(Cl)c3)c2cc1NC(=O)\\C=C\\CN1CCCCC1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R28",
+   "drug": "Propranolol",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "kidney",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 19,
+   "compound": {
+    "prism_name": "propranolol",
+    "broad_ids": [
+     "BRD-A10070317-003-28-3"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CC(C)NCC(O)COc1cccc2ccccc12, CC(C)NCC(O)COc1cccc2ccccc12, CC(C)NCC(O)COc1cccc2ccccc12"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R29",
+   "drug": "Suramin",
+   "disease": "GIST",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "suramin",
+    "broad_ids": [
+     "BRD-K70327167-348-13-4"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "Cc1ccc(cc1NC(=O)c1cccc(NC(=O)Nc2cccc(c2)C(=O)Nc2cc(ccc2C)C(=O)Nc2ccc(c3cc(cc(c23)S(O)(=O)=O)S(O)(=O)=O)S(O)(=O)=O)c1)C(=O)Nc1ccc(c2cc(cc(c12)S(O)(=O)=O)S(O)(=O)=O)S(O)(=O)=O, Cc1ccc(cc1NC(=O)c1cccc(NC(=O)Nc2cccc(c2)C(=O)Nc2cc(ccc2C)C(=O)Nc2ccc(c3cc(cc(c23)S(O)(=O)=O)S(O)(=O)=O)S(O)(=O)=O)c1)C(=O)Nc1ccc(c2cc(cc(c12)S(O)(=O)=O)S(O)(=O)=O)S(O)(=O)=O"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R30",
+   "drug": "Oxaliplatin",
+   "disease": "Li_Fraumeni_Syndrome",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "oxaliplatin",
+    "broad_ids": [
+     "BRD-K78960041-001-05-7"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "O=C1O[Pt]2(N[C@@H]3CCCC[C@H]3N2)OC1=O, O=C1O[Pt]2(N[C@@H]3CCCC[C@H]3N2)OC1=O, O=C1O[Pt]2(N[C@@H]3CCCC[C@H]3N2)OC1=O, O=C1O[Pt]2(N[C@@H]3CCCC[C@H]3N2)OC1=O"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R31",
+   "drug": "Atorvastatin",
+   "disease": "Pancreatic_Cancer",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "pancreas",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 37,
+   "compound": {
+    "prism_name": "atorvastatin",
+    "broad_ids": [
+     "BRD-K69726342-238-02-4"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CC(C)c1c(C(=O)Nc2ccccc2)c(c(-c2ccc(F)cc2)n1CC[C@@H](O)C[C@@H](O)CC(O)=O)-c1ccccc1, CC(C)c1c(C(=O)Nc2ccccc2)c(c(-c2ccc(F)cc2)n1CC[C@@H](O)C[C@@H](O)CC(O)=O)-c1ccccc1, CC(C)c1c(C(=O)Nc2ccccc2)c(c(-c2ccc(F)cc2)n1CC[C@@H](O)C[C@@H](O)CC(O)=O)-c1ccccc1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R32",
+   "drug": "Fedratinib",
+   "disease": "AML",
+   "novelty_class": "UNEXPLORED_DRUG",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": null,
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R33",
+   "drug": "Chloroquine",
+   "disease": "Soft_Tissue_Sarcoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "SECONDARY_SINGLE_DOSE_ONLY",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "soft_tissue",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "B",
+   "n_cell_lines": 5,
+   "compound": {
+    "prism_name": "chloroquine",
+    "broad_ids": [
+     "BRD-A91699651-316-10-9"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CCN(CC)CCCC(C)Nc1ccnc2cc(Cl)ccc12, CCN(CC)CCCC(C)Nc1ccnc2cc(Cl)ccc12, CCN(CC)CCCC(C)Nc1ccnc2cc(Cl)ccc12"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R34",
+   "drug": "Capmatinib",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_DRUG_NOT_SCREENED",
+   "predetermined_verdict": "NOT_SCREENED_UNKNOWN_REASON",
+   "prism_lineage": {
+    "primary_tissue": "kidney",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 19,
+   "compound": null,
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R35",
+   "drug": "Mebendazole",
+   "disease": "Soft_Tissue_Sarcoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_B_UNDERPOWERED",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "soft_tissue",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "B",
+   "n_cell_lines": 5,
+   "compound": {
+    "prism_name": "mebendazole",
+    "broad_ids": [
+     "BRD-K77987382-001-13-2"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "COC(=O)Nc1nc2ccc(cc2[nH]1)C(=O)c1ccccc1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R36",
+   "drug": "Baricitinib",
+   "disease": "Myelofibrosis",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "baricitinib",
+    "broad_ids": [
+     "BRD-K53581288-001-02-9"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CCS(=O)(=O)N1CC(CC#N)(C1)n1cc(cn1)-c1ncnc2[nH]ccc12"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R37",
+   "drug": "Mebendazole",
+   "disease": "CLL",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "mebendazole",
+    "broad_ids": [
+     "BRD-K77987382-001-13-2"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "COC(=O)Nc1nc2ccc(cc2[nH]1)C(=O)c1ccccc1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R38",
+   "drug": "Filgotinib",
+   "disease": "Myelofibrosis",
+   "novelty_class": "UNEXPLORED_DRUG",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "filgotinib",
+    "broad_ids": [
+     "BRD-K16803204-001-01-6"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "O=C(Nc1nc2cccc(-c3ccc(CN4CCS(=O)(=O)CC4)cc3)n2n1)C1CC1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R39",
+   "drug": "Oxaliplatin",
+   "disease": "Soft_Tissue_Sarcoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_B_UNDERPOWERED",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "soft_tissue",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "B",
+   "n_cell_lines": 5,
+   "compound": {
+    "prism_name": "oxaliplatin",
+    "broad_ids": [
+     "BRD-K78960041-001-05-7"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "O=C1O[Pt]2(N[C@@H]3CCCC[C@H]3N2)OC1=O, O=C1O[Pt]2(N[C@@H]3CCCC[C@H]3N2)OC1=O, O=C1O[Pt]2(N[C@@H]3CCCC[C@H]3N2)OC1=O, O=C1O[Pt]2(N[C@@H]3CCCC[C@H]3N2)OC1=O"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R40",
+   "drug": "Adagrasib",
+   "disease": "Pancreatic_Cancer",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_DRUG_NOT_SCREENED",
+   "predetermined_verdict": "NOT_SCREENED_UNKNOWN_REASON",
+   "prism_lineage": {
+    "primary_tissue": "pancreas",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 37,
+   "compound": null,
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R41",
+   "drug": "Propranolol",
+   "disease": "HCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "liver",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 21,
+   "compound": {
+    "prism_name": "propranolol",
+    "broad_ids": [
+     "BRD-A10070317-003-28-3"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CC(C)NCC(O)COc1cccc2ccccc12, CC(C)NCC(O)COc1cccc2ccccc12, CC(C)NCC(O)COc1cccc2ccccc12"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R42",
+   "drug": "Ramucirumab",
+   "disease": "GIST",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": null,
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R43",
+   "drug": "Disulfiram",
+   "disease": "Soft_Tissue_Sarcoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_B_UNDERPOWERED",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "soft_tissue",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "B",
+   "n_cell_lines": 5,
+   "compound": {
+    "prism_name": "disulfiram",
+    "broad_ids": [
+     "BRD-K32744045-001-31-2"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CCN(CC)C(=S)SSC(=S)N(CC)CC, CCN(CC)C(=S)SSC(=S)N(CC)CC, CCN(CC)C(=S)SSC(=S)N(CC)CC"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R44",
+   "drug": "Cabozantinib",
+   "disease": "GIST",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "cabozantinib",
+    "broad_ids": [
+     "BRD-K51544265-001-04-2"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "COc1cc2nccc(Oc3ccc(NC(=O)C4(CC4)C(=O)Nc4ccc(F)cc4)cc3)c2cc1OC, COc1cc2nccc(Oc3ccc(NC(=O)C4(CC4)C(=O)Nc4ccc(F)cc4)cc3)c2cc1OC"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R45",
+   "drug": "Disulfiram",
+   "disease": "CLL",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "disulfiram",
+    "broad_ids": [
+     "BRD-K32744045-001-31-2"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CCN(CC)C(=S)SSC(=S)N(CC)CC, CCN(CC)C(=S)SSC(=S)N(CC)CC, CCN(CC)C(=S)SSC(=S)N(CC)CC"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R46",
+   "drug": "Suramin",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "SECONDARY_SINGLE_DOSE_ONLY",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "kidney",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 19,
+   "compound": {
+    "prism_name": "suramin",
+    "broad_ids": [
+     "BRD-K70327167-348-13-4"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "Cc1ccc(cc1NC(=O)c1cccc(NC(=O)Nc2cccc(c2)C(=O)Nc2cc(ccc2C)C(=O)Nc2ccc(c3cc(cc(c23)S(O)(=O)=O)S(O)(=O)=O)S(O)(=O)=O)c1)C(=O)Nc1ccc(c2cc(cc(c12)S(O)(=O)=O)S(O)(=O)=O)S(O)(=O)=O, Cc1ccc(cc1NC(=O)c1cccc(NC(=O)Nc2cccc(c2)C(=O)Nc2cc(ccc2C)C(=O)Nc2ccc(c3cc(cc(c23)S(O)(=O)=O)S(O)(=O)=O)S(O)(=O)=O)c1)C(=O)Nc1ccc(c2cc(cc(c12)S(O)(=O)=O)S(O)(=O)=O)S(O)(=O)=O"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R47",
+   "drug": "Cimetidine",
+   "disease": "HCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "liver",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 21,
+   "compound": {
+    "prism_name": "cimetidine",
+    "broad_ids": [
+     "BRD-K34157611-001-16-0"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CN\\C(NCCSCc1nc[nH]c1C)=N/C#N, CN\\C(NCCSCc1nc[nH]c1C)=N/C#N, CN\\C(NCCSCc1nc[nH]c1C)=N/C#N, CN\\C(NCCSCc1nc[nH]c1C)=N/C#N"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R48",
+   "drug": "Regorafenib",
+   "disease": "NSCLC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "lung",
+    "secondary_tissue": "lung_NSC"
+   },
+   "correspondence_type": "NEAR",
+   "power_tier": "A",
+   "n_cell_lines": 90,
+   "compound": {
+    "prism_name": "regorafenib",
+    "broad_ids": [
+     "BRD-K16730910-001-07-3",
+     "BRD-K16730910-001-10-7"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CNC(=O)c1cc(Oc2ccc(NC(=O)Nc3ccc(Cl)c(c3)C(F)(F)F)c(F)c2)ccn1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R49",
+   "drug": "Nitroglycerin",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_DRUG_NOT_SCREENED",
+   "predetermined_verdict": "NOT_SCREENED_UNKNOWN_REASON",
+   "prism_lineage": {
+    "primary_tissue": "kidney",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 19,
+   "compound": null,
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R50",
+   "drug": "Copanlisib",
+   "disease": "Breast_Cancer",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "SECONDARY_SINGLE_DOSE_ONLY",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "breast",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 26,
+   "compound": {
+    "prism_name": "copanlisib",
+    "broad_ids": [
+     "BRD-K24666289-001-04-9"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "COc1c(OCCCN2CCOCC2)ccc2C3=NCCN3C(NC(=O)c3cnc(N)nc3)=Nc12, COc1c(OCCCN2CCOCC2)ccc2C3=NCCN3C(NC(=O)c3cnc(N)nc3)=Nc12"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R51",
+   "drug": "Crizotinib",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "kidney",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 19,
+   "compound": {
+    "prism_name": "crizotinib",
+    "broad_ids": [
+     "BRD-K78431006-001-10-2",
+     "BRD-K78431006-001-15-1"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "C[C@@H](Oc1cc(cnc1N)-c1cnn(c1)C1CCNCC1)c1c(Cl)ccc(F)c1Cl, C[C@@H](Oc1cc(cnc1N)-c1cnn(c1)C1CCNCC1)c1c(Cl)ccc(F)c1Cl, C[C@@H](Oc1cc(cnc1N)-c1cnn(c1)C1CCNCC1)c1c(Cl)ccc(F)c1Cl"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R52",
+   "drug": "Bazedoxifene",
+   "disease": "Multiple_Myeloma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": {
+    "prism_name": "bazedoxifene",
+    "broad_ids": [
+     "BRD-K90195324-003-02-5"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "Cc1c(-c2ccc(O)cc2)n(Cc2ccc(OCCN3CCCCCC3)cc2)c2ccc(O)cc12, Cc1c(-c2ccc(O)cc2)n(Cc2ccc(OCCN3CCCCCC3)cc2)c2ccc(O)cc12, Cc1c(-c2ccc(O)cc2)n(Cc2ccc(OCCN3CCCCCC3)cc2)c2ccc(O)cc12"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R53",
+   "drug": "Palbociclib",
+   "disease": "Soft_Tissue_Sarcoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_B_UNDERPOWERED",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "soft_tissue",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "B",
+   "n_cell_lines": 5,
+   "compound": {
+    "prism_name": "palbociclib",
+    "broad_ids": [
+     "BRD-K51313569-001-07-8",
+     "BRD-K51313569-003-03-3"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CC(=O)c1c(C)c2cnc(Nc3ccc(cn3)N3CCNCC3)nc2n(C2CCCC2)c1=O, CC(=O)c1c(C)c2cnc(Nc3ccc(cn3)N3CCNCC3)nc2n(C2CCCC2)c1=O"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R54",
+   "drug": "Deuruxolitinib",
+   "disease": "Myelofibrosis",
+   "novelty_class": "UNEXPLORED_DRUG",
+   "stratum": "REFUSED_NO_CORRESPONDENCE",
+   "predetermined_verdict": "NO_LINEAGE_CORRESPONDENCE",
+   "prism_lineage": null,
+   "correspondence_type": "REFUSED",
+   "power_tier": "none",
+   "n_cell_lines": 0,
+   "compound": null,
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R55",
+   "drug": "Tepotinib",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_DRUG_NOT_SCREENED",
+   "predetermined_verdict": "NOT_SCREENED_UNKNOWN_REASON",
+   "prism_lineage": {
+    "primary_tissue": "kidney",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 19,
+   "compound": null,
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R56",
+   "drug": "Diclofenac",
+   "disease": "Colorectal_Cancer",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "SECONDARY_SINGLE_DOSE_ONLY",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "colorectal",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 35,
+   "compound": {
+    "prism_name": "diclofenac",
+    "broad_ids": [
+     "BRD-K08252256-236-33-8"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "OC(=O)Cc1ccccc1Nc1c(Cl)cccc1Cl, OC(=O)Cc1ccccc1Nc1c(Cl)cccc1Cl, OC(=O)Cc1ccccc1Nc1c(Cl)cccc1Cl, OC(=O)Cc1ccccc1Nc1c(Cl)cccc1Cl"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R57",
+   "drug": "Amivantamab",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "REFUSED_DRUG_NOT_SCREENED",
+   "predetermined_verdict": "NOT_SCREENED_BIOLOGIC",
+   "prism_lineage": {
+    "primary_tissue": "kidney",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 19,
+   "compound": null,
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R58",
+   "drug": "Suramin",
+   "disease": "HCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "SECONDARY_SINGLE_DOSE_ONLY",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "liver",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 21,
+   "compound": {
+    "prism_name": "suramin",
+    "broad_ids": [
+     "BRD-K70327167-348-13-4"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "Cc1ccc(cc1NC(=O)c1cccc(NC(=O)Nc2cccc(c2)C(=O)Nc2cc(ccc2C)C(=O)Nc2ccc(c3cc(cc(c23)S(O)(=O)=O)S(O)(=O)=O)S(O)(=O)=O)c1)C(=O)Nc1ccc(c2cc(cc(c12)S(O)(=O)=O)S(O)(=O)=O)S(O)(=O)=O, Cc1ccc(cc1NC(=O)c1cccc(NC(=O)Nc2cccc(c2)C(=O)Nc2cc(ccc2C)C(=O)Nc2ccc(c3cc(cc(c23)S(O)(=O)=O)S(O)(=O)=O)S(O)(=O)=O)c1)C(=O)Nc1ccc(c2cc(cc(c12)S(O)(=O)=O)S(O)(=O)=O)S(O)(=O)=O"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": false
+  },
+  {
+   "review_id": "R59",
+   "drug": "Artesunate",
+   "disease": "RCC",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_A_HEADLINE",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "kidney",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "A",
+   "n_cell_lines": 19,
+   "compound": {
+    "prism_name": "artesunate",
+    "broad_ids": [
+     "BRD-K54634444-001-05-9"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "C[C@@H]1CC[C@H]2[C@@H](C)[C@H](OC(=O)CCC(O)=O)O[C@@H]3O[C@@]4(C)CC[C@@H]1[C@@]23OO4, C[C@@H]1CC[C@H]2[C@@H](C)[C@H](OC(=O)CCC(O)=O)O[C@@H]3O[C@@]4(C)CC[C@@H]1[C@@]23OO4"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  },
+  {
+   "review_id": "R60",
+   "drug": "Abemaciclib",
+   "disease": "Soft_Tissue_Sarcoma",
+   "novelty_class": "KNOWN_DRUG_NEW_CANCER",
+   "stratum": "TIER_B_UNDERPOWERED",
+   "predetermined_verdict": null,
+   "prism_lineage": {
+    "primary_tissue": "soft_tissue",
+    "secondary_tissue": null
+   },
+   "correspondence_type": "SUPERSET",
+   "power_tier": "B",
+   "n_cell_lines": 5,
+   "compound": {
+    "prism_name": "abemaciclib",
+    "broad_ids": [
+     "BRD-K33622447-066-01-9"
+    ],
+    "distinct_smiles": 1,
+    "smiles": [
+     "CCN1CCN(Cc2ccc(Nc3ncc(F)c(n3)-c3cc(F)c4nc(C)n(C(C)C)c4c3)nc2)CC1"
+    ],
+    "structure_check": "OK"
+   },
+   "has_dose_response": true
+  }
+ ]
+}
