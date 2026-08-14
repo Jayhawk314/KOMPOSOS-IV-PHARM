@@ -21,6 +21,9 @@ from pathlib import Path
 import streamlit as st
 
 from evidence import EvidenceStore
+from evidence.acquire_trial_results import (
+    DISPOSITION_LABELS as RESULTS_STANDING_LABEL,
+)
 
 APP_ROOT = Path(__file__).resolve().parent
 BUNDLED_OPERADUM_ROOT = APP_ROOT / "vendor" / "operadum"
@@ -1425,10 +1428,51 @@ def render_contextual_evidence(drug: str, disease: str) -> None:
                 "Status": study["recruitment_status"],
                 "Phase": ", ".join(study["phase_json"]) or "-",
                 "Completion": study["completion_date"] or "-",
-                "Posted results": "yes" if study["has_posted_results"] else "no",
+                "Results standing": RESULTS_STANDING_LABEL.get(
+                    study.get("results_disposition", ""), "not checked"
+                ),
                 "Pair linkage": study["pair_linkage"],
             })
         st.dataframe(study_rows, width="stretch", hide_index=True)
+
+        # A trial that ran and was never reported is not the same as an
+        # untested idea. Surface the difference; never infer what it showed.
+        unpublished = [
+            study for study in evidence.studies
+            if study.get("results_publication_state") == "NOT_PUBLISHED"
+        ]
+        if unpublished:
+            links = ", ".join(
+                f"[{study['study_id']}]({study['results_url']})"
+                for study in unpublished if study.get("results_url")
+            )
+            st.success(
+                f"**{len(unpublished)} trial(s) posted registry results with no "
+                f"publication:** {links}. A literature search will not surface "
+                "these. They record that results **exist**, not what they showed "
+                "— nobody has read and assessed them."
+            )
+        no_data = [
+            study for study in evidence.studies
+            if study.get("results_disposition") == "NO_DATA_EVER_GENERATED"
+        ]
+        if no_data:
+            st.info(
+                f"{len(no_data)} trial(s) were withdrawn with a confirmed actual "
+                "enrolment of zero. Nothing was generated, so there is nothing to "
+                "recover — a complete answer, not a failed search."
+            )
+        unresolved_results = [
+            study for study in evidence.studies
+            if study.get("results_disposition") == "UNRESOLVED_NO_SOURCE_FOUND"
+        ]
+        if unresolved_results:
+            st.warning(
+                f"{len(unresolved_results)} trial(s) have no located results yet. "
+                "The registry search is not exhausted — EU CTR, FDA/EMA documents "
+                "and conference abstracts remain unchecked. **Not found is not "
+                "negative.**"
+            )
         if evidence.active_studies:
             st.info(
                 f"{len(evidence.active_studies)} active study record(s). Active "

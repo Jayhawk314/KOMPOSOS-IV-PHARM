@@ -27,7 +27,11 @@ def evidence_db(tmp_path_factory):
         "candidate_reviews": 60,
         "studies": 77,
         "study_roles": 3237,
-        "outcomes": 141,
+        # 141 human-reviewed and registry-record outcomes, plus 19 recovered
+        # registry-results outcomes from evidence/acquire_trial_results.py.
+        # Recovered rows are RESULTS_AVAILABLE_NOT_ASSESSED / human_reviewed=0
+        # and are asserted separately in tests/test_trial_results_recovery.py.
+        "outcomes": 160,
         "claim_evidence": 179,
         "review_events": 60,
     }

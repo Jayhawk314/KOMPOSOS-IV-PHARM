@@ -112,6 +112,7 @@ test_*.py
 !tests/test_fetch_negative_trials.py
 !tests/test_public_facts.py
 !tests/test_evidence_hypergraph.py
+!tests/test_trial_results_recovery.py
 !tests/test_alphafold_coherence.py
 !tests/test_structural_oracle.py
 !tests/test_build_alphafold_coherence_cohort.py

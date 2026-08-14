@@ -9,6 +9,10 @@ import sqlite3
 from pathlib import Path
 from urllib.parse import urlparse
 
+from .acquire_trial_results import (
+    DISPOSITION_RESULTS_CTG as RESULTS_RECOVERED_CTG,
+    load_cached as load_cached_trial_results,
+)
 from .store import DEFAULT_EVIDENCE_DB, EvidenceStore, REPO
 
 
@@ -317,6 +321,102 @@ def import_trials(
                 )
 
 
+def import_recovered_results(connection: sqlite3.Connection) -> dict[str, int]:
+    """Attach recovered registry results to studies already in the database.
+
+    Retrieval only. This records that results exist and where to read them; it
+    never asserts what they showed, so every outcome it writes is
+    RESULTS_AVAILABLE_NOT_ASSESSED with human_reviewed = 0. A human reading the
+    results section is what turns this into an efficacy statement.
+
+    A missing cache is normal - the build must not require network access.
+    """
+    report = load_cached_trial_results()
+    records = report.get("records", {})
+    if not records:
+        return {"recovered_outcomes": 0, "dispositions_set": 0}
+
+    checked_on = report.get("generated_at", "")
+    known = {row[0] for row in connection.execute("SELECT study_id FROM studies")}
+    dispositions = 0
+    recovered = 0
+
+    for nct_id, record in sorted(records.items()):
+        if nct_id not in known:
+            continue
+        published = bool(record.get("result_pmids") or record.get("derived_pmids"))
+        # Only a trial with posted registry results can be "posted but never
+        # published". A trial with no results at all is neither - leave it blank
+        # rather than implying results exist somewhere unpublished.
+        if record["disposition"] == RESULTS_RECOVERED_CTG:
+            publication_state = "PUBLISHED" if published else "NOT_PUBLISHED"
+        else:
+            publication_state = ""
+        connection.execute(
+            """UPDATE studies
+                  SET results_disposition = ?, results_url = ?,
+                      results_checked_on = ?, has_posted_results = ?,
+                      results_publication_state = ?
+                WHERE study_id = ?""",
+            (
+                record["disposition"], record.get("results_url", ""), checked_on,
+                int(bool(record.get("has_results"))), publication_state, nct_id,
+            ),
+        )
+        dispositions += 1
+
+        if record["disposition"] != RESULTS_RECOVERED_CTG:
+            continue
+
+        receipt_id = f"CLINICALTRIALS:{nct_id}"
+        insert_receipt(
+            connection,
+            receipt_id=receipt_id,
+            source_type="CLINICALTRIALS",
+            external_id=nct_id,
+            url=record.get("results_url", ""),
+            resolves=1,
+            relevance=(
+                "RESULTS_POSTED_NOT_PUBLISHED" if not published
+                else "RESULTS_POSTED_AND_PUBLISHED"
+            ),
+            review_note=(
+                "Registry results section located by automated retrieval; "
+                "not read or assessed."
+            ),
+            retrieved_at=checked_on,
+        )
+
+        titles = record.get("outcome_measure_titles") or []
+        summary = (
+            f"Registry results posted: {record.get('outcome_measure_count', 0)} "
+            f"outcome measure(s)"
+            + (f", enrolment {record['enrollment_count']}" if record.get("enrollment_count") is not None else "")
+            + (
+                ". No linked publication - not retrievable by literature search."
+                if not published else "."
+            )
+            + (f" Measures include: {'; '.join(titles[:3])}." if titles else "")
+        )
+        for claim_row in connection.execute(
+            "SELECT claim_id FROM study_pair_links WHERE study_id = ?", (nct_id,)
+        ).fetchall():
+            connection.execute(
+                """INSERT OR REPLACE INTO outcomes(
+                       outcome_id, study_id, claim_id, endpoint, result_signal,
+                       summary, receipt_id, human_reviewed
+                   ) VALUES (?, ?, ?, 'REGISTRY_RESULTS', ?, ?, ?, 0)""",
+                (
+                    stable_id("RECOVERED_RESULT", nct_id, claim_row[0]), nct_id,
+                    claim_row[0], "RESULTS_AVAILABLE_NOT_ASSESSED", summary,
+                    receipt_id,
+                ),
+            )
+            recovered += 1
+
+    return {"recovered_outcomes": recovered, "dispositions_set": dispositions}
+
+
 def populate_fts(connection: sqlite3.Connection) -> None:
     """Build a local lexical baseline that any future vector index must beat."""
     connection.execute("DELETE FROM evidence_fts")
@@ -357,6 +457,7 @@ def build_database(output: str | Path = DEFAULT_EVIDENCE_DB) -> dict[str, int]:
         import_pmid_receipts(connection)
         claim_by_review = import_candidate_reviews(connection)
         import_trials(connection, claim_by_review)
+        recovered = import_recovered_results(connection)
         populate_fts(connection)
         connection.execute(
             "INSERT OR REPLACE INTO schema_meta(key, value) VALUES (?, ?)",
@@ -365,6 +466,10 @@ def build_database(output: str | Path = DEFAULT_EVIDENCE_DB) -> dict[str, int]:
         connection.execute(
             "INSERT OR REPLACE INTO schema_meta(key, value) VALUES (?, ?)",
             ("candidate_review_rows", str(len(claim_by_review))),
+        )
+        connection.execute(
+            "INSERT OR REPLACE INTO schema_meta(key, value) VALUES (?, ?)",
+            ("recovered_result_outcomes", str(recovered["recovered_outcomes"])),
         )
     temporary.replace(output)
     return EvidenceStore(output).counts()

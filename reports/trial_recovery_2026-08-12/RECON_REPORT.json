@@ -1,0 +1,847 @@
+{
+ "trials_queried": 82,
+ "trials_returned": 82,
+ "not_found_on_ctg": [],
+ "class_counts": {
+  "NO_RESULTS_NO_PUBLICATION": 48,
+  "PUBLISHED_ONLY": 12,
+  "RESULTS_POSTED_AND_PUBLISHED": 7,
+  "RESULTS_POSTED_NOT_PUBLISHED": 15
+ },
+ "classes": {
+  "NO_RESULTS_NO_PUBLICATION": [
+   "NCT01112527",
+   "NCT01265576",
+   "NCT00002733",
+   "NCT00006473",
+   "NCT00101205",
+   "NCT00101270",
+   "NCT01451658",
+   "NCT00083109",
+   "NCT00091182",
+   "NCT03128619",
+   "NCT03242382",
+   "NCT02386826",
+   "NCT02571829",
+   "NCT03096912",
+   "NCT02071862",
+   "NCT03114527",
+   "NCT03009201",
+   "NCT02705859",
+   "NCT02846987",
+   "NCT02013492",
+   "NCT03803761",
+   "NCT04185883",
+   "NCT03432741",
+   "NCT03592576",
+   "NCT03323710",
+   "NCT04042051",
+   "NCT03709680",
+   "NCT04040205",
+   "NCT04282187",
+   "NCT03377101",
+   "NCT05694871",
+   "NCT04955938",
+   "NCT06084481",
+   "NCT05210374",
+   "NCT04862260",
+   "NCT06047379",
+   "NCT06498648",
+   "NCT04606381",
+   "NCT05655598",
+   "NCT04443049",
+   "NCT05455294",
+   "NCT06113809",
+   "NCT04941274",
+   "NCT05238831",
+   "NCT06026410",
+   "NCT06025747",
+   "NCT05634525",
+   "NCT06632236"
+  ],
+  "RESULTS_POSTED_NOT_PUBLISHED": [
+   "NCT00771056",
+   "NCT00072514",
+   "NCT01520870",
+   "NCT00536601",
+   "NCT01327612",
+   "NCT00601718",
+   "NCT02019693",
+   "NCT02047747",
+   "NCT04108858",
+   "NCT03939897",
+   "NCT03520842",
+   "NCT04189952",
+   "NCT04345913",
+   "NCT05440786",
+   "NCT06630325"
+  ],
+  "PUBLISHED_ONLY": [
+   "NCT01524926",
+   "NCT00891072",
+   "NCT01970748",
+   "NCT02644460",
+   "NCT02897375",
+   "NCT02465060",
+   "NCT02216578",
+   "NCT03475953",
+   "NCT03878524",
+   "NCT03784014",
+   "NCT03862157",
+   "NCT04542824"
+  ],
+  "RESULTS_POSTED_AND_PUBLISHED": [
+   "NCT01209598",
+   "NCT01842594",
+   "NCT02784795",
+   "NCT02761057",
+   "NCT03155620",
+   "NCT04129151",
+   "NCT03526250"
+  ]
+ },
+ "records": {
+  "NCT01112527": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT00771056": {
+   "status": "TERMINATED",
+   "why_stopped": "study suspended while data is reviewed for safety and efficacy.",
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT01524926": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [
+    "34392187",
+    "29669701",
+    "29567632",
+    "29216400",
+    "28950372"
+   ],
+   "background_pmids": []
+  },
+  "NCT00891072": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [
+    "31388792"
+   ],
+   "background_pmids": []
+  },
+  "NCT01265576": {
+   "status": "UNKNOWN",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT00002733": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": [
+    "10851449",
+    "9336745"
+   ]
+  },
+  "NCT00072514": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT01520870": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT01970748": {
+   "status": "UNKNOWN",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [
+    "38123994"
+   ],
+   "background_pmids": []
+  },
+  "NCT00006473": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT00101205": {
+   "status": "TERMINATED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT00101270": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT01209598": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [
+    "32641862",
+    "27124835",
+    "23569312"
+   ],
+   "background_pmids": []
+  },
+  "NCT01451658": {
+   "status": "UNKNOWN",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT00083109": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT00091182": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT00536601": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT01327612": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT01842594": {
+   "status": "TERMINATED",
+   "why_stopped": "Most patients completed only the primary objective (PET) and not went throught the secondary outcome (efficacy phase) of 8wks period.",
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [
+    "26375670"
+   ],
+   "background_pmids": []
+  },
+  "NCT00601718": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": [
+    "23356514"
+   ]
+  },
+  "NCT02644460": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [
+    "31401903"
+   ],
+   "background_pmids": []
+  },
+  "NCT02784795": {
+   "status": "TERMINATED",
+   "why_stopped": "The study was terminated due to business considerations",
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [
+    "36030462",
+    "33686452"
+   ],
+   "background_pmids": []
+  },
+  "NCT03128619": {
+   "status": "TERMINATED",
+   "why_stopped": "Insufficient accrual",
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT02761057": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [
+    "39255440",
+    "37146227",
+    "33592176"
+   ],
+   "background_pmids": []
+  },
+  "NCT03242382": {
+   "status": "UNKNOWN",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT02386826": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT02897375": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [
+    "40973049"
+   ],
+   "background_pmids": []
+  },
+  "NCT02019693": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT02571829": {
+   "status": "UNKNOWN",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": [
+    "16603719",
+    "11960696",
+    "20601955",
+    "23569312",
+    "11872347"
+   ]
+  },
+  "NCT03096912": {
+   "status": "UNKNOWN",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT02071862": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT02465060": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [
+    "41066729",
+    "40865033",
+    "39913886",
+    "39693587",
+    "39666929",
+    "38591867",
+    "37934000",
+    "37322121",
+    "37053535",
+    "36351402",
+    "35138919",
+    "35133871",
+    "33048619",
+    "32463741",
+    "26586415"
+   ],
+   "background_pmids": []
+  },
+  "NCT03155620": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [
+    "41166674",
+    "35353553",
+    "33591402"
+   ],
+   "background_pmids": []
+  },
+  "NCT03114527": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT03009201": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT02705859": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT02846987": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT02216578": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [
+    "35481400",
+    "32470848"
+   ],
+   "background_pmids": []
+  },
+  "NCT02047747": {
+   "status": "TERMINATED",
+   "why_stopped": "slow enrollment",
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT02013492": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT03803761": {
+   "status": "WITHDRAWN",
+   "why_stopped": "Inadequate accrual rate",
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT04185883": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": [
+    "38177853"
+   ]
+  },
+  "NCT03432741": {
+   "status": "TERMINATED",
+   "why_stopped": "funding - sponsor filing Chapter 11 bankruptcy",
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT03475953": {
+   "status": "UNKNOWN",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [
+    "40579407",
+    "40204996",
+    "34998048",
+    "34965951"
+   ],
+   "background_pmids": []
+  },
+  "NCT03592576": {
+   "status": "NO_LONGER_AVAILABLE",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT03323710": {
+   "status": "WITHDRAWN",
+   "why_stopped": "Poor patient recruitment.",
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT03878524": {
+   "status": "TERMINATED",
+   "why_stopped": "Low accrual",
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [
+    "39863139"
+   ],
+   "background_pmids": []
+  },
+  "NCT04042051": {
+   "status": "TERMINATED",
+   "why_stopped": "Accrual rate to date was too low to finish the trial in a reasonable timeframe",
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT03709680": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT03784014": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [
+    "32713836",
+    "34740331"
+   ],
+   "derived_pmids": [],
+   "background_pmids": [
+    "30523434"
+   ]
+  },
+  "NCT04108858": {
+   "status": "TERMINATED",
+   "why_stopped": "Inadequate accrual rate",
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT04040205": {
+   "status": "RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT03939897": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT04282187": {
+   "status": "RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT03377101": {
+   "status": "WITHDRAWN",
+   "why_stopped": "change in study design.",
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT04129151": {
+   "status": "TERMINATED",
+   "why_stopped": "The study closed early due to discontinuation of ganitumab supply.",
+   "has_results": true,
+   "result_pmids": [
+    "37306107"
+   ],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT03520842": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT03862157": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [
+    "37422688"
+   ],
+   "background_pmids": []
+  },
+  "NCT03526250": {
+   "status": "COMPLETED",
+   "why_stopped": null,
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [
+    "39298716",
+    "31401903"
+   ],
+   "background_pmids": []
+  },
+  "NCT04189952": {
+   "status": "TERMINATED",
+   "why_stopped": "Investigator Decision",
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT05694871": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT04955938": {
+   "status": "WITHDRAWN",
+   "why_stopped": "unable to accrue",
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT04542824": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [
+    "42541678",
+    "42411504",
+    "40632620"
+   ],
+   "background_pmids": []
+  },
+  "NCT06084481": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT04345913": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT05210374": {
+   "status": "RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT04862260": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT06047379": {
+   "status": "RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT06498648": {
+   "status": "RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT04606381": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT05440786": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT05655598": {
+   "status": "WITHDRAWN",
+   "why_stopped": "Lack of accrual",
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT04443049": {
+   "status": "UNKNOWN",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT05455294": {
+   "status": "ACTIVE_NOT_RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT06113809": {
+   "status": "RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT04941274": {
+   "status": "RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT05238831": {
+   "status": "WITHDRAWN",
+   "why_stopped": "Withdrawn due to a change in therapeutic interventions.",
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT06026410": {
+   "status": "RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT06025747": {
+   "status": "RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT05634525": {
+   "status": "WITHDRAWN",
+   "why_stopped": "No participants enrolled",
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT06632236": {
+   "status": "RECRUITING",
+   "why_stopped": null,
+   "has_results": false,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  },
+  "NCT06630325": {
+   "status": "TERMINATED",
+   "why_stopped": "Loss of support.",
+   "has_results": true,
+   "result_pmids": [],
+   "derived_pmids": [],
+   "background_pmids": []
+  }
+ }
+}

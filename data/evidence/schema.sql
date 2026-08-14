@@ -65,6 +65,14 @@ CREATE TABLE studies (
     why_stopped TEXT NOT NULL DEFAULT '',
     stop_class TEXT NOT NULL DEFAULT '',
     metadata_json TEXT NOT NULL DEFAULT '{}',
+    -- Retrieval-only recoverability, set by evidence/acquire_trial_results.py.
+    -- Says where results can be found, never what they showed.
+    results_disposition TEXT NOT NULL DEFAULT 'NOT_ASSESSED',
+    results_url TEXT NOT NULL DEFAULT '',
+    results_checked_on TEXT NOT NULL DEFAULT '',
+    -- PUBLISHED / NOT_PUBLISHED for recovered results. NOT_PUBLISHED is the
+    -- interesting case: posted to a registry, invisible to literature search.
+    results_publication_state TEXT NOT NULL DEFAULT '',
     FOREIGN KEY (primary_receipt_id) REFERENCES receipts(receipt_id)
 );
 
