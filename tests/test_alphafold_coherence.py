@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 import numpy as np
+import pytest
 
 from geometry.alphafold_coherence import (
     AuditConfig,
@@ -15,6 +16,39 @@ from geometry.alphafold_coherence import (
     global_sequence_mapping,
     load_pae,
 )
+
+
+def test_geometry_package_survives_broken_optional_dependencies():
+    """A broken optional ML dependency must not take the package down.
+
+    The optional blocks in geometry/__init__.py once caught ImportError only.
+    transformers' lazy loader raises RuntimeError when it disagrees with numpy
+    about versions, which escaped the guard and made `import geometry` fail -
+    taking this module, which needs only numpy, with it.
+
+    Only the legacy geometry tree has that __init__; a clean checkout ships
+    alphafold_coherence.py alone and imports it as a namespace package, where
+    there is no guard to test.
+    """
+    import geometry
+
+    if not hasattr(geometry, "unavailable_optional_modules"):
+        pytest.skip("namespace package: legacy geometry tree not present")
+
+    assert isinstance(geometry.STRUCTURE_PREDICTION_AVAILABLE, bool)
+    for subsystem, reason in geometry.unavailable_optional_modules().items():
+        assert reason, f"{subsystem} degraded without recording why"
+
+
+def test_structural_auditor_needs_no_machine_learning_stack():
+    """The auditor is numpy geometry; it must not require transformers/torch."""
+    import sys
+
+    assert fit_rigid_transform is not None
+    module = sys.modules["geometry.alphafold_coherence"]
+    source = Path(module.__file__).read_text(encoding="utf-8")
+    for heavy in ("import torch", "from torch", "import transformers", "from transformers"):
+        assert heavy not in source, f"structural auditor must not {heavy}"
 
 
 def _base_coordinates():
