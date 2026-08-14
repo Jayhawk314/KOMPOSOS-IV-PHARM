@@ -174,6 +174,50 @@ good; it is a statement that the question is open. Treat the funnel numbers as
 make no precision claim in either direction until a complete, versioned label
 set exists.
 
+#### First external adjudication, 2026-08-14 — PRISM, and it came back null
+
+The project now has one genuinely external, *measured* comparison. It does
+**not** change the statement above.
+
+`reports/prism_2026-08-14/` adjudicates the 60-candidate review against PRISM
+Repurposing 19Q4 cell-line viability (Corsello et al. 2020). The candidate set,
+the disease-to-lineage correspondence and every threshold were frozen, hashed
+and committed **before** the scoring code existed — the commit order is the
+evidence that this was a test rather than a description.
+
+**Result: no candidate shows lineage-selective in-vitro activity, and the null
+is robust — zero selective hits at the pre-registered curve-fit floor and at
+both sensitivity floors. Zero of 60 candidate standings change.**
+
+What it does and does not license:
+
+- It is **not a precision estimate.** 16 pairs were pre-registered and only 3
+  were measurable under the frozen quality rule. Do not compute AUROC, AUPRC or
+  precision against it, for the same reason `data/labels/evaluation_labels_v1.csv`
+  carries that warning.
+- **Cell lines are not patients.** `NO_LINEAGE_SELECTIVITY` in a dish is not
+  clinical failure and retires no candidate.
+- **Coverage was the binding limit, not the result.** PRISM 19Q4 contains **zero
+  haematological cell lines**, so 22 of 60 pairs have no adjudication surface at
+  all: 12 haematological, 6 Li-Fraumeni (already a category error), 4 GIST
+  (refused rather than joined to `gastric` — different cell of origin). A
+  further 11 drugs were never screened, 3 of them biologics the assay cannot
+  test. **Absence is recorded as absence, never as inactivity.**
+- Three thresholds frozen in advance turned out badly chosen or unenforceable.
+  All three are reported in the report rather than retuned, which is the whole
+  discipline: see `reports/prism_2026-08-14/README.md`.
+
+**Labels, not features.** These results are read only by `app.py`. Nothing in
+`oracle/`, `core/`, `validation/` or `data/` touches them, and
+`tests/test_prism_adjudication.py` fails if that ever changes. `tier1.db` was
+not modified; the benchmark above reproduces bit-identically after this work.
+Folding measured outcomes into the ranker would destroy the only independent
+test of it the project has.
+
+So external precision remains **undetermined**. What changed is that the project
+now has a working, honest instrument for asking the question, and its first
+answer was negative.
+
 ### The same drugs top almost every disease (hub-drug bias)
 Measured on the 757-drug cohort: **Imatinib is top-5 for 14 of 20 diseases;
 Sunitinib 10/20; Afatinib 7/20.** Promiscuous multi-kinase inhibitors hit hub
