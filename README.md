@@ -18,6 +18,12 @@ data retain their own terms: [NOTICE](NOTICE) · Python 3.10+
 >
 > **Read [`HONEST_VALUE.md`](HONEST_VALUE.md) first** for a deliberately
 > conservative, self-critical account of what this system is and is not worth.
+>
+> **Current project phase:** local feature development is paused pending
+> external researcher workflow testing. See
+> [`docs/LOCAL_COMPLETION_AND_EXTERNAL_VALIDATION.md`](docs/LOCAL_COMPLETION_AND_EXTERNAL_VALIDATION.md)
+> for the stopping rationale, outreach targets, session protocol, and
+> continue/narrow/archive decision.
 
 ---
 
