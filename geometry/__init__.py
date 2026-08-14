@@ -29,6 +29,22 @@ from .flow import (
     run_ricci_flow,
 )
 
+# Optional heavy dependencies degrade; they must never take the package down.
+#
+# These blocks originally caught ImportError only. That is not enough: a broken
+# optional dependency can fail with anything. transformers' lazy module loader
+# raises RuntimeError (e.g. "module 'numpy' has no attribute 'dtypes'" when
+# numpy and transformers disagree on version), which escaped the guard and made
+# `import geometry` fail outright - taking alphafold_coherence, which needs only
+# numpy, down with it. Catch broadly and record the reason instead of hiding it.
+_UNAVAILABLE: dict[str, str] = {}
+
+
+def unavailable_optional_modules() -> dict[str, str]:
+    """Why each optional geometry subsystem is not loaded, for diagnostics."""
+    return dict(_UNAVAILABLE)
+
+
 # Protein structure prediction (if available)
 try:
     from .contact_prediction import (
@@ -49,16 +65,17 @@ try:
         predict_protein_structure
     )
     STRUCTURE_PREDICTION_AVAILABLE = True
-except ImportError as e:
+except Exception as error:  # noqa: BLE001 - optional subsystem must degrade
     STRUCTURE_PREDICTION_AVAILABLE = False
-    # Silently continue - these are optional modules
+    _UNAVAILABLE["structure_prediction"] = f"{type(error).__name__}: {error}"
 
 # Spectral analysis (if available)
 try:
     from .spectral import SpectralGraphAnalyzer, analyze_spectrum
     SPECTRAL_AVAILABLE = True
-except ImportError:
+except Exception as error:  # noqa: BLE001 - optional subsystem must degrade
     SPECTRAL_AVAILABLE = False
+    _UNAVAILABLE["spectral"] = f"{type(error).__name__}: {error}"
 
 __all__ = [
     # Curvature
@@ -103,8 +120,9 @@ try:
         "StructureZFCBridge", "StructureVerificationResult",
         "ESMFoldZFCPipeline", "ESMFoldZFCResult",
     ])
-except ImportError:
+except Exception as error:  # noqa: BLE001 - optional subsystem must degrade
     ESMFOLD_ZFC_AVAILABLE = False
+    _UNAVAILABLE["esmfold_zfc"] = f"{type(error).__name__}: {error}"
 
 # Categorical fragment assembly (if available)
 try:
@@ -120,5 +138,6 @@ try:
         "FragmentAssembler", "FragmentCategory", "FragmentAssemblyResult",
         "PositionedFragment", "SpatialMorphism",
     ])
-except ImportError:
+except Exception as error:  # noqa: BLE001 - optional subsystem must degrade
     FRAGMENT_ASSEMBLY_AVAILABLE = False
+    _UNAVAILABLE["fragment_assembly"] = f"{type(error).__name__}: {error}"
