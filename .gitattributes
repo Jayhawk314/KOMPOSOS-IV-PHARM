@@ -1,0 +1,15 @@
+# Files whose bytes are pinned by SHA-256 must never be rewritten on checkout.
+#
+# reports/prism_2026-08-14/PREREGISTRATION.json records the SHA-256 of the
+# disease correspondence and the candidate review, so that a frozen
+# pre-registration can be proven unchanged. Those hashes are taken over raw file
+# bytes. With core.autocrlf enabled - the default on many Windows clones - git
+# rewrites LF to CRLF on checkout, every hash changes, and the pin fails on a
+# clean checkout even though nothing was edited.
+#
+# `-text` disables end-of-line conversion in both directions, so the bytes on
+# disk are exactly the bytes in the object store. It does not rewrite anything
+# already committed, which matters here: repairing this by regenerating the
+# frozen pre-registration would mean editing it after scoring.
+reports/prism_2026-08-14/*.json -text
+reports/candidate_review_2026-08-01/CANDIDATE_REVIEW_60.csv -text
