@@ -151,6 +151,15 @@ phase.
 - `data/evidence/evidence.db` is the rebuildable contextual evidence hypergraph:
   60 reviewed claims, 77 studies, 148 receipts, 141 outcomes, and 3,237 typed
   study roles. It is read-only in the UI and does not affect graph scoring.
+- `reports/prism_2026-08-14/` — the PRISM Repurposing adjudication (Phase 1b).
+  The project's first externally-measured test, pre-registered and committed
+  before the scoring code existed. **Result: no candidate shows lineage-selective
+  in-vitro activity, robust across quality floors; zero of 60 standings change.**
+  PRISM 19Q4 has **no haematological cell lines**, so 22 of 60 pairs have no
+  adjudication surface at all. Labels, not features: `app.py` is the only
+  surface, and a test enforces that `oracle/`, `core/`, `validation/` and
+  `data/` never read it. Cell lines are not patients; no verdict there is an
+  efficacy claim, and `NO_LINEAGE_SELECTIVITY` does not retire a candidate.
 - `data/labels/evaluation_labels_v1.csv` — the Phase 0.5 label set. **A seed**:
   64 of 15,140 pairs, 44 of them inherited without any citation. Do not compute
   AUPRC or precision against it and present the result as a measurement.
@@ -159,10 +168,11 @@ phase.
 
 ```powershell
 streamlit run app.py                     # the UI; modes in the left sidebar
-python -m pytest tests/ -q               # expect 194 pass, 1 skip
+python -m pytest tests/ -q               # expect 249 pass, 1 skip
 python -m validation.check_label_set     # label-set structure + how incomplete it is
 python -m validation.enrich_candidate_review --out reports/candidate_review_2026-08-01/CANDIDATE_REVIEW_60.csv
 python -m evidence.build                   # rebuild contextual evidence + FTS5
+python -m evidence.acquire_prism --download # PRISM adjudication (~310 MB, offline after)
 python validation/triage.py Melanoma --drug Sorafenib   # one audited candidate
 python -m validation.nonobvious --disease Melanoma      # under-discussed real compositions
 ```

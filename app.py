@@ -1382,6 +1382,97 @@ def render_detail(entry):
         st.progress(cited / total, text=f"Provenance: {cited}/{total} edges cited")
 
 
+#: How each PRISM verdict should read to a human. Kept beside the renderer so a
+#: new verdict cannot silently display as a blank or, worse, as a pass.
+_PRISM_VERDICT_LABELS = {
+    "LINEAGE_SELECTIVE_ACTIVITY": (
+        "selective activity in the predicted lineage", "success"),
+    "PAN_LINEAGE_CYTOTOXIC": (
+        "kills across lineages — nonspecific cytotoxicity, not selectivity", "warning"),
+    "NO_LINEAGE_SELECTIVITY": (
+        "screened; no preference for the predicted lineage", "info"),
+    "SCREENED_INCONCLUSIVE": (
+        "too few lines survived quality control to compare", "caption"),
+    "UNDERPOWERED_REPORTED": (
+        "lineage has too few cell lines for a meaningful contrast", "caption"),
+    "NOT_SCREENED_BIOLOGIC": (
+        "a small-molecule viability screen cannot test this agent", "caption"),
+    "NOT_SCREENED_POST_DATING_RELEASE": (
+        "approved after the screen was run", "caption"),
+    "NOT_SCREENED_UNKNOWN_REASON": (
+        "absent from the screened library; reason not established", "caption"),
+    "NO_LINEAGE_CORRESPONDENCE": (
+        "no cell-line lineage corresponds to this disease", "caption"),
+    "AMBIGUOUS_MATCH": (
+        "compound name matched but structure disagreed; excluded", "caption"),
+    "SECONDARY_SINGLE_DOSE_ONLY_NOT_RUN": (
+        "single-dose screen only; dose-response analysis not run", "caption"),
+}
+
+
+def _render_prism_adjudication(evidence) -> None:
+    """Show measured cell-line viability beside a candidate. Never a score.
+
+    PRISM is an adjudication surface: labels, not features. It is displayed here
+    and read by nothing in the scored path. Cell lines are not patients, so no
+    line of this supports an efficacy claim in either direction.
+    """
+    if not evidence.prism:
+        return
+
+    st.markdown("#### Measured cell-line viability (PRISM Repurposing 19Q4)")
+    st.caption(
+        "Selectivity, not potency: a drug that kills every lineage is nonspecific "
+        "cytotoxicity, not a signal. Pre-registered before any outcome was read. "
+        "**Cell lines are not patients** — nothing here is evidence of clinical "
+        "efficacy, in either direction, and absence from the screen is absence, "
+        "not inactivity."
+    )
+
+    for observation in evidence.prism:
+        verdict = observation.get("verdict", "")
+        label, level = _PRISM_VERDICT_LABELS.get(
+            verdict, (f"unrecognised verdict `{verdict}` — not interpreted", "caption")
+        )
+        lineage = observation.get("prism_lineage") or "no lineage"
+        headline = f"**{verdict}** — {label}"
+
+        if level == "success":
+            st.success(headline)
+        elif level == "warning":
+            st.warning(headline)
+        elif level == "info":
+            st.info(headline)
+        else:
+            st.caption(headline)
+
+        delta = observation.get("selectivity_delta")
+        if delta is not None:
+            direction = (
+                "more sensitive than other lineages" if delta > 0
+                else "less sensitive than other lineages"
+            )
+            q_value = observation.get("bh_q")
+            q_text = f", BH q={q_value:.3f}" if q_value is not None else ""
+            st.markdown(
+                f"- `{lineage}` ({observation.get('n_target_lines')} lines) vs "
+                f"{observation.get('n_other_lines')} other lines: median AUC "
+                f"difference {delta:+.3f} — {direction}{q_text}."
+            )
+        # A SUPERSET identification means the result is about the cell-line
+        # lineage, not the clinical entity. Say so wherever it is shown.
+        if observation.get("correspondence_type") == "SUPERSET":
+            st.caption(
+                f"`{lineage}` strictly contains {observation.get('disease')}; this "
+                "is a statement about the lineage, not the clinical indication."
+            )
+        elif observation.get("correspondence_type") == "NEAR":
+            st.caption(
+                f"`{lineage}` is close to but not identical with "
+                f"{observation.get('disease')}."
+            )
+
+
 def render_contextual_evidence(drug: str, disease: str) -> None:
     """Render reviewed n-ary evidence without feeding it into graph scoring."""
     st.markdown("### Contextual clinical evidence")
@@ -1480,6 +1571,8 @@ def render_contextual_evidence(drug: str, disease: str) -> None:
             )
     else:
         st.caption("No pair-linked registry study was stored for this reviewed pair.")
+
+    _render_prism_adjudication(evidence)
 
     st.markdown("#### Opened/source receipts")
     if evidence.unresolved_receipts:

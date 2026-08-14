@@ -116,6 +116,7 @@ test_*.py
 !tests/test_alphafold_coherence.py
 !tests/test_structural_oracle.py
 !tests/test_build_alphafold_coherence_cohort.py
+!tests/test_prism_adjudication.py
 verify_*.py
 measure_*.py
 calibrate_*.py

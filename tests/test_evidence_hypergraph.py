@@ -34,6 +34,11 @@ def evidence_db(tmp_path_factory):
         "outcomes": 160,
         "claim_evidence": 179,
         "review_events": 60,
+        # One measured PRISM viability row per reviewed candidate, written by
+        # evidence/acquire_prism.py against a pre-registration frozen before any
+        # outcome was read. Read-only context: labels, not features. Asserted in
+        # detail in tests/test_prism_adjudication.py.
+        "prism_observations": 60,
     }
     return path
 

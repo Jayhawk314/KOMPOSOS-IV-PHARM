@@ -1,0 +1,48 @@
+{
+ "source": "PRISM Repurposing 19Q4",
+ "doi": "10.6084/m9.figshare.9393293.v4",
+ "citation": "Corsello et al., Nature Cancer 2020",
+ "figshare_api": "https://api.figshare.com/v2/articles/9393293",
+ "files": [
+  {
+   "file": "secondary-screen-cell-line-info.csv",
+   "url": "https://ndownloader.figshare.com/files/20237769",
+   "bytes": 40979,
+   "sha256": "b93436b5f4bcf5fd14589697be4ca8f99ffd99d639223080380bc514c3718d27",
+   "figshare_supplied_md5": "6737b4aa9fd85404fd2f0cf825b037e4",
+   "retrieved_at": "2026-08-14T21:40:03.204373+00:00"
+  },
+  {
+   "file": "primary-screen-cell-line-info.csv",
+   "url": "https://ndownloader.figshare.com/files/20237718",
+   "bytes": 46849,
+   "sha256": "c17174f48264fea0adb3eb4b2b1f2daf61b83999b0db6e4965338e3bd6a9fde2",
+   "figshare_supplied_md5": "580b9f0b5118d44f473ffa4efac7e0c2",
+   "retrieved_at": "2026-08-14T21:40:03.204373+00:00"
+  },
+  {
+   "file": "secondary-screen-replicate-collapsed-treatment-info.csv",
+   "url": "https://ndownloader.figshare.com/files/20237763",
+   "bytes": 3788355,
+   "sha256": "9d0d1fb4faa87a63cd84965ec5e2b55a9df5680520a41b029abb679cfd4384f7",
+   "figshare_supplied_md5": "54765b3639f91cede751378d694e3583",
+   "retrieved_at": "2026-08-14T21:40:03.207012+00:00"
+  },
+  {
+   "file": "primary-screen-replicate-collapsed-treatment-info.csv",
+   "url": "https://ndownloader.figshare.com/files/20237715",
+   "bytes": 1185606,
+   "sha256": "d649f207a437c9e9910572c5023d02f68a77c946f6e972c998b057160a3505e6",
+   "figshare_supplied_md5": "ec1da11ef0710944269cdd783b5bd341",
+   "retrieved_at": "2026-08-14T21:40:03.208624+00:00"
+  },
+  {
+   "file": "secondary-screen-dose-response-curve-parameters.csv",
+   "url": "https://ndownloader.figshare.com/files/20237739",
+   "bytes": 264340589,
+   "sha256": "88d1013506e0cd6f191a51c5f3fdd3fb2be54f8afb4e19a5d1f8538e81fbfec8",
+   "figshare_supplied_md5": "e629b9d505ad3d6bf65fde96f1c54bee",
+   "retrieved_at": "2026-08-14T21:40:37.339008+00:00"
+  }
+ ]
+}

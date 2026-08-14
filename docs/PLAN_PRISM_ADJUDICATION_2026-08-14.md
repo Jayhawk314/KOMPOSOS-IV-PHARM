@@ -1,10 +1,15 @@
 # PLAN — PRISM Repurposing as an adjudication surface
 
-Written 2026-08-14. GRAND_PLAN Phase 1b. **Reconnaissance is complete and is
-reported in section 2; no acquisition code has been written yet.** This document
-is the proposal: the schema, the disease correspondence, and the
-pre-registration protocol. Nothing may be scored until section 6 is executed in
-order.
+Written 2026-08-14. GRAND_PLAN Phase 1b. **IMPLEMENTED AND SCORED — see
+`reports/prism_2026-08-14/README.md` for the result.** The execution order in
+section 6 was followed: the pre-registration was committed before
+`evidence/acquire_prism.py` existed.
+
+**Result in one line: no candidate shows lineage-selective in-vitro activity,
+and the null holds at every quality floor tested. Zero of 60 candidate standings
+change.** Two of the thresholds frozen below turned out to be poorly chosen and
+one was unenforceable; all three are reported in the README rather than retuned,
+per section 6. Read that file before trusting any number in this one.
 
 ## 0. Why PRISM
 

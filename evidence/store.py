@@ -106,6 +106,12 @@ class EvidenceStore:
                     ORDER BY r.source_type, r.external_id""",
                 [*claim_ids, *claim_ids],
             ).fetchall()
+            prism_rows = connection.execute(
+                """SELECT * FROM prism_observations
+                   WHERE lower(drug)=lower(?) AND disease=?
+                   ORDER BY review_id""",
+                (drug, disease),
+            ).fetchall()
         return PairEvidence(
             drug=drug,
             disease=disease,
@@ -113,6 +119,7 @@ class EvidenceStore:
             studies=tuple(self._decode(row) for row in study_rows),
             outcomes=tuple(self._decode(row) for row in outcome_rows),
             receipts=tuple(self._decode(row) for row in receipt_rows),
+            prism=tuple(self._decode(row) for row in prism_rows),
         )
 
     def disease_review_summary(self, disease: str) -> list[dict]:
@@ -135,6 +142,7 @@ class EvidenceStore:
         tables = (
             "receipts", "claims", "candidate_reviews", "studies",
             "study_roles", "outcomes", "claim_evidence", "review_events",
+            "prism_observations",
         )
         with self.connect(readonly=True) as connection:
             return {

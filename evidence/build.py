@@ -13,6 +13,7 @@ from .acquire_trial_results import (
     DISPOSITION_RESULTS_CTG as RESULTS_RECOVERED_CTG,
     load_cached as load_cached_trial_results,
 )
+from .acquire_prism import load_observations as load_prism_observations
 from .store import DEFAULT_EVIDENCE_DB, EvidenceStore, REPO
 
 
@@ -417,6 +418,68 @@ def import_recovered_results(connection: sqlite3.Connection) -> dict[str, int]:
     return {"recovered_outcomes": recovered, "dispositions_set": dispositions}
 
 
+def import_prism_observations(connection: sqlite3.Connection) -> dict[str, int]:
+    """Materialize the measured PRISM adjudication into the evidence database.
+
+    Read-only context. These are labels, not features: nothing in the scored
+    graph path may read this table, and the ranker is never adjusted by it.
+
+    A missing observations file is normal - scoring needs a 264 MB download, and
+    the build must work without network access.
+    """
+    report = load_prism_observations()
+    observations = report.get("observations", [])
+    if not observations:
+        return {"prism_observations": 0}
+
+    known = {row[0] for row in connection.execute("SELECT review_id FROM candidate_reviews")}
+    written = 0
+    for observation in observations:
+        review_id = observation.get("review_id", "")
+        if review_id not in known:
+            continue
+        lineage = observation.get("prism_lineage") or {}
+        lineage_name = ""
+        if isinstance(lineage, dict):
+            parts = [lineage.get("primary_tissue"), lineage.get("secondary_tissue")]
+            lineage_name = "/".join(part for part in parts if part)
+        cytotoxic = observation.get("pan_lineage_cytotoxic")
+        connection.execute(
+            """INSERT OR REPLACE INTO prism_observations(
+                   observation_id, review_id, drug, disease, stratum,
+                   correspondence_type, prism_lineage, endpoint, screen_id,
+                   n_target_lines, n_other_lines, median_auc_target,
+                   median_auc_other, selectivity_delta, mannwhitney_p, bh_q,
+                   pan_lineage_cytotoxic, verdict, source_file, source_sha256,
+                   human_reviewed
+               ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)""",
+            (
+                stable_id("PRISM", review_id),
+                review_id,
+                observation.get("drug", ""),
+                observation.get("disease", ""),
+                observation.get("stratum", ""),
+                observation.get("correspondence_type", "REFUSED"),
+                lineage_name,
+                observation.get("endpoint") or "",
+                observation.get("screen_id", ""),
+                observation.get("n_target_lines"),
+                observation.get("n_other_lines"),
+                observation.get("median_auc_target"),
+                observation.get("median_auc_other"),
+                observation.get("selectivity_delta"),
+                observation.get("mannwhitney_p"),
+                observation.get("bh_q"),
+                None if cytotoxic is None else int(bool(cytotoxic)),
+                observation.get("verdict", ""),
+                observation.get("source_file") or "",
+                observation.get("source_sha256") or "",
+            ),
+        )
+        written += 1
+    return {"prism_observations": written}
+
+
 def populate_fts(connection: sqlite3.Connection) -> None:
     """Build a local lexical baseline that any future vector index must beat."""
     connection.execute("DELETE FROM evidence_fts")
@@ -458,6 +521,7 @@ def build_database(output: str | Path = DEFAULT_EVIDENCE_DB) -> dict[str, int]:
         claim_by_review = import_candidate_reviews(connection)
         import_trials(connection, claim_by_review)
         recovered = import_recovered_results(connection)
+        prism = import_prism_observations(connection)
         populate_fts(connection)
         connection.execute(
             "INSERT OR REPLACE INTO schema_meta(key, value) VALUES (?, ?)",
@@ -470,6 +534,10 @@ def build_database(output: str | Path = DEFAULT_EVIDENCE_DB) -> dict[str, int]:
         connection.execute(
             "INSERT OR REPLACE INTO schema_meta(key, value) VALUES (?, ?)",
             ("recovered_result_outcomes", str(recovered["recovered_outcomes"])),
+        )
+        connection.execute(
+            "INSERT OR REPLACE INTO schema_meta(key, value) VALUES (?, ?)",
+            ("prism_observations", str(prism["prism_observations"])),
         )
     temporary.replace(output)
     return EvidenceStore(output).counts()

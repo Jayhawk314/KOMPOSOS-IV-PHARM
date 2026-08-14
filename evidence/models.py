@@ -14,6 +14,8 @@ class PairEvidence:
     studies: tuple[dict[str, Any], ...] = field(default_factory=tuple)
     outcomes: tuple[dict[str, Any], ...] = field(default_factory=tuple)
     receipts: tuple[dict[str, Any], ...] = field(default_factory=tuple)
+    #: Measured PRISM viability adjudication. Read-only context; never a feature.
+    prism: tuple[dict[str, Any], ...] = field(default_factory=tuple)
 
     @property
     def reviewed(self) -> bool:
