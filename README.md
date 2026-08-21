@@ -34,18 +34,24 @@ data retain their own terms: [NOTICE](NOTICE) · Python 3.10+
 ## What this is actually useful for
 
 The ranker is the least interesting thing in this repository. **The contribution
-is a repurposing system that measured itself four times and reported four
-negatives**, plus a finding about the clinical-trial literature that holds well
+is a repurposing system that ran three negative controls on itself and failed
+all three**, plus a finding about the clinical-trial literature that holds well
 beyond this project.
 
 | Measured result | Finding |
 |---|---|
 | [ESMC ablation](data/ESMC_ABLATION_RESULT.json) | A 422-edge protein-embedding similarity layer made the ranker **worse**. Removing it improved AUROC 0.9691 → 0.9784, so it is excluded by default |
 | [Grounding permutation control](data/GROUNDING_NEGATIVE_CONTROL.json) | Post-hoc PubMed grounding measures **corpus density, not biology**. Real protein-disease pairings ground at 12.5%, randomly scrambled ones at 7.5% — Fisher p=0.28 |
-| Horn composition | Categorical machinery added **nothing** over ordinary pairwise comparison |
 | [PRISM adjudication](reports/prism_2026-08-14/README.md) | Pre-registered *before the scoring code existed*, against measured cell-line viability. **No candidate showed lineage-selective activity**, at any quality threshold. Zero of 60 standings changed |
 | [Trial recovery](reports/trial_recovery_2026-08-12/README.md) | 75% of tracked trials never posted results, every recorded stop reason was operational or financial rather than efficacy or safety, and **13 trials have registry results with no publication of any kind** — invisible to any literature search |
 | [60-candidate audit](reports/candidate_review_2026-08-01/README.md) | What the top of a ranked list actually contains when a human checks every row: **1 lead, 12 structurally invalid, 16 already clinically tested, 17 with nothing findable** |
+
+A fourth null — a structural-coherence auditor that found no AlphaFold
+domain-orientation contradiction — is **deliberately not counted here.** It has
+no positive controls, so it cannot distinguish "AlphaFold is right about these
+proteins" from "our measurement cannot detect error." A negative control
+requires that you could have detected the effect had it been there; that one
+does not clear the bar. See `reports/alphafold_coherence_2026-08-12/`.
 
 The trial finding has a direct consequence for anyone building these systems: a
 novelty signal built on literature absence **cannot distinguish "nobody tried

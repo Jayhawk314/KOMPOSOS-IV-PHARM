@@ -1,3 +1,21 @@
+> # SUPERSEDED — DO NOT CITE OR QUOTE ANY NUMBER FROM THIS FILE
+>
+> **Replaced 2026-08-21 by [`PAPER_NEGATIVE_CONTROLS_2026-08-21.md`](PAPER_NEGATIVE_CONTROLS_2026-08-21.md).**
+>
+> This 2026-05-13 draft is retained only as a historical record of what was
+> believed then. Its framing (a triumphalist "categorical AI achieves AUROC
+> 0.974" paper) was abandoned, and **every headline number in it has since been
+> retired**: the 5,382-morphism graph is now 2,462 edges; LOOCV AUROC 0.974 and
+> the remove_direct_labels 0.965 predate the ESMC exclusion; the Hetionet
+> external result (0.744, and 0.634 in the notice below) is **retired as not
+> reproducible** — its inputs are absent from the repository and it ran on the
+> forbidden `all` cohort; the temporal holdout is **leaky and mis-cohorted**.
+> The 63%/30%/7% trial cross-check was superseded by a full human audit that
+> found 1 lead, 12 structurally invalid, 16 already tested and 17 unresolved.
+>
+> The current numbers are in `CLAUDE.md` and `HONEST_VALUE.md`. The current
+> paper reports negative controls, not a performance claim.
+>
 > **Legacy/historical notice (2026-05-27):** This file is retained for background or session history. It is not the current source of truth for Track A metrics or provenance. Current docs are in `truedocs/`, especially `truedocs/VALIDATION_AND_BENCHMARKS.md` and `truedocs/REPRODUCIBILITY_PROTOCOL.md`. Current strict run: AUROC 0.974694 [0.9606, 0.9855], AUPRC 0.551698 [0.4067, 0.6983], Hits@5/10/20 1.0000/0.6000/0.6000; LOOCV AUROC 0.975916 and AUPRC 0.553703; Hetionet external AUROC 0.634479 and AUPRC 0.009255. Source strings exist on all 5,382 morphisms with 610 PMID identifiers; this is not 100% edge-specific citation validation. Retired or superseded claims in this file should be read as historical.
 # Auditable Drug Repurposing via Categorical Knowledge Graphs with Full Provenance
 

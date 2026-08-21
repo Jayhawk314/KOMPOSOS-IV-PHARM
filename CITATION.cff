@@ -20,14 +20,17 @@ abstract: >-
   target-disease facts into a source-linked shortlist of hypotheses, and it does
   not discover biology absent from the literature.
 
-  The repository is offered primarily as a methods artifact. It ships four
-  measured negative controls in which the system falsified its own components:
-  a protein-embedding similarity layer that made the ranker worse when included;
-  a permutation control showing that post-hoc PubMed grounding measures corpus
-  density rather than biology (Fisher p=0.28); a categorical horn-composition
-  layer that added nothing over ordinary pairwise comparison; and a
-  pre-registered adjudication against PRISM Repurposing cell-line viability that
-  returned no lineage-selective activity for any candidate.
+  The repository is offered primarily as a methods artifact. It ships three
+  negative controls in which the system falsified its own components: an
+  ablation showing that a protein-embedding similarity layer made the ranker
+  worse when included; a permutation control showing that post-hoc PubMed
+  grounding measures corpus density rather than biology (Fisher p=0.28); and a
+  pre-registered adjudication against PRISM Repurposing cell-line viability,
+  frozen and committed before the scoring code was written, that returned no
+  lineage-selective activity for any candidate. A fourth null, a structural
+  auditor finding no AlphaFold domain-orientation contradiction, is reported but
+  deliberately not counted as a negative control because it lacks positive
+  controls and is therefore uninterpretable.
 
   It also reports a trial-graveyard finding: across the trials tracked by its
   candidate review, 75% never posted results, every recorded stop reason was

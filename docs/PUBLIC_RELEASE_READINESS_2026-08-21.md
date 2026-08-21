@@ -120,8 +120,8 @@ Evidence-layer counts were stale (141 outcomes; actually 160) and there was no
 mention of the PRISM adjudication or the trial recovery. More importantly the
 README led with the ranker, which is the least defensible thing here.
 
-Restructured to lead with what a researcher would actually want — **four
-measured negative controls and a pre-registered external adjudication** — and
+Restructured to lead with what a researcher would actually want — **three
+negative controls, one of them a pre-registered external adjudication** — and
 corrected the counts. The AUROC section is unchanged; it was already careful.
 
 ### 2e. No machine-readable citation
@@ -194,14 +194,12 @@ already clinically tested, 17 with nothing findable — and the PRISM null, and
 leave. Those results are honest and they are not a product.
 
 **Offer it as a methods artifact.** The contribution is a repurposing system
-that measured itself four times and reported four negatives:
+that ran three negative controls on itself and failed all three:
 
 1. **ESMC ablation** — an embedding layer that made the model *worse*
    (0.9691 → 0.9784 on removal).
 2. **Grounding permutation control** — post-hoc PubMed citation measures corpus
    density, not biology; real 12.5% vs scrambled 7.5%, Fisher p=0.28.
-3. **Horn composition** — categorical machinery adding nothing over ordinary
-   pairwise comparison.
 4. **PRISM pre-registered adjudication** — frozen and committed before the
    scoring code existed; zero lineage-selective hits, zero of 60 standings
    changed.
@@ -231,14 +229,14 @@ unresolved rather than as a pass. Interesting to decision-support builders; less
 so to bench biologists.
 
 **A paper should lead.** A repository alone gets starred and forgotten; a
-repository attached to "here are four negative controls that killed our own
+repository attached to "here are three negative controls that killed our own
 methods" gets cited. Phase 3 of the GRAND_PLAN is most of the way written
 already.
 
 Suggested one-line framing:
 
 > A glass-box drug-repurposing triage tool that knows its limits — shipped with
-> the four negative controls that define them.
+> the three negative controls that define them.
 
 ---
 

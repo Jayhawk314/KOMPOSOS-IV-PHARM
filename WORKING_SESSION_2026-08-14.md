@@ -168,5 +168,6 @@ so they are not repeated.
   first external adjudication exists and returned a null. Nothing there is
   *wrong*; this is an addition, not a correction.
 - **Phase 3, the paper.** The null adds a fourth negative control alongside the
-  ESMC ablation, the grounding permutation, and the horn-composition null. A
-  paper that kills four of its own methods with controls is the actual product.
+  ESMC ablation and the grounding permutation. (The horn-composition null is
+  NOT a fourth control - it lacks positive controls and is uninterpretable.) A
+  paper that kills three of its own methods with controls is the actual product.
