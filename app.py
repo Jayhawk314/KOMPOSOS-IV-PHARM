@@ -2271,7 +2271,7 @@ the relationship.
 |-----------|------------|---------|-------------------|
 | 0.90 - 1.00 | Regulatory records, ChEMBL records | High-priority source class; confidence is not a probability | **Inspect** the exact record and indication context |
 | 0.70 - 0.89 | ChEMBL binding, KEGG pathways, curated interactions | Curated or database evidence for this relationship | **Inspect** the exact evidence and direction |
-| 0.50 - 0.69 | STRING PPI, established mechanisms (ESM2/ESMC similarity-transfer edges are now EXCLUDED from scoring -- see note) | Computational or curated evidence, not direct measurement | **Investigate** -- check the cited paper |
+| 0.50 - 0.69 | Protein-protein interaction edges, established mechanisms (ESM2/ESMC similarity-transfer edges are now EXCLUDED from scoring -- see note) | Computational or curated evidence, not direct measurement | **Investigate** -- check the cited paper. The 22 `PPI` edges record **no originating source**; treat them as unattributed |
 | 0.40 - 0.54 | PubMed co-mention (PARTIAL/AGREE after categorical verification) | Co-mentioned in literature AND supported by at least one categorical layer | **Consider** -- has some mechanistic support |
 | 0.35 | PubMed co-mention (ORPHAN after categorical verification) | Co-mentioned in literature but isolated -- no mechanistic support found | **Verify independently** -- may be text-mining noise |
 | 0.20 | PubMed co-mention (REJECT after categorical verification) | Co-mentioned in literature but failed categorical verification | **Hypothesis only** -- treat as noise unless you have independent evidence |
@@ -2904,6 +2904,32 @@ an external and a temporal number as if both were current. Neither survived.*
 | Temporal holdout, approvals > 2013 | **STALE and leaky.** Rerun 2026-07-31 it gives AUROC 0.996 / AUPRC 0.156 on 15,114 `all`-cohort pairs. It removes only the *label*, leaving 2026-derived Protein->Disease edges in the graph, so post-cutoff literature leaks into every "held-out" prediction. |
 | Corrected LOOCV | Not re-measured since the ESMC exclusion. Unverified. |
 | Disease holdout | Not re-measured since the ESMC exclusion. Unverified. |
+| **PRISM cell-line adjudication (2026-08-14)** | **RAN, and returned a null.** The first genuinely external, *measured* comparison. Pre-registered and committed **before** the scoring code existed. **No candidate showed lineage-selective in-vitro activity** at any quality floor, and **zero of 60** candidate standings changed. |
+
+**About the PRISM result.** It is the one external check here that actually
+executed, so it deserves stating precisely. The candidate set, the
+disease-to-lineage correspondence and every threshold were frozen and hashed
+first; the commit order is the evidence it was a test and not a description.
+
+It does **not** move the verdict above from "undetermined", and it must not be
+read as the system being refuted either:
+
+- **Not a precision estimate.** 16 pairs were pre-registered and only 3 were
+  measurable under the frozen quality rule. No AUROC, AUPRC or precision figure
+  may be computed from it.
+- **Cell lines are not patients.** A null in a dish is not clinical failure and
+  retires no candidate.
+- **Coverage was the binding limit.** PRISM 19Q4 contains **zero haematological
+  cell lines**, so 22 of 60 pairs had no adjudication surface at all, and 11
+  drugs were never screened -- 3 of them biologics the assay cannot test.
+  **Absence is recorded as absence, never as inactivity.**
+- Three thresholds frozen in advance turned out badly chosen or unenforceable.
+  All three are reported rather than retuned. See
+  `reports/prism_2026-08-14/README.md`.
+
+These results are **labels, not features**: they are displayed in Pair detail
+and read by nothing in the scored path, because folding measured outcomes into
+the ranker would destroy the only independent test of it this project has.
 
 **Why "undetermined" rather than "weak".** The temporal holdout's top-ranked
 *negative* is **Dacomitinib -> NSCLC**, an FDA-approved indication since
