@@ -58,8 +58,14 @@ Use `all` only as a discovery surface, never as the headline benchmark.
 - **2,462 edges in the DB.** The 424 ESMC protein-embedding
   similarity-transfer edges are tagged `[EMBEDDING-INFERRED]` and **excluded from
   scoring** — see below.
-- Sources: ChEMBL (881, the strong Drug→Protein layer), PMID literature, curated
-  cancer-protein lists, KEGG, FDA labels, ABPP (65 IC50s), STRING, tiny DepMap/CosMx.
+- Sources, **re-measured 2026-08-21** by `GROUP BY provenance` (they sum to 2,462):
+  ChEMBL 881 (the strong Drug→Protein layer), PMID-derived 433, ESMC 422
+  (excluded from scoring), curated cancer-protein lists 393, KEGG 72,
+  literature-unverified 64, FDA labels 61, PPI 22, COSMIC 18, ABPP 15,
+  DepMap 9, WHO 3. **STRING is not a source** — it was listed here previously
+  but 0 edges reference it in `provenance` or `metadata`. The 22 `PPI` edges
+  record **no originating source**; that is an open provenance gap, not a
+  shorthand for STRING. CosMx is 2 edges, not a layer.
 
 ## Three measured findings that define what to believe
 

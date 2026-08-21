@@ -58,6 +58,7 @@ from validation.repurposing_benchmark import (
     load_full_typed_view,
     score_pair_detailed,
 )
+from validation.ncbi_client import ncbi_credentials, ncbi_min_interval
 from validation.trace_prediction import _build_provenance_index, trace_pair
 
 DB_PATH = "data/drugs/tier1.db"
@@ -127,15 +128,19 @@ def _disease_query(disease: str) -> str:
 
 
 def pubmed_comentions(drug: str, disease: str, cache: dict,
-                      sleep: float = 0.34) -> int | None:
+                      sleep: float | None = None) -> int | None:
     """PubMed title/abstract co-mention count, or None if the lookup failed."""
     base = normalize_drug_name(drug)
     key = f"{base}|{disease}"
     if key in cache:
         return cache[key]
 
+    if sleep is None:
+        sleep = ncbi_min_interval()
     term = f'"{base}"[tiab] AND "{_disease_query(disease)}"[tiab]'
-    url = f"{EUTILS}?{urllib.parse.urlencode({'db': 'pubmed', 'term': term, 'rettype': 'count', 'retmode': 'json'})}"
+    query = {"db": "pubmed", "term": term, "rettype": "count", "retmode": "json"}
+    query.update(ncbi_credentials())
+    url = f"{EUTILS}?{urllib.parse.urlencode(query)}"
     try:
         with urllib.request.urlopen(url, timeout=20) as resp:
             payload = json.loads(resp.read().decode())
@@ -143,7 +148,7 @@ def pubmed_comentions(drug: str, disease: str, cache: dict,
     except Exception:
         return None
     finally:
-        time.sleep(sleep)  # NCBI allows 3 req/sec unauthenticated
+        time.sleep(sleep)
 
     cache[key] = count
     return count

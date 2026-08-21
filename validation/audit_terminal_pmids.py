@@ -17,6 +17,8 @@ import urllib.request
 from collections import defaultdict
 from pathlib import Path
 
+from validation.ncbi_client import ncbi_credentials
+
 REPO = Path(__file__).resolve().parent.parent
 DEFAULT_SHEET = REPO / "reports/candidate_review_2026-08-01/CANDIDATE_REVIEW_60.csv"
 DEFAULT_DB = REPO / "data/drugs/tier1.db"
@@ -44,9 +46,11 @@ def terminal_edges(sheet: Path, db: Path) -> tuple[list[dict[str, str]], dict[st
 def fetch_summaries(pmids: list[str]) -> dict[str, dict]:
     if not pmids:
         return {}
-    query = urllib.parse.urlencode({
-        "db": "pubmed", "id": ",".join(pmids), "retmode": "json",
-    })
+    # Identify the client to NCBI. See validation/nonobvious.py for why this
+    # matters for a shared public deployment rather than being mere politeness.
+    parameters = {"db": "pubmed", "id": ",".join(pmids), "retmode": "json"}
+    parameters.update(ncbi_credentials())
+    query = urllib.parse.urlencode(parameters)
     request = urllib.request.Request(
         f"{ESUMMARY}?{query}", headers={"User-Agent": "KOMPOSOS-IV-PHARM/1.0"}
     )

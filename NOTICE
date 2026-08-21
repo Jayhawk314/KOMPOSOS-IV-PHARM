@@ -38,12 +38,79 @@ It does NOT cover, and no copyright or other proprietary right is claimed in:
      freely for verification and reuse; this project claims no ownership of the
      underlying scientific facts.
 
+  2. THE KNOWLEDGE GRAPH in `data/drugs/tier1.db`. This file is committed so the
+     repository runs and its benchmark reproduces directly from a clone. It
+     contains 2,462 edges whose provenance is recorded on every row and is
+     measurable with:
+
+         SELECT provenance, COUNT(*) FROM morphisms GROUP BY provenance;
+
+     Inventory as of 2026-08-21, by originating source:
+
+       - ChEMBL (881 edges) — the drug-target layer. ChEMBL is released under
+         CC BY-SA 3.0; attribution is given here and the identifiers are
+         retained on each edge.
+       - PubMed / PMID-derived (433 edges) — PubMed identifiers and the factual
+         relation asserted. No article text is reproduced.
+       - ESMC protein-embedding similarity (422 edges) — computed in this
+         repository, not third-party data. Tagged [EMBEDDING-INFERRED] and
+         EXCLUDED from the default scored graph; measurement showed they made
+         the ranker worse.
+       - Curated cancer-protein lists (393 edges) — assembled here.
+       - KEGG (72 edges) — pathway relations (activates, phosphorylates,
+         inhibits) with the KEGG pathway identifier recorded, e.g. hsa04014.
+         KEGG's terms permit free academic web use but restrict bulk
+         redistribution. What is present here is a thin factual extraction with
+         attribution, not a copy of any KEGG data file. Anyone needing KEGG data
+         itself, or any commercial use, should go to Kanehisa Laboratories for
+         current terms rather than rely on this repository.
+       - Literature, relation unverified (64 edges) — flagged as such.
+       - FDA drug labels (61 edges) — U.S. Government work, public domain.
+       - Protein-protein interaction (22 edges) — ORIGINATING SOURCE NOT
+         RECORDED on these edges. This is a known provenance gap, stated rather
+         than papered over. Do not rely on these 22 edges.
+       - COSMIC Cancer Gene Census (18 edges) — Tier 1 driver assertions, all of
+         them `driver_of` relations. COSMIC is free for academic and
+         non-commercial research but requires a licence for commercial use, and
+         its redistribution terms are more restrictive than the other sources
+         here. As with KEGG, what is present is a small factual extraction with
+         attribution. Commercial users must obtain their own COSMIC licence from
+         the Wellcome Sanger Institute.
+       - ABPP measurements (15 edges) — generated for this project.
+       - DepMap (9 edges) — CC BY 4.0.
+       - WHO Classification of Haematolymphoid Tumours, 5th ed. (3 edges) —
+         defining facts cited to the publication.
+
+     This project claims no ownership of any of the underlying scientific facts
+     and asserts no rights over the third-party databases named above. If you
+     are a rights holder and believe an extraction here exceeds what your terms
+     permit, please open an issue; the intent is attribution and correctness,
+     and any specific edge set can be removed on request.
+
+  3. PRISM Repurposing 19Q4 cell-line viability
+     (`reports/prism_2026-08-14/`). Distilled per-candidate verdicts only. The
+     source dataset (Corsello et al., Nature Cancer 2020,
+     DOI 10.6084/m9.figshare.9393293) is released under CC BY 4.0 and is NOT
+     redistributed here; raw files are downloaded to gitignored
+     `data/external/` by `evidence/acquire_prism.py`.
+
+  4. ClinicalTrials.gov registry records (`reports/trial_recovery_2026-08-12/`).
+     Distilled registry facts and result dispositions. ClinicalTrials.gov is a
+     U.S. National Library of Medicine service; the records are U.S. Government
+     works.
+
 ================================================================================
 INDEPENDENCE AND DISCLAIMER
 ================================================================================
 
 This is an independent, unfunded project by a private individual. It is not
 affiliated with, sponsored by, reviewed by, or endorsed by PubChem, the FDA, the
-National Library of Medicine, or DrugBank.
+National Library of Medicine, DrugBank, ChEMBL/EMBL-EBI, the Wellcome Sanger
+Institute (COSMIC), Kanehisa Laboratories (KEGG), the Broad Institute
+(DepMap/PRISM), or the World Health Organization.
+
+It is a research prototype. It is NOT clinical, translational, or regulatory
+validation, it does not provide medical advice, and no output of it should be
+used to make a treatment decision.
 
 THE SOFTWARE AND ANALYSIS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.

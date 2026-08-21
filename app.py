@@ -446,6 +446,17 @@ if PRONOIA_AVAILABLE:
 _modes += ["How Scoring Works", "About"]
 
 mode = st.sidebar.radio("Mode", _modes)
+
+# The strongest "not clinical" statement used to live only inside the About tab,
+# which a first-time visitor may never open. This is a public app about cancer
+# drugs, so the disclaimer renders on every mode, not once somewhere reachable.
+st.sidebar.warning(
+    "**Research prototype — not medical advice.** This ranks *hypotheses* from "
+    "published pharmacology for human review. It is not clinical, "
+    "translational, or regulatory validation, and nothing here should inform a "
+    "treatment decision."
+)
+
 if PRONOIA_AVAILABLE:
     st.sidebar.caption(f"Audit stack: OPERADUM + PRONOIA from `{OPERADUM_STACK_ROOT}`")
 elif OPERADUM_AVAILABLE:

@@ -24,6 +24,39 @@ data retain their own terms: [NOTICE](NOTICE) · Python 3.10+
 > [`docs/LOCAL_COMPLETION_AND_EXTERNAL_VALIDATION.md`](docs/LOCAL_COMPLETION_AND_EXTERNAL_VALIDATION.md)
 > for the stopping rationale, outreach targets, session protocol, and
 > continue/narrow/archive decision.
+>
+> **New here?** [`docs/README.md`](docs/README.md) says which of the 145
+> markdown files are current and which are historical records that should not be
+> quoted for numbers.
+
+---
+
+## What this is actually useful for
+
+The ranker is the least interesting thing in this repository. **The contribution
+is a repurposing system that measured itself four times and reported four
+negatives**, plus a finding about the clinical-trial literature that holds well
+beyond this project.
+
+| Measured result | Finding |
+|---|---|
+| [ESMC ablation](data/ESMC_ABLATION_RESULT.json) | A 422-edge protein-embedding similarity layer made the ranker **worse**. Removing it improved AUROC 0.9691 → 0.9784, so it is excluded by default |
+| [Grounding permutation control](data/GROUNDING_NEGATIVE_CONTROL.json) | Post-hoc PubMed grounding measures **corpus density, not biology**. Real protein-disease pairings ground at 12.5%, randomly scrambled ones at 7.5% — Fisher p=0.28 |
+| Horn composition | Categorical machinery added **nothing** over ordinary pairwise comparison |
+| [PRISM adjudication](reports/prism_2026-08-14/README.md) | Pre-registered *before the scoring code existed*, against measured cell-line viability. **No candidate showed lineage-selective activity**, at any quality threshold. Zero of 60 standings changed |
+| [Trial recovery](reports/trial_recovery_2026-08-12/README.md) | 75% of tracked trials never posted results, every recorded stop reason was operational or financial rather than efficacy or safety, and **13 trials have registry results with no publication of any kind** — invisible to any literature search |
+| [60-candidate audit](reports/candidate_review_2026-08-01/README.md) | What the top of a ranked list actually contains when a human checks every row: **1 lead, 12 structurally invalid, 16 already clinically tested, 17 with nothing findable** |
+
+The trial finding has a direct consequence for anyone building these systems: a
+novelty signal built on literature absence **cannot distinguish "nobody tried
+this" from "somebody tried it and ran out of money."**
+
+If you are evaluating this as a source of drug candidates, read the 60-candidate
+audit first — it will tell you honestly what to expect. If you are building a
+knowledge-graph or ML repurposing system and want a validation template, the
+pre-registration and correspondence patterns in
+[`docs/PLAN_PRISM_ADJUDICATION_2026-08-14.md`](docs/PLAN_PRISM_ADJUDICATION_2026-08-14.md)
+are the part worth stealing.
 
 ---
 
@@ -153,8 +186,9 @@ The bundled database is rebuilt deterministically from the 60-candidate review:
 python -m evidence.build
 ```
 
-Current materialization: 60 reviewed claims, 77 registry studies, 148 receipts,
-141 outcomes, and 3,237 typed study roles. Pair detail also provides an FTS5
+Current materialization (2026-08-21): 60 reviewed claims, 77 registry studies,
+148 receipts, 160 outcomes, 3,237 typed study roles, and 60 PRISM viability
+observations. Pair detail also provides an FTS5
 search over the reviewed local corpus. A failed local search renders as unknown,
 not as evidence of absence. Vector retrieval is deliberately deferred until it
 can beat this lexical baseline on a frozen retrieval task. See
@@ -190,5 +224,19 @@ strategies, validation, and limitations.
 
 ```powershell
 pytest tests\test_repurposing_benchmark.py -q   # focused regression
-pytest tests -q                                  # full suite
+pytest tests -q                                  # full suite: 249 passed, 1 skipped
 ```
+
+A clean `git clone` runs the full suite with no manual steps and no network
+access. If it does not, that is a bug — please open an issue.
+
+## Third-party data
+
+The shipped graph `data/drugs/tier1.db` contains 2,462 edges drawn from ChEMBL,
+PubMed, KEGG, COSMIC, FDA labels, DepMap and others. **Every edge records its
+own provenance**, and the full inventory with per-source terms is in
+[`NOTICE`](NOTICE). COSMIC and KEGG have the most restrictive redistribution
+terms of the sources used; what is present is a small, attributed factual
+extraction rather than a copy of either database, and commercial users should
+obtain their own licences. If you are a rights holder and believe an extraction
+here exceeds what your terms permit, please open an issue.

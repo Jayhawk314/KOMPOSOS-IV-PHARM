@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+title: >-
+  KOMPOSOS-IV-PHARM: a glass-box drug-repurposing triage tool and its negative
+  controls
+message: >-
+  If you use this software or its results, please cite it. Please cite the
+  underlying data sources (ChEMBL, COSMIC, KEGG, DepMap/PRISM,
+  ClinicalTrials.gov) separately — see NOTICE for the full inventory.
+type: software
+authors:
+  - family-names: Hawkins
+    given-names: James Ray
+repository-code: https://github.com/Jayhawk314/KOMPOSOS-IV-PHARM
+license: Apache-2.0
+abstract: >-
+  An auditable triage accelerator over known oncology pharmacology. It ranks
+  drug-to-disease repurposing candidates as Drug-Protein-Disease paths, where
+  every edge carries provenance and an evidence tier. Its value is auditability
+  and speed rather than novelty: it recombines recorded drug-target and
+  target-disease facts into a source-linked shortlist of hypotheses, and it does
+  not discover biology absent from the literature.
+
+  The repository is offered primarily as a methods artifact. It ships four
+  measured negative controls in which the system falsified its own components:
+  a protein-embedding similarity layer that made the ranker worse when included;
+  a permutation control showing that post-hoc PubMed grounding measures corpus
+  density rather than biology (Fisher p=0.28); a categorical horn-composition
+  layer that added nothing over ordinary pairwise comparison; and a
+  pre-registered adjudication against PRISM Repurposing cell-line viability that
+  returned no lineage-selective activity for any candidate.
+
+  It also reports a trial-graveyard finding: across the trials tracked by its
+  candidate review, 75% never posted results, every recorded stop reason was
+  operational or financial rather than efficacy or safety, and 13 trials have
+  posted registry results with no publication of any kind. A novelty signal
+  built on literature absence therefore cannot distinguish an unexplored
+  hypothesis from a quietly abandoned one.
+
+  Research prototype. Not clinical, translational, or regulatory validation.
+keywords:
+  - drug repurposing
+  - knowledge graph
+  - negative controls
+  - pre-registration
+  - reproducibility
+  - meta-research
+  - oncology
+  - category theory
